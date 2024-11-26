@@ -1,8 +1,7 @@
+import Home from "@/sections/home/home";
 import { Metadata } from "next";
-export default function Home() {
+export default function HomePage() {
   return (
-     <div className="text-blue-500">
-      سلام نکست 
-     </div>
+     <Home/>
   );
 }

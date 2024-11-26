@@ -10,12 +10,14 @@
 body {
   direction: rtl;
   color: var(--foreground);
-  background: var(--background);
   font-family:'IRANYekanWebMedium';
 }
-/* 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
+
+@layer utilities {  
+  .bg-custom-gradient {  
+    background: linear-gradient(to bottom, #FFAB082B 60%, #FFD5831C 100%, #FFFFFF00 100%);  
+  }  
+  .bg-dark-no-gradient {  
+    background: #000; 
+}
+}  
