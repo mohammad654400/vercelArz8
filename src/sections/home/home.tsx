@@ -1,11 +1,11 @@
 import React from 'react'
 import FeaturesBanner from './featuresBanner/featuresBanner'
 import Header from './header/header'
+import MainTop from './maintop/mainTop'
 export default function Home() {
   return (
-    <div className='h-screen dark:bg-dark-no-gradient bg-custom-gradient'  >
-        <FeaturesBanner/>
-        <Header/>
+    <div className='flex flex-col gap-8 px-[120px] py-[30px]'>
+        <MainTop/>
     </div>
   )
 }

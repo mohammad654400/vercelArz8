@@ -1,0 +1,16 @@
+.customBullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 20%;
+  background-color: rgb(197, 193, 193);
+}
+
+.customBulletActive {
+  @apply bg-primary;
+}
+
+.bulletNumber {
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+} 
