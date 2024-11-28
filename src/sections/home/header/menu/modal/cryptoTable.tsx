@@ -36,7 +36,7 @@ const CryptoTable: React.FC = () => {
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full z-50">
          <div className="mb-4">
         <input
           type="text"

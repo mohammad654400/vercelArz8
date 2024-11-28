@@ -6,7 +6,7 @@ import CryptoTable from './cryptoTable'
 
 export default function SubMenu() {
   return (
-    <div className=' relative flex w-[700px] h-[491] bg-background rounded-2xl '>
+    <div className='z-50 relative flex w-[700px] h-[491] bg-background rounded-2xl '>
       <div className="text-background absolute right-16 rounded-xl -top-3 ">
         <HalfCircle/> 
       </div>
@@ -45,9 +45,12 @@ export default function SubMenu() {
       </div>
       <div className='relative p-5'>
         <div className='flex justify-center items-center bg-primary absolute left-6 top-6 rounded-lg w-8 h-8 '>
-          <div>
+          <div className=''>
             <Search/>
           </div>
+        </div>
+        <div>
+
         </div>
          <CryptoTable/>
       </div>
