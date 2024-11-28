@@ -15,7 +15,7 @@ body {
 
 @layer utilities {  
   .bg-custom-gradient {  
-    background: linear-gradient(to bottom, #FFAB082B 60%, #FFD5831C 100%, #FFFFFF00 100%);  
+    background: linear-gradient(to bottom, rgba(255, 171, 8, 0.17) 0%, rgba(255, 213, 131, 0.11) 70%, rgba(255, 255, 255, 0) 100%);  
   }  
   .bg-dark-no-gradient {  
     background: #000; 

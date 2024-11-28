@@ -49,7 +49,7 @@ export default function MainTop() {
        </div>
 
        </div>
-       <div className="w-full bg-[#ADADAD80] h-[2px] mt-8">  
+       <div className="w-full mt-8">  
           <div>
             <CryptoSlider/>
           </div>
