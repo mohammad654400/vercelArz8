@@ -17,7 +17,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, videoLin
 
   return (
     <div className="relative rounded-xl p-8 mb-4">
-      {/* Gradient Border */}
+ 
       {isOpen && (
         <div
           className="absolute -inset-px rounded-xl transition-opacity duration-300"
@@ -37,7 +37,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, videoLin
           onClick={toggleAccordion}
           className="w-full text-left font-medium flex justify-between items-center"
         >
-          <span className="text-[#000000] text-base font-semibold">{title}</span>
+          <span className="text-[#000000] text-start  text-base sm:text-xl font-semibold">{title}</span>
           <span>{isOpen ? <ArrowBottom /> : <ArrowTop />}</span>
         </button>
 
@@ -53,7 +53,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, videoLin
               </div>
             )}
             {children && (
-              <div className={`flex-1 font-normal ${videoLink ? "sm:w-2/5 w-full" : ""}`}>
+              <div className={`flex-1 font-normal text-sm   ${videoLink ? "sm:w-2/5 w-full" : ""}`}>
                 {children}
               </div>
             )}
