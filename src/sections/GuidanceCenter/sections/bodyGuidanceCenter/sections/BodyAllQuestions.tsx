@@ -1,23 +1,24 @@
 import { Question } from "@/sections/GuidanceCenter/type/types";
 import { AccordionItem } from "../../AccordionItem";
 
-interface BodyProps {
+interface BodyAllQuestionsProps {
   questions: Question[];
+  itemRefs: React.RefObject<{ [key: string]: React.RefObject<HTMLDivElement> }>;
 }
 
-export default function BodyVideoTutorial({ questions }: BodyProps) {
-
+export default function BodyAllQuestions({ questions, itemRefs }: BodyAllQuestionsProps) {
   return (
     <div>
-      {questions.map((question, index) => (
+      {questions.map((question) => (
         <AccordionItem
-          key={index}
+          key={question.id}
           title={question.title}
-          videoLink={question.videoLink}
+          videoLink={question.videoLink} 
+          ref={question.id && itemRefs.current ? itemRefs.current[question.id]  : null} 
         >
           {question.content}
         </AccordionItem>
       ))}
     </div>
-  )
+  );
 }

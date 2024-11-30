@@ -1,26 +1,38 @@
+
+import React, { useState, useMemo, useCallback } from 'react';
+import { Question } from "@/sections/GuidanceCenter/type/types";
+import ArrowBottom from "@/assets/icons/arrow-bottom";
 import Search from '@/assets/icons/search';
 import WaveDivider from '@/assets/icons/waveDivider';
-import React, { useState } from 'react';
-import { AccordionItem } from './AccordionItem';
-import { Question } from "@/sections/GuidanceCenter/type/types";
 
 interface HeaderProps {
   questions: Question[];
+  setActiveKey: React.Dispatch<React.SetStateAction<string | null>>;
+  scrollToItem: (id: string) => void; 
 }
 
-export default function Header({ questions }: HeaderProps) {
+export default function Header({ questions, setActiveKey, scrollToItem }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const filteredList = useMemo(() => {
+    return questions.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery, questions]);
+
+  const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchQuery(query);
-    setIsDropdownVisible(query.length > 0); 
-  };
+    setIsDropdownVisible(query.length > 0);
+    setActiveKey("all_questions");
+  }, [setActiveKey]);
 
-  const filteredList = questions.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleItemClick = useCallback((id: string | undefined): void => {
+    if (id) {
+      scrollToItem(id);
+    }
+  }, [scrollToItem]);
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -31,7 +43,7 @@ export default function Header({ questions }: HeaderProps) {
             سوالات خود را جستجو کنید یا از دسته بندی ها استفاده کنید.
           </p>
 
-          <div className="relative flex items-center mt-11 justify-center border-2 h-16 sm:w-2/5 w-4/5 border-[#FFC107] rounded-3xl p-2">
+          <div className="relative scroll-h flex items-center mt-11 justify-center border-2 h-16 sm:w-2/5 w-4/5 border-[#FFC107] rounded-3xl p-2">
             <input
               type="text"
               placeholder="سوال خود را بنویسید..."
@@ -43,17 +55,16 @@ export default function Header({ questions }: HeaderProps) {
             </div>
 
             {isDropdownVisible && filteredList.length > 0 && (
-              <div className="absolute top-full overflow-auto  p-6 rounded-xl left-0 w-full bg-white text-black rounded-b-xl shadow-lg mt-2 max-h-60  z-10">
+              <div className="absolute top-full overflow-auto p-6 rounded-xl left-0 w-full bg-background text-foreground rounded-b-xl shadow-lg mt-2 max-h-60 z-10">
                 <span className='text-start flex mb-3'>نتایج پیدا شده</span>
-                {filteredList.map((item, index) => (
-                  <div key={index} className="bg-white">
-                    <AccordionItem
-                      key={index}
-                      title={item.title}
-                      videoLink={item.videoLink}
-                    >
-                      {item.content}
-                    </AccordionItem>
+                {filteredList.map((item) => (
+                  <div key={item.id} onClick={() => handleItemClick(item.id)}>
+                    <div className="rounded-xl bg-secondary p-8 mb-4">
+                      <button className="w-full text-left font-medium flex justify-between items-center">
+                        <span className="text-[#000000] text-start text-base sm:text-xl font-semibold">{item.title}</span>
+                        <span><ArrowBottom /></span>
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -11,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        secondary:"var(--secondary)",
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary:"var(--primary)",
