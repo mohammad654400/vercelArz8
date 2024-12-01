@@ -41,7 +41,7 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
       <div className="relative">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-8 outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4 mb-10"
+            className="mb-8 dark:text-[#302F34] outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4 mb-10"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -62,7 +62,7 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
         <div className="relative">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4"
+            className="outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4 dark:text-[#302F34]"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}

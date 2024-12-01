@@ -27,6 +27,69 @@ const currencies = [
     change: "-0.75",
     icon: <BNB />,
   },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
 ];
 export default function TransAction() {
   const [isBuy, setIsBuy] = useState(true);
@@ -37,7 +100,7 @@ export default function TransAction() {
 
   return (
     <div className="w-full border border-2 rounded-xl">
-      <div className="flex gap-4 bg-gray-300 py-5 pr-6 rounded-xl cursor-pointer dark:bg-slate-700">
+      <div className="flex gap-4 bg-[#F6F6F6] py-5 pr-6 rounded-xl cursor-pointer dark:bg-[#3C3B41]">
         <div onClick={toggleTransaction}>خرید از ارزهشت</div>
         <div onClick={toggleTransaction}>فروش به ارز هشت</div>
       </div>

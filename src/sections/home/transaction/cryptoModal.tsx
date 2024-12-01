@@ -26,7 +26,7 @@ export default function CryptoModal({ toggle, setCurrency,currencies }: any) {
         onClick={handleBackgroundClick}
         className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50"
       >
-        <div className="w-[388px] bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="w-[388px] bg-background rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
           <div className="flex justify-between items-center p-4 border-b">
             <h2 className="text-lg font-semibold">انتخاب ارز</h2>
@@ -49,22 +49,22 @@ export default function CryptoModal({ toggle, setCurrency,currencies }: any) {
           </div>
   
           {/* Search */}
-          <div className="relative flex items-center px-4 my-2 mx-2 border-b  rounded-2xl">
+          <div className="relative flex items-center px-4 my-2 mx-2   rounded-2xl">
             <input
               type="text"
               placeholder="نام، نماد، ارز..."
-              className="w-full h-10 rounded-xl bg-[#F6F6F6] bg-transparent outline-none text-sm"
+              className="w-full h-10 rounded-xl bg-[#F6F6F6] pr-3 dark:bg-[#302F34]   outline-none text-sm"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
   
-          <div className="h-[400px] overflow-y-auto">
+          <div className="h-[400px] overflow-y-auto px-2">
             {filteredCurrencies.map((currency:any, index:any) => (
               <div
                 key={index}
                 onClick={() => handleCurrencySelect(currency)} 
-                className="flex items-center rounded-2xl justify-between px-4 py-3  hover:bg-[#FFF6DD] cursor-pointer"
+                className="flex items-center rounded-2xl justify-between px-4 py-3  hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
               >
                 <div className="flex items-center gap-2">
                 {currency.icon}

@@ -22,8 +22,8 @@ export default function BigArrow() {
           y2="7.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FFC107" />
-          <stop offset="1" stop-color="#3C3B41" />
+          <stop stopColor="#FFC107" />
+          <stop offset="1" stopColor="#3C3B41" />
         </linearGradient>
       </defs>
     </svg>

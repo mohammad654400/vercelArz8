@@ -9,7 +9,7 @@ export default function OtherServices() {
       <div className="text-background absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className=" relative flex gap-3 w-[288px]">
+      <div className=" relative flex gap-3 w-[288px] px-4 hover:bg-[#F6F6F6]">
         <svg
           width="21"
           height="20"
@@ -55,69 +55,69 @@ export default function OtherServices() {
           <path
             d="M1.6665 9.08398H10.8332"
             stroke="#3C3B41"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M5 15.75H6.66667"
             stroke="#FFC107"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M8.75 15.75H12.0833"
             stroke="#FFC107"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M18.3332 11.441V15.4243C18.3332 18.3493 17.5915 19.0827 14.6332 19.0827H5.3665C2.40817 19.0827 1.6665 18.3493 1.6665 15.4243V8.57436C1.6665 5.64936 2.40817 4.91602 5.3665 4.91602H11.0665"
             stroke="#3C3B41"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M23.9849 5H15.9849V9C15.9849 10.5 16.4849 11 17.9849 11H21.9849C23.4849 11 23.9849 10.5 23.9849 9V5Z"
             stroke="#3C3B41"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M24.75 3.5V4C24.75 4.55 24.485 5 23.75 5H16.25C15.485 5 15.25 4.55 15.25 4V3.5C15.25 2.95 15.485 2.5 16.25 2.5H23.75C24.485 2.5 24.75 2.95 24.75 3.5Z"
             stroke="#3C3B41"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M19.8199 2.5007H17.0599C16.8899 2.3157 16.8949 2.0307 17.0749 1.8507L17.7849 1.1407C17.9699 0.955703 18.2749 0.955703 18.4599 1.1407L19.8199 2.5007Z"
             stroke="#3C3B41"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M22.9348 2.5007H20.1748L21.5348 1.1407C21.7198 0.955703 22.0248 0.955703 22.2098 1.1407L22.9198 1.8507C23.0998 2.0307 23.1048 2.3157 22.9348 2.5007Z"
             stroke="#3C3B41"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M18.4702 5V7.57C18.4702 7.97 18.9102 8.205 19.2452 7.99L19.7152 7.68C19.8852 7.57 20.1002 7.57 20.2652 7.68L20.7102 7.98C21.0402 8.2 21.4852 7.965 21.4852 7.565V5H18.4702Z"
             stroke="#FFC107"
-            stroke-width="0.75"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="0.75"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
 
@@ -143,44 +143,44 @@ export default function OtherServices() {
             <path
               d="M14.9994 5.96602C14.9494 5.95769 14.8911 5.95769 14.8411 5.96602C13.6911 5.92435 12.7744 4.98268 12.7744 3.81602C12.7744 2.62435 13.7327 1.66602 14.9244 1.66602C16.1161 1.66602 17.0744 2.63268 17.0744 3.81602C17.0661 4.98268 16.1494 5.92435 14.9994 5.96602Z"
               stroke="#3C3B41"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M14.1412 12.0328C15.2829 12.2245 16.5412 12.0245 17.4245 11.4328C18.5995 10.6495 18.5995 9.36615 17.4245 8.58282C16.5329 7.99115 15.2579 7.79115 14.1162 7.99115"
               stroke="#FFC107"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M4.97588 5.96602C5.02588 5.95769 5.08421 5.95769 5.13421 5.96602C6.28421 5.92435 7.20088 4.98268 7.20088 3.81602C7.20088 2.62435 6.24255 1.66602 5.05088 1.66602C3.85921 1.66602 2.90088 2.63268 2.90088 3.81602C2.90921 4.98268 3.82588 5.92435 4.97588 5.96602Z"
               stroke="#3C3B41"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M5.83402 12.0328C4.69235 12.2245 3.43402 12.0245 2.55068 11.4328C1.37568 10.6495 1.37568 9.36615 2.55068 8.58282C3.44235 7.99115 4.71735 7.79115 5.85901 7.99115"
               stroke="#FFC107"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M9.9999 12.1906C9.9499 12.1823 9.89157 12.1823 9.84157 12.1906C8.69157 12.149 7.7749 11.2073 7.7749 10.0406C7.7749 8.84896 8.73323 7.89062 9.9249 7.89062C11.1166 7.89062 12.0749 8.85729 12.0749 10.0406C12.0666 11.2073 11.1499 12.1573 9.9999 12.1906Z"
               stroke="#3C3B41"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M7.57461 14.8168C6.39961 15.6001 6.39961 16.8835 7.57461 17.6668C8.90794 18.5585 11.0913 18.5585 12.4246 17.6668C13.5996 16.8835 13.5996 15.6001 12.4246 14.8168C11.0996 13.9335 8.90794 13.9335 7.57461 14.8168Z"
               stroke="#FFC107"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
 

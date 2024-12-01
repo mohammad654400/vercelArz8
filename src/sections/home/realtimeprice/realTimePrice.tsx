@@ -139,14 +139,14 @@ export default function RealTimePrice() {
               className={`px-3 py-1 rounded-lg text-sm ${
                 activeFilter === option.key
                   ? "bg-yellow-400 text-white "
-                  : " text-[#FFFFFF80]"
+                  : " text-[#FFFFFF80] text-black dark:text-white"
               }`}
             >
               {option.label}
             </button>
           ))}
         </div>
-        <button className="text-sm">
+        <button className="text-sm text-black dark:text-white">
           مشاهده همه ارزها
         </button>
       </div>

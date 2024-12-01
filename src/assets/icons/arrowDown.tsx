@@ -12,11 +12,11 @@ export default function ArrowDown() {
       <path
         d="M25.8741 11.9094L17.6469 20.1365C16.6753 21.1081 15.0854 21.1081 14.1138 20.1365L5.88672 11.9094"
         stroke="currentColor"
-        stroke-opacity="0.5"
-        stroke-width="1.41956"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeOpacity="0.5"
+        strokeWidth="1.41956"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

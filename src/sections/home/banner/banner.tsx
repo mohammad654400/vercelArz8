@@ -4,7 +4,7 @@ import downloadapp from '@/assets/images/downloadapp.png';
 
 export default function Banner() {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Image
         alt="ارز هشت"
         src={downloadapp}

@@ -10,8 +10,25 @@ body {
   direction: rtl;
   color: var(--foreground);
   background-color: var(--background);
-  font-family: "IRANYekanWebMedium";
+  font-family: "YekanBakh-SemiBold";
 }
+::-webkit-scrollbar {  
+  width: 6px;  
+}  
+
+::-webkit-scrollbar-track {  
+  background: #bbb9b9;  
+}  
+
+::-webkit-scrollbar-thumb {  
+  background:var(--primary);  
+  border-radius: 6px;  
+}  
+
+::-webkit-scrollbar-thumb:hover {  
+  background: #555;  
+}  
+
 
 @layer utilities {
   .bg-custom-gradient {
