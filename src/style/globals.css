@@ -2,22 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../assets/fonts/index.css';
-@import './theme/light.css';
-@import './theme/dark.css';
-
+@import "../assets/fonts/index.css";
+@import "./theme/light.css";
+@import "./theme/dark.css";
 
 body {
   direction: rtl;
   color: var(--foreground);
-  font-family:'IRANYekanWebMedium';
+  background-color: var(--background);
+  font-family: "IRANYekanWebMedium";
 }
 
-@layer utilities {  
-  .bg-custom-gradient {  
-    background: linear-gradient(to bottom, rgba(255, 171, 8, 0.17) 0%, rgba(255, 213, 131, 0.11) 70%, rgba(255, 255, 255, 0) 100%);  
-  }  
-  .bg-dark-no-gradient {  
-    background: #000; 
+@layer utilities {
+  .bg-custom-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 171, 8, 0.17) 0%,
+      rgba(255, 213, 131, 0.11) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  .bg-custom-gradient2 {
+    background: linear-gradient(
+      to top,
+      rgba(255, 171, 8, 0.17) 0%,
+      rgba(255, 213, 131, 0.11) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  .bg-dark-no-gradient {
+    background: 242428;
+  }
+  
 }
-}  

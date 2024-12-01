@@ -1,24 +1,35 @@
 import Arrow from "@/assets/icons/arrow";
 import React from "react";
 import SubMenu from "./modal/subMenu";
+import HalfCircle from "@/assets/icons/halfCircle";
+import OtherServices from "./otherServices";
 
 export default function Menu() {
   return (
     <div className="hidden lg:flex justify-center items-start gap-7 pr-7 h-full">
       <div className="flex justify-center items-center h-full w-[80]  gap-2 duration-300 group cursor-pointer">
-       <p className="group-hover:text-primary"> قیمت ارز های دیجیتال</p>
-        <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
-          <Arrow />
-        </div>
+        <p className="group-hover:text-primary"> قیمت ارز های دیجیتال</p>
+          <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
+            <Arrow />
+          </div>
         <div className="hidden group-hover:block absolute top-[130px] right-[229px]">
-          <SubMenu/>
+          <SubMenu />
         </div>
       </div>
-      <div className="flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">خرید و فروش آنی</div>
-      <div  className="flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">سوالات متداول</div>
-      <div className="flex justify-center items-center  h-full flex hover:text-primary items-center gap-2 group cursor-pointer">سایر خدمات
-      <div className="group-hover:rotate-180 group-hover:text-primary duration-300 cursor-pointer">
+
+      <div className="flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">
+        خرید و فروش آنی
+      </div>
+      <div className="group flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">
+        سوالات متداول
+      </div>
+      <div className="relative flex justify-center items-center  h-full flex  items-center gap-2 group cursor-pointer">
+        <p className="hover:text-primary"> سایر خدمات</p>
+        <div className="group group-hover:rotate-180 group-hover:text-primary duration-300 cursor-pointer">
           <Arrow />
+        </div>
+        <div className="hidden group-hover:block">
+          <OtherServices />
         </div>
       </div>
     </div>

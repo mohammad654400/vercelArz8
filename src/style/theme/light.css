@@ -1,6 +1,6 @@
 :root {
     --primary: #FFC107;
-    /* --background: linear-gradient(to bottom, #FFAB082B 60%, #FFD5831C 100%, #FFFFFF00 100%); */
-    --background:white;
+    --background:#FFFFFF;
     --foreground: #171717;
+    
 }
