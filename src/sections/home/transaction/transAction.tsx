@@ -104,7 +104,7 @@ export default function TransAction() {
         <div onClick={toggleTransaction}>خرید از ارزهشت</div>
         <div onClick={toggleTransaction}>فروش به ارز هشت</div>
       </div>
-      <div className="relative w-full bg-background h-[180px] px-5 ">
+      <div className="relative w-full bg-background duration-500 ">
          {isBuy?<Buy currencies={currencies} toggle={toggleTransaction} />:<Sell currencies={currencies} toggle={toggleTransaction}/>}
       </div>
     </div>

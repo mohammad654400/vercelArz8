@@ -95,7 +95,7 @@ export default function Footer() {
       </div>
       <div className=" w-full bg-background py-4 flex justify-between px-5 rounded-lg ">
         <div>تمامی حقوق این وبسایت متعلق به <span className="text-primary">صرافی ارزدیجیتال ارزهشت</span> است</div>
-        <div className="flex gap-4 dark:text-[#3C3B41]">
+        <div className="flex gap-4 dark:text-secondary">
           <YouTube/>
           <Instagram/>
           <Telegram/>

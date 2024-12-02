@@ -34,10 +34,10 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
 
   return (
     <div>
-      <div className="absolute -top-[52px] text-background">
+      <div className="absolute -top-[13px] right-6 text-background dark:text-secondary">
         <HalfCircle />
       </div>
-      <div className="flex justify-between items-center bg-background rounded-xl mt-10">
+      <div className="flex justify-between items-center bg-background rounded-xl  dark:bg-secondary py-8 px-10">
         <div className="relative">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
