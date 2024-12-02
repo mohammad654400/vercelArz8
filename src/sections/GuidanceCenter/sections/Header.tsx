@@ -8,7 +8,7 @@ interface HeaderProps {
   questions: Question[]; 
   setSelectItem: (id: number) => void; 
   setSelectedCategory: (id: number) => void; 
-  scrollToItem: (id: string) => void; // اضافه کردن تابع اسکرول به ایتم 
+  scrollToItem: (id: string) => void; 
 } 
  
 export default function Header({ 

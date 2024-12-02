@@ -1,11 +1,10 @@
 import WaveDivider from "@/assets/icons/waveDivider"; 
- 
 interface CollapsibleListProps { 
   activeCategory: number | null; 
   onCategory: (categoryId: number) => void; 
   categories: { id: number; title: string; icon: React.ComponentType }[];  
 } 
- 
+
 export default function CollapsibleList({ 
   categories, 
   onCategory, 
@@ -16,7 +15,7 @@ export default function CollapsibleList({
       {categories.map((category) => ( 
         <div 
           key={category.id} 
-          className="relative flex flex-col mb-14 w-44" 
+          className={`relative flex flex-col mb-14 w-44 ${activeCategory !== category.id ? "opacity-50" : ""}`} // اوپاسیتی 50% برای کارت‌های غیر فعال
           onClick={() => onCategory(category.id)} 
         > 
           <div className="relative z-0"> 
@@ -38,7 +37,7 @@ export default function CollapsibleList({
               <div className="text-4xl z-10"> 
                 <category.icon /> 
               </div> 
-              <span className="text-lg mt-2 z-10">{category.title}</span> 
+              <span className="text-lg font-semibold  mt-2 z-10">{category.title}</span> 
             </div> 
           </div> 
           {activeCategory === category.id && ( 

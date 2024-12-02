@@ -7,7 +7,6 @@ interface AccordionProps {
   } 
    
   export default function Accordion2({ items, defaultOpenId }: AccordionProps) { 
-    console.log("items", items); 
    
     if (!Array.isArray(items)) { 
       console.error("items is not an array", items); 

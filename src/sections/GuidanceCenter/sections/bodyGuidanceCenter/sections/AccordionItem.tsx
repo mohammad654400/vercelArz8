@@ -1,43 +1,3 @@
-// import { log } from "console"; 
-// import { useState, useEffect, forwardRef } from "react"; 
-
-// interface AccordionItemProps { 
-//   id: number; 
-//   title: string; 
-//   content: string; 
-//   isOpen: boolean; 
-//   onToggle: (id: number) => void; 
-// } 
-
-// export  const AccordionItem = ({ 
-//   id, 
-//   title, 
-//   content, 
-//   isOpen, 
-//   onToggle, 
-// }: AccordionItemProps) => ( 
-//   <div className="accordion-item border-b border-red-200"> 
-//     <div 
-//       className="accordion-header p-4 bg-gray-100 cursor-pointer flex justify-between items-center" 
-//       onClick={() => onToggle(id)} 
-//       aria-expanded={isOpen} 
-//       aria-controls={`accordion-content-${id}`} 
-//     > 
-//       <h3 className="text-lg font-semibold">{title}</h3> 
-//       <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}> 
-//         ▼ 
-//       </span> 
-//     </div> 
-//     {isOpen && ( 
-//       <div 
-//         id={`accordion-content-${id}`} 
-//         className="accordion-content p-4 bg-gray-50" 
-//       > 
-//         <p>{content}</p> 
-//       </div> 
-//     )} 
-//   </div> 
-// );
 import ArrowBottom from "@/assets/icons/arrow-bottom";
 import ArrowTop from "@/assets/icons/arrow-top";
 
@@ -49,6 +9,12 @@ interface AccordionItemProps {
   isOpen: boolean;
   onToggle: (id: number) => void;
 }
+
+// تابع تبدیل لینک آپارات به لینک embed
+const sanitizeApparatUrl = (url: string) => {
+  const videoId = new URL(url).pathname.split("/").pop();
+  return `https://www.aparat.com/video/video/embed/videohash/${videoId}/vt/frame`;
+};
 
 export const AccordionItem = ({
   id,
@@ -69,8 +35,10 @@ export const AccordionItem = ({
       ></div>
     )}
 
-    <div className="absolute inset-0 bg-secondary px-8 py-6 rounded-xl" aria-hidden="true"></div>
-
+    <div
+      className="absolute inset-0 bg-secondary px-8 py-6 rounded-xl"
+      aria-hidden="true"
+    ></div>
 
     <div className="relative w-full z-10">
       <button
@@ -85,17 +53,30 @@ export const AccordionItem = ({
 
       {isOpen && (
         <div
-          className={`mt-6 justify-between text-sm ${videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
-            }`}
+          className={`mt-6 justify-between text-sm ${
+            videoLink
+              ? "flex flex-col sm:flex-row items-start gap-4"
+              : ""
+          }`}
         >
           {videoLink && (
             <div className="flex-shrink-0 sm:w-2/5 w-full">
-              <video controls className="w-full rounded-md border" src={videoLink} />
+              <iframe
+                src={sanitizeApparatUrl(videoLink)}
+                title="آموزش ویدئویی"
+                className="w-full aspect-video rounded-xl "
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           )}
           {content && (
-            <div className={`flex-1 font-normal text-sm ${videoLink ? "sm:w-2/5 w-full" : ""}`}>
-              {content}
+            <div
+              className={`flex-1 leading-7 font-normal text-sm ${
+                videoLink ? "sm:w-2/5 w-full" : ""
+              }`}
+            >
+              <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           )}
         </div>

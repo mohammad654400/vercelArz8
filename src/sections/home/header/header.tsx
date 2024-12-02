@@ -8,8 +8,9 @@ import Downlaod from "@/assets/icons/downlaod";
 import Moon from "@/assets/icons/moon";
 import { useTheme } from "@/contexts/ThemeProvider";
 import DownloadSection from "./downloadSection";
+import Sun from "@/assets/icons/sun";
 export default function Header() {
-  const {toggleTheme} = useTheme()
+  const {toggleTheme,theme} = useTheme()
   return (
     <div className="flex items-center justify-between px-6 h-20">
       {/* right section --------------------------------- */}
@@ -34,7 +35,7 @@ export default function Header() {
           </div>
         </div>
         <div className="cursor-pointer " onClick={toggleTheme}>
-          <Moon/>
+          {theme=='light'?<Moon/>:<Sun/>}
         </div>
       </div>
     </div>

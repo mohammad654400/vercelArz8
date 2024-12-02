@@ -11,7 +11,7 @@ export default function ArrowLeft() {
     >
       <path
         d="M9.99998 13.2788L5.65331 8.93208C5.13998 8.41875 5.13998 7.57875 5.65331 7.06542L9.99998 2.71875"
-        stroke="#242428"
+        stroke="currentColor"
         strokeWidth="1.58062"
         strokeMiterlimit="10"
         strokeLinecap="round"
