@@ -1,8 +1,15 @@
 import React, { useState, useMemo } from "react"; 
-import { Question } from "@/sections/GuidanceCenter/type/types"; 
 import ArrowBottom from "@/assets/icons/arrow-bottom"; 
 import Search from "@/assets/icons/search"; 
 import WaveDivider from "@/assets/icons/waveDivider"; 
+
+interface Question { 
+  id: number;   
+  categoryId: number; 
+  title: string; 
+  content: string; 
+  videoLink?: string; 
+  }
  
 interface HeaderProps { 
   questions: Question[]; 
@@ -33,8 +40,11 @@ export default function Header({
   }; 
  
   const handleItemClick = (id: number) => { 
-    setSelectItem(id);
+    
     scrollToItem(String(id)); 
+    setTimeout(() => {
+      setSelectItem(id);
+    }, 300);
     setIsDropdownVisible(false); 
   }; 
  
@@ -70,7 +80,7 @@ export default function Header({
                   > 
                     <div className="rounded-xl bg-secondary p-8 mb-4"> 
                       <button className="w-full text-left font-medium flex justify-between items-center"> 
-                        <span>{item.title}</span> 
+                        <span className="text-start">{item.title}</span> 
                         <span> 
                           <ArrowBottom /> 
                         </span> 

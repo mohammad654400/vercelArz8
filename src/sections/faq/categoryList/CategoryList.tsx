@@ -5,7 +5,7 @@ interface CollapsibleListProps {
   categories: { id: number; title: string; icon: React.ComponentType }[];  
 } 
 
-export default function CollapsibleList({ 
+export default function CategoryList({ 
   categories, 
   onCategory, 
   activeCategory, 

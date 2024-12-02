@@ -1,5 +1,12 @@
-import { Question } from "@/sections/GuidanceCenter/type/types";
-import Accordion2 from "./sections/Accordion2";
+import Accordion from "./Accordion";
+
+interface Question { 
+  id: number;   
+  categoryId: number; 
+  title: string; 
+  content: string; 
+  videoLink?: string; 
+  }
 
 interface BodyProps {
   questions: Question[];
@@ -7,7 +14,7 @@ interface BodyProps {
   selectItem: number | null;
   itemRefs: React.MutableRefObject<{ [key: string]: HTMLDivElement | null }>;
 }
-export default function BodyGuidanceCenter({
+export default function Body({
   selectedCategory,
   questions,
   selectItem,
@@ -16,15 +23,14 @@ export default function BodyGuidanceCenter({
   const filteredQuestions =
     selectedCategory === 0 || selectedCategory === null
       ? questions 
-      : questions.filter((question) => question.categoryId === selectedCategory); // فیلتر بر اساس دسته‌بندی 
-
+      : questions.filter((question) => question.categoryId === selectedCategory); 
   return filteredQuestions.map((filteredQuestion) => (
     <div
       className="w-full sm:px-11 lg:px-28  px-5"
       ref={(el) => { itemRefs.current[filteredQuestion.id] = el; }}
       key={filteredQuestion.id}
     >
-      <Accordion2 items={[filteredQuestion]} defaultOpenId={selectItem} />
+      <Accordion items={[filteredQuestion]} defaultOpenId={selectItem} />
     </div>
   ));
 }

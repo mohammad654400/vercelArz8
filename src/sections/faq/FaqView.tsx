@@ -1,11 +1,11 @@
 "use client"; 
 import React, { useState, useRef, useEffect } from "react"; 
-import { newData, categories } from "./data/questionsData"; 
-import Header from "./sections/Header"; 
-import CollapsibleList from "./sections/CollapsibleList"; 
-import BodyGuidanceCenter from "./sections/bodyGuidanceCenter/BodyGuidanceCenter"; 
- 
-export default function GuidanceCenterView() { 
+import Header from "./header/Header";
+import CategoryList from "./categoryList/CategoryList";
+import Body from "./body/Body";
+import { categories, newData } from "./data/questionsData";
+
+export default function FaqView() { 
   const [selectedCategory, setSelectedCategory] = useState<number | null>(0); 
   const [selectItem, setSelectItem] = useState<number  | null>(null); 
    
@@ -15,7 +15,7 @@ export default function GuidanceCenterView() {
     if (itemRefs.current[id]) { 
       itemRefs.current[id]?.scrollIntoView({ 
         behavior: "smooth", 
-        block: "start", 
+        block: "center", 
       }); 
     } 
   }; 
@@ -28,12 +28,12 @@ export default function GuidanceCenterView() {
         setSelectedCategory={setSelectedCategory} 
         scrollToItem={scrollToItem} 
       /> 
-      <CollapsibleList 
+      <CategoryList 
         onCategory={(categoryId) => setSelectedCategory(categoryId)} 
         categories={categories} 
         activeCategory={selectedCategory} 
       /> 
-      <BodyGuidanceCenter 
+      <Body
         selectedCategory={selectedCategory} 
         questions={newData} 
         selectItem={selectItem} 

@@ -1,8 +1,8 @@
 import React from 'react'
-import GuidanceCenterView from "@/sections/GuidanceCenter/guidanceCenterView"
+import FaqView from "@/sections/faq/FaqView"
 
 export default function page() {
   return (
-    <GuidanceCenterView/>
+    <FaqView/>
   )
 }
