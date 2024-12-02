@@ -31,17 +31,17 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex flex-col gap-8 h-12">
-          <div className="flex gap-8">
-            <Image alt="بازار" src={bazar} />
+          <div className="flex gap-8 ">
+            <Image className="dark:bg-white rounded-xl" alt="بازار" src={bazar} />
             <div>
-              <Image alt="بازار" src={directDownload} />
+              <Image className="dark:bg-white rounded-xl" alt="بازار" src={directDownload} />
             </div>
 
             <div>
-              <Image alt="بازار" src={myket} />
+              <Image className="dark:bg-white rounded-xl" alt="بازار" src={myket} />
             </div>
             <div>
-              <Image alt="بازار" src={webapp} />
+              <Image className="dark:bg-white rounded-xl" alt="بازار" src={webapp} />
             </div>
           </div>
           <div className="flex justify-around">
@@ -95,7 +95,7 @@ export default function Footer() {
       </div>
       <div className=" w-full bg-background py-4 flex justify-between px-5 rounded-lg ">
         <div>تمامی حقوق این وبسایت متعلق به <span className="text-primary">صرافی ارزدیجیتال ارزهشت</span> است</div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 dark:text-[#3C3B41]">
           <YouTube/>
           <Instagram/>
           <Telegram/>

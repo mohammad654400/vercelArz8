@@ -9,7 +9,7 @@ export default function OtherServices() {
       <div className="text-background absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className=" relative flex gap-3 w-[288px] px-4 hover:bg-[#F6F6F6]">
+      <div className=" relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
         <svg
           width="21"
           height="20"
@@ -44,7 +44,7 @@ export default function OtherServices() {
           <ArrowLeft />
         </div>
       </div>
-      <div className="relative flex gap-3 w-[288px]">
+      <div className="relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
         <svg
           width="26"
           height="22"
@@ -131,7 +131,7 @@ export default function OtherServices() {
           <ArrowLeft />
         </div>
       </div>
-      <div className=" relative flex gap-3 w-[288px]">
+      <div className=" relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
         <div>
           <svg
             width="20"
@@ -193,7 +193,7 @@ export default function OtherServices() {
         <ArrowLeft />
         </div>
       </div>
-      <div className="relative flex gap-3 w-[288px]">
+      <div className="relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
         <div>
           <svg
             width="20"

@@ -1,7 +1,6 @@
 import Arrow from "@/assets/icons/arrow";
 import React from "react";
 import SubMenu from "./modal/subMenu";
-import HalfCircle from "@/assets/icons/halfCircle";
 import OtherServices from "./otherServices";
 
 export default function Menu() {
@@ -9,9 +8,9 @@ export default function Menu() {
     <div className="hidden lg:flex justify-center items-start gap-7 pr-7 h-full">
       <div className="flex justify-center items-center h-full w-[80]  gap-2 duration-300 group cursor-pointer">
         <p className="group-hover:text-primary"> قیمت ارز های دیجیتال</p>
-          <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
-            <Arrow />
-          </div>
+        <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
+          <Arrow />
+        </div>
         <div className="hidden group-hover:block absolute top-[130px] right-[229px]">
           <SubMenu />
         </div>
