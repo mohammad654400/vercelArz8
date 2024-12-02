@@ -18,7 +18,7 @@ export default function ClientProvider({
     <ThemeProvider>
       <div className="h-screen dark:bg-dark-no-gradient bg-custom-gradient">
         <FeaturesBanner />
-        <div className={isHomePage ? "bg-transparent" : "bg-white"}>
+        <div className={isHomePage ? "bg-transparent" : "bg-background dark:bg-[#3C3B41]"}>
           <Header />
         </div>
         {children}

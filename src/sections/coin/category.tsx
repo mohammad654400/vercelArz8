@@ -26,12 +26,12 @@ const data = [
 export default function Category() {
   return (
     <div className="py-[30px] px-8">
-      <div className="w-[350px] rounded-2xl  bg-[#F6F6F6] p-6 ">
+      <div className="w-[350px] rounded-2xl  bg-[#F6F6F6] dark:bg-[#242428] p-6 ">
         <div>
           <h1>جدید ترین ارز های ما</h1>
         </div>
         {data.map((item, index) => (
-          <div key={index} className="border-b-2 border-gray-200">
+          <div key={index} className="border-b-2 border-gray-200 ">
             <div>
               <div className="flex justify-between gap-7 mt-4">
                 <div className="flex items-center gap-2 pb-2">

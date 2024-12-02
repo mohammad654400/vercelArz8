@@ -3,7 +3,7 @@ import React from "react";
 export default function ArrowRight() {
   return (
     <svg
-      width="24"
+      width="20"
       height="24"
       viewBox="0 0 24 24"
       fill="none"
@@ -11,7 +11,7 @@ export default function ArrowRight() {
     >
       <path
         d="M8.91016 19.9201L15.4302 13.4001C16.2002 12.6301 16.2002 11.3701 15.4302 10.6001L8.91016 4.08008"
-        stroke="#3C3B41"
+        stroke="currentColor"
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"

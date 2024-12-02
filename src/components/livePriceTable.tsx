@@ -87,7 +87,7 @@ export default function LivePriceTable() {
     currencies.filter((currency) => currency.popular)
   );
   const [favorites, setFavorites] = useState<string[]>([]);
-  console.log("fav", favorites);
+
   const toggleFavorite = (symbol: string) => {
     setFavorites((prevFavorites) =>
       prevFavorites.includes(symbol)
@@ -160,9 +160,9 @@ export default function LivePriceTable() {
   const totalPages = Math.ceil(filteredCurrencies.length / itemsPerPage);
 
   return (
-    <div className="bg-background shadow-lg rounded-xl overflow-hidden">
+    <div className="bg-background dark:bg-[#3C3B41] shadow-lg rounded-xl overflow-hidden">
       {/* search */}
-      <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#3C3B41] px-4 py-3 text-[#FFFFFF80]">
+      <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-4 py-3 text-[#FFFFFF80]">
         <div className="flex gap-3">
           {filterOptions.map((option) => (
             <button
@@ -209,7 +209,7 @@ export default function LivePriceTable() {
 
       {/* table*/}
       <div className="p-4">
-        <div className="grid grid-cols-6 rounded-2xl bg-[#F6F6F6] dark:bg-[#3C3B41] text-center py-3 font-semibold border-gray-300">
+        <div className="grid grid-cols-6 rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center py-3 font-semibold border-gray-300">
           <div>تعداد</div>
           <div>قیمت به USDT</div>
           <div>قیمت به تومان</div>
