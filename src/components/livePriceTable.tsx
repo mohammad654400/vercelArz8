@@ -6,6 +6,8 @@ import ChartUP from "@/assets/images/chartup.png";
 import ArrowLeft from "@/assets/icons/arrowLeft";
 import ArrowRight from "@/assets/icons/arrowRight";
 import Star from "@/assets/icons/star";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const currencies = [
   {
@@ -79,6 +81,7 @@ const filterOptions = [
 ];
 
 export default function LivePriceTable() {
+  // state
   const [activeFilter, setActiveFilter] = useState("popular");
   const [searchTerm, setSearchTerm] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -87,7 +90,7 @@ export default function LivePriceTable() {
     currencies.filter((currency) => currency.popular)
   );
   const [favorites, setFavorites] = useState<string[]>([]);
-
+  // handler
   const toggleFavorite = (symbol: string) => {
     setFavorites((prevFavorites) =>
       prevFavorites.includes(symbol)
@@ -95,7 +98,6 @@ export default function LivePriceTable() {
         : [...prevFavorites, symbol]
     );
   };
-
   const handleFilterChange = (filterKey: any) => {
     setActiveFilter(filterKey);
 
@@ -145,18 +147,15 @@ export default function LivePriceTable() {
     }
     setCurrentPage(1);
   };
-
   const filteredCurrencies = displayedCurrencies.filter(
     (currency) =>
       currency.name.includes(searchTerm) || currency.symbol.includes(searchTerm)
   );
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCurrencies = filteredCurrencies.slice(
     startIndex,
     startIndex + itemsPerPage
   );
-
   const totalPages = Math.ceil(filteredCurrencies.length / itemsPerPage);
 
   return (
@@ -226,11 +225,11 @@ export default function LivePriceTable() {
             >
               <div className="flex items-center justify-center gap-2">
                 <button
-                  onClick={() => toggleFavorite(currency.symbol)} 
+                  onClick={() => toggleFavorite(currency.symbol)}
                   className={`text-2xl ${
-                    favorites.includes(currency.symbol) 
-                      ? "text-yellow-400" 
-                      : "text-gray-400" 
+                    favorites.includes(currency.symbol)
+                      ? "text-yellow-400"
+                      : "text-gray-400"
                   }`}
                 >
                   <Star />
@@ -253,9 +252,11 @@ export default function LivePriceTable() {
                 <Image src={ChartUP} alt="chart" width={64} height={31} />
               </div>
               <div>
-                <button className="border-2 border-primary text-primary px-4 py-2 rounded-lg">
-                  جزئیات بیشتر
-                </button>
+                <Link href={`/coins/${currency.symbol}`}>
+                  <button className="border-2 border-primary text-primary px-4 py-2 rounded-lg">
+                    جزئیات بیشتر
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

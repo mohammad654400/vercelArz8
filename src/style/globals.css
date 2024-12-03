@@ -50,5 +50,8 @@ body {
   .bg-dark-no-gradient {
     background: 242428;
   }
+  .dir_ltr{
+    direction:ltr ;
+  }
   
 }

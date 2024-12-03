@@ -13,7 +13,6 @@ export default function ClientProvider({
 }) {
   const route = usePathname();
   const isHomePage = route == "/" ? true : false;
-  console.log(isHomePage);
   return (
     <ThemeProvider>
       <div className="h-screen dark:bg-dark-no-gradient bg-custom-gradient ">

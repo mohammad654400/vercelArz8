@@ -1,5 +1,5 @@
 "use client"; 
-import React, { useState, useRef, useEffect } from "react"; 
+import React, { useState, useRef } from "react"; 
 import Header from "./header/Header";
 import CategoryList from "./categoryList/CategoryList";
 import Body from "./body/Body";
