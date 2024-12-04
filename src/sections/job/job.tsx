@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
-import Header from './header/Header'
-import Body from './body/Body'
+import HeaderJob from './header/headerJob'
+import BodyJob from './body/bodyJob'
 
 
 export default function Job() {
@@ -15,8 +15,8 @@ export default function Job() {
     };
   return (
     <div className='bg-background lg:px-[120px]  px-5  py-[30px] '>
-        <Header scrollToJobs={scrollToJobs}/>
-        <Body ref={jobListingsRef}/>
+        <HeaderJob scrollToJobs={scrollToJobs}/>
+        <BodyJob ref={jobListingsRef}/>
     </div>
   )
 }

@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
-import Profile from '@/assets/icons/opportunity/profile';
-import QuoteUpSquare from '@/assets/icons/opportunity/quoteUpSquare';
-import Insurance from '@/assets/icons/opportunity/insurance';
-import Clock from '@/assets/icons/opportunity/clock';
-import Category from '@/assets/icons/opportunity/category';
-import Location from '@/assets/icons/opportunity/location';
+import Profile from '@/assets/icons/job/profile';
+import QuoteUpSquare from '@/assets/icons/job/quoteUpSquare';
+import Insurance from '@/assets/icons/job/insurance';
+import Clock from '@/assets/icons/job/clock';
+import Category from '@/assets/icons/job/category';
+import Location from '@/assets/icons/job/location';
 import { jobListings, whyUs, OurCompanions } from '../data/data';
 import Link from 'next/link';
 
-const Body = forwardRef<HTMLDivElement>((_, ref) => (
+const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
     <div className='flex flex-col'>
         <span className='mt-10 mb-5 text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
         <div className='flex justify-between flex-wrap'>
@@ -78,4 +78,4 @@ const Body = forwardRef<HTMLDivElement>((_, ref) => (
     </div>
 ));
 
-export default Body;
+export default BodyJob;

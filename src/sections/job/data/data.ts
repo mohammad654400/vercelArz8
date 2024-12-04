@@ -1,7 +1,7 @@
-import clock from "@/assets/icons/opportunity/clock"
-import emoji from "@/assets/icons/opportunity/emoji"
-import insurance from "@/assets/icons/opportunity/insurance"
-import share from "@/assets/icons/opportunity/share"
+import clock from "@/assets/icons/job/clock"
+import emoji from "@/assets/icons/job/emoji"
+import insurance from "@/assets/icons/job/insurance"
+import share from "@/assets/icons/job/share"
 
 export interface whyUs {
     title: string;

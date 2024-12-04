@@ -1,12 +1,27 @@
 'use client';
-'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { validationSchema } from './yup/validationSchema';
 import { provincesWithCities } from './data/data';
+import InputAndSelectField from './input/InputField';
+import DocumentUpload from "@/assets/icons/job/documentUpload";
+import { Modal } from './modal/Modal';
 
-export default function ApplyPage() {
-    const [formData, setFormData] = useState({
 
+export default function ApplyPage({ title }: { title: string }) {
+
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
+    const [uploadedFileUrl, setUploadedFileUrl] = useState<string | undefined>(undefined);
+    const [previewPhoto, setPreviewPhoto] = useState<string | null>(null);
+    const fileUrlRef = useRef<string | undefined>(undefined);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const cityOptionsRef = useRef<string[]>([]);
+    const [trigger, setTrigger] = useState<number>(0);
+    const [isSuccessModal,setIsSuccessModal]=useState(false)
+
+
+    const formDataRef = useRef<Record<string, any>>({
         fullName: "",
         gender: "",
         birthDate: "",
@@ -22,351 +37,287 @@ export default function ApplyPage() {
         file: null,
         photo: null,
     });
-
-    const [errors, setErrors] = useState<Record<string, string>>({});
-    const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
-    const [previewPhoto, setPreviewPhoto] = useState<string | null>(null);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    console.log("formDataRef", formDataRef)
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+        formDataRef.current[name] = value; 
+        setTrigger(prev => prev + 1);
+    }, []);
 
-    const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            const maxFileSize = 5 * 1024 * 1024; // 5MB
-
-            if (file.size > maxFileSize) {
-                alert("حجم عکس باید کمتر از 5 مگابایت باشد.");
+            if (file.size > 200 * 1024 * 1024) {
+                setErrors((prev) => ({ ...prev, file: "حجم فایل نباید بیشتر از 200 مگابایت باشد." }));
                 return;
             }
+            if (file.type !== "application/pdf") {
+                setErrors((prev) => ({ ...prev, file: "فقط فایل‌های PDF مجاز هستند." }));
+                return;
+            }
+            setErrors((prev) => ({ ...prev, file: "" }));
 
+
+            if (fileUrlRef.current) {
+                URL.revokeObjectURL(fileUrlRef.current);
+            }
+
+            const newFileUrl = URL.createObjectURL(file);
+            fileUrlRef.current = newFileUrl;
+            setUploadedFileUrl(newFileUrl);
+
+            formDataRef.current.file = file;
+            setUploadedFileName(file.name);
+            setTrigger(prev => prev + 1);
+        }
+    }, []);
+
+    const handlePhotoUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const photo = e.target.files[0];
+            if (photo.size > 5 * 1024 * 1024) {
+                setErrors((prev) => ({ ...prev, photo: "حجم تصویر نباید بیشتر از 5 مگابایت باشد." }));
+                return;
+            }
+            if (!["image/jpeg", "image/png"].includes(photo.type)) {
+                setErrors((prev) => ({ ...prev, photo: "فقط فرمت‌های JPEG و PNG مجاز هستند." }));
+                return;
+            }
+            setErrors((prev) => ({ ...prev, photo: "" }));
             const reader = new FileReader();
             reader.onload = (event) => {
-                const img = new Image();
-                img.src = event.target?.result as string;
-
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-
-                    if (ctx) {
-                        ctx.drawImage(img, 0, 0);
-                        const pngData = canvas.toDataURL('image/png');
-                        setPreviewPhoto(pngData);
-                        setFormData({ ...formData, photo: pngData });
-                    }
-                };
+                setPreviewPhoto(event.target?.result as string);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(photo);
+            formDataRef.current.photo = photo;
+            setTrigger(prev => prev + 1);
         }
-    };
+    }, []);
 
-    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            const maxFileSize = 20 * 1024 * 1024; // 20MB
 
-            if (file.size > maxFileSize) {
-                alert("حجم فایل باید کمتر از 20 مگابایت باشد.");
-                return;
-            }
 
-            if (file.type !== 'application/pdf') {
-                alert("فقط فایل‌های PDF مجاز هستند.");
-                return;
-            }
 
-            setFormData({ ...formData, file: file });
-            setUploadedFileName(file.name);
+
+    useEffect(() => {
+        if (formDataRef.current.province) {
+            cityOptionsRef.current = provincesWithCities[formDataRef.current.province];
+            formDataRef.current.city = ""; 
+            setTrigger(prev => prev + 1);
+        } else {
+            cityOptionsRef.current = [];
         }
-    };
+    }, [formDataRef.current.province]);
 
-    const validateForm = () => {
-        const newErrors: Record<string, string> = {};
-        if (!formData.fullName) newErrors.fullName = "نام و نام خانوادگی الزامی است.";
-        if (!formData.gender) newErrors.gender = "جنسیت الزامی است.";
-        if (!formData.birthDate) newErrors.birthDate = "تاریخ تولد الزامی است.";
-        if (!formData.militaryStatus) newErrors.militaryStatus = "وضعیت نظام وظیفه الزامی است.";
-        if (!formData.salary) newErrors.salary = "حقوق درخواستی الزامی است.";
-        if (!formData.province) newErrors.province = "استان الزامی است.";
-        if (!formData.city) newErrors.city = "شهر الزامی است.";
-        if (!formData.maritalStatus) newErrors.maritalStatus = "وضعیت تاهل الزامی است.";
-        if (!formData.jobType) newErrors.jobType = "نوع همکاری الزامی است.";
-        if (!formData.phoneNumber) newErrors.phoneNumber = "شماره تماس الزامی است.";
-        else if (!/^\d{10,11}$/.test(formData.phoneNumber)) newErrors.phoneNumber = "شماره تماس نامعتبر است.";
-        if (!formData.email) newErrors.email = "ایمیل الزامی است.";
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "ایمیل نامعتبر است.";
-        if (!formData.previousWork) newErrors.previousWork = "نام محل کار قبلی الزامی است.";
+    const validateForm = useCallback(async () => {
+        try {
+        
+            await validationSchema.validate(formDataRef.current, { abortEarly: false });
+            setErrors({});
+            return true;
+        } catch (err: any) {
+            const newErrors: Record<string, string> = {};
+            err.inner.forEach((error: Yup.ValidationError) => {
+                newErrors[error.path] = error.message;
+            });
+            setErrors(newErrors);
+            return false;
+        }
+    }, []);
 
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!validateForm()) {
-            alert("لطفاً تمام فیلدها را به‌درستی پر کنید.");
+        const isValid = await validateForm();
+        if (!isValid) {
+            setIsSuccessModal(false)
+            setIsModalOpen(true);
             return;
         }
-        console.log(formData);
-        alert("فرم با موفقیت ارسال شد!");
+        console.log("formDataRef2:", formDataRef.current);
+        setIsSuccessModal(true)
+        setIsModalOpen(true);
     };
 
+
+
     return (
-        <div className="bg-background px-5 py-10 lg:px-[120px]">
-            <h1 className="text-4xl font-bold text-center mb-8">فرم ارسال درخواست و رزومه</h1>
-
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-
-                {/* نام خانوادگی */}
-                <div>
-                    <label className="block text-sm font-medium">نام خانوادگی</label>
-                    <input
+        <div >
+            <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
+            <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
+            <form onSubmit={handleSubmit} className='items-center justify-center w-full' >
+                <div className="grid grid-cols-2 gap-6">
+               
+                <InputAndSelectField
                         name="fullName"
-                        value={formData.fullName}
+                        label="نام خانوادگی"
+                        value={formDataRef.current.fullName}
+                        type="text"
                         onChange={handleChange}
-                        className="w-full p-2 rounded-xl border bg-transparent"
-                        placeholder="نام خانوادگی"
+                        error={errors.fullName}
                     />
-                    {errors.fullName && <p className="text-red-500 text-xs">{errors.fullName}</p>}
-                </div>
-
-                {/* شماره تماس */}
-                <div>
-                    <label className="block text-sm font-medium">شماره تماس</label>
-                    <input
+                    <InputAndSelectField
                         name="phoneNumber"
-                        value={formData.phoneNumber}
+                        label="شماره تماس"
+                        value={formDataRef.current.phoneNumber}
+                        type="text"
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent"
-                        placeholder="09123456789"
+                        error={errors.phoneNumber}
                     />
-                    {errors.phoneNumber && <p className="text-red-500 text-xs">{errors.phoneNumber}</p>}
-                </div>
-
-                {/* ایمیل */}
-                <div>
-                    <label className="block text-sm font-medium">ایمیل</label>
-                    <input
-                        type="email"
+                    <InputAndSelectField
                         name="email"
-                        value={formData.email}
+                        label="ایمیل"
+                        value={formDataRef.current.email}
+                        type="email"
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent"
-                        placeholder="example@example.com"
+                        error={errors.email}
                     />
-                    {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
-                </div>
-
-
-
-
-                {/* تاریخ تولد */}
-                <div>
-                    <label className="block text-sm font-medium">تاریخ تولد</label>
-                    <input
-                        type="date"
+                    <InputAndSelectField
                         name="birthDate"
-                        value={formData.birthDate}
+                        label="تاریخ تولد"
+                        value={formDataRef.current.birthDate}
+                        type="date"
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent"
+                        error={errors.birthDate}
                     />
-                    {errors.birthDate && <p className="text-red-500 text-xs">{errors.birthDate}</p>}
 
-                </div>
-                {/* جنسیت */}
-                <div>
-                    <label className="block text-sm font-medium">جنسیت</label>
-                    <select
+                    <InputAndSelectField
                         name="gender"
-                        value={formData.gender}
+                        label="جنسیت"
+                        value={formDataRef.current.gender}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        <option value="زن" className="bg-third text-foreground">زن</option>
-                        <option value="مرد" className="bg-third text-foreground">مرد</option>
-                    </select>
-                    {errors.gender && <p className="text-red-500 text-xs">{errors.gender}</p>}
-                </div>
+                        error={errors.gender}
+                        type={"select"}
+                        options={['مرد', 'زن']}
+                    />
 
-                {/* وضعیت تاهل */}
-                <div>
-                    <label className="block text-sm font-medium">وضعیت تاهل</label>
-                    <select
-                        name="maritalStatus"
-                        value={formData.maritalStatus}
-                        onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        <option value="مجرد" className="bg-third text-foreground">مجرد</option>
-                        <option value="متاهل" className="bg-third text-foreground">متاهل</option>
-                    </select>
-                    {errors.maritalStatus && <p className="text-red-500 text-xs">{errors.maritalStatus}</p>}
-                </div>
-
-                {/* وضعیت نظام وظیفه */}
-                <div>
-                    <label className="block text-sm font-medium">وضعیت نظام وظیفه</label>
-                    <select
+                    <InputAndSelectField
                         name="militaryStatus"
-                        value={formData.militaryStatus}
+                        label="وضعیت نظام وظیفه"
+                        value={formDataRef.current.militaryStatus}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        <option value="مشمول" className="bg-third text-foreground">مشمول</option>
-                        <option value="معاف" className="bg-third text-foreground">معاف</option>
-                        <option value="معافیت تحصیلی" className="bg-third text-foreground">معافیت تحصیلی</option>
-                    </select>
-                    {errors.militaryStatus && <p className="text-red-500 text-xs">{errors.militaryStatus}</p>}
-                </div>
+                        error={errors.militaryStatus} 
+                        type={"select"}
+                        options={['تمام شده', 'معاف', 'در حال انجام']}
+                    />
+                    <InputAndSelectField
+                        name="maritalStatus"
+                        label="وضعیت تاهل"
+                        value={formDataRef.current.maritalStatus}
+                        onChange={handleChange}
+                        error={errors.maritalStatus}
+                        type={"select"}
+                        options={['مجرد', 'متاهل']}
+                    />
 
-
-
-                {/* نوع همکاری */}
-                <div>
-                    <label className="block text-sm font-medium">نوع همکاری</label>
-                    <select
+                    <InputAndSelectField
                         name="jobType"
-                        value={formData.jobType}
+                        label="نوع همکاری"
+                        value={formDataRef.current.jobType}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        <option value="تمام وقت" className="bg-third text-foreground">تمام وقت</option>
-                        <option value="ساعتی" className="bg-third text-foreground">ساعتی</option>
-                        <option value="پروژه‌ای" className="bg-third text-foreground">پروژه‌ای</option>
-                    </select>
-                    {errors.jobType && <p className="text-red-500 text-xs">{errors.jobType}</p>}
-                </div>
+                        error={errors.jobType}
+                        type={"select"}
+                        options={['تمام‌وقت', 'نیمه‌وقت']}
+                    />
 
-
-                {/* حقوق درخواستی */}
-                <div>
-                    <label className="block text-sm font-medium">حقوق درخواستی</label>
-                    <select
+                    <InputAndSelectField
                         name="salary"
-                        value={formData.salary}
+                        label="حقوق درخواستی"
+                        value={formDataRef.current.salary}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        <option value="5 میلیون" className="bg-third text-foreground">5 میلیون</option>
-                        <option value="10 میلیون" className="bg-third text-foreground">10 میلیون</option>
-                        <option value="15 میلیون" className="bg-third text-foreground">15 میلیون</option>
-                    </select>
-                    {errors.salary && <p className="text-red-500 text-xs">{errors.salary}</p>}
-                </div>
-
-
-                {/* نام محل کار قبلی */}
-                <div>
-                    <label className="block text-sm font-medium">نام محل کار قبلی</label>
-                    <input
-                        name="previousWork"
-                        value={formData.previousWork}
-                        onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent"
-                        placeholder="نام محل کار قبلی"
+                        type={"select"}
+                        error={errors.salary}
+                        options={['5 میلیون تومان', '10 میلیون تومان', '15 میلیون تومان', '20 میلیون تومان', '25 میلیون تومان']}
                     />
-                    {errors.previousWork && <p className="text-red-500 text-xs">{errors.previousWork}</p>}
-                </div>
-                {/* استان */}
-                <div>
-                    <label className="block text-sm font-medium">استان</label>
-                    <select
+
+                    <InputAndSelectField 
+                    name="previousWork" 
+                    label="نام محل کار قبلی" 
+                    value={formDataRef.current.previousWork} 
+                    onChange={handleChange} 
+                    error={errors.previousWork} 
+                    type={"text"} />
+
+                    <InputAndSelectField
                         name="province"
-                        value={formData.province}
+                        label="استان"
+                        value={formDataRef.current.province}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                    >
-                        <option value="">انتخاب کنید</option>
-                        {Object.keys(provincesWithCities).map((province) => (
-                            <option key={province} value={province} className="bg-third text-foreground">
-                                {province}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.province && <p className="text-red-500 text-xs">{errors.province}</p>}
-                </div>
-
-                {/* شهر */}
-                <div>
-                    <label className="block text-sm font-medium">شهر</label>
-                    <select
+                        error={errors.province}
+                        type={"select"}
+                        options={Object.keys(provincesWithCities)}
+                    />
+                    <InputAndSelectField
                         name="city"
-                        value={formData.city}
+                        label="شهر"
+                        value={formDataRef.current.city}
                         onChange={handleChange}
-                        className="w-full p-2 rounded border bg-transparent text-foreground"
-                        disabled={!formData.province}
-                    >
-                        <option value="">انتخاب کنید</option>
-                        {formData.province &&
-                            provincesWithCities[formData.province].map((city) => (
-                                <option key={city} value={city} className="bg-third text-foreground">
-                                    {city}
-                                </option>
-                            ))}
-                    </select>
-                    {errors.city && <p className="text-red-500 text-xs">{errors.city}</p>}
-                </div>
-
-
-
-
-                {/* آپلود فایل */}
-                <div >
-                    <label className="block text-sm font-medium">فایل رزومه</label>
-                    <input
-                        type="file"
-                        accept=".pdf"
-                        onChange={handleFileUpload}
-                        className="w-full p-2 rounded border bg-transparent"
+                        error={errors.city}
+                        type={"select"}
+                        options={cityOptionsRef.current}
                     />
-                    <span>مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</span>
-                    {uploadedFileName && (
-                        <span className="text-sm text-green-500 mt-2 block">
-                            فایل "{uploadedFileName}" آپلود شد.
-                        </span>
-                    )}
-                </div>
 
-                {/* آپلود عکس */}
-                <div >
-                    <label className="block text-sm font-medium">آپلود عکس</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handlePhotoUpload}
-                        className="w-full p-2 rounded border bg-transparent"
-                    />
-                    <span>مشخصات فایل: حجم فایل کمتر از 5 مگابایت</span>
-                    {previewPhoto && (
-                        <div className="mt-4">
-                            <img src={previewPhoto} alt="Preview" className="w-32 h-32 object-cover rounded-md" />
-                            <p className="text-sm text-green-500 mt-2">عکس به فرمت PNG ذخیره شد.</p>
+                    <div>
+                        <label className="block text-sm font-medium">فایل رزومه</label>
+                        <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
+                                <DocumentUpload />
+                                <span className="text-sm text-gray-600">فایل رزومه خود را آپلود کنید</span>
+                            </div>
+                            <input
+                                type="file"
+                                accept=".pdf"
+                                onChange={handleFileUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            />
                         </div>
-                    )}
+                        {errors.file && <p className="text-sm text-red-500 mt-2">{errors.file}</p>}
+                        {!uploadedFileName ? (
+                            <p className="text-sm text-gray-500 mt-2">مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</p>
+                        ) : (
+                            <div className="mt-2">
+                                <span>مشاهده فایل: {uploadedFileName}</span>
+                                <a href={uploadedFileUrl || "#"} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">
+                                    مشاهده پیش‌نمایش
+                                </a>
+                            </div>
+                        )}
+                    </div>
 
+                    <div>
+                        <label className="block text-sm font-medium">تصویر پروفایل</label>
+                        <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
+                                <DocumentUpload />
+                                <span className="text-sm text-gray-600">تصویر پروفایل خود را آپلود کنید</span>
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handlePhotoUpload}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            />
+                        </div>
+                        {errors.photo && <p className="text-sm text-red-500 mt-2">{errors.photo}</p>}
+                        {!previewPhoto ? (
+                            <p className="text-sm text-gray-500 mt-2">مشخصات تصویر: فرمت‌های JPEG، PNG، حجم کمتر از 5 مگابایت</p>
+                        ) : (
+                            <div className="mt-2">
+                                <span className="block text-sm text-gray-700 mb-2">پیش‌نمایش تصویر:</span>
+                                <img src={previewPhoto} alt="Preview" className="w-32 h-32 object-cover rounded-full" />
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                {/* دکمه ارسال */}
-                <div className="col-span-1 lg:col-span-2 flex justify-center">
-                    <button
-                        type="submit"
-                        className="bg-primary text-white w-[90%] h-14 rounded-xl"
-                    >
+                <div className='w-full flex items-center justify-center mt-12'>
+                    <button type="submit" className=" w-full h-10 sm:w-1/3 sm:min-w-[470px] sm:h-16 bg-primary text-white px-4 py-2 rounded-xl">
                         ارسال درخواست
                     </button>
                 </div>
+
             </form>
+
+
+            {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} isSuccess={isSuccessModal} />}
         </div>
     );
 }

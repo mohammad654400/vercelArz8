@@ -3,11 +3,7 @@ import opportunity from "@/assets/images/opportunity.png";
 import Image from 'next/image';
 import React from 'react';
 
-export default function Header({ scrollToJobs }: { scrollToJobs: () => void }) {
-
-
-
-
+export default function HeaderJob({ scrollToJobs }: { scrollToJobs: () => void }) {
     return (
         <div className="flex flex-col-reverse lg:flex-row justify-between items-center h-full w-full">
             <div className="flex flex-col w-full lg:w-1/3  ">
@@ -22,7 +18,6 @@ export default function Header({ scrollToJobs }: { scrollToJobs: () => void }) {
                     مشاهده فرصت
                 </button>
             </div>
-
 
             <Image
                 src={opportunity}
