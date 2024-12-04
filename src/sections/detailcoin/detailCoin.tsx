@@ -4,7 +4,7 @@ import SendIcon from "@/assets/icons/detailcoin/send";
 import Star from "@/assets/icons/star";
 import { usePathname } from "next/navigation";
 import React from "react";
-import TransAction from "../home/transaction/transAction";
+import TransAction from "../home/transaction/transaction";
 import DetailDescription from "./description";
 import Category from "../coin/category";
 import QuickGuide from "../home/quickguide/quickGuide";
@@ -83,7 +83,7 @@ export default function DetailCoin() {
           ></iframe>
         </div>
         <div className="w-[40%] border-2 rounded-lg p-4">
-          {/* <TransAction/> */}
+          <TransAction />
         </div>
       </div>
 
@@ -238,8 +238,7 @@ export default function DetailCoin() {
       </div>
 
       <div>
-        <div className="w-[60px]">
-        </div>
+        <div className="w-[60px]"></div>
       </div>
     </div>
   );

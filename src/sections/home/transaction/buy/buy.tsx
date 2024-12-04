@@ -5,18 +5,22 @@ import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import BNB from "@/assets/icons/bnb";
 import ArrowChange from "@/assets/icons/arrowcChange";
+import { usePathname } from "next/navigation";
 
 export default function Buy({
   toggle,
   currencies,
+  width,
 }: {
   toggle: any;
   currencies: any;
+  width:any
 }) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(currencies[0]);
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const route = usePathname().split("/")[1];
 
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
@@ -37,13 +41,17 @@ export default function Buy({
       setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : "");
     }
   };
-
+  console.log("buy",width)
   return (
-    <div>
+    <div className="w-full ">
       <div className="absolute -top-[13px] right-6 text-background dark:text-secondary">
         <HalfCircle />
       </div>
-      <div className="flex flex-col lg:flex-row justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10">
+      <div
+        className={`flex flex-col justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 ${
+          width < 700 ? "lg:flex" : "lg:flex-row"
+        }`}
+      >
         <div className="relative w-full lg:w-auto">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input

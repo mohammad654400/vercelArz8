@@ -1,6 +1,6 @@
 import React from "react";
 import MainTop from "./maintop/mainTop";
-import TransAction from "./transaction/transAction";
+import TransAction from "./transaction/transaction";
 import SecondBannerSlider from "@/components/slider/bannerslider/seceondBannerSlider";
 import RealTimePrice from "./realtimeprice/realTimePrice";
 import Banner from "./banner/banner";
@@ -15,9 +15,9 @@ export default function Home() {
       <SecondBannerSlider />
       <RealTimePrice />
       <Banner />
-      <QuickGuide/>
-      <Blog/>
-      <Description/>
+      <QuickGuide />
+      <Blog />
+      <Description />
     </div>
   );
 }
