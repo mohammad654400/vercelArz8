@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { validationSchema } from './yup/validationSchema';
 import { provincesWithCities } from './data/data';
-import InputAndSelectField from './input/InputField';
+import FormField from './input/InputField';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import { Modal } from './modal/Modal';
 
@@ -15,10 +15,12 @@ export default function ApplyPage({ title }: { title: string }) {
     const [uploadedFileUrl, setUploadedFileUrl] = useState<string | undefined>(undefined);
     const [previewPhoto, setPreviewPhoto] = useState<string | null>(null);
     const fileUrlRef = useRef<string | undefined>(undefined);
+    // select city
+    const [province, setProvince] = useState<string>("");
+    const [cityOptions, setCityOptions] = useState<string[]>([]);
+    //modal
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const cityOptionsRef = useRef<string[]>([]);
-    const [trigger, setTrigger] = useState<number>(0);
-    const [isSuccessModal,setIsSuccessModal]=useState(false)
+    const [isSuccessModal, setIsSuccessModal] = useState(false)
 
 
     const formDataRef = useRef<Record<string, any>>({
@@ -37,12 +39,23 @@ export default function ApplyPage({ title }: { title: string }) {
         file: null,
         photo: null,
     });
-    console.log("formDataRef", formDataRef)
+
+
+
+
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        formDataRef.current[name] = value; 
-        setTrigger(prev => prev + 1);
+
+        formDataRef.current[name] = value;
+
+
+        if (name === "province") {
+            formDataRef.current.city = "";
+            setProvince(value);
+            setCityOptions(provincesWithCities[value] || []);
+        }
     }, []);
+
 
     const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -68,7 +81,6 @@ export default function ApplyPage({ title }: { title: string }) {
 
             formDataRef.current.file = file;
             setUploadedFileName(file.name);
-            setTrigger(prev => prev + 1);
         }
     }, []);
 
@@ -90,27 +102,12 @@ export default function ApplyPage({ title }: { title: string }) {
             };
             reader.readAsDataURL(photo);
             formDataRef.current.photo = photo;
-            setTrigger(prev => prev + 1);
         }
     }, []);
 
-
-
-
-
-    useEffect(() => {
-        if (formDataRef.current.province) {
-            cityOptionsRef.current = provincesWithCities[formDataRef.current.province];
-            formDataRef.current.city = ""; 
-            setTrigger(prev => prev + 1);
-        } else {
-            cityOptionsRef.current = [];
-        }
-    }, [formDataRef.current.province]);
-
     const validateForm = useCallback(async () => {
         try {
-        
+
             await validationSchema.validate(formDataRef.current, { abortEarly: false });
             setErrors({});
             return true;
@@ -132,7 +129,6 @@ export default function ApplyPage({ title }: { title: string }) {
             setIsModalOpen(true);
             return;
         }
-        console.log("formDataRef2:", formDataRef.current);
         setIsSuccessModal(true)
         setIsModalOpen(true);
     };
@@ -145,115 +141,105 @@ export default function ApplyPage({ title }: { title: string }) {
             <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
             <form onSubmit={handleSubmit} className='items-center justify-center w-full' >
                 <div className="grid grid-cols-2 gap-6">
-               
-                <InputAndSelectField
+
+                    <FormField
                         name="fullName"
                         label="نام خانوادگی"
-                        value={formDataRef.current.fullName}
                         type="text"
                         onChange={handleChange}
                         error={errors.fullName}
                     />
-                    <InputAndSelectField
+                    <FormField
                         name="phoneNumber"
                         label="شماره تماس"
-                        value={formDataRef.current.phoneNumber}
                         type="text"
                         onChange={handleChange}
                         error={errors.phoneNumber}
                     />
-                    <InputAndSelectField
+                    <FormField
                         name="email"
                         label="ایمیل"
-                        value={formDataRef.current.email}
                         type="email"
                         onChange={handleChange}
                         error={errors.email}
                     />
-                    <InputAndSelectField
+                    <FormField
                         name="birthDate"
                         label="تاریخ تولد"
-                        value={formDataRef.current.birthDate}
                         type="date"
                         onChange={handleChange}
                         error={errors.birthDate}
                     />
 
-                    <InputAndSelectField
+                    <FormField
                         name="gender"
                         label="جنسیت"
-                        value={formDataRef.current.gender}
                         onChange={handleChange}
                         error={errors.gender}
                         type={"select"}
                         options={['مرد', 'زن']}
                     />
 
-                    <InputAndSelectField
+                    <FormField
                         name="militaryStatus"
                         label="وضعیت نظام وظیفه"
-                        value={formDataRef.current.militaryStatus}
                         onChange={handleChange}
-                        error={errors.militaryStatus} 
+                        error={errors.militaryStatus}
                         type={"select"}
                         options={['تمام شده', 'معاف', 'در حال انجام']}
                     />
-                    <InputAndSelectField
+                    <FormField
                         name="maritalStatus"
                         label="وضعیت تاهل"
-                        value={formDataRef.current.maritalStatus}
                         onChange={handleChange}
                         error={errors.maritalStatus}
                         type={"select"}
                         options={['مجرد', 'متاهل']}
                     />
 
-                    <InputAndSelectField
+                    <FormField
                         name="jobType"
                         label="نوع همکاری"
-                        value={formDataRef.current.jobType}
                         onChange={handleChange}
                         error={errors.jobType}
                         type={"select"}
                         options={['تمام‌وقت', 'نیمه‌وقت']}
                     />
 
-                    <InputAndSelectField
+                    <FormField
                         name="salary"
                         label="حقوق درخواستی"
-                        value={formDataRef.current.salary}
                         onChange={handleChange}
                         type={"select"}
                         error={errors.salary}
                         options={['5 میلیون تومان', '10 میلیون تومان', '15 میلیون تومان', '20 میلیون تومان', '25 میلیون تومان']}
                     />
 
-                    <InputAndSelectField 
-                    name="previousWork" 
-                    label="نام محل کار قبلی" 
-                    value={formDataRef.current.previousWork} 
-                    onChange={handleChange} 
-                    error={errors.previousWork} 
-                    type={"text"} />
+                    <FormField
+                        name="previousWork"
+                        label="نام محل کار قبلی"
+                        onChange={handleChange}
+                        error={errors.previousWork}
+                        type={"text"} />
 
-                    <InputAndSelectField
+                    <FormField
                         name="province"
                         label="استان"
-                        value={formDataRef.current.province}
+                        value={province}
                         onChange={handleChange}
                         error={errors.province}
                         type={"select"}
                         options={Object.keys(provincesWithCities)}
                     />
-                    <InputAndSelectField
+                    <FormField
                         name="city"
                         label="شهر"
-                        value={formDataRef.current.city}
                         onChange={handleChange}
                         error={errors.city}
                         type={"select"}
-                        options={cityOptionsRef.current}
+                        options={cityOptions}
                     />
+
 
                     <div>
                         <label className="block text-sm font-medium">فایل رزومه</label>

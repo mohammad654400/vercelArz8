@@ -4,22 +4,23 @@ interface InputFieldProps {
     name: string;
     label: string;
     type: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     error?: string;
     options?: string[];
 }
 
-const InputAndSelectField: React.FC<InputFieldProps> = ({ name, label, type, value, onChange, error, options }) => {
+const FormField: React.FC<InputFieldProps> = ({ name, label, type, value, onChange, error, options }) => {
     return (
         <div>
             <label className="block text-sm font-medium">{label}</label>
             {type === "select" ? (
-                    <select
+                <select
                     name={name}
                     value={value}
                     onChange={onChange}
-                    className="w-full p-2 rounded border bg-transparent"
+                    className="w-full p-2 rounded border bg-transparent focus:ring-0 focus:outline-none"
+                    autoComplete="off"
                 >
                     <option value="">انتخاب کنید</option>
                     {options?.map(option => (
@@ -31,17 +32,14 @@ const InputAndSelectField: React.FC<InputFieldProps> = ({ name, label, type, val
             ) : (
 
                 <input
-    type={type}
-    name={name}
-    value={value}
-    onChange={onChange}
-    style={{
-        WebkitBoxShadow: '0 0 0px 1000px transparent inset',
-        transition: 'background-color 5000s ease-in-out 0s', 
-    }}
-    className="w-full p-2 rounded border bg-transparent text-foreground"
-    placeholder={label}
-/>
+                    type={type}
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    autoComplete="off"
+                    className="w-full p-2 rounded border bg-transparent focus:ring-0 focus:outline-none"
+                    placeholder={label}
+                />
 
             )}
             {error && <p className="text-red-500 text-xs">{error}</p>}
@@ -49,4 +47,4 @@ const InputAndSelectField: React.FC<InputFieldProps> = ({ name, label, type, val
     );
 };
 
-export default InputAndSelectField;
+export default FormField;
