@@ -4,13 +4,23 @@ import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import BNB from "@/assets/icons/bnb";
+import ArrowChange from "@/assets/icons/arrowcChange";
+import { usePathname } from "next/navigation";
 
-
-export default function Buy({ toggle,currencies }: { toggle: any,currencies:any }) {
+export default function Buy({
+  toggle,
+  currencies,
+  width,
+}: {
+  toggle: any;
+  currencies: any;
+  width:any
+}) {
   const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any | null>(currencies[0]); 
-  const [money, setMoney] = useState<string>(""); 
+  const [currency, setCurrency] = useState<any | null>(currencies[0]);
+  const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const route = usePathname().split("/")[1];
 
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
@@ -27,21 +37,25 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
   const handleAmountChange = (value: string) => {
     setAmount(value);
     if (currency) {
-      const calculatedMoney = parseFloat(value) * currency.price; 
-      setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : ""); 
+      const calculatedMoney = parseFloat(value) * currency.price;
+      setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : "");
     }
   };
-
+  console.log("buy",width)
   return (
-    <div>
-      <div className="absolute -top-[52px] text-background">
+    <div className="w-full ">
+      <div className="absolute -top-[13px] right-6 text-background dark:text-secondary">
         <HalfCircle />
       </div>
-      <div className="flex justify-between items-center bg-background rounded-xl mt-10">
-        <div className="relative">
+      <div
+        className={`flex flex-col justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 ${
+          width < 700 ? "lg:flex" : "lg:flex-row"
+        }`}
+      >
+        <div className="relative w-full lg:w-auto">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none dark:text-[#302F34] h-[58px] w-[414px] border rounded-xl mt-5 pr-4"
+            className="outline-none dark:text-[#302F34] h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
@@ -56,60 +70,14 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
           </div>
         </div>
 
-        <div onClick={toggle} className="cursor-pointer">
-        <svg
-            width="58"
-            height="58"
-            viewBox="0 0 58 58"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M53.1673 36.2494L53.1673 21.7494C53.1673 9.66602 48.334 4.83269 36.2507 4.83269L21.7507 4.83269C9.66732 4.83269 4.83399 9.66602 4.83399 21.7494L4.83399 36.2494C4.83399 48.3327 9.66732 53.166 21.7506 53.166L36.2506 53.166C48.334 53.166 53.1673 48.3327 53.1673 36.2494Z"
-              stroke="#292D32"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M41.4485 33.3975L34.1018 40.7441"
-              stroke="#F00500"
-              strokeWidth="2.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M16.5566 33.3984L41.4483 33.3984"
-              stroke="#F00500"
-              strokeWidth="2.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M16.5566 24.6016L23.9033 17.2549"
-              stroke="#33B028"
-              strokeWidth="2.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M41.4483 24.6016L16.5566 24.6016"
-              stroke="#33B028"
-              strokeWidth="2.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <div onClick={toggle} className="cursor-pointer mt-5 lg:mt-0">
+          <ArrowChange />
         </div>
 
-        <div className="relative">
+        <div className="relative w-full lg:w-auto">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-8 dark:text-[#302F34] outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4"
+            className="mb-8 dark:text-[#302F34] outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -124,7 +92,7 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
           </div>
         </div>
 
-        <div>
+        <div className="w-full lg:w-auto">
           {open && (
             <CryptoModal
               currencies={currencies}
@@ -132,7 +100,7 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12 py-3 mt-2 rounded-xl bg-[#33B028]">
+          <button className="px-12 py-3 mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
             پرداخت
           </button>
         </div>

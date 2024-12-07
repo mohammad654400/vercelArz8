@@ -69,24 +69,30 @@ const QuickGuide = () => {
       <div className="w-full md:w-1/2 pr-4">
         <h2 className="text-lg font-bold mb-8">راهنمای سریع</h2>
         {rightFAQs.map((faq, index) => (
-          <div key={index} className="mb-2 border-2 rounded-2xl px-3">
-            <button
-              onClick={() =>
-                toggleAccordion(index, setActiveRightIndex, activeRightIndex)
-              }
-              className="w-full text-right flex justify-between items-center py-3  font-medium"
-            >
-              {faq.question}
-              <span className="transform transition-transform">
-                {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
-              </span>
-            </button>
-            {activeRightIndex === index && (
-              <div className="px-4 py-2 ">
-                <p>{faq.answer}</p>
-              </div>
-            )}
-          </div>
+         <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+         <button
+           onClick={() =>
+             toggleAccordion(index, setActiveRightIndex, activeRightIndex)
+           }
+           className="w-full text-right flex justify-between items-center py-3 font-medium"
+         >
+           {faq.question}
+           <span className="transform transition-transform">
+             {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
+           </span>
+         </button>
+       
+         <div
+           className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+             activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
+           }`}
+         >
+           <div className="px-4 py-2">
+             <p>{faq.answer}</p>
+           </div>
+         </div>
+       </div>
+       
         ))}
       </div>
 
@@ -114,7 +120,10 @@ const QuickGuide = () => {
                 </span>
               </button>
               {activeLeftIndex === index && faq.videoUrl && (
-                <div className="px-4 py-2 ">
+                <div
+                className="duration-500"
+              >
+                <div className="px-4 py-2">
                   <p>{faq.answer}</p>
                   <div className="mt-4">
                     <iframe
@@ -126,6 +135,8 @@ const QuickGuide = () => {
                     ></iframe>
                   </div>
                 </div>
+              </div>
+              
               )}
             </div>
           ))}

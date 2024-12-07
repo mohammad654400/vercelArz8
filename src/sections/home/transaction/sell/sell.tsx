@@ -5,11 +5,16 @@ import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import ArrowChange from "@/assets/icons/arrowcChange";
 
-
-export default function Buy({ toggle,currencies }: { toggle: any,currencies:any }) {
+export default function Buy({
+  toggle,
+  currencies,
+}: {
+  toggle: any;
+  currencies: any;
+}) {
   const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any | null>(currencies[0]); 
-  const [money, setMoney] = useState<string>(""); 
+  const [currency, setCurrency] = useState<any | null>(currencies[0]);
+  const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
 
   const toggleOpen = () => {
@@ -27,21 +32,22 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
   const handleAmountChange = (value: string) => {
     setAmount(value);
     if (currency) {
-      const calculatedMoney = parseFloat(value) * currency.price; 
-      setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : ""); 
+      const calculatedMoney = parseFloat(value) * currency.price;
+      setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : "");
     }
   };
 
   return (
-    <div>
-      <div className="absolute -top-[52px] right-40 text-background">
+    <div className="w-full">
+      <div className="absolute -top-[13px] right-40 text-background dark:text-secondary">
         <HalfCircle />
       </div>
-      <div className="flex justify-between items-center bg-background rounded-xl mt-10">
-      <div className="relative">
+      <div className="flex justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 lg:flex ">
+        
+        <div className=" relative">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-8 dark:text-[#302F34] outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4 mb-10"
+            className="mb-10 dark:text-[#302F34] outline-none h-[58px] w-[414px] border rounded-xl mt-5 pr-4 mb-10"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -55,8 +61,9 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
             <div>{currency.icon}</div>
           </div>
         </div>
+
         <div onClick={toggle} className="cursor-pointer">
-       <ArrowChange/>
+          <ArrowChange />
         </div>
 
         <div className="relative">
@@ -75,7 +82,7 @@ export default function Buy({ toggle,currencies }: { toggle: any,currencies:any 
           <div className="flex gap-5 mt-5 text-sm">
             <p>قیمت خرید: {currency.price.toLocaleString()} تومان</p>
           </div>
-        </div>      
+        </div>
 
         <div>
           {open && (

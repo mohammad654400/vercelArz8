@@ -1,5 +1,5 @@
 "use client"; 
-import React, { useState, useRef, useEffect } from "react"; 
+import React, { useState, useRef } from "react"; 
 import Header from "./header/Header";
 import CategoryList from "./categoryList/CategoryList";
 import Body from "./body/Body";
@@ -21,13 +21,14 @@ export default function FaqView() {
   }; 
  
   return ( 
-    <div className="flex w-full flex-col bg-background"> 
+    <div className="flex w-full flex-col bg-background "> 
       <Header 
         questions={newData} 
         setSelectItem={setSelectItem} 
         setSelectedCategory={setSelectedCategory} 
         scrollToItem={scrollToItem} 
       /> 
+      <div className="px-[120px] py-[30px]">
       <CategoryList 
         onCategory={(categoryId) => setSelectedCategory(categoryId)} 
         categories={categories} 
@@ -39,6 +40,7 @@ export default function FaqView() {
         selectItem={selectItem} 
         itemRefs={itemRefs} 
       /> 
+      </div>
     </div> 
   ); 
 }

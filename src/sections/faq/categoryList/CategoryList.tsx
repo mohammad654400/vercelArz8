@@ -11,7 +11,7 @@ export default function CategoryList({
   activeCategory, 
 }: CollapsibleListProps) { 
   return ( 
-    <div className="relative flex flex-row w-full mt-5 justify-around flex-wrap"> 
+    <div className="relative flex flex-row w-full mt-5 justify-between flex-wrap"> 
       {categories.map((category) => ( 
         <div 
           key={category.id} 
