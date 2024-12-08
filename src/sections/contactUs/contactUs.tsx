@@ -67,63 +67,80 @@ export default function ContactUs() {
     return (
         <div className=" bg-background ">
 
-            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between sm:px-[120px] sm:py-[30px]">
+            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[30px]">
 
-                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[60%]">
-                    <h1 className="text-foreground text-4xl font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
+                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[70%]">
+                    <h1 className="text-foreground lg:text-4xl text-2xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
                     <span className="text-foreground text-base font-semibold leading-10 mt-4">ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.</span>
 
-                    <span className="text-foreground text-base font-semibold mt-5">اطلاعات تماس</span>
+                    <span className="text-foreground text-base font-semibold mt-5 mb-3">اطلاعات تماس</span>
 
-                    <div className="flex flex-row justify-between items-center mt-3">
-                        <div className="flex flex-col">
-                            <div className="flex h-14">
-                                <div className="flex h-full items-center justify-center bg-secondary rounded-xl  p-3">
+                    <div className="flex flex-col sm:flex-row  w-full justify-between">
+
+                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[64%] w-full  ">
+                            <div className="flex h-[53px] w-full justify-between ">
+                                <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Call />
-                                    <span className="text-2xl text-foreground mr-3 font-semibold">021-284299</span>
+                                    <span className="md:text-2xl text-lg text-foreground font-semibold">021-284299</span>
                                 </div>
-                                <div className="flex h-full items-center justify-center bg-secondary rounded-xl mr-5 p-3">
+                                <div className="flex h-full w-[48%]  items-center justify-start bg-secondary rounded-xl p-3">
                                     <Support />
-                                    <span className="text-2xl text-foreground mr-3 font-semibold">پشتیبانی آنلاین</span>
+                                    <span className="md:text-2xl text-lg text-foreground mr-3 font-semibold">پشتیبانی آنلاین</span>
                                 </div>
                             </div>
-                            <div className="flex h-24 flex-col bg-secondary rounded-xl  p-4 mt-5">
-                                <div className="flex h-full items-center">
+                            <div className="flex h-[99px] w-full justify-between p-3 flex-col rounded-xl bg-secondary">
+                                <div className="flex items-center">
                                     <Location />
-                                    <span className="text-xl text-foreground mr-3 font-normal">آدرس</span>
+                                    <span className="text-xl  text-foreground mr-3 font-normal">آدرس</span>
 
                                 </div>
-                                <span className="text-xl text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
+                                <span className="text-xl  text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
 
-                            </div>
-
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="bg-secondary h-14 rounded-xl text-center p-3">
-                                <span className="text-2xl text-foreground font-semibold">تلگرام</span>
-                            </div>
-
-                            <div className="bg-secondary h-24 rounded-xl mt-5  p-3">
-                                <Telegram />
                             </div>
                         </div>
 
 
-                        <div className="flex flex-col">
-                            <div className="bg-secondary rounded-xl h-14  p-3 text-center">
-                                <span className="text-2xl text-foreground font-semibold">ایمیل</span>
+                        <div className="h-full w-full  sm:w-[33%] ">
+                            <div className="flex flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
+                                <div className="flex h-[53px] w-full justify-between ">
+                                <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
+                                    <span className="lg:text-2xl text-lg text-foreground font-semibold text-center">تلگرام</span>
+                                </div>
+
+                                <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
+                                    <span className="lg:text-2xl text-lg text-foreground font-semibold text-center">ایمیل</span>
+                                </div>
+                                </div>
+                                <div className="flex h-[99px] w-full justify-between ">
+                                <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
+                                    <Telegram />
+                                </div>
+                                <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
+                                    <Email />
+                                </div>
+                                </div>
                             </div>
 
-                            <div className="bg-secondary h-24 rounded-xl mt-5  p-3">
-                                <Email />
+                            <div className="w-full h-[53px] justify-between flex flex-row  sm:hidden  mt-5">
+                            <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
+                                    <Telegram />
+                                    <span className="md:text-2xl text-lg text-foreground font-semibold">تلگرام</span>
+                                </div>
+                            
+                                <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
+                                    <Email />
+                                    <span className="md:text-2xl text-lg text-foreground font-semibold">ایمیل</span>
+                                </div>
                             </div>
+
+
+
                         </div>
-
                     </div>
 
                 </div>
 
-                <div className="flex w-full lg:w-[40%] order-1 lg:order-2  justify-center lg:justify-end">
+                <div className="flex w-full lg:w-[30%] order-1 lg:order-2  justify-center lg:justify-end">
                     <Image
                         src={PhotoContactSupport}
                         alt="Sample Image"
@@ -139,28 +156,28 @@ export default function ContactUs() {
             <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden sm:px-[120px]">
 
 
-                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[560px]   flex flex-col bg-secondary p-6 rounded-xl z-10">
-                    <div className="flex justify-between space-x-4 mb-6 flex-col sm:flex-row">
-                        <div className="flex flex-col w-[47%] mb-4 sm:mb-0">
+                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[300px] md:min-w-[560px]  flex flex-col bg-secondary p-6 rounded-xl z-10">
+                    <div className="flex w-full space-x-4 mb-6 flex-col sm:flex-row sm:justify-between">
+                        <div className="flex flex-col w-full sm:w-[47%] mb-4 sm:mb-0">
                             <label htmlFor="fullName" className="block text-foreground">نام خانوادگی</label>
                             <input
                                 id="fullName"
                                 name="fullName"
                                 type="text"
-                                className="w-full h-10 mt-2 px-4 rounded-lg"
+                                className="w-full text-foreground bg-third h-10 mt-2 px-4 rounded-lg focus:outline-none "
                                 placeholder="نام خانوادگی"
                                 onChange={handleChange}
                             />
                             {errors.fullName && <div className="text-red-500 text-sm">{errors.fullName}</div>}
 
                         </div>
-                        <div className="flex flex-col  w-[47%] mb-4 sm:mb-0">
+                        <div className="flex flex-col w-full sm:w-[47%] mb-0" style={{marginLeft:"0"}}>
                             <label htmlFor="phoneNumber" className="block text-foreground">شماره تماس</label>
                             <input
                                 id="phoneNumber"
                                 name="phoneNumber"
                                 type="text"
-                                className="w-full h-10 mt-2 px-4 rounded-lg"
+                                className="w-full text-foreground bg-third h-10 mt-2 px-4 rounded-lg focus:outline-none"
                                 placeholder="شماره تماس"
                                 onChange={handleChange}
                             />
@@ -175,7 +192,7 @@ export default function ContactUs() {
                         <textarea
                             id="message"
                             name="message"
-                            className="w-full h-full mt-2 px-4 rounded-lg"
+                            className="w-full h-full bg-third text-foreground mt-2 p-4 rounded-lg focus:outline-none"
                             placeholder="پیام"
                             onChange={handleChange}
                         />

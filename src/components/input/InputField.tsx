@@ -13,7 +13,7 @@ interface InputFieldProps {
 const FormField: React.FC<InputFieldProps> = ({ name, label, type, value, onChange, error, options }) => {
     return (
         <div>
-            <label className="block text-sm font-medium">{label}</label>
+            <label className="block text-sm font-medium mb-3">{label}</label>
             {type === "select" ? (
                 <select
                     name={name}

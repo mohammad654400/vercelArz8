@@ -140,7 +140,7 @@ export default function ApplyPage({ title }: { title: string }) {
             <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
             <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
             <form onSubmit={handleSubmit} className='items-center justify-center w-full' >
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                     <FormField
                         name="fullName"
@@ -242,7 +242,7 @@ export default function ApplyPage({ title }: { title: string }) {
 
 
                     <div>
-                        <label className="block text-sm font-medium">فایل رزومه</label>
+                        <label className="block text-sm font-medium mb-3">فایل رزومه</label>
                         <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
                             <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
                                 <DocumentUpload />
@@ -269,7 +269,7 @@ export default function ApplyPage({ title }: { title: string }) {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium">تصویر پروفایل</label>
+                        <label className="block text-sm font-medium mb-3">تصویر پروفایل</label>
                         <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
                             <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
                                 <DocumentUpload />
