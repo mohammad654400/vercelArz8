@@ -15,6 +15,7 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary:"var(--primary)",
+        third:"var(--third)",
       },
     },
   },
