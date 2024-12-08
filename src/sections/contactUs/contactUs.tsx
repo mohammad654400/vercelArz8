@@ -65,9 +65,9 @@ export default function ContactUs() {
     };
 
     return (
-        <div className=" bg-background">
+        <div className=" bg-background ">
 
-            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between">
+            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between sm:px-[120px] sm:py-[30px]">
 
                 <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[60%]">
                     <h1 className="text-foreground text-4xl font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
@@ -136,10 +136,10 @@ export default function ContactUs() {
 
             </div>
 
-            <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden">
+            <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden sm:px-[120px]">
 
 
-                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[560px] mr-11 flex flex-col bg-secondary p-6 rounded-xl z-10">
+                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[560px]   flex flex-col bg-secondary p-6 rounded-xl z-10">
                     <div className="flex justify-between space-x-4 mb-6 flex-col sm:flex-row">
                         <div className="flex flex-col w-[47%] mb-4 sm:mb-0">
                             <label htmlFor="fullName" className="block text-foreground">نام خانوادگی</label>
