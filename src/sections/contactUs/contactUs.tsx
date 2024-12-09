@@ -164,7 +164,7 @@ export default function ContactUs() {
                                 id="fullName"
                                 name="fullName"
                                 type="text"
-                                className="w-full text-foreground bg-third h-10 mt-2 px-4 rounded-lg focus:outline-none "
+                                className="w-full text-foreground bg-background h-10 mt-2 px-4 rounded-lg focus:outline-none "
                                 placeholder="نام خانوادگی"
                                 onChange={handleChange}
                             />
@@ -177,7 +177,7 @@ export default function ContactUs() {
                                 id="phoneNumber"
                                 name="phoneNumber"
                                 type="text"
-                                className="w-full text-foreground bg-third h-10 mt-2 px-4 rounded-lg focus:outline-none"
+                                className="w-full text-foreground bg-background h-10 mt-2 px-4 rounded-lg focus:outline-none"
                                 placeholder="شماره تماس"
                                 onChange={handleChange}
                             />
@@ -192,7 +192,7 @@ export default function ContactUs() {
                         <textarea
                             id="message"
                             name="message"
-                            className="w-full h-full bg-third text-foreground mt-2 p-4 rounded-lg focus:outline-none"
+                            className="w-full h-full bg-background text-foreground mt-2 p-4 rounded-lg focus:outline-none"
                             placeholder="پیام"
                             onChange={handleChange}
                         />

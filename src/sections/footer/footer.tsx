@@ -14,6 +14,7 @@ import Phone from "@/assets/icons/footer/phone";
 import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
 import DropdownFooter from "./dropdownFooter";
+import Link from "next/link";
 export default function Footer() {
   return (
     <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] sm:py-[30px]">
@@ -73,7 +74,9 @@ export default function Footer() {
                 <ul className="flex flex-col gap-4">
                   <li> اموزش های صرافی</li>
                   <li> درباره ما</li>
+                  <Link href="/contactus">
                   <li> تماس با ما</li>
+                  </Link>
                   <li> ارسال تیکت پشتیبانی</li>
                   <li> قوانین و مقررات</li>
                   <li>سطوح کاربری</li>
