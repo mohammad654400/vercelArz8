@@ -13,94 +13,126 @@ import Aparat from "@/assets/icons/footer/aparat";
 import Phone from "@/assets/icons/footer/phone";
 import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
+import DropdownFooter from "./dropdownFooter";
 export default function Footer() {
   return (
-    <div className="bg-custom-gradient2 px-[120px] py-[30px]">
-      <div className="flex justify-between w-full h-[400px]">
-        <div className="w-[360px]">
-          <div className="flex items-center gap-2 ">
+    <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] sm:py-[30px]">
+
+      <div className="flex gap-8 flex-wrap justify-center w-full md:justify-between lg:justify-between">
+
+        <div className="px-5 w-full md:w-full lg:w-[260px]">
+          <div className="flex justify-center items-center gap-2 ">
             <Image alt="ارز هشت" src={logo} width={64} height={64} />
             <h1 className="text-[30px] font-extrabold">ارزهشت</h1>
           </div>
-          <p>
-            صرافی ارز هشت با ارائه خدماتی سریع، امن و حرفه‌ای، بستری مطمئن برای
-            خرید و فروش ارزهای دیجیتال فراهم کرده است. با پشتیبانی 24/7، تنوع
-            رمزارزها و کارمزدی رقابتی، ما همراه شما هستیم تا تجربه‌ای متفاوت از
-            معاملات ارز دیجیتال داشته باشید.صرافی ارز هشت؛ همراه شما در دنیای
-            رمزارزها!
+          <p className="w-full">
+            از اردیبهشت ماه سال 1397 آغاز به فعالیت کرده که در ابتدا سامانه خرید
+            و فروش ارز دیجیتال بود و سپس رفته رفته پا را فراتر گذاشته و اکنون
+            پلتفرم ترید ارز دیجیتال را راه اندازی کرده است.
           </p>
         </div>
-        <div className="flex flex-col gap-8 h-12">
-          <div className="flex gap-8 ">
-            <Image className="dark:bg-white rounded-xl" alt="بازار" src={bazar} />
-            <div>
-              <Image className="dark:bg-white rounded-xl" alt="بازار" src={directDownload} />
-            </div>
 
+        <div className="flex flex-col gap-8 ">
+          <div className="flex flex-wrap gap-2 justify-around w-auto">
             <div>
-              <Image className="dark:bg-white rounded-xl" alt="بازار" src={myket} />
+              <Image
+                className="dark:bg-white rounded-xl "
+                alt="بازار"
+                src={bazar}
+              />
             </div>
             <div>
-              <Image className="dark:bg-white rounded-xl" alt="بازار" src={webapp} />
+              <Image
+                className="dark:bg-white rounded-xl  "
+                alt="بازار"
+                src={directDownload}
+              />
+            </div>
+            <div>
+              <Image
+                className="dark:bg-white rounded-xl"
+                alt="بازار"
+                src={myket}
+              />
+            </div>
+            <div>
+              <Image
+                className="dark:bg-white rounded-xl"
+                alt="بازار"
+                src={webapp}
+              />
             </div>
           </div>
-          <div className="flex justify-around">
-            <div className="mt-6">
-              <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
-                {" "}
-                راهنمای صرافی
-              </h1>
-              <ul className="flex flex-col gap-4">
-                <li> اموزش های صرافی</li>
-                <li> درباره ما</li>
-                <li> تماس با ما</li>
-                <li> ارسال تیکت پشتیبانی</li>
-                <li> قوانین و مقررات</li>
-                <li>سطوح کاربری</li>
-              </ul>
+          <div className="hidden md:block">
+            <div className="flex justify-around px-4">
+              <div className="mt-6">
+                <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
+                  {" "}
+                  راهنمای صرافی
+                </h1>
+                <ul className="flex flex-col gap-4">
+                  <li> اموزش های صرافی</li>
+                  <li> درباره ما</li>
+                  <li> تماس با ما</li>
+                  <li> ارسال تیکت پشتیبانی</li>
+                  <li> قوانین و مقررات</li>
+                  <li>سطوح کاربری</li>
+                </ul>
+              </div>
+              <div className="mt-6">
+                <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
+                  لینک های مفید
+                </h1>
+                <ul className="flex flex-col gap-4">
+                  <li> خرید و فروش ارزدیحیتال </li>
+                  <li>دانلود اپلیکیشن</li>
+                  <li>قیمت لحظه ای ارز ها</li>
+                  <li>وبلاگ</li>
+                  <li>گردونه شانس</li>
+                </ul>
+              </div>
+              <div className="mt-6">
+                <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary ">
+                  {" "}
+                  اطلاعات تماس
+                </h1>
+                <ul className="flex flex-col gap-4">
+                  <div className="flex gap-2">
+                    <Phone />
+                    <li> 021-284299</li>
+                  </div>
+                  <div className="flex gap-2">
+                    <Fax />
+                    <li>021-91035288 </li>
+                  </div>
+                  <div className="flex gap-2">
+                    <TownyFour />
+                    <li> پشتیبانی انلاین </li>
+                  </div>
+                </ul>
+              </div>
             </div>
-
-
-            <div className="mt-6">
-              <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
-                لینک های مفید
-              </h1>
-              <ul className="flex flex-col gap-4">
-                <li> خرید و فروش ارزدیحیتال </li>
-                <li>دانلود اپلیکیشن</li>
-                <li>قیمت لحظه ای ارز ها</li>
-                <li>وبلاگ</li>
-                <li>گردونه شانس</li>
-              </ul>
-            </div>
-            <div className="mt-6">
-              <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
-                {" "}
-                اطلاعات تماس
-              </h1>
-              <ul className="flex flex-col gap-4">
-                <div className="flex gap-2">
-                 <Phone/><li> 021-284299</li>
-                </div>
-                <div className="flex gap-2">
-                <Fax/><li>021-91035288 </li>
-                </div>
-                <div className="flex gap-2">
-                <TownyFour/><li> پشتیبانی انلاین </li>
-                </div>
-              </ul>
-            </div>
+          </div>
+          <div className="block md:hidden">
+           <DropdownFooter/>
           </div>
         </div>
+
       </div>
+
       <div className=" w-full bg-background py-4 flex justify-between px-5 rounded-lg ">
-        <div>تمامی حقوق این وبسایت متعلق به <span className="text-primary">صرافی ارزدیجیتال ارزهشت</span> است</div>
+        <div className="text-[8px]">
+          تمامی حقوق این وبسایت متعلق به{" "}
+          <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است
+        </div>
         <div className="flex gap-4 dark:text-secondary">
-          <YouTube/>
-          <Instagram/>
-          <Telegram/>
-          <Twitter/>
-          <Aparat/>
+          <span className="text-background">
+            <YouTube />
+          </span>
+          <Instagram />
+          <Telegram />
+          <Twitter />
+          <Aparat />
         </div>
       </div>
     </div>
