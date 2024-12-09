@@ -42,7 +42,7 @@ export default function Buy({
       <div className="absolute -top-[13px] right-40 text-background dark:text-secondary">
         <HalfCircle />
       </div>
-      <div className="flex justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 lg:flex ">
+      <div className="flex  justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10  ">
         
         <div className=" relative">
           <p>مقدار (دریافت می‌کنید)</p>

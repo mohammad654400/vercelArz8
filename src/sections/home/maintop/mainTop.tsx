@@ -7,7 +7,7 @@ import React from "react";
 export default function MainTop() {
   return (
     <div>
-      <div className="flex justify-between pt-16">
+      <div className="flex flex-wrap justify-center pt-16 lg:justify-between ">
         <div className="flex flex-col gap-5">
           <h1 className="text-3xl font-bold">با خیال راحت معامله کنید،</h1>
           <p>

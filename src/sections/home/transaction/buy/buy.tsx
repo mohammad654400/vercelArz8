@@ -49,13 +49,13 @@ export default function Buy({
       </div>
       <div
         className={`flex flex-col justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 ${
-          width < 700 ? "lg:flex" : "lg:flex-row"
+          width < 700 ? "lg:flex" : "xl:flex-row"
         }`}
       >
-        <div className="relative w-full lg:w-auto">
+        <div className="relative w-full lg:w-auto ">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none dark:text-[#302F34] h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
+            className="outline-none dark:text-[#302F34] h-[58px] w-full lg:w-[414px]  border rounded-xl mt-5 pr-4"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
@@ -92,7 +92,7 @@ export default function Buy({
           </div>
         </div>
 
-        <div className="w-full lg:w-auto">
+        <div className="w-full lg:w-auto ">
           {open && (
             <CryptoModal
               currencies={currencies}

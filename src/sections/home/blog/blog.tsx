@@ -14,7 +14,7 @@ export default function Blog() {
           مطالعه بیشتر{" "}
         </button>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-wrap justify-center lg:justify-between">
         <div className="w-[277px] h-auto py-[30px]">
           <Image className="pb-7 rounded-lg" alt="coin" src={hamester} width={280} height={174} />
           <p>بهترین کیف پول همستر کامبت برای کاربران ایرانی</p>
