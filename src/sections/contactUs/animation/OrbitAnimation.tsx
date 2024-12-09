@@ -18,7 +18,7 @@ interface Orbit {
 const orbits: Orbit[] = [
   {
       radius: 100,
-      speed: 0.5,
+      speed: 0.2,
       opacity: 0.9,
       images: [
           { src: "https://s3-alpha-sig.figma.com/img/89fe/31c7/9df8fb6bbfd99db1cb18960fb1e8e0e1?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jVzB5iXAAlY42kuL~WS4LxeX4GKxd85lsJOWlpnLi3yRKn2lR6MmM53Ia1L9lwTAmZ4oZ6ZEXUM-aGpw0jyJRkmY8domyqqEhZbJwcQiwKA5fUHI3nzLwC9bXtwQqqUSapMgfWBGfkkqOLXG8dgGJlL1YYhZiKdQFe9XipwOT9bi4o8K4h3jGZCldW9VBH-1HfkCZg-P232AKPOrful8goap7jCjev-V6wHO9MCP8DtJo-eZDDI6FmVhyRoD1VvNMtMu9BLeQHRMRRWH7rBROdwGO1YwGbmnD96qVgZoWBh9GBAspdvXbD0lbiBlfTUvBzrOJtxusx8k2T14loyZAg__", size: 55 },
@@ -27,7 +27,7 @@ const orbits: Orbit[] = [
   },
   {
       radius: 226,
-      speed: 0.4,
+      speed: 0.13,
       opacity: 0.8,
       images: [
           { src: "https://s3-alpha-sig.figma.com/img/3d5c/b72f/ae1e058c2ed75ab981a9f8bb62e96a13?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UgMgbTosnVPsAmwPd2ezrwgYbkQWKkfUpalR~O0h1qRY5Ihb29N430mZMiv1WEPks5aFWIEaW2LeCjUhyuoGBJW6yqNCBnV7hj4A1Yrc1x2O39A6VG~zTtUWsjDJyrNsy0xd3b0g0zYbR3SWgavn44-JNrZrIEA5tbwivB3192t8vdWvw6nuZ84-BtZrxp4KcgUmIP0UWX~zwOHvtkzGC4HvIiJvtcxhqSkawMBpTY7qU22aDV9tViaLsQ4C1Wr0XiGaMoC6g-SOaSJr-D9XtjItNlEja3YNWQuA~U~X3ZthRky2RjqHgoOPnPtm7ukmjVUNbMFHVLOm74L6nqVVIw__", size: 55 },
@@ -36,7 +36,7 @@ const orbits: Orbit[] = [
   },
   {
       radius: 352,
-      speed: 0.3,
+      speed: 0.16,
       opacity: 0.7,
       images: [
           { src: "https://s3-alpha-sig.figma.com/img/cc50/918a/135ade981f1f6c8244faf50d3e2eeaa6?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B2Oyv-N1WH5MMJzQBLugGodhTRQg0~OK3SnoJph6xTEj4LAB-YiwGM-05h4QSD8cIUipcrl2G~VGiwrSoRuvsCAg2uNQRHKO8kv-6XUFYYGU~znZF9XopahfZitfjCE~apJsXw9ny4ojUggFNQJ0mnqBqstPQXALG7LhsmvflKcd9zUAZRuI9wYg4g-APmp5juhb0jUWThyaicejE-HT31W9kbb-Z0wt2pe0zAvVwQbwP-BYZDf7ljuuR3X0tww3sF9UDbt7rUpMp4NzqBcMPoGs-1jpycfu4a0p8iMwnLHYxioCaYVpalxmHn2vGtUTKX7MBVEf4GM2GvszSAJuGw__", size: 85 },
@@ -45,7 +45,7 @@ const orbits: Orbit[] = [
   },
   {
       radius: 478,
-      speed: 0.2,
+      speed: 0.1,
       opacity: 0.6,
       images: [
           { src: "https://s3-alpha-sig.figma.com/img/89fe/31c7/9df8fb6bbfd99db1cb18960fb1e8e0e1?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jVzB5iXAAlY42kuL~WS4LxeX4GKxd85lsJOWlpnLi3yRKn2lR6MmM53Ia1L9lwTAmZ4oZ6ZEXUM-aGpw0jyJRkmY8domyqqEhZbJwcQiwKA5fUHI3nzLwC9bXtwQqqUSapMgfWBGfkkqOLXG8dgGJlL1YYhZiKdQFe9XipwOT9bi4o8K4h3jGZCldW9VBH-1HfkCZg-P232AKPOrful8goap7jCjev-V6wHO9MCP8DtJo-eZDDI6FmVhyRoD1VvNMtMu9BLeQHRMRRWH7rBROdwGO1YwGbmnD96qVgZoWBh9GBAspdvXbD0lbiBlfTUvBzrOJtxusx8k2T14loyZAg__", size: 99 },
