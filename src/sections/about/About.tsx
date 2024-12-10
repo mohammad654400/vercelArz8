@@ -43,7 +43,7 @@ export default function About() {
 
             <div className='flex flex-col md:flex-row justify-between mt-24'>
                 <div className='w-full md:w-1/2 flex flex-col ml-2'>
-                    <span className='mb-7 text-Seventh text-2xl font-semibold '>ماموریت صرافی ارز هشت</span>
+                    <span className='mb-7 text-Seventh text-xl font-semibold '>ماموریت صرافی ارز هشت</span>
                     <div className='w-full  rounded-xl p-7 bg-third'>
                         <span className='text-Seventh text-lg font-normal leading-9'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</span>
                     </div>
