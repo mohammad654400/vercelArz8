@@ -9,10 +9,11 @@ interface TabProps {
 }
 
 const Tab = React.memo(({ name, isActive, onClick, transformOrigin, transitionDelay }: TabProps) => {
-  return (
+  return (    
     <button
       onClick={onClick}
-      className="relative w-1/2 h-full  text-xl font-semibold focus:outline-none overflow-hidden"
+      className="relative w-1/2 h-full text-base sm:text-xl font-semibold focus:outline-none overflow-hidden"
+      
     >
       <span
         className={`absolute top-0 left-0 w-full h-full bg-fifth rounded-xl  transform transition-all duration-500 ease-out ${
@@ -26,7 +27,7 @@ const Tab = React.memo(({ name, isActive, onClick, transformOrigin, transitionDe
 
       <span
         className={`relative z-10 transition-all duration-300 ${
-          isActive ? "text-sixth" : "text-sixth opacity-50"
+          isActive ? "text-sixth" : "text-sixth opacity-50  hover:opacity-90"
         }`}
       >
         {name}
