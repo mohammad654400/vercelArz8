@@ -12,7 +12,7 @@ export default function CategoryList({
 }: CollapsibleListProps) { 
   return ( 
     <div className="relative flex flex-row w-full mt-5 justify-between flex-wrap"> 
-      {categories.map((category) => ( 
+      {d.map((category) => ( 
         <div 
           key={category.id} 
           className={`relative flex flex-col mb-14 w-44 ${activeCategory !== category.id ? "opacity-50" : ""}`} // اوپاسیتی 50% برای کارت‌های غیر فعال
