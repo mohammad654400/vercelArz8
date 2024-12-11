@@ -69,7 +69,7 @@ export default function ContactUs() {
 
             <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[30px]">
 
-                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[70%]">
+                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[65%]">
                     <h1 className="text-foreground lg:text-4xl text-2xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
                     <span className="text-foreground text-base font-semibold leading-10 mt-4">ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.</span>
 
@@ -77,7 +77,7 @@ export default function ContactUs() {
 
                     <div className="flex flex-col sm:flex-row  w-full justify-between">
 
-                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[64%] w-full  ">
+                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[66%] w-full  ">
                             <div className="flex h-[53px] w-full justify-between ">
                                 <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Call />
@@ -100,7 +100,7 @@ export default function ContactUs() {
                         </div>
 
 
-                        <div className="h-full w-full  sm:w-[33%] ">
+                        <div className="h-full w-full  sm:w-[31%] ">
                             <div className="flex flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
                                 <div className="flex h-[53px] w-full justify-between ">
                                 <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
