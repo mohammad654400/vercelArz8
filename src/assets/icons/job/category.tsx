@@ -12,7 +12,7 @@ export default function category() {
       <path
         d="M7.08301 4.16732H7.91634C8.74967 4.16732 9.16634 3.75065 9.16634 2.91732V2.08398C9.16634 1.25065 8.74967 0.833984 7.91634 0.833984H7.08301C6.24967 0.833984 5.83301 1.25065 5.83301 2.08398V2.91732C5.83301 3.75065 6.24967 4.16732 7.08301 4.16732Z"
         stroke="currentColor"
-        stroke-opacity="0.5"
+        strokeOpacity="0.5"
         strokeWidth="0.625"
         strokeMiterlimit="10"
         strokeLinecap="round"
@@ -21,7 +21,7 @@ export default function category() {
       <path
         d="M2.08301 9.16732H2.91634C3.74967 9.16732 4.16634 8.75065 4.16634 7.91732V7.08398C4.16634 6.25065 3.74967 5.83398 2.91634 5.83398H2.08301C1.24967 5.83398 0.833008 6.25065 0.833008 7.08398V7.91732C0.833008 8.75065 1.24967 9.16732 2.08301 9.16732Z"
         stroke="currentColor"
-        stroke-opacity="0.5"
+        strokeOpacity="0.5"
         strokeWidth="0.625"
         strokeMiterlimit="10"
         strokeLinecap="round"

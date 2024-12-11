@@ -12,20 +12,20 @@ export default function BarIcon() {
       <path
         d="M3.30469 8.75H23.1352"
         stroke="#292D32"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         d="M8 15L23 15"
         stroke="#292D32"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         d="M15 21L23 21"
         stroke="#FFC107"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   );
