@@ -12,6 +12,7 @@ export default function BarIcon() {
       <path
         d="M3.30469 8.75H23.1352"
         stroke="currentColor"
+
         strokeWidth="2"
         strokeLinecap="round"
       />

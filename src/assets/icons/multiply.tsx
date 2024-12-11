@@ -12,6 +12,7 @@ export default function MultiplyIcon() {
       <path
         d="M34.3877 55.6117L55.6127 34.3867"
         stroke="currentColor"
+
         strokeWidth="3.62"
         strokeLinecap="round"
         stroke-linejoin="round"

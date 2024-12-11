@@ -93,7 +93,7 @@ export const jobListings: JobListing[] = [
         titleFn:"کارشناس ارشد سئو",
         title: "Senior-seo-expert",
         city: "اصفهان",
-        jobCategory: " کارشناس ارشد سئو",
+        jobCategory: " کارشناس سئو",
         employmentType: "ساعتی",
         workMode: "حضوری",
         gender: "آقا",

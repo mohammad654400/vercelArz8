@@ -31,37 +31,37 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
         <span ref={ref} className='mt-10 mb-5 text-lg font-bold'>فرصت های شغلی</span>
         {jobListings.map((item) => (
             <div key={item.id} className='flex w-full my-4 p-4 bg-secondary justify-between rounded-xl'>
-                <div className='flex flex-col  w-9/12'>
-                    <h4 className="font-bold text-base md:text-lg ">{item.titleFn}</h4>
-                    <div className='flex mt-2 h-3'>
-                        <div className='flex items-center ml-3'>
+                <div className='flex flex-col w-9/12'>
+                    <h4 className="font-bold text-sm md:text-lg pb-2 ">{item.titleFn}</h4>
+                    <div className='flex flex-wrap  gap-1 h-3 w-full  '>
+                        <div className='flex items-center md:ml-3'>
                             <Insurance className="w-[10px] h-[10px]" />
-                            <span className='mr-1 text-xs font-semibold text-foreground opacity-50'>{item.employmentType}</span>
+                            <span className='mr-2  text-[10px] font-semibold text-foreground opacity-50'>{item.employmentType}</span>
                         </div>
-                        <div className='flex items-center ml-3'>
+                        <div className='flex items-center  md:ml-3'>
                             <Clock className="w-[10px] h-[10px]" />
-                            <span className='mr-1 text-xs font-semibold text-foreground opacity-50'>{item.workMode}</span>
+                            <span className='mr-2  text-[10px] font-semibold text-foreground opacity-50'>{item.workMode}</span>
                         </div>
-                        <div className='flex items-center ml-3'>
+                        <div className='flex items-center md:ml-3'>
                             <Location />
-                            <span className='mr-1 text-xs font-semibold text-foreground opacity-50'>{item.city}</span>
+                            <span className='mr-2  text-[10px] font-semibold text-foreground opacity-50'>{item.city}</span>
                         </div>
                         <div className='flex items-center'>
                             <Category />
-                            <span className='mr-1 text-xs  font-semibold text-foreground opacity-50'>{item.jobCategory}</span>
+                            <span className='mr-2 text-[10px]  font-semibold text-foreground opacity-50'>{item.jobCategory}</span>
                         </div>
                     </div>
                 </div>
-                <Link className='flex w-3/12  max-w-32' href={`job/${item.title}`}>
-                    <button className='text-white w-full h-12 bg-primary text-xs md:text-sm font-bold rounded-xl'>مشاهده جزئیات</button>
+                <Link className='flex w-3/12 min-w-20  max-w-32' href={`job/${item.title}`}>
+                    <button className='text-white w-full h-12 bg-primary text-[10px] sm:text-sm font-bold rounded-xl whitespace-nowrap'>مشاهده جزئیات</button>
                 </Link>
             </div>
         ))}
 
         <span className='mt-10 mb-5 text-lg font-bold'>همراهان ما تا این لحظه</span>
         <div className='flex flex-row flex-wrap justify-between'>
-            {OurCompanions.map((item) => (
-                <div className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
+            {OurCompanions.map((item,index) => (
+                <div key={index} className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
                     <div className='w-14 h-14 rounded-full mr-3 bg-[#3C3B41] items-end justify-center flex'>
                         <Profile />
                     </div>

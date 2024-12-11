@@ -69,7 +69,7 @@ export default function ContactUs() {
 
             <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[30px]">
 
-                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[70%]">
+                <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[65%]">
                     <h1 className="text-foreground lg:text-4xl text-2xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
                     <span className="text-foreground text-base font-semibold leading-10 mt-4">ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.</span>
 
@@ -77,38 +77,38 @@ export default function ContactUs() {
 
                     <div className="flex flex-col sm:flex-row  w-full justify-between">
 
-                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[64%] w-full  ">
+                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[66%] w-full  ">
                             <div className="flex h-[53px] w-full justify-between ">
                                 <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Call />
-                                    <span className="md:text-2xl text-lg text-foreground font-semibold">021-284299</span>
+                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground mr-3 font-semibold">021-284299</span>
                                 </div>
                                 <div className="flex h-full w-[48%]  items-center justify-start bg-secondary rounded-xl p-3">
                                     <Support />
-                                    <span className="md:text-2xl text-lg text-foreground mr-3 font-semibold">پشتیبانی آنلاین</span>
+                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground mr-3 font-semibold">پشتیبانی آنلاین</span>
                                 </div>
                             </div>
                             <div className="flex h-[99px] w-full justify-between p-3 flex-col rounded-xl bg-secondary">
                                 <div className="flex items-center">
                                     <Location />
-                                    <span className="text-xl  text-foreground mr-3 font-normal">آدرس</span>
+                                    <span className="lg:text-xl text-lg  text-foreground mr-3 font-normal">آدرس</span>
 
                                 </div>
-                                <span className="text-xl  text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
+                                <span className="lg:text-xl text-lg   text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
 
                             </div>
                         </div>
 
 
-                        <div className="h-full w-full  sm:w-[33%] ">
-                            <div className="flex flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
+                        <div className="h-full w-full  sm:w-[31%] ">
+                            <div className=" flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
                                 <div className="flex h-[53px] w-full justify-between ">
                                 <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
-                                    <span className="lg:text-2xl text-lg text-foreground font-semibold text-center">تلگرام</span>
+                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">تلگرام</span>
                                 </div>
 
                                 <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
-                                    <span className="lg:text-2xl text-lg text-foreground font-semibold text-center">ایمیل</span>
+                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">ایمیل</span>
                                 </div>
                                 </div>
                                 <div className="flex h-[99px] w-full justify-between ">
@@ -156,7 +156,7 @@ export default function ContactUs() {
             <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden sm:px-[120px]">
 
 
-                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[300px] md:min-w-[560px]  flex flex-col bg-secondary p-6 rounded-xl z-10">
+                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[320px] sm:min-w-[400px] md:min-w-[560px]  flex flex-col bg-secondary p-6 rounded-xl z-10">
                     <div className="flex w-full space-x-4 mb-6 flex-col sm:flex-row sm:justify-between">
                         <div className="flex flex-col w-full sm:w-[47%] mb-4 sm:mb-0">
                             <label htmlFor="fullName" className="block text-foreground">نام خانوادگی</label>

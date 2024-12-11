@@ -16,6 +16,10 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary:"var(--primary)",
         third:"var(--third)",
+        fourth:"var(--fourth)",
+        fifth:"var(--fifth)",
+        sixth:"var(--sixth)",
+        Seventh:"var(--Seventh)"
       },
     },
   },
