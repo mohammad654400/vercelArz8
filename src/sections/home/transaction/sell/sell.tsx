@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
 import CryptoModal from "../cryptoModal";
-import ArrowChange from "@/assets/icons/arrowcChange";
+import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 
 export default function Buy({
   toggle,
@@ -43,7 +43,6 @@ export default function Buy({
         <HalfCircle />
       </div>
       <div className="flex  justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10  ">
-        
         <div className=" relative">
           <p>مقدار (دریافت می‌کنید)</p>
           <input

@@ -1,24 +1,41 @@
 import MultiplyIcon from "@/assets/icons/multiply";
+import Accordion from "./accordion";
 import React from "react";
+import Link from "next/link";
 
-export default function SaidBar({close}:any) {
+export default function SaidBar({ close }: any) {
   return (
-    <div className="absolute flex top-0 right-0 z-50 w-full h-full xl:hidden">
-      <div className="bg-background right-0 top-0 w-[160%] md:w-[70%] lg:w-[60%] h-full rounded-tl-3xl rounded-bl-3xl">
-        <div className="flex justify-between px-3 py-4">
-          <div className="text-xl pt-2 pr-2">منو </div>
-          <div onClick={close} className="cursor-pointer"><MultiplyIcon/></div>
+    <div className="fixed flex top-0 right-0 z-50 w-full h-full xl:hidden ">
+      <div className="bg-background right-0 px-6 py-8 top-0 w-[140%] md:w-[70%] lg:w-[60%] h-full rounded-tl-3xl rounded-bl-3xl">
+        <div className="flex justify-between ">
+          <div className="text-xl pt-2 ">منو</div>
+          <div onClick={close} className="cursor-pointer relative right-3">
+            <MultiplyIcon />
+          </div>
         </div>
-        <div>
-          <p>صفحه اصلی</p>
-          <div>قیمت ارز های دیجیتال</div>
-          <div>خرید و فروش آنی</div>
-          <div>سوالات متداول</div>
-          <div>سایر خدمات</div>
-          <div>فرصت های شغلی</div>
+        <div className="mt-4 flex flex-col gap-4 text-sm ">
+         <h1>منوی اصلی</h1>
+          <Accordion title="قیمت ارزهای دیجیتال">
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">خرید و فروش سریع</div>
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">ارز های جدید</div>
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">لیست همه ارز ها </div>
+          </Accordion>
+         <p className="pb-3">خرید و فروش انی </p>
+         <Link href='/faq'>
+         <p>سوالات متداول</p>
+         </Link>
+          <Accordion title="سایر خدمات">
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">گردونه شانس</div>
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">کسب درامد </div>
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">کارت هدیه</div>
+            <div className="w-full rounded-xl bg-secondary py-3 pr-4">تخفیفات</div>
+          </Accordion>
+          <Link href='/job'>
+          <p>فرصت های شغلی</p>
+          </Link>
         </div>
       </div>
-      <div onClick={close} className="bg-slate-700 opacity-50 w-full h-full"></div>
+      <div onClick={close} className="w-full h-full"></div>
     </div>
   );
 }

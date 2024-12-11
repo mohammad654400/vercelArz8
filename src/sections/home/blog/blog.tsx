@@ -4,13 +4,13 @@ import hamester from "@/assets/images/hamester.png";
 export default function Blog() {
   return (
     <div>
-      <div className="flex w-full justify-between">
-        <div className="text-lg font-bold">بلاگ ارز هشت</div>
-        <div className="px-4 text-sm py-2 dark:text-black bg-[#F6F6F6] rounded-lg">
+      <div className="flex gap-2 w-full justify-between">
+        <div className="font-bold text-[10px] hidden md:block">بلاگ ارز هشت</div>
+        <div className="px-2 text-[10px] md:text-sm py-2 dark:text-black bg-[#F6F6F6] rounded-lg text-nowrap overflow-hidden">
           اطلاعیه ارز هشت درمورد نحوه توزیع توکن های هدیه همستر اکنون در کانال
           تلگرام قرار گرفته همین حالا به کانال مراجعه کنید.
         </div>
-        <button className="px-6 py-2 bg-primary rounded-xl">
+        <button className="px-6 py-2 bg-primary rounded-xl text-[10px] md:text-sm">
           مطالعه بیشتر{" "}
         </button>
       </div>

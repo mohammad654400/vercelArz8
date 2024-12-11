@@ -1,11 +1,11 @@
-import Arrow from "@/assets/icons/arrow";
-import ArrowLeft from "@/assets/icons/arrowLeft";
+import Arrow from "@/assets/icons/arrrow/arrow";
+import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import HalfCircle from "@/assets/icons/halfCircle";
 import React from "react";
 
 export default function OtherServices() {
   return (
-    <div className="absolute z-50 top-16 -right-10 t flex flex-wrap  gap-4 w-[670px] h-[491] bg-background rounded-2xl p-7 ">
+    <div className="absolute z-50 top-[80px] -right-10 t flex flex-wrap  gap-4 w-[670px] h-[491] bg-background rounded-2xl p-7 ">
       <div className="text-background absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
@@ -190,7 +190,7 @@ export default function OtherServices() {
           </p>
         </div>
         <div className="group-hover:text-primary absolute top-6 left-1 cursor-pointer">
-        <ArrowLeft />
+          <ArrowLeft />
         </div>
       </div>
       <div className="relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">

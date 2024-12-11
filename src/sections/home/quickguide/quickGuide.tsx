@@ -1,7 +1,7 @@
-'use client';
-import ArrowDown from "@/assets/icons/arrowDown";
-import ArrowLeft from "@/assets/icons/arrowLeft";
-import ArrowUp from "@/assets/icons/arrowup";
+"use client";
+import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
+import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import { useState } from "react";
 
 interface FAQItem {
@@ -18,19 +18,23 @@ const faqs: FAQItem[] = [
   },
   {
     question: "چگونه ارز دیجیتال بفروشیم؟",
-    answer: "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
+    answer:
+      "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
   },
   {
     question: "چگونه ارز دیجیتال بفروشیم؟",
-    answer: "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
+    answer:
+      "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
   },
   {
     question: "چگونه ارز دیجیتال بفروشیم؟",
-    answer: "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
+    answer:
+      "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
   },
   {
     question: "چگونه ارز دیجیتال بفروشیم؟",
-    answer: "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
+    answer:
+      "پس از تایید کیف پول و ثبت‌نام، به بخش فروش مراجعه کنید و ارز دیجیتال خود را بفروشید.",
   },
   {
     question: "چگونه در صرافی ثبت‌نام کنیم؟",
@@ -60,7 +64,7 @@ const QuickGuide = () => {
   };
 
   const sanitizeApparatUrl = (url: string) => {
-    const videoId = new URL(url).pathname.split('/').pop();
+    const videoId = new URL(url).pathname.split("/").pop();
     return `https://www.aparat.com/video/video/embed/videohash/${videoId}/vt/frame`;
   };
 
@@ -69,30 +73,29 @@ const QuickGuide = () => {
       <div className="w-full md:w-1/2 pr-4">
         <h2 className="text-lg font-bold mb-8">راهنمای سریع</h2>
         {rightFAQs.map((faq, index) => (
-         <div key={index} className="mb-2 border-2 rounded-2xl px-3">
-         <button
-           onClick={() =>
-             toggleAccordion(index, setActiveRightIndex, activeRightIndex)
-           }
-           className="w-full text-right flex justify-between items-center py-3 font-medium"
-         >
-           {faq.question}
-           <span className="transform transition-transform">
-             {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
-           </span>
-         </button>
-       
-         <div
-           className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
-             activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
-           }`}
-         >
-           <div className="px-4 py-2">
-             <p>{faq.answer}</p>
-           </div>
-         </div>
-       </div>
-       
+          <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+            <button
+              onClick={() =>
+                toggleAccordion(index, setActiveRightIndex, activeRightIndex)
+              }
+              className="w-full text-right flex justify-between items-center py-3 font-medium"
+            >
+              {faq.question}
+              <span className="transform transition-transform">
+                {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
+              </span>
+            </button>
+
+            <div
+              className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
+              }`}
+            >
+              <div className="px-4 py-2">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -116,27 +119,30 @@ const QuickGuide = () => {
               >
                 {faq.question}
                 <span className="transform transition-transform">
-                  {activeLeftIndex === index ? <span className="dark:text-white"><ArrowUp /></span> : <ArrowDown />}
+                  {activeLeftIndex === index ? (
+                    <span className="dark:text-white">
+                      <ArrowUp />
+                    </span>
+                  ) : (
+                    <ArrowDown />
+                  )}
                 </span>
               </button>
               {activeLeftIndex === index && faq.videoUrl && (
-                <div
-                className="duration-500"
-              >
-                <div className="px-4 py-2">
-                  <p>{faq.answer}</p>
-                  <div className="mt-4">
-                    <iframe
-                      src={sanitizeApparatUrl(faq.videoUrl)}
-                      title="آموزش ویدئویی"
-                      className="w-full aspect-video rounded-md shadow-md"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
+                <div className="duration-500">
+                  <div className="px-4 py-2">
+                    <p>{faq.answer}</p>
+                    <div className="mt-4">
+                      <iframe
+                        src={sanitizeApparatUrl(faq.videoUrl)}
+                        title="آموزش ویدئویی"
+                        className="w-full aspect-video rounded-md shadow-md"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
               )}
             </div>
           ))}

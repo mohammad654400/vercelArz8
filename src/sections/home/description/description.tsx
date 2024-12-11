@@ -9,7 +9,7 @@ const Description = () => {
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className="w-full mx-auto ">
+    <div className="w-full mx-auto  ">
       <h1 className="my-8 text-lg ">
         <span className="text-primary">خرید و فروش سریع</span> ارزهای دیجیتال با
         ارز هشت{" "}
@@ -26,7 +26,7 @@ const Description = () => {
 
         {/* Gradient Overlay */}
         {!isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent dark:bg-gradient-to-t from-gray-600 to-transparent pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent bg-gradient-to-t dark:from-gray-500 to-transparent pointer-events-none"></div>
         )}
       </div>
       <button
@@ -38,7 +38,7 @@ const Description = () => {
       <div className="w-full mt-8 bg-foreground dark:bg-[#242428] h-[266] text-background rounded-2xl">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div>بدون معطلی ثبت نام و احراز هویت کن!</div>
-          <div className="flex items-center gap-4 text-primary">
+          <div className="flex items-center gap-4 text-primary w-[100%]">
             ثبت نام <BigArrow />
             احراز هویت
             <BigArrow />
@@ -50,7 +50,7 @@ const Description = () => {
             </span>
             <input
               placeholder="شماره موبایل خود را وارد کنید"
-              className="w-[400px] h-12 bg-foreground rounded-xl outline-none text-white pr-10 border-2 border-gray-400 placeholder:text-sm placeholder:text-gray-500"
+              className="w-[100%] md:w-[400px] h-12 bg-foreground rounded-xl outline-none pr-10 border-2 border-gray-400 placeholder:text-sm placeholder:text-gray-500"
               type="text"
             />
             <div>

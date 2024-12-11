@@ -44,7 +44,7 @@ const coin = {
 export default function DetailCoin() {
   const route = usePathname().split("/")[1];
   return (
-    <div className="w-full bg-background px-[120px] py-[30px]">
+    <div className="w-full bg-background sm:px-[120px] sm:py-[30px] sm:pt-24">
       <div className="w-full flex justify-between items-center mb-6">
         <div className="flex justify-between w-[60%] bg-secondary py-4 px-4 rounded-lg">
           <div className="flex">

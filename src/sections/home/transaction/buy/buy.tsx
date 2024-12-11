@@ -4,7 +4,7 @@ import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import BNB from "@/assets/icons/bnb";
-import ArrowChange from "@/assets/icons/arrowcChange";
+import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
 
 export default function Buy({
@@ -14,7 +14,7 @@ export default function Buy({
 }: {
   toggle: any;
   currencies: any;
-  width:any
+  width: any;
 }) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(currencies[0]);
@@ -41,10 +41,10 @@ export default function Buy({
       setMoney(calculatedMoney ? calculatedMoney.toFixed(0) : "");
     }
   };
-  console.log("buy",width)
+  console.log("buy", width);
   return (
     <div className="w-full ">
-      <div className="absolute -top-[13px] right-6 text-background dark:text-secondary">
+      <div className="absolute -top-[13px]  right-6 text-background dark:text-secondary">
         <HalfCircle />
       </div>
       <div

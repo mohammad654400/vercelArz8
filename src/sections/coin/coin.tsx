@@ -5,7 +5,7 @@ import LivePriceTable from "@/components/livePriceTable";
 
 export default function Coin() {
   return (
-    <div className="bg-background dark:bg-[#3C3B41] ">
+    <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]  ">
         <div className="w-full flex flex-col items-center  text-white pt-8 ">
           <h1 className="text-lg">قیمت لحظه ای ارز های دیحیتال</h1>

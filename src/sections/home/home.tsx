@@ -9,7 +9,7 @@ import QuickGuide from "./quickguide/quickGuide";
 import Blog from "./blog/blog";
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 sm:px-[120px] sm:py-[30px] ">
+    <div className="flex flex-col gap-8 px-[20px]  sm:px-[120px] sm:py-[30px] ">
       <MainTop />
       <TransAction />
       <SecondBannerSlider />

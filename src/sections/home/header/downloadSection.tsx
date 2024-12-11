@@ -4,8 +4,8 @@ import qrCode from '@/assets/images/qrcode.png'
 import HalfCircle from "@/assets/icons/halfCircle";
 export default function DownloadSection() {
   return (
-    <div className="relative z-50 w-[277px] bg-background dark:bg-zinc-900 rounded-lg pt-4">
-      <div className="absolute text-background left-2 rounded-xl -top-3"> 
+    <div className="relative z-50  w-[277px] bg-background dark:bg-background rounded-lg pt-4">
+      <div className="absolute z-50 text-background left-2 rounded-xl -top-3 "> 
       <HalfCircle/>
       </div>
      <div className="flex flex-col justify-center items-center gap-2">

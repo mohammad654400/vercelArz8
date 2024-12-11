@@ -18,11 +18,27 @@ export default function SecondBannerSlider() {
     slidesToScroll: 3,
     arrows: false,
     dots: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ],
     appendDots: (dots:any) => (
       <div
         style={{
           position: 'absolute',
-          bottom: '3px',
+          bottom: '-15px',
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
@@ -32,29 +48,24 @@ export default function SecondBannerSlider() {
       </div>
     ),
   };
-
   return (
-    <div className="w-full max-w-screen-lg mx-auto relative">
-      <Slider {...settings}>
-        <div className="p-4 flex items-center justify-center ">
-          <Image alt="banner" src={banner1} />
-        </div>
-        <div className="p-4 flex items-center justify-center">
-          <Image alt="banner" src={banner2} />
-        </div>
-        <div className="p-4 flex items-center justify-center">
-          <Image alt="banner" src={banner3} />
-        </div>
-        <div className="p-4 flex items-center justify-center ">
-          <Image alt="banner" src={banner1} />
-        </div>
-        <div className="p-4 flex items-center justify-center">
-          <Image alt="banner" src={banner2} />
-        </div>
-        <div className="p-4 flex items-center justify-center">
-          <Image alt="banner" src={banner3} />
-        </div>
-      </Slider>
+    <div className="w-full px-4 md:px-0">
+      <div className="max-w-screen-lg mx-auto">
+        <Slider {...settings}>
+          {[banner1, banner2, banner3, banner1, banner2, banner3].map((banner, index) => (
+            <div key={index} className="p-2">
+              <div className="w-full">
+                <Image 
+                  alt={`banner ${index + 1}`}
+                  src={banner}
+                  className="w-full h-auto object-cover"
+                  style={{ maxHeight: '500px' }}
+                />
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import ArrowBottom from "@/assets/icons/arrow-bottom";
-import ArrowTop from "@/assets/icons/arrow-top";
+import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
+import ArrowTop from "@/assets/icons/arrrow/arrow-top";
 
 interface AccordionItemProps {
   id: number;
@@ -33,7 +33,8 @@ export const AccordionItem = ({
         <div
           className="absolute -inset-px rounded-xl transition-opacity duration-300"
           style={{
-            background: "linear-gradient(to top, rgba(255, 193, 7, 0), #FFC107)",
+            background:
+              "linear-gradient(to top, rgba(255, 193, 7, 0), #FFC107)",
           }}
           aria-hidden="true"
         ></div>
@@ -58,9 +59,7 @@ export const AccordionItem = ({
         <div
           className={`overflow-hidden transition-all duration-500`}
           style={{
-            maxHeight: isOpen
-              ? contentRef.current?.scrollHeight 
-              : 0,
+            maxHeight: isOpen ? contentRef.current?.scrollHeight : 0,
           }}
           ref={contentRef}
         >

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Phone from "@/assets/icons/footer/phone";
 import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
-import ArrowUp from "@/assets/icons/arrowup";
-import ArrowDown from "@/assets/icons/arrowDown";
+import ArrowUp from "@/assets/icons/arrrow/arrowup";
+import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 
 export default function DropdownMenu() {
   const [openSection, setOpenSection] = useState(null);
