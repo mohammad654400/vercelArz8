@@ -24,36 +24,36 @@ export default function DetailJob() {
                 <ApplyPage title={job.titleFn} />
             ) : (
                 <div>
-                    <h1 className="text-4xl font-bold mb-28 flex justify-center">{job.titleFn}</h1>
+                    <h1 className="sm:text-4xl text-2xl font-bold mb-28 flex justify-center">{job.titleFn}</h1>
                     <div className="flex flex-row flex-wrap justify-between">
-                        <div className="w-full sm:w-1/5  flex flex-col">
-                            <span className="text-foreground text-xl font-semibold">عنوان شغلی</span>
+                        <div className="w-full sm:w-1/5  flex flex-col mb-2">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">عنوان شغلی</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-sm font-semibold">
+                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.titleFn}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col">
-                            <span className="text-foreground text-xl font-semibold">نوع فعالیت</span>
+                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">نوع فعالیت</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-sm font-semibold">
+                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.workMode}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col">
-                            <span className="text-foreground text-xl font-semibold">تایم حضور</span>
+                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">تایم حضور</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-sm font-semibold">
+                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.employmentType}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col">
-                            <span className="text-foreground text-xl font-semibold">مکان</span>
+                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">مکان</span>
                             <div className="w-full h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-sm font-semibold">
+                                <span className="text-foreground opacity-50 text-xs sm:text-sm  font-semibold">
                                     {job.city}
                                 </span>
                             </div>
@@ -70,8 +70,8 @@ export default function DetailJob() {
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.responsibilities.map((task, index) => (
-                                            <li key={index} className="relative flex items-center text-lg opacity-50 text-foreground">
-                                                <div className="w-2 h-2 rounded-full bg-foreground opacity-50 mt-1 mx-2"></div>
+                                            <li key={index} className="relative flex items-center text-sm sm:text-lg opacity-50 text-foreground">
+                                                <div className="w-2 h-2 rounded-full bg-foreground opacity-50 mt-1  mx-2"></div>
                                                 {task}
                                             </li>
                                         ))}
@@ -82,7 +82,7 @@ export default function DetailJob() {
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.requirements.map((requirement, index) => (
-                                            <li key={index} className="relative text-lg text-foreground opacity-50">
+                                            <li key={index} className="relative text-sm sm:text-lg text-foreground opacity-50">
                                                 <span className="text-foreground ">✔</span> {requirement}
                                             </li>
                                         ))}
@@ -104,8 +104,8 @@ export default function DetailJob() {
                                     ].map((info, index) => (
                                         <React.Fragment key={index}>
                                             <div className="flex flex-row justify-between mb-2 mt-6">
-                                                <span className="text-foreground opacity-50">{info.label}</span>
-                                                <span className="text-foreground opacity-50">{info.value}</span>
+                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.label}</span>
+                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.value}</span>
                                             </div>
                                             <hr />
                                         </React.Fragment>
