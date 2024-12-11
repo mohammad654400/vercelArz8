@@ -5,7 +5,7 @@ import { aboutData } from './data/aboutData';
 
 export default function About() {
     return (
-        <div className="flex flex-col bg-background px-5 py-20 lg:px-[120px] lg:py-[30px]">
+        <div className="flex flex-col bg-background px-5 pt-24 lg:px-[120px] lg:py-[80px] ">
             <div className="flex flex-col lg:flex-row w-full justify-between">
                 <div className="lg:w-2/3 w-full flex flex-col justify-center order-2">
                     <h1 className='text-2xl sm:text-4xl font-bold text-Seventh mt-7 lg:mt-0'>درباره صرافی ارزهشت</h1>

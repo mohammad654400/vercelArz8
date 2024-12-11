@@ -39,7 +39,7 @@ const Fee: React.FC = () => {
     };
 
     return (
-        <div className="bg-background flex flex-col px-5 lg:px-[120px] lg:py-[30px]">
+        <div className="bg-background flex flex-col px-5 lg:px-[120px] lg:py-[80px] ">
 
             <div className="flex flex-col w-full h-72 bg-[#242428] rounded-xl px-7 lg:px-[15%]  justify-center items-center">
                 <h1 className="text-lg sm:text-3xl text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>

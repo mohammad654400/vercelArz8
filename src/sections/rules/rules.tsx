@@ -44,7 +44,7 @@ export default function Rules() {
     };
 
     return (
-        <div className="flex flex-col bg-background px-5 py-20 lg:px-[120px] lg:py-[30px]">
+        <div className="flex flex-col bg-background px-5 py-20 lg:px-[120px] lg:py-[90px]">
            
             <div className="flex items-center py-4 px-2 bg-primary rounded-xl">
                 <div className="min-w-12">

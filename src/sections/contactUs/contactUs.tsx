@@ -67,7 +67,7 @@ export default function ContactUs() {
     return (
         <div className=" bg-background ">
 
-            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[30px]">
+            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[100px]">
 
                 <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[65%]">
                     <h1 className="text-foreground lg:text-4xl text-2xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>

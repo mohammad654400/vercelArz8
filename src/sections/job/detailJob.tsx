@@ -19,7 +19,7 @@ export default function DetailJob() {
     }
 
     return (
-        <div className="flex flex-col bg-background lg:px-[120px] px-12 py-[30px]">
+        <div className="flex flex-col bg-background lg:px-[120px] px-12 py-[30px] pt-24">
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
