@@ -3,7 +3,7 @@ import React from "react";
 export default function ArrowDown() {
   return (
     <svg
-      width="32"
+      width="25"
       height="31"
       viewBox="0 0 32 31"
       fill="none"

@@ -33,8 +33,8 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-8 ">
-          <div className="flex flex-wrap gap-2 justify-around w-auto">
+        <div className="flex flex-col gap-8 lg:justify-between ">
+          <div className="flex flex-wrap gap-2 justify-around w-auto ">
             <div>
               <Image
                 className="dark:bg-white rounded-xl "
@@ -92,6 +92,11 @@ export default function Footer() {
                   <li>قیمت لحظه ای ارز ها</li>
                   <li>وبلاگ</li>
                   <li>گردونه شانس</li>
+                  <li>
+                    <Link href='/bugbounty'>
+                    باگ بانتی
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className="mt-6">
@@ -124,7 +129,7 @@ export default function Footer() {
       </div>
 
       <div className=" w-full bg-background py-4 flex justify-between px-5 rounded-lg ">
-        <div className="text-[8px]">
+        <div className="text-[8px] md:text-sm">
           تمامی حقوق این وبسایت متعلق به{" "}
           <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است
         </div>
