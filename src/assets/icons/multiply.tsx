@@ -11,16 +11,16 @@ export default function MultiplyIcon() {
     >
       <path
         d="M34.3877 55.6117L55.6127 34.3867"
-        stroke="#292D32"
-        stroke-width="3.62"
-        stroke-linecap="round"
+        stroke="currentColor"
+        strokeWidth="3.62"
+        strokeLinecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M55.6127 55.6117L34.3877 34.3867"
-        stroke="#292D32"
-        stroke-width="3.62"
-        stroke-linecap="round"
+        stroke="currentColor"
+        strokeWidth="3.62"
+        strokeLinecap="round"
         stroke-linejoin="round"
       />
     </svg>

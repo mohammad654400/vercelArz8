@@ -3,8 +3,8 @@ import React from "react";
 export default function Downlaod() {
   return (
     <svg
-      width="32"
-      height="36"
+      width="currentSize"
+      height="currentSize"
       viewBox="0 0 37 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
