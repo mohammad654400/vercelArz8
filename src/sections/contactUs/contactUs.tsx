@@ -67,7 +67,7 @@ export default function ContactUs() {
     return (
         <div className=" bg-background ">
 
-            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:py-[100px]">
+            <div className="flex flex-col lg:flex-row w-full pt-28 justify-between px-5  lg:px-[120px] lg:pt-[170px] lg:pb-4">
 
                 <div className="flex flex-col order-2 lg:order-1 mt-10 lg:mt-0  w-full lg:w-[65%]">
                     <h1 className="text-foreground lg:text-4xl text-2xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
@@ -75,9 +75,9 @@ export default function ContactUs() {
 
                     <span className="text-foreground text-base font-semibold mt-5 mb-3">اطلاعات تماس</span>
 
-                    <div className="flex flex-col sm:flex-row  w-full justify-between">
+                    <div className="flex flex-col sm:flex-row lg:max-w-[1000px]   w-full justify-between">
 
-                        <div className="flex flex-col gap-5 justify-between h-full sm:w-[66%] w-full  ">
+                        <div className="flex w-full  sm:w-[75%] lg:max-w-[720px]  gap-5 justify-between h-full   flex-col ">
                             <div className="flex h-[53px] w-full justify-between ">
                                 <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Call />
@@ -88,7 +88,7 @@ export default function ContactUs() {
                                     <span className="md:text-2xl sm:text-lg text-sm text-foreground mr-3 font-semibold">پشتیبانی آنلاین</span>
                                 </div>
                             </div>
-                            <div className="flex h-[99px] w-full justify-between p-3 flex-col rounded-xl bg-secondary">
+                            <div className="flex h-[99px] w-full  justify-between p-3 flex-col rounded-xl bg-secondary">
                                 <div className="flex items-center">
                                     <Location />
                                     <span className="lg:text-xl text-lg  text-foreground mr-3 font-normal">آدرس</span>
@@ -100,33 +100,33 @@ export default function ContactUs() {
                         </div>
 
 
-                        <div className="h-full w-full  sm:w-[31%] ">
+                        <div className="flex  w-full sm:w-[24%] sm:min-w-[195px] lg:max-w-[240px]    justify-between h-full">
                             <div className=" flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
                                 <div className="flex h-[53px] w-full justify-between ">
-                                <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
-                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">تلگرام</span>
-                                </div>
+                                    <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
+                                        <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">تلگرام</span>
+                                    </div>
 
-                                <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
-                                    <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">ایمیل</span>
-                                </div>
+                                    <div className="bg-secondary h-full w-[99px] rounded-xl text-center p-3">
+                                        <span className="md:text-2xl sm:text-lg text-sm text-foreground font-semibold text-center">ایمیل</span>
+                                    </div>
                                 </div>
                                 <div className="flex h-[99px] w-full justify-between ">
-                                <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
-                                    <Telegram />
-                                </div>
-                                <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
-                                    <Email />
-                                </div>
+                                    <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
+                                        <Telegram />
+                                    </div>
+                                    <div className="bg-secondary h-full w-[99px] rounded-xl p-3  ">
+                                        <Email />
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="w-full h-[53px] justify-between flex flex-row  sm:hidden  mt-5">
-                            <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
+                                <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Telegram />
                                     <span className="md:text-2xl text-lg text-foreground font-semibold">تلگرام</span>
                                 </div>
-                            
+
                                 <div className="flex h-full w-[48%] items-center justify-start bg-secondary rounded-xl  p-3">
                                     <Email />
                                     <span className="md:text-2xl text-lg text-foreground font-semibold">ایمیل</span>
@@ -156,29 +156,29 @@ export default function ContactUs() {
             <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden sm:px-[120px]">
 
 
-                <form onSubmit={handleSubmit} className="w-[50%] h-[40%] min-w-[320px] sm:min-w-[400px] md:min-w-[560px]  flex flex-col bg-secondary p-6 rounded-xl z-10">
-                    <div className="flex w-full space-x-4 mb-6 flex-col sm:flex-row sm:justify-between">
+                <form onSubmit={handleSubmit} className=" flex flex-col  w-full mx-4 sm:w-[50%]  lg:h-[50%] max-h-[600px]  sm:min-w-[400px] md:min-w-[560px]  bg-fourth p-5 rounded-xl z-10 -mt-[10%]">
+                    <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
+                    <div className="flex w-full space-x-4 mb-5 flex-col sm:flex-row sm:justify-between">
+
                         <div className="flex flex-col w-full sm:w-[47%] mb-4 sm:mb-0">
-                            <label htmlFor="fullName" className="block text-foreground">نام خانوادگی</label>
+                            <label htmlFor="fullName" className="block text-Seventh text-base font-normal">نام خانوادگی</label>
                             <input
                                 id="fullName"
                                 name="fullName"
                                 type="text"
-                                className="w-full text-foreground bg-background h-10 mt-2 px-4 rounded-lg focus:outline-none "
-                                placeholder="نام خانوادگی"
+                                className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none "
                                 onChange={handleChange}
                             />
                             {errors.fullName && <div className="text-red-500 text-sm">{errors.fullName}</div>}
 
                         </div>
-                        <div className="flex flex-col w-full sm:w-[47%] mb-0" style={{marginLeft:"0"}}>
-                            <label htmlFor="phoneNumber" className="block text-foreground">شماره تماس</label>
+                        <div className="flex flex-col w-full sm:w-[47%] mb-0" style={{ marginLeft: "0" }}>
+                            <label htmlFor="phoneNumber" className="block text-Seventh text-base font-normal">شماره تماس</label>
                             <input
                                 id="phoneNumber"
                                 name="phoneNumber"
                                 type="text"
-                                className="w-full text-foreground bg-background h-10 mt-2 px-4 rounded-lg focus:outline-none"
-                                placeholder="شماره تماس"
+                                className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none"
                                 onChange={handleChange}
                             />
                             {errors.fullName && <div className="text-red-500 text-sm">{errors.phoneNumber}</div>}
@@ -188,12 +188,11 @@ export default function ContactUs() {
                     </div>
 
                     <div className="flex flex-col mb-6 h-[40%]">
-                        <label htmlFor="message" className="block text-foreground">پیام</label>
+                        <label htmlFor="message" className="block text-Seventh text-base font-normal">پیام</label>
                         <textarea
                             id="message"
                             name="message"
-                            className="w-full h-full bg-background text-foreground mt-2 p-4 rounded-lg focus:outline-none"
-                            placeholder="پیام"
+                            className="w-full sm:h-56 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none"
                             onChange={handleChange}
                         />
                         {errors.fullName && <div className="text-red-500 text-sm">{errors.message}</div>}
@@ -203,7 +202,7 @@ export default function ContactUs() {
 
                     <button
                         type="submit"
-                        className="w-60 h-14 bg-primary mt-7 text-white px-4 py-2 rounded-xl transition-colors self-end"
+                        className="lg:w-60 w-full h-14 bg-primary my-auto text-white px-4 py-2 rounded-xl transition-colors self-end"
                     >
                         ارسال درخواست
                     </button>

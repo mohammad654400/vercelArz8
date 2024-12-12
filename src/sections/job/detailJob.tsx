@@ -23,35 +23,35 @@ export default function DetailJob() {
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
-                <div>
-                    <h1 className="sm:text-4xl text-2xl font-bold mb-28 flex justify-center">{job.titleFn}</h1>
-                    <div className="flex flex-row flex-wrap justify-between">
-                        <div className="w-full sm:w-1/5  flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">عنوان شغلی</span>
+                <div className='mt-32'>
+                    <h1 className="sm:text-4xl text-2xl font-bold mb-28 flex justify-center text-eighth">{job.titleFn}</h1>
+                    <div className=" grid grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-x-10 lg:gap-x-16  xl:gap-x-40 justify-items-stretch ">
+                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-3">عنوان شغلی</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.titleFn}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">نوع فعالیت</span>
+                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-3">نوع فعالیت</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.workMode}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">تایم حضور</span>
+                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-3">تایم حضور</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
                                     {job.employmentType}
                                 </span>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">مکان</span>
+                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                            <span className="text-foreground text-base sm:text-xl font-semibold mb-3">مکان</span>
                             <div className="w-full h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm  font-semibold">
                                     {job.city}
@@ -61,18 +61,18 @@ export default function DetailJob() {
                     </div>
 
                     <div className="flex justify-between flex-wrap">
-                        <div className="lg:w-[46%] w-full">
+                        <div className="lg:w-[48%] w-full">
                             <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6">اطلاعات عنوان شغلی</h2>
-                                <div className="flex flex-col bg-third p-5 rounded-xl">
-                                    <span className="font-bold text-lg mt-6 mb-2 text-foreground opacity-50">
+                                <h2 className="mt-8 mb-6 text-xl font-semibold">اطلاعات عنوان شغلی</h2>
+                                <div className="flex flex-col bg-third px-5 py-5 rounded-xl">
+                                    <span className="font-bold text-lg  mb-2 text-foreground opacity-50">
                                         وظایف:
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.responsibilities.map((task, index) => (
-                                            <li key={index} className="relative flex items-center text-sm sm:text-lg opacity-50 text-foreground">
+                                            <li key={index} className="relative flex items-center opacity-50 text-foreground">
                                                 <div className="w-2 h-2 rounded-full bg-foreground opacity-50 mt-1  mx-2"></div>
-                                                {task}
+                                                <span className='text-lg lg:text-base font-normal'>{task}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -82,7 +82,7 @@ export default function DetailJob() {
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.requirements.map((requirement, index) => (
-                                            <li key={index} className="relative text-sm sm:text-lg text-foreground opacity-50">
+                                            <li key={index} className="relative text-lg lg:text-base text-foreground opacity-50">
                                                 <span className="text-foreground ">✔</span> {requirement}
                                             </li>
                                         ))}
@@ -90,10 +90,10 @@ export default function DetailJob() {
                                 </div>
                             </div>
                         </div>
-                        <div className="lg:w-[46%] w-full">
+                        <div className="lg:w-[48%] w-full">
                             <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6">اطلاعات عنوان شغلی</h2>
-                                <div className="flex flex-col bg-third p-5 rounded-xl">
+                                <h2 className="mt-8 mb-6 text-xl font-semibold">شرایط</h2>
+                                <div className="flex flex-col">
                                     {[
                                         { label: 'جنسیت', value: job.gender },
                                         { label: 'سن', value: job.age },
@@ -104,15 +104,16 @@ export default function DetailJob() {
                                     ].map((info, index) => (
                                         <React.Fragment key={index}>
                                             <div className="flex flex-row justify-between mb-2 mt-6">
-                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.label}</span>
-                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.value}</span>
+                                                <span className="text-foreground text-sm sm:text-base opacity-50">{info.label}</span>
+                                                <span className="text-foreground text-sm sm:text-base opacity-50">{info.value}</span>
                                             </div>
-                                            <hr />
+                                            <div className="bg-[#242428] h-[1px]" />
+
                                         </React.Fragment>
                                     ))}
                                     <button
                                         onClick={handlerOpen}
-                                        className="w-[90%] h-14 bg-primary text-white rounded-xl my-5 self-center"
+                                        className="w-full h-14 bg-primary text-white rounded-xl mt-12 self-center"
                                     >
                                         ارسال رزومه
                                     </button>

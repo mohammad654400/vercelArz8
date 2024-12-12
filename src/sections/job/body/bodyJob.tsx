@@ -62,7 +62,7 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
         <div className='flex flex-row flex-wrap justify-between'>
             {OurCompanions.map((item,index) => (
                 <div key={index} className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
-                    <div className='w-14 h-14 rounded-full mr-3 bg-[#3C3B41] items-end justify-center flex'>
+                    <div className='w-14 h-14 rounded-full mr-3 bg-ninth items-end justify-center flex'>
                         <Profile />
                     </div>
                     <div className='flex flex-col mr-5'>
