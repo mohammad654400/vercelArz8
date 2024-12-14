@@ -17,37 +17,37 @@ export default function CrossSiteIcon() {
         d="M83.9824 4.67421L48.0499 18.2119C39.7688 21.3083 33 31.1015 33 39.8866V93.3893C33 101.886 38.6167 113.048 45.4576 118.16L76.4214 141.275C86.5747 148.908 103.281 148.908 113.434 141.275L144.398 118.16C151.239 113.048 156.855 101.886 156.855 93.3893V39.8866C156.855 31.0295 150.087 21.2363 141.806 18.1399L105.873 4.67421C99.7523 2.44193 89.9591 2.44193 83.9824 4.67421Z"
         fill="#FFC107"
         stroke="#FFC107"
-        stroke-width="5.91855"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5.91855"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M87.5008 77.5C85.8508 78.325 84.4758 79.55 83.4508 81.075C82.8758 81.95 82.8758 83.05 83.4508 83.925C84.4758 85.45 85.8508 86.675 87.5008 87.5"
         stroke="white"
-        stroke-width="3.75"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M103.023 77.5C104.673 78.325 106.048 79.55 107.073 81.075C107.648 81.95 107.648 83.05 107.073 83.925C106.048 85.45 104.673 86.675 103.023 87.5"
         stroke="white"
-        stroke-width="3.75"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M87.5 100H102.5C115 100 120 95 120 82.5V67.5C120 55 115 50 102.5 50H87.5C75 50 70 55 70 67.5V82.5C70 95 75 100 87.5 100Z"
         stroke="white"
-        stroke-width="3.75"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M70.582 65.025L118.632 65"
         stroke="white"
-        stroke-width="3.75"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

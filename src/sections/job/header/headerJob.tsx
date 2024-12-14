@@ -5,22 +5,20 @@ import React from 'react';
 
 export default function HeaderJob({ scrollToJobs }: { scrollToJobs: () => void }) {
     return (
-        <div className="flex flex-col-reverse xl:flex-row justify-between items-center h-full w-full">
+        <div className="flex flex-col-reverse xl:flex-row justify-between items-center h-full w-full mt-5">
             <div className="flex flex-col w-full xl:w-[460px] z-10">
-                <h1 className="text-3xl xl:text-4xl font-extrabold ">فرصت های شغلی ارز هشت</h1>
-                <span className="text-lg xl:text-sm font-normal my-5 text-justify" style={{ lineHeight: "2.5rem" }}>
+                <h1 className="text-2xl sm:text-3xl xl:text-4xl font-extrabold ">فرصت های شغلی ارز هشت</h1>
+                <span className="text-base sm:text-lg xl:text-sm font-normal my-5 text-justify" style={{ lineHeight: "2.5rem" }}>
 
                     صرافی ارز هشت بستری خلاقانه برای ، شکوفایی و پرورش استعدادهای شما ست. اگر خود را متعهد به پیشرفت می‌دانید.
                     ارزهشت کوتاه ‌ترین راه رسیدن به این هدف است.
                 </span>
                 <button 
                 onClick={scrollToJobs}
-                className="flex text-3xl xl:text-xl  max-w-60 xl:max-w-48 py-2 px-3 bg-primary text-white rounded-xl justify-center items-center">
+                className="flex text-2xl xl:text-xl  max-w-60 xl:max-w-48 py-2 px-3 bg-primary text-white rounded-xl justify-center items-center">
                     مشاهده فرصت
                 </button>
             </div>
-
-
          
             <Image
                 src={opportunity}
@@ -28,8 +26,6 @@ export default function HeaderJob({ scrollToJobs }: { scrollToJobs: () => void }
 
             />
            
-        
-
         </div>
     );
 }

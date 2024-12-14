@@ -14,14 +14,14 @@ export default function UserIcon() {
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.95039 18.2C5.92539 20.225 5.92539 23.525 8.95039 25.5375C12.3879 27.8375 18.0254 27.8375 21.4629 25.5375C24.4879 23.5125 24.4879 20.2125 21.4629 18.2C18.0379 15.9125 12.4004 15.9125 8.95039 18.2Z"
         stroke="#FFC107"
         strokeWidth="1.5"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

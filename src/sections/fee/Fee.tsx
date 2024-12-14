@@ -39,7 +39,7 @@ const Fee: React.FC = () => {
     };
 
     return (
-        <div className="bg-background flex flex-col px-5 py-20 lg:px-[120px] lg:py-[80px] ">
+        <div className="bg-background flex flex-col px-5 lg:px-[120px] py-24 ">
 
             <div className="flex flex-col w-full  h-72 bg-[#242428] rounded-xl px-7   justify-center items-center lg:px-[15%]">
                 <h1 className="text-lg sm:text-3xl text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
@@ -53,7 +53,7 @@ const Fee: React.FC = () => {
                 <hr className="border-t-4 border-primary mt-2" />
             </div>
 
-            <div className="bg-fourth p-3 rounded-xl w-full lg:w-1/2  mt-20  max-w-[566px] h-[90px] flex self-center justify-center items-center">
+            <div className="bg-secondary p-3 rounded-xl w-full lg:w-1/2  mt-20 lg:min-w-[446px]  max-w-[560px] h-[85px] flex self-center justify-center items-center">
                 <div className="flex w-full h-full gap-4">
                     {allTabs.map((tab) => (
                         <Tab
@@ -68,7 +68,7 @@ const Fee: React.FC = () => {
                 </div>
             </div>
             <div
-                className={`transition-all duration-700 ease-in-out transform ${activeTab === 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                className={`transition-opacity duration-700 ease-in-out transform ${activeTab === 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
                     }`}
             >
                 {activeTab === 0 && (
@@ -78,10 +78,9 @@ const Fee: React.FC = () => {
                         listData={TransactionFeeListText}
                     />
                 )}
-
             </div>
             <div
-                className={`transition-all duration-700 ease-in-out transform ${activeTab === 1 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                className={`transition-opacity duration-700 ease-in-out transform ${activeTab === 1 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
                     }`}
             >
                 {activeTab === 1 && (

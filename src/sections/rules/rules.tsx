@@ -47,21 +47,19 @@ export default function Rules() {
         <div className="flex flex-col bg-background px-5 py-20 lg:px-[120px] lg:py-[90px]">
            
             <div className="flex items-center py-4 px-2 bg-primary rounded-xl">
-                <div className="min-w-12">
+                <div className="w-6 min-w-12 items-start justify-start self-start flex ">
                     <Info />
                 </div>
-                <span className="text-[#242428] mr-3 leading-9">
+                <span className="text-[#242428] text-xs sm:text-base font-semibold mr-3 text-justify">
                     توجه : از تاریخ ۲۵/۱۰/۲۰۲۲ دامنه سایت از "www.arz8x.com" به "www.arz8.com" تغییر پیدا کرده است و برند
                     "Arz8x" به "Arz8" تغییر پیدا کرده است.
                 </span>
             </div>
 
      
-            <div className="flex w-full my-11 justify-center items-center text-center">
-                <span className="w-4/5 leading-9">
-                    با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت
-                    اعمال میشود. لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید.
-                </span>
+            <div className="flex flex-col w-full my-11 justify-center items-center text-center text-sm lg:text-base font-semibold">
+                <span className="sm:w-4/5 leading-9">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
+                <span className="sm:w-4/5 leading-9">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>
 
            
@@ -86,20 +84,20 @@ export default function Rules() {
                 })}
             </div>
 
-            {/* Selected Category Title */}
+            
             <div className="hidden md:flex flex-col w-1/2 my-10 self-center">
                 <h1 className="flex justify-center text-3xl font-bold text-sixth">{selectedCategory.title}</h1>
                 <hr className="border-t-4 border-primary mt-2" />
             </div>
 
-            {/* Questions List */}
+            
             <ul className="w-full space-y-5 md:mt-0 mt-10">
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start">
                         <div className="w-5">
-                            <span className="mr-2 mt-2 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
+                            <span className="mr-2 mt-3 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
                         </div>
-                        <span className="mr-3 text-sm md:text-lg font-normal text-foreground leading-10">{item.text}</span>
+                        <span className="mr-3 text-sm md:text-lg font-normal text-foreground text-justify" style={{lineHeight:"2.3rem"}}>{item.text}</span>
                     </li>
                 ))}
             </ul>

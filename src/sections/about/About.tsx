@@ -28,7 +28,7 @@ export default function About() {
                     return (
                         <div
                             key={index}
-                            className='mb-10 mx-auto w-36 sm:w-52 h-36 sm:h-52 bg-fourth flex flex-col items-center justify-center rounded-xl shadow-lg'
+                            className='mb-10 mx-auto w-36 sm:w-52 h-36 sm:h-52 bg-secondary flex flex-col items-center justify-center rounded-xl shadow-lg'
                         >
                             <div className='w-16 sm:w-[105px] h-16 sm:h-[105px] flex items-center justify-center '>
                                 <item.src />
@@ -44,20 +44,20 @@ export default function About() {
             <div className='flex flex-col md:flex-row justify-between mt-24'>
                 <div className='w-full md:w-1/2 flex flex-col ml-2'>
                     <span className='mb-7 text-Seventh sm:text-xl text-base font-semibold '>ماموریت صرافی ارز هشت</span>
-                    <div className='w-full  rounded-xl p-7 bg-third'>
+                    <div className='w-full  rounded-xl px-4 py-5 bg-third'>
                         <span className='text-Seventh sm:text-lg text-sm font-normal leading-9'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</span>
                     </div>
 
                 </div>
                 <div className='w-full md:w-1/2 flex flex-col mr-2 mt-7 md:mt-0'>
                     <span className='mb-7 text-Seventh sm:text-2xl text-lg font-semibold '>ماموریت صرافی ارز هشت</span>
-                    <div className='w-full mb-2  rounded-xl p-7 bg-third'>
+                    <div className='w-full mb-2  rounded-xl px-4 py-5 bg-third'>
                         <span className='text-Seventh sm:text-lg text-sm font-normal'>شفافیت در تمامی مراحل و فرآیندها</span>
                     </div>
-                    <div className='w-full mb-2  rounded-xl p-7 bg-third'>
+                    <div className='w-full mb-2  rounded-xl px-4 py-5 bg-third'>
                         <span className='text-Seventh sm:text-lg text-sm font-normal leading-9'> ارائه راهکارهای جدید و پیشرفته برای آسان‌تر کردن معاملات</span>
                     </div>
-                    <div className='w-full mb-2 rounded-xl p-7 bg-third'>
+                    <div className='w-full mb-2 rounded-xl px-4 py-5 bg-third'>
                         <span className='text-Seventh sm:text-lg text-sm font-normal leading-9'>همیشه گوش به نیازها و بازخوردهای شما هستیم</span>
                     </div>
 

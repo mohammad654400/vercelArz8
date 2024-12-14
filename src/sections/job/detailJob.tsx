@@ -19,7 +19,7 @@ export default function DetailJob() {
     }
 
     return (
-        <div className="flex flex-col bg-background lg:px-[120px] px-12 py-[30px] pt-24">
+        <div className="flex flex-col bg-background lg:px-[120px] sm:px-12 px-6 py-[30px] pt-24">
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
@@ -64,15 +64,17 @@ export default function DetailJob() {
                         <div className="lg:w-[48%] w-full">
                             <div className="flex flex-col">
                                 <h2 className="mt-8 mb-6 text-xl font-semibold">اطلاعات عنوان شغلی</h2>
-                                <div className="flex flex-col bg-third px-5 py-5 rounded-xl">
+                                <div className="flex flex-col bg-third px-3 sm:px-5 py-5 rounded-xl">
                                     <span className="font-bold text-lg  mb-2 text-foreground opacity-50">
                                         وظایف:
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.responsibilities.map((task, index) => (
-                                            <li key={index} className="relative flex items-center opacity-50 text-foreground">
-                                                <div className="w-2 h-2 rounded-full bg-foreground opacity-50 mt-1  mx-2"></div>
-                                                <span className='text-lg lg:text-base font-normal'>{task}</span>
+                                            <li key={index} className="flex text-foreground">
+                                                <div className='w-3 mt-3 lg:mt-2  ml-2'>
+                                                <div className="w-2 h-2 rounded-full bg-foreground  "></div>
+                                                </div>
+                                                <span className=' text-sm sm:text-lg lg:text-base font-normal leading-7 text-justify opacity-50 ' >{task}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -82,11 +84,20 @@ export default function DetailJob() {
                                     </span>
                                     <ul className="pl-5 space-y-2">
                                         {job.requirements.map((requirement, index) => (
-                                            <li key={index} className="relative text-lg lg:text-base text-foreground opacity-50">
-                                                <span className="text-foreground ">✔</span> {requirement}
+                                            <li key={index} className="flex text-sm sm:text-lg lg:text-base text-foreground ">
+                                                <span >✔</span> <span className='mr-4 leading-7 text-justify opacity-50'> {requirement}  </span>
                                             </li>
                                         ))}
                                     </ul>
+                                   
+                                    <div className='flex  mt-3'>
+                                        <span className='ml-2'>🎯</span>
+                                    <span className="relative text-sm sm:text-lg lg:text-base text-foreground">
+                                         <span className='opacity-50 leading-7 text-justify'> اگر علاقه‌مند به کار در محیطی پویا و دوستانه هستید، رزومه خود را به [ایمیل یا شماره واتساپ] ارسال کنید یا با شماره [شماره تماس] تماس بگیرید.
+                                            ما منتظر حضور شما در تیم حرفه‌ای‌مان هستیم!</span> 🙌
+                                    </span>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

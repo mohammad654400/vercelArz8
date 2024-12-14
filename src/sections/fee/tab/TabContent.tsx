@@ -52,7 +52,7 @@ interface FeeContentProps {
           {listData.map((item, index) => (
             <li key={index} className="flex items-start">
               <div className="w-5">
-              <span className="mr-2 mt-3 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
+              <span className="mr-2 mt-2 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
               </div>
               <span className="mr-3 text-sm md:text-lg font-normal text-foreground leading-10">{item.text}</span>
             </li>

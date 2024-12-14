@@ -62,14 +62,17 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
         <div className='flex flex-row flex-wrap justify-between'>
             {OurCompanions.map((item,index) => (
                 <div key={index} className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
-                    <div className='w-14 h-14 rounded-full mr-3 bg-ninth items-end justify-center flex'>
+                    <div className='w-14 h-14 rounded-full mr-3 bg-fourth items-end justify-center flex '>
+                        <div className='text-secondary'>
                         <Profile />
+                        </div>
+                        
                     </div>
                     <div className='flex flex-col mr-5'>
                         <span className='text-base font-semibold text-foreground'>{item.name}</span>
                         <div className='flex items-center mt-3'>
                             <QuoteUpSquare />
-                            <span className='text-[10px] text-foreground font-semibold text-opacity-50'>{item.position}</span>
+                            <span className='text-[10px] text-foreground mr-2 font-semibold text-opacity-50'>{item.position}</span>
                         </div>
                     </div>
                 </div>

@@ -17,37 +17,37 @@ export default function InformationIcon() {
         d="M72.9824 4.67421L37.0499 18.2119C28.7688 21.3083 22 31.1015 22 39.8866V93.3893C22 101.886 27.6167 113.048 34.4576 118.16L65.4214 141.275C75.5747 148.908 92.2808 148.908 102.434 141.275L133.398 118.16C140.239 113.048 145.855 101.886 145.855 93.3893V39.8866C145.855 31.0295 139.087 21.2363 130.806 18.1399L94.8731 4.67421C88.7523 2.44193 78.9591 2.44193 72.9824 4.67421Z"
         fill="#FFC107"
         stroke="#FFC107"
-        stroke-width="5.91855"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5.91855"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.25 67.625V65C57.25 57.125 62.5 51.875 70.375 51.875H96.625C104.5 51.875 109.75 57.125 109.75 65V86C109.75 93.875 104.5 99.125 96.625 99.125H94"
         stroke="white"
-        stroke-width="3.9375"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M61.6875 74.7383C73.815 76.287 82.7138 85.2121 84.2888 97.3396"
         stroke="white"
-        stroke-width="3.9375"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M58.8789 83.5566C67.7777 84.6854 74.3139 91.2479 75.4689 100.147"
         stroke="white"
-        stroke-width="3.9375"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.1953 93.5078C61.6316 94.0853 64.9128 97.3403 65.4903 101.803"
         stroke="white"
-        stroke-width="3.9375"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
