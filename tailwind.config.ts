@@ -19,7 +19,7 @@ const config: Config = {
         fourth:"var(--fourth)",
         fifth:"var(--fifth)",
         sixth:"var(--sixth)",
-        Seventh:"var(--seventh)",
+        seventh:"var(--seventh)",
         eighth:"var(--eighth)",
       },
     },

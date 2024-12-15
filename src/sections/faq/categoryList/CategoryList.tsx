@@ -34,7 +34,7 @@ export default function CategoryList({
             <div 
               className={`relative flex flex-col items-center justify-center w-full h-44 rounded-xl cursor-pointer bg-secondary`} 
             > 
-              <div className="text-4xl z-10"> 
+              <div className="text-4xl z-10 w-14 h-14"> 
                 <category.icon /> 
               </div> 
               <span className="text-lg font-semibold  mt-2 z-10">{category.title}</span> 
