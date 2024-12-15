@@ -22,7 +22,7 @@ export default function Header() {
             <span className="text-base lg:text-lg font-bold mt-2">
               با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
             </span>
-            <ul className="self-center lg:self-start text-start list-disc ml-5 my-16 list-inside text-base sm:text-lg lg:text-xl font-semibold">
+            <ul className="self-center lg:self-start text-start list-disc  my-16 list-inside text-base sm:text-lg lg:text-xl font-semibold">
               <li>دسترسی به بیش از 1600 ارز دیجیتال</li>
               <li className="my-7">پشتیبانی سریع و 24 ساعته</li>
               <li>احراز هویت سریع</li>
