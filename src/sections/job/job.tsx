@@ -8,11 +8,6 @@ export default function Job() {
 
   const jobListingsRef = useRef<HTMLDivElement>(null);
 
-    // const scrollToJobs = () => {
-    //     if (jobListingsRef.current) {
-    //         jobListingsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    //     }
-    // };
     const scrollToJobs = () => {
       if (jobListingsRef.current) {
           const offsetTop = jobListingsRef.current.getBoundingClientRect().top + window.scrollY;
@@ -24,7 +19,7 @@ export default function Job() {
   };
   
   return (
-    <div className='bg-background px-5 py-20 lg:px-[120px] lg:py-[80px] '>
+    <div className='bg-background base-style'>
         <HeaderJob scrollToJobs={scrollToJobs}/>
         <BodyJob ref={jobListingsRef}/>
     </div>

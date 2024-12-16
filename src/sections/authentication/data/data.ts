@@ -72,7 +72,7 @@ interface CardData {
 
 export const cardData: CardData[] = [
   {
-    icon: Security, // مرجع به کامپوننت
+    icon: Security,
     title: "امنیت بالا",
     description: "اطلاعات کاربران به‌صورت کاملاً محرمانه ذخیره می‌شود.",
   },

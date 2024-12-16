@@ -19,14 +19,14 @@ export default function DetailJob() {
     }
 
     return (
-        <div className="flex flex-col bg-background lg:px-[120px] sm:px-12 px-6 py-[30px] pt-24">
+        <div className="flex flex-col bg-background base-style">
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
-                <div className='mt-32'>
-                    <h1 className="sm:text-4xl text-2xl font-bold mb-28 flex justify-center text-eighth">{job.titleFn}</h1>
+                <div className='mt-[128px]'>
+                    <h1 className="sm:text-4xl text-2xl font-bold mb-[114px] flex justify-center text-eighth">{job.titleFn}</h1>
                     <div className=" grid grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-x-10 lg:gap-x-16  xl:gap-x-40 justify-items-stretch ">
-                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                        <div className=" xl:max-w-[290px] flex flex-col mb-5">
                             <span className="text-foreground text-base sm:text-xl font-semibold mb-3">عنوان شغلی</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
@@ -34,7 +34,7 @@ export default function DetailJob() {
                                 </span>
                             </div>
                         </div>
-                        <div className=" xl:max-w-[290px] flex flex-col mb-8">
+                        <div className=" xl:max-w-[290px] flex flex-col mb-5">
                             <span className="text-foreground text-base sm:text-xl font-semibold mb-3">نوع فعالیت</span>
                             <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
                                 <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
@@ -63,7 +63,7 @@ export default function DetailJob() {
                     <div className="flex justify-between flex-wrap">
                         <div className="lg:w-[48%] w-full">
                             <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6 text-xl font-semibold">اطلاعات عنوان شغلی</h2>
+                                <h2 className="mt-10 mb-5 text-xl font-semibold">اطلاعات عنوان شغلی</h2>
                                 <div className="flex flex-col bg-third px-3 sm:px-5 py-5 rounded-xl">
                                     <span className="font-bold text-lg  mb-2 text-foreground opacity-50">
                                         وظایف:
@@ -103,7 +103,7 @@ export default function DetailJob() {
                         </div>
                         <div className="lg:w-[48%] w-full">
                             <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6 text-xl font-semibold">شرایط</h2>
+                                <h2 className="mt-10 mb-5 text-xl font-semibold">شرایط</h2>
                                 <div className="flex flex-col">
                                     {[
                                         { label: 'جنسیت', value: job.gender },
@@ -114,7 +114,8 @@ export default function DetailJob() {
                                         { label: 'روزهای کاری', value: job.workingDays },
                                     ].map((info, index) => (
                                         <React.Fragment key={index}>
-                                            <div className="flex flex-row justify-between mb-2 mt-6">
+                                            
+                                            <div className={`flex flex-row justify-between mb-2 ${index > 0 ? 'mt-6' : ''}`}>
                                                 <span className="text-foreground text-sm sm:text-base opacity-50">{info.label}</span>
                                                 <span className="text-foreground text-sm sm:text-base opacity-50">{info.value}</span>
                                             </div>

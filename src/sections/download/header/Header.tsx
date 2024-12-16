@@ -11,8 +11,8 @@ export default function Header() {
   const iconSize = "lg:w-12 lg:h-12 w-8 h-8";
 
   return (
-    <div className="flex flex-col w-full lg:h-[590px] h-auto pt-16 mb-28">
-      <div className="bg-[#242428] w-full h-full text-white text-center py-12 px-10 lg:py-10 lg:px-32">
+    <div className="flex flex-col w-full lg:h-[590px] h-auto pt-20 mb-[30px]">
+      <div className="bg-[#242428] w-full h-full text-white text-center py-12 px-5 lg:py-10 lg:px-32">
         <div className="w-full h-full justify-center items-center flex flex-col lg:flex-row">
         
           <div className="w-full lg:w-[55%] order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
@@ -56,11 +56,11 @@ function DownloadOption({ Icon, label }: { Icon: React.FC; label: string }) {
   const iconSize = "lg:w-12 lg:h-12 w-8 h-8";
 
   return (
-    <div className="flex flex-col items-center lg:ml-8">
+    <div className="flex flex-col items-center w-[64px] lg:w-[86px] mx-1">
       <div className={`flex mb-6 ${iconSize}`}>
         <Icon />
       </div>
-      <span className="text-xs font-semibold">{label}</span>
+      <span className="text-[9.9px] lg:text-xs font-semibold">{label}</span>
     </div>
   );
 }

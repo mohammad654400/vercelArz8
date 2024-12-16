@@ -44,20 +44,9 @@ export default function Rules() {
     };
 
     return (
-        <div className="flex flex-col bg-background px-5 py-20 lg:px-[120px] lg:py-[90px]">
-           
-            <div className="flex items-center py-4 px-2 bg-primary rounded-xl">
-                <div className="w-6 min-w-12 items-start justify-start self-start flex ">
-                    <Info />
-                </div>
-                <span className="text-[#242428] text-xs sm:text-base font-semibold mr-3 text-justify">
-                    توجه : از تاریخ ۲۵/۱۰/۲۰۲۲ دامنه سایت از "www.arz8x.com" به "www.arz8.com" تغییر پیدا کرده است و برند
-                    "Arz8x" به "Arz8" تغییر پیدا کرده است.
-                </span>
-            </div>
+        <div className="base-style bg-background">
 
-     
-            <div className="flex flex-col w-full my-11 justify-center items-center text-center text-sm lg:text-base font-semibold">
+            <div className="flex flex-col w-full mt-20 justify-center items-center text-center text-sm lg:text-base font-semibold">
                 <span className="sm:w-4/5 leading-9">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
                 <span className="sm:w-4/5 leading-9">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>

@@ -13,10 +13,10 @@ interface FeeContentProps {
   
   export const TabContent: React.FC<FeeContentProps> = ({ tableHeaders, tableData, listData }) => {
     return (
-      <div className="mt-12">
+      <>
 
 
-        <div className="overflow-x-auto   mb-20 ">
+        <div className="overflow-x-auto">
           <table className="flex flex-col w-full table-fixed min-w-[700px] ">
             <thead className="w-full">
               <tr className="flex w-full text-foreground">
@@ -48,7 +48,7 @@ interface FeeContentProps {
           </table>
         </div>
   
-        <ul className="w-full space-y-5 mb-28">
+        <ul className="w-full space-y-5 mt-10 md:mt-20 mb-8">
           {listData.map((item, index) => (
             <li key={index} className="flex items-start">
               <div className="w-5">
@@ -60,7 +60,7 @@ interface FeeContentProps {
         </ul>
   
       
-      </div>
+      </>
     );
   };
   

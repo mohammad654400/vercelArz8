@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
     <div className='flex flex-col'>
-        <span className='mt-10 mb-5 text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
+        <span className='mb-5 text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
         <div className='flex justify-between flex-wrap'>
             {whyUs.map((item, index) => (
                 <div
@@ -28,9 +28,9 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
             ))}
         </div>
 
-        <span ref={ref} className='mt-10 mb-5 text-lg font-bold'>فرصت های شغلی</span>
+        <span ref={ref} className='mt-5 mb-5 text-lg font-bold'>فرصت های شغلی</span>
         {jobListings.map((item) => (
-            <div key={item.id} className='flex w-full my-4 p-4 bg-secondary justify-between rounded-xl'>
+            <div key={item.id} className='flex w-full mb-5 p-4 bg-secondary justify-between rounded-xl'>
                 <div className='flex flex-col w-9/12'>
                     <h4 className="font-bold text-sm md:text-lg pb-2 ">{item.titleFn}</h4>
                     <div className='flex flex-wrap  gap-1 h-3 w-full  '>
@@ -58,7 +58,7 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
             </div>
         ))}
 
-        <span className='mt-10 mb-5 text-lg font-bold'>همراهان ما تا این لحظه</span>
+        <span className='mt-5 mb-5 text-lg font-bold'>همراهان ما تا این لحظه</span>
         <div className='flex flex-row flex-wrap justify-between'>
             {OurCompanions.map((item,index) => (
                 <div key={index} className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>

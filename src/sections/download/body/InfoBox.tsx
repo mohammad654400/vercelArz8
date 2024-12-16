@@ -10,16 +10,8 @@ import Security from "@/assets/icons/downloadApp/security"
 
 export default function InfoBox() {
     return (
-        <div className="flex flex-col w-full">
-            <div className="flex items-center py-4 px-2 bg-primary rounded-xl">
-                <div className="w-6 min-w-12 items-start justify-start self-start flex">
-                    <Info />
-                </div>
-                <span className="text-[#242428] text-xs sm:text-base font-semibold mr-3 text-justify">برای استفاده از صرافی ارز هشت در گوشی های ios  میتوانید از طریق سایت اقدام کنید.
-                </span>
-            </div>
-
-            <div className="hidden md:flex flex-col w-4/5 max-w-[600px] mt-16 self-center">
+        <div className="flex flex-col w-full -mt-10 lg:mt-14">
+            <div className="hidden md:flex flex-col w-4/5 max-w-[600px] mb-10 self-center">
                 <h1 className="flex justify-center text-3xl font-bold text-sixth">
                     برخی امکانات اپلیکیشن صرافی ارز هشت
                 </h1>
@@ -27,7 +19,7 @@ export default function InfoBox() {
             </div>
 
 
-            <div className="flex flex-wrap  justify-center sm:justify-between mt-20  ">
+            <div className="flex flex-wrap  justify-between sm:justify-between mt-[30px]  ">
                 <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full sm:w-[48%]  lg:w-[32%] mb-4 max-w-[400px]" >
                     <div className="h-24 w-24 mt-8 ">
                         <Magicpen />

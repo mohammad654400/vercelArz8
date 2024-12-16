@@ -7,7 +7,7 @@ export default function DownloadApp() {
   return (
     <div className="bg-background flex flex-col w-full h-auto">
       <Header />
-      <div className="flex flex-col px-10 lg:px-32">
+      <div className="base-style">
         <InfoBox />
       </div>
     </div>

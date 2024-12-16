@@ -54,4 +54,7 @@ body {
   .dir_ltr{
     direction:ltr ;
   }
+  .base-style{
+    @apply flex flex-col gap-8 px-[20px] pt-20 lg:px-[120px] lg:py-[30px] ;  
+  }
 }
