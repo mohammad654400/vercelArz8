@@ -10,14 +10,14 @@ export default function Authentication() {
   return (
     <div className='base-style'>
 
-      <div className="flex flex-col lg:flex-row  w-full justify-between mt-20">
-        <div className="lg:w-7/12 lg:ml-5 w-full flex flex-col justify-center order-2">
-          <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh mt-16 lg:mt-10'>احراز هویت سریع در صرافی ارزهشت</h1>
-          <p className='text-sm md:text-lg font-semibold  text-sixth mt-5 lg:mt-10 leading-7 sm:leading-9 text-justify'>احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است. این صرافی با رعایت قوانین بین‌المللی و داخلی برای جلوگیری از تخلفات مالی، احراز هویت کاربران را به شکلی آسان طراحی کرده است تا تمامی افراد بتوانند در کمترین زمان ممکن از خدمات خرید و فروش ارز دیجیتال بهره‌مند شوند.</p>
+      <div className="flex flex-col lg:flex-row gap-8  w-full justify-between mt-28">
+        <div className="lg:w-7/12 lg:ml-5 w-full gap-8 flex flex-col justify-center order-2">
+          <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>احراز هویت سریع در صرافی ارزهشت</h1>
+          <p className='text-sm md:text-lg font-semibold  text-sixth text-justify' style={{lineHeight:"2rem"}}>احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است. این صرافی با رعایت قوانین بین‌المللی و داخلی برای جلوگیری از تخلفات مالی، احراز هویت کاربران را به شکلی آسان طراحی کرده است تا تمامی افراد بتوانند در کمترین زمان ممکن از خدمات خرید و فروش ارز دیجیتال بهره‌مند شوند.</p>
 
 
-          <Link className='self-end w-full lg:w-56 h-16 mb-8' href={"https://app.arz8.com/auth/register"}>
-            <button className=' bg-primary w-full h-full text-white text-lg lg:text-xl font-bold rounded-xl mt-8'>ثبت نام و احراز هویت</button>
+          <Link className='self-end w-full lg:w-56 h-16' href={"https://app.arz8.com/auth/register"}>
+            <button className=' bg-primary w-full h-full text-white text-lg lg:text-xl font-bold rounded-xl'>ثبت نام و احراز هویت</button>
           </Link>
         </div>
         <div className="lg:w-5/12 md:w-[500px] sm:w-[350px]  w-[300px] h-auto  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
@@ -27,18 +27,19 @@ export default function Authentication() {
           />
         </div>
       </div>
+
       <h2 className="text-base md:text-3xl font-bold text-seventh my-5 ">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
 
-      <div className="grid gap-4 grid-cols-2  lg:grid-cols-4 xl:grid-cols-4 w-full grid-flow-row-dense ">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 w-full grid-flow-row-dense ">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="flex flex-col pb-5  rounded-xl bg-third justify-center items-center h-[182px] sm:h-[278px] w-full mb-4"
+            className="flex flex-col rounded-xl bg-third justify-center items-center h-[182px] sm:h-[278px] w-full"
           >
             <div className="w-16 h-16 sm:h-24 sm:w-24 mt-4">
               <card.icon />
             </div>
-            <span className="text-sm sm:text-xl font-semibold text-seventh my-5">
+            <span className="text-sm sm:text-xl font-semibold text-seventh my-2 sm:my-5">
               {card.title}
             </span>
             <span className="text-[10px] sm:text-xs font-normal text-sixth opacity-50 text-center px-3">

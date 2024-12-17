@@ -28,7 +28,7 @@ interface AccordionProps {
     }, [defaultOpenId]); 
    
     return ( 
-      <div className="accordion w-full  mx-auto my-4"> 
+      <div className="accordion w-full  mx-auto "> 
         {items.map((item) => ( 
           <AccordionItem 
             key={item.id} 

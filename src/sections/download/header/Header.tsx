@@ -11,7 +11,7 @@ export default function Header() {
   const iconSize = "lg:w-12 lg:h-12 w-8 h-8";
 
   return (
-    <div className="flex flex-col w-full lg:h-[590px] h-auto pt-20 mb-[30px]">
+    <div className="flex flex-col full-screen lg:h-[590px] h-auto pt-20 mb-[30px] xl:px-0">
       <div className="bg-[#242428] w-full h-full text-white text-center py-12 px-5 lg:py-10 lg:px-32">
         <div className="w-full h-full justify-center items-center flex flex-col lg:flex-row">
         

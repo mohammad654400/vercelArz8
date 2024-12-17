@@ -58,8 +58,6 @@ const levelsData = [
 
 export default levelsData;
 
-
-
 import CurrencyTransactions from "@/assets/icons/guidanceCenter/currencyTransactions";
 import Support24 from "@/assets/icons/downloadApp/support24";
 import Security from "@/assets/icons/downloadApp/security";

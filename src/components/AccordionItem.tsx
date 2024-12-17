@@ -28,7 +28,7 @@ export const AccordionItem = ({
   const contentRef = useRef<HTMLDivElement>(null); // برای اندازه‌گیری محتوای درونی
 
   return (
-    <div ref={undefined} className="relative rounded-xl p-8 mb-4 flex w-full">
+    <div ref={undefined} className="relative rounded-xl p-8  flex w-full">
       {isOpen && (
         <div
           className="absolute -inset-px rounded-xl transition-opacity duration-300"
@@ -64,7 +64,7 @@ export const AccordionItem = ({
           ref={contentRef}
         >
           <div
-            className={`mt-6 justify-between text-sm ${
+            className={`justify-between text-sm ${
               videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
             }`}
           >

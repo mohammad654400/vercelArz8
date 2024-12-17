@@ -21,26 +21,27 @@ export default function FaqView() {
   };
 
   return (
-    <div className="flex w-full flex-col bg-background ">
-      <Header
-        questions={newData}
-        setSelectItem={setSelectItem}
-        setSelectedCategory={setSelectedCategory}
-        scrollToItem={scrollToItem}
-      />
-      <div className="px-[120px] py-[30px]">
-        <CategoryList
-          onCategory={(categoryId) => setSelectedCategory(categoryId)}
-          categories={categories}
-          activeCategory={selectedCategory}
-        />
-        <Body
-          selectedCategory={selectedCategory}
+    <div className="base-style bg-background pt-20">
+      <div className="full-screen">
+        <Header
           questions={newData}
-          selectItem={selectItem}
-          itemRefs={itemRefs}
+          setSelectItem={setSelectItem}
+          setSelectedCategory={setSelectedCategory}
+          scrollToItem={scrollToItem}
         />
       </div>
+      <CategoryList
+        onCategory={(categoryId) => setSelectedCategory(categoryId)}
+        categories={categories}
+        activeCategory={selectedCategory}
+      />
+      <Body
+        selectedCategory={selectedCategory}
+        questions={newData}
+        selectItem={selectItem}
+        itemRefs={itemRefs}
+      />
+
     </div>
   );
 }

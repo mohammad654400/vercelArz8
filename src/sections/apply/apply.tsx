@@ -23,7 +23,7 @@ export default function ApplyPage({ title }: { title: string }) {
         fullName: "",
         phoneNumber: "",
         file: null,
-   
+
     });
 
 
@@ -64,7 +64,7 @@ export default function ApplyPage({ title }: { title: string }) {
         }
     }, []);
 
- 
+
 
     const validateForm = useCallback(async () => {
         try {
@@ -97,67 +97,70 @@ export default function ApplyPage({ title }: { title: string }) {
 
 
     return (
-        <div >
-            <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
-            <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
-            <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center sm:w-1/2 sm:min-w-[470px]' >
-                <div className="w-full ">
+        <div className='base-style w-full pt-20'>
+            <div className='w-1/2'>
 
-                    <FormField
-                        name="fullName"
-                        label="نام و خانوادگی"
-                        type="text"
-                        onChange={handleChange}
-                        error={errors.fullName}
-                    />
-                    <FormField
-                        name="phoneNumber"
-                        label="شماره تماس"
-                        type="text"
-                        onChange={handleChange}
-                        error={errors.phoneNumber}
-                        
-                    />
-                  
+                <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
+                <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
+                <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center sm:w-1/2 sm:min-w-[470px]' >
+                    <div className="w-full ">
 
-                    <div>
-                        <label className="block text-sm font-medium mb-3">فایل رزومه</label>
-                        <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
-                            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
-                                <DocumentUpload />
-                                <span className="text-sm text-gray-600">فایل رزومه خود را آپلود کنید</span>
+                        <FormField
+                            name="fullName"
+                            label="نام و خانوادگی"
+                            type="text"
+                            onChange={handleChange}
+                            error={errors.fullName}
+                        />
+                        <FormField
+                            name="phoneNumber"
+                            label="شماره تماس"
+                            type="text"
+                            onChange={handleChange}
+                            error={errors.phoneNumber}
+
+                        />
+
+
+                        <div>
+                            <label className="block text-sm font-medium mb-3">فایل رزومه</label>
+                            <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
+                                <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
+                                    <DocumentUpload />
+                                    <span className="text-sm text-gray-600">فایل رزومه خود را آپلود کنید</span>
+                                </div>
+                                <input
+                                    type="file"
+                                    accept=".pdf"
+                                    onChange={handleFileUpload}
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                />
                             </div>
-                            <input
-                                type="file"
-                                accept=".pdf"
-                                onChange={handleFileUpload}
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
+                            {errors.file && <p className="text-sm text-red-500 mt-2">{errors.file}</p>}
+                            {!uploadedFileName ? (
+                                <p className="text-sm text-gray-500 mt-2">مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</p>
+                            ) : (
+                                <div className="mt-2">
+                                    <span>مشاهده فایل: {uploadedFileName}</span>
+                                    <a href={uploadedFileUrl || "#"} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">
+                                        مشاهده پیش‌نمایش
+                                    </a>
+                                </div>
+                            )}
                         </div>
-                        {errors.file && <p className="text-sm text-red-500 mt-2">{errors.file}</p>}
-                        {!uploadedFileName ? (
-                            <p className="text-sm text-gray-500 mt-2">مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</p>
-                        ) : (
-                            <div className="mt-2">
-                                <span>مشاهده فایل: {uploadedFileName}</span>
-                                <a href={uploadedFileUrl || "#"} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">
-                                    مشاهده پیش‌نمایش
-                                </a>
-                            </div>
-                        )}
+
+                        <button type="submit" className=" w-full h-10 sm:h-16 bg-primary text-white px-4 py-2 rounded-xl  mt-12">
+                            ارسال درخواست
+                        </button>
+
                     </div>
 
-                    <button type="submit" className=" w-full h-10 sm:h-16 bg-primary text-white px-4 py-2 rounded-xl  mt-12">
-                        ارسال درخواست
-                    </button>
-               
-                </div>
-
-        
-
-            </form>
 
 
+                </form>
+
+            </div>
+            <div className='w-1/2'></div>
             {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} isSuccess={isSuccessModal} />}
         </div>
     );

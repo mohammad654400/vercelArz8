@@ -1,11 +1,6 @@
 import React from "react";
-import Info from "@/assets/icons/rules/info";
-import Magicpen from "@/assets/icons/downloadApp/magicpen"
-import SpotRate from "@/assets/icons/downloadApp/spotRate"
-import Diversity from "@/assets/icons/downloadApp/diversity"
-import EarningMoney from "@/assets/icons/downloadApp/earningMoney"
-import Support24 from "@/assets/icons/downloadApp/support24"
-import Security from "@/assets/icons/downloadApp/security"
+
+import { cardData } from "../data/data";
 
 
 export default function InfoBox() {
@@ -19,66 +14,25 @@ export default function InfoBox() {
             </div>
 
 
-            <div className="flex flex-wrap  justify-between sm:justify-between mt-[30px]  ">
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full sm:w-[48%]  lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <Magicpen />
-                    </div>
+                  <div className="grid gap-8 grid-cols-1 sm:grid-cols-2  lg:grid-cols-3  w-full grid-flow-row-dense  mt-[30px]">
+                    {cardData.map((card, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col  rounded-xl bg-third justify-center items-center py-5 lg:py-0 h-60 sm:h-80 w-full mx-auto max-w-[400px]"
+                      >
+                        <div className="h-20 w-20 sm:h-24 sm:w-24 mb-6">
+                          <card.icon />
+                        </div>
+                        <span className="text-lg sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh mb-2">
+                          {card.title}
+                        </span>
+                        <span className="text-xs  font-normal text-sixth opacity-50 text-center px-8"style={{lineHeight:"1.5rem"}}>
+                          {card.description}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">احراز هویت سریع و آسان</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3" style={{lineHeight:"2rem"}}>سطوح مختلف احراز هویت و شروع به معامله با تایید شماره تلفن همراه</span>
-                </div>
-
-
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full sm:w-[48%]  lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <SpotRate />
-                    </div>
-
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">نرخ لحظه ایی</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3" style={{lineHeight:"2rem"}}>امکان مشاهده قیمت لحظه ایی ارز ها همراه با چارت یا نمودار پیشرفته با امکانات تحلیل تکنیکال</span>
-                </div>
-
-
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full  sm:w-[48%] lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <Diversity />
-                    </div>
-
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">تنوع بالای ارز</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3"style={{lineHeight:"2rem"}}>بیش از 400 ارز معتبر و 900 بازار جفت ارز فعال با پیر های مختلف مانند تومان، تتر، بیت کوین، بایننس کوین و ...</span>
-                </div>
-
-
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full  sm:w-[48%] lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <Support24 />
-                    </div>
-
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">پشتیبانی</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3"style={{lineHeight:"2rem"}}>چندین راه ارتباطی مختلف مانند چت آنلاین، تیکت، تلگرام و پشتیبانی تلفنی</span>
-                </div>
-
-
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full  sm:w-[48%] lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <Security />
-                    </div>
-
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">امنیت</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3"style={{lineHeight:"2rem"}}>نگهداری ارز ها در کیف پول های آفلاین و سخت افزاری</span>
-                </div>
-
-
-                <div className="flex flex-col pb-5 rounded-xl bg-third justify-center items-center h-80 w-full  sm:w-[48%] lg:w-[32%] mb-4 max-w-[400px]" >
-                    <div className="h-24 w-24 mt-8 ">
-                        <EarningMoney />
-                    </div>
-
-                    <span className="text-xl sm:text-base lg:text-lg xl:text-xl font-semibold text-seventh my-5">کسب درآمد</span>
-                    <span className="text-base sm:text-sm lg:text-base font-normal text-sixth opacity-50 text-center px-3"style={{lineHeight:"2rem"}}>معرفی دوستان و کسب 30 درصد از کارمزد معاملات آنها </span>
-                </div>
-          </div>
 
         </div>
 
