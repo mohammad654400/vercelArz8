@@ -35,6 +35,7 @@ export default function FaqView() {
         categories={categories}
         activeCategory={selectedCategory}
       />
+      <div>
       <Body
         selectedCategory={selectedCategory}
         questions={newData}
@@ -42,6 +43,8 @@ export default function FaqView() {
         itemRefs={itemRefs}
       />
 
+      </div>
+   
     </div>
   );
 }

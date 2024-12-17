@@ -73,7 +73,7 @@ export const AccordionItem = ({
                 <iframe
                   src={sanitizeApparatUrl(videoLink)}
                   title="آموزش ویدئویی"
-                  className="w-full aspect-video rounded-xl"
+                  className="w-full aspect-video rounded-xl mt-8"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -81,7 +81,7 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1 leading-7 font-normal text-sm ${
+                className={`flex-1 leading-7 font-normal text-sm mt-8 ${
                   videoLink ? "sm:w-2/5 w-full" : ""
                 }`}
               >

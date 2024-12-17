@@ -1,12 +1,12 @@
 import Accordion from "../../../components/Accordion";
 
-interface Question { 
-  id: number;   
-  categoryId: number; 
-  title: string; 
-  content: string; 
-  videoLink?: string; 
-  }
+interface Question {
+  id: number;
+  categoryId: number;
+  title: string;
+  content: string;
+  videoLink?: string;
+}
 
 interface BodyProps {
   questions: Question[];
@@ -22,8 +22,8 @@ export default function Body({
 }: BodyProps) {
   const filteredQuestions =
     selectedCategory === 0 || selectedCategory === null
-      ? questions 
-      : questions.filter((question) => question.categoryId === selectedCategory); 
+      ? questions
+      : questions.filter((question) => question.categoryId === selectedCategory);
   return filteredQuestions.map((filteredQuestion) => (
     <div
       className="w-full "
