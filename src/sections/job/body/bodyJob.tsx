@@ -9,13 +9,14 @@ import { jobListings, whyUs, OurCompanions } from '../data/data';
 import Link from 'next/link';
 
 const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
-    <div className='flex flex-col'>
-        <span className='mt-10 mb-5 text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
-        <div className='flex justify-between flex-wrap'>
+    <div className='flex flex-col gap-8'>
+        <div className='flex flex-col gap-4'>
+        <span className='text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
+        <div className='w-full gap-4 grid sm:grid-cols-2 lg:grid-cols-4'>
             {whyUs.map((item, index) => (
                 <div
                     key={index}
-                    className="flex flex-row items-center mb-6 bg-[#FFFBEE] dark:bg-secondary p-4 rounded-xl shadow-sm gap-4 w-full  lg:w-[24%]  min-w-48 sm:w-[47%] "
+                    className="flex flex-row items-center bg-[#FFFBEE] dark:bg-secondary p-4 rounded-xl shadow-sm gap-4 w-full   "
                 >
                     <div className="text-foreground w-12 h-12">
                         <item.icon />
@@ -28,9 +29,13 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
             ))}
         </div>
 
-        <span ref={ref} className='mt-10 mb-5 text-lg font-bold'>فرصت های شغلی</span>
+        </div>
+
+        <div className='flex flex-col gap-4'>
+       
+        <span ref={ref} className='text-lg font-bold'>فرصت های شغلی</span>
         {jobListings.map((item) => (
-            <div key={item.id} className='flex w-full my-4 p-4 bg-secondary justify-between rounded-xl'>
+            <div key={item.id} className='flex w-full  p-4 bg-secondary justify-between rounded-xl'>
                 <div className='flex flex-col w-9/12'>
                     <h4 className="font-bold text-sm md:text-lg pb-2 ">{item.titleFn}</h4>
                     <div className='flex flex-wrap  gap-1 h-3 w-full  '>
@@ -57,23 +62,28 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
                 </Link>
             </div>
         ))}
-
-        <span className='mt-10 mb-5 text-lg font-bold'>همراهان ما تا این لحظه</span>
-        <div className='flex flex-row flex-wrap justify-between'>
+        </div>
+        <div className='flex flex-col gap-4'>
+        <span className='text-lg font-bold'>همراهان ما تا این لحظه</span>
+        <div className='grid gap-4 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 justify-between'>
             {OurCompanions.map((item,index) => (
-                <div key={index} className='lg:w-[30%] sm:w-[45%] w-full min-w-52 h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
-                    <div className='w-14 h-14 rounded-full mr-3 bg-[#3C3B41] items-end justify-center flex'>
+                <div key={index} className='w-full h-20 items-center bg-secondary flex flex-row rounded-xl mb-3'>
+                    <div className='w-14 h-14 rounded-full mr-3 bg-fourth items-end justify-center flex '>
+                        <div className='text-secondary'>
                         <Profile />
+                        </div>
+                        
                     </div>
                     <div className='flex flex-col mr-5'>
                         <span className='text-base font-semibold text-foreground'>{item.name}</span>
                         <div className='flex items-center mt-3'>
                             <QuoteUpSquare />
-                            <span className='text-[10px] text-foreground font-semibold text-opacity-50'>{item.position}</span>
+                            <span className='text-[10px] text-foreground mr-2 font-semibold text-opacity-50'>{item.position}</span>
                         </div>
                     </div>
                 </div>
             ))}
+        </div>
         </div>
     </div>
 ));

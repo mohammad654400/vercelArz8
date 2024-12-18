@@ -11,11 +11,11 @@ export default function CategoryList({
   activeCategory, 
 }: CollapsibleListProps) { 
   return ( 
-    <div className="relative flex flex-row w-full mt-5 justify-between flex-wrap"> 
+    <div className="relative  grid min-[400px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full gap-8 grid-flow-row-dense "> 
       {categories.map((category) => ( 
         <div 
           key={category.id} 
-          className={`relative flex flex-col mb-14 w-44 ${activeCategory !== category.id ? "opacity-50" : ""}`} // اوپاسیتی 50% برای کارت‌های غیر فعال
+          className={`relative mx-auto flex flex-col mb-14 w-44 ${activeCategory !== category.id ? "opacity-50" : ""}`}
           onClick={() => onCategory(category.id)} 
         > 
           <div className="relative z-0"> 
@@ -34,7 +34,7 @@ export default function CategoryList({
             <div 
               className={`relative flex flex-col items-center justify-center w-full h-44 rounded-xl cursor-pointer bg-secondary`} 
             > 
-              <div className="text-4xl z-10"> 
+              <div className="text-4xl z-10 w-14 h-14"> 
                 <category.icon /> 
               </div> 
               <span className="text-lg font-semibold  mt-2 z-10">{category.title}</span> 

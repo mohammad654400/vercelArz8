@@ -11,7 +11,7 @@ export default function quoteUpSquare() {
     >
       <path
         d="M3.74967 9.16927H6.24967C8.33301 9.16927 9.16634 8.33594 9.16634 6.2526V3.7526C9.16634 1.66927 8.33301 0.835938 6.24967 0.835938H3.74967C1.66634 0.835938 0.833008 1.66927 0.833008 3.7526V6.2526C0.833008 8.33594 1.66634 9.16927 3.74967 9.16927Z"
-        stroke="white"
+        stroke="currentColor"
         strokeOpacity="0.5"
         strokeWidth="0.625"
         strokeLinecap="round"

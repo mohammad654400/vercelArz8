@@ -14,109 +14,105 @@ export default function DetailJob() {
         setIsOpen(true);
     };
 
+    const jobDetails = [
+        { label: "عنوان شغلی", value: job?.titleFn },
+        { label: "نوع فعالیت", value: job?.workMode },
+        { label: "تایم حضور", value: job?.employmentType },
+        { label: "مکان", value: job?.city },
+    ];
+
     if (!job) {
         return <div>شغل مورد نظر پیدا نشد.</div>;
     }
 
     return (
-        <div className="flex flex-col bg-background lg:px-[120px] px-12 py-[30px] pt-24">
+        <div className="bg-background base-style">
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
-                <div>
-                    <h1 className="sm:text-4xl text-2xl font-bold mb-28 flex justify-center">{job.titleFn}</h1>
-                    <div className="flex flex-row flex-wrap justify-between">
-                        <div className="w-full sm:w-1/5  flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">عنوان شغلی</span>
-                            <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
-                                    {job.titleFn}
+                <div className='pt-28 gap-8'>
+                    <h1 className="sm:text-4xl text-2xl pb-10 font-bold  flex justify-center text-eighth">{job.titleFn}</h1>
+                    <div className="grid grid-cols-2 md:grid-cols-4  gap-4">
+                        {jobDetails.map((detail, index) => (
+                            <div key={index} className=" flex flex-col gap-2">
+                                <span className="text-foreground text-base sm:text-xl font-semibold">
+                                    {detail.label}
                                 </span>
+                                <div className="w-full h-14 rounded-xl bg-third items-center flex p-5">
+                                    <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                                        {detail.value}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">نوع فعالیت</span>
-                            <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
-                                    {job.workMode}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">تایم حضور</span>
-                            <div className="w-full  h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-xs sm:text-sm font-semibold">
-                                    {job.employmentType}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="w-full sm:w-1/5 flex flex-col mb-2">
-                            <span className="text-foreground text-base sm:text-xl font-semibold mb-1">مکان</span>
-                            <div className="w-full h-14 rounded-xl bg-third items-center flex p-5">
-                                <span className="text-foreground opacity-50 text-xs sm:text-sm  font-semibold">
-                                    {job.city}
-                                </span>
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
-                    <div className="flex justify-between flex-wrap">
-                        <div className="lg:w-[46%] w-full">
-                            <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6">اطلاعات عنوان شغلی</h2>
-                                <div className="flex flex-col bg-third p-5 rounded-xl">
-                                    <span className="font-bold text-lg mt-6 mb-2 text-foreground opacity-50">
-                                        وظایف:
-                                    </span>
-                                    <ul className="pl-5 space-y-2">
-                                        {job.responsibilities.map((task, index) => (
-                                            <li key={index} className="relative flex items-center text-sm sm:text-lg opacity-50 text-foreground">
-                                                <div className="w-2 h-2 rounded-full bg-foreground opacity-50 mt-1  mx-2"></div>
-                                                {task}
-                                            </li>
-                                        ))}
-                                    </ul>
+                    <div className="flex flex-col lg:flex-row gap-8">
+                        <div className="lg:w-1/2 w-full gap-4 flex flex-col">
+                            <h2 className="mt-10 text-xl font-semibold">اطلاعات عنوان شغلی</h2>
+                            <div className="flex flex-col bg-third px-3 sm:px-5 py-5 rounded-xl">
+                                <span className="font-bold text-lg  mb-2 text-foreground opacity-50">
+                                    وظایف:
+                                </span>
+                                <ul className="pl-5 space-y-2">
+                                    {job.responsibilities.map((task, index) => (
+                                        <li key={index} className="flex text-foreground">
+                                            <div className='w-3 mt-3 lg:mt-2  ml-2'>
+                                                <div className="w-2 h-2 rounded-full bg-foreground  "></div>
+                                            </div>
+                                            <span className=' text-sm sm:text-lg lg:text-base font-normal leading-7 text-justify opacity-50 ' >{task}</span>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                                    <span className="font-bold text-lg mt-6 mb-2 text-foreground opacity-50">
-                                        شرایط:
+                                <span className="font-bold text-lg mt-6 mb-2 text-foreground opacity-50">
+                                    شرایط:
+                                </span>
+                                <ul className="pl-5 space-y-2">
+                                    {job.requirements.map((requirement, index) => (
+                                        <li key={index} className="flex text-sm sm:text-lg lg:text-base text-foreground ">
+                                            <span >✔</span> <span className='mr-4 leading-7 text-justify opacity-50'> {requirement}  </span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <div className='flex  mt-3'>
+                                    <span className='ml-2'>🎯</span>
+                                    <span className="relative text-sm sm:text-lg lg:text-base text-foreground">
+                                        <span className='opacity-50 leading-7 text-justify'> اگر علاقه‌مند به کار در محیطی پویا و دوستانه هستید، رزومه خود را به [ایمیل یا شماره واتساپ] ارسال کنید یا با شماره [شماره تماس] تماس بگیرید.
+                                            ما منتظر حضور شما در تیم حرفه‌ای‌مان هستیم!</span> 🙌
                                     </span>
-                                    <ul className="pl-5 space-y-2">
-                                        {job.requirements.map((requirement, index) => (
-                                            <li key={index} className="relative text-sm sm:text-lg text-foreground opacity-50">
-                                                <span className="text-foreground ">✔</span> {requirement}
-                                            </li>
-                                        ))}
-                                    </ul>
                                 </div>
+
                             </div>
                         </div>
-                        <div className="lg:w-[46%] w-full">
+                        <div className="lg:w-1/2 w-full  gap-4 flex flex-col">
+                            <h2 className="mt-10 text-xl font-semibold">شرایط</h2>
                             <div className="flex flex-col">
-                                <h2 className="mt-8 mb-6">اطلاعات عنوان شغلی</h2>
-                                <div className="flex flex-col bg-third p-5 rounded-xl">
-                                    {[
-                                        { label: 'جنسیت', value: job.gender },
-                                        { label: 'سن', value: job.age },
-                                        { label: 'سطح مهارت', value: job.skillLevel },
-                                        { label: 'حداقل سابقه کاری موردنیاز', value: job.minExperience },
-                                        { label: 'بازه حقوق', value: job.salaryRange },
-                                        { label: 'روزهای کاری', value: job.workingDays },
-                                    ].map((info, index) => (
-                                        <React.Fragment key={index}>
-                                            <div className="flex flex-row justify-between mb-2 mt-6">
-                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.label}</span>
-                                                <span className="text-foreground text-sm sm:text-lg opacity-50">{info.value}</span>
-                                            </div>
-                                            <hr />
-                                        </React.Fragment>
-                                    ))}
-                                    <button
-                                        onClick={handlerOpen}
-                                        className="w-[90%] h-14 bg-primary text-white rounded-xl my-5 self-center"
-                                    >
-                                        ارسال رزومه
-                                    </button>
-                                </div>
+                                {[
+                                    { label: 'جنسیت', value: job.gender },
+                                    { label: 'سن', value: job.age },
+                                    { label: 'سطح مهارت', value: job.skillLevel },
+                                    { label: 'حداقل سابقه کاری موردنیاز', value: job.minExperience },
+                                    { label: 'بازه حقوق', value: job.salaryRange },
+                                    { label: 'روزهای کاری', value: job.workingDays },
+                                ].map((info, index) => (
+                                    <React.Fragment key={index}>
+
+                                        <div className={`flex flex-row justify-between mb-2 ${index > 0 ? 'mt-6' : ''}`}>
+                                            <span className="text-foreground text-sm sm:text-base opacity-50">{info.label}</span>
+                                            <span className="text-foreground text-sm sm:text-base opacity-50">{info.value}</span>
+                                        </div>
+                                        <div className="bg-[#242428] h-[1px]" />
+
+                                    </React.Fragment>
+                                ))}
+                                <button
+                                    onClick={handlerOpen}
+                                    className="w-full h-14 bg-primary text-white rounded-xl mt-8 self-center"
+                                >
+                                    ارسال رزومه
+                                </button>
                             </div>
                         </div>
                     </div>

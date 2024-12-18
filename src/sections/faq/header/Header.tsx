@@ -48,7 +48,7 @@ export default function Header({
   };
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col full-screen">
       <div className="bg-[#242428] w-full h-[362px] text-white text-center py-16">
         <div className="w-full justify-center items-center flex flex-col">
           <h1 className="text-2xl font-bold mb-4">

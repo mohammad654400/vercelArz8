@@ -17,51 +17,51 @@ export default function AuthIcon() {
         d="M79.9824 4.67421L44.0499 18.2119C35.7688 21.3083 29 31.1015 29 39.8866V93.3893C29 101.886 34.6167 113.048 41.4576 118.16L72.4214 141.275C82.5747 148.908 99.2808 148.908 109.434 141.275L140.398 118.16C147.239 113.048 152.855 101.886 152.855 93.3893V39.8866C152.855 31.0295 146.087 21.2363 137.806 18.1399L101.873 4.67421C95.7523 2.44193 85.9591 2.44193 79.9824 4.67421Z"
         fill="#FFC107"
         stroke="#FFC107"
-        stroke-width="5.91855"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5.91855"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M66.832 67.7507V61.709C66.832 55.6915 71.6895 50.834 77.707 50.834H83.7487"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M98.25 50.834H104.292C110.309 50.834 115.167 55.6915 115.167 61.709V67.7507"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M115.168 84.666V88.291C115.168 94.3085 110.31 99.166 104.293 99.166H100.668"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M83.7487 99.1667H77.707C71.6895 99.1667 66.832 94.3092 66.832 88.2917V82.25"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M103.085 68.959V81.0423C103.085 85.8757 100.668 88.2923 95.8346 88.2923H86.168C81.3346 88.2923 78.918 85.8757 78.918 81.0423V68.959C78.918 64.1257 81.3346 61.709 86.168 61.709H95.8346C100.668 61.709 103.085 64.1257 103.085 68.959Z"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M107.915 75H74.082"
         stroke="white"
-        stroke-width="3.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

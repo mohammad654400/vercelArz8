@@ -19,8 +19,8 @@ export default function ClientProvider({
         <FeaturesBanner />
         <div className={isHomePage ? "bg-transparent" : "bg-background dark:bg-[#3C3B41]"}>
           <Header />
+          {children}
         </div>
-        {children}
         <Footer />
       </div>
     </ThemeProvider>

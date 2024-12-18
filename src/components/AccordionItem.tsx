@@ -28,7 +28,7 @@ export const AccordionItem = ({
   const contentRef = useRef<HTMLDivElement>(null); // برای اندازه‌گیری محتوای درونی
 
   return (
-    <div ref={undefined} className="relative rounded-xl p-8 mb-4 flex w-full">
+    <div ref={undefined} className="relative rounded-xl p-8  flex w-full">
       {isOpen && (
         <div
           className="absolute -inset-px rounded-xl transition-opacity duration-300"
@@ -64,7 +64,7 @@ export const AccordionItem = ({
           ref={contentRef}
         >
           <div
-            className={`mt-6 justify-between text-sm ${
+            className={`justify-between text-sm ${
               videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
             }`}
           >
@@ -73,7 +73,7 @@ export const AccordionItem = ({
                 <iframe
                   src={sanitizeApparatUrl(videoLink)}
                   title="آموزش ویدئویی"
-                  className="w-full aspect-video rounded-xl"
+                  className="w-full aspect-video rounded-xl mt-8"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -81,7 +81,7 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1 leading-7 font-normal text-sm ${
+                className={`flex-1 leading-7 font-normal text-sm mt-8 ${
                   videoLink ? "sm:w-2/5 w-full" : ""
                 }`}
               >

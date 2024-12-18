@@ -15,14 +15,14 @@ export default function MultiplyIcon() {
 
         strokeWidth="3.62"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M55.6127 55.6117L34.3877 34.3867"
         stroke="currentColor"
         strokeWidth="3.62"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

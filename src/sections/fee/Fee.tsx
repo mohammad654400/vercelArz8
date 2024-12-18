@@ -38,22 +38,37 @@ const Fee: React.FC = () => {
         1: { transformOrigin: "right", transitionDelay: "0s" }
     };
 
-    return (
-        <div className="bg-background flex flex-col px-5 lg:px-[120px] lg:py-[80px] ">
+    const tabContentData = [
+        {
+            id: 0,
+            tableHeaders: TransactionFeesTableHeaders,
+            tableData: TransactionFeesTableBody,
+            listData: TransactionFeeListText,
+        },
+        {
+            id: 1,
+            tableHeaders: ScheduleWithdrawTableHeaders,
+            tableData: ScheduleWithdrawTableBody,
+            listData: ScheduleWithdrawListText,
+        },
+    ];
 
-            <div className="flex flex-col w-full h-72 bg-[#242428] rounded-xl px-7 lg:px-[15%]  justify-center items-center">
+    return (
+        <div className="base-style bg-background">
+
+            <div className="flex flex-col w-full  h-72 bg-[#242428] rounded-xl  mt-20 justify-center items-center px-5 lg:px-[10%]">
                 <h1 className="text-lg sm:text-3xl text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
-                <span className="text-xs sm:text-sm font-semibold text-[#FFFFFF] mt-7 leading-9 text-center">
+                <span className="text-xs sm:text-sm font-semibold text-[#FFFFFF] mt-7 text-justify md:text-center"style={{lineHeight:"1.5rem"}}>
                     ارز هشت به دنبال فراهم آوردن بستری امن برای انجام معاملات ارز دیجیتال کاربران است . ما در ارز هشت از ابتدای شروع فعالیت سعی کردیم امکانات درخور کاربران ارزشمند خود داشته باشیم و همواره در حال به روز رسانی و بهبود عملکرد ارز هشت هستیم.
                 </span>
             </div>
 
-            <div className="flex flex-col w-full lg:w-1/2 min-w-[350px] self-center mt-24  mb-20">
-                <h2 className="flex justify-center text-xl sm:text-3xl font-bold text-sixth">کارمزد و خدمات تسویه در ارز هشت</h2>
+            <div className="hidden lg:flex flex-col  min-w-[350px] mt-12 max-w-[500px] self-center  ">
+                <h2 className="flex justify-center text-xl lg:text-3xl font-bold text-sixth">کارمزد و خدمات تسویه در ارز هشت</h2>
                 <hr className="border-t-4 border-primary mt-2" />
             </div>
 
-            <div className="bg-fourth p-3 rounded-xl w-full lg:w-1/2 min-w-[350px] h-[90px] flex self-center justify-center items-center">
+            <div className="bg-secondary p-3 rounded-xl w-full lg:w-1/2  lg:min-w-[446px]  max-w-[560px] h-[85px] flex self-center justify-center items-center">
                 <div className="flex w-full h-full gap-4">
                     {allTabs.map((tab) => (
                         <Tab
@@ -67,35 +82,28 @@ const Fee: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div
-                className={`transition-all duration-700 ease-in-out transform ${
-                    activeTab === 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-                }`}
-            >
-                {activeTab === 0 && (
-                    <TabContent
-                        tableHeaders={TransactionFeesTableHeaders}
-                        tableData={TransactionFeesTableBody}
-                        listData={TransactionFeeListText}
-                    />
-                )}
-
-            </div>
-            <div
-                className={`transition-all duration-700 ease-in-out transform ${
-                    activeTab === 1 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-                }`}
-            >
-                {activeTab === 1 && (
-                    <TabContent
-                        tableHeaders={ScheduleWithdrawTableHeaders}
-                        tableData={ScheduleWithdrawTableBody}
-                        listData={ScheduleWithdrawListText}
-                    />
-                )}
+            <div>
+                {tabContentData.map((tabContent) => (
+                    <div
+                        key={tabContent.id}
+                        className={`transition-opacity duration-700 ease-in-out transform ${
+                            activeTab === tabContent.id
+                                ? "opacity-100 translate-x-0"
+                                : "opacity-0 translate-x-10"
+                        }`}
+                    >
+                        {activeTab === tabContent.id && (
+                            <TabContent
+                                tableHeaders={tabContent.tableHeaders}
+                                tableData={tabContent.tableData}
+                                listData={tabContent.listData}
+                            />
+                        )}
+                    </div>
+                ))}
             </div>
 
-            <Accordion items={AccordionData} />
+            <Accordion items={AccordionData}  />
         </div>
     );
 };
