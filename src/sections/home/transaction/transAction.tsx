@@ -109,7 +109,7 @@ export default function Transaction() {
   }, []); 
 
   return (
-    <div ref={parentRef} className="border-2 rounded-xl text-[13px] md:text ">
+    <div ref={parentRef} className="border-2 border-secondary rounded-xl text-[13px] md:text ">
       <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-xl cursor-pointer dark:bg-[#3C3B41]">
         <div
           onClick={toggleTransaction}
@@ -125,12 +125,11 @@ export default function Transaction() {
         </div>
       </div>
 
-      {/* محتوای متغیر */}
       <div className="relative w-full bg-background duration-500 ">
         {isBuy ? (
           <Buy width={width} currencies={currencies} toggle={toggleTransaction} />
         ) : (
-          <Sell currencies={currencies} toggle={toggleTransaction} />
+          <Sell width={width} currencies={currencies} toggle={toggleTransaction} />
         )}
       </div>
     </div>

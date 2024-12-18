@@ -7,16 +7,16 @@ import React from "react";
 export default function MainTop() {
   return (
     <div>
-      <div className="flex flex-wrap text-[13px] justify-center pt-24 gap-4 lg:justify-between  ">
-        <div className="flex flex-col gap-5">
-          <h1 className="text-3xl font-bold">با خیال راحت معامله کنید،</h1>
-          <p>
+      <div className="flex flex-wrap text-sm justify-center pt-24 gap-8 lg:justify-between">
+        <div className="flex flex-col gap-3 w-full sm:w-auto">
+          <h1 className="text-3xl font-bold mx-auto">با خیال راحت معامله کنید،</h1>
+          <p className="mx-auto">
             خرید و فروش بیش از{" "}
             <span className="text-primary text-2xl font-bold">1500</span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
-          <p>در سریع ترین زمان ممکن ثبت نام کنید.</p>
-          <div className="relative w-full max-w-md">
+          <p className="mx-auto opacity-50">در سریع ترین زمان ممکن ثبت نام کنید.</p>
+          <div className="relative ">
             <input
               placeholder="شماره موبایل خود را وارد کنید ..."
               className="pr-4 pl-4 w-full h-16 bg-background border-2 rounded-xl outline-none"

@@ -34,7 +34,7 @@ export default function BannerSlider() {
   };
 
   return (
-    <div className="w-72 max-w-screen-lg mx-auto relative -z-10">
+    <div className="w-96 lg:w-72 max-w-screen-lg mx-auto relative ">
       <Slider {...settings}>
         <div className="p-4 flex items-center justify-center ">
           <Image alt="banner" src={cash} />

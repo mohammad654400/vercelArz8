@@ -15,7 +15,7 @@ export default function ClientProvider({
   const isHomePage = route == "/" ? true : false;
   return (
     <ThemeProvider>
-      <div className="h-screen dark:bg-dark-no-gradient bg-custom-gradient ">
+      <div className="h-screen dark:bg-dark-no-gradient bg-custom-gradient">
         <FeaturesBanner />
         <div className={isHomePage ? "bg-transparent" : "bg-background dark:bg-[#3C3B41]"}>
           <Header />
