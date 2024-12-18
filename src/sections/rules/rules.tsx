@@ -46,7 +46,7 @@ export default function Rules() {
     return (
         <div className="base-style bg-background">
 
-            <div className="flex flex-col w-full mt-28 justify-center items-center text-center text-sm lg:text-base font-semibold">
+            <div className="flex flex-col w-full mt-24 justify-center items-center text-center text-sm lg:text-base font-semibold">
                 <span className="sm:w-4/5 leading-9">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
                 <span className="sm:w-4/5 leading-9">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>
@@ -63,7 +63,7 @@ export default function Rules() {
                         <div
                             key={item.id}
                             onClick={() => tabClick(item.id, item.title)}
-                            className={`flex px-3 rounded-xl items-center justify-center whitespace-nowrap mx-2 cursor-pointer ${
+                            className={`flex px-3 rounded-xl items-center justify-center whitespace-nowrap text-sm md:text-base mx-2 cursor-pointer ${
                                 isSelected ? "bg-primary text-white" : "bg-fifth text-foreground"
                             }`}
                         >
@@ -80,13 +80,13 @@ export default function Rules() {
             </div>
 
             
-            <ul className="w-full space-y-5  ">
+            <ul className="w-full space-y-2  sm:space-y-4  ">
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start gap-4">
                         <div className="w-5">
                             <span className=" mt-3 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
                         </div>
-                        <span className="text-sm md:text-lg font-normal text-foreground text-justify" style={{lineHeight:"2.3rem"}}>{item.text}</span>
+                        <span className="text-xs sm:text-sm md:text-base font-normal text-foreground text-justify" style={{lineHeight:"2.3rem"}}>{item.text}</span>
                     </li>
                 ))}
             </ul>

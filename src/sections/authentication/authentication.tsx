@@ -10,14 +10,14 @@ export default function Authentication() {
   return (
     <div className='base-style'>
 
-      <div className="flex flex-col lg:flex-row gap-8  w-full justify-between mt-28">
+      <div className="flex flex-col lg:flex-row gap-7  w-full justify-between mt-28">
         <div className="lg:w-7/12 lg:ml-5 w-full gap-8 flex flex-col justify-center order-2">
           <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>احراز هویت سریع در صرافی ارزهشت</h1>
           <p className='text-sm md:text-lg font-semibold  text-sixth text-justify' style={{lineHeight:"2rem"}}>احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است. این صرافی با رعایت قوانین بین‌المللی و داخلی برای جلوگیری از تخلفات مالی، احراز هویت کاربران را به شکلی آسان طراحی کرده است تا تمامی افراد بتوانند در کمترین زمان ممکن از خدمات خرید و فروش ارز دیجیتال بهره‌مند شوند.</p>
 
 
           <Link className='self-end w-full lg:w-56 h-16' href={"https://app.arz8.com/auth/register"}>
-            <button className=' bg-primary w-full h-full text-white text-lg lg:text-xl font-bold rounded-xl'>ثبت نام و احراز هویت</button>
+            <button className=' bg-primary w-full h-full text-white text-base lg:text-lg font-bold rounded-xl'>ثبت نام و احراز هویت</button>
           </Link>
         </div>
         <div className="lg:w-5/12 md:w-[500px] sm:w-[350px]  w-[300px] h-auto  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
@@ -28,7 +28,7 @@ export default function Authentication() {
         </div>
       </div>
 
-      <h2 className="text-base md:text-3xl font-bold text-seventh my-5 ">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
+      <h2 className="text-base md:text-2xl font-bold text-seventh  ">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 w-full grid-flow-row-dense ">
         {cardData.map((card, index) => (
@@ -60,7 +60,7 @@ export default function Authentication() {
           احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است.
         </span>
 
-        <button className='px-7 py-4 items-center justify-center rounded-xl flex text-[10px] text-sm lg:text-2xl font-bold text-white bg-primary'>
+        <button className='px-7 py-4 items-center justify-center rounded-xl flex text-xs lg:text-base font-bold text-white bg-primary'>
           ثبت نام و احراز هویت
         </button>
       </div>

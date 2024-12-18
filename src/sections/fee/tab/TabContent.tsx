@@ -48,7 +48,7 @@ interface FeeContentProps {
           </table>
         </div>
   
-        <ul className="w-full space-y-5 mt-8 md:mt-16">
+        <ul className="w-full space-y-2  md:space-y-4 mt-8 md:mt-16">
           {listData.map((item, index) => (
             <li key={index} className="flex items-start">
               <div className="w-5">

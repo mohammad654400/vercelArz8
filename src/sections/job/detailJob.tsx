@@ -30,8 +30,8 @@ export default function DetailJob() {
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
-                <div className='mt-[128px] gap-8'>
-                    <h1 className="sm:text-4xl text-2xl font-bold mb-[114px] flex justify-center text-eighth">{job.titleFn}</h1>
+                <div className='pt-28 gap-8'>
+                    <h1 className="sm:text-4xl text-2xl pb-10 font-bold  flex justify-center text-eighth">{job.titleFn}</h1>
                     <div className="grid grid-cols-2 md:grid-cols-4  gap-4">
                         {jobDetails.map((detail, index) => (
                             <div key={index} className=" flex flex-col gap-2">

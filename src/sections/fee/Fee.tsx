@@ -58,7 +58,7 @@ const Fee: React.FC = () => {
 
             <div className="flex flex-col w-full  h-72 bg-[#242428] rounded-xl  mt-20 justify-center items-center px-5 lg:px-[10%]">
                 <h1 className="text-lg sm:text-3xl text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
-                <span className="text-xs sm:text-sm font-semibold text-[#FFFFFF] mt-7 text-justify md:text-center"style={{lineHeight:"2rem"}}>
+                <span className="text-xs sm:text-sm font-semibold text-[#FFFFFF] mt-7 text-justify md:text-center"style={{lineHeight:"1.5rem"}}>
                     ارز هشت به دنبال فراهم آوردن بستری امن برای انجام معاملات ارز دیجیتال کاربران است . ما در ارز هشت از ابتدای شروع فعالیت سعی کردیم امکانات درخور کاربران ارزشمند خود داشته باشیم و همواره در حال به روز رسانی و بهبود عملکرد ارز هشت هستیم.
                 </span>
             </div>

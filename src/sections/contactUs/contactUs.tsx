@@ -67,7 +67,7 @@ export default function ContactUs() {
     return (
         <div className="bg-background base-style">
 
-            <div className="flex flex-col lg:flex-row lg:pt-24 w-full gap-8  justify-between ">
+            <div className="flex flex-col lg:flex-row pt-20 w-full gap-8  justify-between ">
 
                 <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center  w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
 
@@ -172,7 +172,7 @@ export default function ContactUs() {
             <div className="relative  -mt-[5%] w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
 
 
-                <form onSubmit={handleSubmit} className=" flex flex-col  w-full mx-auto md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%]  lg:h-[50%] max-h-[500px] xl:min-h-[600px]  sm:min-w-[300px] md:min-w-[400px]  bg-secondary p-5 rounded-xl z-10 -mt-[10%] ">
+                <form onSubmit={handleSubmit} className=" flex flex-col  w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%]  lg:h-[50%] max-h-[500px] xl:min-h-[600px]  sm:min-w-[300px] md:min-w-[400px]  bg-secondary p-5 rounded-xl z-10 -mt-[10%] ">
                     <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
                     <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
 
@@ -208,7 +208,7 @@ export default function ContactUs() {
                         <textarea
                             id="message"
                             name="message"
-                            className="w-full sm:h-56 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none"
+                            className="w-full sm:h-48 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none"
                             onChange={handleChange}
                         />
                         {errors.fullName && <div className="text-red-500 text-sm">{errors.message}</div>}
@@ -218,7 +218,7 @@ export default function ContactUs() {
 
                     <button
                         type="submit"
-                        className="lg:w-60 w-full h-14 bg-primary my-auto text-white px-4 py-2 rounded-xl transition-colors self-end"
+                        className="lg:w-60 w-full h-14 bg-primary my-auto text-white px-4 py-2  rounded-xl transition-colors self-end"
                     >
                         ارسال درخواست
                     </button>
