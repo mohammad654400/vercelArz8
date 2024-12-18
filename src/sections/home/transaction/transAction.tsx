@@ -109,8 +109,8 @@ export default function Transaction() {
   }, []); 
 
   return (
-    <div ref={parentRef} className="border-2 border-secondary rounded-xl text-[13px] md:text ">
-      <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-xl cursor-pointer dark:bg-[#3C3B41]">
+    <div ref={parentRef} className="border-2 rounded-xl border-secondary  text-[13px] md:text ">
+      <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-t-lg  cursor-pointer dark:bg-[#3C3B41]">
         <div
           onClick={toggleTransaction}
           className="text-center w-full  sm:w-auto"

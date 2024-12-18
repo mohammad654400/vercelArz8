@@ -43,18 +43,18 @@ export default function Buy({
   };
   return (
     <div className="w-full ">
-      <div className="absolute -top-[11px]  right-9 lg:right-5 text-background dark:text-secondary ">
+      <div className="absolute -top-[11px]  right-8 lg:right-8 text-background dark:text-secondary">
         <HalfCircle />
-      </div> 
+      </div>
       <div
         className={`flex flex-col justify-between items-center bg-background rounded-xl dark:bg-secondary py-8 px-10 ${
-          width < 700 ? "lg:flex" : "lg:flex-row"
+          width < 700 ? "lg:flex" : "xl:flex-row"
         }`}
       >
-        <div className="relative w-full lg:w-auto">
+        <div className="relative w-full lg:w-auto ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-8 dark:text-[#302F34] outline-none h-[58px]  min-w-60 xl:min-w-72 w-full  border rounded-xl mt-5 pr-4"
+            className="mb-10 dark:text-[#302F34] outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -68,15 +68,13 @@ export default function Buy({
             <div>{currency.icon}</div>
           </div>
         </div>
-
-        <div onClick={toggle} className="cursor-pointer  lg:mt-0 flex justify-end w-full lg:justify-center">
+        <div onClick={toggle} className="cursor-pointer mt-5 lg:mt-0">
           <ArrowChange />
         </div>
-
         <div className="relative w-full lg:w-auto ">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none dark:text-[#302F34] h-[58px] w-full min-w-60 xl:min-w-72 border rounded-xl mt-5 pr-4"
+            className="outline-none dark:text-[#302F34] h-[58px] w-full lg:w-[414px]  border rounded-xl mt-5 pr-4"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
@@ -99,8 +97,8 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12 py-3 mt-3 rounded-xl bg-[#33B028] w-full lg:w-auto">
-            پرداخت
+          <button className="px-12 py-3 mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
+            خرید
           </button>
         </div>
       </div>

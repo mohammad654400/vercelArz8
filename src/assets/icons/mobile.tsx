@@ -11,7 +11,7 @@ export default function MobileIcon() {
     >
       <path
         d="M23.8969 8.69397V23.5389C23.8969 29.4769 22.4695 30.9614 16.7599 30.9614H8.19554C2.48593 30.9614 1.05853 29.4769 1.05853 23.5389V8.69397C1.05853 2.75598 2.48593 1.27148 8.19554 1.27148H16.7599C22.4695 1.27148 23.8969 2.75598 23.8969 8.69397Z"
-        stroke="white"
+        stroke="currentColor"
         strokeOpacity="0.5"
         strokeWidth="1.71288"
         strokeLinecap="round"
@@ -19,7 +19,7 @@ export default function MobileIcon() {
       />
       <path
         d="M15.3325 6.46875H9.62292"
-        stroke="white"
+        stroke="currentColor"
         strokeOpacity="0.5"
         strokeWidth="1.71288"
         strokeLinecap="round"

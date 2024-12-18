@@ -37,11 +37,12 @@ const Description = () => {
       </button>
       <div className="w-full mt-8 bg-foreground dark:bg-[#242428] h-[266] text-background rounded-2xl">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
-          <div>بدون معطلی ثبت نام و احراز هویت کن!</div>
-          <div className="flex items-center gap-4 text-primary w-[100%]">
-            ثبت نام <BigArrow />
+          <div className="dark:text-white">بدون معطلی ثبت نام و احراز هویت کن!</div>
+          <div className="flex flex-col  md:flex-row items-center  gap-4 text-primary ">
+            ثبت نام 
+            <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0"><BigArrow /></span>
             احراز هویت
-            <BigArrow />
+            <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0"><BigArrow /></span>
             ارز دلخواه خودتون رو بخرید{" "}
           </div>
           <div className="relative">
@@ -50,11 +51,11 @@ const Description = () => {
             </span>
             <input
               placeholder="شماره موبایل خود را وارد کنید"
-              className="w-[100%] md:w-[400px] h-12 bg-foreground rounded-xl outline-none pr-10 border-2 border-gray-400 placeholder:text-sm placeholder:text-gray-500"
+              className="w-full md:w-[400px] h-12 bg-foreground rounded-xl outline-none pr-10 border-2 border-gray-400 placeholder:text-xs md:placeholder:text-sm placeholder:text-gray-500"
               type="text"
             />
             <div>
-              <button className="absolute left-1 top-1 px-4 cursor-pointer rounded-lg bg-primary py-2">
+              <button className="absolute left-1 top-1 px-2 cursor-pointer rounded-lg bg-primary py-[10px] text-sm  ">
                 شروع کنید
               </button>
             </div>

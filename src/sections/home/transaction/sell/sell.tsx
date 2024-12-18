@@ -73,10 +73,10 @@ export default function Buy({
           <ArrowChange />
         </div>
 
-        <div className="relative w-full lg:w-auto">
+        <div className="relative w-full lg:w-auto ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-8 dark:text-[#302F34] outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
+            className="mb-10 dark:text-[#302F34] outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
