@@ -50,7 +50,7 @@ export const AccordionItem = ({
           onClick={() => onToggle(id)}
           className="w-full text-left font-medium flex justify-between items-center"
         >
-          <span className="text-start text-base sm:text-xl font-semibold">
+          <span className="text-start text-sm sm:text-xl font-semibold">
             {title}
           </span>
           <span>{isOpen ? <ArrowBottom /> : <ArrowTop />}</span>
