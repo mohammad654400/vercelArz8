@@ -321,15 +321,15 @@ export default function BannerSlider() {
                   className='flex justify-center mt-4'
                 >
                   <div>
-                    <div className="flex gap-2 pb-2">
-                      <span>تومان</span>
+                    <div className="flex gap-4 pb-2 ">
+                      <span>تومان</span>  
                       <p>{card.price}</p>
                     </div>
                     <p>% {card.percentage}</p>
                   </div>
                   <div className="flex items-center gap-2 pb-2">
-                    <div>
-                      <p>{card.name}</p>
+                    <div className="flex flex-col justify-center items-center gap-2 ">
+                      <p className="px-1">{card.name}</p>
                       <p>{card.symbol}</p>
                     </div>
                     <div>

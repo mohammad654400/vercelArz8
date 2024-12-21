@@ -64,16 +64,17 @@ export default function Buy({
             <p>IRT</p>
             <Image alt="iran" src={flag} />
           </div>
-          <div className="flex gap-5 mt-5 text-sm">
-            <p>قیمت خرید: {currency.price.toLocaleString()} تومان</p>
+          <div className="flex gap-5 mt-5 text-xs md:text-sm ">
+          <p>قیمت خرید: {currency.price.toLocaleString()} تومان</p>
+          <p>قیمت فروش: {currency.price.toLocaleString()} تومان</p>
           </div>
         </div>
 
-        <div onClick={toggle} className="cursor-pointer mt-5 lg:mt-0">
+        <div onClick={toggle} className="cursor-pointer my-5 lg:mt-0 self-end mb-10">
           <ArrowChange />
         </div>
 
-        <div className="relative w-full lg:w-auto ">
+        <div className="relative w-full lg:w-auto  ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
             className="mb-10 dark:text-[#302F34] outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
@@ -84,14 +85,14 @@ export default function Buy({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-3 left-1 top-[45px] bg-[#F6F6F6] px-4 py-3 rounded-xl dark:bg-background"
+            className="absolute group cursor-pointer flex gap-3 left-1 top-[44px] bg-[#F6F6F6] px-4 py-3 rounded-xl dark:bg-background"
           >
             <p>{currency.symbol}</p>
             <div>{currency.icon}</div>
           </div>
         </div>
 
-        <div className="w-full lg:w-auto ">
+        <div className="w-full lg:w-auto flex justify-center pb-2 ">
           {open && (
             <CryptoModal
               currencies={currencies}
@@ -99,8 +100,8 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12 py-3 mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto">
-           فروش
+          <button className="px-12 py-[18px] mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto">
+          شروع فروش 
           </button>
         </div>
       </div>

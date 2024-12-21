@@ -82,7 +82,7 @@ export default function DetailCoin() {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-[40%] border-2 rounded-lg p-4">
+        <div className="w-[40%] border-2 rounded-lg">
           <TransAction />
         </div>
       </div>

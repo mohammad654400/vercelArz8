@@ -22,11 +22,15 @@ const Description = () => {
         <p>
         ارز هشت یک پلتفرم آنلاین معاملاتی است که به شما امکان خرید، فروش و مدیریت انواع ارزهای دیجیتال را می‌دهد. با استفاده از ارز هشت، شما می‌توانید به سادگی و امنیت کامل، دارایی‌های دیجیتال خود را معامله کنید و وارد دنیای هیجان‌انگیز ارزهای دیجیتال شوید.
         ارز دیجیتال یا رمز ارز نوعی پول الکترونیکی است که به صورت مجازی وجود دارد و از رمزنگاری برای تأمین امنیت تراکنش‌ها و کنترل ایجاد واحدهای جدید استفاده می‌کند. به عبارت ساده‌تر، ارز دیجیتال پولی است که به صورت آنلاین و بدون نیاز به واسطه‌های مالی مانند بانک‌ها قابل انتقال است.
+          ارز هشت یک پلتفرم آنلاین معاملاتی است که به شما امکان خرید، فروش و مدیریت انواع ارزهای دیجیتال را می‌دهد. با استفاده از ارز هشت، شما می‌توانید به سادگی و امنیت کامل، دارایی‌های دیجیتال خود را معامله کنید و وارد دنیای هیجان‌انگیز ارزهای دیجیتال شوید.
+          ارز دیجیتال یا رمز ارز نوعی پول الکترونیکی است که به صورت مجازی وجود دارد و از رمزنگاری برای تأمین امنیت تراکنش‌ها و کنترل ایجاد واحدهای جدید استفاده می‌کند. به عبارت ساده‌تر، ارز دیجیتال پولی است که به صورت آنلاین و بدون نیاز به واسطه‌های مالی مانند بانک‌ها قابل انتقال است.
         </p>
 
         {/* Gradient Overlay */}
         {!isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent bg-gradient-to-t dark:from-gray-500 to-transparent pointer-events-none"></div>
+          <div
+            className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#e6e5e9] to-[#3C3B4100] dark:bg-gradient-to-t from-[#3C3B41] to-[#3C3B4100] pointer-events-none"
+          ></div>
         )}
       </div>
       <button
@@ -35,7 +39,7 @@ const Description = () => {
       >
         {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
       </button>
-      <div className="w-full mt-8 bg-foreground dark:bg-[#242428] h-[266] text-background rounded-2xl">
+      <div className="w-full mt-8 bg-foreground bg-[#242428] h-[266] dark:bg-[#242428] h-[266] text-background rounded-2xl">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div className="dark:text-white">بدون معطلی ثبت نام و احراز هویت کن!</div>
           <div className="flex flex-col  md:flex-row items-center  gap-4 text-primary ">
@@ -51,11 +55,11 @@ const Description = () => {
             </span>
             <input
               placeholder="شماره موبایل خود را وارد کنید"
-              className="w-full md:w-[400px] h-12 bg-foreground rounded-xl outline-none pr-10 border-2 border-gray-400 placeholder:text-xs md:placeholder:text-sm placeholder:text-gray-500"
+              className="w-full md:w-[400px] h-12 bg-foreground rounded-xl outline-none pr-10 border-2 border-gray-400 placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
               type="text"
             />
             <div>
-              <button className="absolute left-1 top-1 px-2 cursor-pointer rounded-lg bg-primary py-[10px] text-sm  ">
+              <button className="absolute left-1 top-1 px-2 cursor-pointer rounded-lg bg-primary py-[12px]  text-xs  ">
                 شروع کنید
               </button>
             </div>

@@ -11,9 +11,6 @@ import DownloadSection from "./downloadSection";
 import Sun from "@/assets/icons/sun";
 import BarIcon from "@/assets/icons/bar";
 import SaidBar from "./menu/saidbar";
-import { space } from "postcss/lib/list";
-import UserIcon from "@/assets/icons/user";
-
 export default function Header() {
   const { toggleTheme, theme } = useTheme();
   const [open, setOpen] = useState(false);
@@ -49,7 +46,7 @@ export default function Header() {
         z-30
         transition-all 
         duration-500 
-        ${isScrolled ? " backdrop-blur-lg shadow-sm top-0" : "bg-transparent"}
+        ${isScrolled ? " bg-secondary shadow-sm top-0" : "bg-transparent"}
       `}
       >
         <div className="flex items-center justify-between px-3  md:px-6 h-20">
@@ -80,7 +77,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center gap-3 h-full md:gap-6">
-            <div className="hidden xl:block  text-[14px] w-[150px] py-3 text-center bg-primary rounded-lg cursor-pointer ">
+            <div className="hidden xl:block text-background text-[14px] w-[150px] py-3 text-center bg-primary rounded-lg cursor-pointer ">
               ورود یا عضویت
             </div>
             <div className="flex justify-center items-center cursor-pointer group h-full ">
@@ -92,7 +89,7 @@ export default function Header() {
               </div>
             </div>
             <div className="cursor-pointer " onClick={toggleTheme}>
-              {theme == "light" ? <Moon /> : <Sun />}
+              {theme == "light" ? <Moon /> :<Sun /> }
             </div>
           </div>
         </div>
