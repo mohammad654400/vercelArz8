@@ -50,8 +50,8 @@ export default function BugBounty() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8  w-full grid-flow-row-dense">
 
-            {damage.map((item) => (
-              <div className="flex flex-col w-full items-center justify-start gap-4">
+            {damage.map((item,index) => (
+              <div key={index} className="flex flex-col w-full items-center justify-start gap-4">
                 <item.icon />
                 <span className="text-center">{item.text}</span>
               </div>
