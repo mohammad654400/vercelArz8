@@ -145,9 +145,9 @@ export default function RealTimePrice() {
   };
 
   return (
-    <div className="bg-background shadow-lg rounded-xl overflow-hidden w-full ">
-      <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#3C3B41] px-4 py-3 text-[#FFFFFF80]">
-        <div className="flex justify-center gap-3 w-full">
+    <div className="bg-background shadow-lg  overflow-hidden w-full ">
+      <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#FFFFFF80] rounded-t-xl">
+        <div className="flex justify-center gap-3 w-full ">
           {filterOptions.map((option) => (
             <button
               key={option.key}
@@ -162,13 +162,13 @@ export default function RealTimePrice() {
             </button>
           ))}
         </div>
-        <button className="text-sm text-black dark:text-white hidden md:block">
+        <button className="text-xs w-40 text-black dark:text-white hidden md:block ">
           مشاهده همه ارزها
         </button>
       </div>
-      <div className="p-4 w-full">
-        <div className="grid grid-cols-3  text-[13px] md:text-sm md:grid-cols-6 w-full rounded-2xl bg-[#F6F6F6] dark:bg-[#3C3B41] text-center py-3 font-semibold  border-gray-300 ">
-          <div className=""> نماد</div>
+      <div className="p-4 w-full border-2 border-t-0 rounded-b-xl ">
+        <div className="grid grid-cols-3  text-[13px] md:text-sm md:grid-cols-6 w-full rounded-2xl bg-secondary text-center py-3 font-semibold  border-gray-300 ">
+          <div> نماد</div>
           <div className="w-full hidden md:block">قیمت به USDT</div>
           <div>قیمت به تومان</div>
           <div className="">تغییرات 24h</div>
@@ -180,15 +180,18 @@ export default function RealTimePrice() {
           {displayedCurrencies.map((currency, index) => (
             <div
               key={index}
-              className="grid grid-cols-3 md:grid-cols-6  items-center text-center py-4"
+              className="grid grid-cols-3 md:grid-cols-6 max-w-[1150px] mx-auto items-center text-center py-4"
             >
               <div className="w-full flex flex-col justify-start">
-                <div className="flex">
-                  <div>{currency.icon}</div>
+                <div >
+                <div className="flex items-center justify-start pr-0 sm:pr-6">
+                  <div>
+                    <div>{currency.icon}</div>
+                  </div>
                   <span>{currency.name}</span>
                 </div>
-                <p className="text-[15px] md:hidden">{currency.symbol}</p>
-                <p className="text-[15px] md:hidden">{currency.priceUSDT}</p>
+                </div>
+                <p className="text-[15px] hidden md:block">{currency.symbol}</p>
               </div>
               <div className="w-full hidden md:block">
                 {currency.priceUSDT} USDT
@@ -203,10 +206,10 @@ export default function RealTimePrice() {
               >
                 {currency.change.startsWith("-") ? "▼" : "▲"} {currency.change}%
               </div>
-              <div className="flex justify-center hidden md:block">
+              <div className="flex justify-center m-auto hidden md:block">
                 <Image src={ChartUP} alt="chart" width={64} height={31} />
               </div>
-              <div>
+              <div className="flex justify-center">
                 <button className="border-2 border-primary text-primary px-4 py-2 rounded-lg hidden md:block">
                   جزئیات بیشتر
                 </button>
@@ -215,10 +218,10 @@ export default function RealTimePrice() {
           ))}
         </div>
       </div>
-      <div className="flex justify-center items-center gap-3 py-6 px-5 cursor-pointer">
+      <div className="sm:hidden flex justify-center items-center gap-3 py-6 px-5 cursor-pointer">
         <span>
           <Link href="/coins">مشاهده تمام ارزها</Link>
-        </span>{" "}
+        </span>
         <ArrowLeft />
       </div>
     </div>

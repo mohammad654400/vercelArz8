@@ -146,8 +146,8 @@ export default function WheelLuck() {
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8  mt-8 lg:mt-16'>
-        {awards.map((item) => (
-          <div className='flex flex-col w-full py-[15px] px-[18px] bg-third rounded-xl'>
+        {awards.map((item,index) => (
+          <div key={index} className='flex flex-col w-full py-[15px] px-[18px] bg-third rounded-xl'>
             <div className='flex gap-4 items-center'> 
               <img src={item.icon} alt='icon' className='w-10 h-10 md:w-[60px] md:h-[60px]' />
               <span className='text-sm md:text-lg font-bold'>{item.title}</span>

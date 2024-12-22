@@ -68,7 +68,7 @@ export default function Buy({
             <div>{currency.icon}</div>
           </div>
         </div>
-        <div onClick={toggle} className="cursor-pointer mt-5 lg:mt-0">
+        <div onClick={toggle} className="cursor-pointer my-5 lg:mt-0 self-end mb-10">
           <ArrowChange />
         </div>
         <div className="relative w-full lg:w-auto ">
@@ -84,12 +84,13 @@ export default function Buy({
             <p>IRT</p>
             <Image alt="iran" src={flag} />
           </div>
-          <div className="flex gap-5 mt-5 text-sm">
+          <div className="flex gap-5 mt-5 text-xs md:text-sm">
             <p>قیمت خرید: {currency.price.toLocaleString()} تومان</p>
+            <p>قیمت فروش: {currency.price.toLocaleString()} تومان</p>
           </div>
         </div>
 
-        <div className="w-full lg:w-auto ">
+        <div className="w-full lg:w-auto flex justify-center pb-2">
           {open && (
             <CryptoModal
               currencies={currencies}
@@ -97,8 +98,8 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12 py-3 mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
-            خرید
+          <button className="px-12  py-[18px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
+              شروع خرید
           </button>
         </div>
       </div>
