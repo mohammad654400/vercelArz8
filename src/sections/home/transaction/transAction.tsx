@@ -2,9 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Buy from "./buy/buy";
 import Sell from "./sell/sell";
-import HalfCircle from "@/assets/icons/halfCircle";
 import BNB from "@/assets/icons/bnb";
-import { usePathname } from "next/navigation";
 
 const currencies = [
   {
@@ -28,104 +26,49 @@ const currencies = [
     change: "-0.75",
     icon: <BNB />,
   },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "54327353",
-    change: "-0.75",
-    icon: <BNB />,
-  },
+  // بقیه موارد
 ];
+
 export default function Transaction() {
   const [isBuy, setIsBuy] = useState(true);
   const toggleTransaction = () => {
     setIsBuy((prevState) => !prevState);
   };
-  const [width,setWidth] = useState<any>()
+  const [width, setWidth] = useState<number | undefined>();
 
   const parentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (parentRef.current) {
-      console.log("Offset Width:", parentRef.current.offsetWidth);
-      setWidth(parentRef.current.offsetWidth)
+      setWidth(parentRef.current.offsetWidth);
     }
-  }, []); 
+  }, []);
 
   return (
-    <div ref={parentRef} className="border-2 rounded-xl border-secondary  text-[13px] md:text ">
-      <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-t-lg  cursor-pointer dark:bg-[#3C3B41]">
+    <div
+      ref={parentRef}
+      className="border-2 rounded-xl border-secondary text-[13px] md:text"
+    >
+      <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-t-lg dark:bg-[#3C3B41]">
         <div
-          onClick={toggleTransaction}
-          className="text-center w-full  sm:w-auto"
+          onClick={() => setIsBuy(true)}
+          className={`text-center w-full sm:w-auto cursor-pointer ${
+            isBuy ? "text-green-500 font-bold" : "text-gray-500"
+          }`}
         >
           خرید از ارز هش
         </div>
         <div
-          onClick={toggleTransaction}
-          className="text-center w-full sm:w-auto "
+          onClick={() => setIsBuy(false)}
+          className={`text-center w-full sm:w-auto cursor-pointer ${
+            !isBuy ? "text-red-500 font-bold" : "text-gray-500"
+          }`}
         >
-          فروش به ارز هشت
+          فروش به ارز هش
         </div>
       </div>
 
-      <div className="relative w-full bg-background duration-500 ">
+      <div className="relative w-full bg-background duration-500">
         {isBuy ? (
           <Buy width={width} currencies={currencies} toggle={toggleTransaction} />
         ) : (

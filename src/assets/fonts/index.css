@@ -1,5 +1,5 @@
 @font-face {  
-    font-family: 'YekanBakh-ExtraBlack';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-ExtraBlack.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-ExtraBlack.woff') format('woff');  
     font-weight: 950;   
@@ -7,7 +7,7 @@
 }  
 
 @font-face {  
-    font-family: 'YekanBakh-Bold';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-Bold.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-Bold.woff') format('woff');  
     font-weight: bold;  
@@ -15,7 +15,7 @@
 }  
 
 @font-face {  
-    font-family: 'YekanBakh-ExtraBold';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-ExtraBold.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-ExtraBold.woff') format('woff');  
     font-weight: 800;   
@@ -23,7 +23,7 @@
 }  
 
 @font-face {  
-    font-family: 'YekanBakh-Light';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-Light.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-Light.woff') format('woff');  
     font-weight: 300;  
@@ -31,7 +31,7 @@
 }  
 
 @font-face {  
-    font-family: 'YekanBakh-Regular';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-Regular.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-Regular.woff') format('woff');  
     font-weight: normal;   
@@ -39,7 +39,7 @@
 }  
 
 @font-face {  
-    font-family: 'YekanBakh-SemiBold';  
+    font-family: 'YekanBakh';  
     src: url('../fonts/woff2/YekanBakh-SemiBold.woff2') format('woff2'),  
          url('../fonts/woff/YekanBakh-SemiBold.woff') format('woff');  
     font-weight: 600;   
