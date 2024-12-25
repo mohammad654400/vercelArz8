@@ -27,48 +27,48 @@ export default function Footer() {
               <Image alt="ارز هشت" src={logo} width={64} height={64} />
               <h1 className="text-[30px] font-extrabold">ارزهشت</h1>
             </div>
-            <p className="text-justify text-xs sm:text-sm">
+            <p className="text-justify text-[14px]">
               از اردیبهشت ماه سال 1397 آغاز به فعالیت کرده که در ابتدا سامانه
               خرید و فروش ارز دیجیتال بود و سپس رفته رفته پا را فراتر گذاشته و
               اکنون پلتفرم ترید ارز دیجیتال را راه اندازی کرده است.
             </p>
           </div>
 
-          <div className="flex flex-col gap-8   lg:w-[68%]">
+          <div className="flex flex-col gap-8 lg:w-[68%]">
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
-              <div>
+              <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+               <p className="text-base"> بـــــــــــــازار</p>
                 <Image
-                  className="dark:bg-white rounded-xl "
-                  alt="بازار"
-                  src={bazar}
+                alt="bazar"
+                src={bazar}
                 />
               </div>
-              <div>
+              <div className="flex justify-between px-2 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+               <p className="text-base ">وب اپلیکیشن</p>
                 <Image
-                  className="dark:bg-white rounded-xl  "
-                  alt="بازار"
-                  src={directDownload}
+                alt="bazar"
+                src={webapp}
                 />
               </div>
-              <div>
+              <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+               <p className="text-base"> مایکـــیت</p>
                 <Image
-                  className="dark:bg-white rounded-xl"
-                  alt="بازار"
-                  src={myket}
+                alt="bazar"
+                src={myket}
                 />
               </div>
-              <div>
+              <div className="flex justify-between px-2  items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+               <p className="text-sm "> دانلود مستقیم</p>
                 <Image
-                  className="dark:bg-white rounded-xl"
-                  alt="بازار"
-                  src={webapp}
+                alt="bazar"
+                src={directDownload}
                 />
               </div>
             </div>
             <div className="hidden md:block">
               <div className="flex justify-between ">
                 <div className="mt-6">
-                  <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
+                  <h1 className="mb-6 text-[22px] border-r-4 pr-4 border-primary ">
                     {" "}
                     راهنمای صرافی
                   </h1>
@@ -84,9 +84,9 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="mt-6">
-                  <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary">
+                  <p className="mb-6 text-[22px] border-r-4 pr-4 border-primary">
                     لینک های مفید
-                  </h1>
+                  </p>
                   <ul className="flex flex-col gap-4">
                     <li> خرید و فروش ارزدیحیتال </li>
                     <li>دانلود اپلیکیشن</li>
@@ -99,10 +99,10 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="mt-6">
-                  <h1 className="mb-6 text-lg border-r-4 pr-4 border-primary ">
+                  <p className="mb-6 text-[22px] border-r-4 pr-4 border-primary ">
                     {" "}
                     اطلاعات تماس
-                  </h1>
+                  </p>
                   <ul className="flex flex-col gap-4">
                     <div className="flex gap-2">
                       <Phone />
@@ -126,10 +126,10 @@ export default function Footer() {
           </div>
 
         </div>
-        <div className=" w-full bg-background py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-6 ">
-          <div className="flex justify-center items-center text-[8px] md:text-sm  ">
+        <div className=" w-full bg-background py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-16 ">
+          <div className="flex justify-center items-center text-[8px] md:text-sm gap-1  ">
             تمامی حقوق این وبسایت متعلق به{" "}
-            <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
+              <span className="text-primary ">صرافی  ارزدیجیتال ارزهشت</span> است.
           </div>
           <div className="flex justify-center gap-4 dark:text-secondary  order-first sm:order-last">
             <span className="text-background">

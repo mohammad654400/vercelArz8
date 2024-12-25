@@ -87,9 +87,8 @@ const CryptoTable: React.FC = () => {
         <table className="table-auto w-full border-collapse text-right">
           <thead>
             <tr className="bg-[#F6F6F6] text-[#3C3B4180] border-b">
-              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">نام</th>
-              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">24H تغییرات</th>
               <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">نماد</th>
+              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">24H تغییرات</th>
               <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">قیمت به تومان</th>
             </tr>
           </thead>
@@ -104,7 +103,6 @@ const CryptoTable: React.FC = () => {
                   <td className={`px-4 py-2 text-sm ${crypto.changeColor}`}>
                     % {crypto.change.toFixed(2)}
                   </td>
-                  <td className="px-4 py-2 text-sm">{crypto.symbol}</td>
                   <td className="px-4 py-2 text-sm">{crypto.price} تومان</td>
                 </tr>
               ))

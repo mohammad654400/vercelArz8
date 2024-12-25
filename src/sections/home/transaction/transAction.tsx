@@ -49,10 +49,10 @@ export default function Transaction() {
       ref={parentRef}
       className="border-2 rounded-xl border-secondary text-[13px] md:text"
     >
-      <div className="flex w-full gap-4 bg-[#F6F6F6] py-3 px-4 sm:py-5 sm:pr-6 rounded-t-lg dark:bg-[#3C3B41]">
+      <div className="flex w-full gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-lg">
         <div
           onClick={() => setIsBuy(true)}
-          className={`text-center w-full sm:w-auto cursor-pointer ${
+          className={`text-center w-full sm:w-auto text-lg cursor-pointer ${
             isBuy ? "text-green-500 font-bold" : "text-gray-500"
           }`}
         >
@@ -60,7 +60,7 @@ export default function Transaction() {
         </div>
         <div
           onClick={() => setIsBuy(false)}
-          className={`text-center w-full sm:w-auto cursor-pointer ${
+          className={`text-center w-full sm:w-auto text-lg cursor-pointer ${
             !isBuy ? "text-red-500 font-bold" : "text-gray-500"
           }`}
         >
@@ -68,7 +68,7 @@ export default function Transaction() {
         </div>
       </div>
 
-      <div className="relative w-full bg-background duration-500">
+      <div className="relative w-full  duration-500">
         {isBuy ? (
           <Buy width={width} currencies={currencies} toggle={toggleTransaction} />
         ) : (
