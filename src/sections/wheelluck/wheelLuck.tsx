@@ -83,23 +83,24 @@ export const AccordionData = [
 
 export default function WheelLuck() {
   return (
-    <div className='base-style'>
+    <div className='base-style'style={{gap:"0"}}>
       <div className='flex flex-col gap-10 md:gap-24 mt-28'>
         
-        <div className="flex flex-col lg:flex-row gap-10  w-full justify-between">
-          <div className="lg:w-7/12 lg:ml-5 w-full gap-8 flex flex-col justify-center order-2">
-            <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
-            <p className='text-sm md:text-base lg:text-lg font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
+        <div className="flex flex-col gap-10 lg:flex-row  w-full justify-between">
+          <div className="w-full flex flex-col justify-center order-2">
+            <h1 className='mb-[9px] lg:mb-[15px] text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
+            <p className='text-sm lg:text-base leading-[38px] lg:leading-[60px] font-semibold  text-sixth text-justify '>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
 
 
-            <Link className='self-end w-full lg:w-56 h-12 lg:h-16' href="#">
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-2xl lg:rounded-xl'>گرداندن گردونه</button>
+            <Link className='self-end w-full lg:w-[220px] h-[53px] lg:h-[61px]' href="#">
+              <button className='mt-5 lg:mt-[13px] bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px] lg:rounded-xl'>گرداندن گردونه</button>
             </Link>
           </div>
-          <div className="lg:w-5/12 md:w-[500px] sm:w-[350px]  w-[300px] h-auto  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
+          <div className="w-full h-full  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
             <Image
               src={wheel}
               alt="image"
+              className=' w-[388px] lg:w-[538px] h-full '
             />
           </div>
         </div>
