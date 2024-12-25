@@ -12,11 +12,11 @@ const Tab = React.memo(({ name, isActive, onClick, transformOrigin, transitionDe
   return (    
     <button
       onClick={onClick}
-      className="relative w-1/2 h-full text-base sm:text-xl font-semibold focus:outline-none overflow-hidden"
+      className="relative w-1/2 h-full "
       
     >
       <span
-        className={`absolute top-0 left-0 w-full h-full bg-fifth rounded-xl  transform transition-all duration-500 ease-out ${
+        className={`absolute top-0 left-0 w-full h-full bg-fifth rounded-[14px] sm:rounded-[20px]  transform transition-all duration-500 ease-out ${
           isActive ? "scale-x-100" : "scale-x-0"
         }`}
         style={{
@@ -26,7 +26,7 @@ const Tab = React.memo(({ name, isActive, onClick, transformOrigin, transitionDe
       ></span>
 
       <span
-        className={`relative z-10 transition-all duration-300 text-sm lg:text-xl font-semibold ${
+        className={`relative z-10 transition-all duration-300 text-base sm:text-[25px]  font-semibold focus:outline-none overflow-hidden" ${
           isActive ? "text-sixth" : "text-sixth opacity-50  hover:opacity-90"
         }`}
       >

@@ -26,7 +26,7 @@ export default function Body({
       : questions.filter((question) => question.categoryId === selectedCategory);
   return filteredQuestions.map((filteredQuestion) => (
     <div
-      className="w-full "
+      className="w-full"
       ref={(el) => { itemRefs.current[filteredQuestion.id] = el; }}
       key={filteredQuestion.id}
     >

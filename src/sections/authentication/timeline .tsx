@@ -3,8 +3,9 @@ import levelsData from "./data/data";
 
 const Timeline = () => {
     return (
-        <div className="flex flex-col w-full h-auto gap-8">
-            <h2 className="text-base md:text-2xl font-bold text-seventh">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
+        <div className="flex flex-col w-full h-auto">
+            <h2 className="text-base md:text-3xl font-bold text-seventh mb-[30px] md
+            :mb-[50px]">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
             {levelsData.map((level, index) => (
                 <div key={index} className="flex  lg:flex-row w-full h-auto gap-8 relative">
                     <div className="flex flex-col items-center">

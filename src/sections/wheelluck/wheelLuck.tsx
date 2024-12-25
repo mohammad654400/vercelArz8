@@ -8,6 +8,9 @@ import Discount from "@/assets/icons/wheel/discount"
 import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
 import Accordion from '@/components/Accordion'
+import Ghar from '@/assets/images/wheelluck/ghar.png'
+
+
 
 const awards = [
   {
@@ -81,108 +84,125 @@ export const AccordionData = [
 export default function WheelLuck() {
   return (
     <div className='base-style'>
+      <div className='flex flex-col gap-10 md:gap-24 mt-28'>
+        
+        <div className="flex flex-col lg:flex-row gap-10  w-full justify-between">
+          <div className="lg:w-7/12 lg:ml-5 w-full gap-8 flex flex-col justify-center order-2">
+            <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
+            <p className='text-sm md:text-base lg:text-lg font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
 
 
-      <div className="flex flex-col lg:flex-row gap-7  w-full justify-between mt-28">
-        <div className="lg:w-7/12 lg:ml-5 w-full gap-8 flex flex-col justify-center order-2">
-          <h1 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
-          <p className='text-sm md:text-lg font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
-
-
-          <Link className='self-end w-full lg:w-56 h-12 lg:h-16' href="#">
-            <button className=' bg-primary w-full h-full text-white text-base lg:text-lg font-bold rounded-xl'>گرداندن گردونه</button>
-          </Link>
-        </div>
-        <div className="lg:w-5/12 md:w-[500px] sm:w-[350px]  w-[300px] h-auto  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
-          <Image
-            src={wheel}
-            alt="image"
-          />
-        </div>
-      </div>
-
-      <div className='flex flex-col gap-8 mt-8 lg:mt-16'>
-        <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
-        <div className='w-full overflow-x-auto'>
-          <div className='flex flex-row gap-4 w-full'>
-            <div className='w-[33%] min-w-40 md:min-w-48 '>
-              <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
-                <Awards />
-                <span className='text-base md:text-lg font-semibold'>جوایز نقدی</span>
-              </div>
-            </div>
-
-            <div className='w-[33%] min-w-40 md:min-w-48  '>
-              <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mx-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
-                <Arz />
-                <span className='text-base md:text-lg font-semibold'>ارزدیجیتال رایگان</span>
-              </div>
-            </div>
-            <div className='w-[33%] min-w-40 md:min-w-48 '>
-              <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mr-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
-                <Discount />
-                <span className='text-base md:text-lg font-semibold'>جایزه تخفیف کارمزد</span>
-              </div>
-            </div>
+            <Link className='self-end w-full lg:w-56 h-12 lg:h-16' href="#">
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-2xl lg:rounded-xl'>گرداندن گردونه</button>
+            </Link>
+          </div>
+          <div className="lg:w-5/12 md:w-[500px] sm:w-[350px]  w-[300px] h-auto  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
+            <Image
+              src={wheel}
+              alt="image"
+            />
           </div>
         </div>
 
-      </div>
+        <div className='flex flex-col gap-5 md:gap-10'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
+          <div className='w-full overflow-x-auto'>
+            <div className='flex flex-row gap-4 w-full'>
+              <div className='w-[33%] min-w-40 md:min-w-48 '>
+                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+                  <div className='w-[82px] h-[82px] md:w-[69px] md:h-[69px]'>
+                    <Awards />
+                  </div>
+                  <span className='text-base md:text-lg font-semibold'>جوایز نقدی</span>
+                </div>
+              </div>
 
-      <div className='flex flex-col lg:flex-row gap-8  mt-8 lg:mt-16'>
-        <div className='w-80 sm:w-[400px] lg:w-[490px] self-center'>
-          <ImageCarousel imageUrls={imageUrls} />
-        </div>
-        <div className='flex flex-col w-full  lg:w-3/5 gap-8 justify-center '>
-          <h3 className='text-xl md:text-2xl lg:text-3xl font-bold'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
-          <p className='text-sm md:text-base lg:text-xl font-semibold text-sixth text-justify' style={{ lineHeight: "2.5rem" }}>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
-          </p>
-          <div className='flex justify-end  h-12 lg:h-16'>
-            <button className='text-lg lg:text-2xl rounded-xl w-full h-full lg:w-auto font-bold text-white bg-primary px-7 py-2 text-center'>ثبت نام سریع</button>
-          </div>
-        </div>
+              <div className='w-[33%] min-w-40 md:min-w-48  '>
+                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mx-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+                  <div className='w-[82px] h-[82px] md:w-[69px] md:h-[69px]'>
+                    <Arz />
+                  </div>
+                  <span className='text-base md:text-lg font-semibold'>ارزدیجیتال رایگان</span>
+                </div>
+              </div>
 
+              <div className='w-[33%] min-w-40 md:min-w-48 '>
+                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mr-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+                  <div className='w-20 h-20 md:w-16 md:h-16'>
+                    <Discount />
+                  </div>
+                  <span className='text-base md:text-lg font-semibold'>جایزه تخفیف کارمزد</span>
+                </div>
+              </div>
 
-      </div>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8  mt-8 lg:mt-16'>
-        {awards.map((item,index) => (
-          <div key={index} className='flex flex-col w-full py-[15px] px-[18px] bg-third rounded-xl'>
-            <div className='flex gap-4 items-center'> 
-              <img src={item.icon} alt='icon' className='w-10 h-10 md:w-[60px] md:h-[60px]' />
-              <span className='text-sm md:text-lg font-bold'>{item.title}</span>
             </div>
-            <span className='text-xs sm:text-sm font-normal text-justify mt-xl' style={{ lineHeight: "2rem" }}>{item.description}</span>
           </div>
-        ))}
-      </div>
 
-      <div className='flex w-full py-[15px] px-[18px] bg-third rounded-xl '>
-        <span className='flex w-full text-sm md:text-lg font-normal text-center justify-center items-center ' >نکته: در سطح طلایی و کریستال گزینه پوچ وجود نداره و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.</span>
-      </div>
+        </div>
 
-      <div className='flex flex-col lg:flex-row justify-between  mt-8 lg:mt-16' style={{lineHeight:"2rem"}}>
-        <div className="lg:w-3/5  w-full gap-8 flex flex-col justify-center order-3 lg:order-1">
+        <div className='flex flex-col lg:flex-row'>
+          <div className='w-[388px] sm:w-[450px] lg:w-[489px] lg:h-[604px] self-center'>
+            <ImageCarousel imageUrls={imageUrls} />
+          </div>
+          <div className='flex flex-col w-full  gap-7 mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
+            <h3 className='text-xl md-text-2xl  xl:text-3xl font-bold'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
+            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px]'>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
+            </p>
+            <div className='flex justify-end  h-12 lg:h-16'>
+              <button className='text-lg lg:text-2xl rounded-xl w-full h-full lg:w-auto font-bold text-white bg-primary px-7 py-2 text-center'>ثبت نام سریع</button>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div className='flex flex-col gap-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:mt-16'>
+            {awards.map((item, index) => (
+              <div key={index} className='flex flex-col w-full py-[15px] px-[18px] sm:my-[10px] sm:px-3  bg-third rounded-xl'>
+                <div className='flex gap-4 items-center mb-2 sm:mb-3'>
+                  <img src={item.icon} alt='icon' className='w-10 h-10 md:w-[60px] md:h-[60px]' />
+                  <span className='text-base sm:text-[18.9px] font-bold'>{item.title}</span>
+                </div>
+                <span className='text-sm sm:text-base font-normal text-justify mt-xl leading-[30px] sm:leading-[45px]'>{item.description}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className='flex w-full py-[15px] px-[18px] bg-third rounded-xl '>
+            <span className='flex w-full text-sm sm:text-xl font-normal text-center justify-center items-center leading-[30px]' >نکته: در سطح طلایی و کریستال گزینه پوچ وجود نداره و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.</span>
+          </div>
+        </div>
+
+
+        <div className='flex flex-col lg:flex-row justify-between ' style={{ lineHeight: "2rem" }}>
+          <div className=" w-full gap-7 mb-4 lg:mb-0 flex flex-col justify-center order-3 lg:order-1">
+            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
+            <p className='text-xs md:text-xl font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
+
+
+            <Link className='self-end w-full lg:w-56 sm:h-16 h-[53px]' href="#">
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-3xl font-bold rounded-xl'>چرخش گردونه</button>
+            </Link>
+          </div>
+
+          <Image className='order-2 mx-auto lg:mx-28 ' src={Ghar} alt='Ghar' width={305} height={633} />
+
+
+        </div>
+
+
+        <div className='flex flex-col gap-10'>
           <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
-          <p className='text-sm md:text-lg font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
+          <div className='flex flex-col gap-5'>
+            <Accordion items={AccordionData} />
+          </div>
 
-          <Link className='self-end w-full lg:w-56  h-12 lg:h-16' href="#">
-            <button className=' bg-primary w-full h-full text-white text-base lg:text-lg font-bold rounded-xl'>چرخش گردونه</button>
-          </Link>
         </div>
-        <div className='lg:w-2/5 order-2'>
-          <img src="https://s3-alpha-sig.figma.com/img/9237/e942/a128f7280a8456066845fe97fcfc3ea2?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TjYml2PSPiZJ2lDn27fGE2ABj~1poTsinvOETdTFsvoT~1aB763PuoGrMInEQGJvC59fEyo5bTGlTRO8M3TvdSj2bOXYoi916Y4vdQFf4iiTUBbdYhoPceKvNNb4Aq5nvgBo7b3cCEh09GTv2Zbt7yipYGayTaiyuI-RFQXTnjBEvkDPYca7F8D6p1Oqs~KN10Nfnq8d0blZBLnawY4me93-H~YVH52EiNF~Tqcvs8UjgE4BW~wqYamQJVASe8n4Av-YI6pmEuetdkZRpmBMScQINEbrFNjEJP~2GZv9P0PuHFwHbUh3WtDl5KY1vhMiFwUfxY8CgSioMZ2Xhgk2-A__" alt="image" />
-        </div>
-
       </div>
 
 
-      <div className='flex flex-col gap-8  mt-8 lg:mt-16'>
-        <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
-
-        <Accordion items={AccordionData} />
-      </div>
     </div>
   )
 }

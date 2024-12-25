@@ -54,21 +54,22 @@ const Fee: React.FC = () => {
     ];
 
     return (
-        <div className="base-style bg-background">
+        <div className="base-style bg-background" style={{gap:"0"}}>
 
-            <div className="flex flex-col w-full  h-72 bg-[#242428] rounded-xl  mt-20 justify-center items-center px-5 lg:px-[10%]">
-                <h1 className="text-lg sm:text-3xl text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
-                <span className="text-xs sm:text-sm font-semibold text-[#FFFFFF] mt-7 text-justify md:text-center"style={{lineHeight:"1.5rem"}}>
+            <div className="flex flex-col w-full  bg-[#242428] rounded-[18px] sm:rounded-[30px]  mt-20 justify-center items-center px-2 sm:px-[19px]">
+                <h1 className="text-[25px] mt-[15px] mb-[15px] sm:text-[30px] sm:mt-[51px] sm:mb-[35px] lg:text-[35px] lg:mt-[74px] lg:mb-[29px] text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
+                <span className="text-xs sm:text-sm lg:text-base  mb-[15px] sm:mb-[45px] lg:mb-[74px] font-semibold text-[#FFFFFF] mt-7 text-justify sm:text-center leading-[28px] sm:leading-[40px] lg:leading-[40px]" >
                     ارز هشت به دنبال فراهم آوردن بستری امن برای انجام معاملات ارز دیجیتال کاربران است . ما در ارز هشت از ابتدای شروع فعالیت سعی کردیم امکانات درخور کاربران ارزشمند خود داشته باشیم و همواره در حال به روز رسانی و بهبود عملکرد ارز هشت هستیم.
                 </span>
             </div>
 
-            <div className="hidden lg:flex flex-col  min-w-[350px] mt-12 max-w-[500px] self-center  ">
-                <h2 className="flex justify-center text-xl lg:text-3xl font-bold text-sixth">کارمزد و خدمات تسویه در ارز هشت</h2>
-                <hr className="border-t-4 border-primary mt-2" />
+            <div className="flex flex-col  self-center  mt-10 sm:mt-[60px] lg:mt-[101px] mb-[40px] sm:mb-[50px] lg:mb-[80px]">
+                <h1 className="text-lg sm:text-[35px] font-bold border-b-4 border-primary pb-4 w-auto text-center">
+                کارمزد و خدمات تسویه در ارز هشت
+                </h1>
             </div>
 
-            <div className="bg-secondary p-3 rounded-xl w-full lg:w-1/2  lg:min-w-[446px]  max-w-[560px] h-[85px] flex self-center justify-center items-center">
+            <div className="bg-secondary p-3 rounded-[20px] sm:rounded-[30px] w-full  max-w-[388px] sm:max-w-[566px]  sm:w-[566px]  h-[62px] sm:h-[90px] flex self-center justify-center items-center mb-[40px] sm:mb-[50px]">
                 <div className="flex w-full h-full gap-4">
                     {allTabs.map((tab) => (
                         <Tab
@@ -86,11 +87,10 @@ const Fee: React.FC = () => {
                 {tabContentData.map((tabContent) => (
                     <div
                         key={tabContent.id}
-                        className={`transition-opacity duration-700 ease-in-out transform ${
-                            activeTab === tabContent.id
+                        className={`transition-opacity duration-700 ease-in-out transform ${activeTab === tabContent.id
                                 ? "opacity-100 translate-x-0"
                                 : "opacity-0 translate-x-10"
-                        }`}
+                            }`}
                     >
                         {activeTab === tabContent.id && (
                             <TabContent
@@ -103,7 +103,7 @@ const Fee: React.FC = () => {
                 ))}
             </div>
 
-            <Accordion items={AccordionData}  />
+            <Accordion items={AccordionData} />
         </div>
     );
 };

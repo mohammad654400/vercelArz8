@@ -2,7 +2,8 @@ import React from 'react'
 
 export default function diversity() {
   return (
-    <svg width="currentSize" height="currentSize" viewBox="0 0 103 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg   width="100%" 
+    height="100%" viewBox="0 0 103 104" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8.58203 13.6641H94.3885" stroke="currentColor" strokeWidth="8.51093" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M8.58203 39.4043H47.1949" stroke="#FFC107" strokeWidth="8.51093" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M8.58203 65.1445H34.324" stroke="currentColor" strokeWidth="8.51093" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>

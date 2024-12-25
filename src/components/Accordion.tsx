@@ -30,7 +30,7 @@ export default function Accordion({ items, defaultOpenId }: AccordionProps) {
   return (
     <div className="accordion w-full  mx-auto ">
       {items.map((item) => (
-        <div key={item.id}  className="mb-4">
+        <div key={item.id}  className="mb-[10px] sm:mb-[15px]">
           <AccordionItem
             key={item.id}
             id={item.id}
