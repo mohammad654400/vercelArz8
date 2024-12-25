@@ -19,12 +19,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ imageUrls }) => {
     speed: 500,
     slidesToShow: 1,
     centerMode: true,
-    centerPadding: "15%",
+    centerPadding: "13%",
     autoplay: true,
     autoplaySpeed: 3000,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
-
   };
 
   return (
@@ -48,9 +47,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ imageUrls }) => {
 
 const CustomNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
-    
     <button
-      className="absolute top-1/2 right-0 transform -translate-y-1/2  text-white w-8 h-8 rounded-full flex items-center justify-center  z-10"
+      className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
       onClick={onClick}
     >
       <ArrowRight />
@@ -61,11 +59,10 @@ const CustomNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
 const CustomPrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <button
-      className="absolute top-1/2 left-0 transform -translate-y-1/2  text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
+      className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
       onClick={onClick}
     >
       <ArrowLeft />
-
     </button>
   );
 };

@@ -21,7 +21,7 @@ interface FeeContentProps {
             <thead className="w-full">
               <tr className="flex w-full text-foreground">
                 {tableHeaders.map((header, index) => (
-                  <th key={index} className="py-3 border-b border-primary w-1/6 min-w-[150px] text-center text-sm md:text-base font-semibold text-foreground">
+                  <th key={index} className="py-[14px] border-b-2 border-primary w-1/6 min-w-[130px] sm:min-w-[180px] text-center text-[10px] sm:text-base font-semibold text-foreground">
                     {header.label}
                   </th>
                 ))}
@@ -32,11 +32,11 @@ interface FeeContentProps {
               {tableData.map((row, index) => (
                 <tr key={index} className="flex w-full">
                   {tableHeaders.map((header) => (
-                    <td key={header.key} className="py-4 border-b border-[#ADADAD80] w-1/6 min-w-[150px] h-28 flex text-center justify-center items-center text-base font-semibold text-foreground">
+                    <td key={header.key} className="py-4 border-b border-[#ADADAD80] w-1/6 min-w-[130px] sm:min-w-[180px] h-16 sm:h-[109px] flex text-center justify-center items-center text-base font-semibold text-foreground">
                       {header.key === "0" ? (
-                        <img src={row[header.key as keyof TableRow]} alt="User Level" className="flex max-w-16 max-h-16" />
+                        <img src={row[header.key as keyof TableRow]} alt="User Level" className="flex  max-w-[41px] max-h-[41px] sm:max-w-[70px] sm:max-h-[70px]" />
                       ) : (
-                        <span className="text-sixth font-normal text-sm md:text-base">
+                        <span className="text-sixth font-normal text-xs md:text-base">
                         {row[header.key as keyof TableRow]}
                       </span>
                       )}
@@ -48,13 +48,13 @@ interface FeeContentProps {
           </table>
         </div>
   
-        <ul className="w-full space-y-2  md:space-y-4 mt-8 md:mt-16">
+        <ul className="w-full gap-[10px] sm:gap-5  md:space-y-4 my-10 lg:my-[100px]">
           {listData.map((item, index) => (
             <li key={index} className="flex items-start">
               <div className="w-5">
               <span className="mr-2 mt-2 w-3.5 h-3.5 bg-primary flex justify-start items-start rotate-45" />
               </div>
-              <span className="mr-3 text-sm md:text-lg font-normal text-foreground leading-10">{item.text}</span>
+              <span className="mr-3 text-xs sm:text-[19px] font-normal text-foreground leading-[26px] sm:leading-[44px]">{item.text}</span>
             </li>
           ))}
         </ul>

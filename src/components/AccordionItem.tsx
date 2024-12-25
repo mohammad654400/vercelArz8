@@ -28,10 +28,10 @@ export const AccordionItem = ({
   const contentRef = useRef<HTMLDivElement>(null); // برای اندازه‌گیری محتوای درونی
 
   return (
-    <div ref={undefined} className="relative rounded-xl p-8  flex w-full">
+    <div ref={undefined} className="relative rounded-xl sm:rounded-[20px] p-5  flex w-full">
       {isOpen && (
         <div
-          className="absolute -inset-px rounded-xl transition-opacity duration-300"
+          className="absolute -inset-px rounded-xl sm:rounded-[20px] transition-opacity duration-300"
           style={{
             background:
               "linear-gradient(to top, rgba(255, 193, 7, 0), #FFC107)",
@@ -41,7 +41,7 @@ export const AccordionItem = ({
       )}
 
       <div
-        className="absolute inset-0 bg-secondary px-8 py-6 rounded-xl"
+        className="absolute inset-0 bg-secondary px-8 py-6 rounded-xl sm:rounded-[20px]"
         aria-hidden="true"
       ></div>
 
@@ -81,7 +81,7 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1 leading-7 font-normal text-sm mt-8 ${
+                className={`flex-1  font-normal text-xs sm:text-sm leading-[22.5px] sm:leading-[38px] mt-[6px] sm:mt-[10px] lg:mt-[22px] ${
                   videoLink ? "sm:w-2/5 w-full" : ""
                 }`}
               >

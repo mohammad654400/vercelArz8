@@ -4,7 +4,7 @@ import VideoTutorial from "@/assets/icons/guidanceCenter/videoTutorial";
 import CurrencyTransactions from "@/assets/icons/guidanceCenter/currencyTransactions";
 import BuySellCurrency from "@/assets/icons/guidanceCenter/buySellCurrency";
 import GeneralQuestions from "@/assets/icons/guidanceCenter/generalQuestions";
-
+import fingerScan from "@/assets/icons/guidanceCenter/fingerscan";
 export interface Category {
   id: number;
   title: string;
@@ -16,7 +16,7 @@ export const categories: Category[] = [
   { id: 1, title: "سوالات عمومی", icon: GeneralQuestions },
   { id: 2, title: "خرید و فروش ارز", icon: BuySellCurrency },
   { id: 3, title: "واریز و برداشت ارز", icon: CurrencyTransactions },
-  { id: 4, title: "ثبت نام و احراز هویت", icon: IncomeGeneration },
+  { id: 4, title: "ثبت نام و احراز هویت", icon: fingerScan },
   { id: 5, title: "آموزش تصویری", icon: VideoTutorial },
 ];
 

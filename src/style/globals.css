@@ -18,16 +18,19 @@ body {
   height: 4px;
 }  
 ::-webkit-scrollbar-track {  
-  background: #bbb9b9;  
+  background: #F6F6F6;  
 }  
 
 ::-webkit-scrollbar-thumb {
-  background:  #555;  
+  background:  #FFC107;  
   border-radius: 6px;  
 }  
-/* ::-webkit-scrollbar-thumb:hover {  
-  background: var(--primary);  
-}   */
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
 @layer utilities {
   .bg-custom-gradient {
     background: linear-gradient(
