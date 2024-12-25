@@ -7,7 +7,7 @@ import Info from "@/assets/icons/rules/info";
 export default function DownloadApp() {
   return (
     <div className="bg-background pt-[127px]">
-      <BannerDownload />
+      <BannerDownload showWaveDivider={true} />
        <div className="base-style my-[65px] lg:my-[113px]" style={{ gap: "0px" }}>
             <div className="flex bg-primary w-full rounded-[20px] p-[13px] items-center  lg:mb-[69px] mb-[40px]">
               <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]">

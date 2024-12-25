@@ -11,6 +11,7 @@ body {
   color: var(--foreground);
   background-color: var(--background);
   font-family: "YekanBakh-SemiBold";
+  overflow-x: hidden;
 }
 ::-webkit-scrollbar {  
   width: 6px;  

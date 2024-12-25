@@ -11,6 +11,33 @@ export default function Rules() {
         title: tabBar[0]?.title || "شرایط و قوانین کلی",
     });
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isDragging = useRef(false);
+    const startX = useRef(0);
+    const scrollLeft = useRef(0)
+
+
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        isDragging.current = true;
+        startX.current = e.pageX - (containerRef.current?.offsetLeft || 0);
+        scrollLeft.current = containerRef.current?.scrollLeft || 0;
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging.current) return;
+        e.preventDefault();
+        const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+        const walk = x - startX.current;
+        if (containerRef.current) {
+            containerRef.current.scrollLeft = scrollLeft.current - walk;
+        }
+    };
+
+    const handleMouseUpOrLeave = () => {
+        isDragging.current = false;
+    };
+
 
     const tabClick = useCallback((id: number, title: string) => {
         setSelectedCategory({ id, title });
@@ -50,10 +77,10 @@ export default function Rules() {
                                     <div
                                         key={item.id}
                                         onClick={() => tabClick(item.id, item.title)}
-                                        className={`flex h-[44px] mb-[10px]  px-[15px] rounded-[19px] items-center justify-start whitespace-nowrap  font-semibold mx-[21px] cursor-pointer ${isSelected ? "bg-[#FFF6DD] text-primary text-sm" : "bg-secondary text-sixth text-[15px]"
+                                        className={`flex h-[54px] px-3 rounded-[20px] items-center justify-center whitespace-nowrap text-base font-semibold mx-[11px] cursor-pointer ${isSelected ? "bg-primary text-white" : "bg-fifth text-sixth"
                                             }`}
                                     >
-                                        <span className="truncate select-none">
+                                        <span className="truncate select-none text-sm lg:text-base font-semibold">
                                             {item.title}
                                         </span>
                                     </div>
@@ -70,7 +97,13 @@ export default function Rules() {
                     </div>
                 </div>
             ) : (
-                <div className="sm:flex hidden justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2 overflow-x-auto custom-scrollbar">
+                <div className="sm:flex hidden justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2 overflow-x-auto custom-scrollbar"
+                    ref={containerRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUpOrLeave}
+                    onMouseLeave={handleMouseUpOrLeave}
+                >
                     {tabBar.map((item) => {
                         const isSelected = selectedCategory.id === item.id;
                         return (
@@ -80,7 +113,9 @@ export default function Rules() {
                                 className={`flex h-[54px] px-3 rounded-[20px] items-center justify-center whitespace-nowrap text-base font-semibold mx-[11px] cursor-pointer ${isSelected ? "bg-primary text-white" : "bg-fifth text-sixth"
                                     }`}
                             >
-                                <span className="truncate select-none text-sm lg:text-base font-semibold">{item.title}</span>
+                                <span className="truncate select-none text-sm lg:text-base font-semibold">
+                                    {item.title}
+                                </span>
                             </div>
                         );
                     })}

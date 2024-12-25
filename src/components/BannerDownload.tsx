@@ -10,7 +10,7 @@ import BG from "@/assets/images/downloadApp/bg.png";
 
 import Link from "next/link";
 
-export default function BannerDownload() {
+export default function BannerDownload({ showWaveDivider }: { showWaveDivider: boolean }) {
   return (
     <div className="w-screen bg-[#242428] h-[697px] lg:h-[614px] ">
       <Image className="hidden lg:flex h-[614px] absolute w-screen" src={BG} alt="bg"/>
@@ -34,10 +34,10 @@ export default function BannerDownload() {
                 <li>احراز هویت سریع</li>
               </ul>
               <div className="flex w-full lg:justify-start justify-around ">
-                <Link href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
-                <Link href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
-                <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
-                <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                <Link className="z-20" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
+                <Link className="z-20" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                <Link className="z-20" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
+                <Link className="z-20" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
               </div>
             </div>
             <div className="w-[215px] h-[278px] mt-10 lg:mt-[30]  lg:w-[413px] lg:h-[534px]  order-2 flex justify-center lg:justify-end  items-center ">
@@ -51,9 +51,11 @@ export default function BannerDownload() {
             </div>
           </div>
         </div>
+        {showWaveDivider && (
         <div className="w-full flex justify-center text-[#242428] mt-[31px] lg:mt-[39px] ">
           <WaveDivider strokeColor="#FFFFFF" />
         </div>
+        )}
       </div>
     </div>
   );
