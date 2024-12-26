@@ -73,8 +73,7 @@ export default function SecondBannerSlider() {
             banner1,
             banner2,
             banner3,
-            banner3,
-            banner3,
+
           ].map((banner, index) => (
             <div>
               <div
@@ -90,7 +89,6 @@ export default function SecondBannerSlider() {
                   objectFit="cover"
                   width={380}
                   height={180}
-                  className=""
                 />
               </div>
             </div>

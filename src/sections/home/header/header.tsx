@@ -19,16 +19,19 @@ export default function Header() {
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
+  
+    handleScroll();
+  
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
 
   return (
     <div className="mt-2">

@@ -26,8 +26,8 @@ export default function RhombusIcon() {
         rx="2.29423"
         transform="rotate(-43.7811 0.179216 7.81458)"
         stroke="#FFC107"
-        stroke-opacity="0.2"
-        stroke-width="0.917692"
+        strokeOpacity="0.2"
+        strokeWidth="0.917692"
       />
     </svg>
   );
