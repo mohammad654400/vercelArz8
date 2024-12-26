@@ -12,8 +12,7 @@ import Link from "next/link";
 
 export default function BannerDownload({ showWaveDivider }: { showWaveDivider: boolean }) {
   return (
-    <div className="w-screen bg-[#242428] h-[697px] lg:h-[614px] ">
-      <Image className="hidden lg:flex h-[614px] absolute w-screen" src={BG} alt="bg"/>
+    <div className="w-full bg-[#242428] h-[697px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
       <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
         <div className="w-full h-full text-white text-center">
           <div className="w-full h-full justify-center items-center flex flex-col lg:flex-row">

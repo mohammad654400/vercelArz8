@@ -17,7 +17,7 @@ import DropdownFooter from "./dropdownFooter";
 import Link from "next/link";
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] ">
+    <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] pt-[279px] ">
       <div className="full-screen px-[20px]">
 
         <div className="flex gap-8 flex-wrap justify-center w-full md:justify-center lg:justify-between ">

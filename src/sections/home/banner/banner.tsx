@@ -1,17 +1,10 @@
-import Image from 'next/image';
 import React from 'react';
-import downloadapp from '@/assets/images/downloadapp.png';
+import BannerDownload from '@/components/BannerDownload';
 
 export default function Banner() {
   return (
-    <div className="w-full ">
-      <Image
-        alt="ارز هشت"
-        src={downloadapp}
-        layout="responsive"
-        objectFit="cover"
-        className="w-full h-auto"
-      />
+    <div className="w-full  overflow-hidden self-center m-0 p-0 my-[100px] ">
+    <BannerDownload showWaveDivider={false}/>
     </div>
   );
 }

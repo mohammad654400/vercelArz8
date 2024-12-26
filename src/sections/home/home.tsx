@@ -9,15 +9,20 @@ import QuickGuide from "./quickguide/quickGuide";
 import Blog from "./blog/blog";
 export default function Home() {
   return (
-    <div className="base-style">
-      <MainTop />
-      <TransAction />
-      <SecondBannerSlider />
-      <RealTimePrice />
+    <div>
+      <div className="base-style">
+        <MainTop />
+        <TransAction />
+        <SecondBannerSlider />
+        <RealTimePrice />
+      </div>
       <Banner />
-      <QuickGuide />
-      <Blog />
-      <Description />
+      <div className="base-style">
+        <QuickGuide />
+        <Blog />
+        <Description />
+      </div>
+
     </div>
   );
 }
