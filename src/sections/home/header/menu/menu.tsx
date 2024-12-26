@@ -6,13 +6,13 @@ import Link from "next/link";
 
 export default function Menu() {
   return (
-    <div className="flex justify-center items-start gap-7 pr-7 h-full">
-      <div className="flex justify-center items-center h-full  gap-2 duration-300 group cursor-pointer">
-        <p className="group-hover:text-primary"> قیمت ارز های دیجیتال</p>
+    <div className="flex justify-center items-start gap-[30px] pr-9 h-full text-[16px] ">
+      <div className="flex justify-center items-center h-full gap-2 duration-300 group cursor-pointer ">
+        <p className="group-hover:text-primary "> قیمت ارز های دیجیتال</p>
         <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />
         </div>
-        <div className="hidden group-hover:block absolute top-[80px] right-[229px] delay-700 ">
+        <div className="hidden group-hover:block absolute top-[80px] right-[229px] delay-700">
           <SubMenu />
         </div>
       </div>

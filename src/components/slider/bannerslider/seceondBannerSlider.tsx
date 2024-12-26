@@ -1,14 +1,16 @@
-'use client';
-import React from 'react';
-import Slider from 'react-slick';
-import Image from 'next/image';
-import banner1 from "@/assets/images/secondbanner/1.png"
-import banner2 from "@/assets/images/secondbanner/2.png"
-import banner3 from "@/assets/images/secondbanner/3.png"
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+"use client";
+import React, { useState } from "react";
+import Slider from "react-slick";
+import Image from "next/image";
+import banner1 from "@/assets/images/secondbanner/1.png";
+import banner2 from "@/assets/images/secondbanner/2.png";
+import banner3 from "@/assets/images/secondbanner/3.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function SecondBannerSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -24,42 +26,71 @@ export default function SecondBannerSlider() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        }
-      }
+        },
+      },
     ],
-    appendDots: (dots:any) => (
+    appendDots: (dots: any) => (
       <div
         style={{
-          position: 'absolute',
-          bottom: '-15px',
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
+          position: "absolute",
+          bottom: "-30px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <ul style={{ display: 'flex', margin: '0' }}>{dots}</ul>
+        <ul style={{ display: "flex", margin: "0" }}>{dots}</ul>
       </div>
     ),
+    customPaging: (i: number) => (
+      <div
+        style={{
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: i === currentSlide ? "#FFC107" : "#E0E0E0",
+          transition: "background 0.3s ease",
+        }}
+      ></div>
+    ),
   };
+
   return (
-    <div className="w-full px-4 md:px-0">
-      <div className="max-w-screen-lg mx-auto">
-        <Slider {...settings}>
-          {[banner1, banner2, banner3, banner1, banner2, banner3].map((banner, index) => (
-            <div key={index} className="p-2">
-              <div className="w-full">
-                <Image 
+    <div className="w-full">
+      <div className="w-full">
+        <Slider className="px-0 w-full" {...settings}>
+          {[
+            banner1,
+            banner2,
+            banner3,
+            banner1,
+            banner2,
+            banner3,
+            banner3,
+            banner3,
+          ].map((banner, index) => (
+            <div>
+              <div
+                key={index}
+                className={` flex justify-center md:
+                ${(index + 1) % 3 == 0 ? "ml-5" : ""}
+                ${(index + 1) % 3 == 2 ? "ml-[10px]" : ""}
+               `}
+              >
+                <Image
                   alt={`banner ${index + 1}`}
                   src={banner}
-                  className="w-full h-auto object-cover"
-                  style={{ maxHeight: '500px' }}
+                  objectFit="cover"
+                  width={380}
+                  height={180}
+                  className=""
                 />
               </div>
             </div>

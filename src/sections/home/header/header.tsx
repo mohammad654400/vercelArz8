@@ -24,16 +24,14 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <div>
+    <div className="mt-2">
       <div className="relative z-50">
         {open && <SaidBar close={toggleOpen} />}
       </div>
@@ -46,10 +44,10 @@ export default function Header() {
         z-30
         transition-all 
         duration-500 
-        ${isScrolled ? " bg-secondary shadow-sm top-0" : "bg-transparent"}
+        ${isScrolled ? " bg-secondary shadow-sm top-0 " : "bg-transparent"}
       `}
       >
-        <div className="flex items-center justify-between px-3  md:px-6 h-20">
+        <div className="flex items-center justify-between pl-[27px] pr-[20px]  md:px-6 h-20">
           {/* right section --------------------------------- */}
           <div
             onClick={toggleOpen}
@@ -59,14 +57,14 @@ export default function Header() {
           </div>
           <div className="flex justify-center  items-center h-full ">
             <Link href="/">
-              <div className="flex justify-center items-center gap-2  ">
+              <div className="flex justify-center items-center">
                 <Image
                   alt="ارز هشت"
                   src={logo}
                   layout=""
-                  className="w-8 h-8 md:object-cover md:w-16"
+                  className="w-[64px] h-[64px] md:object-cover md:w-16"
                 />
-                <h1 className="text-[20px] md:text-[30px] font-extrabold">
+                <h1 className="text-[34px] font-extrabold">
                   ارزهشت
                 </h1>
               </div>
@@ -76,12 +74,12 @@ export default function Header() {
             </div>
           </div>
           {/* left section --------------------------------- */}
-          <div className="flex justify-center items-center gap-3 h-full md:gap-6">
-            <div className="hidden xl:block text-background text-[14px] w-[150px] py-3 text-center bg-primary rounded-lg cursor-pointer ">
-              ورود یا عضویت
+          <div className="flex justify-center items-center gap-[24px] h-full md:gap-">
+            <div className="hidden xl:flex text-foreground text-[26px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
+              <p>ورود یا عضویت</p>
             </div>
             <div className="flex justify-center items-center cursor-pointer group h-full ">
-              <span className="w-7">
+              <span>
                 <Downlaod />
               </span>
               <div className="hidden absolute left-10 top-[80px] group-hover:block z-50 ">
@@ -89,7 +87,7 @@ export default function Header() {
               </div>
             </div>
             <div className="cursor-pointer " onClick={toggleTheme}>
-              {theme == "light" ? <Moon /> :<Sun /> }
+              {theme == "light" ? <Moon />:<Sun /> }
             </div>
           </div>
         </div>

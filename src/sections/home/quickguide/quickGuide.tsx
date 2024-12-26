@@ -2,6 +2,7 @@
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
+import RhombusIcon from "@/assets/icons/rhombus";
 import { useState } from "react";
 
 interface FAQItem {
@@ -71,20 +72,23 @@ const QuickGuide = () => {
   return (
     <div className="w-full flex flex-col md:flex-row gap-4 mx-auto bg-background rounded-2xl">
       <div className="w-full md:w-1/2 pr-4">
-        <h2 className="text-lg font-bold mb-8">راهنمای سریع</h2>
+        <h2 className="text-2xl font-bold mb-8">راهنمای سریع</h2>
         {rightFAQs.map((faq, index) => (
           <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+            <div className="flex items-center">
+
             <button
               onClick={() =>
                 toggleAccordion(index, setActiveRightIndex, activeRightIndex)
               }
-              className="w-full text-right flex justify-between items-center py-3 font-medium"
+              className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
             >
-              {faq.question}
+             <RhombusIcon/> {faq.question}
+            </button>
               <span className="transform transition-transform">
                 {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
               </span>
-            </button>
+            </div>
 
             <div
               className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
@@ -101,7 +105,7 @@ const QuickGuide = () => {
 
       <div className="w-full md:w-1/2">
         <div className="flex justify-end mb-1">
-          <button className="flex gap-2 items-center px-6 bg-primary mb-4 text-background py-2 rounded-2xl">
+          <button className="flex gap-2 items-center px-6 bg-primary mb-4 py-2 rounded-2xl">
             همه سوالات <ArrowLeft />
           </button>
         </div>
@@ -111,13 +115,16 @@ const QuickGuide = () => {
           </div>
           {leftFAQs.map((faq, index) => (
             <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+              <div className="flex items-center">
+
               <button
                 onClick={() =>
                   toggleAccordion(index, setActiveLeftIndex, activeLeftIndex)
                 }
-                className="w-full text-right flex justify-between items-center py-3  font-medium"
+                className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
               >
-                {faq.question}
+               <RhombusIcon/> {faq.question}
+              </button>
                 <span className="transform transition-transform">
                   {activeLeftIndex === index ? (
                     <span className="dark:text-white">
@@ -127,7 +134,7 @@ const QuickGuide = () => {
                     <ArrowDown />
                   )}
                 </span>
-              </button>
+              </div>
               {activeLeftIndex === index && faq.videoUrl && (
                 <div className="duration-500">
                   <div className="px-4 py-2">

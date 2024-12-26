@@ -1,6 +1,8 @@
 "use client";
 import BigArrow from "@/assets/icons/bigarrow";
 import MobileIcon from "@/assets/icons/mobile";
+import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import React, { useState } from "react";
 
 const Description = () => {
@@ -9,8 +11,8 @@ const Description = () => {
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className="w-full mx-auto  ">
-      <h1 className="my-8 text-lg ">
+    <div className="w-full mx-auto">
+      <h1 className="my-8 text-2xl">
         <span className="text-primary">خرید و فروش سریع</span> ارزهای دیجیتال با
         ارز هشت{" "}
       </h1>
@@ -20,8 +22,6 @@ const Description = () => {
         }`}
       >
         <p>
-        ارز هشت یک پلتفرم آنلاین معاملاتی است که به شما امکان خرید، فروش و مدیریت انواع ارزهای دیجیتال را می‌دهد. با استفاده از ارز هشت، شما می‌توانید به سادگی و امنیت کامل، دارایی‌های دیجیتال خود را معامله کنید و وارد دنیای هیجان‌انگیز ارزهای دیجیتال شوید.
-        ارز دیجیتال یا رمز ارز نوعی پول الکترونیکی است که به صورت مجازی وجود دارد و از رمزنگاری برای تأمین امنیت تراکنش‌ها و کنترل ایجاد واحدهای جدید استفاده می‌کند. به عبارت ساده‌تر، ارز دیجیتال پولی است که به صورت آنلاین و بدون نیاز به واسطه‌های مالی مانند بانک‌ها قابل انتقال است.
           ارز هشت یک پلتفرم آنلاین معاملاتی است که به شما امکان خرید، فروش و مدیریت انواع ارزهای دیجیتال را می‌دهد. با استفاده از ارز هشت، شما می‌توانید به سادگی و امنیت کامل، دارایی‌های دیجیتال خود را معامله کنید و وارد دنیای هیجان‌انگیز ارزهای دیجیتال شوید.
           ارز دیجیتال یا رمز ارز نوعی پول الکترونیکی است که به صورت مجازی وجود دارد و از رمزنگاری برای تأمین امنیت تراکنش‌ها و کنترل ایجاد واحدهای جدید استفاده می‌کند. به عبارت ساده‌تر، ارز دیجیتال پولی است که به صورت آنلاین و بدون نیاز به واسطه‌های مالی مانند بانک‌ها قابل انتقال است.
         </p>
@@ -29,20 +29,23 @@ const Description = () => {
         {/* Gradient Overlay */}
         {!isExpanded && (
           <div
-            className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#e6e5e9] to-[#3C3B4100] dark:bg-gradient-to-t from-[#3C3B41] to-[#3C3B4100] pointer-events-none"
+            className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#ffffff] to-[#3C3B4100] dark:from-[#434344] dark:to-[#3C3B4100] pointer-events-none"
           ></div>
         )}
       </div>
-      <button
-        onClick={toggleExpand}
-        className="w-full mt-2 hover:text-primary focus:outline-none"
-      >
-        {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
-      </button>
-      <div className="w-full mt-8 bg-foreground bg-[#242428] h-[266] dark:bg-[#242428] h-[266] text-background rounded-2xl">
+      <div>
+        <button
+          onClick={toggleExpand}
+          className="w-full mt-2 hover:text-primary focus:outline-none flex items-center justify-center gap-2"
+        >
+          {isExpanded ? <ArrowUp /> : <ArrowDown />}
+          {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
+        </button>
+      </div>
+      <div className="w-full mt-8 bg-foreground bg-[#242428] h-[266] dark:bg-[#1c1c1f] text-background rounded-2xl">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div className="dark:text-white">بدون معطلی ثبت نام و احراز هویت کن!</div>
-          <div className="flex flex-col  md:flex-row items-center  gap-4 text-primary ">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-primary">
             ثبت نام 
             <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0"><BigArrow /></span>
             احراز هویت
@@ -59,7 +62,7 @@ const Description = () => {
               type="text"
             />
             <div>
-              <button className="absolute left-1 top-1 px-2 cursor-pointer rounded-lg bg-primary py-[12px]  text-xs  ">
+              <button className="absolute left-1 top-1 px-2 cursor-pointer rounded-lg bg-primary py-[12px] text-xs">
                 شروع کنید
               </button>
             </div>

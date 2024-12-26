@@ -10,14 +10,13 @@ body {
   direction: rtl;
   color: var(--foreground);
   background-color: var(--background);
-  font-family: "YekanBakh-SemiBold";
-  overflow-x: hidden;
+  font-family: "YekanBakh";
+  font-weight: 600;
 }
 ::-webkit-scrollbar {  
   width: 6px;  
   height: 4px;
 }  
-
 ::-webkit-scrollbar-track {  
   background: #F6F6F6;  
 }  
@@ -27,10 +26,10 @@ body {
   border-radius: 6px;  
 }  
 
+
 .custom-scrollbar::-webkit-scrollbar {
   display: none; 
 }
-
 
 @layer utilities {
   .bg-custom-gradient {

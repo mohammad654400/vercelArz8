@@ -303,36 +303,75 @@ export default function BannerSlider() {
   };
 
   const cards = [
-    { price: "43,537,353", percentage: "1.37", name: "آوالانچ", symbol: "AVAX", Icon: AvalancheIcon },
-    { price: "43,537,353", percentage: "1.37", name: "آوالانچ", symbol: "AVAX", Icon: AvalancheIcon },
-    { price: "43,537,353", percentage: "1.37", name: "آوالانچ", symbol: "AVAX", Icon: AvalancheIcon },
-    { price: "43,537,353", percentage: "1.37", name: "آوالانچ", symbol: "AVAX", Icon: AvalancheIcon },
+    {
+      id: 1,
+      price: "43,537,353",
+      percentage: "-1.37",
+      name: "آوالانچ",
+      symbol: "AVAX",
+      Icon: AvalancheIcon,
+    },
+    {
+      id: 2,
+      price: "43,537,353",
+      percentage: "1.37",
+      name: "آوالانچ",
+      symbol: "AVAX",
+      Icon: AvalancheIcon,
+    },
+    {
+      id: 3,
+      price: "43,537,353",
+      percentage: "1.37",
+      name: "آوالانچ",
+      symbol: "AVAX",
+      Icon: AvalancheIcon,
+    },
+    {
+      id: 4,
+      price: "43,537,353",
+      percentage: "1.37",
+      name: "آوالانچ",
+      symbol: "sui",
+      Icon: AvalancheIcon,
+    },
   ];
 
   return (
     <div className="w-full">
       <Slider {...settings}>
         {[1, 2, 3].map((page) => (
-          <div key={page}>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-[10px] lg:text-sm">
+          <div className="w-full" key={page}>
+            <div className="flex justify-between flex-wrap text-[10px] lg:text-sm w-full ">
               {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className='flex justify-center mt-4'
-                >
+                <div key={index} className="flex justify-center gap-24 mt-4">
                   <div>
-                    <div className="flex gap-4 pb-2 ">
-                      <span>تومان</span>  
+                    <div className="flex pb-2 gap-1 ">
+                      <span>تومان</span>
                       <p>{card.price}</p>
                     </div>
-                    <p>% {card.percentage}</p>
+                    <p
+                      className={`${
+                        parseFloat(card.percentage) < 0
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      % {card.percentage}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2 pb-2">
-                    <div className="flex flex-col justify-center items-center gap-2 ">
-                      <p className="px-1">{card.name}</p>
-                      <p>{card.symbol}</p>
+                  <div
+                    className={`flex items-center dark:border- ${
+                      (index + 1) % 4 !== 0
+                        ? "border-r-[3px] border-[#ADADAD80] md:pr-5"
+                        : "pr-0"
+                    }`}
+                  >
+                    <div className="flex flex-col justify-center items-center ">
+                      <p className="px-1 text-[11px]">{card.name}</p>
+                      <p className="text-[11px]">{card.symbol}</p>
                     </div>
-                    <div>
+                    <div className="pl-1">
                       <card.Icon />
                     </div>
                   </div>
