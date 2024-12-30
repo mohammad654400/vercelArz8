@@ -10,7 +10,7 @@ import Blog from "./blog/blog";
 export default function Home() {
   return (
     <div>
-      <div className="base-style">
+      <div className="base-style duration-1000">
         <MainTop />
         <TransAction />
         <SecondBannerSlider />

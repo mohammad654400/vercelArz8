@@ -80,7 +80,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center gap-[24px] h-full md:gap-">
-            <div className="hidden xl:flex text-background text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
+            <div className="hidden xl:flex text-foreground text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
               <p>ورود یا عضویت</p>
             </div>
             <div className="flex justify-center items-center cursor-pointer group h-full ">

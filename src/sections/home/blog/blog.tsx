@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import hamester from "@/assets/images/hamester.png";
+import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 
 export default function Blog() {
   return (
@@ -8,12 +9,12 @@ export default function Blog() {
       {/* Header Section */}
       <div className="flex gap-2 w-full justify-between items-center">
         <div className="font-bold text-[10px] md:text-3xl hidden md:block">بلاگ ارز هشت</div>
-        <div className="px-2 flex justify-center items-center text-[10px] md:text-sm py-2 dark:text-black bg-[#F6F6F6] rounded-lg text-nowrap overflow-hidden">
+        <div className="px-4 border-secondary border flex justify-center items-center text-[10px] md:text-sm py-3  bg-fifth rounded-lg text-nowrap overflow-hidden">
           اطلاعیه ارز هشت درمورد نحوه توزیع توکن های هدیه همستر اکنون در کانال
           تلگرام قرار گرفته همین حالا به کانال مراجعه کنید.
         </div>
-        <button className="px-6 py-2 bg-primary rounded-2xl text-background  text-[10px] md:text-sm">
-          مطالعه بیشتر{" "}
+        <button className="flex gap-2 items-center w-[146px] h-[50px] justify-center bg-primary rounded-2xl text-foreground  text-[10px] md:text-[16px]">
+        مقالات بیشتر...{" "} <ArrowLeft/>
         </button>
       </div>
 
@@ -24,19 +25,19 @@ export default function Blog() {
           {[...Array(4)].map((_, index) => (
             <div
               key={index}
-              className="text-xs  bg-background rounded-lg  py-[30px]"
+              className="text-xs  bg-background rounded-lg w-[277px] h-[286px] "
             >
               <Image
-                className="pb-7 rounded-lg"
+                className="mb-5 rounded-lg "
                 alt="coin"
                 src={hamester}
-                width={280}
-                height={174}
+                width={276}
+                height={180}
               />
-              <p>بهترین کیف پول همستر کامبت برای کاربران ایرانی</p>
-              <div className="flex justify-between items-center py-7 ">
-                <div className="border-2 border-[#3C3B41] px-3 py-2 rounded-xl">ایردراپ ها</div>
-                <div className="text-primary">ادامه مطلب...</div>
+              <p className="text-sm text-wrap text-justify font-bold">بهترین کیف پول همستر کامبت برای کاربران ایرانی</p>
+              <div className="flex justify-between items-center py-4 ">
+                <div className="border-[1px] border-foreground px-3 py-2 rounded-xl">ایردراپ ها</div>
+                <div className="text-primary font-bold">ادامه مطلب...</div>
               </div>
             </div>
           ))}

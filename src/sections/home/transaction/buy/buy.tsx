@@ -70,7 +70,7 @@ export default function Buy({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500000"
           />
-          <div className="absolute flex gap-3 left-1 top-11 bg-[#F6F6F6] px-5 py-[11px]  rounded-xl dark:bg-secondary">
+          <div className="absolute flex gap-3 left-1 top-11 px-5 py-[11px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} />
             <p className=" text-lg">IRT</p>
           </div>
@@ -94,9 +94,9 @@ export default function Buy({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] bg-[#F6F6F6] px-4 py-[9.5px] rounded-xl dark:bg-secondary"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] px-4 py-[9.5px] rounded-xl dark:bg-third"
           >
-            <div>{currency.icon}</div>
+            <div className="w-5 h-5">{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p> 
             <ArrowDown/>
           </div>
@@ -110,7 +110,7 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12 text-lg text-background  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
+          <button className="px-10 text-xl text-foreground  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
               شروع خرید
           </button>
         </div>

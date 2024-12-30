@@ -74,17 +74,19 @@ const QuickGuide = () => {
       <div className="w-full md:w-1/2 pr-4">
         <h2 className="text-2xl font-bold mb-8">راهنمای سریع</h2>
         {rightFAQs.map((faq, index) => (
-          <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+          <div
+            key={index}
+            className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
+          >
             <div className="flex items-center">
-
-            <button
-              onClick={() =>
-                toggleAccordion(index, setActiveRightIndex, activeRightIndex)
-              }
-              className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
-            >
-             <RhombusIcon/> {faq.question}
-            </button>
+              <button
+                onClick={() =>
+                  toggleAccordion(index, setActiveRightIndex, activeRightIndex)
+                }
+                className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
+              >
+                <RhombusIcon /> {faq.question}
+              </button>
               <span className="transform transition-transform">
                 {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
               </span>
@@ -95,7 +97,7 @@ const QuickGuide = () => {
                 activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
               }`}
             >
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 opacity-50">
                 <p>{faq.answer}</p>
               </div>
             </div>
@@ -105,26 +107,28 @@ const QuickGuide = () => {
 
       <div className="w-full md:w-1/2">
         <div className="flex justify-end mb-1">
-          <button className="flex gap-2 items-center text-background px-6 bg-primary mb-4 py-2 rounded-2xl">
+          <button className="flex gap-2 items-center justify-center text-foreground w-[181px] bg-primary mb-4 h-[50px] text-[25px] rounded-2xl">
             همه سوالات <ArrowLeft />
           </button>
         </div>
-        <div className="p-5 border rounded-2xl">
-          <div className="flex justify-center py-4 text-lg ">
+        <div className="p-5 border-[1px] border-[#ADADAD80] rounded-2xl">
+          <div className="flex justify-center py-4 text-lg opacity-50 ">
             فیلم‌های آموزشی
           </div>
           {leftFAQs.map((faq, index) => (
-            <div key={index} className="mb-2 border-2 rounded-2xl px-3">
+            <div
+              key={index}
+              className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
+            >
               <div className="flex items-center">
-
-              <button
-                onClick={() =>
-                  toggleAccordion(index, setActiveLeftIndex, activeLeftIndex)
-                }
-                className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
-              >
-               <RhombusIcon/> {faq.question}
-              </button>
+                <button
+                  onClick={() =>
+                    toggleAccordion(index, setActiveLeftIndex, activeLeftIndex)
+                  }
+                  className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
+                >
+                  <RhombusIcon /> {faq.question}
+                </button>
                 <span className="transform transition-transform">
                   {activeLeftIndex === index ? (
                     <span className="dark:text-white">
@@ -137,16 +141,16 @@ const QuickGuide = () => {
               </div>
               {activeLeftIndex === index && faq.videoUrl && (
                 <div className="duration-500">
-                  <div className="px-4 py-2">
-                    <p>{faq.answer}</p>
+                  <div className="px-4 py-2 opacity-50">
                     <div className="mt-4">
                       <iframe
                         src={sanitizeApparatUrl(faq.videoUrl)}
                         title="آموزش ویدئویی"
-                        className="w-full aspect-video rounded-md shadow-md"
+                        className="w-full aspect-video rounded-md shadow-md mb-[14px]"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       ></iframe>
+                      <p >{faq.answer}</p>
                     </div>
                   </div>
                 </div>

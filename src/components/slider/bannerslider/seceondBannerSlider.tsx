@@ -36,17 +36,19 @@ export default function SecondBannerSlider() {
         },
       },
     ],
+    beforeChange: (oldIndex: number, newIndex: number) =>
+      setCurrentSlide(newIndex),
     appendDots: (dots: any) => (
       <div
         style={{
           position: "absolute",
-          bottom: "-30px",
+          bottom: "-36px",
           width: "100%",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <ul style={{ display: "flex", margin: "0" }}>{dots}</ul>
+        <ul style={{ display: "flex", gap: "8px" }}>{dots}</ul>
       </div>
     ),
     customPaging: (i: number) => (

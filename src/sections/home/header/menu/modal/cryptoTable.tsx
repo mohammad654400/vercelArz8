@@ -65,7 +65,7 @@ const  CryptoTable: React.FC = () => {
       <span className='w-9 block mb-4 pb-1 text-primary border-b-2 border-primary'>
         ارزها
       </span>
-      <div className="flex  justify-between items-center p-2 rounded-md font mb-4 overflow-x-auto">
+      <div className="flex  justify-between items-center p-2 rounded-md font mb-2 overflow-x-auto">
         {filterButtons.map((btn) => (
           <button
             key={btn.key}
@@ -81,22 +81,28 @@ const  CryptoTable: React.FC = () => {
         ))}
       </div>
 
-      <div className="w-full max-h-80 overflow-y-auto bg-secondary rounded-md">
+      <div className="w-full max-h-[335px] overflow-y-auto bg-secondary rounded-md">
         <table className="table-auto w-full border-collapse text-right">
-          <thead>
-            <tr className=" bg-[#3C3B41]  text-[#3C3B4180] dark:text-[#FFFFFF80] border-b ">
-              <th className="sticky top-0  px-4 py-2 text-sm">نماد</th>
-              <th className="sticky top-0  px-4 py-2 text-sm">24H تغییرات</th>
-              <th className="sticky top-0  pr-10 py-2 text-sm">قیمت به تومان</th>
+          <thead className=''>
+            <tr className="text-[#3C3B4180] dark:text-[#FFFFFF80] border-b ">
+              <th className="sticky top-0  bg-secondary  dark:bg-[#3C3B41] px-4 py-2 text-sm">نماد</th>
+              <th className="sticky top-0 bg-secondary dark:bg-[#3C3B41]  px-4 py-1 text-sm">24H تغییرات</th>
+              <th className="sticky top-0 bg-secondary dark:bg-[#3C3B41]  pr-10 py-2 text-sm">قیمت به تومان</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.length > 0 ? (
               filteredData.map((crypto, index) => (
-                <tr key={index} className="border-b hover:bg-[#3C3B41] dark:hover:bg-gray-600 ">
-                  <td className="flex pl-6 py-2 text-sm">
-                    {crypto.icon}
+                <tr key={index} className="border-b ">
+                  <td className="flex gap-2 pl-6 py-2 text-sm">
+                   <div className='w-[25px] h-[25px]'> {crypto.icon}</div>
+                    <div className='flex flex-col'>
                     {crypto.name}
+                    <p className='text-xs opacity-50'>
+                    {crypto.symbol}
+                    </p>
+                    </div>
+
                   </td>
                   <td className={`px-6 py-2 text-sm ${crypto.changeColor}`}>
                     % {crypto.change.toFixed(2)}

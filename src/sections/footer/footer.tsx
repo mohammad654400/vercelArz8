@@ -19,9 +19,7 @@ export default function Footer() {
   return (
     <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] pt-[279px] ">
       <div className="full-screen px-[20px]">
-
         <div className="flex gap-8 flex-wrap justify-center w-full md:justify-center lg:justify-between ">
-
           <div className="lg:px-0 px-5 md:w-2/3 w-full lg:w-[23%]">
             <div className="flex justify-start items-center gap-1 lg:gap ">
               <Image alt="ارز هشت" src={logo} width={64} height={64} />
@@ -37,39 +35,26 @@ export default function Footer() {
           <div className="flex flex-col gap-8 lg:w-[68%]">
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
               <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
-               <p className="text-base"> بـــــــــــــازار</p>
-                <Image
-                alt="bazar"
-                src={bazar}
-                />
+                <p className="text-base"> بـــــــــــــازار</p>
+                <Image alt="bazar" src={bazar} />
               </div>
               <div className="flex justify-between px-2 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
-               <p className="text-base ">وب اپلیکیشن</p>
-                <Image
-                alt="bazar"
-                src={webapp}
-                />
+                <p className="text-base ">وب اپلیکیشن</p>
+                <Image alt="bazar" src={webapp} />
               </div>
               <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
-               <p className="text-base"> مایکـــیت</p>
-                <Image
-                alt="bazar"
-                src={myket}
-                />
+                <p className="text-base"> مایکـــیت</p>
+                <Image alt="bazar" src={myket} />
               </div>
               <div className="flex justify-between px-2  items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
-               <p className="text-sm "> دانلود مستقیم</p>
-                <Image
-                alt="bazar"
-                src={directDownload}
-                />
+                <p className="text-sm "> دانلود مستقیم</p>
+                <Image alt="bazar" src={directDownload} />
               </div>
             </div>
             <div className="hidden md:block">
               <div className="flex justify-between ">
                 <div className="">
-                  <h1 className="mb-6 text-[22px] border-r-4 pr-4 border-primary ">
-                    {" "}
+                  <h1 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
                     راهنمای صرافی
                   </h1>
                   <ul className="flex flex-col gap-4">
@@ -84,7 +69,7 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="">
-                  <p className="mb-6 text-[22px] border-r-4 pr-4 border-primary">
+                  <p className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary">
                     لینک های مفید
                   </p>
                   <ul className="flex flex-col gap-4">
@@ -99,8 +84,7 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="">
-                  <p className="mb-6 text-[22px] border-r-4 pr-4 border-primary ">
-                    {" "}
+                  <p className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
                     اطلاعات تماس
                   </p>
                   <ul className="flex flex-col gap-4">
@@ -124,21 +108,30 @@ export default function Footer() {
               <DropdownFooter />
             </div>
           </div>
-
         </div>
-        <div className=" w-full bg-background py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[8px] md:text-sm gap-1  ">
+        <div className=" w-full bg-secondary py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-24 ">
+          <div className="flex justify-center items-center text-[8px] md:text-[23px] gap-1  ">
             تمامی حقوق این وبسایت متعلق به{" "}
-              <span className="text-primary ">صرافی  ارزدیجیتال ارزهشت</span> است.
+            <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
-          <div className="flex justify-center gap-4 dark:text-secondary  order-first sm:order-last">
-            <span className="text-background">
-              <YouTube />
+          <div className="flex justify-center items-center gap-4 dark:text-secondary  order-first sm:order-last ">
+            <span className=" dark:text-gray-400">
+              <YouTube />            
             </span>
-            <Instagram />
-            <Telegram />
-            <Twitter />
-            <Aparat />
+
+            <span  className="dark:text-gray-300">
+              <Aparat />
+            </span>
+            <span  className="dark:text-gray-300">
+              <Twitter />
+            </span>
+
+            <span  className="dark:text-gray-300">
+              <Telegram />
+            </span>
+            <span className="dark:text-gray-300">
+              <Instagram />
+            </span>
           </div>
         </div>
       </div>

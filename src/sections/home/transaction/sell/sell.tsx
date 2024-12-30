@@ -54,7 +54,7 @@ export default function Sell({
         <HalfCircle />
       </div>
       <div
-        className={`flex flex-col justify-between items-center bg-background roundedb-b-xl py-8 px-10 ${
+        className={`flex flex-col justify-between items-center bg-background rounded-b-xl py-8 px-10 ${
           width < 700 ? "lg:flex" : "xl:flex-row"
         }`}
       >
@@ -69,7 +69,7 @@ export default function Sell({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] bg-[#F6F6F6] px-4 py-[9.5px] rounded-xl dark:bg-secondary"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] px-4 py-[9.5px] rounded-xl bg-secondary"
           >
             <div>{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p>
@@ -80,7 +80,10 @@ export default function Sell({
           onClick={toggle}
           className="cursor-pointer my-5 lg:mt-0 self-end mb-10"
         >
+          <span className="text-foreground">
+
           <ArrowChange />
+          </span>
         </div>
         <div className="relative w-full lg:w-auto ">
           <p>مبلغ (پرداخت می‌کنید)</p>
@@ -91,7 +94,7 @@ export default function Sell({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex gap-3 left-1 top-11 bg-secondary  px-5 py-[10px] rounded-xl ">
+          <div className="absolute flex gap-3 left-1 top-11 bg-third px-5 py-[10px] rounded-xl ">
             <Image alt="iran" src={flag} className="" />
             <p className="text-lg">IRT</p>
           </div>
@@ -109,7 +112,7 @@ export default function Sell({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-8 text-xl py-[13px] mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto text-background">
+          <button className="px-8 text-xl py-[13px] mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto text-foreground">
             شروع فروش
           </button>
         </div>

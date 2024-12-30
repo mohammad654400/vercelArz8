@@ -170,7 +170,7 @@ export default function RealTimePrice() {
             مشاهده همه ارزها
           </button>
         </div>
-        <div className="p-4 w-full border-[1px]  border-t-0 rounded-b-xl ">
+        <div className="px-4 pt-[36px] w-full border-[1px] border-[#ADADAD80] border-t-0 rounded-b-xl">
           <div className="grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[13px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
             <div className="flex justify-start  mr-9">نماد</div>
             <div className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
@@ -180,20 +180,19 @@ export default function RealTimePrice() {
             <div className="hidden md:block pl-0 mr-14">عملیات</div>
           </div>
 
-          <div className="divide-y-[3px] divide-gray-200 text-[13px] w-full">
+          <div className="divide-y-[3.5px] divide-gray-200 text-[13px] w-full">
             {displayedCurrencies.map((currency, index) => (
               <div
                 key={index}
                 className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
               >
-                {/* اولین ستون: نماد */}
                 <div className="flex flex-col justify-start pl-0 pr-0">
-                  <div className="flex items-center justify-start pr-0 sm:">
+                  <div className="flex items-center gap-2 justify-start pr-0 sm:">
                     <div>
-                      <div>{currency.icon}</div>
+                      <div className="w-[44px] h-[44px]">{currency.icon}</div>
                     </div>
                     <div className="flex flex-col justify-start">
-                      <span className="text-[15px] ">{currency.name}</span>
+                      <span className="text-[18px] ">{currency.name}</span>
                       <p className="text-[15px] text-right hidden md:block opacity-45 w-auto">
                         {currency.symbol}
                       </p>
@@ -201,7 +200,6 @@ export default function RealTimePrice() {
                   </div>
                 </div>
 
-                {/* ستون‌های میانه (قیمت‌ها و تغییرات) */}
                 <div className="w-full hidden md:block text-[19px]">
                   ${currency.priceUSDT}
                 </div>
@@ -215,13 +213,12 @@ export default function RealTimePrice() {
                 >
                   % {currency.change}
                 </div>
-                <div className="flex justify-center m-auto hidden md:block object-cover">
-                  <Image src={ChartUP} alt="chart" width={100} height={48} />
+                <div className="md:flex justify-center m-auto hidden object-cover">
+                  <Image src={ChartUP} alt="chart" width={150} height={44} />
                 </div>
 
-                {/* آخرین ستون: عملیات */}
                 <div className="flex justify-end pl-0 pr-0">
-                  <button className="border-2 border-primary text-primary px-4 py-2 rounded-lg hidden md:block">
+                  <button className="border-2 border-primary text-primary w-[119px] h-[46px] rounded-lg hidden md:block">
                     جزئیات بیشتر
                   </button>
                 </div>
