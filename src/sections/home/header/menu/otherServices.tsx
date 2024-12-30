@@ -8,7 +8,7 @@ import React from "react";
 
 export default function OtherServices() {
   return (
-    <div className="absolute z-50 top-[80px] -right-10 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
+    <div className="absolute z-50 top-[80px] -right-10 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
       <div className="text-secondary absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>

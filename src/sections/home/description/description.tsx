@@ -17,7 +17,7 @@ const Description = () => {
         ارز هشت{" "}
       </h1>
       <div
-        className={`relative overflow-hidden transition-all duration-500 ${
+        className={`relative overflow-hidden transition-all duration-100 ${
           isExpanded ? "max-h-full" : "max-h-20"
         }`}
       >

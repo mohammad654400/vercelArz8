@@ -20,7 +20,7 @@ export default function Footer() {
     <div className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] pt-[279px] ">
       <div className="full-screen px-[20px]">
         <div className="flex gap-8 flex-wrap justify-center w-full md:justify-center lg:justify-between ">
-          <div className="lg:px-0 px-5 md:w-2/3 w-full lg:w-[23%]">
+          <div className="lg:px-0 px-5 md:w-2/3 w-full lg:w-[25%]">
             <div className="flex justify-start items-center gap-1 lg:gap ">
               <Image alt="ارز هشت" src={logo} width={64} height={64} />
               <h1 className="text-[30px] font-extrabold">ارزهشت</h1>
@@ -110,7 +110,7 @@ export default function Footer() {
           </div>
         </div>
         <div className=" w-full bg-secondary py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[8px] md:text-[23px] gap-1  ">
+          <div className="flex justify-center items-center text-[8px] md:text-[18px] gap-1  ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>

@@ -218,7 +218,7 @@ export default function RealTimePrice() {
                 </div>
 
                 <div className="flex justify-end pl-0 pr-0">
-                  <button className="border-2 border-primary text-primary w-[119px] h-[46px] rounded-lg hidden md:block">
+                  <button className="text-sm border-2 border-primary text-primary w-[119px] h-[46px] rounded-lg hidden md:block">
                     جزئیات بیشتر
                   </button>
                 </div>

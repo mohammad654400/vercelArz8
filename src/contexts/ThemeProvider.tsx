@@ -1,41 +1,78 @@
-'use client'
+import React, { createContext, useState, useContext, useEffect,useCallback } from "react";
 
-import { createContext, useContext, useEffect, useState } from 'react'
-
-
-const ThemeContext = createContext({
-  theme: 'light',
-  toggleTheme: () => {},
-})
-
-export function ThemeProvider({ children }:{children:React.ReactNode}) {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-
-    if (storedTheme) {
-      setTheme(storedTheme)
-      document.documentElement.classList.toggle('dark', storedTheme === 'dark')
-    } else if (prefersDark) {
-      setTheme('dark')
-      document.documentElement.classList.add('light')
-    }
-  }, [])
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark')
-  }
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  )
+interface ThemeContextType {
+  theme: string;
+  toggleTheme: () => void;
+  isThemeLoaded: boolean;
 }
 
-export const useTheme = () => useContext(ThemeContext)
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+const THEME_STORAGE_KEY = "theme";
+const DEFAULT_THEME = "light";
+
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [themeState, setThemeState] = useState({
+    theme: "light",
+    isThemeLoaded: false,
+  });
+
+  useEffect(() => {
+    const initializeTheme = () => {
+      const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      const initialTheme = storedTheme || DEFAULT_THEME;
+      
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(initialTheme);
+      
+      setThemeState({
+        theme: initialTheme,
+        isThemeLoaded: true,
+      });
+    };
+
+    initializeTheme();
+  }, []); 
+
+  const toggleTheme = useCallback(() => {
+    setThemeState((prevState) => {
+      const newTheme = prevState.theme === "light" ? "dark" : "light";
+      
+      document.documentElement.classList.remove(prevState.theme);
+      document.documentElement.classList.add(newTheme);
+      
+      localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+      
+      return {
+        ...prevState,
+        theme: newTheme,
+      };
+    });
+  }, []);
+
+  if (!themeState.isThemeLoaded) {
+    return <div className="theme-loading"></div>;
+  }
+
+  const value = {
+    theme: themeState.theme,
+    toggleTheme,
+    isThemeLoaded: themeState.isThemeLoaded,
+  };
+
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};

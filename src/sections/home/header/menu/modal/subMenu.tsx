@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function SubMenu() {
   return (
-    <div className="z-50 relative flex w-auto h-auto bg-secondary  rounded-2xl shadow-lg">
+    <div className="z-50 relative flex w-auto h-auto bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
       <div className="text-secondary absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
