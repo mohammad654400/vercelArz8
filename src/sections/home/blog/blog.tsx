@@ -12,7 +12,7 @@ export default function Blog() {
           اطلاعیه ارز هشت درمورد نحوه توزیع توکن های هدیه همستر اکنون در کانال
           تلگرام قرار گرفته همین حالا به کانال مراجعه کنید.
         </div>
-        <button className="px-6 py-2 bg-primary rounded-2xl  text-[10px] md:text-sm">
+        <button className="px-6 py-2 bg-primary rounded-2xl text-background  text-[10px] md:text-sm">
           مطالعه بیشتر{" "}
         </button>
       </div>
@@ -33,9 +33,9 @@ export default function Blog() {
                 width={280}
                 height={174}
               />
-              <p className="px-4">بهترین کیف پول همستر کامبت برای کاربران ایرانی</p>
-              <div className="flex justify-between items-center py-7 px-4">
-                <div className="border px-3 py-2 rounded-xl">ایردراپ ها</div>
+              <p>بهترین کیف پول همستر کامبت برای کاربران ایرانی</p>
+              <div className="flex justify-between items-center py-7 ">
+                <div className="border-2 border-[#3C3B41] px-3 py-2 rounded-xl">ایردراپ ها</div>
                 <div className="text-primary">ادامه مطلب...</div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Search() {
+export default function  Search() {
   return (
     <svg
       width="100%"

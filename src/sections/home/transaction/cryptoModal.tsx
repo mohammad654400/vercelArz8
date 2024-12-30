@@ -59,7 +59,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
             onChange={(e) => setSearch(e.target.value)}
           />
           <span className="absolute left-6">
+            <p className="w-5 h-5">
             <Search />
+            </p>
           </span>
         </div>
 

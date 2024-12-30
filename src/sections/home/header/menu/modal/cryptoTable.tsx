@@ -15,7 +15,7 @@ const cryptoData = [
   { name: 'آوالانچ', symbol: 'AVAX', price: "۱٬۷۴۵٬۴۱۳", change: 8.21, changeColor: 'text-green-500',icon:<BNB/> },
 ];
 
-const CryptoTable: React.FC = () => {
+const  CryptoTable: React.FC = () => {
   const [filter, setFilter] = useState<string>('most-popular'); 
   const [searchQuery, setSearchQuery] = useState<string>(''); 
 
@@ -56,23 +56,22 @@ const CryptoTable: React.FC = () => {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="جستجو کنید..."
+          placeholder="جستجوی نماد،..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-2 border rounded-lg bg-background"
+          className="w-full p-2 border rounded-lg bg-secondary outline-none placeholder:text-sm"
         />
       </div>
       <span className='w-9 block mb-4 pb-1 text-primary border-b-2 border-primary'>
         ارزها
       </span>
-      {/* فیلتر‌ها */}
-      <div className="flex justify-between items-center p-2 rounded-md mb-4 overflow-x-auto">
+      <div className="flex  justify-between items-center p-2 rounded-md font mb-4 overflow-x-auto">
         {filterButtons.map((btn) => (
           <button
             key={btn.key}
-            className={`px-4 py-2 text-[13px] rounded-lg font-bold ${
+            className={`px-4 py-2 text-[13px] rounded-lg  ${
               filter === btn.key 
-                ? 'bg-[#FFC107] text-white border-primary' 
+                ? 'bg-[#FFF4D8] text-primary dark:bg-[#64542c] border-[3px] border-primary' 
                 : 'bg-transparent'
             }`}
             onClick={() => setFilter(btn.key)}
@@ -82,28 +81,27 @@ const CryptoTable: React.FC = () => {
         ))}
       </div>
 
-      {/* جدول */}
-      <div className="w-full max-h-80 overflow-y-auto bg-background rounded-md  custom-scrollbar">
+      <div className="w-full max-h-80 overflow-y-auto bg-secondary rounded-md">
         <table className="table-auto w-full border-collapse text-right">
           <thead>
-            <tr className="bg-[#F6F6F6] text-[#3C3B4180] border-b">
-              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">نماد</th>
-              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">24H تغییرات</th>
-              <th className="sticky top-0 bg-[#F6F6F6] px-4 py-2 text-sm">قیمت به تومان</th>
+            <tr className=" bg-[#3C3B41]  text-[#3C3B4180] dark:text-[#FFFFFF80] border-b ">
+              <th className="sticky top-0  px-4 py-2 text-sm">نماد</th>
+              <th className="sticky top-0  px-4 py-2 text-sm">24H تغییرات</th>
+              <th className="sticky top-0  pr-10 py-2 text-sm">قیمت به تومان</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.length > 0 ? (
               filteredData.map((crypto, index) => (
-                <tr key={index} className="border-b hover:bg-slate-100 dark:hover:bg-gray-600">
-                  <td className="flex px-4 py-2 text-sm">
+                <tr key={index} className="border-b hover:bg-[#3C3B41] dark:hover:bg-gray-600 ">
+                  <td className="flex pl-6 py-2 text-sm">
                     {crypto.icon}
                     {crypto.name}
                   </td>
-                  <td className={`px-4 py-2 text-sm ${crypto.changeColor}`}>
+                  <td className={`px-6 py-2 text-sm ${crypto.changeColor}`}>
                     % {crypto.change.toFixed(2)}
                   </td>
-                  <td className="px-4 py-2 text-sm">{crypto.price} تومان</td>
+                  <td className="pr-6  py-2 text-sm">{crypto.price} تومان</td>
                 </tr>
               ))
             ) : (

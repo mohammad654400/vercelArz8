@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Menu() {
   return (
     <div className="flex justify-center items-start gap-[30px] pr-9 h-full text-[16px] ">
-      <div className="flex justify-center items-center h-full gap-2 duration-300 group cursor-pointer ">
+      <div className="flex justify-center items-center h-full gap-2  group cursor-pointer ">
         <p className="group-hover:text-primary "> قیمت ارز های دیجیتال</p>
         <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />
@@ -16,19 +16,16 @@ export default function Menu() {
           <SubMenu />
         </div>
       </div>
-
-      <div className="flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">
+      <div className="flex justify-center items-center  h-full hover:text-primary cursor-pointer">
         خرید و فروش آنی
       </div>
-      <div className="group flex justify-center items-center  h-full hover:text-primary duration-500 cursor-pointer">
+      <div className="group flex justify-center items-center  h-full hover:text-primary cursor-pointer">
         <Link href="/faq">سوالات متداول</Link>
       </div>
-
-      <div className="flex justify-center items-center w-[80]  h-full hover:text-primary duration-500 cursor-pointer pr-">
+      <div className="flex justify-center items-center w-[80]  h-full hover:text-primary cursor-pointer pr-">
         <Link href="/job">فرصت های شغلی</Link>
       </div>
-
-      <div className="relative flex justify-center items-center h-full  gap-2 duration-300 group cursor-pointer">
+      <div className="relative flex justify-center items-center h-full  gap-2  group cursor-pointer">
         <p className="hover:text-primary"> سایر خدمات</p>
         <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />

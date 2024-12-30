@@ -16,14 +16,17 @@ body {
 ::-webkit-scrollbar {  
   width: 6px;  
   height: 4px;
+  border-radius: 20%;
 }  
 ::-webkit-scrollbar-track {  
   background: #F6F6F6;  
+  border-radius:50px;
+
 }  
 
 ::-webkit-scrollbar-thumb {
   background:  #FFC107;  
-  border-radius: 6px;  
+  border-radius: 4px;  
 }  
 
 

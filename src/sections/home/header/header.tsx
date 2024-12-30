@@ -19,6 +19,7 @@ export default function Header() {
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -34,7 +35,7 @@ export default function Header() {
   
 
   return (
-    <div className="mt-2">
+    <div className="">
       <div className="relative z-50">
         {open && <SaidBar close={toggleOpen} />}
       </div>
@@ -60,11 +61,12 @@ export default function Header() {
           </div>
           <div className="flex justify-center  items-center h-full ">
             <Link href="/">
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center gap-1 items-center">
                 <Image
                   alt="ارز هشت"
                   src={logo}
                   layout=""
+                  property="false"
                   className="w-[64px] h-[64px] md:object-cover md:w-16"
                 />
                 <h1 className="text-[34px] font-extrabold">
@@ -78,7 +80,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center gap-[24px] h-full md:gap-">
-            <div className="hidden xl:flex text-foreground text-[26px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
+            <div className="hidden xl:flex text-background text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
               <p>ورود یا عضویت</p>
             </div>
             <div className="flex justify-center items-center cursor-pointer group h-full ">

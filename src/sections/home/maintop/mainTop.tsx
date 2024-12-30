@@ -27,10 +27,10 @@ export default function MainTop() {
             </span>
             <input
               placeholder="شماره موبایل خود را وارد کنید..."
-              className="px-4 pr-12 w-full h-16 bg-background border-2 rounded-xl outline-none text-[15px]"
+              className="px-4 pr-12 w-full h-16 bg-third dark:border-secondary border-2 rounded-xl outline-none text-[20px] placeholder:text-[15px]"
               type="text"
             />
-            <button className="absolute left-2 top-1/2 transform -translate-y-1/2 rounded-xl text-white bg-primary py-3 px-4">
+            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-lg rounded-xl text-white bg-primary py-3 px-6">
               شروع کنید
             </button>
           </div>
@@ -39,7 +39,7 @@ export default function MainTop() {
           <BannerSlider />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center  mt-8 rounded-xl py-2 w-full bg-background text-[9px] md:text-sm ">
+      <div className="flex flex-wrap justify-between items-center  mt-8 rounded-xl py-2 w-full bg-secondary text-[9px] md:text-sm ">
         <div className="flex gap-2 items-center md:gap-2">
           <div className="pr-5">
             <Ring />

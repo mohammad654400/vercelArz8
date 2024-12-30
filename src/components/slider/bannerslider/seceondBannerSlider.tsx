@@ -75,7 +75,6 @@ export default function SecondBannerSlider() {
             banner3,
 
           ].map((banner, index) => (
-            <div>
               <div
                 key={index}
                 className={` flex justify-center md:
@@ -86,12 +85,11 @@ export default function SecondBannerSlider() {
                 <Image
                   alt={`banner ${index + 1}`}
                   src={banner}
-                  objectFit="cover"
                   width={380}
                   height={180}
+                  className="object-cover"
                 />
               </div>
-            </div>
           ))}
         </Slider>
       </div>

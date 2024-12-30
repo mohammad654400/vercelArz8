@@ -150,7 +150,7 @@ export default function RealTimePrice() {
         قیمت لحظه ای ارزهای دیجیتال
       </p>
       <div className="bg-background overflow-hidden w-full ">
-        <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#FFFFFF80] rounded-t-xl">
+        <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#47444480] rounded-t-xl">
           <div className="flex  gap-3 w-full ">
             {filterOptions.map((option) => (
               <button
@@ -159,7 +159,7 @@ export default function RealTimePrice() {
                 className={`px-3   py-1 rounded-lg text-[13px] md:text-sm ${
                   activeFilter === option.key
                     ? "bg-yellow-400 text-white"
-                    : "text-[#FFFFFF80] text-[#54545880] dark:text-[#FFFFFF80]"
+                    : "text-[#54545880] dark:text-[#FFFFFF80]"
                 } ${option.mobile ? "block" : "hidden md:block"}`}
               >
                 {option.label}
@@ -171,42 +171,43 @@ export default function RealTimePrice() {
           </button>
         </div>
         <div className="p-4 w-full border-[1px]  border-t-0 rounded-b-xl ">
-          <div className="grid grid-cols-3 text-[#47444480] dark:text-[#FFFFFF80] text-[13px] md:text-sm md:grid-cols-6 w-full rounded-2xl bg-secondary text-center py-3 font-semibold  border-gray-300 ">
-            <div> نماد</div>
-            <div className="w-full hidden md:block">قیمت به USDT</div>
-            <div>قیمت به تومان</div>
-            <div className="">تغییرات 24h</div>
-            <div className="hidden md:block">نمودار 24h</div>
-            <div className="hidden md:block">عملیات</div>
+          <div className="grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[13px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
+            <div className="flex justify-start  mr-9">نماد</div>
+            <div className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
+            <div className="pl-0 pr-0">قیمت به تومان</div>
+            <div className="pl-0 pr-0">تغییرات 24h</div>
+            <div className="hidden md:block pl-0 pr-0">نمودار 24h</div>
+            <div className="hidden md:block pl-0 mr-14">عملیات</div>
           </div>
 
           <div className="divide-y-[3px] divide-gray-200 text-[13px] w-full">
             {displayedCurrencies.map((currency, index) => (
               <div
                 key={index}
-                className="grid grid-cols-3 md:grid-cols-6 max-w-[1150px] mx-auto items-center text-center py-4"
+                className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
               >
-                <div className="w-full flex flex-col justify-start">
-                  <div>
-                    <div className="flex items-center justify-start pr-0 sm:pr-6">
-                      <div>
-                        <div>{currency.icon}</div>
-                      </div>
-                      <div className="flex flex-col justify-start">
-                        <span className="text-[17px] ">{currency.name}</span>
-                        <p className="text-[15px] text-right hidden md:block opacity-45 w-auto">
-                          {currency.symbol}
-                        </p>
-                      </div>
+                {/* اولین ستون: نماد */}
+                <div className="flex flex-col justify-start pl-0 pr-0">
+                  <div className="flex items-center justify-start pr-0 sm:">
+                    <div>
+                      <div>{currency.icon}</div>
+                    </div>
+                    <div className="flex flex-col justify-start">
+                      <span className="text-[15px] ">{currency.name}</span>
+                      <p className="text-[15px] text-right hidden md:block opacity-45 w-auto">
+                        {currency.symbol}
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="w-full hidden md:block text-[21px]">
-                ${currency.priceUSDT} 
+
+                {/* ستون‌های میانه (قیمت‌ها و تغییرات) */}
+                <div className="w-full hidden md:block text-[19px]">
+                  ${currency.priceUSDT}
                 </div>
-                <div className="text-[21px]">{currency.priceIRR} تومان</div>
+                <div className="text-[18px]">{currency.priceIRR} تومان</div>
                 <div
-                  className={`text-[21px] ${
+                  className={`text-[20px] ${
                     currency.change.endsWith("-")
                       ? "text-red-500"
                       : "text-green-500"
@@ -217,7 +218,9 @@ export default function RealTimePrice() {
                 <div className="flex justify-center m-auto hidden md:block object-cover">
                   <Image src={ChartUP} alt="chart" width={100} height={48} />
                 </div>
-                <div className="flex justify-center">
+
+                {/* آخرین ستون: عملیات */}
+                <div className="flex justify-end pl-0 pr-0">
                   <button className="border-2 border-primary text-primary px-4 py-2 rounded-lg hidden md:block">
                     جزئیات بیشتر
                   </button>

@@ -26,6 +26,41 @@ const currencies = [
     change: "-0.75",
     icon: <BNB />,
   },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+  {
+    name: "اتریوم",
+    symbol: "ETH",
+    price: "54327353",
+    change: "-0.75",
+    icon: <BNB />,
+  },
+    {
+      name: "اتریوم",
+      symbol: "ETH",
+      price: "54327353",
+      change: "-0.75",
+      icon: <BNB />,
+    },
   // بقیه موارد
 ];
 
