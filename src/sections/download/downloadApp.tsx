@@ -21,7 +21,7 @@ export default function DownloadApp() {
             </div>
       
       
-            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2  lg:grid-cols-3  w-full grid-flow-row-dense mt-10 lg:mt-[82px]">
+            <div className="grid gap-x-[14px] gap-y-5 grid-cols-1 sm:grid-cols-2  lg:grid-cols-3  w-full grid-flow-row-dense mt-10 lg:mt-[82px]">
               {cardData.map((card, index) => (
                 <div
                   key={index}

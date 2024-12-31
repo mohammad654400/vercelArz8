@@ -57,9 +57,9 @@ export default function Rules() {
                 <span className="text-xs lg:text-base font-semibold mr-[10px] leading-[23px] lg:leading-[40px]">توجه : از تاریخ ۲۵/۱۰/۲۰۲۲ دامنه سایت از "www.arz8x.com" به "www.arz8.com" تغییر پیدا کرده است و برند "Arz8x" به "Arz8" تغییر پیدا کرده است.</span>
             </div>
 
-            <div className="flex flex-col w-full  justify-center items-center text-center text-sm lg:text-base font-semibold mb-10">
-                <span className="w-full lg:w-4/5  text-justify sm:text-center leading-[35px] sm:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
-                <span className="w-full lg:w-4/5  text-justify sm:text-center leading-[35px] sm:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
+            <div className="flex flex-col w-full  justify-center items-center text-center mb-10">
+                <span className="w-full lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
+                <span className="w-full lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>
 
 
@@ -77,10 +77,10 @@ export default function Rules() {
                                     <div
                                         key={item.id}
                                         onClick={() => tabClick(item.id, item.title)}
-                                        className={`flex h-[54px] px-3 rounded-[20px] items-center justify-center whitespace-nowrap text-base font-semibold mx-[11px] cursor-pointer ${isSelected ? "bg-primary text-white" : "bg-fifth text-sixth"
+                                        className={`mb-[10px] flex h-[54px] px-3 rounded-[20px]  items-center  whitespace-nowrap text-base font-semibold mx-[11px] cursor-pointer ${isSelected ? "bg-[#FFF6DD] text-[#FFC107]" : "bg-secondary text-sixth"
                                             }`}
                                     >
-                                        <span className="truncate select-none text-sm lg:text-base font-semibold">
+                                        <span className={`truncate select-none ${isSelected ? "text-[15px] lg:text-base" : "text-[14.78px] lg:text-[15.78px] "}  font-semibold`}>
                                             {item.title}
                                         </span>
                                     </div>
@@ -145,7 +145,7 @@ export default function Rules() {
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start gap-2">
                         <div className="w-5">
-                            <span className="mt-[6px] lg:mt-3 w-[15px] h-[15px] rounded bg-primary flex justify-start items-start rotate-45" />
+                            <span className="mt-[6px] lg:mt-[14px] w-[15px] h-[15px] rounded bg-primary flex justify-start items-start rotate-45" />
                         </div>
                         <span className="text-xs sm:text-base lg:text-[19px] font-normal text-foreground text-justify leading-[28px] sm:leading-[47px]">
                             {item.text}

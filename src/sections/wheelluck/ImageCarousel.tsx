@@ -1,8 +1,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
-import ArrowRight from "@/assets/icons/arrrow/arrowRight";
+import ArrowLeft from "@/assets/icons/wheel/arrowLeft";
+import ArrowRight from "@/assets/icons/wheel/arrowRight";
 
 interface ImageCarouselProps {
   imageUrls: string[];
@@ -48,7 +48,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ imageUrls }) => {
 const CustomNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <button
-      className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
+      className="absolute top-1/2 right-2 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
       onClick={onClick}
     >
       <ArrowRight />
@@ -59,7 +59,7 @@ const CustomNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
 const CustomPrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <button
-      className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
+      className="absolute top-1/2 left-2 transform -translate-y-1/2 text-white w-8 h-8 rounded-full flex items-center justify-center z-10"
       onClick={onClick}
     >
       <ArrowLeft />

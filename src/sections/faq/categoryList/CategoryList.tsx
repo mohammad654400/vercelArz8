@@ -11,7 +11,7 @@ export default function CategoryList({
   activeCategory, 
 }: CollapsibleListProps) { 
   return ( 
-    <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[400px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense "> 
+    <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[390px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense "> 
      
       {categories.map((category) => ( 
         <div 

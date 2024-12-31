@@ -48,18 +48,21 @@ export default function Header({
   };
 
   return (
-    <div className="w-screen bg-[#242428] h-[221px] sm:h-[362px]">
+    <div className="w-full bg-[#242428] h-[221px] sm:h-[362px]">
       <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
 
-        <div className="w-full h-full flex flex-col  justify-center items-center self-center ">
-          <h1 className="text-white text-xl sm:text-[32px] lg:text-[37px] font-extrabold mt-[53px] sm:mt-[91px] lg:mt-[78px]">
-            مرکز راهنمایی و سوالات متداول
-          </h1>
-          <p className="text-white text-xs sm:text-sm lg:text-base font-normal mt-[15px] mb-[28px] sm:mt-[20px] sm:mb-[46px] lg:mt-[25px] lg:mb-[54px]">
-            سوالات خود را جستجو کنید یا از دسته بندی ها استفاده کنید.
-          </p>
+        <div className="maxw-[342.2px] sm:w-[560px] lg:w-[639px] h-full flex flex-col justify-center items-center  gap-[28.79px] sm:gap-[46.35px] lg:gap-[54px] mx-auto ">
+          <div className="flex flex-col gap-[15.26px] sm:gap-[20px] lg:gap-[25px]">
+            <h1 className="text-white text-xl sm:text-[32px] lg:text-[37px] font-extrabold text-center">
+              مرکز راهنمایی و سوالات متداول
+            </h1>
+            <p className="text-white text-xs sm:text-sm lg:text-base font-normal text-center">
+              سوالات خود را جستجو کنید یا از دسته بندی ها استفاده کنید.
+            </p>
+          </div>
 
-          <div className="relative flex items-center  justify-center border-2 border-[#FFC107]  rounded-[16px] p-2 h-[43px] w-[342px] sm:h-[70px] sm:w-[560px] lg:h-[79px] lg:w-[693px]">
+
+          <div className="relative flex items-center  justify-center border-2 border-[#FFC107]  rounded-[16px] p-2 h-[43px] w-full sm:h-[70px]  lg:h-[79px]">
             <input
               type="text"
               placeholder="سوال خود را بنویسید..."
@@ -68,9 +71,9 @@ export default function Header({
             />
             <div className="w-8 h-8 p-[6px] sm:w-[54px] sm:h-[54px] sm:p-[10px] lg:w-[61px] lg:h-[61px] lg:p-[12px] rounded-[11px] sm:rounded-[17px] lg:rounded-xl bg-[#FFC107]">
               <div className="text-white">
-              <Search />
+                <Search />
               </div>
-              
+
             </div>
 
             {isDropdownVisible && filteredList.length > 0 && (
@@ -93,11 +96,12 @@ export default function Header({
           </div>
         </div>
 
-        <div className="w-full flex justify-center text-[#242428] mt-[37px] sm:mt-[86px] lg:mt-[73px]  ">
-          <WaveDivider strokeColor="#FFFFFF" />
-        </div>
+
+      </div>
+      <div className="w-full flex justify-center text-[#242428] -mt-1">
+        <WaveDivider strokeColor="#FFFFFF" />
       </div>
     </div>
-  
+
   );
 }

@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useRef } from 'react'
 import wheel from "@/assets/images/wheelluck/wheel.png"
 import ImageCarousel from './ImageCarousel'
 import Discount from "@/assets/icons/wheel/discount"
@@ -82,18 +82,47 @@ export const AccordionData = [
 ]
 
 export default function WheelLuck() {
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0)
+
+
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    startX.current = e.pageX - (containerRef.current?.offsetLeft || 0);
+    scrollLeft.current = containerRef.current?.scrollLeft || 0;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+    const walk = x - startX.current;
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = scrollLeft.current - walk;
+    }
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDragging.current = false;
+  };
+
+
+
+
   return (
-    <div className='base-style'style={{gap:"0"}}>
-      <div className='flex flex-col gap-10 md:gap-24 mt-28'>
-        
-        <div className="flex flex-col gap-10 lg:flex-row  w-full justify-between">
-          <div className="w-full flex flex-col justify-center order-2">
-            <h1 className='mb-[9px] lg:mb-[15px] text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
-            <p className='text-sm lg:text-base leading-[38px] lg:leading-[60px] font-semibold  text-sixth text-justify '>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
+    <div className='base-style' style={{ gap: "0" }}>
+      <div className='flex flex-col gap-10 lg:gap-24 mt-28'>
 
-
-            <Link className='self-end w-full lg:w-[220px] h-[53px] lg:h-[61px]' href="#">
-              <button className='mt-5 lg:mt-[13px] bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px] lg:rounded-xl'>گرداندن گردونه</button>
+        <div className="flex flex-col h-auto lg:flex-row  w-full justify-between">
+          <div className="w-full flex flex-col justify-center order-2 mt-10 lg:ml-10 lg:mt-0 ">
+            <h1 className='mb-[8.66px] lg:mb-[15px] text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
+            <p className='text-sm lg:text-lg leading-[38px] lg:leading-[60px] font-semibold  text-sixth text-justify mb-5 lg:mb-[13px] '>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
+            <Link className='self-end w-full lg:w-[220px] h-[53px] lg:h-[61px] ' href="#">
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px] lg:rounded-[20px]'>گرداندن گردونه</button>
             </Link>
           </div>
           <div className="w-full h-full  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
@@ -105,12 +134,18 @@ export default function WheelLuck() {
           </div>
         </div>
 
-        <div className='flex flex-col gap-5 md:gap-10'>
+        <div className='flex flex-col gap-5 lg:gap-10'>
           <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
-          <div className='w-full overflow-x-auto'>
-            <div className='flex flex-row gap-4 w-full'>
-              <div className='w-[33%] min-w-40 md:min-w-48 '>
-                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+          <div className='w-full overflow-x-auto custom-scrollbar' ref={containerRef}>
+            <div className='flex flex-row gap-4 w-full'
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUpOrLeave}
+              onMouseLeave={handleMouseUpOrLeave}
+            >
+
+              <div className='w-[33%] min-w-40 md:min-w-[195px] '>
+                <div className='w-40 h-40 md:w-[195px] md:h-[195px] bg-third flex flex-col gap-4 rounded-xl justify-center items-center  lg:shadow-[0_0_10px_#9B9B9B26] shadow-[0_0_8.34px_#9B9B9B26] dark:shadow-[0_0_8.34px_#24242838]'>
                   <div className='w-[82px] h-[82px] md:w-[69px] md:h-[69px]'>
                     <Awards />
                   </div>
@@ -118,8 +153,8 @@ export default function WheelLuck() {
                 </div>
               </div>
 
-              <div className='w-[33%] min-w-40 md:min-w-48  '>
-                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mx-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+              <div className='w-[33%] min-w-40 md:min-w-[195px]  '>
+                <div className='w-40 h-40 md:w-[195px] md:h-[195px] bg-third flex mx-auto flex-col gap-4 rounded-xl justify-center items-center lg:shadow-[0_0_10px_#9B9B9B26] shadow-[0_0_8.34px_#9B9B9B26] dark:shadow-[0_0_8.34px_#24242838]'>
                   <div className='w-[82px] h-[82px] md:w-[69px] md:h-[69px]'>
                     <Arz />
                   </div>
@@ -127,8 +162,8 @@ export default function WheelLuck() {
                 </div>
               </div>
 
-              <div className='w-[33%] min-w-40 md:min-w-48 '>
-                <div className='w-40 h-40 md:w-48 md:h-48 bg-third flex mr-auto flex-col gap-4 rounded-xl shadow-lg justify-center items-center'>
+              <div className='w-[33%] min-w-40 md:min-w-[195px] '>
+                <div className='w-40 h-40 md:w-[195px] md:h-[195px] bg-third flex mr-auto flex-col gap-4 rounded-xl justify-center items-center lg:shadow-[0_0_10px_#9B9B9B26] shadow-[0_0_8.34px_#9B9B9B26] dark:shadow-[0_0_8.34px_#24242838]'>
                   <div className='w-20 h-20 md:w-16 md:h-16'>
                     <Discount />
                   </div>
@@ -142,25 +177,27 @@ export default function WheelLuck() {
         </div>
 
         <div className='flex flex-col lg:flex-row'>
-          <div className='w-[388px] sm:w-[450px] lg:w-[489px] lg:h-[604px] self-center'>
+          <div className='w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
             <ImageCarousel imageUrls={imageUrls} />
           </div>
-          <div className='flex flex-col w-full  gap-7 mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
-            <h3 className='text-xl md-text-2xl  xl:text-3xl font-bold'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
-            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px]'>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
+          <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
+            <h3 className='text-xl md-text-2xl  xl:text-3xl font-bold mb-[16px] lg:mb-[28px]'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
+            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
             </p>
-            <div className='flex justify-end  h-12 lg:h-16'>
-              <button className='text-lg lg:text-2xl rounded-xl w-full h-full lg:w-auto font-bold text-white bg-primary px-7 py-2 text-center'>ثبت نام سریع</button>
+            <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
+              <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full font-bold text-white bg-primary  text-center md:mt-[26px]'>ثبت نام سریع</button>
             </div>
           </div>
 
 
         </div>
 
-        <div className='flex flex-col gap-8'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:mt-16'>
+        <div className='flex flex-col'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز طبق سطح کاربری</h2>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-5 mt-[26px] lg:mt-10'>
             {awards.map((item, index) => (
-              <div key={index} className='flex flex-col w-full py-[15px] px-[18px] sm:my-[10px] sm:px-3  bg-third rounded-xl'>
+              <div key={index} className='flex flex-col w-full py-[15px] px-[18px]  sm:px-3  bg-third rounded-xl'>
                 <div className='flex gap-4 items-center mb-2 sm:mb-3'>
                   <img src={item.icon} alt='icon' className='w-10 h-10 md:w-[60px] md:h-[60px]' />
                   <span className='text-base sm:text-[18.9px] font-bold'>{item.title}</span>
@@ -170,25 +207,25 @@ export default function WheelLuck() {
             ))}
           </div>
 
-          <div className='flex w-full py-[15px] px-[18px] bg-third rounded-xl '>
+          <div className='flex w-full py-[15px] px-[18px] mt-5 bg-third rounded-xl '>
             <span className='flex w-full text-sm sm:text-xl font-normal text-center justify-center items-center leading-[30px]' >نکته: در سطح طلایی و کریستال گزینه پوچ وجود نداره و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.</span>
           </div>
         </div>
 
 
-        <div className='flex flex-col lg:flex-row justify-between ' style={{ lineHeight: "2rem" }}>
-          <div className=" w-full gap-7 mb-4 lg:mb-0 flex flex-col justify-center order-3 lg:order-1">
-            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
-            <p className='text-xs md:text-xl font-semibold  text-sixth text-justify' style={{ lineHeight: "2rem" }}>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
+        <div className='flex flex-col lg:flex-row  justify-between '>
+          <div className=" w-full lg:w-[55%] flex flex-col justify-center order-3 lg:order-1  ">
+            <h2 className='text-xl md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
+            <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 
-            <Link className='self-end w-full lg:w-56 sm:h-16 h-[53px]' href="#">
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-3xl font-bold rounded-xl'>چرخش گردونه</button>
+            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] ' href="#">
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-3xl font-bold rounded-[15px]  lg:rounded-[20px]'>چرخش گردونه</button>
             </Link>
           </div>
-
-          <Image className='order-2 mx-auto lg:mx-28 ' src={Ghar} alt='Ghar' width={305} height={633} />
-
+          <div className='w-full lg:w-[45%] order-2 flex justify-center'>
+            <Image className='' src={Ghar} alt='Ghar' width={305} height={633} />
+          </div>
 
         </div>
 
@@ -202,8 +239,6 @@ export default function WheelLuck() {
 
         </div>
       </div>
-
-
     </div>
   )
 }

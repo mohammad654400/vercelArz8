@@ -21,34 +21,31 @@ export default function FaqView() {
   };
 
   return (
-    <div className="bg-background pt-20">
-
+    <div className="bg-background pt-[76px]"> 
       <Header
         questions={newData}
         setSelectItem={setSelectItem}
         setSelectedCategory={setSelectedCategory}
         scrollToItem={scrollToItem}
       />
+      <div className="bg-background">
+        <div className="base-style" style={{ gap: "0" }}>
+          <h2 className="hidden xl:flex text-[30px] font-bold mt-[60px] mb-[40px]">مرکز راهنمایی و سوالات متداول</h2>
+          <CategoryList
+            onCategory={(categoryId) => setSelectedCategory(categoryId)}
+            categories={categories}
+            activeCategory={selectedCategory}
+          />
 
-      <div className="base-style" style={{gap:"0"}}>
-      <h2 className="hidden xl:flex text-[30px] font-bold mt-[60px] mb-[40px]">مرکز راهنمایی و سوالات متداول</h2>
-        <CategoryList
-          onCategory={(categoryId) => setSelectedCategory(categoryId)}
-          categories={categories}
-          activeCategory={selectedCategory}
-        />
+          <Body
+            selectedCategory={selectedCategory}
+            questions={newData}
+            selectItem={selectItem}
+            itemRefs={itemRefs}
+          />
+        </div>
 
-        <Body
-          selectedCategory={selectedCategory}
-          questions={newData}
-          selectItem={selectItem}
-          itemRefs={itemRefs}
-        />
       </div>
-
-
-
-
     </div>
   );
 }

@@ -29,26 +29,29 @@ export default function BugBounty() {
     <div className="base-style" style={{ gap: 0 }}>
       {open ? (
 
-        <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
-          <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
+        <div className="mt-[76px] lg:mt-[243px]  flex flex-col justify-center items-center gap-10 lg:gap-0 z-10">
+          <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 lg:mb-[45px]  w-auto text-center">
             رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
           </h3>
           <Image src={backgroundImage} alt="" className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]" />
 
           <Form />
+          <div className="lg:mt-[59px]">
+
           <Rules />
+          </div>
         </div>
       ) : (
-        <div className="py-[76px] lg:py-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
+        <div className="flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
 
-          <Image src={backgroundImage} alt="" className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]" />
+          <Image src={backgroundImage} alt="" className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[800px]" />
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-[77px] lg:mt-[243px]">
             <h1 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">
               رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
             </h1>
 
-            <p className="text-xs lg:text-[25px] font-black text-justify mt-[13px] mb-5 lg:mt-10 lg:mb-[25px] leading-[35px] lg:leading-[70px]">
+            <p className="text-xs lg:text-[25px] font-normal  text-justify mt-[13px] mb-5 lg:mt-10 lg:mb-[25px] leading-[35px] lg:leading-[70px]">
               تیم امنیت ارزهشت فرصتی ویژه برای متخصصان امنیتی فراهم کرده است! با
               شرکت در رویداد باگ بانتی ارزهشت، توانایی خود را در کشف
               آسیب‌پذیری‌های امنیتی سامانه و اپلیکیشن این صرافی به چالش بکشید. اگر
@@ -68,12 +71,12 @@ export default function BugBounty() {
 
           <Rules />
 
-          <div className="flex flex-col items-center w-full">
-            <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
+          <div className="flex flex-col items-center w-full gap-10] lg:gap-[72px]">
+            <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center ">
               آسیب های مورد تایید
             </h3>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 lg:gap-x-48  gap-x-24 gap-y-8 place-content-between  w-full grid-flow-row-dense">
+            <div className="grid grid-cols-2 lg:grid-cols-3   gap-x-[102px] gap-y-[49px] xl:gap-y-[46px] xl:gap-x-[180px] place-content-between  w-full grid-flow-row-dense">
 
               {damage.map((item, index) => (
                 <div key={index} className="flex flex-col w-full items-center justify-start gap-8">
@@ -86,8 +89,8 @@ export default function BugBounty() {
 
           </div>
 
-          <div className="flex flex-col items-center w-full">
-            <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
+          <div className="flex flex-col items-center w-full gap-10">
+            <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center ">
               متخصصان برتر
             </h3>
 
@@ -114,7 +117,7 @@ export default function BugBounty() {
             <h4 className="text-white text-[29px] font-bold">
               با گزارش باگ، هم کمک کنید، هم پاداش بگیرید!
             </h4>
-            <p className="text-white text-xl font-semibold w-[85%] text-center mt-6 mb-9 leading-[38px]">
+            <p className="text-white px-[103px] text-xl font-semibold  text-center mt-6 mb-9  leading-[38.4px]">
               با شناسایی و گزارش آسیب‌پذیری‌های امنیتی به تیم امنیت ارزهشت،
               کیفیت خدمات را بهبود دهید و در عین حال، پاداش نقدی دریافت کنید.
               این یک فرصت ویژه برای متخصصان تست نفوذ است تا توانایی‌های خود را

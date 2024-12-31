@@ -51,7 +51,7 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
           </div>
         </div>
         {showWaveDivider && (
-        <div className="w-full flex justify-center text-[#242428] mt-[31px] lg:mt-[39px] ">
+        <div className="w-full flex justify-center text-[#242428] mt-[29px] lg:mt-[39px] ">
           <WaveDivider strokeColor="#FFFFFF" />
         </div>
         )}

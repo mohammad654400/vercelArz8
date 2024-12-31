@@ -4,9 +4,38 @@ import { AccordionItem } from "./AccordionItem";
 interface AccordionProps {
   items: { id: number; title: string; content: string, videoLink?: string; }[];
   defaultOpenId?: number | null;
+  gap?: string;
+  smGap?: string;
+  lgGap?: string;
+  textTitle?:string;
+  smTextTitle?:string;
+  lgTextTitle?:string;
+  textContent?:string;
+  smTextContent?:string;
+  lgTextContent?:string;
+  textContentLeading?:string;
+  smTextContentLeading?:string;
+  lgTextContentLeading?:string;
+
 }
 
-export default function Accordion({ items, defaultOpenId }: AccordionProps) {
+export default function Accordion({
+  items,
+  defaultOpenId,
+  gap = "gap-2.5", 
+  smGap = "sm:gap-3.5",
+  lgGap = "lg:gap-5",
+  textTitle="text-sm",
+  smTextTitle="text-xl",
+  lgTextTitle="text-xl",
+  textContent="text-xs",
+  smTextContent="text-sm",
+  lgTextContent="text-sm",
+   
+  textContentLeading=" leading-[22.5px]",
+  smTextContentLeading="sm:leading-[38.3px]",
+  lgTextContentLeading="lg:leading-[38.3px]",
+}: AccordionProps) {
 
   if (!Array.isArray(items)) {
     console.error("items is not an array", items);
@@ -27,10 +56,14 @@ export default function Accordion({ items, defaultOpenId }: AccordionProps) {
     }
   }, [defaultOpenId]);
 
+  const gapClasses = `${gap} ${smGap} ${lgGap}`;
+  const titleClasses = `${textTitle} ${smTextTitle} ${lgTextTitle}`;
+  const contentClasses = `${textContent} ${smTextContent} ${lgTextContent} ${textContentLeading} ${smTextContentLeading} ${lgTextContentLeading}`;
   return (
-    <div className="accordion w-full  mx-auto ">
+    <div className={`accordion w-full mx-auto flex flex-col ${gapClasses}`}>
+     
       {items.map((item) => (
-        <div key={item.id}  className="mb-[10px] sm:mb-[15px]">
+        <div key={item.id}  >
           <AccordionItem
             key={item.id}
             id={item.id}
@@ -39,6 +72,8 @@ export default function Accordion({ items, defaultOpenId }: AccordionProps) {
             videoLink={item.videoLink}
             isOpen={openItemId === item.id}
             onToggle={handleToggle}
+            titleClasses={titleClasses}
+            contentClasses={contentClasses}
           />
         </div>
 
