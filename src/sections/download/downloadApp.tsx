@@ -13,7 +13,7 @@ export default function DownloadApp() {
               <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]">
                 <Info />
               </div>
-              <span className="text-[13px] lg:text-base font-normal lg:font-semibold mr-[10px]">برای استفاده از صرافی ارز هشت در گوشی های ios  میتوانید از طریق سایت اقدام کنید.</span>
+              <span className="text-[13px] lg:text-base font-normal lg:font-semibold mr-[10px] text-[#242428]">برای استفاده از صرافی ارز هشت در گوشی های ios  میتوانید از طریق سایت اقدام کنید.</span>
             </div>
             <div className="hidden lg:flex flex-col  self-center">
               <h1 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">

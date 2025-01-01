@@ -95,7 +95,7 @@ export default function FormBugBounty() {
   };
 
   return (
-    <div className="rounded-[30px] w-full py-[24.7px] xl:py-10 px-5 bg-background">
+    <div className="rounded-[30px] w-full py-[24.7px] xl:py-10 px-5 bg-secondary">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="grid sm:grid-cols-2 gap-x-7 gap-y-5 text-xs lg:text-sm">
           <FormField

@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useRef } from 'react'
-import wheel from "@/assets/images/wheelluck/wheel.png"
+import wheel from "@/assets/images/wheelluck/wheell.png"
 import ImageCarousel from './ImageCarousel'
 import Discount from "@/assets/icons/wheel/discount"
 import Arz from "@/assets/icons/wheel/arz"
@@ -117,19 +117,22 @@ export default function WheelLuck() {
     <div className='base-style' style={{ gap: "0" }}>
       <div className='flex flex-col gap-10 lg:gap-24 mt-28'>
 
-        <div className="flex flex-col h-auto lg:flex-row  w-full justify-between">
-          <div className="w-full flex flex-col justify-center order-2 mt-10 lg:ml-10 lg:mt-0 ">
-            <h1 className='mb-[8.66px] lg:mb-[15px] text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
-            <p className='text-sm lg:text-lg leading-[38px] lg:leading-[60px] font-semibold  text-sixth text-justify mb-5 lg:mb-[13px] '>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
-            <Link className='self-end w-full lg:w-[220px] h-[53px] lg:h-[61px] ' href="#">
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px] lg:rounded-[20px]'>گرداندن گردونه</button>
+
+
+        <div className="flex flex-col xl:flex-row gap-y-10 gap-x-[44px]  w-full justify-between  ">
+          <div className=" w-full flex flex-col justify-center order-2">
+            <h1 className='text-base md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
+            <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
+
+
+            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}>
+              <button className=' bg-primary w-full h-full text-white text-[15px] lg:text-xl font-bold rounded-[15.3px] xl:rounded-[20px]'>گرداندن گردونه</button>
             </Link>
           </div>
-          <div className="w-full h-full  lg:justify-end order-1 lg:order-3 flex justify-center items-center self-center">
+          <div className="w-full order-1 xl:order-3 flex justify-center items-center self-center">
             <Image
               src={wheel}
-              alt="image"
-              className=' w-[388px] lg:w-[538px] h-full '
+              alt="image"     
             />
           </div>
         </div>

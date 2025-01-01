@@ -57,7 +57,7 @@ export default function Authentication() {
 
         <Timeline />
 
-        <div className='bg-[#1C1D1F] lg:pt-[62px] lg:pb-[55px] pt-5 pb-[15px] xl:text-3xl px-3 md:px-10 lg:px-16 flex flex-col rounded-3xl justify-center items-center w-full'>
+        <div className='bg-[#1C1D1F] lg:pt-[62px] lg:pb-[55px] pt-5 pb-[15px] xl:text-3xl px-3 md:px-10 lg:px-16 flex flex-col rounded-[10px] sm:rounded-[20px] justify-center items-center w-full'>
           <span className='text-sm lg:text-[29px] font-bold text-white text-center'>
             همین حالا ثبت نام و احراز هویت خودتان را تکمیل کنید.
           </span>

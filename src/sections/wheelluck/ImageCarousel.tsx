@@ -19,7 +19,6 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ imageUrls }) => {
     speed: 500,
     slidesToShow: 1,
     centerMode: true,
-    centerPadding: "50px",
     autoplay: true,
     autoplaySpeed: 3000,
     nextArrow: <CustomNextArrow />,
@@ -27,15 +26,15 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ imageUrls }) => {
   };
 
   return (
-    <div className="relative w-full h-full  rounded-3xl overflow-hidden">
+    <div className="relative w-full rounded-[20px] overflow-hidden">
       <Slider {...settings}>
         {imageUrls.map((url, index) => (
           <div key={index} className="px-2">
-            <div className="w-full h-full  rounded-xl overflow-hidden shadow-lg">
+            <div className="w-full h-full rounded-[20px]  overflow-hidden shadow-lg">
               <img
                 src={url}
                 alt={`Slide ${index}`}
-                className="object-cover w-full h-full  rounded-3xl overflow-hidden"
+                className=" w-full overflow-hidden"
               />
             </div>
           </div>

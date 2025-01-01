@@ -12,13 +12,13 @@ const Timeline = () => {
                     <div className="flex flex-col items-center">
                         <div className="flex">
                             <div className="w-5 h-5 rotate-45 bg-[#FFC107] rounded-[5px] z-10"></div>
-                            <span className="absolute mr-10 text-base font-semibold text-seventh">{level.level}</span>
+                            <span className="absolute mr-14 text-base font-semibold text-seventh">{level.level}</span>
                         </div>
 
                         {index !== levelsData.length - 1 ? (
-                            <div className="absolute top-6 right-2 w-1 bg-[#ADADAD80] opacity-50" style={{ height: "100%" }}></div>
+                            <div className="absolute top-6 right-2 w-1 bg-[#ADADAD80] opacity-50 h-full"></div>
                         ) : (
-                            <div className="absolute top-6 right-2 w-1 bg-[#ADADAD80] opacity-50" style={{ height: "calc(30px)" }}></div>
+                            <div className="absolute top-6 right-2 w-1 bg-[#ADADAD80] opacity-50 h-0" ></div>
                         )}
                     </div>
 
@@ -30,10 +30,10 @@ const Timeline = () => {
                         ].map((section, idx) => (
                             <div
                                 key={idx}
-                                className="w-full mb-4 md:mt-0 md:w-[32%] bg-third rounded-xl px-4 py-4  flex flex-col"
+                                className="w-full md:mt-0 md:w-[32%] bg-third rounded-xl px-4 py-4  flex flex-col mb-5 md:mb-[50px]"
                             >
-                                <span className={`mb-4 text-sm font-semibold ${section.color}`}>{section.title}:</span>
-                                <ul className="flex flex-col gap-1">
+                                <span className={`mb-4 text-sm font-semibold  ${section.color}`}>{section.title}:</span>
+                                <ul className="flex flex-col gap-1 ">
                                     {section.data.map((item, i) => (
                                         <li key={i} className="flex items-start">
                                             <div className="w-6">
