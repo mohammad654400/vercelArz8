@@ -215,7 +215,7 @@ export default function WheelLuck() {
 
         <div className='flex flex-col lg:flex-row  justify-between '>
           <div className=" w-full lg:w-[55%] flex flex-col justify-center order-3 lg:order-1  ">
-            <h2 className='text-xl md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
+            <h2 className='text-xl md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
             <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 
@@ -231,8 +231,7 @@ export default function WheelLuck() {
 
 
         <div className='flex flex-col gap-10'>
-          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
-
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>سوالات متداول گردونه شانس ارزهشت</h2>
           <div className='flex flex-col gap-5'>
             <Accordion items={AccordionData} />
           </div>

@@ -66,7 +66,7 @@ export const AccordionItem = ({
           <span className={`text-start font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
-          <span>{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
+          <span className="w[18px] h-[18px]">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
 
         <div

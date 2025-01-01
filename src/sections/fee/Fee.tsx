@@ -59,7 +59,7 @@ const Fee: React.FC = () => {
             <div className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-20">
 
                 <div className="flex flex-col w-full h-[174px] sm:h-[296px] gap-[15px] sm:gap-[35px] lg:gap-[29px]  bg-[#242428] rounded-[18px] sm:rounded-[30px] justify-center items-center px-2 sm:px-[19px] lg:px-[157px] ">
-                    <h1 className="text-[25px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
+                    <h1 className="text-[20px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
                     <span className="text-xs sm:text-sm lg:text-base font-semibold text-[#FFFFFF] text-center leading-[28px] sm:leading-[40px] lg:leading-[40px]" >
                         ارز هشت به دنبال فراهم آوردن بستری امن برای انجام معاملات ارز دیجیتال کاربران است . ما در ارز هشت از ابتدای شروع فعالیت سعی کردیم امکانات درخور کاربران ارزشمند خود داشته باشیم و همواره در حال به روز رسانی و بهبود عملکرد ارز هشت هستیم.
                     </span>
@@ -68,12 +68,12 @@ const Fee: React.FC = () => {
                 <div className="flex flex-col gap-10 sm:gap-[50px] lg:gap-[80px]">
 
                     <div className="flex flex-col  self-center ">
-                        <h1 className="text-lg sm:text-[35px] font-bold border-b-4 border-primary pb-4 w-auto text-center">
+                        <h1 className="text-lg sm:text-[35px] font-bold border-b-4 border-primary pb-1 sm:pb-3 w-auto text-center">
                             کارمزد و خدمات تسویه در ارز هشت
                         </h1>
                     </div>
 
-                    <div className="bg-secondary p-3 rounded-[20px] sm:rounded-[30px] w-full  max-w-[388px] sm:max-w-[566px]  sm:w-[566px]  h-[62px] sm:h-[90px] flex self-center justify-center items-center">
+                    <div className="bg-secondary p-2 rounded-[20px] sm:rounded-[30px] w-full  max-w-[388px] sm:max-w-[566px]  sm:w-[566px]  h-[62px] sm:h-[90px] flex self-center justify-center items-center">
                         <div className="flex w-full h-full gap-4">
                             {allTabs.map((tab) => (
                                 <Tab
