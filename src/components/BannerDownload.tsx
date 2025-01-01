@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Phone from "@/assets/images/downloadApp/phone.png";
+import Phone2 from "@/assets/images/downloadApp/phone2.png";
 import Android from "@/assets/icons/downloadApp/android";
 import Myket from "@/assets/icons/downloadApp/miket";
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
@@ -43,9 +44,6 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
               <Image
                 alt="نمایش اپلیکیشن روی تلفن همراه"
                 src={Phone}
-                width={413}
-                height={534}
-                className="max-w-full max-h-full"
               />
             </div>
           </div>

@@ -6,6 +6,7 @@ import CryptoModal from "../cryptoModal";
 import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
 import { useFormattedNumber } from "@/hooks/useFormattedNumber";
+import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 
 export default function Buy({
   toggle,
@@ -63,15 +64,15 @@ export default function Buy({
         <div className="relative w-full lg:w-auto ">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none bg-background text-[25px] font-normal  h-[58px] w-full lg:w-[414px]  border rounded-xl mt-5 pr-4"
+            className="outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full lg:w-[414px]  border rounded-xl mt-5 pr-4"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500000"
           />
-          <div className="absolute flex gap-3 left-1 top-11 bg-[#F6F6F6] px-4 py-3 rounded-xl dark:bg-background">
+          <div className="absolute flex gap-3 left-1 top-11 px-5 py-[11px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} />
-            <p className="mt-1 text-">IRT</p>
+            <p className=" text-lg">IRT</p>
           </div>
           <div className="flex gap-5 mt-5 text-xs md:text-sm">
             <p>قیمت خرید: {formatNumber(currency.price.toLocaleString())} تومان</p>
@@ -85,7 +86,7 @@ export default function Buy({
         <div className="relative w-full lg:w-auto ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-10 text-[25px] font-normal bg-background outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
+            className="mb-10 text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -93,10 +94,11 @@ export default function Buy({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-3 left-1 top-[45px] bg-[#F6F6F6] px-4 py-3 rounded-xl dark:bg-background"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] px-4 py-[9.5px] rounded-xl dark:bg-third"
           >
-            <div>{currency.icon}</div>
-            <p className="mt-1">{currency.symbol}</p>
+            <div className="w-5 h-5">{currency.icon}</div>
+            <p className=" text-lg">{currency.symbol}</p> 
+            <ArrowDown/>
           </div>
         </div>
 
@@ -108,7 +110,7 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-12  py-[18px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
+          <button className="px-10 text-xl text-foreground  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
               شروع خرید
           </button>
         </div>

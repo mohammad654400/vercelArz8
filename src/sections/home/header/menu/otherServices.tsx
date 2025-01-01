@@ -1,236 +1,72 @@
-import Arrow from "@/assets/icons/arrrow/arrow";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import HalfCircle from "@/assets/icons/halfCircle";
+import EarnMoneyIcon from "@/assets/icons/header/menu/earnMoneyIcon";
+import GiftCardIcon from "@/assets/icons/header/menu/giftCardIcon";
+import OfferIcon from "@/assets/icons/header/menu/offerIcon";
+import WheelIcon from "@/assets/icons/header/menu/WheelIcon";
 import React from "react";
 
 export default function OtherServices() {
   return (
-    <div className="absolute z-50 top-[80px] -right-10 t flex flex-wrap  gap-4 w-[670px] h-[491] bg-background rounded-2xl p-7 ">
-      <div className="text-background absolute right-16 rounded-xl -top-3 ">
+    <div className="absolute z-50 top-[80px] -right-10 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
+      <div className="text-secondary absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className=" relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
-        <svg
-          width="21"
-          height="20"
-          viewBox="0 0 21 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10.7141 17.2947C9.11587 17.2947 7.51765 16.6875 6.29443 15.4643C3.85693 13.0268 3.85693 9.0625 6.29443 6.625C8.73193 4.1875 12.6962 4.1875 15.1337 6.625C17.5712 9.0625 17.5712 13.0268 15.1337 15.4643C13.9105 16.6875 12.3123 17.2947 10.7141 17.2947ZM10.7141 6.13394C9.45516 6.13394 8.19622 6.61607 7.24086 7.57143C5.33015 9.49107 5.33015 12.5982 7.24086 14.5179C9.1605 16.4375 12.2766 16.4286 14.1873 14.5179C16.098 12.5982 16.098 9.49107 14.1873 7.57143C13.232 6.61607 11.973 6.13394 10.7141 6.13394Z"
-            fill="#FFC107"
-          />
-          <path
-            d="M7.36593 19.9911C7.28557 19.9911 7.19629 19.9732 7.11593 19.9464C5.107 19.1429 3.48199 17.7232 2.39271 15.8482C1.33914 14.0178 0.919496 11.9464 1.19628 9.83929C1.24093 9.47322 1.58021 9.21427 1.94628 9.25891C2.31235 9.30355 2.57127 9.64286 2.52663 10.0089C2.29449 11.8125 2.65165 13.5982 3.55344 15.1696C4.48201 16.7768 5.88378 18 7.60699 18.6875C7.94628 18.8303 8.11593 19.2142 7.982 19.5625C7.88379 19.8303 7.62486 19.9911 7.36593 19.9911Z"
-            fill="#3C3B41"
-          />
-          <path
-            d="M5.22266 4.66964C5.02623 4.66964 4.8298 4.58037 4.69588 4.41073C4.46373 4.11609 4.51731 3.69645 4.81195 3.47324C6.51731 2.14288 8.55301 1.4375 10.7137 1.4375C12.8209 1.4375 14.8298 2.11608 16.5173 3.4018C16.8119 3.62501 16.8655 4.04464 16.6423 4.33929C16.4191 4.63393 15.9994 4.68751 15.7048 4.4643C14.2584 3.35716 12.5352 2.77679 10.7137 2.77679C8.85658 2.77679 7.09765 3.38395 5.63336 4.52681C5.50836 4.62502 5.36551 4.66964 5.22266 4.66964Z"
-            fill="#3C3B41"
-          />
-          <path
-            d="M14.0636 19.9919C13.7958 19.9919 13.5457 19.8312 13.4386 19.5722C13.3047 19.2329 13.4654 18.8401 13.8136 18.6972C15.5368 18.0008 16.9386 16.7865 17.8672 15.1794C18.7779 13.608 19.135 11.8222 18.894 10.0186C18.8493 9.65257 19.1083 9.31332 19.4743 9.26868C19.8315 9.22403 20.1797 9.48298 20.2243 9.84906C20.4922 11.9473 20.0815 14.0276 19.0279 15.858C17.9475 17.733 16.3136 19.1437 14.3047 19.9562C14.2332 19.974 14.1529 19.9919 14.0636 19.9919Z"
-            fill="#3C3B41"
-          />
-        </svg>
-        <div>
-          <p>گردونه شانس</p>
-          <p className="text-[10px]">
+      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between gap-2">
+            <div className="flex gap-2">
+              <WheelIcon/>
+              <p>گردونه شانس</p>
+            </div>
+            <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10  flex justify-center text-background text-xs items-center">جدید</div>
+            <ArrowLeft />
+          </div>
+          <p className="text-[10px]  ">
             هر روز یک شانس دارید تا ارزهای دیجیتال و جایزه نقدی برنده شوید.
           </p>
         </div>
-        <div className="group-hover:text-primary absolute top-1 left-1 cursor-pointer cursor-pointer">
-          <ArrowLeft />
-        </div>
       </div>
-      <div className="relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
-        <svg
-          width="26"
-          height="22"
-          viewBox="0 0 26 22"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1.6665 9.08398H10.8332"
-            stroke="#3C3B41"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M5 15.75H6.66667"
-            stroke="#FFC107"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M8.75 15.75H12.0833"
-            stroke="#FFC107"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M18.3332 11.441V15.4243C18.3332 18.3493 17.5915 19.0827 14.6332 19.0827H5.3665C2.40817 19.0827 1.6665 18.3493 1.6665 15.4243V8.57436C1.6665 5.64936 2.40817 4.91602 5.3665 4.91602H11.0665"
-            stroke="#3C3B41"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M23.9849 5H15.9849V9C15.9849 10.5 16.4849 11 17.9849 11H21.9849C23.4849 11 23.9849 10.5 23.9849 9V5Z"
-            stroke="#3C3B41"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M24.75 3.5V4C24.75 4.55 24.485 5 23.75 5H16.25C15.485 5 15.25 4.55 15.25 4V3.5C15.25 2.95 15.485 2.5 16.25 2.5H23.75C24.485 2.5 24.75 2.95 24.75 3.5Z"
-            stroke="#3C3B41"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M19.8199 2.5007H17.0599C16.8899 2.3157 16.8949 2.0307 17.0749 1.8507L17.7849 1.1407C17.9699 0.955703 18.2749 0.955703 18.4599 1.1407L19.8199 2.5007Z"
-            stroke="#3C3B41"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M22.9348 2.5007H20.1748L21.5348 1.1407C21.7198 0.955703 22.0248 0.955703 22.2098 1.1407L22.9198 1.8507C23.0998 2.0307 23.1048 2.3157 22.9348 2.5007Z"
-            stroke="#3C3B41"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M18.4702 5V7.57C18.4702 7.97 18.9102 8.205 19.2452 7.99L19.7152 7.68C19.8852 7.57 20.1002 7.57 20.2652 7.68L20.7102 7.98C21.0402 8.2 21.4852 7.965 21.4852 7.565V5H18.4702Z"
-            stroke="#FFC107"
-            strokeWidth="0.75"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-
-        <div>
-          <p>کارت هدیه</p>
-          <p className="text-[10px]">
-            کارت هدیه با موجودی رمز ارز ایجاد کنید و به دیگران هدیه بدهید.
-          </p>
-        </div>
-        <div className="group-hover:text-primary absolute top-1 left-1 cursor-pointer">
-          <ArrowLeft />
-        </div>
-      </div>
-      <div className=" relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
-        <div>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.9994 5.96602C14.9494 5.95769 14.8911 5.95769 14.8411 5.96602C13.6911 5.92435 12.7744 4.98268 12.7744 3.81602C12.7744 2.62435 13.7327 1.66602 14.9244 1.66602C16.1161 1.66602 17.0744 2.63268 17.0744 3.81602C17.0661 4.98268 16.1494 5.92435 14.9994 5.96602Z"
-              stroke="#3C3B41"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M14.1412 12.0328C15.2829 12.2245 16.5412 12.0245 17.4245 11.4328C18.5995 10.6495 18.5995 9.36615 17.4245 8.58282C16.5329 7.99115 15.2579 7.79115 14.1162 7.99115"
-              stroke="#FFC107"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M4.97588 5.96602C5.02588 5.95769 5.08421 5.95769 5.13421 5.96602C6.28421 5.92435 7.20088 4.98268 7.20088 3.81602C7.20088 2.62435 6.24255 1.66602 5.05088 1.66602C3.85921 1.66602 2.90088 2.63268 2.90088 3.81602C2.90921 4.98268 3.82588 5.92435 4.97588 5.96602Z"
-              stroke="#3C3B41"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M5.83402 12.0328C4.69235 12.2245 3.43402 12.0245 2.55068 11.4328C1.37568 10.6495 1.37568 9.36615 2.55068 8.58282C3.44235 7.99115 4.71735 7.79115 5.85901 7.99115"
-              stroke="#FFC107"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9.9999 12.1906C9.9499 12.1823 9.89157 12.1823 9.84157 12.1906C8.69157 12.149 7.7749 11.2073 7.7749 10.0406C7.7749 8.84896 8.73323 7.89062 9.9249 7.89062C11.1166 7.89062 12.0749 8.85729 12.0749 10.0406C12.0666 11.2073 11.1499 12.1573 9.9999 12.1906Z"
-              stroke="#3C3B41"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M7.57461 14.8168C6.39961 15.6001 6.39961 16.8835 7.57461 17.6668C8.90794 18.5585 11.0913 18.5585 12.4246 17.6668C13.5996 16.8835 13.5996 15.6001 12.4246 14.8168C11.0996 13.9335 8.90794 13.9335 7.57461 14.8168Z"
-              stroke="#FFC107"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          <p>کسب درآمد</p>
-          <p className="text-[10px]">
-            با دعوت از دوستان خود تا 30% از کارمزد معاملات انها را دریافت کنید.
-          </p>
-        </div>
-        <div className="group-hover:text-primary absolute top-6 left-1 cursor-pointer">
-          <ArrowLeft />
-        </div>
-      </div>
-      <div className="relative flex gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]">
-        <div>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.3081 18.959H6.64144C3.79144 18.959 2.68311 17.8506 2.68311 15.0006V8.33398C2.68311 7.99232 2.96644 7.70898 3.30811 7.70898H16.6414C16.9831 7.70898 17.2664 7.99232 17.2664 8.33398V15.0006C17.2664 17.8506 16.1581 18.959 13.3081 18.959ZM3.93311 8.95898V15.0006C3.93311 17.1506 4.49144 17.709 6.64144 17.709H13.3081C15.4581 17.709 16.0164 17.1506 16.0164 15.0006V8.95898H3.93311Z"
-              fill="#3C3B41"
-            />
-            <path
-              d="M16.2502 8.95768H3.75016C2.29183 8.95768 1.4585 8.12435 1.4585 6.66602V5.83268C1.4585 4.37435 2.29183 3.54102 3.75016 3.54102H16.2502C17.6668 3.54102 18.5418 4.41602 18.5418 5.83268V6.66602C18.5418 8.08268 17.6668 8.95768 16.2502 8.95768ZM3.75016 4.79102C2.99183 4.79102 2.7085 5.07435 2.7085 5.83268V6.66602C2.7085 7.42435 2.99183 7.70768 3.75016 7.70768H16.2502C16.9835 7.70768 17.2918 7.39935 17.2918 6.66602V5.83268C17.2918 5.09935 16.9835 4.79102 16.2502 4.79102H3.75016Z"
-              fill="#3C3B41"
-            />
-            <path
-              d="M9.69992 4.79076H5.09992C4.92492 4.79076 4.75825 4.71576 4.64158 4.59076C4.13325 4.03242 4.14992 3.17409 4.68325 2.64076L5.86658 1.45742C6.41658 0.907422 7.32491 0.907422 7.87492 1.45742L10.1416 3.72409C10.3166 3.89909 10.3749 4.17409 10.2749 4.40742C10.1832 4.64075 9.95825 4.79076 9.69992 4.79076ZM5.55825 3.54076H8.19992L6.99158 2.34076C6.92492 2.27409 6.81658 2.27409 6.74992 2.34076L5.56658 3.52409C5.56658 3.53242 5.55825 3.53242 5.55825 3.54076Z"
-              fill="#3C3B41"
-            />
-            <path
-              d="M14.8917 4.79076H10.2917C10.0417 4.79076 9.80841 4.64075 9.71674 4.40742C9.61674 4.17409 9.67507 3.90742 9.85007 3.72409L12.1167 1.45742C12.6667 0.907422 13.5751 0.907422 14.1251 1.45742L15.3084 2.64076C15.8417 3.17409 15.8667 4.03242 15.3501 4.59076C15.2334 4.71576 15.0667 4.79076 14.8917 4.79076ZM11.8084 3.54076H14.4501C14.4417 3.53242 14.4417 3.53242 14.4334 3.52409L13.2501 2.34076C13.1834 2.27409 13.0751 2.27409 13.0084 2.34076L11.8084 3.54076Z"
-              fill="#3C3B41"
-            />
-            <path
-              d="M8.28402 14.084C8.05068 14.084 7.80902 14.0257 7.59235 13.909C7.11735 13.6507 6.82568 13.159 6.82568 12.6257V8.33398C6.82568 7.99232 7.10902 7.70898 7.45068 7.70898H12.484C12.8257 7.70898 13.109 7.99232 13.109 8.33398V12.609C13.109 13.1507 12.8174 13.6423 12.3424 13.8923C11.8674 14.1507 11.2924 14.1173 10.8424 13.8173L10.1007 13.3173C10.034 13.2673 9.94235 13.2673 9.86735 13.3173L9.08402 13.834C8.84235 14.0007 8.55902 14.084 8.28402 14.084ZM8.07568 8.95898V12.6173C8.07568 12.7257 8.14235 12.7757 8.18402 12.8007C8.22568 12.8257 8.30902 12.8507 8.40068 12.7923L9.18402 12.2757C9.67568 11.9507 10.309 11.9507 10.7924 12.2757L11.534 12.7757C11.6257 12.834 11.709 12.809 11.7507 12.784C11.7924 12.759 11.859 12.709 11.859 12.6007V8.95065H8.07568V8.95898Z"
-              fill="#FFC107"
-            />
-          </svg>
-
-          <p>تخفیفات</p>
+      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between gap-2">
+            <div className="flex gap-2">
+             <OfferIcon/>
+              <p> تخفیفات</p>
+            </div>
+            <ArrowLeft />
+          </div>
           <p className="text-[10px]">
             با تخفیف های ارزهشت دیگر کارمزد معاملات پرداخت نکنید.
           </p>
         </div>
-        <div className="group-hover:text-primary absolute top-6 left-1 cursor-pointer">
-          <ArrowLeft />
+      </div>
+      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between gap-2">
+            <div className="flex gap-2">
+             <GiftCardIcon/>
+              <p>کارت هدیه</p>
+            </div>
+            <ArrowLeft />
+          </div>
+          <p className="text-[10px]">
+            کارت هدیه با موجودی رمز ارز ایجاد کنید و به دیگران هدیه بدهید.
+          </p>
+        </div>
+      </div>
+      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between gap-2">
+            <div className="flex gap-2">
+             <EarnMoneyIcon/>
+              <p>کسب درآمد</p>
+            </div>
+            <ArrowLeft />
+          </div>
+          <p className="text-[10px]">
+            با دعوت از دوستان خود تا 30% از کارمزد معاملات انها را دریافت کنید.
+          </p>
         </div>
       </div>
     </div>

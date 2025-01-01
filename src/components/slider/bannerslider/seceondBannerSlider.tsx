@@ -20,48 +20,36 @@ export default function SecondBannerSlider() {
     slidesToScroll: 3,
     arrows: false,
     dots: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    initialSlide: 0, // اضافه کردن این خط برای نمایش صحیح اسلاید اول
+    beforeChange: (oldIndex: number, newIndex: number) => setCurrentSlide(newIndex),
     appendDots: (dots: any) => (
       <div
         style={{
           position: "absolute",
-          bottom: "-30px",
+          bottom: "-36px",
           width: "100%",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <ul style={{ display: "flex", margin: "0" }}>{dots}</ul>
+        <ul style={{ display: "flex", gap: "4px", padding: "0", margin: "0" }}>
+          {dots}
+        </ul>
       </div>
     ),
     customPaging: (i: number) => (
       <div
         style={{
           width: "6px",
-          height: "6px",
+          height: "8px",
           borderRadius: "50%",
           background: i === currentSlide ? "#FFC107" : "#E0E0E0",
-          transition: "background 0.3s ease",
+          transition: "all 0.3s ease",
+          transform: i === currentSlide ? "scaleX(1.5)" : "scaleX(1)", // اضافه کردن این خط برای کشیدگی نقطه فعال
         }}
       ></div>
     ),
   };
-
   return (
     <div className="w-full">
       <div className="w-full">
@@ -75,7 +63,6 @@ export default function SecondBannerSlider() {
             banner3,
 
           ].map((banner, index) => (
-            <div>
               <div
                 key={index}
                 className={` flex justify-center md:
@@ -86,12 +73,11 @@ export default function SecondBannerSlider() {
                 <Image
                   alt={`banner ${index + 1}`}
                   src={banner}
-                  objectFit="cover"
                   width={380}
                   height={180}
+                  className="object-cover"
                 />
               </div>
-            </div>
           ))}
         </Slider>
       </div>

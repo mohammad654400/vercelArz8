@@ -368,8 +368,8 @@ export default function BannerSlider() {
                     }`}
                   >
                     <div className="flex flex-col justify-center items-center ">
-                      <p className="px-1 text-[11px]">{card.name}</p>
-                      <p className="text-[11px]">{card.symbol}</p>
+                      <p className="px-1 text-[12px]">{card.name}</p>
+                      <p className="text-[12px] opacity-50">{card.symbol}</p>
                     </div>
                     <div className="pl-1">
                       <card.Icon />

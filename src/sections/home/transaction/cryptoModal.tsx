@@ -59,7 +59,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
             onChange={(e) => setSearch(e.target.value)}
           />
           <span className="absolute left-6">
+            <p className="w-5 h-5">
             <Search />
+            </p>
           </span>
         </div>
 
@@ -72,7 +74,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
                 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
             >
               <div className="flex items-center gap-2 ">
-                {currency.icon}
+                <div className="w-9 h-9">{currency.icon}</div>
                 <div>
                   <p className="text-sm font-semibold">{currency.name}</p>
                   <p className="text-xs text-gray-500">{currency.symbol}</p>
