@@ -12,7 +12,7 @@ const BodyJob = forwardRef<HTMLDivElement>((_, ref) => (
     <div className='flex flex-col gap-10 '>
         <div className='flex flex-col gap-[10px]'>
             <h3 className='text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</h3>
-            <div className='w-full flex flex-row gap-x-4 gap-y-4 grid grid-cols-2 xl:grid-cols-4'>
+            <div className='w-full  gap-x-4 gap-y-4 grid grid-cols-2 xl:grid-cols-4'>
                 {whyUs.map((item, index) => (
                     <div
                         key={index}
