@@ -119,7 +119,7 @@ export default function WheelLuck() {
 
 
 
-        <div className="flex flex-col xl:flex-row gap-y-10 gap-x-[44px]  w-full justify-between  ">
+        <div className="flex flex-col xl:flex-row gap-y-10   w-full justify-between  ">
           <div className=" w-full flex flex-col justify-center order-2">
             <h1 className='text-base md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
             <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
@@ -129,7 +129,7 @@ export default function WheelLuck() {
               <button className=' bg-primary w-full h-full text-white text-[15px] lg:text-xl font-bold rounded-[15.3px] xl:rounded-[20px]'>گرداندن گردونه</button>
             </Link>
           </div>
-          <div className="w-full order-1 xl:order-3 flex justify-center items-center self-center">
+          <div className="w-full order-1 xl:order-3 flex justify-center xl:justify-end items-center ">
             <Image
               src={wheel}
               alt="image"     
@@ -188,7 +188,9 @@ export default function WheelLuck() {
             <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
             </p>
             <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
-              <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full font-bold text-white bg-primary  text-center md:mt-[26px]'>ثبت نام سریع</button>
+              <Link className='md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
+              <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center '>ثبت نام سریع</button>
+              </Link>
             </div>
           </div>
 
@@ -222,7 +224,7 @@ export default function WheelLuck() {
             <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 
-            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] ' href="#">
+            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="#">
               <button className=' bg-primary w-full h-full text-white text-xl lg:text-3xl font-bold rounded-[15px]  lg:rounded-[20px]'>چرخش گردونه</button>
             </Link>
           </div>
