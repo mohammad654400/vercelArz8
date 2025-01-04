@@ -87,7 +87,7 @@ export default function Transaction() {
       <div className="flex w-full gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-xl">
         <div
           onClick={() => setIsBuy(true)}
-          className={`text-center w-full sm:w-auto text-lg cursor-pointer ${
+          className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${
             isBuy ? "text-green-500 font-bold" : "text-gray-500"
           }`}
         >
@@ -95,7 +95,7 @@ export default function Transaction() {
         </div>
         <div
           onClick={() => setIsBuy(false)}
-          className={`text-center w-full sm:w-auto text-lg cursor-pointer ${
+          className={`text-center w-full sm:w-auto  text-sm md:text-lg  cursor-pointer ${
             !isBuy ? "text-red-500 font-bold" : "text-gray-500"
           }`}
         >

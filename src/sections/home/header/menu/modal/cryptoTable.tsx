@@ -1,4 +1,5 @@
 "use client";
+
 import BNB from "@/assets/icons/bnb";
 import React, { useState } from "react";
 
@@ -28,18 +29,10 @@ const cryptoData = [
     icon: <BNB />,
   },
   {
-    name: "شیبا",
-    symbol: "SHIB",
+    name: "آوالانچ",
+    symbol: "AVAX",
     price: "۱٬۷۴۵٬۴۱۳",
-    change: -1.37,
-    changeColor: "text-red-500",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "۱٬۷۴۵٬۴۱۳",
-    change: 2.52,
+    change: 8.21,
     changeColor: "text-green-500",
     icon: <BNB />,
   },
@@ -54,24 +47,8 @@ const cryptoData = [
   {
     name: "آوالانچ",
     symbol: "AVAX",
-    price: "۱۷۴۵۴۱۳",
+    price: "۱٬۷۴۵٬۴۱۳",
     change: 8.21,
-    changeColor: "text-green-500",
-    icon: <BNB />,
-  },
-  {
-    name: "شیبا",
-    symbol: "SHIB",
-    price: "۱٬۷۴۵٬۴۱۳",
-    change: -1.37,
-    changeColor: "text-red-500",
-    icon: <BNB />,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    price: "۱٬۷۴۵٬۴۱۳",
-    change: 2.52,
     changeColor: "text-green-500",
     icon: <BNB />,
   },
@@ -89,17 +66,17 @@ const CryptoTable: React.FC = () => {
   const [filter, setFilter] = useState<string>("most-popular");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const sortedData = [...cryptoData].sort((a: any, b: any) => {
+  const sortedData = [...cryptoData].sort((a, b) => {
     switch (filter) {
       case "most-expensive":
         return (
-          b.price.replace(/[٬۱۲۳۴۵۶۷۸۹۰]/g, (c:any) => "۰۱۲۳۴۵۶۷۸۹".indexOf(c)) -
-          a.price.replace(/[٬۱۲۳۴۵۶۷۸۹۰]/g, (c:any) => "۰۱۲۳۴۵۶۷۸۹".indexOf(c))
+          parseInt(b.price.replace(/[,٬]/g, "")) -
+          parseInt(a.price.replace(/[,٬]/g, ""))
         );
       case "cheapest":
         return (
-          a.price.replace(/[٬۱۲۳۴۵۶۷۸۹۰]/g, (c:any) => "۰۱۲۳۴۵۶۷۸۹".indexOf(c)) -
-          b.price.replace(/[٬۱۲۳۴۵۶۷۸۹۰]/g, (c:any) => "۰۱۲۳۴۵۶۷۸۹".indexOf(c))
+          parseInt(a.price.replace(/[,٬]/g, "")) -
+          parseInt(b.price.replace(/[,٬]/g, ""))
         );
       case "highest-growth":
         return b.change - a.change;
@@ -128,13 +105,15 @@ const CryptoTable: React.FC = () => {
           placeholder="جستجوی نماد،..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-2 border rounded-lg bg-secondary outline-none placeholder:text-sm"
+          className="w-full p-2 border border-[#ADADAD80] rounded-lg bg-secondary outline-none placeholder:text-sm"
         />
       </div>
+      <div className="absolute top-[107px] -z-10 w-[90%] bg-secondary dark:bg-fifth h-[2px]"></div>
       <span className="w-9 block mb-4 pb-1 text-primary border-b-2 border-primary">
         ارزها
       </span>
-      <div className="flex  justify-between items-center p-2 rounded-md font mb-2 overflow-x-auto">
+
+      <div className="flex justify-between items-center p-2 rounded-md font mb-2 overflow-x-auto">
         {filterButtons.map((btn) => (
           <button
             key={btn.key}
@@ -150,47 +129,37 @@ const CryptoTable: React.FC = () => {
         ))}
       </div>
 
-      <div className="w-full max-h-[335px] overflow-y-auto bg-secondary rounded-md">
-        <table className="table-auto w-full border-collapse text-right">
-          <thead className="">
-            <tr className="text-[#3C3B4180] dark:text-[#FFFFFF80] border-b ">
-              <th className="sticky top-0  bg-secondary  dark:bg-[#3C3B41] px-4 py-2 text-sm">
-                نماد
-              </th>
-              <th className="sticky top-0 bg-secondary dark:bg-[#3C3B41]  px-4 py-1 text-sm">
-                24H تغییرات
-              </th>
-              <th className="sticky top-0 bg-secondary dark:bg-[#3C3B41]  pr-10 py-2 text-sm">
-                قیمت به تومان
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((crypto, index) => (
-                <tr key={index} className="border-b ">
-                  <td className="flex gap-2 pl-6 py-2 text-sm">
-                    <div className="w-[25px] h-[25px]"> {crypto.icon}</div>
-                    <div className="flex flex-col">
-                      {crypto.name}
-                      <p className="text-xs opacity-50">{crypto.symbol}</p>
-                    </div>
-                  </td>
-                  <td className={`px-6 py-2 text-sm ${crypto.changeColor}`}>
-                    % {crypto.change.toFixed(2)}
-                  </td>
-                  <td className="pr-6  py-2 text-sm">{crypto.price} تومان</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} className="text-center py-4">
-                  هیچ داده‌ای پیدا نشد.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      <div className="w-full max-h-[335px] overflow-y-auto bg-fifth dark:bg-secondary rounded-md">
+        <div className="flex text-right text-[#3C3B4180] dark:text-[#FFFFFF80] border-b border-[#ADADAD80] py-2  bg-secondary sticky top-0 z-10">
+          <div className="w-1/3 font-semibold pr-4">نماد</div>
+          <div className="w-1/3 font-semibold">24H تغییرات</div>
+          <div className="w-1/3 font-semibold pr-4">قیمت به تومان</div>
+        </div>
+
+        {filteredData.length > 0 ? (
+          filteredData.map((crypto, index) => (
+            <div
+              key={index}
+              className="flex justify-between border-b border-[#ADADAD80] py-2  text-sm"
+            >
+              <div className="w-1/3 flex items-center gap-2">
+                <div className="w-[25px] h-[25px]">{crypto.icon}</div>
+                <div className="flex flex-col">
+                  <span>{crypto.name}</span>
+                  <span className="text-xs opacity-50 ">{crypto.symbol}</span>
+                </div>
+              </div>
+              <div className={`w-1/3 ${crypto.changeColor} pr-4`}>
+                % {crypto.change.toFixed(2)}
+              </div>
+              <div className="w-1/3 pr-4">
+                {crypto.price} تومان
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="text-center py-4">هیچ داده‌ای پیدا نشد.</div>
+        )}
       </div>
     </div>
   );

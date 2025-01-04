@@ -17,8 +17,8 @@ const Description = () => {
         ارز هشت{" "}
       </h1>
       <div
-        className={`relative overflow-hidden transition-all duration-100 ${
-          isExpanded ? "max-h-full" : "max-h-20"
+        className={`relative overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+          isExpanded ? "max-h-[500px]" : "max-h-20"
         }`}
       >
         <p className="leading-10 text-justify">
@@ -54,7 +54,7 @@ const Description = () => {
       <div>
         <button
           onClick={toggleExpand}
-          className="w-full mt-2 hover:text-primary focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
+          className="w-full mt-2 hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
         >
           {isExpanded ? <ArrowUp /> : <ArrowDown />}
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
@@ -70,20 +70,17 @@ const Description = () => {
             <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0">
               <BigArrow />
             </span>
-           <p className="text-2xl"> احراز هویت</p>
+            <p className="text-2xl"> احراز هویت</p>
             <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0">
               <BigArrow />
             </span>
-           <p className="text-2xl">
-           ارز دلخواه خودتون رو بخرید
-           </p>
+            <p className="text-2xl">ارز دلخواه خودتون رو بخرید</p>
           </div>
           <div className="relative">
             <span className="absolute right-2 top-2">
               <MobileIcon />
             </span>
             <input
-            
               placeholder="شماره موبایل خود را وارد کنید"
               className="w-full md:w-[400px] text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
               type="text"

@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Moon({size='40'}:{size?:string}) {
+export default function Moon() {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 40 40"
+      width='100%'
+      height='100%'
+      viewBox="0 0 30 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

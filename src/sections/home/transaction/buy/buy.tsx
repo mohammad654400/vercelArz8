@@ -50,43 +50,40 @@ export default function Buy({
 
   return (
     <div className="w-full ">
-      <div className="absolute -top-[11px]  right-8 lg:right-8 text-background dark:text-background">
+      <div className="absolute -top-[11px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
         <HalfCircle />
       </div>
       <div
-        className={`flex flex-col justify-between items-center rounded-xl  py-8 px-10 ${
+        className={`flex flex-col justify-between items-center rounded-xl   py-6 md:py-8 px-4 md:px-10 ${
           width < 700 ? "lg:flex" : "xl:flex-row"
         }`}
       >
-       
- 
- 
         <div className="relative w-full lg:w-auto ">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
-            className="outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full lg:w-[414px]  border rounded-xl mt-5 pr-4"
+            className="outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full lg:w-[414px]  border rounded-xl mt-3 md:mt-5 pr-4"
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500000"
           />
-          <div className="absolute flex gap-3 left-1 top-11 px-5 py-[11px]  rounded-xl bg-third">
-            <Image alt="iran" src={flag} />
+          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
+            <Image alt="iran" src={flag} className="w-[25px] h-[25px]" />
             <p className=" text-lg">IRT</p>
           </div>
-          <div className="flex gap-5 mt-5 text-xs md:text-sm">
+          <div className="hidden md:flex gap-5 mt-5 text-xs md:text-sm">
             <p>قیمت خرید: {formatNumber(currency.price.toLocaleString())} تومان</p>
             <p>قیمت فروش: {formatNumber(currency.price.toLocaleString())} تومان</p>
           </div>
         </div>
 
-        <div onClick={toggle} className="cursor-pointer my-5 lg:mt-0 self-end mb-10">
+        <div onClick={toggle} className="cursor-pointer mt-6 md:mt-6  md:my-5  lg:mt-0 self-end mb:10 md:mb-10">
           <ArrowChange />
         </div>
         <div className="relative w-full lg:w-auto ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-            className="mb-10 text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-5 pr-4"
+            className="mb-10 text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full lg:w-[414px] border rounded-xl mt-3 md:mt-5  pr-4"
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -94,7 +91,7 @@ export default function Buy({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[44px] px-4 py-[9.5px] rounded-xl dark:bg-third"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[9.5px] rounded-xl bg-secondary dark:bg-third"
           >
             <div className="w-5 h-5">{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p> 

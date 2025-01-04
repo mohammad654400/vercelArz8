@@ -20,8 +20,10 @@ export default function Coin() {
               className="px-12 py-3 rounded-lg bg-[#3C3B41] border-primary border-2 outline-none"
               type="text"
             />
-            <span className="absolute left-[25px] top-[25px] px-4 py-3 bg-primary rounded-lg">
+            <span className="w-10 h-10 absolute left-[25px] top-[26px]  bg-primary rounded-lg flex justify-center items-center">
+              <div className="w-8 h-8">
               <Search />
+              </div>
             </span>
           </div>
         </div>

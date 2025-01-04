@@ -344,7 +344,10 @@ export default function BannerSlider() {
           <div className="w-full" key={page}>
             <div className="flex justify-between flex-wrap text-[10px] lg:text-sm w-full ">
               {cards.map((card, index) => (
-                <div key={index} className="flex justify-center gap-24 mt-4">
+                <div
+                  key={index}
+                  className="flex justify-center gap-8 md:gap-24 mt-4"
+                >
                   <div>
                     <div className="flex pb-2 gap-1 ">
                       <span>تومان</span>
@@ -361,11 +364,17 @@ export default function BannerSlider() {
                     </p>
                   </div>
                   <div
-                    className={`flex items-center dark:border- ${
+                    className={`flex items-center dark:border-10 ${
                       (index + 1) % 4 !== 0
-                        ? "border-r-[3px] border-[#ADADAD80] md:pr-5"
+                        ? "md:border-r-[3px] md:border-[#ADADAD80] md:pr-5"
                         : "pr-0"
-                    }`}
+                    }
+                      ${
+                        (index + 1) % 2 !== 0
+                          ? "border-r-[3px] border-[#ADADAD80] pr-4"
+                          : "pr-0"
+                      }
+                    `}
                   >
                     <div className="flex flex-col justify-center items-center ">
                       <p className="px-1 text-[12px]">{card.name}</p>

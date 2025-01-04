@@ -1,16 +1,20 @@
-import Image from 'next/image'
-import React from 'react'
-import logo from '@/assets/logo.png'
+import Image from "next/image";
+import React from "react";
+import logo from "@/assets/logo.png";
+import Link from "next/link";
 export default function FeaturesBanner() {
   return (
-    <div className='w-full h-16 bg-foreground text-white  dark:text-black flex justify-center items-center gap-2'>
+    <Link href="/download">
+      <div className="w-full h-12 md:h-16 bg-[#242428] text-white  flex justify-center items-center gap-2">
         <Image
-        alt='ارز هشت'
-        src={logo}
-        width={64}
-        height={64}
+          alt="ارز هشت"
+          src={logo}
+          width={64}
+          height={64}
+          className="w-10 md:object-cover"
         />
-        <p>امکانات جدید ارز هشت</p>
-    </div>
-  )
+        <p className="text-xl ">امکانات جدید ارز هشت</p>
+      </div>
+    </Link>
+  );
 }

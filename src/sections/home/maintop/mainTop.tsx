@@ -10,15 +10,15 @@ export default function MainTop() {
     <div>
       <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
         <div className="flex flex-col  md:justify-start w-[489px] gap-6">
-          <h1 className="text-[40px] font-bold mx-auto md:mx-0">
+          <h1 className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
           </h1>
           <p>
             خرید و فروش بیش از{" "}
-            <span className="text-primary text-3xl font-bold">1500</span>{" "}
+            <span className="text-primary text-3xl font-bold">1300</span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
-          <p className="mx-auto text-[18px] md:mx-0 opacity-50">
+          <p className="mx-auto text-sm md:text-[18px] md:mx-0 opacity-50">
             در سریع ترین زمان ممکن ثبت نام کنید.
           </p>
           <div className="relative  ">
@@ -26,11 +26,13 @@ export default function MainTop() {
               <MobileIcon />
             </span>
             <input
+              maxLength={11}
+              typeof="number"
               placeholder="شماره موبایل خود را وارد کنید..."
               className="px-4 pr-12 w-full h-16 bg-third dark:border-secondary border-2 rounded-xl outline-none text-[20px] placeholder:text-[15px]"
               type="text"
             />
-            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-xl rounded-xl text-white bg-primary py-3 px-6">
+            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-lg md:text-xl rounded-xl text-white bg-primary py-3 px-3 md:px-6">
               شروع کنید
             </button>
           </div>

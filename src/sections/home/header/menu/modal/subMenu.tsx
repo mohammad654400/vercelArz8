@@ -8,10 +8,10 @@ import Link from "next/link";
 export default function SubMenu() {
   return (
     <div className="z-50 relative flex w-auto h-auto bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
-      <div className="text-secondary absolute right-16 rounded-xl -top-3 ">
+      <div className="text-fifth dark:text-secondary  absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className="w-[250px] flex flex-col border-l-2 p-5">
+      <div className="w-[250px] flex flex-col border-l-2 border-[#ADADAD80] p-5">
         <div className="px-10 py-2 text-white bg-[#242428] rounded-lg dark:bg-[#3C3B4180]">
           جدید ترین ارزها
         </div>
@@ -54,7 +54,7 @@ export default function SubMenu() {
       </div>
       <div className="relative p-5">
         <div className="flex justify-center items-center bg-primary absolute left-6 top-6 rounded-lg w-8 h-8 ">
-          <div className="w-5 h-5 text-white">
+          <div className="w-5 h-8 text-white">
             <Search />
           </div>
         </div>

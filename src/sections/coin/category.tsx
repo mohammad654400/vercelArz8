@@ -36,7 +36,9 @@ export default function Category() {
               <div className="flex justify-between gap-7 mt-4">
                 <div className="flex items-center gap-2 pb-2">
                   <div>
+                    <div className="w-[46px] h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
                     <BNB />
+                    </div>
                   </div>
                   <div className="">
                     <p>{item.Persian}</p>

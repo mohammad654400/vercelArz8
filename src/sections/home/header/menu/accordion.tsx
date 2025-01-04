@@ -20,7 +20,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
         <span>{isOpen ? <ArrowDown /> : <ArrowUp />}</span>
       </div>
       {isOpen && (
-        <div className="flex flex-col justify-center items-start w-full gap-1 py-4 ">
+        <div className="flex flex-col justify-center items-start w-full gap-1 py-2  text-xs ">
           {children}
         </div>
       )}

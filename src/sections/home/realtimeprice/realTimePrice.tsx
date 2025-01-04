@@ -146,12 +146,12 @@ export default function RealTimePrice() {
 
   return (
     <div>
-      <p className="text-2xl font-semibold mb-5 mt-8">
+      <p className="flex justify-center md:justify-start text-[18px] md:text-2xl font-semibold mb-5 mt-8">
         قیمت لحظه ای ارزهای دیجیتال
       </p>
       <div className="bg-background overflow-hidden w-full ">
         <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#47444480] rounded-t-xl">
-          <div className="flex  gap-3 w-full ">
+          <div className="flex justify-center md:justify-start gap-3 w-full ">
             {filterOptions.map((option) => (
               <button
                 key={option.key}
@@ -225,12 +225,12 @@ export default function RealTimePrice() {
               </div>
             ))}
           </div>
-        </div>
         <div className="sm:hidden flex justify-center items-center gap-3 py-6 px-5 cursor-pointer">
           <span>
             <Link href="/coins">مشاهده تمام ارزها</Link>
           </span>
           <ArrowLeft />
+        </div>
         </div>
       </div>
     </div>

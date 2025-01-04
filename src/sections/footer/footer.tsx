@@ -115,10 +115,9 @@ export default function Footer() {
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
           <div className="flex justify-center items-center gap-4 dark:text-secondary  order-first sm:order-last ">
-            <span className=" dark:text-gray-400">
+            <span className=" dark:text-gray-300 pl-1">
               <YouTube />            
             </span>
-
             <span  className="dark:text-gray-300">
               <Aparat />
             </span>

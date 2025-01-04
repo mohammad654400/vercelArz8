@@ -20,9 +20,9 @@ export default function SecondBannerSlider() {
     slidesToScroll: 3,
     arrows: false,
     dots: true,
-    initialSlide: 0, // اضافه کردن این خط برای نمایش صحیح اسلاید اول
-    beforeChange: (oldIndex: number, newIndex: number) => setCurrentSlide(newIndex),
-    appendDots: (dots: any) => (
+    initialSlide: 0,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
+    appendDots: (dots) => (
       <div
         style={{
           position: "absolute",
@@ -37,7 +37,7 @@ export default function SecondBannerSlider() {
         </ul>
       </div>
     ),
-    customPaging: (i: number) => (
+    customPaging: (i) => (
       <div
         style={{
           width: "6px",
@@ -45,11 +45,23 @@ export default function SecondBannerSlider() {
           borderRadius: "50%",
           background: i === currentSlide ? "#FFC107" : "#E0E0E0",
           transition: "all 0.3s ease",
-          transform: i === currentSlide ? "scaleX(1.5)" : "scaleX(1)", // اضافه کردن این خط برای کشیدگی نقطه فعال
+          transform: i === currentSlide ? "scaleX(1.5)" : "scaleX(1)",
         }}
       ></div>
     ),
+    responsive: [
+      {
+        breakpoint: 768, // برای صفحه‌های موبایل
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true, // برای قرار دادن اسلاید در وسط
+          centerPadding: "0px", // حذف فضای خالی اطراف
+        },
+      },
+    ],
   };
+
   return (
     <div className="w-full">
       <div className="w-full">
@@ -61,23 +73,22 @@ export default function SecondBannerSlider() {
             banner1,
             banner2,
             banner3,
-
           ].map((banner, index) => (
-              <div
-                key={index}
-                className={` flex justify-center md:
-                ${(index + 1) % 3 == 0 ? "ml-5" : ""}
-                ${(index + 1) % 3 == 2 ? "ml-[10px]" : ""}
+            <div
+              key={index}
+              className={`flex flex-wrap justify-center md:
+                ${(index + 1) % 3 == 0 ? "ml-0 md:ml-5" : ""}
+                ${(index + 1) % 3 == 2 ? "ml-0 md:ml-[10px]" : ""}
                `}
-              >
-                <Image
-                  alt={`banner ${index + 1}`}
-                  src={banner}
-                  width={380}
-                  height={180}
-                  className="object-cover"
-                />
-              </div>
+            >
+              <Image
+                alt={`banner ${index + 1}`}
+                src={banner}
+                width={380}
+                height={180}
+                className="object-cover"
+              />
+            </div>
           ))}
         </Slider>
       </div>

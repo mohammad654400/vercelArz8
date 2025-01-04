@@ -234,7 +234,9 @@ export default function LivePriceTable() {
                 >
                   <Star />
                 </button>
+                <div className="w-11 h-11">
                 <span>{currency.icon}</span>
+                </div>
                 <span>{currency.name}</span>
               </div>
               <div>{currency.priceUSDT} USDT</div>
