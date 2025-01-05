@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function android() {
   return (
-    <svg width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M25.06 39.5742V46.1447C25.06 47.2398 24.1839 48.3349 22.8698 48.3349C21.5558 48.3349 20.6797 47.2398 20.6797 46.1447V39.5742H25.06Z" fill="white" stroke="white" strokeWidth="2.21808" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M33.8217 39.5742V46.1447C33.8217 47.2398 32.9457 48.3349 31.6316 48.3349C30.3175 48.3349 29.4414 47.2398 29.4414 46.1447V39.5742H33.8217Z" fill="white" stroke="white" strokeWidth="2.21808" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M38.2024 24.2436V35.1944C38.2024 37.6036 36.2312 39.5747 33.8221 39.5747H20.6811C18.2719 39.5747 16.3008 37.6036 16.3008 35.1944V24.2436C16.3008 21.8344 18.2719 19.8633 20.6811 19.8633H33.8221C36.2312 19.8633 38.2024 21.8344 38.2024 24.2436Z" fill="white" stroke="white" strokeWidth="2.21808" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
