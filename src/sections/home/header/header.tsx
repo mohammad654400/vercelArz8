@@ -82,7 +82,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center md:gap-[24px] gap-[9px] h-full md:gap-">
-            <div className="hidden xl:flex text-foreground text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
+            <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
               <Link href='https://app.arz8.com/auth/login'>
               <p>ورود یا عضویت</p>
               </Link>

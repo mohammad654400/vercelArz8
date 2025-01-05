@@ -71,8 +71,13 @@ const QuickGuide = () => {
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-4 mx-auto bg-background rounded-2xl">
-      <div className="w-full md:w-1/2 pr-4">
-        <h2 className="text-2xl font-bold mb-8">راهنمای سریع</h2>
+      <div className="w-full md:w-1/2 pr-0 md:pr-4 ">
+        <div className="flex justify-between items-center ">
+          <h2 className="text-2xl font-bold mb-8">راهنمای سریع</h2>
+          <button className="md:hidden text-[18px] flex gap-2 items-center justify-center text-white w-[140px] bg-primary mb-4 h-[39px] rounded-2xl">
+            همه سوالات <ArrowLeft />
+          </button>
+        </div>
         {rightFAQs.map((faq, index) => (
           <div
             key={index}
@@ -107,7 +112,7 @@ const QuickGuide = () => {
 
       <div className="w-full md:w-1/2">
         <div className="flex justify-end mb-1">
-          <button className="flex gap-2 items-center justify-center text-foreground w-[181px] bg-primary mb-4 h-[50px] text-[25px] rounded-2xl">
+          <button className="hidden md:flex gap-2 items-center justify-center text-white w-[181px] bg-primary mb-4 h-[50px] text-[25px] rounded-2xl">
             همه سوالات <ArrowLeft />
           </button>
         </div>
@@ -150,7 +155,7 @@ const QuickGuide = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       ></iframe>
-                      <p >{faq.answer}</p>
+                      <p>{faq.answer}</p>
                     </div>
                   </div>
                 </div>

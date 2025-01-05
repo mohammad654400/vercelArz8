@@ -60,33 +60,35 @@ const Description = () => {
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
         </button>
       </div>
-      <div className="w-full mt-8   h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
+      <div className="w-full mt-[100px] h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
-          <div className="dark:text-white text-2xl font-bold">
+          <div className="dark:text-white text-[18px] md:text-2xl font-bold">
             بدون معطلی ثبت نام و احراز هویت کن!
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-4 text-primary">
-            <p className="text-2xl">ثبت نام</p>
+          <div className="flex flex-col  md:flex-row items-center gap-4 text-primary">
+            <p className=" text-sm md:text-2xl">ثبت نام</p>
+            <span className=" -rotate-90 py-8 sm:py-0 sm:rotate-0">
+              <BigArrow />
+            </span>
+            <p className="text-sm md:text-2xl"> احراز هویت</p>
             <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0">
               <BigArrow />
             </span>
-            <p className="text-2xl"> احراز هویت</p>
-            <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0">
-              <BigArrow />
-            </span>
-            <p className="text-2xl">ارز دلخواه خودتون رو بخرید</p>
+            <p className="text-sm md:text-2xl">ارز دلخواه خودتون رو بخرید</p>
           </div>
-          <div className="relative">
-            <span className="absolute right-2 top-2">
+          <div className="w-full  relative">
+            <span className="absolute right-7 top-2 md:right-[408px] md:top-2 ">
               <MobileIcon />
             </span>
+            <div className="flex justify-center">
             <input
               placeholder="شماره موبایل خود را وارد کنید"
-              className="w-full md:w-[400px] text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
+              className="w-[350px] md:w-[400px] text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
               type="text"
             />
+            </div>
             <div>
-              <button className="absolute left-1 top-1 px-4 text-for cursor-pointer rounded-lg bg-primary py-[12px] text-xs">
+              <button className="absolute left-6 top-1 md:left-[406px] md:top-1 px-4 text-for cursor-pointer rounded-lg bg-primary py-[12px] text-xs">
                 <p className="text-white">شروع کنید</p>
               </button>
             </div>

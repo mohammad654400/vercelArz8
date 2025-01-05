@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FeaturesBanner() {
   return (
     <Link href="/download">
-      <div className="w-full h-12 md:h-16 bg-[#242428] text-white  flex justify-center items-center gap-2">
+      <div className="w-full h-12 md:h-14 bg-[#242428] text-white  flex justify-center items-center gap-2">
         <Image
           alt="ارز هشت"
           src={logo}

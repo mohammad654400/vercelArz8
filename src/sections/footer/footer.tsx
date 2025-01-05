@@ -34,19 +34,19 @@ export default function Footer() {
 
           <div className="flex flex-col gap-8 lg:w-[68%]">
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
-              <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <div className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> بـــــــــــــازار</p>
                 <Image alt="bazar" src={bazar} />
               </div>
-              <div className="flex justify-between px-2 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base ">وب اپلیکیشن</p>
                 <Image alt="bazar" src={webapp} />
               </div>
-              <div className="flex justify-between px-3 items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <div className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> مایکـــیت</p>
                 <Image alt="bazar" src={myket} />
               </div>
-              <div className="flex justify-between px-2  items-center bg-background border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <div className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-sm "> دانلود مستقیم</p>
                 <Image alt="bazar" src={directDownload} />
               </div>
@@ -109,26 +109,25 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className=" w-full bg-secondary py-4 flex flex-col sm:flex-row  justify-center gap-3  sm:justify-between px-5 rounded-lg my-24 ">
+        <div className=" w-full bg-secondary py-4 flex  sm:flex-row  justify-between gap-3  sm:justify-between px-5 rounded-lg my-24 ">
           <div className="flex justify-center items-center text-[8px] md:text-[18px] gap-1  ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
-          <div className="flex justify-center items-center gap-4 dark:text-secondary  order-first sm:order-last ">
-            <span className=" dark:text-gray-300 pl-1">
+          <div className="flex justify-center items-center gap-4 dark:text-secondary sm:order-last ">
+            <span className="hidden md:block dark:text-gray-300 pl-1">
               <YouTube />            
             </span>
-            <span  className="dark:text-gray-300">
+            <span  className="hidden md:block dark:text-gray-300">
               <Aparat />
             </span>
-            <span  className="dark:text-gray-300">
+            <span  className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300">
               <Twitter />
             </span>
-
-            <span  className="dark:text-gray-300">
+            <span  className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
               <Telegram />
             </span>
-            <span className="dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
               <Instagram />
             </span>
           </div>

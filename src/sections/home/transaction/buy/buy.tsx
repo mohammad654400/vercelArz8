@@ -107,7 +107,7 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-10 text-xl text-foreground  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
+          <button className="px-10 text-xl text-white  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
               شروع خرید
           </button>
         </div>

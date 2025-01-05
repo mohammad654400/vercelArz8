@@ -81,6 +81,7 @@ const currencies = [
 ];
 
 const filterOptions = [
+  { label: "پیش فرض", key: "default", mobile: true },
   { label: "محبوب‌ترین‌ها", key: "popular", mobile: true },
   { label: "گران ترین", key: "mostExpensive", mobile: false },
   { label: "ارزان ترین", key: "cheapest", mobile: false },
@@ -90,7 +91,7 @@ const filterOptions = [
 ];
 
 export default function RealTimePrice() {
-  const [activeFilter, setActiveFilter] = useState("popular");
+  const [activeFilter, setActiveFilter] = useState("default");
   const [displayedCurrencies, setDisplayedCurrencies] = useState(
     currencies.filter((currency) => currency.popular)
   );

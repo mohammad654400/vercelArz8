@@ -78,7 +78,7 @@ export default function Buy({
         </div>
         <div
           onClick={toggle}
-          className="cursor-pointer   md:my-5  lg:mt-0 self-end mb:10 md:mb-10"
+          className="cursor-pointer mt-6  md:my-5  lg:mt-0 self-end mb:10 md:mb-10"
         >
           <ArrowChange />
         </div>
@@ -113,7 +113,7 @@ export default function Buy({
               toggle={toggleOpen}
             />
           )}
-          <button className="px-8 mt-8 text-xl py-[13px] mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto text-foreground">
+          <button className="px-8 mt-9 md:mt-2 text-xl py-[13px] mt-2 rounded-xl bg-[#F00500] w-full lg:w-auto text-white">
             شروع فروش
           </button>
         </div>

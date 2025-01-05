@@ -8,8 +8,8 @@ import React from "react";
 
 export default function OtherServices() {
   return (
-    <div className="absolute z-50 top-[80px] -right-10 md:-right-10 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
-      <div className="text-fifth dark:text-secondary absolute right-16 rounded-xl -top-3 ">
+    <div className="absolute z-50 top-[80px] -right-10 md:-right-24 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
+      <div className="text-fifth dark:text-secondary absolute right-24 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
       <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">

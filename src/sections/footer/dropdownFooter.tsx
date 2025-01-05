@@ -4,6 +4,7 @@ import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import { space } from "postcss/lib/list";
 
 export default function DropdownMenu() {
   const [openSection, setOpenSection] = useState(null);
@@ -21,7 +22,10 @@ export default function DropdownMenu() {
         >
           لینک‌های مفید
           <span className="text-primary text-xl">
-            {openSection === "links" ? <ArrowUp /> : <ArrowDown />}
+            {openSection === "links" ? 
+             <div className="text-black"><ArrowUp /></div>  :
+              <div className="text-black"><ArrowDown /></div>
+            }
           </span>
         </button>
         {openSection === "links" && (
@@ -42,7 +46,10 @@ export default function DropdownMenu() {
         >
           راهنمای صرافی
           <span className="text-primary text-xl">
-            {openSection === "guide" ? <ArrowUp /> : <ArrowDown />}
+            {openSection === "guide" ? 
+           <div className="text-black"><ArrowUp /></div>  :
+           <div className="text-black"><ArrowDown /></div>  
+          }
           </span>
         </button>
         {openSection === "guide" && (
@@ -64,7 +71,8 @@ export default function DropdownMenu() {
         >
           اطلاعات تماس
           <span className="text-primary text-xl">
-            {openSection === "contact" ? <ArrowUp /> : <ArrowDown />}
+            {openSection === "contact" ?  <div className="text-black"><ArrowUp /></div>  :
+              <div className="text-black"><ArrowDown /></div>}
           </span>
         </button>
         {openSection === "contact" && (
