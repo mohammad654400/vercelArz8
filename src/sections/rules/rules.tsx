@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState, useMemo, useCallback, useRef } from "react";
-import { tabBar, tabData } from "./data/rulesData";
+import { tabBar, tabData } from "./data/rules-data";
 import Info from "@/assets/icons/rules/info";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 

@@ -7,7 +7,7 @@ import React from "react";
 import TransAction from "../home/transaction/transaction";
 import DetailDescription from "./description";
 import Category from "../coin/category";
-import QuickGuide from "../home/quickguide/quickGuide";
+import QuickGuide from "../home/quick-guide/quick-guide";
 const data = [
   {
     price: "43,537,353",

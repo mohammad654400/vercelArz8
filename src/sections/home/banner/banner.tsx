@@ -1,10 +1,10 @@
 import React from "react";
-import BannerDownload from "@/components/BannerDownload";
+import BannerDownload from "@/components/bannerd-download";
 
 export default function Banner() {
   return (
     <div className="w-full  overflow-hidden self-center m-0 p-0 my-[100px] ">
-      <BannerDownload  showWaveDivider={false}/>
+      <BannerDownload showWaveDivider={false} />
     </div>
   );
 }

@@ -4,12 +4,11 @@ import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
-import { space } from "postcss/lib/list";
 
 export default function DropdownMenu() {
   const [openSection, setOpenSection] = useState(null);
 
-  const toggleSection = (section) => {
+  const toggleSection = (section:any) => {
     setOpenSection(openSection === section ? null : section);
   };
 

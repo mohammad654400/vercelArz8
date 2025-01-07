@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AccordionItem } from "./AccordionItem";
+import { AccordionItem } from "./Accordion-Item";
 
 interface AccordionProps {
   items: { id: number; title: string; content: string, videoLink?: string; }[];

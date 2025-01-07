@@ -1,4 +1,4 @@
-import DownloadApp from '@/sections/download/downloadApp'
+import DownloadApp from '@/sections/download/downloa-app'
 import React from 'react'
 
 export default function page() {

@@ -1,4 +1,4 @@
-import WheelLuck from '@/sections/wheelluck/wheelLuck'
+import WheelLuck from '@/sections/wheel-luck/wheel-luck'
 import React from 'react'
 
 export default function page() {

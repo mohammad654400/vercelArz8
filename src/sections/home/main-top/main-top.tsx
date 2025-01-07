@@ -1,8 +1,8 @@
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import MobileIcon from "@/assets/icons/mobile";
 import Ring from "@/assets/icons/ring";
-import BannerSlider from "@/components/slider/bannerslider/bannerSlider";
-import CryptoSlider from "@/components/slider/cryptoslider/cryptoSlider";
+import BannerSlider from "@/components/slider/banner-slider/banners-slider";
+import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import React from "react";
 
 export default function MainTop() {

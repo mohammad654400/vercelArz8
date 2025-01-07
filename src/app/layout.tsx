@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "@/style/globals.css";
-import ClientProvider from "@/components/clientProvider";
+import ClientProvider from "@/components/client-provider";
 
 export const metadata: Metadata = {
   title: "ارز هشت - خرید و فروش ار دیجیتال",

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import wheel from "@/assets/images/wheelluck/wheel.png"
-import ImageCarousel from './ImageCarousel'
+import ImageCarousel from './Image-Carousel'
 import Discount from "@/assets/icons/wheel/discount"
 import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
