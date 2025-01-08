@@ -1,47 +1,50 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { validationSchema } from './yup/validationSchema';
 import FormField from '../../components/input/InputField';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
-import { Modal } from './modal/Modal';
+import Modal from '@/components/Modal';
+import ErrorJob from "@/assets/icons/modal/errorJob"
+import SuccessJob from "@/assets/icons/modal/successJob"
 
+
+
+interface ModalLine {
+    text: string;
+    highlightedWords?: { word: string; color: "green" | "red" }[];
+}
 
 export default function ApplyPage({ title }: { title: string }) {
-
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
     const [uploadedFileUrl, setUploadedFileUrl] = useState<string | undefined>(undefined);
     const fileUrlRef = useRef<string | undefined>(undefined);
 
-    //modal
+    // Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSuccessModal, setIsSuccessModal] = useState(false)
-
+    const [modalType, setModalType] = useState<"success" | "error">("success");
+    const [modalLines, setModalLines] = useState<ModalLine[]>([]);
 
     const formDataRef = useRef<Record<string, any>>({
         fullName: "",
         phoneNumber: "",
         file: null,
-
     });
 
-
-
-
-    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-
-        formDataRef.current[name] = value;
-
-    }, []);
-
+    const handleChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+            const { name, value } = e.target;
+            formDataRef.current[name] = value;
+        },
+        []
+    );
 
     const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            if (file.size > 200 * 1024 * 1024) {
-                setErrors((prev) => ({ ...prev, file: "حجم فایل نباید بیشتر از 200 مگابایت باشد." }));
+            if (file.size > 20 * 1024 * 1024) {
+                setErrors((prev) => ({ ...prev, file: "حجم فایل نباید بیشتر از 20 مگابایت باشد." }));
                 return;
             }
             if (file.type !== "application/pdf") {
@@ -49,7 +52,6 @@ export default function ApplyPage({ title }: { title: string }) {
                 return;
             }
             setErrors((prev) => ({ ...prev, file: "" }));
-
 
             if (fileUrlRef.current) {
                 URL.revokeObjectURL(fileUrlRef.current);
@@ -64,11 +66,8 @@ export default function ApplyPage({ title }: { title: string }) {
         }
     }, []);
 
-
-
     const validateForm = useCallback(async () => {
         try {
-
             await validationSchema.validate(formDataRef.current, { abortEarly: false });
             setErrors({});
             return true;
@@ -85,26 +84,44 @@ export default function ApplyPage({ title }: { title: string }) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isValid = await validateForm();
-        if (!isValid) {
-            setIsSuccessModal(false)
-            setIsModalOpen(true);
-            return;
+
+        if (isValid) {
+
+            setModalType("success");
+            setModalLines([
+                {
+                    text: "درخواست شما با موفقیت ارسال شد.",
+                    highlightedWords: [{ word: "موفقیت", color: "green" }],
+                },
+                {
+                    text: " و با شما تماس گرفته خواهد شد.",
+
+                },
+            ]);
+        } else {
+
+            setModalType("error");
+            setModalLines([
+                {
+                    text: "ارسال درخواست شما با مشکل روبرو شد.",
+                    highlightedWords: [{ word: "مشکل", color: "red" }],
+                },
+                {
+                    text: "لطفاً فرم را بازبینی کنید و دوباره تلاش کنید.",
+
+                },
+            ]);
         }
-        setIsSuccessModal(true)
         setIsModalOpen(true);
     };
 
-
-
     return (
-        <div className='base-style w-full pt-20'>
-            <div className='w-1/2'>
-
+        <div className="base-style w-full pt-20">
+            <div className="w-1/2">
                 <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
-                <h2 className='text-xs font-semibold opacity-50 mb-8'>{title}</h2>
-                <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center sm:w-1/2 sm:min-w-[470px]' >
-                    <div className="w-full ">
-
+                <h2 className="text-xs font-semibold opacity-50 mb-8">{title}</h2>
+                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center sm:w-1/2 sm:min-w-[470px]">
+                    <div className="w-full">
                         <FormField
                             name="fullName"
                             label="نام و خانوادگی"
@@ -118,10 +135,7 @@ export default function ApplyPage({ title }: { title: string }) {
                             type="text"
                             onChange={handleChange}
                             error={errors.phoneNumber}
-
                         />
-
-
                         <div>
                             <label className="block text-sm font-medium mb-3">فایل رزومه</label>
                             <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
@@ -148,20 +162,31 @@ export default function ApplyPage({ title }: { title: string }) {
                                 </div>
                             )}
                         </div>
-
-                        <button type="submit" className=" w-full h-10 sm:h-16 bg-primary text-white px-4 py-2 rounded-xl  mt-12">
+                        <button type="submit" className="w-full h-10 sm:h-16 bg-primary text-white px-4 py-2 rounded-xl mt-12">
                             ارسال درخواست
                         </button>
-
                     </div>
-
-
-
                 </form>
-
             </div>
-            <div className='w-1/2'></div>
-            {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} isSuccess={isSuccessModal} />}
+            {isModalOpen && (
+                <Modal
+                    isOpen={isModalOpen}
+                    type={modalType}
+                    icon={
+                        modalType === "success" ? (
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                                <SuccessJob />
+                            </div>
+                        ) : (
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                                <ErrorJob />
+                            </div>
+                        )
+                    }
+                    lines={modalLines}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 }

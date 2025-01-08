@@ -2,6 +2,16 @@ import React, { useCallback, useRef, useState } from 'react';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import FormField from '@/components/input/InputField';
 import validationSchema from './yup/validationSchema';
+import Modal from '@/components/Modal';
+import ErrorJob from "@/assets/icons/modal/errorJob"
+import SuccessJob from "@/assets/icons/modal/successJob"
+
+
+interface ModalLine {
+    text: string;
+    highlightedWords?: { word: string; color: "green" | "red" }[];
+}
+
 
 export default function FormBugBounty() {
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -10,9 +20,18 @@ export default function FormBugBounty() {
 
     const [isChecked, setIsChecked] = useState(false);
 
+
+    // Modal State
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState<"success" | "error">("success");
+    const [modalLines, setModalLines] = useState<ModalLine[]>([]);
+
+
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
     };
+
+
 
     const formDataRef = useRef<{
         fullName: string;
@@ -116,10 +135,35 @@ export default function FormBugBounty() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isValid = await validateForm();
-        if (!isValid) {
-            return;
+
+        if (isValid) {
+
+            setModalType("success");
+            setModalLines([
+                {
+                    text: "درخواست شما با موفقیت ارسال شد.",
+                    highlightedWords: [{ word: "موفقیت", color: "green" }],
+                },
+                {
+                    text: " و با شما تماس گرفته خواهد شد.",
+
+                },
+            ]);
+        } else {
+
+            setModalType("error");
+            setModalLines([
+                {
+                    text: "ارسال درخواست شما با مشکل روبرو شد.",
+                    highlightedWords: [{ word: "مشکل", color: "red" }],
+                },
+                {
+                    text: "لطفا دوباره تلاش کنید",
+
+                },
+            ]);
         }
-        alert("فرم با موفقیت ارسال شد");
+        setIsModalOpen(true);
     };
 
     return (
@@ -186,9 +230,9 @@ export default function FormBugBounty() {
                     <div className="relative z-10 h-[160px] lg:h-[227px] border border-dashed lg:border-solid border-gray-300 rounded-xl mb-4">
                         <div className="absolute  inset-0 flex flex-col items-center justify-center pt-[14px] pb-[11px] lg:pt-[37px] lg:pb-[21px]">
                             <div className='w-[51px] h-[51px] lg:w-[69px] lg:h-[69px]'>
-                            <DocumentUpload />
+                                <DocumentUpload />
                             </div>
-                            
+
                             <button className='mt-[8px] mb-[13px] lg:mt-[11px] lg:mb-[30px] w-[78px] h-[26px] lg:w-[105px] lg:h-[35px] rounded-[7.43px] lg:rounded-[10px] bg-primary text-xs lg:text-base font-bold text-white text-center'>آپلود فایل</button>
                             <span className="text-[9px] md:text-sm font-normal opacity-50 text-center text-sixth">حداکثر ۵ تصویر jpeg یا PNG ،یک ویدیو MP4 یا یک فایل Zip ،حداکثر حجم کل فایل ها 100 مگابایت باشد
                             </span>
@@ -267,6 +311,25 @@ export default function FormBugBounty() {
                     ارسال درخواست
                 </button>
             </form>
+            {isModalOpen && (
+                <Modal
+                    isOpen={isModalOpen}
+                    type={modalType}
+                    icon={
+                        modalType === "success" ? (
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                                <SuccessJob />
+                            </div>
+                        ) : (
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                                <ErrorJob />
+                            </div>
+                        )
+                    }
+                    lines={modalLines}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 }

@@ -8,8 +8,15 @@ import Location from "@/assets/icons/contactUs/location"
 import Support from "@/assets/icons/contactUs/support"
 import Telegram from "@/assets/icons/contactUs/telegram"
 import { useCallback, useRef, useState } from "react";
-import { Modal } from "../apply/modal/Modal";
+import Modal from '@/components/Modal';
+import ErrorContactUs from "@/assets/icons/modal/errorContactUs"
+import SuccessContactUs from "@/assets/icons/modal/successContactUs"
 import { validationSchema } from './yup/validationSchema';
+
+interface ModalLine {
+    text: string;
+    highlightedWords?: { word: string; color: "green" | "red" }[];
+}
 
 interface FormData {
     fullName: string;
@@ -19,9 +26,9 @@ interface FormData {
 
 export default function ContactUs() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSuccessModal, setIsSuccessModal] = useState(false)
+    const [modalType, setModalType] = useState<"success" | "error">("success");
+    const [modalLines, setModalLines] = useState<ModalLine[]>([]);
     const [errors, setErrors] = useState<Record<string, string>>({});
-
 
     const formDataRef = useRef<FormData>({
         fullName: "",
@@ -33,7 +40,6 @@ export default function ContactUs() {
         const { name, value } = e.target;
         formDataRef.current[name as keyof FormData] = value;
     };
-
 
     const validateForm = useCallback(async () => {
         try {
@@ -48,21 +54,34 @@ export default function ContactUs() {
             setErrors(newErrors);
             return false;
         }
-    }, [formDataRef]);
-
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isValid = await validateForm();
-        if (!isValid) {
-            setIsSuccessModal(false);
-            setIsModalOpen(true);
-            return;
-        }
+        if (isValid) {
+            setModalType("success");
+            setModalLines([
+                {
+                    text: "پیام شما با موفقیت ارسال شد.",
+                    highlightedWords: [{ word: "موفقیت", color: "green" }],
+                },
 
-        setIsSuccessModal(true);
+            ]);
+        } else {
+            setModalType("error");
+            setModalLines([
+                {
+                    text: "ارسال پیام با مشکل روبرو شد",
+                    highlightedWords: [{ word: "مشکل", color: "red" }],
+                },
+
+            ]);
+        }
         setIsModalOpen(true);
     };
+
+
 
     return (
         <div className="bg-background base-style">
@@ -235,7 +254,25 @@ export default function ContactUs() {
             </div>
 
 
-            {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} isSuccess={isSuccessModal} />}
+            {isModalOpen && (
+                <Modal
+                    isOpen={isModalOpen}
+                    type={modalType}
+                    lines={modalLines}
+                    icon={
+                        modalType === "success" ? (
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                                <SuccessContactUs />
+                            </div>
+                        ) : (
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                                <ErrorContactUs />
+                            </div>
+                        )
+                    }
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 }
