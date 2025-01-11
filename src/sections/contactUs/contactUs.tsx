@@ -98,9 +98,9 @@ export default function ContactUs() {
 
                         <span className="text-foreground text-base font-semibold mb-5">اطلاعات تماس</span>
 
-                        <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full justify-between">
+                        <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full ">
 
-                            <div className="flex w-[65%]  gap-4 justify-between h-full flex-col ">
+                            <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col ">
                                 <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between  ">
                                     <div className="flex h-full w-full items-center justify-start bg-secondary rounded-xl  p-3">
                                         <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
@@ -132,9 +132,9 @@ export default function ContactUs() {
                             </div>
 
 
-                            <div className="flex gap-4 w-[35%] justify-between h-full">
-                                <div className=" flex-col gap-4 w-full h-full justify-between flex  ">
-                                    <div className="flex h-[30px] sm:h-[53px] gap-4 w-full justify-between ">
+                            <div className=" w-[35%] sm:w-[28%] h-full">
+                                <div className="flex-col gap-4 w-full h-full  flex  ">
+                                    <div className="flex h-[30px] sm:h-[53px] gap-4 w-full  ">
                                         <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center  ">
                                             <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center ">تلگرام</span>
                                         </div>
@@ -143,7 +143,7 @@ export default function ContactUs() {
                                             <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">ایمیل</span>
                                         </div>
                                     </div>
-                                    <div className="flex h-[54px] sm:h-[99px] gap-4 w-full justify-between ">
+                                    <div className="flex h-[54px] sm:h-[99px] gap-4 w-full  ">
                                         <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl  flex self-center items-center justify-center ">
                                             <div className="w-10 h-10 sm:h-14 sm:w-14">
                                                 <Telegram />
