@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import BNB from "@/assets/icons/bnb";
 import ChartUP from "@/assets/images/chartup.png";
@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 const currencies = [
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "FTM",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -22,7 +22,7 @@ const currencies = [
   },
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "LINK",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -32,7 +32,7 @@ const currencies = [
   },
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "FLOKI",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -42,7 +42,7 @@ const currencies = [
   },
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "BIT",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -52,7 +52,7 @@ const currencies = [
   },
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "SUI",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -62,7 +62,7 @@ const currencies = [
   },
   {
     name: "بایننس کوین",
-    symbol: "BNB",
+    symbol: "TRX",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
     change: "1.37",
@@ -92,12 +92,21 @@ export default function LivePriceTable() {
   const [favorites, setFavorites] = useState<string[]>([]);
   // handler
   const toggleFavorite = (symbol: string) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(symbol)
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = prevFavorites.includes(symbol)
         ? prevFavorites.filter((fav) => fav !== symbol)
-        : [...prevFavorites, symbol]
-    );
+        : [...prevFavorites, symbol];
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  
+      return updatedFavorites;
+    });
   };
+  
+  useEffect(() => {
+    const favorites = localStorage.getItem("favorites");
+    setFavorites(favorites ? JSON.parse(favorites) : []);
+  }, []);
+
   const handleFilterChange = (filterKey: any) => {
     setActiveFilter(filterKey);
 
@@ -181,7 +190,7 @@ export default function LivePriceTable() {
           <input
             type="text"
             placeholder="جستجو..."
-            className="border border-gray-300 rounded-lg px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80]"
+            className="border border-gray-300 outline-none rounded-lg px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -229,13 +238,13 @@ export default function LivePriceTable() {
                   className={`text-2xl ${
                     favorites.includes(currency.symbol)
                       ? "text-yellow-400"
-                      : "text-gray-400"
+                      : "text-secondary"
                   }`}
                 >
                   <Star />
                 </button>
                 <div className="w-11 h-11">
-                <span>{currency.icon}</span>
+                  <span>{currency.icon}</span>
                 </div>
                 <span>{currency.name}</span>
               </div>

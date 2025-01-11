@@ -1,6 +1,7 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
 import BNB from "@/assets/icons/bnb";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 const data = [
   {
     price: "43,537,353",
@@ -24,16 +25,41 @@ const data = [
     icon: <BNB />,
   },
 ];
+
 export default function Category() {
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 842) {
+        setOpen(false);
+      }else if(window.innerWidth > 842){
+        setOpen(true)
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className=" py-[30px] ">
+    <div className="py-[30px]">
       <div
         className={`${
-          open ? "w-[364px] pt-6 rounded-2xl px-6" : "w-[72px] rounded-3xl overflow-hidden px-3"
-        }  h-auto  bg-[#F6F6F6] dark:bg-[#242428]   pb-4`}
+          open
+            ? "w-[300px] md:w-[364px] pt-6 rounded-2xl px-3 md:px-6 "
+            : "w-[72px] rounded-3xl overflow-hidden px-3"
+        } h-auto bg-[#F6F6F6] dark:bg-[#242428] pb-4`}
       >
-        <div className={`${open ? "flex justify-between cursor-pointer" : "flex justify-center pt-4"}`}>
+        <div
+          className={`${
+            open
+              ? "flex justify-between cursor-pointer"
+              : "flex justify-center pt-4"
+          }`}
+        >
           <h1 className={`${open ? "block" : "hidden"}`}>
             جدید ترین ارز های ما
           </h1>
@@ -44,24 +70,25 @@ export default function Category() {
         {data.map((item, index) => (
           <div
             key={index}
-            className={` ${open ? "border-b-2 border-gray-200" : "border-none"}
-              ${(index + 1) % 3 == 0 ? "" : "border-b-2 border-gray-200"} `}
+            className={`${
+              open ? "border-b-2 border-gray-200" : "border-none"
+            } ${(index + 1) % 3 == 0 ? "border-none" : "border-b-2 border-gray-200"}`}
           >
             <div>
-              <div className="flex justify-between mt-4">
+              <div className="flex justify-around md:justify-between mt-4">
                 <div className="flex items-center gap-2 pb-2">
                   <div>
                     <div className="w-[46px] h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
                       <BNB />
                     </div>
                   </div>
-                    <div  className={`${open ? "block" : "hidden"}`}>
-                      <p>{item.Persian}</p>
-                      <p>{item.name}</p>
-                    </div>
+                  <div className={`${open ? "block" : "hidden"}`}>
+                    <p>{item.Persian}</p>
+                    <p>{item.name}</p>
+                  </div>
                 </div>
-                <div  className={`${open ? "block" : "hidden"}`}>
-                  <div className="flex  gap-2 pb-2">
+                <div className={`${open ? "block" : "hidden"}`}>
+                  <div className="flex gap-2 pb-2">
                     <span>تومان</span>
                     <p>{item.price} </p>
                   </div>
