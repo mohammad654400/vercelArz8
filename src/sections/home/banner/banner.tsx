@@ -7,13 +7,11 @@ import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
 import BG from "@/assets/images/downloadApp/bg.png";
 import QrCode from "@/assets/images/qrCodeImage.png";
-
-
 import Link from "next/link";
 
 export default function Banner() {
   return (
-    <div className="w-full  self-center my-[100px] px-5 md:px-12 lg:px-16 xl:px-0 ">
+    <div className="w-full  self-center my-[100px]">
       <div className="w-full bg-[#242428] h-[310px] sm:h-[400px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
         <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
           <div className="w-full h-full text-white text-center">

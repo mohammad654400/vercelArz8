@@ -16,7 +16,10 @@ export default function Home() {
         <SecondBannerSlider />
         <RealTimePrice />
       </div>
-      <Banner />
+      <div className="px-5 md:px-12 lg:px-16 xl:px-0">
+        <Banner />
+      </div>
+
       <div className="base-style">
         <QuickGuide />
         <Blog />
