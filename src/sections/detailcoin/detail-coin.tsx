@@ -140,7 +140,7 @@ export default function DetailCoin() {
 
 
   return (
-    <div className="flex flex-col w-full bg-background base-style sm:pt-24">
+    <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
       <div className="w-full flex justify-between items-center mb-6 h-[75px]">
         <div className="flex justify-between items-center w-[60%] h-full bg-secondary  px-4 rounded-2xl">
           <div className="flex">
