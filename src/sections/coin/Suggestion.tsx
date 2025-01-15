@@ -1,3 +1,6 @@
+'use client';
+
+import AvalancheIcon from "@/assets/icons/avalancheIcon";
 import BNB from "@/assets/icons/bnb";
 import React, { useState, useEffect } from "react";
 
@@ -5,80 +8,125 @@ const data = [
   {
     price: "43,537,353",
     percentage: "% 1.37",
-    name: "BTC",
-    Persian: "آوالانچ",
-    icon: <BNB />,
+    name: "SOL",
+    Persian: "فانتوم",
+    icon: <AvalancheIcon />,
   },
   {
     price: "43,537,353",
     percentage: "% 1.37",
-    name: "SOL",
-    Persian: "آوالانچ",
-    icon: <BNB />,
+    name: "BTC",
+    Persian: "بیت‌کوین",
+    icon: <AvalancheIcon />,
   },
   {
     price: "43,537,353",
     percentage: "% 1.37",
     name: "SUI",
-    Persian: "آوالانچ",
+    Persian: "سولانا",
     icon: <BNB />,
+  },
+  {
+    price: "43,537,353",
+    percentage: "% 1.37",
+    name: "AVAX",
+    Persian: "آوالانچ",
+    icon: <AvalancheIcon />,
   },
 ];
 
-export default function Suggestion() {
+export default function Suggestion({
+  setSugesstions,
+  value,
+}: {
+  setSugesstions: (value: boolean) => void;
+  value: string;
+}) {
   const [historySearch, setHistorySearch] = useState<string[]>([]);
+  const [filterData, setFilterData] = useState<typeof data>([]);
 
   useEffect(() => {
     const storedHistory = localStorage.getItem("searchHistory");
+    let parsedHistory: string[] = [];
+
     if (storedHistory) {
-      setHistorySearch(JSON.parse(storedHistory));
+      parsedHistory = JSON.parse(storedHistory);
+      setHistorySearch(parsedHistory);
     }
-  }, []);
+
+    if (value) {
+      const filtered = data.filter((item) =>
+        item.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilterData(filtered);
+    } else {
+      const filtered = data.filter((item) =>
+        parsedHistory.includes(item.name)
+      );
+      setFilterData(filtered);
+    }
+  }, [value]);
 
   function handleClick(symbol: string) {
     setHistorySearch((prevFavorites) => {
-      const updatedHistory = [...prevFavorites, symbol];
-      localStorage.setItem("searchHistory", JSON.stringify(updatedHistory)); // Save updated history to localStorage
+      if (prevFavorites.includes(symbol)) {
+        return prevFavorites;
+      }
+
+      const updatedHistory =
+        prevFavorites.length >= 10
+          ? [...prevFavorites.slice(1), symbol]
+          : [...prevFavorites, symbol];
+
+      localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
       return updatedHistory;
     });
   }
 
   return (
-    <div className="relative">
-      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[546px] h-[270px] bg-secondary p-4">
+    <div className="relative z-20 w-full">
+      <div
+        onClick={() => setSugesstions(false)}
+        className="fixed w-full h-full bg-black top-0 right-0 opacity-0"
+      ></div>
+      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[304px] h-[189px] md:w-[546px] md:h-[270px] overflow-y-auto bg-secondary p-1 md:p-4">
         <p className="py-1 text-sm">نتایج پیدا شده :</p>
         <div>
-          {data.map((item, index) => (
-            <div key={index}>
-              <div
-                onClick={() => handleClick(item.name)} // Pass function reference with parameter
-                className="cursor-pointer"
-              >
-                <div className="flex justify-around md:justify-between mt-4">
-                  <div className="flex items-center gap-2 pb-2">
-                    <div>
-                      <div className="w-[46px] h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
-                        <BNB />
+          {filterData.length > 0 ? (
+            filterData.map((item, index) => (
+              <div key={index}>
+                <div
+                  onClick={() => handleClick(item.name)}
+                  className="cursor-pointer"
+                >
+                  <div className="flex justify-between mt-4 px-2 pr-0">
+                    <div className="flex items-center gap-2 pb-2">
+                      <div>
+                          <span className=" w-[26px] h-[26px] md:w-[46px] md:h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
+                          {item.icon}
+                          </span>
+                      </div>
+                      <div className="text-sm md:text-base">
+                        <p>{item.Persian}</p>
+                        <p>{item.name}</p>
                       </div>
                     </div>
                     <div>
-                      <p>{item.Persian}</p>
-                      <p>{item.name}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex gap-2 pb-2">
-                      <span>تومان</span>
-                      <p>{item.price} </p>
-                    </div>
-                    <div className="w-full flex justify-end">
-                      <p>{item.percentage}</p>
+                      <div className="flex gap-2 pb-2  text-sm md:text-base">
+                        <span>تومان</span>
+                        <p>{item.price}</p>
+                      </div>
+                      <div className="w-full flex justify-end text-sm md:text-base">
+                        <p>{item.percentage}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>نتیجه‌ای یافت نشد.</p>
+          )}
         </div>
       </div>
     </div>

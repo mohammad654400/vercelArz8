@@ -215,7 +215,7 @@ export default function RealTimePrice() {
                   % {currency.change}
                 </div>
                 <div className="md:flex justify-center m-auto hidden object-cover">
-                  <Image src={ChartUP} alt="chart" width={150} height={44} />
+                  <Image src={ChartUP} alt="chart" width={120} height={44} />
                 </div>
 
                 <div className="flex justify-end pl-0 pr-0">

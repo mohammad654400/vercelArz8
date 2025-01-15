@@ -7,7 +7,6 @@ import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import ArrowRight from "@/assets/icons/arrrow/arrowRight";
 import Star from "@/assets/icons/star";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const currencies = [
   {
@@ -72,6 +71,7 @@ const currencies = [
 ];
 
 const filterOptions = [
+  { label: "مورد علاقه ", key: "favorites" },
   { label: "محبوب‌ترین‌ها", key: "popular" },
   { label: "گران ترین", key: "mostExpensive" },
   { label: "ارزان ترین", key: "cheapest" },
@@ -111,6 +111,14 @@ export default function LivePriceTable() {
     setActiveFilter(filterKey);
 
     switch (filterKey) {
+      case "favorites":
+        const favorites = localStorage.getItem("favorites");
+        setDisplayedCurrencies(
+          favorites
+            ? currencies.filter((currency) => favorites.includes(currency.symbol))
+            : []
+        );
+        break;
       case "popular":
         setDisplayedCurrencies(
           currencies.filter((currency) => currency.popular)
@@ -257,7 +265,7 @@ export default function LivePriceTable() {
                     : "text-green-500"
                 }`}
               >
-                {currency.change.startsWith("-") ? "▼" : "▲"} {currency.change}%
+                 {currency.change}%
               </div>
               <div className="flex justify-center">
                 <Image src={ChartUP} alt="chart" width={64} height={31} />

@@ -33,8 +33,8 @@ export default function Category() {
     const handleResize = () => {
       if (window.innerWidth < 842) {
         setOpen(false);
-      }else if(window.innerWidth > 842){
-        setOpen(true)
+      } else if (window.innerWidth > 842) {
+        setOpen(true);
       }
     };
     handleResize();
@@ -49,12 +49,12 @@ export default function Category() {
       <div
         className={`${
           open
-            ? "w-[300px] md:w-[364px] pt-6 rounded-2xl px-3 md:px-6 "
-            : "w-[72px] rounded-3xl overflow-hidden px-3"
+            ? "w-[280px] md:w-[364px] pt-4 md:pt-6 rounded-2xl mx-2 px-3 md:px-6 "
+            : "w-[72px] h-[279px] rounded-3xl overflow-hidden px-3"
         } h-auto bg-[#F6F6F6] dark:bg-[#242428] pb-4`}
       >
         <div
-          className={`${
+          className={`relative ${
             open
               ? "flex justify-between cursor-pointer"
               : "flex justify-center pt-4"
@@ -63,19 +63,26 @@ export default function Category() {
           <h1 className={`${open ? "block" : "hidden"}`}>
             جدید ترین ارز های ما
           </h1>
-          <span onClick={() => setOpen(!open)}>
-            <ArrowWithBorder />
-          </span>
+          <div className="hidden sm:block absolute left-0 w-6  bg-black opacity-0  z-10">
+            d
+          </div>
+            <span className="" onClick={() => setOpen(!open)}>
+              <ArrowWithBorder />
+            </span>
         </div>
         {data.map((item, index) => (
           <div
             key={index}
-            className={`${
+            className={` ${
               open ? "border-b-2 border-gray-200" : "border-none"
-            } ${(index + 1) % 3 == 0 ? "border-none" : "border-b-2 border-gray-200"}`}
+            } ${
+              (index + 1) % 3 == 0
+                ? "border-none"
+                : "border-b-2 border-gray-200"
+            }`}
           >
             <div>
-              <div className="flex justify-around md:justify-between mt-4">
+              <div className="flex justify-between mt-4 ">
                 <div className="flex items-center gap-2 pb-2">
                   <div>
                     <div className="w-[46px] h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">

@@ -59,13 +59,16 @@ export default function Footer() {
                   </h1>
                   <ul className="flex flex-col gap-4">
                     <li> خرید و فروش ارزدیحیتال </li>
-                    <li>دانلود اپلیکیشن</li>
                     <li>قیمت لحظه ای ارز ها</li>
-                    <li>وبلاگ</li>
+                    <li>دانلود اپلیکیشن</li>
+                    <Link href='/calculate'>
+                    <li>ماشین حساب</li>
+                    </Link>
                     <li>گردونه شانس</li>
                     <li>
                       <Link href="/bugbounty">باگ بانتی</Link>
                     </li>
+                    <li>وبلاگ</li>
                   </ul>
                 </div>
                 <div className="">
@@ -73,14 +76,14 @@ export default function Footer() {
                     لینک های مفید
                   </p>
                   <ul className="flex flex-col gap-4">
-                    <li> اموزش های صرافی</li>
-                    <li> درباره ما</li>
-                    <Link href="/contactus">
-                      <li> تماس با ما</li>
-                    </Link>
                     <li> ارسال تیکت پشتیبانی</li>
+                    <li> اموزش های صرافی</li>
                     <li> قوانین و مقررات</li>
                     <li>سطوح کاربری</li>
+                      <Link href="/contactus">
+                        <li> تماس با ما</li>
+                      </Link>
+                    <li> درباره ما</li>
                   </ul>
                 </div>
                 <div className="">
@@ -89,16 +92,16 @@ export default function Footer() {
                   </p>
                   <ul className="flex flex-col gap-4">
                     <div className="flex gap-2">
-                      <Phone />
-                      <li> 021-284299</li>
+                      <TownyFour />
+                      <li> پشتیبانی انلاین </li>
                     </div>
                     <div className="flex gap-2">
                       <Fax />
                       <li>021-91035288 </li>
                     </div>
                     <div className="flex gap-2">
-                      <TownyFour />
-                      <li> پشتیبانی انلاین </li>
+                      <Phone />
+                      <li> 021-284299</li>
                     </div>
                   </ul>
                 </div>
