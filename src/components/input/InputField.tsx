@@ -2,7 +2,7 @@ import React from 'react';
 
 interface InputFieldProps {
     name: string;
-    label: string;
+    label?: string;
     type: "text" | "textarea" | "select"; // محدود کردن نوع فیلدها
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
@@ -45,6 +45,7 @@ const FormField: React.FC<InputFieldProps> = ({
                 <textarea
                     id={name}
                     name={name}
+                    placeholder={placeholder}
                     value={value}
                     onChange={onChange}
                     className="w-full p-2 rounded-lg h-40 border bg-transparent focus:ring-0 focus:outline-none"
@@ -55,6 +56,7 @@ const FormField: React.FC<InputFieldProps> = ({
                     type={type}
                     name={name}
                     value={value}
+                    placeholder={placeholder}
                     onChange={onChange}
                     autoComplete="off"
                     className="w-full p-2 rounded-lg border bg-transparent focus:ring-0 focus:outline-none h-12"

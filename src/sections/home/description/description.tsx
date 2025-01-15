@@ -1,28 +1,12 @@
 "use client";
 import BigArrow from "@/assets/icons/bigarrow";
 import MobileIcon from "@/assets/icons/mobile";
-import ArrowDown from "@/assets/icons/arrrow/arrowDown";
-import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import React, { useState } from "react";
-
-const Description = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpand = () => setIsExpanded(!isExpanded);
-
-  return (
-    <div className="w-full mx-auto">
-      <h1 className="mt-8 mb-4 text-2xl">
-        <span className="text-primary">خرید و فروش سریع</span> ارزهای دیجیتال با
-        ارز هشت{" "}
-      </h1>
-      <div
-        className={`relative overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          isExpanded ? "max-h-[500px]" : "max-h-20"
-        }`}
-      >
-        <p className="leading-10 text-justify">
-          خرید و فروش ارز دیجیتال با صرافی ارز هشت: سریع، امن و مطمئن به صرافی
+import MoreDetails from "@/components/more-details";
+const data = {
+  firstTitle:"خرید و فروش سریع ",
+  secondTitle:"ارزهای دیجیتال باارز هشت",
+  text:`خرید و فروش ارز دیجیتال با صرافی ارز هشت: سریع، امن و مطمئن به صرافی
           ارز هشت خوش آمدید! جایی که خرید و فروش ارزهای دیجیتال به ساده‌ترین و
           امن‌ترین شکل ممکن انجام می‌شود. ما در صرافی ارز هشت، بستری حرفه‌ای،
           سریع و کاربرپسند برای معاملات ارزهای دیجیتال فراهم کرده‌ایم تا شما
@@ -43,23 +27,14 @@ const Description = () => {
           آغاز کنید. ما همراه شما هستیم تا به بهترین شکل از فرصت‌های
           سرمایه‌گذاری در این بازار نوظهور بهره‌مند شوید. صرافی ارز هشت؛ انتخاب
           هوشمندانه برای خرید و فروش ارزهای دیجیتال. با ما در تماس باشید و همین
-          حالا وارد دنیای ارز دیجیتال شوید!
-        </p>
-
-        {/* Gradient Overlay */}
-        {!isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#ffffff] to-[#3C3B4100] dark:from-[#3C3B41] dark:to-[#3C3B4100] pointer-events-none"></div>
-        )}
-      </div>
-      <div>
-        <button
-          onClick={toggleExpand}
-          className="w-full mt-2 hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
-        >
-          {isExpanded ? <ArrowUp /> : <ArrowDown />}
-          {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
-        </button>
-      </div>
+          حالا وارد دنیای ارز دیجیتال شوید!`
+}
+const Description = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => setIsExpanded(!isExpanded);
+  return (
+    <div className="w-full mx-auto">
+       <MoreDetails firstTitle={data.firstTitle} secondTitle={data.secondTitle} text={data.text} />
       <div className="w-full mt-[100px] h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div className="dark:text-white text-[18px] md:text-2xl font-bold">

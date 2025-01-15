@@ -13,7 +13,7 @@ import Aparat from "@/assets/icons/footer/aparat";
 import Phone from "@/assets/icons/footer/phone";
 import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
-import DropdownFooter from "./dropdownFooter";
+import DropdownFooter from "./dropdown-footer";
 import Link from "next/link";
 export default function Footer() {
   return (

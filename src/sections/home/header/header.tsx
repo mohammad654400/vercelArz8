@@ -6,8 +6,8 @@ import Link from "next/link";
 import Menu from "./menu/menu";
 import Downlaod from "@/assets/icons/downlaod";
 import Moon from "@/assets/icons/moon";
-import { useTheme } from "@/contexts/ThemeProvider";
-import DownloadSection from "./downloadSection";
+import { useTheme } from "@/contexts/theme-provider";
+import DownloadSection from "./download-section";
 import Sun from "@/assets/icons/sun";
 import BarIcon from "@/assets/icons/bar";
 import SaidBar from "./menu/sideBar";
@@ -20,20 +20,19 @@ export default function Header() {
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
-  
+
     handleScroll();
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
 
   return (
     <div>
@@ -49,7 +48,11 @@ export default function Header() {
         z-30 
         transition-all
         bg-background
-        ${isScrolled ? "bg-secondary shadow-sm top-0 " : "md:bg-transparent  bg-secondary"}
+        ${
+          isScrolled
+            ? "bg-secondary shadow-sm top-0 "
+            : "md:bg-transparent  bg-secondary"
+        }
       `}
       >
         <div className="flex items-center self-center justify-between px-[14px]  md:px-6 h-14  md:h-[78px] ">
@@ -83,8 +86,8 @@ export default function Header() {
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center md:gap-[24px] gap-[9px] h-full md:gap-">
             <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
-              <Link href='https://app.arz8.com/auth/login'>
-              <p>ورود یا عضویت</p>
+              <Link href="https://app.arz8.com/auth/login">
+                <p>ورود یا عضویت</p>
               </Link>
             </div>
             <div className="flex justify-center items-center cursor-pointer group h-full  ">
@@ -95,12 +98,22 @@ export default function Header() {
                 <DownloadSection />
               </div>
             </div>
-            <div className="cursor-pointer pr-1  md:pr-0 -order-1 md:order-1" onClick={toggleTheme} >
-              {theme == "light" ? <div className="md:w-[42px] l-1 md:h-[42px] w-[25px] h-[25px] mt-1 md:mt-0"><Moon /></div>
-              :<div className="md:w-[38px] md:h-[38px] w-[30px] h-[30px]"><Sun /></div> }
+            <div
+              className="cursor-pointer pr-1  md:pr-0 -order-1 md:order-1"
+              onClick={toggleTheme}
+            >
+              {theme == "light" ? (
+                <div className="md:w-[42px] l-1 md:h-[42px] w-[25px] h-[25px] mt-1 md:mt-0">
+                  <Moon />
+                </div>
+              ) : (
+                <div className="md:w-[38px] md:h-[38px] w-[30px] h-[30px]">
+                  <Sun />
+                </div>
+              )}
             </div>
             <span className="xl:hidden  w-[30px] h-[30px]">
-              <UserIcon/>
+              <UserIcon />
             </span>
           </div>
         </div>

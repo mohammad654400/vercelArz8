@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Bot from "@/assets/images/about/bot.png"
-import { aboutData } from './data/aboutData';
+import { aboutData } from './data/about-data';
 
 export default function About() {
     return (

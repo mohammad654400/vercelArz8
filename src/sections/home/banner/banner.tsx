@@ -1,12 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Phone from "@/assets/images/downloadApp/phone.png";
-import Phone2 from "@/assets/images/downloadApp/phone2.png";
 import Android from "@/assets/icons/downloadApp/android";
 import Myket from "@/assets/icons/downloadApp/miket";
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
-import WaveDivider from "@/assets/icons/waveDivider";
 import BG from "@/assets/images/downloadApp/bg.png";
 import QrCode from "@/assets/images/qrCodeImage.png";
 
@@ -138,6 +136,6 @@ function DownloadOption({ Icon, label }: { Icon: React.FC; label: string }) {
         <Icon />
       </div>
       <span className="flex text-[4px] sm:text-[8px] lg:text-[11px] font-semibold">{label}</span>
-    </div>
-  );
+      </div>
+      )
 }

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Header from "./header/Header";
-import CategoryList from "./categoryList/CategoryList";
+import CategoryList from "./category-list/Category-list";
 import Body from "./body/Body";
-import { categories, newData } from "./data/questionsData";
+import { categories, newData } from "./data/questions-data";
 
 export default function FaqView() {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(0);

@@ -5,7 +5,7 @@ import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
-import { useFormattedNumber } from "@/hooks/useFormattedNumber";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 
 export default function Buy({

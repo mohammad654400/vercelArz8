@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
-import HeaderJob from './header/headerJob'
-import BodyJob from './body/bodyJob'
+import HeaderJob from './header/header-Job'
+import BodyJob from './body/body-Job'
 
 
 export default function Job() {

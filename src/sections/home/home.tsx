@@ -1,11 +1,11 @@
 import React from "react";
-import MainTop from "./maintop/mainTop";
+import MainTop from "./main-top/main-top";
 import TransAction from "./transaction/transaction";
-import SecondBannerSlider from "@/components/slider/bannerslider/seceondBannerSlider";
-import RealTimePrice from "./realtimeprice/realTimePrice";
+import SecondBannerSlider from "@/components/slider/banner-slider/seceond-banner-slider";
+import RealTimePrice from "./realtime-price/real-time-price";
 import Banner from "./banner/banner";
 import Description from "./description/description";
-import QuickGuide from "./quickguide/quickGuide";
+import QuickGuide from "./quick-guide/quick-guide";
 import Blog from "./blog/blog";
 export default function Home() {
   return (
@@ -22,7 +22,6 @@ export default function Home() {
         <Blog />
         <Description />
       </div>
-
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Timeline from './timeline '
+import Timeline from './time-line '
 import { cardData } from './data/data';
 import Image from 'next/image';
 import Asset from "@/assets/images/authentication/Asset.png"

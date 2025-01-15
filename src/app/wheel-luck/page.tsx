@@ -1,8 +1,8 @@
-import DownloadApp from '@/sections/download/downloa-app'
+import WheelLuck from '@/sections/wheel-luck/wheel-luck'
 import React from 'react'
 
 export default function page() {
   return (
-    <DownloadApp/>
+    <WheelLuck/>
   )
 }

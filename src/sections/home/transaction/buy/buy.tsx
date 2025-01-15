@@ -5,7 +5,7 @@ import Image from "next/image";
 import CryptoModal from "../cryptoModal";
 import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
-import { useFormattedNumber } from "@/hooks/useFormattedNumber";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 
 export default function Buy({
@@ -29,8 +29,8 @@ export default function Buy({
   };
 
   const handleMoneyChange = (value: string) => {
-    const rawValue = unformatNumber(value); 
-    setMoney(formatNumber(rawValue)); 
+    const rawValue = unformatNumber(value);
+    setMoney(formatNumber(rawValue));
 
     if (currency) {
       const calculatedAmount = parseFloat(rawValue) / currency.price;
@@ -39,8 +39,8 @@ export default function Buy({
   };
 
   const handleAmountChange = (value: string) => {
-    const rawValue = unformatNumber(value); 
-    setAmount(formatNumber(rawValue)); 
+    const rawValue = unformatNumber(value);
+    setAmount(formatNumber(rawValue));
 
     if (currency) {
       const calculatedMoney = parseFloat(rawValue) * currency.price;
@@ -72,12 +72,19 @@ export default function Buy({
             <p className=" text-lg">IRT</p>
           </div>
           <div className="hidden md:flex gap-5 mt-5 text-xs md:text-sm">
-            <p>قیمت خرید: {formatNumber(currency.price.toLocaleString())} تومان</p>
-            <p>قیمت فروش: {formatNumber(currency.price.toLocaleString())} تومان</p>
+            <p>
+              قیمت خرید: {formatNumber(currency.price.toLocaleString())} تومان
+            </p>
+            <p>
+              قیمت فروش: {formatNumber(currency.price.toLocaleString())} تومان
+            </p>
           </div>
         </div>
 
-        <div onClick={toggle} className="cursor-pointer mt-6 md:mt-6  md:my-5  lg:mt-0 self-end mb:10 md:mb-10">
+        <div
+          onClick={toggle}
+          className="cursor-pointer mt-6 md:mt-6  md:my-5  lg:mt-0 self-end mb:10 md:mb-10"
+        >
           <ArrowChange />
         </div>
         <div className="relative w-full lg:w-auto ">
@@ -94,8 +101,8 @@ export default function Buy({
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[9.5px] rounded-xl bg-secondary dark:bg-third"
           >
             <div className="w-5 h-5">{currency.icon}</div>
-            <p className=" text-lg">{currency.symbol}</p> 
-            <ArrowDown/>
+            <p className=" text-lg">{currency.symbol}</p>
+            <ArrowDown />
           </div>
         </div>
 
@@ -108,7 +115,7 @@ export default function Buy({
             />
           )}
           <button className="px-10 text-xl text-white  py-[12px] mt-2 rounded-xl bg-[#33B028] w-full lg:w-auto">
-              شروع خرید
+            شروع خرید
           </button>
         </div>
       </div>

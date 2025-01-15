@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { AccordionItem } from "./AccordionItem";
+import { AccordionItem } from "./Accordion-Item";
 
 interface AccordionProps {
   items: { id: number; title: string; content: string, videoLink?: string; }[];
   defaultOpenId?: number | null;
+  titleBgColor?: string;
+  contentBgColor?: string;
+  highlightEnabled?:boolean
 }
 
-export default function Accordion({ items, defaultOpenId }: AccordionProps) {
+export default function Accordion({ items, defaultOpenId,titleBgColor,contentBgColor,highlightEnabled }: AccordionProps) {
 
   if (!Array.isArray(items)) {
     console.error("items is not an array", items);
@@ -39,6 +42,9 @@ export default function Accordion({ items, defaultOpenId }: AccordionProps) {
             videoLink={item.videoLink}
             isOpen={openItemId === item.id}
             onToggle={handleToggle}
+            titleBgColor={titleBgColor} 
+            contentBgColor={contentBgColor} 
+            highlightEnabled={highlightEnabled}
           />
         </div>
 

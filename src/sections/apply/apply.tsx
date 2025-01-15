@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
-import { validationSchema } from './yup/validationSchema';
+import { validationSchema } from './yup/validation-schema';
 import FormField from '../../components/input/InputField';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import Modal from '@/components/Modal';
