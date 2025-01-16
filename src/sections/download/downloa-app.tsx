@@ -1,6 +1,6 @@
 import React from "react";
 
-import BannerDownload from "../../components/bannerd-download";
+import BannerDownload from "./bannerd-download";
 import { cardData } from "./data/data";
 import Info from "@/assets/icons/rules/info";
 

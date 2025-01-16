@@ -72,7 +72,7 @@ export default function Banner() {
             </div>
 
 
-            {/* // */}
+           
             <div className=" w-full h-full justify-center items-center flex lg:hidden flex-col">
               <div className="flex  flex-col pt-8 pb-6 gap-y-3">
                 <h1 className="text-center text-base sm:text-3xl font-extrabold">

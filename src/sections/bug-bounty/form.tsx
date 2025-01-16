@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
-import FormField from '@/components/input/InputField';
+import FormField from '@/sections/job/input/InputField';
 import validationSchema from './yup/validationSchema';
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
@@ -21,7 +21,7 @@ export default function FormBugBounty() {
     const [isChecked, setIsChecked] = useState(false);
 
 
-    // Modal State
+  
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState<"success" | "error">("success");
     const [modalLines, setModalLines] = useState<ModalLine[]>([]);
@@ -62,7 +62,7 @@ export default function FormBugBounty() {
     const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
 
-        // چاپ نوع MIME برای دیباگ  
+        
         files.forEach(file => {
             console.log(`${file.name}: ${file.type}`);
         });
@@ -82,7 +82,7 @@ export default function FormBugBounty() {
         setUploadedFiles((prevFiles) => {
             const combinedFiles = [...prevFiles, ...newUploadedFiles];
 
-            // فیلتر کردن فایل‌های تصویری و ویدیو/ZIP  
+           
             const imageFiles = combinedFiles.filter(file => ["image/jpeg", "image/png"].includes(file.type));
             const videoOrZipFiles = combinedFiles.filter(file =>
                 ["video/mp4", "application/zip", "application/octet-stream"].includes(file.type) || file.name.endsWith('.zip')
@@ -90,21 +90,21 @@ export default function FormBugBounty() {
 
             if (imageFiles.length > 5) {
                 setErrors((prev) => ({ ...prev, files: "حداکثر 5 تصویر مجاز است." }));
-                return prevFiles; // بازگرداندن فایل‌های قبلی در صورت بروز خطا  
+                return prevFiles; 
             }
 
             if (videoOrZipFiles.length > 1) {
                 setErrors((prev) => ({ ...prev, files: "فقط یک ویدیو یا فایل ZIP مجاز است." }));
-                return prevFiles; // بازگرداندن فایل‌های قبلی در صورت بروز خطا   
+                return prevFiles;   
             }
 
-            return combinedFiles; // بازگرداندن فایل‌های ترکیب شده در صورت موفقیت همه چک‌ها   
+            return combinedFiles;   
         });
 
         setTotalFileSize(newTotalFileSize);
-        formDataRef.current.files = [...uploadedFiles, ...newUploadedFiles];  // به‌روزرسانی آرایه فایل‌ها  
+        formDataRef.current.files = [...uploadedFiles, ...newUploadedFiles]; 
         setErrors((prev) => ({ ...prev, files: "" }));
-    }, [totalFileSize, uploadedFiles]);  // اضافه کردن ‘uploadedFiles’ به دیپندنسی‌ها  
+    }, [totalFileSize, uploadedFiles]);  
 
     const handleFileRemove = useCallback((index: number) => {
         const updatedFiles = uploadedFiles.filter((_, i) => i !== index);
@@ -268,7 +268,7 @@ export default function FormBugBounty() {
                 </div>
 
                 <div className="flex items-start mb-[19px]">
-                    {/* Custom Checkbox */}
+                    
                     <input
                         id="accept-checkbox"
                         type="checkbox"

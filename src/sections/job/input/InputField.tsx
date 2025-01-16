@@ -7,8 +7,8 @@ interface InputFieldProps {
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
     error?: string;
-    options?: string[]; // فقط در صورت `type === select` استفاده می‌شود
-    placeholder?: string; // برای placeholder اختیاری
+    options?: string[]; 
+    placeholder?: string; 
 }
 
 const FormField: React.FC<InputFieldProps> = ({

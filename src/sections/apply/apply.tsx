@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 import { validationSchema } from './yup/validation-schema';
-import FormField from '../../components/input/InputField';
+import FormField from '@/sections/job/input/InputField';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
@@ -21,7 +21,6 @@ export default function ApplyPage({ title }: { title: string }) {
     const [uploadedFileUrl, setUploadedFileUrl] = useState<string | undefined>(undefined);
     const fileUrlRef = useRef<string | undefined>(undefined);
 
-    // Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState<"success" | "error">("success");
     const [modalLines, setModalLines] = useState<ModalLine[]>([]);
