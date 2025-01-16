@@ -1,5 +1,5 @@
 import React from "react";
-import BannerDownload from "@/components/bannerd-download";
+import BannerDownload from "@/sections/download/bannerd-download";
 
 export default function Banner() {
   return (

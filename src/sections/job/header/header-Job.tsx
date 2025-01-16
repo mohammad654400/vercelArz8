@@ -3,6 +3,7 @@ import opportunity from "@/assets/images/job/opportunity.png";
 import Image from 'next/image';
 import React from 'react';
 
+
 export default function HeaderJob({ scrollToJobs }: { scrollToJobs: () => void }) {
     return (
         <div className="flex flex-col-reverse xl:flex-row justify-between items-center h-full w-full mt-20">

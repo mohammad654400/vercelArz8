@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 import ArrowTop from "@/assets/icons/arrrow/arrow-top";
 
@@ -11,7 +11,6 @@ interface AccordionItemProps {
   onToggle: (id: number) => void;
 }
 
-// تابع تبدیل لینک آپارات به لینک embed
 const sanitizeApparatUrl = (url: string) => {
   const videoId = new URL(url).pathname.split("/").pop();
   return `https://www.aparat.com/video/video/embed/videohash/${videoId}/vt/frame`;
@@ -25,7 +24,7 @@ export const AccordionItem = ({
   isOpen,
   onToggle,
 }: AccordionItemProps) => {
-  const contentRef = useRef<HTMLDivElement>(null); // برای اندازه‌گیری محتوای درونی
+  const contentRef = useRef<HTMLDivElement>(null);
 
   return (
     <div ref={undefined} className="relative rounded-xl sm:rounded-[20px] p-5  flex w-full">
