@@ -9,43 +9,57 @@ import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
 import Accordion from '@/components/Accordion'
 import Ghar from '@/assets/images/wheelluck/ghar.png'
+import ImageOne from '@/assets/images/wheelluck/8.png'
+import ImageTwo from '@/assets/images/wheelluck/9.png'
+import ImageThree from '@/assets/images/wheelluck/1.png'
+import ImageFour from '@/assets/images/wheelluck/2.png'
+import ImageFive from '@/assets/images/wheelluck/3.png'
+import ImageSix from '@/assets/images/wheelluck/4.png'
+import ImageSeven from '@/assets/images/wheelluck/5.png'
+import ImageEight from '@/assets/images/wheelluck/6.png'
+import ImageNine from '@/assets/images/wheelluck/7.png'
+import Silver from "@/assets/images/wheelluck/Silver.png"
+import Bronze from "@/assets/images/wheelluck/Bronze.png"
+import Gold from "@/assets/images/wheelluck/Gold.png"
+import Crystal from "@/assets/images/wheelluck/Crystal.png"
 
 
 
 const awards = [
   {
-    icon: "https://s3-alpha-sig.figma.com/img/5c65/bbf1/84105cccbfd0ed0fb7a33f6ecc801e64?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ld7S4FaAjCo6t3FoQDlbteq4o0d4mgST6BBCnVyu8VIPO3PX7JQA~X1N97yrAyCThp1gfKKFr6gXbcSwX3ZQAFXZAPfmIn-gykcF2d-5Uv84JCmTgBB78rku6JnslLB5sYS9ayLmEiyWhXFqfs-DhDJX7HYUYsFJtLv3gaAoHVPRC5MR8~m-KhWn7mAkcc4KOF91NTeCUQ1ZLySNBc4hPD4G7tOZlAlyyP15dxN08H3rmgstds86r0iaJ8y1TCdtzG8PRb7eHeqDZVSfQ0NkO0JYqCXOQV7oK74JXPRbHUg1UFSmGXeBz7S5ffkLqA5mQZi-aBLls4dDTzLjspAYnA__",
+    icon: Bronze,
     title: "سطح برنزی",
     description: "سطح برنزی ارز هشت مخصوص کاربرانی است که احراز هویت اولیه (اطلاعات هویتی) خود را تکمیل کرده و حجم معاملات ماهانه آن‌ها بین ۰ تا ۱۰۰ میلیون تومان باشد."
   },
   {
-    icon: "https://s3-alpha-sig.figma.com/img/cb43/6e57/5a7207bd79e871dd2753a87cb269948c?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mFNpLRpppTHr17UPypUppdXsfgnX-~iRFNvi3G4sEzuUbVKjW1yHVR7cZHtKEtKRU8Z4r2509gcP-o8vNhnf8YYqWETrP0nvgvmgydawmiGznCU2yBUTdTljxqU0CTpVRnmQvpwe8QwP6tZPPVfpXkDALkRHLy1S5SA3LNThHdATnfJa8b4JEXkwKauI35e~4J5wz2WNBBCcoyoVaa34b7NvZnksI~DI6W5-jhU2A9XylaTyEzsX-G2dFk1ElZwMJtLdQy0ZYp7r9LJNu7LujzaI3vqJougqddG2VdV0xS-x5Sv7HqOkIiCkqSL1t25QYs4AMlJ7JeLItFlrZ-4RWw__",
+    icon: Silver,
     title: "سطح نقره ای",
     description: "گردونه شانس سطح نقره‌ای برای کاربرانی فعال می‌شود که حجم معاملات ماه گذشته آن‌ها بین ۱۰۰ تا ۴۰۰ میلیون تومان باشد."
   },
   {
-    icon: "https://s3-alpha-sig.figma.com/img/2950/0b9c/f274163daaa2cbee6f4daf2694248927?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M-vMkyCCZT4vppfi1VEfaa4gxleDUUBbHvn8MkH9AvdYGTFbvmjwbS~L5iyDh5jsN1kHBie~rgBSlweP0yHp9kekuj2LVYuRlIrXIH2QzhAdgZEOIdKAMrBOPNjNaH9nYjn7YABUixjRXCkQx8AI9w7AIteRRmlwgceCR9QTPBA8xWadgF0JXWBMlNafxlvLutGjdM39GXXRoiaQCpLb8Kr705j2ZYM2bdNBM73unJlqTfiMKHFLW2XrrwKBb6AEFMFOWizJZwJ~T8bawNJzGNWIiFZHxPIW~PzxLXAwE7LAMHrEl~DPJ6zF6NF3da5O-T~d4sUzJaJ2RVdEPQNQag__",
+    icon: Gold,
     title: "سطح طلایی",
     description: "در این سطح، گردش معاملاتی ماهانه شما باید بین ۴۰۰ میلیون تا ۱ میلیارد تومان باشد تا امکان چرخاندن گردونه طلایی را داشته باشید."
   },
   {
-    icon: "https://s3-alpha-sig.figma.com/img/2aa3/eaa7/0d083895f74ed18453196e96a6a69e5c?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qoMm2r6cvf0t~A4NrKhJxYAurAN9oGp30QNTcUv3cAuxcNQlarR3dsEhzu2qzmGcyPaVO0SdmWeIVffv7x5hV-twOMRIDNjVRWLAkqA2nxjRr6--pWlX7D27-7gl9Ljoqpc2Sqs~OiHzZIXBIPZhIrjE9f1CoLZClXWFJns1WaeauxRp7WYCoooovWH-AyBukgu-xgGXAmWuDy4T8cv3zuDrw-R5bPGSxVd0~ggChxMt4f-bR~WgOxXbIE5LYeL-JnalIzfoCbf98vRnRaz5XaYifiyXLDo81JMaJN6enYBTVfPUV9ezKpJZUdgw~R00ItGDzqtQYRfBtoZfFjbRVQ__",
-    title: "سطح نقره ای",
+    icon: Crystal,
+    title: "سطح کریستالی",
     description: "سطح کریستالی با جوایز ویژه مستلزم حجم معاملات ماهانه بیش از یک میلیارد تومان است."
   },
 ]
 
 const imageUrls = [
-  "https://s3-alpha-sig.figma.com/img/3e07/82d9/632cfec37a582be1adbc94cc8debe9d4?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EIPjsXamaXno55bLySnhJegmCxi-DDjzVr5DIdC7w19MORn~gCEERlSsZZz7nZ-cwFqpfAl~CsLoRo497Vqn1FD84kIFfvqao1edyXAWmE1VBP2RhywEACMtutxIRwl2hL0O4tOH5q6lvdWPHn6H8dTQUtuc53w0Kj1QjITckjrK-UAaVfD3zMGlQ2WxJpitkKaiHFiK2OWllI2oFPbLudz7gcPGuzWA73gJqHrYyfiqDN4VkzGmnEwj8c9YbFoQZdgy1jCVNpmY~xkQZYQ7HuxSy2TY50UUgD26f--5aKYcSIH9bZxKoFYit~WizV9vQJeBzWBtzub3ZXJxnOKjbQ__",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/d95afd7b1f9e2f22eb4196813d21186541176cf4",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/4cf83304753e6482f1a0903a3c232e0497d88692",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/4ae525b132534767e9c50d4630af3966c8777fa0",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/0c424179d106f1aa2b9b744e5dfbdb5a8c48f729",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/ee68cf2d0b9e59e25042f49fd8d87527f044f98e",
-  "https://s3-alpha-sig.figma.com/img/7a90/d1ac/504e3def584a267856e2be3a906e0e67?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kMU9mfigiMIe5vQWeAk2X-EyLIFh1Bf438q7bfOGYtFp8a97azMINFkuf6qkyvStCIwLj8S3kdmr0nB9jNO5vnA7I8NSS-ahHbHl2X5LkI76clhYi6mF6Z7vfbR1zl8gmqd20QuEhspRXRntEgRte6xxkYDerLKTJYm4gIWshuqua8sNZEBP88LmSuZipZLIqr5o-Xrtgex2fSo63vPEtOBb-FiujNnm-bFp6~y21ZwWK0AsWkYa1k4~rIXsYrApe~jmrqdInoM4AMihKFXWb419njZl18x5CN0a5J93NUQlgQy~EE~oaxTrwAVv-BuDgHDN~4Bap8sksCdzDUDQNQ__",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/3263bcb1b56d738321e2a80b2ac7eb0d52afc229",
-  "https://www.figma.com/file/ISvCAnSJ4v8v4WiJDR8Mbv/image/88594dcdc12359587dfb5eb4b83c4ca1b462aa48",
+  ImageOne.src,
+  ImageTwo.src,
+  ImageThree.src,
+  ImageFour.src,
+  ImageFive.src,
+  ImageSix.src,
+  ImageSeven.src,
+  ImageEight.src,
+  ImageNine.src,
 ];
+
 
 export const AccordionData = [
   {
@@ -83,9 +97,9 @@ export const AccordionData = [
 
 export default function WheelLuck() {
   return (
-    <div className='base-style'style={{gap:"0"}}>
+    <div className='base-style' style={{ gap: "0" }}>
       <div className='flex flex-col gap-10 md:gap-24 mt-28'>
-        
+
         <div className="flex flex-col gap-10 lg:flex-row  w-full justify-between">
           <div className="w-full flex flex-col justify-center order-2">
             <h1 className='mb-[9px] lg:mb-[15px] text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
@@ -162,7 +176,11 @@ export default function WheelLuck() {
             {awards.map((item, index) => (
               <div key={index} className='flex flex-col w-full py-[15px] px-[18px] sm:my-[10px] sm:px-3  bg-third rounded-xl'>
                 <div className='flex gap-4 items-center mb-2 sm:mb-3'>
-                  <img src={item.icon} alt='icon' className='w-10 h-10 md:w-[60px] md:h-[60px]' />
+                  <Image
+                    src={item.icon} 
+                    alt='icon'
+                    className='w-10 h-10 md:w-[60px] md:h-[60px]'
+                  />
                   <span className='text-base sm:text-[18.9px] font-bold'>{item.title}</span>
                 </div>
                 <span className='text-sm sm:text-base font-normal text-justify mt-xl leading-[30px] sm:leading-[45px]'>{item.description}</span>
