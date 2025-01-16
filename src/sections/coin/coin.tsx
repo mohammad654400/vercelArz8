@@ -1,6 +1,6 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
@@ -31,12 +31,22 @@ const data = {
 export default function Coin() {
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
+  const searchRef = useRef<HTMLInputElement | null>(null);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const inputValue = e.target.value;
     setValue(inputValue);
     if (inputValue.trim() !== "") {
       setSugesstions(true);
     } 
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (searchRef?.current) {
+      if (e.key === "Escape") {
+        setSugesstions(false);
+        searchRef?.current.blur()
+      }
+    }
   }
 
   return (
@@ -48,16 +58,15 @@ export default function Coin() {
             در این صفحه، قیمت لحظه‌ای و بروزترین تغییرات ارزهای دیجیتال محبوب را
             مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید
           </p>
-          {/* <p className="text-sm pt-2 text-justify">
-            یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید
-          </p> */}
           <div className="relative p-5 ">
             <input
               onChange={handleChange}
               value={value}
-              className="w-[308px] h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border-2 text-lg md:text-xl outline-none"
+              className="w-[308px h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border-2 text-lg md:text-xl outline-none"
               type="text"
               onFocus={() => setSugesstions(true)}
+              onKeyUp={e => handleKeyDown(e)}
+              ref={searchRef}
             />
             <div className="w-full h-full">
               {sugesstions && <Suggestion setSugesstions={setSugesstions} value={value} />}
@@ -92,3 +101,5 @@ export default function Coin() {
     </div>
   );
 }
+
+
