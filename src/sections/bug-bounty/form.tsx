@@ -54,6 +54,7 @@ export default function FormBugBounty() {
         Offer: "",
     });
 
+
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         formDataRef.current[name] = value;
@@ -61,11 +62,6 @@ export default function FormBugBounty() {
 
     const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
-
-        
-        files.forEach(file => {
-            console.log(`${file.name}: ${file.type}`);
-        });
 
         const newUploadedFiles: File[] = [];
         let newTotalFileSize = totalFileSize;

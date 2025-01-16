@@ -2,18 +2,17 @@
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { jobListings } from './data/data';
-import Link from 'next/link';
 import ApplyPage from '../apply/apply';
 
 export default function DetailJob() {
-    const route = decodeURIComponent(usePathname().split('/')[2]);
+    const route = usePathname().split('/')[2];
     const job = jobListings.find(item => item.title === route);
     const [open, setIsOpen] = useState(false);
 
     const handlerOpen = () => {
         setIsOpen(true);
     };
-
+    
     const jobDetails = [
         { label: "عنوان شغلی", value: job?.titleFn },
         { label: "نوع فعالیت", value: job?.workMode },
