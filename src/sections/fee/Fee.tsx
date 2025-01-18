@@ -103,7 +103,25 @@ const Fee: React.FC = () => {
                 ))}
             </div>
 
-            <Accordion items={AccordionData} />
+            <Accordion 
+            items={AccordionData}
+            gap="gap-[10px]"
+            smGap="sm:gap-[15px]"
+            lgGap="lg:gap-[15px]"
+            
+            textTitle="text-sm"
+            smTextTitle="sm:text-xl"
+            lgTextTitle="lg:text-xl"
+
+            textContent="text-xs"
+            smTextContent="sm:text-sm"
+            lgTextContent="lg:text-sm"
+
+            textContentLeading="leading-[22.5px]"
+            smTextContentLeading="sm:leading-[38.3px]"
+            lgTextContentLeading="lg:leading-[38.3px]"
+
+            />
         </div>
     );
 };

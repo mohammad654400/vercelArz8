@@ -157,6 +157,16 @@ export default function FaqView() {
             <Accordion
               items={[filteredQuestion]}
               defaultOpenId={selectItem}
+              textTitle="text-xs"
+              smTextTitle="sm:text-base"
+              lgTextTitle="lg:text-base"
+              textContent="text-[10px]"
+              smTextContent="sm:text-sm"
+              lgTextContent="lg:text-sm"
+              textContentLeading="leading-[25px]"
+              smTextContentLeading="sm:leading-[38.3px]"
+              lgTextContentLeading="lg:leading-[38.3px]"
+  
             />
           </div>
         ))}

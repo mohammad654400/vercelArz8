@@ -10,8 +10,11 @@ interface AccordionItemProps {
   isOpen: boolean;
   onToggle: (id: number) => void;
   titleBgColor?: string;
-  contentBgColor?: string; 
+  contentBgColor?: string;
   highlightEnabled?: boolean;
+  titleClasses: any;
+  contentClasses: any;
+
 }
 
 const sanitizeApparatUrl = (url: string) => {
@@ -26,11 +29,24 @@ export const AccordionItem = ({
   videoLink,
   isOpen,
   onToggle,
-  titleBgColor  = "bg-secondary", 
-  contentBgColor  = "bg-secondary",
+  titleBgColor = "bg-secondary",
+  contentBgColor = "bg-secondary",
   highlightEnabled = true,
+  titleClasses,
+  contentClasses
+
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
+
+
+  const dynamicTitleClasses = videoLink
+    ? "text-sm sm:text-[21px] lg:text-[20px]"
+    : titleClasses;
+  const dynamicContentClasses = videoLink
+    ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
+    : contentClasses;
+
+
 
   return (
     <div ref={undefined} className="relative rounded-xl sm:rounded-[20px]  flex w-full">
@@ -55,10 +71,10 @@ export const AccordionItem = ({
           onClick={() => onToggle(id)}
           className={`w-full text-left font-medium flex justify-between items-center px-8 py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
         >
-          <span className="text-start text-sm sm:text-xl font-semibold">
+          <span className={`text-start font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
-          <span>{isOpen ? <ArrowBottom /> : <ArrowTop />}</span>
+          <span className="w[18px] h-[18px]">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
 
         <div
@@ -69,9 +85,8 @@ export const AccordionItem = ({
           ref={contentRef}
         >
           <div
-            className={`justify-between text-sm ${
-              videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
-            }`}
+            className={`justify-between text-sm ${videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
+              }`}
           >
             {videoLink && (
               <div className="flex-shrink-0 sm:w-2/5 w-full">
@@ -86,10 +101,10 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1  font-normal text-xs sm:text-sm leading-[22.5px] sm:leading-[38px] py-[6px] sm:py-[10px] lg:py-[22px]  ${
-                  videoLink ? "sm:w-2/5 w-full" : ""
-                }`}
+                className={`flex-1  font-normal ${dynamicContentClasses}  mt-[6px] sm:mt-[10px] lg:mt-[22px] ${videoLink ? "sm:w-2/5 w-full" : ""
+                  }`}
               >
+
                 <div dangerouslySetInnerHTML={{ __html: content }} />
               </div>
             )}
