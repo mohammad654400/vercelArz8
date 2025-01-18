@@ -5,6 +5,7 @@ import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
+import SecondCategory from "./secondCategory";
 
 const data = {
   firstTitle: "قیمت و لیست",
@@ -32,31 +33,36 @@ export default function Coin() {
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+  const [open, setOpen] = useState(true);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setValue(inputValue);
     if (inputValue.trim() !== "") {
       setSugesstions(true);
-    } 
-  }
+    }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (searchRef?.current) {
       if (e.key === "Escape") {
         setSugesstions(false);
-        searchRef?.current.blur()
+        searchRef?.current.blur();
       }
     }
-  }
+  };
 
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">
         <div className="w-full flex flex-col items-center text-white pt-8">
-          <h1 className="text-[20px] md:text-3xl ">قیمت لحظه ای ارز های دیحیتال</h1>
+          <h1 className="text-[20px] md:text-3xl ">
+            قیمت لحظه ای ارز های دیحیتال
+          </h1>
           <p className="text-sm pt-5 text-center w-[340px] leading-8 ">
             در این صفحه، قیمت لحظه‌ای و بروزترین تغییرات ارزهای دیجیتال محبوب را
-            مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید
+            مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را
+            جستجو کنید
           </p>
           <div className="relative p-5 ">
             <input
@@ -65,11 +71,13 @@ export default function Coin() {
               className="w-[308px h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border-2 text-lg md:text-xl outline-none"
               type="text"
               onFocus={() => setSugesstions(true)}
-              onKeyUp={e => handleKeyDown(e)}
+              onKeyUp={(e) => handleKeyDown(e)}
               ref={searchRef}
             />
             <div className="w-full h-full">
-              {sugesstions && <Suggestion setSugesstions={setSugesstions} value={value} />}
+              {sugesstions && (
+                <Suggestion setSugesstions={setSugesstions} value={value} />
+              )}
             </div>
             <span className="w-7 h-7 md:w-[54px] md:h-[54px] absolute left-[25px] top-[25px] bg-primary rounded-2xl flex justify-center items-center">
               <div className="w-[18px] h-[18px] md:w-8 md:h-8">
@@ -83,10 +91,17 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category />
+              <Category open={open} setOpen={setOpen} />
             </div>
-            <Category />
-            <Category />
+            <div >
+              <Category open={open} setOpen={setOpen} />
+            </div>
+            <div className="hidden xl:block">
+              <Category open={open} setOpen={setOpen} />
+            </div>
+            <div className="block xl:hidden">
+              <SecondCategory open={open} setOpen={setOpen} />
+            </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
             <LivePriceTable />
@@ -101,5 +116,3 @@ export default function Coin() {
     </div>
   );
 }
-
-

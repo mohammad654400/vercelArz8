@@ -102,7 +102,9 @@ export default function Buy({
           >
             <div className="w-5 h-5">{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p>
+            <span className="w-5 h-5">
             <ArrowDown />
+            </span>
           </div>
         </div>
 
