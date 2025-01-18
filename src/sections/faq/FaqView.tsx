@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useMemo } from "react";
 import Search from "@/assets/icons/search";
-import WaveDivider from "@/assets/icons/waveDivider"; 
+import WaveDivider from "@/assets/icons/waveDivider";
 import Accordion from "@/components/Accordion";
 import { categories, newData } from "./data/questions-data";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
@@ -52,8 +52,7 @@ export default function FaqView() {
 
   return (
     <div className="bg-background pt-20">
-
-      <div className="w-full bg-[#242428] h-[221px] sm:h-[362px]">
+ <div className="w-full bg-[#242428] h-[221px] sm:h-[362px]">
         <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
 
           <div className="w-full h-full flex flex-col  justify-center items-center self-center ">
@@ -104,10 +103,11 @@ export default function FaqView() {
         </div>
       </div>
 
+
       <div className="base-style" style={{ gap: "0" }}>
         <h2 className="hidden xl:flex text-[30px] font-bold mt-[60px] mb-[40px]">مرکز راهنمایی و سوالات متداول</h2>
 
-        <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[400px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense ">
+        <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[390px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense ">
 
           {categories.map((category) => (
             <div
@@ -145,31 +145,32 @@ export default function FaqView() {
             </div>
           ))}
         </div>
+        <div className="w-full flex flex-col gap-[10px] sm:gap-[20px] lg:gap-[20px]">
+          {filteredQuestions.map((filteredQuestion) => (
+            <div
+              className="w-full"
+              ref={(el) => {
+                itemRefs.current[filteredQuestion.id] = el;
+              }}
+              key={filteredQuestion.id}
+            >
+              <Accordion
+                items={[filteredQuestion]}
+                defaultOpenId={selectItem}
+                textTitle="text-xs"
+                smTextTitle="sm:text-base"
+                lgTextTitle="lg:text-base"
+                textContent="text-[10px]"
+                smTextContent="sm:text-sm"
+                lgTextContent="lg:text-sm"
+                textContentLeading="leading-[25px]"
+                smTextContentLeading="sm:leading-[38.3px]"
+                lgTextContentLeading="lg:leading-[38.3px]"
 
-        {filteredQuestions.map((filteredQuestion) => (
-          <div
-            className="w-full"
-            ref={(el) => {
-              itemRefs.current[filteredQuestion.id] = el;
-            }}
-            key={filteredQuestion.id}
-          >
-            <Accordion
-              items={[filteredQuestion]}
-              defaultOpenId={selectItem}
-              textTitle="text-xs"
-              smTextTitle="sm:text-base"
-              lgTextTitle="lg:text-base"
-              textContent="text-[10px]"
-              smTextContent="sm:text-sm"
-              lgTextContent="lg:text-sm"
-              textContentLeading="leading-[25px]"
-              smTextContentLeading="sm:leading-[38.3px]"
-              lgTextContentLeading="lg:leading-[38.3px]"
-  
-            />
-          </div>
-        ))}
+              />
+            </div>
+          ))}
+        </div>
 
       </div>
 

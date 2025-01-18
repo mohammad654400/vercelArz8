@@ -50,7 +50,7 @@ export const TransactionFeesTableHeaders = [
 
 export const TransactionFeesTableBody = [
     {
-        "0": "https://s3-alpha-sig.figma.com/img/4091/3139/d1502ee921d53799557555153a3d28f5?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PHdC6ZttVaTsk8OfkCfQXaQGG1VfqwZj926Gxo4QmDmDNWtBSz5XfAPT45syfEoOkjgqz0iWfkjIIK4mk1t19vtC8XeJNvBwEUrAqEnvLivK49BYwgMr9rmjMCaeK6AYjlESH~z3Fp9ja7~X3cWh4gIlEf~r9auwR8azU030PA4B0IqwJuB16TY4hLHZpyzX0Dp9XSmOiqLJXFOzMMYUJYJOrnedvHrPid9ET~6aljToGIrVA~xiECOZPMHFRifBCV6-VDVExu0Pdg7RAIY02Y-91qfjO~XSr4IYyUTTglpSVY2D22OldlACEH82zMcad2OaHajZZQdYwyG~W-~xCQ__",
+        "0": "https://s3-alpha-sig.figma.com/img/4091/3139/d1502ee921d53799557555153a3d28f5?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Tq2v-iwqcWtHDEKMMconKBGLOkYuGPPR9N8eb-n0brkSBxdsGBSO7W3CGJmnChIBJk6khGYna7L-Z8wA3bvYuZ3MDJ8sFxzBAlS1hOmZ1BQbPKhmphAjmAq9aRtAScnHl1q1jvNI19gp6f3iZGrxifW5jF43yvQC7Wc9hy~gRLDpe6x-oSRnI9qWIUXdFkJky0e69ho2ijjzTmbvcbftZZsGlLT1-plQxdLSpkdg~kuPy73MZoeIDxfskqiTsmm0taE~wHB-46mjfizhLCNlv2L3yBOPH7hr5XP58yXrkFuVG~qGXV7AzscEzq~HZum5-qQfnrXMaWxxMNHLp2GjUA__",
         "1": "0 تا 100 میلیون",
         "2": "0.35",
         "3": "0.35",
@@ -58,7 +58,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/7bd4/261c/3a9fe24df7ba21d77522395ee094278a?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TilIxlYFCi5AJ~PJ7Q9GpFwiOUFsANKK4Vqf9pLpAhvS40GTt~EHmZvFGHfsu7qdI6VNnN8OsvnMSpTHWlN3SV-14y3RCcLaX6uJmLL90UrDG0psyqZVbQXOqhhLKIlz8oudTGH5IGRU12zXDby-e5vQlXcj1OiHIFXD5nhBX7334baHsI6rlfJLxfqTj1P9Meg-ODMRzfRtNQ3gci-fSJRl0VilHst~f-0kL0ZtIILD3S8LHC0zPZqceErT2uNxlDs~orLpZtQU6esQKGpY2JeMJaDxlb3FouIx3D0api~VJCue6rOHwSZ0ma81ZKjCK~S~phhyNVl31~kKahvd2g__",
+        "0": "https://s3-alpha-sig.figma.com/img/7bd4/261c/3a9fe24df7ba21d77522395ee094278a?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ovSazbEXVBWDXrjCLfN89MYGTmSoaT2L8F8-FPqG-~l42hQ-A-FuusJ4FPzrcIjE3hAXydKzGUecYpy5eMLmR6bhM-qUNensiGNqOzSov7N83q~UmVsL8V-~f-6BTHqvgcLwjmOt3-JlQw3A4GZeiLKT~235T8BAj4yg0Bx2XEdProGgj3si9Td6cfg61mNYLHRhxnMsZt0YngDRfwifVvcFFAeUkNP-k3yOUGUynt3cX0kByxiJldSEfvZ7FYD46JjlyZ2Em6ee5aTCiz6bkmtjj0yml3jcUBcoEtFO41BZJtNP7jPL1h5vVQkBUgSCg8NTZGN0ayuuAUGvScGWfw__",
         "1": "100 تا 400 میلیون",
         "2": "0.32",
         "3": "0.32",
@@ -66,7 +66,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/f94a/8e24/9362efd5ee2e7e2858a691553a19cfaa?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lFf2sI7pCqVxOSAqqVAHnLplJYLIcOT4UHeh1JNoSXcw8NYlX67EHqsGeJ5YcNgK87Lx~Zud0kFp-4HwgCxUipy9oU7OlFM~VWJWO3IWwU1XnXcwzfN3evdODYlMTfurDWzZyH90wRePZ-6U0ipzl2Du9iq9VOU9gXB-zhtJCVDy02JkjGZJ8jIOxgA4PEmJ7VRSl9ow2Mhbcu5pZH6KS3B1gybFCj-rqcYjeU2OFj93E-tICK50Gqot2hiCzmArtMr0CuNNr8Nj6Gmx1w6-us-UUayUsROuVzgyDAitVqoGXkD4tsG5EvzW3zF7T7Aala-w6TgeQZxp6dJY5KVaBw__",
+        "0": "https://s3-alpha-sig.figma.com/img/f94a/8e24/9362efd5ee2e7e2858a691553a19cfaa?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LIu83F5JgVG5RY2oJb2daEp1IRQ6xX9DDm1N3zDa0VGmTTkbedb200PG7NTrnU6X1BvOo1ILpRnmUFodL0eX7GK79EISZT8uhld7v-lqFNsK5Vk6me9R8SfBxAHuJZgLYlYi8rwjLGkdaJYXc0hP2UCuWo4XPP~EPylBM9Fna4sVuNWgfvpkSDr12ZxH55jGgKEtSwVidVip-p5IpDJkz82VTY6fIIFrx4FQkcHbTvQEzmxsstm4dM7ghRf1JzYVes0ChdULIG9h2u4yUeC8Dup~9-~5tzerawhJlA7WrrOlBvxmGt0loX3-hqSgf5DMpdIIMzBvy6hgi2~2WFOpfg__",
         "1": "400 میلیون تا یک میلیارد",
         "2": "0.3",
         "3": "0.3",
@@ -74,7 +74,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/98b0/1363/52bc540c59a7f6d79a8e0355cf5c1103?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=onC~4UXM~30kwXTDGSUtUam~cZU468Fgdnr3ODaLsvkIQ7hRz3Dax9UkHVGcGbmNPVjyw8fyjy6CqpoVuNZHBDuV4zS8Fe2QzWR8FXz-5Vn~Ak~abBvioNbnwim59iUUqoL5KCdr02v9iHmGWfs9c-SDMsr3lq3~akgmDnD-jklntbzZslbehkPCba7EGNew-3LBVHHitbNKa~4ENIR773xIwcfszfDXAPzFaBJfvmIyoNRoYfm3puLW4kBGL~BtbOx0inR2~ntBQPLtZumWCHEtAHrNibZ2AI9Y3PjhUlH-fR6zB4FR5tu9jMLLfZnVEW0Ne~OU3zcinPU4O99yXQ__",
+        "0": "https://s3-alpha-sig.figma.com/img/98b0/1363/52bc540c59a7f6d79a8e0355cf5c1103?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VM4pZPdanCLNX0-dxsPO6muNlZ7IfRIVXDex-F9Ojt3NIGAMIrlLJycEIGwop~E1qdFq5riPVxfTIKq8FUJL4-FaoFYAHyQRynz2c~K8qxVvYDYCt8pmAwOrd5uj7a9RsuX0TL-1XyTor6S2bJcABG3psHFYQPR2wpQ0DPdQtsRK4Exp70hSXX0C3iFFP4qAi8ENTIuv7xIfv6pHxfjRDoqVpA0x3z5tyqVTIaL5YOMMvAbkAQoQkI4eACoKpDk78Wv81UTx7cQz3nbiUuaA95R70GRBujusCcC~SJPFLO46V2rZDhMgEeWZT~2qiqUIfeYOSXlQwnJW1XmoZNF-7w__",
         "1": "بیش از یک میلیارد",
         "2": "0.27",
         "3": "0.27",

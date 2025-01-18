@@ -7,6 +7,7 @@ interface AccordionProps {
   titleBgColor?: string;
   contentBgColor?: string;
   highlightEnabled?:boolean;
+
   gap?: string;
   smGap?: string;
   lgGap?: string;
@@ -29,6 +30,7 @@ export default function Accordion({
   contentBgColor,
   highlightEnabled,
 
+
   gap = "gap-2.5", 
   smGap = "sm:gap-3.5",
   lgGap = "lg:gap-5",
@@ -43,6 +45,7 @@ export default function Accordion({
   lgTextContentLeading="lg:leading-[38.3px]",
 
  }: AccordionProps) {
+
 
   if (!Array.isArray(items)) {
     console.error("items is not an array", items);
@@ -67,12 +70,11 @@ export default function Accordion({
   const titleClasses = `${textTitle} ${smTextTitle} ${lgTextTitle}`;
   const contentClasses = `${textContent} ${smTextContent} ${lgTextContent} ${textContentLeading} ${smTextContentLeading} ${lgTextContentLeading}`;
 
-
-
   return (
     <div className={`accordion w-full  mx-auto flex flex-col ${gapClasses}`}>
+
       {items.map((item) => (
-        <div key={item.id}  className="mb-[10px] sm:mb-[15px]">
+        <div key={item.id}  >
           <AccordionItem
             key={item.id}
             id={item.id}
@@ -86,7 +88,6 @@ export default function Accordion({
             highlightEnabled={highlightEnabled}
             titleClasses={titleClasses}
             contentClasses={contentClasses}
-
           />
         </div>
 

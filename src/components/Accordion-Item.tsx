@@ -15,6 +15,7 @@ interface AccordionItemProps {
   titleClasses: any;
   contentClasses: any;
 
+
 }
 
 const sanitizeApparatUrl = (url: string) => {
@@ -39,14 +40,13 @@ export const AccordionItem = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
 
+
   const dynamicTitleClasses = videoLink
     ? "text-sm sm:text-[21px] lg:text-[20px]"
     : titleClasses;
   const dynamicContentClasses = videoLink
     ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
     : contentClasses;
-
-
 
   return (
     <div ref={undefined} className="relative rounded-xl sm:rounded-[20px]  flex w-full">
@@ -69,12 +69,14 @@ export const AccordionItem = ({
       <div className={`relative w-full z-10 flex flex-col rounded-xl sm:rounded-[20px] ${contentBgColor} `}>
         <button
           onClick={() => onToggle(id)}
+
           className={`w-full text-left font-medium flex justify-between items-center px-8 py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+
         >
           <span className={`text-start font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
-          <span className="w[18px] h-[18px]">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
+          <span className="w[18px] h-[18px] flex items-center justify-center">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
 
         <div
@@ -101,7 +103,7 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1  font-normal ${dynamicContentClasses}  mt-[6px] sm:mt-[10px] lg:mt-[22px] ${videoLink ? "sm:w-2/5 w-full" : ""
+                className={`flex-1  font-normal ${dynamicContentClasses}  my-[6px] sm:my-[10px]  ${videoLink ? "sm:w-2/5 w-full" : ""
                   }`}
               >
 

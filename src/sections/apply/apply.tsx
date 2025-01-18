@@ -116,31 +116,62 @@ export default function ApplyPage({ title }: { title: string }) {
 
     return (
         <div className="base-style w-full pt-20">
-            <div className="w-1/2">
-                <h1 className="text-xl font-bold text-start mb-3">فرم ارسال درخواست و رزومه</h1>
-                <h2 className="text-xs font-semibold opacity-50 mb-8">{title}</h2>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center sm:w-1/2 sm:min-w-[470px]">
-                    <div className="w-full">
-                        <FormField
-                            name="fullName"
-                            label="نام و خانوادگی"
-                            type="text"
-                            onChange={handleChange}
-                            error={errors.fullName}
-                        />
-                        <FormField
-                            name="phoneNumber"
-                            label="شماره تماس"
-                            type="text"
-                            onChange={handleChange}
-                            error={errors.phoneNumber}
-                        />
+            <div className="w-full">
+                <h1 className="text-xl font-bold text-center mb-3">فرم ارسال درخواست و رزومه</h1>
+                <h2 className="text-xs font-semibold text-center opacity-50 mb-8">{title}</h2>
+                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full">
+                    <div className="w-full flex flex-col gap-4">
+                        <div className='w-full grid grid-cols-1 gap-4 '>
+
+                            <FormField
+                                name="fullName"
+                                label="نام و خانوادگی"
+                                type="text"
+                                onChange={handleChange}
+                                error={errors.fullName}
+                            />
+                            <FormField
+                                name="phoneNumber"
+                                label="شماره تماس"
+                                type="text"
+                                onChange={handleChange}
+                                error={errors.phoneNumber}
+                            />
+                            <FormField
+                                name="email"
+                                label="ایمیل"
+                                type="text"
+                                onChange={handleChange}
+                                error={errors.email}
+                            />
+                            <FormField
+                                name="maritalStatus"
+                                label="وضعیت تاهل"
+                                type="select"
+                                options={["متاهل", "مجرد"]}
+                                onChange={handleChange}
+                                error={errors.maritalStatus}
+                            />
+                            <FormField
+                                name="dutyStatus"
+                                label="وضعیت نظام وظیفه"
+                                type="select"
+                                options={["مشمول", "معافیت تحصیلی", "معاف داعم"]}
+                                onChange={handleChange}
+                                error={errors.dutyStatus}
+                            />
+
+                        </div>
+
                         <div>
                             <label className="block text-sm font-medium mb-3">فایل رزومه</label>
                             <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
                                 <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
+                                    <div className='w-16 h-16'>
                                     <DocumentUpload />
-                                    <span className="text-sm text-gray-600">فایل رزومه خود را آپلود کنید</span>
+                                    </div>
+
+                                    <span className="text-xs lg:text-sm px-3 py-2 text-[#32323680] rounded-[10px] bg-[#FFE9AF] text-opacity-50">فایل رزومه خود را آپلود کنید</span>
                                 </div>
                                 <input
                                     type="file"

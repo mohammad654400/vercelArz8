@@ -1,6 +1,8 @@
 import React from 'react'
 import BNB from "@/assets/icons/bnb";
 
+
+
 export default function Coin({ data }) {
     return (
         <div>

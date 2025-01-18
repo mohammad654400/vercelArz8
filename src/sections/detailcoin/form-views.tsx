@@ -32,6 +32,7 @@ export default function FormViews({ addComment }: FormViewsProps) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full gap-y-5 flex flex-col">
+      <h2 className="text-lg sm:text-base font-bold ">نظرات کاربران</h2>
       <div>
         <textarea
           id="comments"
@@ -65,7 +66,7 @@ export default function FormViews({ addComment }: FormViewsProps) {
         />
       </div>
       <div className="flex justify-end">
-        <button className="bg-primary text-white rounded-[15px] text-base font-bold px-12 py-4 text-center">
+        <button className="bg-primary text-white rounded-lg sm:rounded-[15px] text-xs sm:text-base font-bold px-6 sm:px-12 py-2 sm:py-4 text-center">
           ارسال نظر
         </button>
       </div>

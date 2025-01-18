@@ -4,11 +4,10 @@ import SendIcon from "@/assets/icons/detailcoin/send";
 import SocialIcons from "@/assets/icons/detailcoin/socialicons";
 import DocumentCode from "@/assets/icons/detailcoin/documentcode";
 import Star from "@/assets/icons/star";
-import { usePathname } from "next/navigation";
 import React, {  useState } from "react";
 import TransAction from "../home/transaction/transaction";
 import DetailDescription from "./description";
-import ArrowBotton from "@/assets/icons/arrrow/arrow-bottom"
+import ArrowBotton from "@/assets/icons/wheel/arrowBottom"
 import Accordion from "@/components/Accordion";
 import Views from "./views"
 import FormViews from "./form-views"
@@ -141,28 +140,30 @@ export default function DetailCoin() {
 
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
-      <div className="w-full flex justify-between items-center mb-6 h-[75px]">
-        <div className="flex justify-between items-center w-[60%] h-full bg-secondary  px-4 rounded-2xl">
-          <div className="flex">
-            <div className="w-12 h-12">
+      <div className="w-full flex justify-between items-center mb-6 h-[75px] gap-x-4">
+        <div className="flex justify-between items-center min-w-[270px] w-[60%] h-full bg-secondary  px-4 rounded-2xl">
+          <div className="flex justify-center items-center">
+            <div className="w-7 h-7 lg:w-12 lg:h-12 my-auto">
               {coin.icon}
             </div>
-            <div className="flex flex-col mr-2">
-              <div className="flex flex-row gap-x-2 items-center">
-                <p className="text-lg font-semibold">{coin.name}</p>
+            <div className="flex flex-col mr-2 justify-around">
+              <div className="flex flex-row md:gap-x-2 items-center">
+                <p className="text-xs lg:text-lg font-semibold">{coin.name}</p>
+                <div className="w-3 h-3 lg:w-5 lg:h-5">
                 <ArrowBotton />
+                </div>
 
               </div>
-              <p className="text-lg font-semibold opacity-50">{coin.symbol}</p>
+              <p className="text-xs lg:text-lg font-semibold opacity-50">{coin.symbol}</p>
             </div>
           </div>
           <div className="flex gap-4">
-            <div className="dir_ltr">
-              <p className="text-[21px] font-semibold">{coin.priceUSDT}</p>
-              <p className="text-sm font-semibold">{coin.priceIRR}</p>
+            <div className="dir_ltr flex flex-col justify-around">
+              <p className="text-xs lg:text-[21px] font-semibold">{coin.priceUSDT}</p>
+              <p className="text-xs lg:text-sm font-semibold">{coin.priceIRR}</p>
             </div>
-            <div className="px-[10px] py-[14px] bg-background rounded-[10px] dark:bg-[#302F34]">
-              <span className="text-[#33B028] text-[21px] font-semibold">{coin.change}</span>
+            <div className="px-[7px] lg:px-[10px] py-2 lg:py-[14px] bg-background rounded-[10px] dark:bg-[#302F34]">
+              <span className="text-[#33B028] text-xs lg:text-[21px] font-semibold">{coin.change}</span>
             </div>
           </div>
         </div>
@@ -184,7 +185,7 @@ export default function DetailCoin() {
 
           ></iframe>
         </div>
-        <div className="flex flex-col h-full w-[40%]  rounded-lg">
+        <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
           <TransAction />
         </div>
       </div>
@@ -208,12 +209,20 @@ export default function DetailCoin() {
             <DetailDescription />
           </div>
 
-          <div className='flex flex-col gap-5 mt-11'>
+          <div className='flex flex-col gap-5 mt-10 lg:mt-11'>
             <Accordion
               items={AccordionData}
               titleBgColor="bg-[#FFEAC1] dark:bg-[#242428]"
               contentBgColor="bg-[#FFF9EE] dark:bg-[#302F34]"
               highlightEnabled={false}
+
+              textTitle="text-sm"
+              smTextTitle="sm:text-base"
+              lgTextTitle="lg:text-base"
+
+              textContent="text-[10px]"
+              smTextContent="sm:text-sm"
+              lgTextContent="lg:text-xs"
             />
           </div>
 

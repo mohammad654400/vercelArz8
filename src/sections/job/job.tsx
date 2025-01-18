@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef,forwardRef } from 'react'
+import React, { useRef } from 'react'
 import Profile from '@/assets/icons/job/profile';
 import QuoteUpSquare from '@/assets/icons/job/quoteUpSquare';
 import Insurance from '@/assets/icons/job/insurance';

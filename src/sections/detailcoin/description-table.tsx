@@ -21,7 +21,7 @@ export default function DescriptionTable() {
                     <div className="flex justify-between py-6">
                       <p
                         key={`title-${index}`}
-                        className="text-base font-semibold  text-#666668 dark:text-white"
+                        className="text-sm lg:text-base font-semibold  text-#666668 dark:text-white"
                       >
     
                         {item.title}
@@ -29,7 +29,7 @@ export default function DescriptionTable() {
                       </p>
                       <p
                         key={`value-${index}`}
-                        className={`text-base font-semibold  text-#666668 dark:text-white ${item.color || ""
+                        className={`text-sm lg:text-base font-semibold  text-#666668 dark:text-white ${item.color || ""
                           }`}
                       >
     

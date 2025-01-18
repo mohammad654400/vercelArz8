@@ -3,19 +3,19 @@ import React from 'react'
 export default function currentPrice() {
     return (
         <div>
-            <h2 className=" text-xl font-bold mb-4 dark:text-background">
+            <h2 className="text-lg lg:text-xl font-bold mb-4 dark:text-background">
                 قیمت لحظه‌ای بایننس کوین
             </h2>
             <table className="flex flex-col w-full border-collapse  ">
                 <thead className="flex w-full">
                     <tr className="border-b dark:border-background flex w-full justify-between">
-                        <th className="w-full pb-6 px-2 text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-right">
+                        <th className="w-full pb-6 px-2 text-[10px] lg:text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-right">
                             تغییرات
                         </th>
-                        <th className="w-full pb-6 px-2 text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-center">
+                        <th className="w-full pb-6 px-2 text-[10px] lg:text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-center">
                             مقدار
                         </th>
-                        <th className="w-full pb-6 px-2 text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-left">
+                        <th className="w-full pb-6 px-2 text-[10px] lg:text-[15px] font-bold text-#3C3B41 dark:text-white dark:text-background text-left">
                             درصد
                         </th>
                     </tr>
@@ -54,13 +54,13 @@ export default function currentPrice() {
                         },
                     ].map((item, index) => (
                         <tr key={index} className="border-b last:border-b-0 dark:border-background flex w-full justify-between">
-                            <td className="w-full py-6 px-2 text-lg font-semibold text-sixth  text-right">
+                            <td className="w-full py-6 px-2 text-xs lg:text-lg font-semibold text-sixth  text-right">
                                 {item.period}
                             </td>
-                            <td className="w-full py-6 px-2 text-lg font-semibold text-[#33B028] text-center ">
+                            <td className="w-full py-6 px-2 text-xs lg:text-lg font-semibold text-[#33B028] text-center ">
                                 {item.value}
                             </td>
-                            <td className={`w-full py-6 px-2 text-lg font-semibold  text-left ${item.color}`}>
+                            <td className={`w-full py-6 px-2 text-xs lg:text-lg font-semibold  text-left ${item.color}`}>
                                 {item.change}
                             </td>
                         </tr>
