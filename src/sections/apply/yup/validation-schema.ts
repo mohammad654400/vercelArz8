@@ -1,3 +1,4 @@
+import email from '@/assets/icons/contactUs/email';
 import * as Yup from 'yup';
 
 export const validationSchema = Yup.object().shape({
@@ -8,7 +9,10 @@ export const validationSchema = Yup.object().shape({
     phoneNumber: Yup.string()
         .matches(/^\d{10,11}$/, "شماره تماس نامعتبر است.")
         .required("شماره تماس الزامی است."),
-   
+        
+    email:Yup.string().email()
+    .required("ایمیل الزامی است."),
+
     file: Yup.mixed<File>()
         .nullable()
         .required("آپلود فایل الزامی است.")

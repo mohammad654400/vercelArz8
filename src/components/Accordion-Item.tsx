@@ -9,6 +9,13 @@ interface AccordionItemProps {
   videoLink: string | null | undefined;
   isOpen: boolean;
   onToggle: (id: number) => void;
+  titleBgColor?: string;
+  contentBgColor?: string;
+  highlightEnabled?: boolean;
+  titleClasses: any;
+  contentClasses: any;
+
+
 }
 
 const sanitizeApparatUrl = (url: string) => {
@@ -23,12 +30,27 @@ export const AccordionItem = ({
   videoLink,
   isOpen,
   onToggle,
+  titleBgColor = "bg-secondary",
+  contentBgColor = "bg-secondary",
+  highlightEnabled = true,
+  titleClasses,
+  contentClasses
+
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
+
+
+  const dynamicTitleClasses = videoLink
+    ? "text-sm sm:text-[21px] lg:text-[20px]"
+    : titleClasses;
+  const dynamicContentClasses = videoLink
+    ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
+    : contentClasses;
+
   return (
-    <div ref={undefined} className="relative rounded-xl sm:rounded-[20px] p-5  flex w-full">
-      {isOpen && (
+    <div ref={undefined} className="relative rounded-xl sm:rounded-[20px]  flex w-full">
+      {isOpen && highlightEnabled && (
         <div
           className="absolute -inset-px rounded-xl sm:rounded-[20px] transition-opacity duration-300"
           style={{
@@ -40,32 +62,33 @@ export const AccordionItem = ({
       )}
 
       <div
-        className="absolute inset-0 bg-secondary px-8 py-6 rounded-xl sm:rounded-[20px]"
+        className="absolute inset-0 bg-secondary rounded-xl sm:rounded-[20px]"
         aria-hidden="true"
       ></div>
 
-      <div className="relative w-full z-10">
+      <div className={`relative w-full z-10 flex flex-col rounded-xl sm:rounded-[20px] ${contentBgColor} `}>
         <button
           onClick={() => onToggle(id)}
-          className="w-full text-left font-medium flex justify-between items-center"
+
+          className={`w-full text-left font-medium flex justify-between items-center px-8 py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+
         >
-          <span className="text-start text-sm sm:text-xl font-semibold">
+          <span className={`text-start font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
-          <span>{isOpen ? <ArrowBottom /> : <ArrowTop />}</span>
+          <span className="w[18px] h-[18px] flex items-center justify-center">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
 
         <div
-          className={`overflow-hidden transition-all duration-500`}
+          className={`overflow-hidden transition-all duration-500 px-8  `}
           style={{
             maxHeight: isOpen ? contentRef.current?.scrollHeight : 0,
           }}
           ref={contentRef}
         >
           <div
-            className={`justify-between text-sm ${
-              videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
-            }`}
+            className={`justify-between text-sm ${videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
+              }`}
           >
             {videoLink && (
               <div className="flex-shrink-0 sm:w-2/5 w-full">
@@ -80,10 +103,10 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1  font-normal text-xs sm:text-sm leading-[22.5px] sm:leading-[38px] mt-[6px] sm:mt-[10px] lg:mt-[22px] ${
-                  videoLink ? "sm:w-2/5 w-full" : ""
-                }`}
+                className={`flex-1  font-normal ${dynamicContentClasses}  my-[6px] sm:my-[10px]  ${videoLink ? "sm:w-2/5 w-full" : ""
+                  }`}
               >
+
                 <div dangerouslySetInnerHTML={{ __html: content }} />
               </div>
             )}

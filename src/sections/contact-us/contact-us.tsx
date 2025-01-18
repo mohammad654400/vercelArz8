@@ -8,8 +8,15 @@ import Location from "@/assets/icons/contactUs/location"
 import Support from "@/assets/icons/contactUs/support"
 import Telegram from "@/assets/icons/contactUs/telegram"
 import { useCallback, useRef, useState } from "react";
-import { Modal } from "../apply/modal/Modal";
+import Modal from '@/components/Modal';
+import ErrorContactUs from "@/assets/icons/modal/errorContactUs"
+import SuccessContactUs from "@/assets/icons/modal/successContactUs"
 import { validationSchema } from './yup/validationSchema';
+
+interface ModalLine {
+    text: string;
+    highlightedWords?: { word: string; color: "green" | "red" }[];
+}
 
 interface FormData {
     fullName: string;
@@ -19,9 +26,9 @@ interface FormData {
 
 export default function ContactUs() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSuccessModal, setIsSuccessModal] = useState(false)
+    const [modalType, setModalType] = useState<"success" | "error">("success");
+    const [modalLines, setModalLines] = useState<ModalLine[]>([]);
     const [errors, setErrors] = useState<Record<string, string>>({});
-
 
     const formDataRef = useRef<FormData>({
         fullName: "",
@@ -33,7 +40,6 @@ export default function ContactUs() {
         const { name, value } = e.target;
         formDataRef.current[name as keyof FormData] = value;
     };
-
 
     const validateForm = useCallback(async () => {
         try {
@@ -48,26 +54,39 @@ export default function ContactUs() {
             setErrors(newErrors);
             return false;
         }
-    }, [formDataRef]);
-
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isValid = await validateForm();
-        if (!isValid) {
-            setIsSuccessModal(false);
-            setIsModalOpen(true);
-            return;
-        }
+        if (isValid) {
+            setModalType("success");
+            setModalLines([
+                {
+                    text: "پیام شما با موفقیت ارسال شد.",
+                    highlightedWords: [{ word: "موفقیت", color: "green" }],
+                },
 
-        setIsSuccessModal(true);
+            ]);
+        } else {
+            setModalType("error");
+            setModalLines([
+                {
+                    text: "ارسال پیام با مشکل روبرو شد",
+                    highlightedWords: [{ word: "مشکل", color: "red" }],
+                },
+
+            ]);
+        }
         setIsModalOpen(true);
     };
+
+
 
     return (
         <div className="bg-background base-style">
 
-            <div className="flex flex-col lg:flex-row pt-20 w-full gap-8  justify-between ">
+            <div className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8  justify-between ">
 
                 <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center  w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
 
@@ -79,77 +98,66 @@ export default function ContactUs() {
 
                         <span className="text-foreground text-base font-semibold mb-5">اطلاعات تماس</span>
 
-                        <div className="flex flex-col sm:flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full justify-between">
+                        <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full ">
 
-                            <div className="flex w-full  sm:w-[75%] lg:max-w-[720px]  gap-4 justify-between h-full   flex-col ">
-                                <div className="flex h-[53px] w-full gap-4 justify-between  ">
-                                    <div className="flex h-full w-1/2 items-center justify-start bg-secondary rounded-xl  p-3">
+                            <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col ">
+                                <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between  ">
+                                    <div className="flex h-full w-full items-center justify-start bg-secondary rounded-xl  p-3">
+                                        <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
                                         <Call />
-                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">021-284299</span>
+                                        </div>
+                                     
+                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">021-284299</span>
                                     </div>
-                                    <div className="flex h-full w-1/2  items-center justify-start bg-secondary rounded-xl p-3">
-                                        <Support />
-                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">پشتیبانی آنلاین</span>
+                                    <div className="flex h-full w-full  items-center justify-start bg-secondary rounded-xl p-3">
+                                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                                    <Support />
+                                    </div>
+                                       
+                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">پشتیبانی آنلاین</span>
                                     </div>
                                 </div>
-                                <div className="flex h-[99px] w-full  justify-between p-3 flex-col rounded-xl bg-secondary">
+                                <div className="flex h-[54px] sm:h-[99px] w-full  justify-between p-[5px] sm:p-3 flex-col rounded-xl bg-secondary">
                                     <div className="flex items-center">
-                                        <Location />
-                                        <span className="lg:text-base text-sm  text-foreground mr-3 font-normal">آدرس</span>
+                                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                                    <Location />
+                                    </div>
+                                      
+                                        <span className="lg:text-base text-xs  text-foreground mr-2 sm:mr-3 font-normal">آدرس</span>
 
                                     </div>
-                                    <span className="lg:text-base text-sm   text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
+                                    <span className="lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
 
                                 </div>
                             </div>
 
 
-                            <div className="flex  w-full gap-4 sm:w-[25%] sm:min-w-[195px] lg:max-w-[240px] justify-between h-full">
-                                <div className=" flex-col gap-5 w-full h-full justify-between hidden sm:flex  ">
-                                    <div className="flex h-[53px] gap-4 w-full justify-between ">
-                                        <div className="bg-secondary h-full w-[90px] rounded-xl text-center p-3">
-                                            <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">تلگرام</span>
+                            <div className=" w-[35%] sm:w-[28%] h-full">
+                                <div className="flex-col gap-4 w-full h-full  flex  ">
+                                    <div className="flex h-[30px] sm:h-[53px] gap-4 w-full  ">
+                                        <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center  ">
+                                            <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center ">تلگرام</span>
                                         </div>
 
-                                        <div className="bg-secondary h-full w-[90px] rounded-xl text-center p-3 ">
+                                        <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center ">
                                             <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">ایمیل</span>
                                         </div>
                                     </div>
-                                    <div className="flex h-[99px] gap-4 w-full justify-between ">
-                                        <div className="bg-secondary h-full w-[90px] rounded-xl p-3  flex self-center items-center justify-center ">
-                                            <div className="h-14 w-14">
+                                    <div className="flex h-[54px] sm:h-[99px] gap-4 w-full  ">
+                                        <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl  flex self-center items-center justify-center ">
+                                            <div className="w-10 h-10 sm:h-14 sm:w-14">
                                                 <Telegram />
                                             </div>
 
                                         </div>
-                                        <div className="bg-secondary h-full w-[90px] rounded-xl p-3  flex self-center items-center justify-center">
-                                            <div className="h-14 w-14">
+                                        <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl   flex self-center items-center justify-center">
+                                            <div className="w-10 h-10 sm:h-14 sm:w-14">
                                                 <Email />
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="w-full h-[53px] justify-between flex flex-row gap-4  sm:hidden ">
-                                    <div className="flex h-full w-[50%] items-center justify-start bg-secondary rounded-xl  py-3">
-                                        <div className="w-7 mx-5">
-                                            <Telegram />
-                                        </div>
-
-                                        <span className="md:text-lg text-base text-foreground font-semibold">تلگرام</span>
-                                    </div>
-
-                                    <div className="flex h-full w-[50%] items-center justify-start bg-secondary rounded-xl  py-3">
-                                        <div className="w-7 mx-5">
-                                            <Email />
-                                        </div>
-
-                                        <span className="md:text-lg text-base text-foreground font-semibold">ایمیل</span>
-                                    </div>
-                                </div>
-
-
 
                             </div>
                         </div>
@@ -169,10 +177,10 @@ export default function ContactUs() {
 
             </div>
 
-            <div className="relative  -mt-[5%] w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
+            <div className="relative   w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
 
 
-                <form onSubmit={handleSubmit} className=" flex flex-col  w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%]  lg:h-[50%] max-h-[500px] xl:min-h-[600px]  sm:min-w-[300px] md:min-w-[400px]  bg-secondary p-5 rounded-xl z-10 -mt-[10%] ">
+                <form onSubmit={handleSubmit} className=" flex flex-col  w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%]    bg-secondary p-5 rounded-xl z-10  ">
                     <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
                     <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
 
@@ -203,7 +211,7 @@ export default function ContactUs() {
 
                     </div>
 
-                    <div className="flex flex-col mb-6 h-[40%]">
+                    <div className="flex flex-col h-[40%] mb-7">
                         <label htmlFor="message" className="block text-Seventh text-base font-normal">پیام</label>
                         <textarea
                             id="message"
@@ -218,7 +226,7 @@ export default function ContactUs() {
 
                     <button
                         type="submit"
-                        className="lg:w-60 w-full h-14 bg-primary my-auto text-white px-4 py-2  rounded-xl transition-colors self-end"
+                        className="lg:w-60 w-full h-14 bg-primary  text-white px-4 py-2  rounded-xl transition-colors self-end"
                     >
                         ارسال درخواست
                     </button>
@@ -235,7 +243,25 @@ export default function ContactUs() {
             </div>
 
 
-            {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} isSuccess={isSuccessModal} />}
+            {isModalOpen && (
+                <Modal
+                    isOpen={isModalOpen}
+                    type={modalType}
+                    lines={modalLines}
+                    icon={
+                        modalType === "success" ? (
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                                <SuccessContactUs />
+                            </div>
+                        ) : (
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                                <ErrorContactUs />
+                            </div>
+                        )
+                    }
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 }

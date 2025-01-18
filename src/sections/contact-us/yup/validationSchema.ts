@@ -2,16 +2,13 @@ import * as Yup from 'yup';
 
 export const validationSchema = Yup.object().shape({
   fullName: Yup.string()
-    .required("نام خانوادگی ضروری است")
-    .min(3, "نام خانوادگی باید حداقل 3 کاراکتر باشد")
-    .max(50, "نام خانوادگی نمی‌تواند بیشتر از 50 کاراکتر باشد"),
+  .min(5, "نام و نام خانوادگی باید حداقل 5 حرف باشد.")
+  .required("نام و نام خانوادگی الزامی است."),
   phoneNumber: Yup.string()
     .required("شماره تماس ضروری است")
-    .matches(/^[0-9]{10}$/, "شماره تماس باید 10 رقمی باشد"),
+    .matches(/^09[0-9]{9}$/,  "شماره تماس نامعتبر است."),
 
     message:Yup.string()
     .required("متن پیام ضروری است")
     .min(10, " پیام شما باید حداقل 10 کاراکتر باشد")
 });
-
-
