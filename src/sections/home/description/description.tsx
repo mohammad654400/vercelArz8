@@ -4,9 +4,9 @@ import MobileIcon from "@/assets/icons/mobile";
 import React, { useState } from "react";
 import MoreDetails from "@/components/more-details";
 const data = {
-  firstTitle:"خرید و فروش سریع ",
-  secondTitle:"ارزهای دیجیتال باارز هشت",
-  text:`خرید و فروش ارز دیجیتال با صرافی ارز هشت: سریع، امن و مطمئن به صرافی
+  firstTitle: "خرید و فروش سریع ",
+  secondTitle: "ارزهای دیجیتال باارز هشت",
+  text: `خرید و فروش ارز دیجیتال با صرافی ارز هشت: سریع، امن و مطمئن به صرافی
           ارز هشت خوش آمدید! جایی که خرید و فروش ارزهای دیجیتال به ساده‌ترین و
           امن‌ترین شکل ممکن انجام می‌شود. ما در صرافی ارز هشت، بستری حرفه‌ای،
           سریع و کاربرپسند برای معاملات ارزهای دیجیتال فراهم کرده‌ایم تا شما
@@ -27,14 +27,18 @@ const data = {
           آغاز کنید. ما همراه شما هستیم تا به بهترین شکل از فرصت‌های
           سرمایه‌گذاری در این بازار نوظهور بهره‌مند شوید. صرافی ارز هشت؛ انتخاب
           هوشمندانه برای خرید و فروش ارزهای دیجیتال. با ما در تماس باشید و همین
-          حالا وارد دنیای ارز دیجیتال شوید!`
-}
+          حالا وارد دنیای ارز دیجیتال شوید!`,
+};
 const Description = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpand = () => setIsExpanded(!isExpanded);
   return (
     <div className="w-full mx-auto">
-       <MoreDetails firstTitle={data.firstTitle} secondTitle={data.secondTitle} text={data.text} />
+      <MoreDetails
+        firstTitle={data.firstTitle}
+        secondTitle={data.secondTitle}
+        text={data.text}
+      />
       <div className="w-full mt-[100px] h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div className="dark:text-white text-[18px] md:text-2xl font-bold">
@@ -51,19 +55,22 @@ const Description = () => {
             </span>
             <p className="text-sm md:text-2xl">ارز دلخواه خودتون رو بخرید</p>
           </div>
-          <div className="w-full  relative">
-            <span className="absolute right-7 top-2 md:right-[408px] md:top-2 ">
-              <MobileIcon />
-            </span>
-            <div className="flex justify-center">
-            <input
-              placeholder="شماره موبایل خود را وارد کنید"
-              className="w-[350px] md:w-[400px] text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
-              type="text"
-            />
-            </div>
-            <div>
-              <button className="absolute left-6 top-1 md:left-[406px] md:top-1 px-4 text-for cursor-pointer rounded-lg bg-primary py-[12px] text-xs">
+          <div className="w-full flex justify-center">
+            <div className="relative w-[350px] md:w-[400px]">
+              {/* Mobile Icon */}
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground z-20">
+                <MobileIcon />
+              </span>
+
+              {/* Input Field */}
+              <input
+                placeholder="شماره موبایل خود را وارد کنید"
+                className="w-full text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 pl-24 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
+                type="text"
+              />
+
+              {/* Start Button */}
+              <button className="absolute left-2 top-1/2 -translate-y-1/2 px-4 text-for cursor-pointer rounded-lg bg-primary py-[10px] text-xs">
                 <p className="text-white">شروع کنید</p>
               </button>
             </div>

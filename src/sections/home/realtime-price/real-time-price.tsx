@@ -3,13 +3,23 @@ import React, { useState } from "react";
 import Image from "next/image";
 import BNB from "@/assets/icons/bnb";
 import ChartUP from "@/assets/images/chartup.png";
-import { tree } from "next/dist/build/templates/app-page";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import Link from "next/link";
 
 const currencies = [
   {
-    name: "بایننس کوین",
+    name: "بایننس",
+    symbol: "BNB",
+    priceIRR: "43,537,353",
+    priceUSDT: "626.25",
+    change: "1.37",
+    chart: "up",
+    icon: <BNB />,
+
+    popular: true,
+  },
+  {
+    name: "سولانا",
     symbol: "BNB",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
@@ -19,17 +29,7 @@ const currencies = [
     popular: true,
   },
   {
-    name: "بایننس کوین",
-    symbol: "BNB",
-    priceIRR: "43,537,353",
-    priceUSDT: "626.25",
-    change: "1.37",
-    chart: "up",
-    icon: <BNB />,
-    popular: true,
-  },
-  {
-    name: "بایننس کوین",
+    name: "لینک",
     symbol: "BNB",
     priceIRR: "43,537,353",
     priceUSDT: "626.25",
@@ -81,7 +81,7 @@ const currencies = [
 ];
 
 const filterOptions = [
-  { label: "پیش فرض", key: "default", mobile: true },
+  { label: "پیش فرض", key: "default", mobile: false },
   { label: "محبوب‌ترین‌ها", key: "popular", mobile: true },
   { label: "گران ترین", key: "mostExpensive", mobile: false },
   { label: "ارزان ترین", key: "cheapest", mobile: false },
@@ -188,12 +188,12 @@ export default function RealTimePrice() {
                 className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
               >
                 <div className="flex flex-col justify-start pl-0 pr-0">
-                  <div className="flex items-center gap-2 justify-start pr-0 sm:">
+                  <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
                     <div>
-                      <div className="w-[44px] h-[44px]">{currency.icon}</div>
+                      <div className="w-[32px] h[32px] md:w-[42px] md:h-[42px]">{currency.icon}</div>
                     </div>
                     <div className="flex flex-col justify-start">
-                      <span className="text-[18px] ">{currency.name}</span>
+                      <span className=" md:text-[15px] ">{currency.name}</span>
                       <p className="text-[15px] text-right hidden md:block opacity-45 w-auto">
                         {currency.symbol}
                       </p>
@@ -201,12 +201,12 @@ export default function RealTimePrice() {
                   </div>
                 </div>
 
-                <div className="w-full hidden md:block text-[19px]">
+                <div className="w-full hidden md:block md:text-[18px]">
                   ${currency.priceUSDT}
                 </div>
-                <div className="text-[18px]">{currency.priceIRR} تومان</div>
+                <div className=" md:text-[18px]">{currency.priceIRR} تومان</div>
                 <div
-                  className={`text-[20px] ${
+                  className={`pr-2 md:pr-0 md:text-[20px] ${
                     currency.change.endsWith("-")
                       ? "text-red-500"
                       : "text-green-500"

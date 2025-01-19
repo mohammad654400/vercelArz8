@@ -23,7 +23,7 @@ export default function DropdownMenu() {
           <span className="text-primary text-xl">
             {openSection === "links" ? 
              <div className="text-black"><ArrowUp /></div>  :
-              <div className="text-black w-5 h-5"><ArrowDown /></div>
+              <div className="text-foreground w-5 h-5"><ArrowDown /></div>
             }
           </span>
         </button>
@@ -47,7 +47,7 @@ export default function DropdownMenu() {
           <span className="text-primary text-xl">
             {openSection === "guide" ? 
            <div className="text-black"><ArrowUp /></div>  :
-           <div className="text-black w-5 h-5"><ArrowDown /></div>  
+           <div className="text-foreground w-5 h-5"><ArrowDown /></div>  
           }
           </span>
         </button>
@@ -71,7 +71,7 @@ export default function DropdownMenu() {
           اطلاعات تماس
           <span className="text-primary text-xl">
             {openSection === "contact" ?  <div className="text-black"><ArrowUp /></div>  :
-              <div className="text-black w-5 h-5"><ArrowDown /></div>}
+              <div className="text-foreground w-5 h-5"><ArrowDown /></div>}
           </span>
         </button>
         {openSection === "contact" && (

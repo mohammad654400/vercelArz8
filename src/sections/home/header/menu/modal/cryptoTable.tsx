@@ -96,6 +96,7 @@ const CryptoTable: React.FC = () => {
     { key: "highest-growth", label: "بیشترین رشد" },
     { key: "cheapest", label: "ارزان‌ترین" },
     { key: "most-expensive", label: "گران‌ترین" },
+    { key: "most-expensive", label: "گران‌ترین" },
   ];
 
   return (
@@ -118,7 +119,7 @@ const CryptoTable: React.FC = () => {
         {filterButtons.map((btn) => (
           <button
             key={btn.key}
-            className={`px-4 py-2 text-[13px] rounded-lg  ${
+            className={`px-1 py-1 text-[13px] rounded-lg  ${
               filter === btn.key
                 ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border-[3px] border-primary"
                 : "bg-transparent"
@@ -130,13 +131,13 @@ const CryptoTable: React.FC = () => {
         ))}
       </div>
 
-      <div className="w-full max-h-[335px] overflow-y-auto bg-fifth dark:bg-secondary rounded-md">
-        <div className="flex text-right text-[#3C3B4180] dark:text-[#FFFFFF80] border-b border-[#ADADAD80] py-2  bg-secondary sticky top-0 z-10">
-          <div className="w-1/3 font-semibold pr-4">نماد</div>
-          <div className="w-1/3 font-semibold">24H تغییرات</div>
-          <div className="w-1/3 font-semibold pr-4">قیمت به تومان</div>
+      <div className="w-full  bg-fifth dark:bg-secondary rounded-md  ">
+        <div className="flex max-h-[360px] text-right text-[#3C3B4180] dark:text-[#FFFFFF80] border-b border-[#ADADAD80] text-sm  py-1 rounded-xl  bg-secondary sticky top-0 z-10">
+          <div className="w-1/3  pr-4">نماد</div>
+          <div className="w-1/3  ">24H تغییرات</div>
+          <div className="w-1/3 pr-4">قیمت به تومان</div>
         </div>
-
+        <div className="overflow-y-auto max-h-[350px] ">
         {filteredData.length > 0 ? (
           filteredData.map((crypto, index) => (
             <div
@@ -150,10 +151,10 @@ const CryptoTable: React.FC = () => {
                   <span className="text-xs opacity-50 ">{crypto.symbol}</span>
                 </div>
               </div>
-              <div className={`w-1/3 ${crypto.changeColor} pr-4`}>
-                % {crypto.change.toFixed(2)}
+              <div dir="ltr " className={`flex  w-1/3 ${crypto.changeColor} pr-4`}>
+                {crypto.change.toFixed(2)} %
               </div>
-              <div className="w-1/3 pr-4">
+              <div className="w-1/3 pr-2">
                 {crypto.price} تومان
               </div>
             </div>
@@ -161,6 +162,7 @@ const CryptoTable: React.FC = () => {
         ) : (
           <div className="text-center py-4">هیچ داده‌ای پیدا نشد.</div>
         )}
+        </div>
       </div>
     </div>
   );

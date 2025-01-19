@@ -17,7 +17,7 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
       </h1>
       <div
         className={`relative overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          isExpanded ? "max-h-[500px]" : "max-h-20"
+          isExpanded ? "h-auto " : "max-h-20"
         }`}
       >
         <p className="leading-10 text-justify">

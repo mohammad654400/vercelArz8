@@ -11,7 +11,7 @@ export default function SubMenu() {
       <div className="text-fifth dark:text-secondary  absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className="w-[250px] flex flex-col border-l-2 border-[#ADADAD80] p-5">
+      <div className="w-[250px] flex justify-between flex-col border-l-2 border-[#ADADAD80] pt-5 pb-5 px-5">
         <div className="px-10 py-2 text-white bg-[#242428] rounded-lg dark:bg-[#3C3B4180]">
           جدید ترین ارزها
         </div>
@@ -52,8 +52,8 @@ export default function SubMenu() {
           خرید و فروش سریع
         </div>
       </div>
-      <div className="relative p-5">
-        <div className="flex justify-center items-center bg-primary absolute left-6 top-6 rounded-lg w-8 h-8 ">
+      <div className="relative px-4 py-5 w-[400px]">
+        <div className="flex justify-center items-center bg-primary absolute left-5 top-[25px] rounded-lg w-8 h-8 ">
           <div className="w-5 h-8 text-white">
             <Search />
           </div>

@@ -18,22 +18,29 @@ export default function SideBar({ close }: any) {
             <h1>منوی اصلی</h1>
             <Accordion title="قیمت ارزهای دیجیتال">
               <div className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFC107] ">
+              <Link onClick={close} href='/coins/BTC'>
                 خرید و فروش سریع
+              </Link>
               </div>
               <div className="w-full rounded-xl bg-secondary py-3 pr-4">
                 ارز های جدید
               </div>
               <div className="w-full rounded-xl bg-secondary py-3 pr-4">
+              <Link onClick={close} href='/coins'>
                 لیست همه ارز ها
+              </Link>
               </div>
             </Accordion>
             <p className="pb-3">خرید و فروش انی </p>
-            <Link href="/faq">
+            <Link onClick={close} href="/faq">
               <p>سوالات متداول</p>
             </Link>
             <Accordion title="سایر خدمات">
+              
               <div className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4">
+                <Link onClick={close} href='/wheel-luck'>
                 گردونه شانس
+                </Link>
                 <div className="w-7 -rotate-90 flex justify-center items-center text-[10px]  h-auto  bg-[#F00500] rounded-3xl">جدید</div>
               </div>
               <div className="w-full rounded-xl bg-secondary py-3 pr-4">

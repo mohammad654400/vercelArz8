@@ -35,6 +35,7 @@ export const AccordionItem = ({
   highlightEnabled = true,
   titleClasses,
   contentClasses
+  
 
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
