@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Image from "next/image";
 import BNB from "@/assets/icons/bnb";
 import ChartUP from "@/assets/images/chartup.png";
@@ -296,7 +296,7 @@ export default function LivePriceTable() {
                   >
                     <Star />
                   </button>
-                  <div className="w-11 h-11">
+                  <div className="md:w-11 md:h-11 w-5">
                     <span>{currency.icon}</span>
                   </div>
                   <span>{currency.name}</span>

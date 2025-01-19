@@ -50,7 +50,7 @@ export default function Buy({
 
   return (
     <div className="w-full ">
-      <div className="absolute -top-[11px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
+      <div className="absolute -top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
         <HalfCircle />
       </div>
       <div

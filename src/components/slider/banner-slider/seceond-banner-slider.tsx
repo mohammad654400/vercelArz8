@@ -9,7 +9,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function SecondBannerSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(3);
+  console.log(currentSlide)
 
   const settings = {
     infinite: true,
@@ -21,42 +22,42 @@ export default function SecondBannerSlider() {
     arrows: false,
     dots: true,
     initialSlide: 0,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
-    appendDots: (dots) => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "-36px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <ul style={{ display: "flex", gap: "4px", padding: "0", margin: "0" }}>
-          {dots}
-        </ul>
-      </div>
-    ),
-    customPaging: (i) => (
-      <div
-        style={{
-          width: "6px",
-          height: "8px",
-          borderRadius: "50%",
-          background: i === currentSlide ? "#FFC107" : "#E0E0E0",
-          transition: "all 0.3s ease",
-          transform: i === currentSlide ? "scaleX(1.5)" : "scaleX(1)",
-        }}
-      ></div>
-    ),
+     beforeChange: (oldIndex: number, newIndex: number) =>
+        setCurrentSlide(newIndex),
+      appendDots: (dots: any) => (
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-36px",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <ul style={{ display: "flex", gap: "4px", padding: "0", margin: "0" }}>
+            {dots}
+          </ul>
+        </div>
+      ),
+      customPaging: (i: number) => (
+        <div
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "50%",
+            background: i === currentSlide ? "#FFC107" : "#E0E0E0",
+            transition: "background 0.3s ease",
+          }}
+        ></div>
+      ),
     responsive: [
       {
-        breakpoint: 768, // برای صفحه‌های موبایل
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: true, // برای قرار دادن اسلاید در وسط
-          centerPadding: "0px", // حذف فضای خالی اطراف
+          centerMode: true, 
+          centerPadding: "0px"
         },
       },
     ],
