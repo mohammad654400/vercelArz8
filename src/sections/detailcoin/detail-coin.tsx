@@ -14,13 +14,15 @@ import FormViews from "./form-views"
 import CurrentPrice from "./current-price"
 import DescriptionTable from "./description-table";
 import Coin from "./coin";
+import Earth from '@/assets/icons/detailcoin/earth';
+
 
 interface Comment {
   id: string;
   name: string;
   text: string;
   date: string;
-  replies?: Comment[];
+  replies: Comment[];
 }
 
 
@@ -110,7 +112,7 @@ export default function DetailCoin() {
 
 
   const [comments, setComments] = useState<Comment[]>([]);
-  const [replyingTo, setReplyingTo] = useState<number | null>(null);
+  const [replyingTo, setReplyingTo] = useState<string  | null>(null);
 
   const addComment = (name: string, text: string) => {
     const newComment: Comment = {
@@ -186,8 +188,7 @@ export default function DetailCoin() {
           ></iframe>
         </div>
         <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
-          <TransAc\
-          \tion />
+          <TransAction />
         </div>
       </div>
 
@@ -197,6 +198,10 @@ export default function DetailCoin() {
           <CurrentPrice />
           <div className="mt-10">
             <div className="hidden lg:flex mb-5 gap-4">
+            <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
+                <Earth />
+                <span className="text-xs">Binance Coin</span>
+              </div>
               <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
                 <DocumentCode />
                 <span className="text-xs"> منابع کدها</span>
