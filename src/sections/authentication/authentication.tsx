@@ -32,7 +32,7 @@ export default function Authentication() {
         </div>
 
         <div className='flex flex-col gap-[31px] xl:gap-[50px] '>
-          <h2 className="text-base sm:text-xl lg:text-3xl font-bold text-seventh">مراحل احراز هویت سریع در صرافی ارز هشت</h2>
+          <h2 className="text-base sm:text-xl lg:text-3xl font-bold text-seventh">احراز هویت سریع در صرافی ارز هشت</h2>
 
           <div className="grid gap-y-[25.56px] gap-x-[13.11px] lg:gap-x-5 grid-cols-2 lg:grid-cols-4 w-full grid-flow-row-dense ">
             {cardData.map((card, index) => (

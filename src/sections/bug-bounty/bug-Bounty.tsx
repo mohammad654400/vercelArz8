@@ -53,7 +53,7 @@ export default function BugBounty() {
               رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
             </h1>
 
-            <p className="text-xs lg:text-[25px] font-black text-justify mt-[13px] mb-5 lg:mt-10 lg:mb-[25px] leading-[35px] lg:leading-[70px]">
+            <p className="text-xs lg:text-[25px]  text-justify mt-[13px] mb-5 lg:mt-10 lg:mb-[25px] leading-[35px] lg:leading-[70px]">
               تیم امنیت ارزهشت فرصتی ویژه برای متخصصان امنیتی فراهم کرده است! با
               شرکت در رویداد باگ بانتی ارزهشت، توانایی خود را در کشف
               آسیب‌پذیری‌های امنیتی سامانه و اپلیکیشن این صرافی به چالش بکشید.
