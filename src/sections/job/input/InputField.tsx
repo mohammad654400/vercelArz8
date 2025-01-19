@@ -52,7 +52,7 @@ const FormField: React.FC<InputFieldProps> = ({
                         className="w-full px-2 py-3 rounded-lg border border-[#ADADAD] bg-transparent cursor-pointer focus:outline-none flex items-center justify-between"
                     >
                         <span>{selectedOption}</span>
-                        <div className='flex ml-2'>
+                        <div className='flex ml-2 w-6 h-6'>
                         <ArrowDown/>
                         </div>
                     </div>

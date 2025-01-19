@@ -16,7 +16,7 @@ export default function DownloadApp() {
           <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]">
             <Info />
           </div>
-          <span className="text-[13px] lg:text-base font-normal lg:font-semibold mr-[10px]">
+          <span className="text-[13px] lg:text-base font-normal lg:font-semibold mr-[10px] text-[#242428]">
             برای استفاده از صرافی ارز هشت در گوشی های ios میتوانید از طریق سایت
             اقدام کنید.
           </span>

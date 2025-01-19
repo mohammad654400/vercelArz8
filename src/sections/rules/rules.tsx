@@ -155,10 +155,7 @@ export default function Rules() {
                 </button>
             </div>
 
-
-
-
-            <ul className="w-full space-y-2 sm:space-y-4 mt-10">
+            <ul className="w-full space-y-2 sm:space-y-4 my-10">
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start gap-2">
                         <div className="w-5">

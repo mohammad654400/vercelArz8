@@ -103,7 +103,7 @@ export const AccordionItem = ({
             )}
             {content && (
               <div
-                className={`flex-1  font-normal ${dynamicContentClasses}  mb-[6px] sm:mb-[10px] mt-[3px] sm:mt-[5px]  ${videoLink ? "sm:w-2/5 w-full" : ""
+                className={`flex-1  font-normal ${dynamicContentClasses}  mb-2 sm:mb-5 ${videoLink ? "sm:w-2/5 w-full" : ""
                   }`}
               >
 

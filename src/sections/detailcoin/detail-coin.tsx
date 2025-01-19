@@ -186,7 +186,8 @@ export default function DetailCoin() {
           ></iframe>
         </div>
         <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
-          <TransAction />
+          <TransAc\
+          \tion />
         </div>
       </div>
 
