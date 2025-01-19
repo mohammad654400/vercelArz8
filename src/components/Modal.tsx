@@ -24,12 +24,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, type, icon, lines, onClose }) => 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
-        className="relative bg-white p-6  lg:w-[513.19px] lg:h-[481px]  w-[287px] h-[269.06px]
-       border-[1.28px] border-[#FFC107] rounded-[52.53px] lg:rounded-[35.88px]  border-solid shadow-lg"
+        className="relative bg-white dark:bg-[#242428] p-6  lg:w-[513.19px] lg:h-[481px]  w-[287px] h-[269.06px]
+       border-[1.28px] border-[#FFC107] rounded-[35px] lg:rounded-[50px]  border-solid shadow-lg"
       >
        
         <button
-          className="absolute top-4 right-5 text-gray-500 hover:text-gray-700"
+          className="absolute top-6 right-6  hover:text-gray-700"
           onClick={onClose}
         >
           ✕

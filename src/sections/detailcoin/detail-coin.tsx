@@ -13,7 +13,7 @@ import Views from "./views"
 import FormViews from "./form-views"
 import CurrentPrice from "./current-price"
 import DescriptionTable from "./description-table";
-import Coin from "./coin";
+import Segment from "./segment";
 import Earth from '@/assets/icons/detailcoin/earth';
 
 
@@ -252,11 +252,11 @@ export default function DetailCoin() {
           <div className="hidden lg:flex flex-col w-full mt-10">
 
             <h1 className="text-xl font-bold mb-5">بیشترین رشد</h1>
-            <Coin data={data} />
+            <Segment data={data} />
 
             <h1 className="text-xl font-bold mb-5 mt-10">جدید ترین ارز های ما</h1>
 
-            <Coin data={data} />
+            <Segment data={data} />
           </div>
         </div>
       </div>

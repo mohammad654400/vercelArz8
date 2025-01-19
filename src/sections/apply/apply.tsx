@@ -115,13 +115,13 @@ export default function ApplyPage({ title }: { title: string }) {
     };
 
     return (
-        <div className="base-style w-full pt-20">
+        <div className="base-style w-full pt-28">
             <div className="w-full">
                 <h1 className="text-xl font-bold text-center mb-3">فرم ارسال درخواست و رزومه</h1>
                 <h2 className="text-xs font-semibold text-center opacity-50 mb-8">{title}</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full">
                     <div className="w-full flex flex-col gap-4">
-                        <div className='w-full grid grid-cols-1 gap-4 '>
+                        <div className='w-full grid grid-cols-1 gap-4 z-20'>
 
                             <FormField
                                 name="fullName"
@@ -204,11 +204,11 @@ export default function ApplyPage({ title }: { title: string }) {
                     type={modalType}
                     icon={
                         modalType === "success" ? (
-                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44  text-foreground">
                                 <SuccessJob />
                             </div>
                         ) : (
-                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44  text-foreground">
                                 <ErrorJob />
                             </div>
                         )
