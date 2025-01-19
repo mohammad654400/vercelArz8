@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import AvalancheIcon from "@/assets/icons/avalancheIcon";
 import BNB from "@/assets/icons/bnb";
@@ -7,41 +7,40 @@ import React, { useState, useEffect } from "react";
 const data = [
   {
     price: "43,537,353",
-    percentage: "% 1.37",
+    percentage: 1.37,
     name: "SOL",
     Persian: "فانتوم",
     icon: <AvalancheIcon />,
   },
   {
     price: "43,537,353",
-    percentage: "% 1.37",
+    percentage: 1.37,
     name: "BTC",
     Persian: "بیت‌کوین",
     icon: <AvalancheIcon />,
   },
   {
     price: "43,537,353",
-    percentage: "% 1.37",
+    percentage: -1.37,
     name: "SUI",
     Persian: "سولانا",
     icon: <BNB />,
   },
   {
     price: "43,537,353",
-    percentage: "% 1.37",
+    percentage: 1.37,
     name: "AVAX",
     Persian: "آوالانچ",
     icon: <AvalancheIcon />,
   },
 ];
 
-export default function Suggestion({
-  setSugesstions,
-  value,
-}: {
+interface Isuggestoin {
   setSugesstions: (value: boolean) => void;
   value: string;
-}) {
+}
+
+export default function Suggestion({ setSugesstions, value }: Isuggestoin) {
   const [historySearch, setHistorySearch] = useState<string[]>([]);
   const [filterData, setFilterData] = useState<typeof data>([]);
 
@@ -60,14 +59,13 @@ export default function Suggestion({
       );
       setFilterData(filtered);
     } else {
-      const filtered = data.filter((item) =>
-        parsedHistory.includes(item.name)
-      );
+      const filtered = data.filter((item) => parsedHistory.includes(item.name));
       setFilterData(filtered);
     }
   }, [value]);
 
-  function handleClick(symbol: string) {
+
+  const handleClick = (symbol: string) => {
     setHistorySearch((prevFavorites) => {
       if (prevFavorites.includes(symbol)) {
         return prevFavorites;
@@ -81,7 +79,7 @@ export default function Suggestion({
       localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
       return updatedHistory;
     });
-  }
+  };
 
   return (
     <div className="relative z-20 w-full">
@@ -89,8 +87,8 @@ export default function Suggestion({
         onClick={() => setSugesstions(false)}
         className="fixed w-full h-full bg-black top-0 right-0 opacity-0"
       ></div>
-      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[304px] h-[189px] md:w-[546px] md:h-[270px] overflow-y-auto bg-secondary p-1 md:p-4">
-        <p className="py-1 text-sm">نتایج پیدا شده :</p>
+      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[265px] h-[189px] md:w-[546px] md:h-[270px] overflow-y-auto scrollbar-hidden bg-secondary p-1 md:p-4">
+        <p className="text-xs px-3 pt-3  md:p-0 md:text-sm">نتایج پیدا شده :</p>
         <div>
           {filterData.length > 0 ? (
             filterData.map((item, index) => (
@@ -99,31 +97,31 @@ export default function Suggestion({
                   onClick={() => handleClick(item.name)}
                   className="cursor-pointer"
                 >
-                  <div className="flex justify-between mt-4 px-2 pr-0">
+                  <div className="flex justify-between mt-3 md:mt-4 px-2 md:px-2 md:pr-0">
                     <div className="flex items-center gap-2 pb-2">
                       <div>
-                          <span className=" w-[26px] h-[26px] md:w-[46px] md:h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
+                        <span className=" w-[26px] h-[26px] md:w-[46px] md:h-[46px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center">
                           {item.icon}
-                          </span>
+                        </span>
                       </div>
-                      <div className="text-sm md:text-base">
+                      <div className="text-xs md:text-base">
                         <p>{item.Persian}</p>
-                        <p>{item.name}</p>
+                        <p className="opacity-50">{item.name}</p>
                       </div>
                     </div>
                     <div>
-                      <div className="flex gap-2 pb-2  text-sm md:text-base">
+                      <div className="flex gap-2 pb-2  text-xs md:text-base">
                         <span>تومان</span>
                         <p>{item.price}</p>
                       </div>
-                      <div className="w-full flex justify-end text-sm md:text-base">
-                        <p>{item.percentage}</p>
+                      <div dir="ltr" className="w-full flex justify-start text-sm md:text-base ">
+                         <p className={`${item.percentage > 0 ? " text-green-600" : "text-rose-500"}`}>{item.percentage}%</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            ))
+            )) 
           ) : (
             <p>نتیجه‌ای یافت نشد.</p>
           )}

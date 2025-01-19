@@ -37,13 +37,13 @@
           </ul>
         </div>
       ),
-      customPaging: (i: number) => (
+      customPaging: (i: number=0) => (
         <div
           style={{
             width: "6px",
             height: "6px",
             borderRadius: "50%",
-            background: i === currentSlide ? "#FFC107" : "#E0E0E0",
+            background: i === currentSlide ? "#E0E0E0" : "#E0E0E0",
             transition: "background 0.3s ease",
           }}
         ></div>
@@ -56,7 +56,7 @@
           <div className=" flex flex-col items-center justify-center w-[281px]">
             <Image alt="banner" src={wheel} width={281} height={242} />
             <div className="flex flex-col">
-              <p className="mt-2 mx-auto mx-auto text-[23px] font-bold ">
+              <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 گردونه شانس
               </p>
               <p className="mx-auto text-[16px] pt-2 opacity-50">

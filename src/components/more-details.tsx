@@ -1,6 +1,8 @@
 "use client";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
+import { Span } from "next/dist/trace";
+import { space } from "postcss/lib/list";
 import React, { useState } from "react";
 
 const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
@@ -32,7 +34,7 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
           onClick={toggleExpand}
           className="w-full mt-2 hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
         >
-          {isExpanded ? <ArrowUp /> : <ArrowDown />}
+          {isExpanded ? <ArrowUp /> : <span className="w-5 h-5"><ArrowDown /></span> }
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
         </button>
       </div>

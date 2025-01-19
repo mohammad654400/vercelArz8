@@ -13,25 +13,23 @@ body {
   font-family: "YekanBakh";
   font-weight: 600;
 }
-::-webkit-scrollbar {  
-  width: 6px;  
+::-webkit-scrollbar {
+  width: 6px;
   height: 4px;
   border-radius: 20%;
-}  
-::-webkit-scrollbar-track {  
-  background: #F6F6F6;  
-  border-radius:50px;
-
-}  
+}
+::-webkit-scrollbar-track {
+  background: #f6f6f6;
+  border-radius: 50px;
+}
 
 ::-webkit-scrollbar-thumb {
-  background:  #FFC107;  
-  border-radius: 4px;  
-}  
-
+  background: #ffc107;
+  border-radius: 4px;
+} 
 
 .custom-scrollbar::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 @layer utilities {
@@ -54,13 +52,19 @@ body {
   .bg-dark-no-gradient {
     background: 242428;
   }
-  .dir_ltr{
-    direction:ltr ;
+  .dir_ltr {
+    direction: ltr;
   }
-  .base-style{
-    @apply flex flex-col gap-8 mx-auto px-5 md:px-12 lg:px-16 xl:px-0 max-w-[1200px];  
+  .base-style {
+    @apply flex flex-col gap-8 mx-auto px-5 md:px-12 lg:px-16 xl:px-0 max-w-[1200px];
   }
-  .full-screen{
+  .full-screen {
     @apply w-screen self-center max-w-[1200px];
   }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hidden {
+    scrollbar-width: none !important; /* Firefox */
+  } 
 }

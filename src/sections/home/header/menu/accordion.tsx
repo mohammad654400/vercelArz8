@@ -17,7 +17,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
         className="flex justify-between items-center cursor-pointer py-3"
       >
         <span>{title}</span>
-        <span>{isOpen ? <ArrowDown /> : <ArrowUp />}</span>
+        <span className="w-5 h-5">{isOpen ? <ArrowDown /> : <ArrowUp />}</span>
       </div>
       {isOpen && (
         <div className="flex flex-col justify-center items-start w-full gap-1 py-2  text-xs ">

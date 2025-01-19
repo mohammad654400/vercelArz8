@@ -63,6 +63,7 @@ const cryptoData = [
 ];
 
 const CryptoTable: React.FC = () => {
+  
   const [filter, setFilter] = useState<string>("most-popular");
   const [searchQuery, setSearchQuery] = useState<string>("");
 

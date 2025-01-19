@@ -3,6 +3,7 @@ import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import RhombusIcon from "@/assets/icons/rhombus";
+import { space } from "postcss/lib/list";
 import { useState } from "react";
 
 interface FAQItem {
@@ -93,7 +94,7 @@ const QuickGuide = () => {
                 <RhombusIcon /> {faq.question}
               </button>
               <span className="transform transition-transform">
-                {activeRightIndex === index ? <ArrowUp /> : <ArrowDown />}
+                {activeRightIndex === index ? <ArrowUp /> : <p className="w-5 h-5"><ArrowDown /></p> }
               </span>
             </div>
 
@@ -140,7 +141,10 @@ const QuickGuide = () => {
                       <ArrowUp />
                     </span>
                   ) : (
-                    <ArrowDown />
+                    <p className="w-5 h-5">
+
+                      <ArrowDown />
+                    </p>
                   )}
                 </span>
               </div>

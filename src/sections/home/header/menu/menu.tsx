@@ -12,7 +12,7 @@ export default function Menu() {
         <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />
         </div>
-        <div className="hidden group-hover:block absolute top-[80px] right-[229px] delay-700">
+        <div className=" group-hover:block absolute top-[80px] right-[229px] delay-700">
           <SubMenu />
         </div>
       </div>

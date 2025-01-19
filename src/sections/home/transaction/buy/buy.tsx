@@ -50,7 +50,7 @@ export default function Buy({
 
   return (
     <div className="w-full ">
-      <div className="absolute -top-[11px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
+      <div className="absolute -top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
         <HalfCircle />
       </div>
       <div
@@ -102,7 +102,9 @@ export default function Buy({
           >
             <div className="w-5 h-5">{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p>
+            <span className="w-5 h-5">
             <ArrowDown />
+            </span>
           </div>
         </div>
 
