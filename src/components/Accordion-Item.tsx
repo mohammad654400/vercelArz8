@@ -96,7 +96,7 @@ export const AccordionItem = ({
                 <iframe
                   src={sanitizeApparatUrl(videoLink)}
                   title="آموزش ویدئویی"
-                  className="w-full aspect-video rounded-xl mt-8"
+                  className="w-full aspect-video rounded-xl  mb-2 sm:mb-5"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
