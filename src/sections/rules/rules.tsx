@@ -75,7 +75,7 @@ export default function Rules() {
             </div>
 
 
-            {/* دسته‌بندی‌ها */}
+          
             {isDrawerOpen ? (
                 <div
                     className="fixed bottom-0 left-0 w-full bg-background shadow-[#9C9C9C40] shadow-[0px_0px_20.02px_0px_rgba(156,156,156,0.25)] rounded-t-[40px] h-[426px] z-20 "
@@ -151,7 +151,8 @@ export default function Rules() {
                     className="flex w-full h-[41px] justify-between px-[14px] bg-secondary rounded-[17.6px] items-center"
                 >
                     <span className="text-sm font-semibold">{selectedCategory.title}</span>
-                    <ArrowBottom />
+                    <span className="w-4 h-4">   <ArrowBottom /> </span>
+                  
                 </button>
             </div>
 
