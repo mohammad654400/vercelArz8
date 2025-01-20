@@ -63,11 +63,11 @@ export default function FaqView() {
               سوالات خود را جستجو کنید یا از دسته بندی ها استفاده کنید.
             </p>
 
-            <div className="relative flex items-center  justify-center border-2 border-[#FFC107]  rounded-[16px] p-2 h-[43px] w-[342px] sm:h-[70px] sm:w-[560px] lg:h-[79px] lg:w-[693px]">
+            <div className="relative flex items-center  justify-center border-2 border-[#FFC107]  rounded-[16px] p-2 h-[43px] w-[90%] sm:h-[70px] sm:w-[560px] lg:h-[79px] lg:w-[693px]">
               <input
                 type="text"
                 placeholder="سوال خود را بنویسید..."
-                className="flex-1 w-[90%]  bg-transparent px-4 py-3 text-white focus:outline-none"
+                className="flex-1 w-full  bg-transparent px-4 py-3 text-white focus:outline-none"
                 onChange={handleSearch}
               />
               <div className="w-8 h-8 p-[6px] sm:w-[54px] sm:h-[54px] sm:p-[10px] lg:w-[61px] lg:h-[61px] lg:p-[12px] rounded-[11px] sm:rounded-[17px] lg:rounded-xl bg-[#FFC107]">
@@ -78,14 +78,14 @@ export default function FaqView() {
               </div>
 
               {isDropdownVisible && filteredList.length > 0 && (
-                <div className="absolute top-full overflow-auto p-6 rounded-xl left-0 w-full bg-background text-foreground rounded-b-xl shadow-lg mt-2 max-h-96 z-10">
-                  <span className="text-start text-base font-bold flex mb-4">نتایج پیدا شده :</span>
+                <div className="absolute top-full overflow-auto p-6 rounded-xl left-0 w-full bg-background text-foreground rounded-b-xl shadow-lg mt-2 max-h-60 lg:max-h-96 z-10">
+                  <span className="text-start text-xs lg:text-base font-bold flex mb-4">نتایج پیدا شده :</span>
                   {filteredList.map((item) => (
                     <div key={item.id} onClick={() => handleItemClick(item.id)}>
-                      <div className="rounded-xl bg-secondary h-[70px] mb-[10px]">
-                        <button className="w-full h-full px-4 text-left font-medium flex justify-between items-center">
-                          <span className="text-start text-sm font-semibold">{item.title}</span>
-                          <span >
+                      <div className="rounded-xl bg-secondary  mb-[10px]">
+                        <button className="w-full h-full px-4 text-left font-medium flex justify-between py-[9px] lg:py-[26px] ">
+                          <span className="text-start text-[10px] lg:text-sm font-semibold ml-2  leading-5">{item.title}</span>
+                          <span  >
                             <ArrowLeft />
                           </span>
                         </button>

@@ -37,7 +37,7 @@ export default function DetailDescription() {
       >
         <div className="flex justify-center items-center gap-x-3">
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
-          {isExpanded ?  <ArrowTop /> : <ArrowBottom  />}
+          {isExpanded ? <span className=" w-[30px] h-[30px]"><ArrowTop /> </span> : <span className=" w-[30px] h-[30px]"><ArrowBottom /></span>}
         </div>
 
       </button>

@@ -11,15 +11,7 @@ import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
 import Accordion from '@/components/Accordion'
 import Ghar from '@/assets/images/wheelluck/ghar.png'
-import ImageOne from '@/assets/images/wheelluck/8.png'
-import ImageTwo from '@/assets/images/wheelluck/9.png'
-import ImageThree from '@/assets/images/wheelluck/1.png'
-import ImageFour from '@/assets/images/wheelluck/2.png'
-import ImageFive from '@/assets/images/wheelluck/3.png'
-import ImageSix from '@/assets/images/wheelluck/4.png'
-import ImageSeven from '@/assets/images/wheelluck/5.png'
-import ImageEight from '@/assets/images/wheelluck/6.png'
-import ImageNine from '@/assets/images/wheelluck/7.png'
+
 import Silver from "@/assets/images/wheelluck/Silver.png"
 import Bronze from "@/assets/images/wheelluck/Bronze.png"
 import Gold from "@/assets/images/wheelluck/Gold.png"
@@ -50,17 +42,6 @@ const awards = [
   },
 ]
 
-const imageUrls = [
-  ImageOne.src,
-  ImageTwo.src,
-  ImageThree.src,
-  ImageFour.src,
-  ImageFive.src,
-  ImageSix.src,
-  ImageSeven.src,
-  ImageEight.src,
-  ImageNine.src,
-];
 
 
 export const AccordionData = [
@@ -198,7 +179,7 @@ export default function WheelLuck() {
 
         <div className='flex flex-col lg:flex-row'>
           <div className='w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
-            <ImageCarousel imageUrls={imageUrls} />
+            <ImageCarousel />
           </div>
           <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
             <h3 className='text-xl md-text-2xl  xl:text-3xl font-bold mb-[16px] lg:mb-[28px]'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>

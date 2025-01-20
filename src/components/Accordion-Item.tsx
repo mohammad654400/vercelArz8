@@ -14,8 +14,6 @@ interface AccordionItemProps {
   highlightEnabled?: boolean;
   titleClasses: any;
   contentClasses: any;
-
-
 }
 
 const sanitizeApparatUrl = (url: string) => {
@@ -70,13 +68,13 @@ export const AccordionItem = ({
         <button
           onClick={() => onToggle(id)}
 
-          className={`w-full text-left font-medium flex justify-between items-center px-8 py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+          className={`w-full text-left font-medium flex justify-between  px-8 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
 
         >
-          <span className={`text-start font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
+          <span className={`text-start self-center font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
-          <span className="w[18px] h-[18px] flex items-center justify-center">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
+          <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px] flex items-start justify-start self-start my-2 lg:my-0">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
 
         <div
