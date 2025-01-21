@@ -109,7 +109,7 @@ export default function Rules() {
                     </div>
                 </div>
             ) : (
-                <div className="sm:flex hidden justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2  "
+                <div className=" sm:flex hidden  justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2  "
 
                 >
                     <div
@@ -118,7 +118,7 @@ export default function Rules() {
                         onMouseMove={handleMouseMove}
                         onMouseUp={handleMouseUpOrLeave}
                         onMouseLeave={handleMouseUpOrLeave}
-                        className="w-full flex ml-[27px] overflow-x-auto custom-scrollbar">
+                        className="w-full flex ml-[27px] mr-2.5 overflow-x-auto custom-scrollbar">
                         {tabBar.map((item) => {
                             const isSelected = selectedCategory.id === item.id;
                             return (

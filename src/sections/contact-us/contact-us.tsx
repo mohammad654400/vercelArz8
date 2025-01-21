@@ -92,9 +92,11 @@ export default function ContactUs() {
             <div className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8  justify-between ">
 
                 <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center  w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
+                    <div className="grid gap-[10px]">
+                        <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
+                        <span className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.</span>
 
-                    <h1 className="text-foreground lg:text-4xl sm:text-2xl text-xl  font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
-                    <span className="text-foreground text-justify text-sm sm:text-base font-semibold sm:leading-10 leading-7">ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.</span>
+                    </div>
 
                     <div className="flex flex-col">
 
@@ -103,47 +105,47 @@ export default function ContactUs() {
 
                         <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full ">
 
-                            <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col ">
+                            <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col">
                                 <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between  ">
                                     <div className="flex h-full w-full items-center justify-start bg-secondary rounded-xl  p-3">
                                         <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                                        <Call />
+                                            <Call />
                                         </div>
-                                     
-                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">021-284299</span>
+
+                                        <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">021-284299</span>
                                     </div>
                                     <div className="flex h-full w-full  items-center justify-start bg-secondary rounded-xl p-3">
-                                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                                    <Support />
-                                    </div>
-                                       
-                                        <span className="md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">پشتیبانی آنلاین</span>
+                                        <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                                            <Support />
+                                        </div>
+
+                                        <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">پشتیبانی آنلاین</span>
                                     </div>
                                 </div>
-                                <div className="flex h-[54px] sm:h-[99px] w-full  justify-between p-[5px] sm:p-3 flex-col rounded-xl bg-secondary">
+                                <div className="flex h-[54px] sm:h-[99px] w-full  justify-between p-2 sm:p-3 flex-col rounded-xl bg-secondary">
                                     <div className="flex items-center">
-                                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                                    <Location />
-                                    </div>
-                                      
-                                        <span className="lg:text-base text-xs  text-foreground mr-2 sm:mr-3 font-normal">آدرس</span>
+                                        <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                                            <Location />
+                                        </div>
+
+                                        <span className="xl:text-xl lg:text-base text-xs  text-foreground mr-2 sm:mr-3 font-normal">آدرس</span>
 
                                     </div>
-                                    <span className="lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
+                                    <span className="xl:text-xl lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">مراغه جام جم ، مجتمع سهند ، طبقه 5</span>
 
                                 </div>
                             </div>
 
 
-                            <div className=" w-[35%] sm:w-[28%] h-full">
+                            <div className="flex w-[35%] sm:w-[28%] h-full">
                                 <div className="flex-col gap-4 w-full h-full  flex  ">
                                     <div className="flex h-[30px] sm:h-[53px] gap-4 w-full  ">
                                         <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center  ">
-                                            <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center ">تلگرام</span>
+                                            <span className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center ">تلگرام</span>
                                         </div>
 
                                         <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center ">
-                                            <span className="md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">ایمیل</span>
+                                            <span className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">ایمیل</span>
                                         </div>
                                     </div>
                                     <div className="flex h-[54px] sm:h-[99px] gap-4 w-full  ">
