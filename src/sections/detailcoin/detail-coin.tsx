@@ -15,9 +15,8 @@ import CurrentPrice from "./current-price";
 import DescriptionTable from "./description-table";
 import Coin from "./segment";
 import Earth from "@/assets/icons/detailcoin/earth";
-import CryptoModal from "../home/transaction/cryptoModal";
+import CryptoModal from "@/sections/home/transaction/cryptoModal";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 interface Comment {
   id: string;
