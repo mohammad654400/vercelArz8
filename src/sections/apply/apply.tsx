@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
+import * as Yup from 'yup';
 import { validationSchema } from './yup/validation-schema';
 import FormField from '@/sections/job/input/InputField';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
@@ -73,7 +74,9 @@ export default function ApplyPage({ title }: { title: string }) {
         } catch (err: any) {
             const newErrors: Record<string, string> = {};
             err.inner.forEach((error: Yup.ValidationError) => {
-                newErrors[error.path] = error.message;
+                if (error.path) {
+                    newErrors[error.path] = error.message;
+                }
             });
             setErrors(newErrors);
             return false;

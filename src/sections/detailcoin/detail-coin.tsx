@@ -5,7 +5,7 @@ import SocialIcons from "@/assets/icons/detailcoin/socialicons";
 import DocumentCode from "@/assets/icons/detailcoin/documentcode";
 import Star from "@/assets/icons/star";
 import React, { useEffect, useState } from "react";
-import TransAction from "@/sections/home/transaction/transaction";
+import TransAction from "@/sections/home/transaction/transAction";
 import DetailDescription from "./description";
 import ArrowBotton from "@/assets/icons/wheel/arrowBottom";
 import Accordion from "@/components/Accordion";

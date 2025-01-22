@@ -12,6 +12,7 @@ import Modal from '@/components/Modal';
 import ErrorContactUs from "@/assets/icons/modal/errorContactUs"
 import SuccessContactUs from "@/assets/icons/modal/successContactUs"
 import { validationSchema } from './yup/validationSchema';
+import * as Yup from 'yup';
 
 interface ModalLine {
     text: string;
@@ -49,7 +50,9 @@ export default function ContactUs() {
         } catch (err: any) {
             const newErrors: Record<string, string> = {};
             err.inner.forEach((error: Yup.ValidationError) => {
-                newErrors[error.path] = error.message;
+                if (error.path) {
+                    newErrors[error.path] = error.message;
+                }
             });
             setErrors(newErrors);
             return false;

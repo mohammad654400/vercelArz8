@@ -5,6 +5,7 @@ import validationSchema from './yup/validationSchema';
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
 import SuccessJob from "@/assets/icons/modal/successJob"
+import * as Yup from 'yup';
 
 
 interface ModalLine {
@@ -120,7 +121,9 @@ export default function FormBugBounty() {
             const newErrors: Record<string, string> = {};
             if (err.inner) {
                 err.inner.forEach((error: Yup.ValidationError) => {
-                    newErrors[error.path] = error.message;
+                    if (error.path) {
+                        newErrors[error.path] = error.message;
+                    }
                 });
             }
             setErrors(newErrors);
