@@ -1,5 +1,4 @@
-'use client';
-
+'use client'; 
 import React, { useState, useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 import { validationSchema } from './yup/validation-schema';
@@ -8,8 +7,6 @@ import DocumentUpload from "@/assets/icons/job/documentUpload";
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
 import SuccessJob from "@/assets/icons/modal/successJob"
-
-
 
 interface ModalLine {
     text: string;
