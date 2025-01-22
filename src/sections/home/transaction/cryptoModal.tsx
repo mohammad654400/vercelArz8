@@ -1,6 +1,7 @@
 import Search from "@/assets/icons/search";
+import Link from "next/link";
 import React, { useState } from "react";
-export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=false }: any) {
   const [search, setSearch] = useState("");
 
   const filteredCurrencies = currencies.filter(
@@ -27,7 +28,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
       onClick={handleBackgroundClick}
       className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50"
     >
-      <div className="w-[388px] bg-background rounded-2xl shadow-xl overflow-hidden">
+      <div onClick={e => e.stopPropagation()} className="w-[388px] bg-background rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-semibold">انتخاب ارز</h2>
@@ -67,24 +68,29 @@ export default function CryptoModal({ toggle, setCurrency, currencies }: any) {
 
         <div className="h-[400px] overflow-y-auto px-2 ">
           {filteredCurrencies.map((currency: any, index: any) => (
-            <div
-              key={index}
-              onClick={() => handleCurrencySelect(currency)}
-              className="flex items-center rounded-2xl justify-between px-4 py-3
+            hasLink ? (
+              <Link
+                href={`/coins/${currency.name}`}
+                key={index}
+                onClick={() => handleCurrencySelect(currency)}
+                className=" flex items-center rounded-2xl justify-between px-4 py-3
                 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
-            >
-              <div className="flex items-center gap-2 ">
-                <div className="w-9 h-9">{currency.icon}</div>
-                <div>
-                  <p className="text-sm font-semibold">{currency.name}</p>
-                  <p className="text-xs text-gray-500">{currency.symbol}</p>
+              >
+                <div className="flex items-center gap-2 ">
+                  <div className="w-9 h-9">{currency.icon}</div>
+                  <div>
+                    <p className="text-sm font-semibold">{currency.name}</p>
+                    <p className="text-xs text-gray-500">{currency.symbol}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="text-left">
-                <p className="text-sm">{currency.price} تومان</p>
-                <p className="text-xs text-green-500">+{currency.change}%</p>
-              </div>
-            </div>
+                <div className="text-left">
+                  <p className="text-sm">{currency.price} تومان</p>
+                  <p className="text-xs text-green-500">+{currency.change}%</p>
+                </div>
+              </Link>
+            ) : (
+              <></>
+            )
           ))}
         </div>
       </div>

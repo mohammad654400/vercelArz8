@@ -1,11 +1,12 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
+import { log } from "console";
 
 const data = {
   firstTitle: "قیمت و لیست",
@@ -35,6 +36,7 @@ export default function Coin() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
 
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setValue(inputValue);

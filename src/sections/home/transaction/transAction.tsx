@@ -61,10 +61,9 @@ const currencies = [
       change: "-0.75",
       icon: <BNB />,
     },
-  // بقیه موارد
 ];
 
-export default function Transaction() {
+export default function Transaction({coin}:any) {
   const [isBuy, setIsBuy] = useState(true);
   const toggleTransaction = () => {
     setIsBuy((prevState) => !prevState);
@@ -72,7 +71,6 @@ export default function Transaction() {
   const [width, setWidth] = useState<number | undefined>();
 
   const parentRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     if (parentRef.current) {
       setWidth(parentRef.current.offsetWidth);
@@ -105,7 +103,7 @@ export default function Transaction() {
 
       <div className="relative w-full  duration-500">
         {isBuy ? (
-          <Buy width={width} currencies={currencies} toggle={toggleTransaction} />
+          <Buy width={width} currencies={currencies} toggle={toggleTransaction}  />
         ) : (
           <Sell width={width} currencies={currencies} toggle={toggleTransaction} />
         )}

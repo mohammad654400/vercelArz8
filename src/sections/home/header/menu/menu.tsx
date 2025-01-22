@@ -17,7 +17,9 @@ export default function Menu() {
         </div>
       </div>
       <div className="flex justify-center items-center  h-full hover:text-primary cursor-pointer">
+       <Link href='/coins/BTC'>
         خرید و فروش آنی
+       </Link>
       </div>
       <div className="group flex justify-center items-center  h-full hover:text-primary cursor-pointer">
         <Link href="/faq">سوالات متداول</Link>

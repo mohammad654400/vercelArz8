@@ -61,8 +61,8 @@ export default function Footer() {
                     <li> خرید و فروش ارزدیحیتال </li>
                     <li>قیمت لحظه ای ارز ها</li>
                     <li>دانلود اپلیکیشن</li>
-                    <Link href='/calculate'>
-                    <li>ماشین حساب</li>
+                    <Link href="/calculate">
+                      <li>ماشین حساب</li>
                     </Link>
                     <li>گردونه شانس</li>
                     <li>
@@ -80,9 +80,9 @@ export default function Footer() {
                     <li> اموزش های صرافی</li>
                     <li> قوانین و مقررات</li>
                     <li>سطوح کاربری</li>
-                      <Link href="/contactus">
-                        <li> تماس با ما</li>
-                      </Link>
+                    <Link href="/contactus">
+                      <li> تماس با ما</li>
+                    </Link>
                     <li> درباره ما</li>
                   </ul>
                 </div>
@@ -119,15 +119,15 @@ export default function Footer() {
           </div>
           <div className="flex justify-center items-center gap-4 dark:text-secondary sm:order-last ">
             <span className="hidden md:block dark:text-gray-300 pl-1">
-              <YouTube />            
+              <YouTube />
             </span>
-            <span  className="hidden md:block dark:text-gray-300">
+            <span className="hidden md:block dark:text-gray-300">
               <Aparat />
             </span>
-            <span  className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300">
               <Twitter />
             </span>
-            <span  className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
               <Telegram />
             </span>
             <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">

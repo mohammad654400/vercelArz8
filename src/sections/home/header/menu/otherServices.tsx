@@ -4,6 +4,7 @@ import EarnMoneyIcon from "@/assets/icons/header/menu/earnMoneyIcon";
 import GiftCardIcon from "@/assets/icons/header/menu/giftCardIcon";
 import OfferIcon from "@/assets/icons/header/menu/offerIcon";
 import WheelIcon from "@/assets/icons/header/menu/WheelIcon";
+import Link from "next/link";
 import React from "react";
 
 export default function OtherServices() {
@@ -17,7 +18,11 @@ export default function OtherServices() {
           <div className="flex justify-between gap-2">
             <div className="flex gap-2">
               <WheelIcon/>
-              <p>گردونه شانس</p>
+              <p>
+                <Link href='/wheel-luck'>
+                گردونه شانس
+                </Link>
+              </p>
             </div>
             <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10  flex justify-center text-background text-xs items-center">جدید</div>
             <ArrowLeft />
@@ -46,7 +51,11 @@ export default function OtherServices() {
           <div className="flex justify-between gap-2">
             <div className="flex gap-2">
              <GiftCardIcon/>
-              <p>کارت هدیه</p>
+              <p>
+                <Link href='https://app.arz8.com/tools/gift-card'>
+                کارت هدیه
+                </Link>
+              </p>
             </div>
             <ArrowLeft />
           </div>
@@ -60,7 +69,11 @@ export default function OtherServices() {
           <div className="flex justify-between gap-2">
             <div className="flex gap-2">
              <EarnMoneyIcon/>
-              <p>کسب درآمد</p>
+              <p>
+                <Link href='https://app.arz8.com/referrals'>
+                کسب درآمد
+                </Link>
+              </p>
             </div>
             <ArrowLeft />
           </div>

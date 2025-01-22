@@ -18,16 +18,17 @@ export default function Buy({
   width: any;
 }) {
   const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any | null>(currencies[0]);
+  const [currency, setCurrency] = useState<any>(currencies[0]);
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
   const { formatNumber, unformatNumber } = useFormattedNumber();
-
+  console.log("buy",currency);
+  
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
-
+  
   const handleMoneyChange = (value: string) => {
     const rawValue = unformatNumber(value);
     setMoney(formatNumber(rawValue));
@@ -103,7 +104,7 @@ export default function Buy({
             <div className="w-5 h-5">{currency.icon}</div>
             <p className=" text-lg">{currency.symbol}</p>
             <span className="w-5 h-5">
-            <ArrowDown />
+              <ArrowDown />
             </span>
           </div>
         </div>
