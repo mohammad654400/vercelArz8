@@ -1,6 +1,6 @@
 import React from "react";
-import Transaction from "../home/transaction/transaction";
-import Banner from "../home/banner/banner";
+import Transaction from "@/sections/home/transaction/transAction";
+import Banner from "@/sections/home/banner/banner";
 
 export default function Calculate() {
   return (

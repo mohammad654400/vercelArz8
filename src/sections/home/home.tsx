@@ -1,6 +1,6 @@
 import React from "react";
 import MainTop from "./main-top/main-top";
-import TransAction from "./transaction/transaction";
+import TransAction from "@/sections/home/transaction/transAction";
 import SecondBannerSlider from "@/components/slider/banner-slider/seceond-banner-slider";
 import RealTimePrice from "./realtime-price/real-time-price";
 import Banner from "./banner/banner";

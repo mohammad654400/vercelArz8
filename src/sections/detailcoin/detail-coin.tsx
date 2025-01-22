@@ -5,7 +5,7 @@ import SocialIcons from "@/assets/icons/detailcoin/socialicons";
 import DocumentCode from "@/assets/icons/detailcoin/documentcode";
 import Star from "@/assets/icons/star";
 import React, { useEffect, useState } from "react";
-import TransAction from "../home/transaction/transaction";
+import TransAction from "@/sections/home/transaction/transAction";
 import DetailDescription from "./description";
 import ArrowBotton from "@/assets/icons/wheel/arrowBottom";
 import Accordion from "@/components/Accordion";
@@ -15,9 +15,8 @@ import CurrentPrice from "./current-price";
 import DescriptionTable from "./description-table";
 import Coin from "./segment";
 import Earth from "@/assets/icons/detailcoin/earth";
-import CryptoModal from "../home/transaction/cryptoModal";
+import CryptoModal from "@/sections/home/transaction/cryptoModal";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 interface Comment {
   id: string;
