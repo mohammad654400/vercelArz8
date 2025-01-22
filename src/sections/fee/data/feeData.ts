@@ -1,3 +1,8 @@
+import Silver from "@/assets/images/wheelluck/Silver.png"
+import Bronze from "@/assets/images/wheelluck/Bronze.png"
+import Gold from "@/assets/images/wheelluck/Gold.png"
+import Crystal from "@/assets/images/wheelluck/Crystal.png"
+
 export const AccordionData = [
     {
         id: 1,
@@ -50,7 +55,7 @@ export const TransactionFeesTableHeaders = [
 
 export const TransactionFeesTableBody = [
     {
-        "0": "https://s3-alpha-sig.figma.com/img/4091/3139/d1502ee921d53799557555153a3d28f5?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Tq2v-iwqcWtHDEKMMconKBGLOkYuGPPR9N8eb-n0brkSBxdsGBSO7W3CGJmnChIBJk6khGYna7L-Z8wA3bvYuZ3MDJ8sFxzBAlS1hOmZ1BQbPKhmphAjmAq9aRtAScnHl1q1jvNI19gp6f3iZGrxifW5jF43yvQC7Wc9hy~gRLDpe6x-oSRnI9qWIUXdFkJky0e69ho2ijjzTmbvcbftZZsGlLT1-plQxdLSpkdg~kuPy73MZoeIDxfskqiTsmm0taE~wHB-46mjfizhLCNlv2L3yBOPH7hr5XP58yXrkFuVG~qGXV7AzscEzq~HZum5-qQfnrXMaWxxMNHLp2GjUA__",
+        "0": Bronze.src,
         "1": "0 تا 100 میلیون",
         "2": "0.35",
         "3": "0.35",
@@ -58,7 +63,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/7bd4/261c/3a9fe24df7ba21d77522395ee094278a?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ovSazbEXVBWDXrjCLfN89MYGTmSoaT2L8F8-FPqG-~l42hQ-A-FuusJ4FPzrcIjE3hAXydKzGUecYpy5eMLmR6bhM-qUNensiGNqOzSov7N83q~UmVsL8V-~f-6BTHqvgcLwjmOt3-JlQw3A4GZeiLKT~235T8BAj4yg0Bx2XEdProGgj3si9Td6cfg61mNYLHRhxnMsZt0YngDRfwifVvcFFAeUkNP-k3yOUGUynt3cX0kByxiJldSEfvZ7FYD46JjlyZ2Em6ee5aTCiz6bkmtjj0yml3jcUBcoEtFO41BZJtNP7jPL1h5vVQkBUgSCg8NTZGN0ayuuAUGvScGWfw__",
+        "0": Silver.src,
         "1": "100 تا 400 میلیون",
         "2": "0.32",
         "3": "0.32",
@@ -66,7 +71,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/f94a/8e24/9362efd5ee2e7e2858a691553a19cfaa?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LIu83F5JgVG5RY2oJb2daEp1IRQ6xX9DDm1N3zDa0VGmTTkbedb200PG7NTrnU6X1BvOo1ILpRnmUFodL0eX7GK79EISZT8uhld7v-lqFNsK5Vk6me9R8SfBxAHuJZgLYlYi8rwjLGkdaJYXc0hP2UCuWo4XPP~EPylBM9Fna4sVuNWgfvpkSDr12ZxH55jGgKEtSwVidVip-p5IpDJkz82VTY6fIIFrx4FQkcHbTvQEzmxsstm4dM7ghRf1JzYVes0ChdULIG9h2u4yUeC8Dup~9-~5tzerawhJlA7WrrOlBvxmGt0loX3-hqSgf5DMpdIIMzBvy6hgi2~2WFOpfg__",
+        "0": Gold.src,
         "1": "400 میلیون تا یک میلیارد",
         "2": "0.3",
         "3": "0.3",
@@ -74,7 +79,7 @@ export const TransactionFeesTableBody = [
         "5": "0",
     },
     {
-        "0": "https://s3-alpha-sig.figma.com/img/98b0/1363/52bc540c59a7f6d79a8e0355cf5c1103?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VM4pZPdanCLNX0-dxsPO6muNlZ7IfRIVXDex-F9Ojt3NIGAMIrlLJycEIGwop~E1qdFq5riPVxfTIKq8FUJL4-FaoFYAHyQRynz2c~K8qxVvYDYCt8pmAwOrd5uj7a9RsuX0TL-1XyTor6S2bJcABG3psHFYQPR2wpQ0DPdQtsRK4Exp70hSXX0C3iFFP4qAi8ENTIuv7xIfv6pHxfjRDoqVpA0x3z5tyqVTIaL5YOMMvAbkAQoQkI4eACoKpDk78Wv81UTx7cQz3nbiUuaA95R70GRBujusCcC~SJPFLO46V2rZDhMgEeWZT~2qiqUIfeYOSXlQwnJW1XmoZNF-7w__",
+        "0": Crystal.src,
         "1": "بیش از یک میلیارد",
         "2": "0.27",
         "3": "0.27",

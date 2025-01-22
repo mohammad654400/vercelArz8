@@ -44,22 +44,22 @@ export default function About() {
             <div className='flex flex-col lg:flex-row justify-between gap-8 mt-[39px] sm:mt-[60px]  lg:mt-[100px] '>
                 <div className='w-full lg:w-1/2 flex flex-col  '>
                     <span className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ماموریت صرافی ارز هشت</span>
-                    <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[14px] py-[17px] sm:px-[24px] sm:py-[30px] lg:px-[22px] lg:py-[27px] bg-third'>
-                        <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal leading-9'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</span>
+                    <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+                        <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</span>
                     </div>
 
                 </div>
                 <div className='w-full lg:w-1/2 flex flex-col  '>
                     <span className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ارزش های صرافی ارز هشت</span>
                     <div className='flex flex-col gap-4'>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[14px] py-[17px] sm:px-[24px] sm:py-[30px] lg:px-[22px] lg:py-[27px] bg-third'>
-                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal leading-9'>شفافیت در تمامی مراحل و فرآیندها</span>
+                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>شفافیت در تمامی مراحل و فرآیندها</span>
                         </div>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[14px] py-[17px] sm:px-[24px] sm:py-[30px] lg:px-[22px] lg:py-[27px] bg-third'>
-                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal leading-9'> ارائه راهکارهای جدید و پیشرفته برای آسان‌تر کردن معاملات</span>
+                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'> ارائه راهکارهای جدید و پیشرفته برای آسان‌تر کردن معاملات</span>
                         </div>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[14px] py-[17px] sm:px-[24px] sm:py-[30px] lg:px-[22px] lg:py-[27px] bg-third'>
-                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal leading-9'>همیشه گوش به نیازها و بازخوردهای شما هستیم</span>
+                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+                            <span className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>همیشه گوش به نیازها و بازخوردهای شما هستیم</span>
                         </div>
                     </div>
 

@@ -1,18 +1,19 @@
 import React from 'react'
 import BNB from "@/assets/icons/bnb";
 
-interface DataItem { 
-    price: string; 
-    percentage: string; 
-    name: string; 
-    Persian: string; 
-    icon: JSX.Element; 
-} 
-interface SegmentProps { 
-    data: DataItem[]; 
+interface DataItem {
+    price: string;
+    percentage: string;
+    name: string;
+    Persian: string;
+    icon: JSX.Element;
+}
+interface SegmentProps {
+    data: DataItem[];
 }
 
-export default function Segment({ data }:SegmentProps) {
+
+export default function Segment({ data }: SegmentProps) {
     return (
         <div>
             {data.map((item, index) => (

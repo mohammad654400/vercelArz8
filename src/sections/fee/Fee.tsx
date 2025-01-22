@@ -54,9 +54,9 @@ const Fee: React.FC = () => {
     ];
 
     return (
-        <div className="base-style bg-background" style={{ gap: "0" }}>
+        <div className="base-style bg-background">
 
-            <div className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-[76px] sm:mt-[122px] lg:mt-32">
+            <div className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-[76px] sm:mt-[122px] lg:mt-32 mb-16 md:mb-36">
 
                 <div className="flex flex-col w-full h-[174px] sm:h-[296px] gap-[15px] sm:gap-[35px] lg:gap-[29px]  bg-[#242428] rounded-[17.6px] sm:rounded-[30px] justify-center items-center px-[9.5px] py-[15px] sm:px-[19px] lg:px-[157px] ">
                     <h1 className="w-full text-center text-[20px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>

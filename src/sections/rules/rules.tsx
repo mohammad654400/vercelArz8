@@ -75,7 +75,7 @@ export default function Rules() {
             </div>
 
 
-            {/* دسته‌بندی‌ها */}
+          
             {isDrawerOpen ? (
                 <div
                     className="fixed bottom-0 left-0 w-full bg-background shadow-[#9C9C9C40] shadow-[0px_0px_20.02px_0px_rgba(156,156,156,0.25)] rounded-t-[40px] h-[426px] z-20 "
@@ -109,7 +109,7 @@ export default function Rules() {
                     </div>
                 </div>
             ) : (
-                <div className="sm:flex hidden justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2  "
+                <div className=" sm:flex hidden  justify-between bg-secondary w-full rounded-[30px] h-[70px] py-2  "
 
                 >
                     <div
@@ -118,7 +118,7 @@ export default function Rules() {
                         onMouseMove={handleMouseMove}
                         onMouseUp={handleMouseUpOrLeave}
                         onMouseLeave={handleMouseUpOrLeave}
-                        className="w-full flex ml-[27px] overflow-x-auto custom-scrollbar">
+                        className="w-full flex ml-[27px] mr-2.5 overflow-x-auto custom-scrollbar">
                         {tabBar.map((item) => {
                             const isSelected = selectedCategory.id === item.id;
                             return (
@@ -151,11 +151,12 @@ export default function Rules() {
                     className="flex w-full h-[41px] justify-between px-[14px] bg-secondary rounded-[17.6px] items-center"
                 >
                     <span className="text-sm font-semibold">{selectedCategory.title}</span>
-                    <ArrowBottom />
+                    <span className="w-4 h-4">   <ArrowBottom /> </span>
+                  
                 </button>
             </div>
 
-            <ul className="w-full space-y-2 sm:space-y-4 my-10">
+            <ul className="w-full space-y-2 sm:space-y-4 mt-10 mb-20">
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start gap-2">
                         <div className="w-5">

@@ -115,13 +115,13 @@ export default function ApplyPage({ title }: { title: string }) {
     };
 
     return (
-        <div className="base-style w-full pt-20">
+        <div className="base-style w-full pt-28">
             <div className="w-full">
                 <h1 className="text-xl font-bold text-center mb-3">فرم ارسال درخواست و رزومه</h1>
                 <h2 className="text-xs font-semibold text-center opacity-50 mb-8">{title}</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full">
                     <div className="w-full flex flex-col gap-4">
-                        <div className='w-full grid grid-cols-1 gap-4 '>
+                        <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-4 '>
 
                             <FormField
                                 name="fullName"
@@ -144,55 +144,63 @@ export default function ApplyPage({ title }: { title: string }) {
                                 onChange={handleChange}
                                 error={errors.email}
                             />
-                            <FormField
-                                name="maritalStatus"
-                                label="وضعیت تاهل"
-                                type="select"
-                                options={["متاهل", "مجرد"]}
-                                onChange={handleChange}
-                                error={errors.maritalStatus}
-                            />
-                            <FormField
-                                name="dutyStatus"
-                                label="وضعیت نظام وظیفه"
-                                type="select"
-                                options={["مشمول", "معافیت تحصیلی", "معاف داعم"]}
-                                onChange={handleChange}
-                                error={errors.dutyStatus}
-                            />
-
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium mb-3">فایل رزومه</label>
-                            <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
-                                <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
-                                    <div className='w-16 h-16'>
-                                    <DocumentUpload />
-                                    </div>
-
-                                    <span className="text-xs lg:text-sm px-3 py-2 text-[#32323680] rounded-[10px] bg-[#FFE9AF] text-opacity-50">فایل رزومه خود را آپلود کنید</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    accept=".pdf"
-                                    onChange={handleFileUpload}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            <div className='z-30'>
+                                <FormField
+                                    name="maritalStatus"
+                                    label="وضعیت تاهل"
+                                    type="select"
+                                    options={["متاهل", "مجرد"]}
+                                    onChange={handleChange}
+                                    error={errors.maritalStatus}
                                 />
                             </div>
-                            {errors.file && <p className="text-sm text-red-500 mt-2">{errors.file}</p>}
-                            {!uploadedFileName ? (
-                                <p className="text-sm text-gray-500 mt-2">مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</p>
-                            ) : (
-                                <div className="mt-2">
-                                    <span>مشاهده فایل: {uploadedFileName}</span>
-                                    <a href={uploadedFileUrl || "#"} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">
-                                        مشاهده پیش‌نمایش
-                                    </a>
+
+                            <div className='z-20'>
+                                <FormField
+                                    name="dutyStatus"
+                                    label="وضعیت نظام وظیفه"
+                                    type="select"
+                                    options={["مشمول", "معافیت تحصیلی", "معاف داعم"]}
+                                    onChange={handleChange}
+                                    error={errors.dutyStatus}
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-3">فایل رزومه</label>
+                                <div className="relative z-10 h-[157px] border border-gray-300 rounded-xl">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center space-y-3">
+                                        <div className='w-16 h-16'>
+                                            <DocumentUpload />
+                                        </div>
+
+                                        <span className="text-xs lg:text-sm px-3 py-2 text-[#32323680] rounded-[10px] bg-[#FFE9AF] text-opacity-50">فایل رزومه خود را آپلود کنید</span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        accept=".pdf"
+                                        onChange={handleFileUpload}
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
                                 </div>
-                            )}
+                                {errors.file && <p className="text-sm text-red-500 mt-2">{errors.file}</p>}
+                                {!uploadedFileName ? (
+                                    <p className="text-sm text-gray-500 mt-2">مشخصات فایل: pdf، حجم فایل کمتر از 20 مگابایت</p>
+                                ) : (
+                                    <div className="mt-2">
+                                        <span>مشاهده فایل: {uploadedFileName}</span>
+                                        <a href={uploadedFileUrl || "#"} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">
+                                            مشاهده پیش‌نمایش
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+
                         </div>
-                        <button type="submit" className="w-full h-10 sm:h-16 bg-primary text-white px-4 py-2 rounded-xl mt-12">
+
+
+                        <button type="submit" className="self-end w-full h-[38px] sm:h-16 bg-primary text-white text-sm px-4 py-2 rounded-xl mt-10 lg:mt-12
+                         lg:w-48 lg:h-12 lg:rounded-2xl lg:text-xl">
                             ارسال درخواست
                         </button>
                     </div>
@@ -204,11 +212,11 @@ export default function ApplyPage({ title }: { title: string }) {
                     type={modalType}
                     icon={
                         modalType === "success" ? (
-                            <div className="  w-24 h-24 lg:w-44 lg:h-44">
+                            <div className="  w-24 h-24 lg:w-44 lg:h-44  text-foreground">
                                 <SuccessJob />
                             </div>
                         ) : (
-                            <div className=" w-24 h-24 lg:w-44 lg:h-44">
+                            <div className=" w-24 h-24 lg:w-44 lg:h-44  text-foreground">
                                 <ErrorJob />
                             </div>
                         )

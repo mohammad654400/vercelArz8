@@ -30,8 +30,8 @@ export default function DetailJob() {
             {open ? (
                 <ApplyPage title={job.titleFn} />
             ) : (
-                <div className='mt-[76px] sm:mt-[174px] lg:mt-[215px] gap-8'>
-                    <h1 className="text-xl  sm:text-[38px] lg:text-4xl  lg:mb-[114px] sm:mb-[108px] mb-[20px] font-bold  flex justify-center text-eighth">{job.titleFn}</h1>
+                <div className='mt-[76px] sm:mt-[174px] lg:mt-[215px] '>
+                    <h1 className="text-xl  sm:text-[38.8px] lg:text-4xl  lg:mb-[114px] sm:mb-[108px] mb-[20px] font-bold  flex justify-center text-eighth">{job.titleFn}</h1>
 
                     <div className='flex flex-col gap-y-[15px] sm:gap-y-[38px] lg:gap-y-[30px]'>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-x-[25px] gap-y-[15px] sm:gap-y-[25px]">
