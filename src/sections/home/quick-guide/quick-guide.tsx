@@ -1,9 +1,8 @@
 "use client";
-import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import ArrowDown from "@/assets/icons/arrrow/arrow-bottom";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
-import ArrowUp from "@/assets/icons/arrrow/arrowup";
+import ArrowUp from "@/assets/icons/arrrow/arrow-top";
 import RhombusIcon from "@/assets/icons/rhombus";
-import { space } from "postcss/lib/list";
 import { useState } from "react";
 
 interface FAQItem {
@@ -71,57 +70,21 @@ const QuickGuide = () => {
   };
 
   return (
-    <div className="w-full flex flex-col md:flex-row gap-4 mx-auto bg-background rounded-2xl">
-      <div className="w-full md:w-1/2 pr-0 md:pr-4 ">
-        <div className="flex justify-between items-center ">
-          <h2 className="text-2xl font-bold mb-8">راهنمای سریع</h2>
-          <button className="md:hidden text-[18px] flex gap-2 items-center justify-center text-white w-[140px] bg-primary mb-4 h-[39px] rounded-2xl">
-            همه سوالات <ArrowLeft />
-          </button>
-        </div>
-        {rightFAQs.map((faq, index) => (
-          <div
-            key={index}
-            className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
-          >
-            <div className="flex items-center">
-              <button
-                onClick={() =>
-                  toggleAccordion(index, setActiveRightIndex, activeRightIndex)
-                }
-                className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
-              >
-                <RhombusIcon /> {faq.question}
-              </button>
-              <span className="transform transition-transform">
-                {activeRightIndex === index ? <ArrowUp /> : <p className="w-5 h-5"><ArrowDown /></p> }
-              </span>
-            </div>
-
-            <div
-              className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
-                activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
-              }`}
-            >
-              <div className="px-4 py-2 opacity-50">
-                <p>{faq.answer}</p>
-              </div>
-            </div>
+    <div className="flex flex-col w-full">
+      <div className="flex flex-row items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold  text-center flex">راهنمای سریع</h2>
+        <button className="flex text-[18px] md:text-2xl  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-3 ">
+          همه سوالات
+          <div className="w-[30px] h-[30px]">
+            <ArrowLeft />
           </div>
-        ))}
+
+        </button>
       </div>
+      <div className="w-full flex flex-col md:flex-row gap-x-11 gap-y-4 mx-auto bg-background rounded-2xl">
+        <div className="w-full  pr-0 md:pr-4 ">
 
-      <div className="w-full md:w-1/2">
-        <div className="flex justify-end mb-1">
-          <button className="hidden md:flex gap-2 items-center justify-center text-white w-[181px] bg-primary mb-4 h-[50px] text-[25px] rounded-2xl">
-            همه سوالات <ArrowLeft />
-          </button>
-        </div>
-        <div className="p-5 border-[1px] border-[#ADADAD80] rounded-2xl">
-          <div className="flex justify-center py-4 text-lg opacity-50 ">
-            فیلم‌های آموزشی
-          </div>
-          {leftFAQs.map((faq, index) => (
+          {rightFAQs.map((faq, index) => (
             <div
               key={index}
               className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
@@ -129,45 +92,87 @@ const QuickGuide = () => {
               <div className="flex items-center">
                 <button
                   onClick={() =>
-                    toggleAccordion(index, setActiveLeftIndex, activeLeftIndex)
+                    toggleAccordion(index, setActiveRightIndex, activeRightIndex)
                   }
                   className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                 >
-                  <RhombusIcon /> {faq.question}
+                   {activeRightIndex !== index && <RhombusIcon />}
+                   <span className="text-base font-semibold"> {faq.question} </span> 
                 </button>
                 <span className="transform transition-transform">
-                  {activeLeftIndex === index ? (
-                    <span className="dark:text-white">
-                      <ArrowUp />
-                    </span>
-                  ) : (
-                    <p className="w-5 h-5">
-
-                      <ArrowDown />
-                    </p>
-                  )}
+                  {activeRightIndex === index ? <p className="w-5 h-5"><ArrowUp /></p> : <p className="w-5 h-5"><ArrowDown /></p>}
                 </span>
               </div>
-              {activeLeftIndex === index && faq.videoUrl && (
-                <div className="duration-500">
-                  <div className="px-4 py-2 opacity-50">
-                    <div className="mt-4">
-                      <iframe
-                        src={sanitizeApparatUrl(faq.videoUrl)}
-                        title="آموزش ویدئویی"
-                        className="w-full aspect-video rounded-md shadow-md mb-[14px]"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                      <p>{faq.answer}</p>
-                    </div>
-                  </div>
+
+              <div
+                className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${activeRightIndex === index ? "max-h-[200px]" : "max-h-0"
+                  }`}
+              >
+                <div className="px-4 pb-2 opacity-50">
+                  <p className="text-sm font-normal leading-6">{faq.answer}</p>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
+
+        <div className="w-full">
+          <div className="p-5 border-[1px] border-[#ADADAD80] rounded-2xl">
+            <div className="flex justify-center pb-5 text-2xl font-extrabold opacity-50 ">
+              فیلم‌های آموزشی
+            </div>
+            {leftFAQs.map((faq, index) => (
+              <div
+                key={index}
+                className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
+              >
+                <div className="flex items-center">
+                  <button
+                    onClick={() =>
+                      toggleAccordion(index, setActiveLeftIndex, activeLeftIndex)
+                    }
+                    className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
+                  >
+                     {activeLeftIndex !== index && <RhombusIcon />}
+                    <span className="text-base font-semibold">{faq.question}</span> 
+                  </button>
+                  <span className="transform transition-transform">
+                    {activeLeftIndex === index ? (
+                      <span className="dark:text-white">
+                        <p className="w-5 h-5">
+                        <ArrowUp />
+                        </p>
+                      
+                      </span>
+                    ) : (
+                      <p className="w-5 h-5">
+                        <ArrowDown />
+                      </p>
+                    )}
+                  </span>
+                </div>
+                {activeLeftIndex === index && faq.videoUrl && (
+                  <div className="duration-500">
+                    <div className="px-4  opacity-50">
+                      <div className="mt-2">
+                        <iframe
+                          src={sanitizeApparatUrl(faq.videoUrl)}
+                          title="آموزش ویدئویی"
+                          className="w-full aspect-video rounded-[20px] "
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                        <p className="text-sm font-normal leading-[18px] py-3">{faq.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
     </div>
   );
 };

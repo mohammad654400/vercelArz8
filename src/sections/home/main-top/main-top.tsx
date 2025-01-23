@@ -9,16 +9,16 @@ export default function MainTop() {
   return (
     <div>
       <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
-        <div className="flex flex-col  md:justify-start w-[489px] gap-6">
+        <div className="flex flex-col  md:justify-center w-[489px] gap-6">
           <h1 className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
           </h1>
-          <p>
+          <p >
             خرید و فروش بیش از{" "}
             <span className="text-primary text-3xl font-bold">1300</span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
-          <p className="mx-auto text-sm md:text-[18px] md:mx-0 opacity-50">
+          <p className="mx-auto text-sm md:text-lg md:mx-0  opacity-50">
             در سریع ترین زمان ممکن ثبت نام کنید.
           </p>
           <div className="relative  ">
@@ -41,7 +41,7 @@ export default function MainTop() {
           <BannerSlider />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center  mt-8 rounded-xl py-2 w-full bg-secondary text-[9px] md:text-sm ">
+      <div className="flex flex-wrap justify-between items-center  mt-8 rounded-xl py-2 w-full bg-[#FFFFFF] dark:bg-[#242428] text-[9px] md:text-sm ">
         <div className="flex gap-2 items-center md:gap-2">
           <div className="pr-5">
             <Ring />
@@ -53,7 +53,10 @@ export default function MainTop() {
         </div>
         <div className="flex gap-2 items-center pl-5 cursor-pointer md:gap-2">
           <p className="text-xs">مشاهده تمام اعلانات</p>
-          <ArrowLeft />
+          <div className="w-4 h-4">
+            <ArrowLeft />
+          </div>
+
         </div>
       </div>
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
