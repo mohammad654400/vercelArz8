@@ -23,7 +23,6 @@ export default function Buy({
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
   const { formatNumber, unformatNumber } = useFormattedNumber();
-  console.log("buy",currency);
   
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);

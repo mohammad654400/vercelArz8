@@ -1,12 +1,11 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
-import { log } from "console";
 
 const data = {
   firstTitle: "قیمت و لیست",
@@ -61,7 +60,7 @@ export default function Coin() {
           <h1 className="text-[20px] md:text-3xl ">
             قیمت لحظه ای ارز های دیحیتال
           </h1>
-          <p className="text-sm pt-5 text-center w-[340px] leading-8 ">
+          <p className="text-xs sm:text-sm pt-5 font-normal text-center w-[330px] sm:w-[477px] md:w-[575px] !leading-6 sm:!leading-10 ">
             در این صفحه، قیمت لحظه‌ای و بروزترین تغییرات ارزهای دیجیتال محبوب را
             مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را
             جستجو کنید
@@ -70,8 +69,9 @@ export default function Coin() {
             <input
               onChange={handleChange}
               value={value}
-              className="w-[308px h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border-2 text-lg md:text-xl outline-none"
+              className="w-[308px] h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border sm:border-2 text-lg md:text-xl outline-none placeholder:text-[13px] sm:placeholder:text-[15px]"
               type="text"
+              placeholder="نام، نماد،...ارز"
               onFocus={() => setSugesstions(true)}
               onKeyUp={(e) => handleKeyDown(e)}
               ref={searchRef}
@@ -81,8 +81,8 @@ export default function Coin() {
                 <Suggestion setSugesstions={setSugesstions} value={value} />
               )}
             </div>
-            <span className="w-7 h-7 md:w-[54px] md:h-[54px] absolute left-[25px] top-[25px] bg-primary rounded-2xl flex justify-center items-center">
-              <div className="w-[18px] h-[18px] md:w-8 md:h-8">
+            <span className="w-6 h-6 md:w-[54px] md:h-[54px] absolute left-7 sm:left-[25px] top-[26px] sm:top-[25px] bg-primary rounded-[9.4px] md:rounded-2xl flex justify-center items-center">
+              <div className="w-4 h-4 md:w-8 md:h-8">
                 <Search />
               </div>
             </span>

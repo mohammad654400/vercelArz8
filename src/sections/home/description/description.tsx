@@ -39,7 +39,7 @@ const Description = () => {
         secondTitle={data.secondTitle}
         text={data.text}
       />
-      <div className="w-full mt-[100px] h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
+      <div className="w-full  mt-[100px] h-[266] bg-[#242428] text-background rounded-2xl rounded-tr-none">
         <div className="flex flex-col gap-8 justify-center items-center py-8">
           <div className="dark:text-white text-[18px] md:text-2xl font-bold">
             بدون معطلی ثبت نام و احراز هویت کن!
@@ -56,9 +56,9 @@ const Description = () => {
             <p className="text-sm md:text-2xl">ارز دلخواه خودتون رو بخرید</p>
           </div>
           <div className="w-full flex justify-center">
-            <div className="relative w-[350px] md:w-[400px]">
+            <div className="relative w-[300px] md:w-[400px]">
               {/* Mobile Icon */}
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground z-20">
+              <span className="absolute text-white right-3 top-1/2 -translate-y-1/2 text-foreground z-20 w-[18.9px]  h-[24.5px] sm:w-[22.8px] sm:h-[29.7px]">
                 <MobileIcon />
               </span>
 

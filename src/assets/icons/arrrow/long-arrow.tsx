@@ -12,18 +12,18 @@ export default function LongArrow() {
       <path
         d="M9.59015 6.29883L4.01221 11.8768L9.59015 17.4547"
         stroke="currentColor"
-        stroke-width="1.3784"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.3784"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M19.6342 11.877H4.16846"
         stroke="currentColor"
-        stroke-width="1.3784"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.3784"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

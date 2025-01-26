@@ -72,22 +72,22 @@ const QuickGuide = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold  text-center flex">راهنمای سریع</h2>
-        <button className="flex text-[18px] md:text-2xl  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-3 ">
+        <h2 className="text-lg sm:text-2xl font-bold  text-center flex">راهنمای سریع</h2>
+        <button className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 sm:py-3 ">
           همه سوالات
-          <div className="w-[30px] h-[30px]">
+          <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
             <ArrowLeft />
           </div>
 
         </button>
       </div>
-      <div className="w-full flex flex-col md:flex-row gap-x-11 gap-y-4 mx-auto bg-background rounded-2xl">
+      <div className="w-full flex flex-col md:flex-row gap-x-11 gap-y-4 mx-auto bg-background ">
         <div className="w-full  pr-0 md:pr-4 ">
 
           {rightFAQs.map((faq, index) => (
             <div
               key={index}
-              className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
+              className="mb-2 border-[1px] border-[#ADADAD80] rounded-[9.8px] sm:rounded-2xl px-3"
             >
               <div className="flex items-center">
                 <button
@@ -97,7 +97,7 @@ const QuickGuide = () => {
                   className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                 >
                    {activeRightIndex !== index && <RhombusIcon />}
-                   <span className="text-base font-semibold"> {faq.question} </span> 
+                   <span className="text-xs sm:text-base font-semibold"> {faq.question} </span> 
                 </button>
                 <span className="transform transition-transform">
                   {activeRightIndex === index ? <p className="w-5 h-5"><ArrowUp /></p> : <p className="w-5 h-5"><ArrowDown /></p>}
@@ -109,7 +109,7 @@ const QuickGuide = () => {
                   }`}
               >
                 <div className="px-4 pb-2 opacity-50">
-                  <p className="text-sm font-normal leading-6">{faq.answer}</p>
+                  <p className="text-xs sm:text-sm font-normal leading-6">{faq.answer}</p>
                 </div>
               </div>
             </div>
@@ -117,14 +117,14 @@ const QuickGuide = () => {
         </div>
 
         <div className="w-full">
-          <div className="p-5 border-[1px] border-[#ADADAD80] rounded-2xl">
-            <div className="flex justify-center pb-5 text-2xl font-extrabold opacity-50 ">
+          <div className="p-3 sm:p-5 border-[1px] border-[#ADADAD80] rounded-xl sm:rounded-2xl">
+            <div className="flex justify-center pb-5 text-lg sm:text-2xl font-extrabold opacity-50 ">
               فیلم‌های آموزشی
             </div>
             {leftFAQs.map((faq, index) => (
               <div
                 key={index}
-                className="mb-2 border-[1px] border-[#ADADAD80] rounded-2xl px-3"
+                className="mb-2 border-[1px] border-[#ADADAD80] rounded-[10px] sm:rounded-2xl px-3"
               >
                 <div className="flex items-center">
                   <button
@@ -134,7 +134,7 @@ const QuickGuide = () => {
                     className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                   >
                      {activeLeftIndex !== index && <RhombusIcon />}
-                    <span className="text-base font-semibold">{faq.question}</span> 
+                    <span className="text-xs sm:text-base font-semibold">{faq.question}</span> 
                   </button>
                   <span className="transform transition-transform">
                     {activeLeftIndex === index ? (
@@ -162,7 +162,7 @@ const QuickGuide = () => {
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                         ></iframe>
-                        <p className="text-sm font-normal leading-[18px] py-3">{faq.answer}</p>
+                        <p className="text-xs sm:text-sm font-normal leading-[18px] py-3">{faq.answer}</p>
                       </div>
                     </div>
                   </div>

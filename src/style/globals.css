@@ -27,17 +27,26 @@ body {
   background: #ffc107;
   border-radius: 4px;
 } 
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #ffc107 transparent;
+}
+
 body {
-  scrollbar-color: #ffc107 #f6f6f6; /* Thumb color, Track color */
-  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #ffc107 #f6f6f6; 
+  scrollbar-width: thin;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
+scrollbar-hidden{
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
 
-.scrollbar-hidden:hover::-webkit-scrollbar {
-  display: none; /* اسکرول‌بار در حالت هاور هم مخفی است */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {

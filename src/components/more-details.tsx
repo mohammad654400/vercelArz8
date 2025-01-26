@@ -1,8 +1,6 @@
 "use client";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowUp from "@/assets/icons/arrrow/arrow-top";
-import { Span } from "next/dist/trace";
-import { space } from "postcss/lib/list";
 import React, { useState } from "react";
 
 const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
@@ -11,7 +9,7 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
 
   return (
     <div className="w-full mx-auto">
-      <h1 className="mt-8 mb-4 text-[33px]">
+      <h1 className="mt-8 mb-4 text-[17px] sm:text-[33px] font-bold">
         <span className="text-primary"> {firstTitle}</span>
         {secondTitle}
       </h1>
@@ -20,7 +18,7 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
           isExpanded ? "h-auto " : "max-h-64"
         }`}
       >
-        <p className="leading-10 text-justify">
+        <p className="!leading-10 text-justify text-sm sm:text-base">
             {text}
         </p>
 

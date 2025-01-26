@@ -158,10 +158,11 @@ export default function RealTimePrice() {
                 onClick={() => handleFilterChange(option.key)}
                 className={`px-3   py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
                     ? "bg-yellow-400 text-white"
-                    : "text-[#54545880] dark:text-[#FFFFFF80]"
+                    : "text-[#3C3B4180] dark:text-[##FFFFFF80]"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
               >
-                {option.label}
+                <span className="text-xs font-semibold sm:text-base ">{option.label}</span>
+                
               </button>
             ))}
           </div>
@@ -226,7 +227,8 @@ export default function RealTimePrice() {
             <span >
               <Link href="/coins">مشاهده تمام ارزها</Link>
             </span>
-            <ArrowLeft />
+            <div className="w-[17px] h-[17px]"> <ArrowLeft /></div>
+           
           </div>
         </div>
       </div>

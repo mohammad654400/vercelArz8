@@ -7,7 +7,7 @@ import Star from "@/assets/icons/star";
 import React, { useEffect, useState } from "react";
 import TransAction from "@/sections/home/transaction/transAction";
 import DetailDescription from "./description";
-import ArrowBotton from "@/assets/icons/wheel/arrowBottom";
+import ArrowBotton from "@/assets/icons/arrrow/arrowup";
 import Accordion from "@/components/Accordion";
 import Views from "./views";
 import FormViews from "./form-views";
@@ -31,7 +31,7 @@ const data = [
   {
     price: "43,537,353",
     priceIR: "43,537,353",
-    percentage: "% 1.37",
+    percentage: "% 3",
     name: "AAVE",
     Persian: "آوه",
     icon: <BNB />,
@@ -72,9 +72,9 @@ const data = [
 export const AccordionData = [
   {
     id: 1,
-    title: " چطور میتونیم جایزه ای که در گردونه برنده شدیم رو برداشت کنیم؟",
+    title: "چگونه ارزهای دیگر را به بیت کوین تبدیل کنیم؟",
     content:
-      "به محض چرخش گردونه و برنده شدن جایزه، مبلغ جایزه نقدی یا ارز دیجیتال به کیف پولتون اضافه میشه و قابل برداشت به حساب بانکی هست . حتی بدون فعالیت در صرافی می‌تونید مبلغ رو برداشت کنید.",
+    "در دنیای پر از پدیده‌ و اصطلاحات ارز دیجیتال یکی از واژه‌هایی که هیاهو به همراه داشته است، عبارت “بول ران” (Bull Run) است. این اصطلاح همیشه به زمانی اشاره دارد که بازار در وضعیت گاوی و یا صعودی قرار دارد."
   },
 
   {
@@ -117,7 +117,7 @@ export default function DetailCoin() {
   const [favorite, setFavorites] = useState<string[]>([]);
   const route = usePathname().split("/")[2];
   const coin = data.find((item) => item.name === route) || data[0];
-  
+
   const handlerChenge = () => {
     setOpenModal(!openModal);
   };
@@ -166,27 +166,25 @@ export default function DetailCoin() {
 
     setReplyingTo(null);
   };
-   
+
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
-      <div className="w-full flex justify-between items-center mb-6 h-[75px] gap-x-4">
-        <div className="flex justify-between items-center min-w-[270px] w-[60%] h-full bg-secondary  px-4 rounded-2xl">
-          <div className="flex justify-center items-center">
+      <div className="w-full justify-between flex  items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
+        <div className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:px-4 rounded-[9px] sm:rounded-2xl">
+
+          <div className="flex  h-full justify-center gap-x-2 ">
             <div className="w-7 h-7 lg:w-12 lg:h-12 my-auto">{coin.icon}</div>
-            <div className="flex flex-col mr-2 justify-around">
-              <div
-                onClick={handlerChenge}
-                className="flex cursor-pointer flex-row md:gap-x-2 items-center"
-              >
-                <p className="text-xs lg:text-lg font-semibold">
+            <div className="flex flex-col  h-full justify-center gap-y-[6px] sm:gap-y-3 ">
+              <div className="flex gap-x-1 md:gap-x-2 " onClick={handlerChenge}>
+                <p className="text-xs sm:text-lg font-semibold !leading-3">
                   {coin.Persian}
                 </p>
                 <div
-                  className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${
-                    !openModal ? "rotate-180" : ""
-                  }`}
+                  className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
+                    }`}
                 >
                   <ArrowBotton />
+
                 </div>
                 {openModal ? (
                   <CryptoModal
@@ -199,35 +197,38 @@ export default function DetailCoin() {
                   ""
                 )}
               </div>
-              <p className="text-xs lg:text-lg font-semibold opacity-50">
+              <span className="text-xs sm:text-lg font-semibold opacity-50 flex !leading-3">
                 {coin.name}
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <div className="dir_ltr flex flex-col justify-around">
-              <p className="text-xs lg:text-[21px] font-semibold">
-                ${coin.price}
-              </p>
-              <p dir="rtl" className="text-xs lg:text-sm font-semibold">
-                {coin.priceIR} تومان
-              </p>
-            </div>
-            <div className="px-[7px] lg:px-[10px] py-2 lg:py-[14px] bg-background rounded-[10px] dark:bg-[#302F34]">
-              <span className="text-[#33B028] text-xs lg:text-[21px] font-semibold">
-                {coin.percentage}
               </span>
             </div>
           </div>
+
+          <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
+          <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
+
+            <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
+              ${coin.price}
+            </p>
+            <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
+              {coin.priceIR} تومان
+            </p>
+
+          </div>
+
+          <div className="w-9 h-9 sm:w-[61px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
+            <span className="text-[#33B028] h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold">
+              {coin.percentage}
+            </span>
+          </div>
+          </div>
         </div>
-        <div className="flex items-center w-[40%] h-full justify-end">
-          <div className="flex items-center gap-5 bg-secondary h-full  px-5 rounded-2xl">
-            <SendIcon />
+        <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
+          <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
+            <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
               onClick={() => handleFavorite(coin.name)}
-              className={`cursor-pointer ${
-                favorite.includes(route) ? "text-primary" : ""
-              }`}
+              className={`flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] ${favorite.includes(route) ? "text-primary" : ""
+                }`}
             >
               <Star />
             </span>
@@ -236,14 +237,14 @@ export default function DetailCoin() {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="flex w-full lg:w-[60%] h-[400px]  rounded-lg overflow-hidden">
+        <div className="flex w-full lg:w-[60%] h-[400px]  rounded-lg overflow-hidden order-2">
           <iframe
             src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22KRAKEN%3AUSDTUSD%7C1Y%22%5D%5D%2C%22chartOnly%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22locale%22%3A%22en%22%2C%22timezone%22%3A%22Asia%2FTehran%22%2C%22colorTheme%22%3A%22dark%22%2C%22autosize%22%3Atrue%2C%22showVolume%22%3Afalse%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Afalse%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Afalse%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%2210%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22area%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22isTransparent%22%3Atrue%2C%22dateRanges%22%3A%5B%221d%7C15%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22lineColor%22%3A%22%230072FF%22%2C%22topColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200.2)%22%2C%22bottomColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200)%22%7D"
             className="h-full w-full"
             frameBorder="0"
           ></iframe>
         </div>
-        <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
+        <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg order-1 lg:order-3">
           <TransAction coin={data[0]} />
         </div>
       </div>

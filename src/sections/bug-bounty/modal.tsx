@@ -21,7 +21,6 @@ export const Modal = ({
     successIcon,  
     errorIcon,  
 }: ModalProps) => {  
-    console.log("isSuccess",isSuccess);
     
     const renderMessage = (message: string, keywords?: string[]) => {  
         if (keywords && keywords.length > 0) {  

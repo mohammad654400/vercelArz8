@@ -72,7 +72,7 @@ export const AccordionItem = ({
           className={`w-full text-left font-medium flex justify-between  px-8 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
 
         >
-          <span className={`text-start self-center font-semibold ml-[5px] leading-[33.8px] ${dynamicTitleClasses}`}>
+          <span className={`text-start self-center font-semibold ml-[5px] !leading-6 sm:leading-[33.8px] ${dynamicTitleClasses}`}>
             {title}
           </span>
           <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px] flex items-start justify-start self-start my-2 lg:my-0">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>

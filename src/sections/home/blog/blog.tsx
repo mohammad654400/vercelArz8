@@ -6,7 +6,7 @@ import LongArrow from "@/assets/icons/arrrow/long-arrow";
 
 export default function Blog() {
   return (
-    <div className="flex flex-col gap-y-[14px] md:gap-y-[60px]">
+    <div className="flex flex-col gap-y-[14px] md:gap-y-[60px]  sm:mt-16 ">
       {/* Header Section */}
       <div className="flex  gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
         <div className="font-bold text-lg md:text-4xl w-full ">
@@ -14,16 +14,16 @@ export default function Blog() {
             بلاگ ارز هشت
           </span>
         </div>
-        <div className="flex w-full gap-x-10 justify-between">
-          <div className="px-4 border-[#ADADAD80] dark:border-[#242428] border flex justify-center items-center text-[10px] md:text-sm font-semibold py-[10px]  bg-[#F6F6F6] dark:bg-[#302F34] rounded-[14px] text-nowrap overflow-hidden">
+        <div className="flex w-full gap-x-5 sm:gap-x-10 justify-between">
+          <div className="px-4 border-[#ADADAD80] dark:border-[#242428] border flex justify-center items-center text-[10px] md:text-sm font-semibold py-[2px] sm:py-[10px]  bg-[#F6F6F6] dark:bg-[#302F34] rounded-[5.6px] sm:rounded-[14px] text-nowrap overflow-hidden">
             اطلاعیه ارز هشت درمورد نحوه توزیع توکن های هدیه همستر اکنون در کانال
             تلگرام قرار گرفته همین حالا به کانال مراجعه کنید.
           </div>
-          <button className="flex gap-2  items-center  px-4 h-[35px] md:h-[50px] justify-center bg-primary rounded-2xl text-foreground  text-[8px] md:text-[16px]">
-            <p className="flex text-white gap-x-1">
+          <button className="flex gap-2  items-center px-2 sm:px-4 h-[24px] md:h-[50px] justify-center bg-primary rounded-[5.6px] sm:rounded-2xl text-foreground  text-[8px] md:text-[16px]">
+            <div className="flex text-white gap-x-1">
               <p className="hidden md:flex text-base font-semibold">مقالات</p>
               <p className="text-[12px] md:text-base font-semibold">بیشتر...</p>
-            </p>
+            </div>
             <span className="text-white w-3 h-3 md:w-6 md:h-6">
               <ArrowLeft />
             </span>
