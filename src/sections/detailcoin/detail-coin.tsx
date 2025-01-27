@@ -18,7 +18,6 @@ import CryptoModal from "@/sections/home/transaction/cryptoModal";
 import { usePathname } from "next/navigation";
 import Segment from "./segment";
 
-
 interface Comment {
   id: string;
   name: string;
@@ -116,8 +115,8 @@ export default function DetailCoin() {
   const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
   const route = usePathname().split("/")[2];
-  const coin = data.find((item) => item.name === route) || data[0];
-  
+  const coin = data.find((item) => item.name === route);
+
   const handlerChenge = () => {
     setOpenModal(!openModal);
   };
@@ -128,7 +127,6 @@ export default function DetailCoin() {
     storedFavorites
       ? setFavorites(JSON.parse(storedFavorites))
       : setFavorites([]);
-
   }, [currency]);
 
   const handleFavorite = (name: string) => {
@@ -166,7 +164,7 @@ export default function DetailCoin() {
 
     setReplyingTo(null);
   };
-   
+
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
       <div className="w-full flex justify-between items-center mb-6 h-[75px] gap-x-4">
@@ -244,7 +242,7 @@ export default function DetailCoin() {
           ></iframe>
         </div>
         <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
-          <TransAction coin={data[0]} />
+          <TransAction coin={coin} />
         </div>
       </div>
 

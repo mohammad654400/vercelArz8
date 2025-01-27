@@ -28,8 +28,8 @@ body {
   border-radius: 4px;
 } 
 body {
-  scrollbar-color: #ffc107 #f6f6f6; /* Thumb color, Track color */
-  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #ffc107 #f6f6f6; 
+  scrollbar-width: thin;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -37,7 +37,7 @@ body {
 }
 
 .scrollbar-hidden:hover::-webkit-scrollbar {
-  display: none; /* اسکرول‌بار در حالت هاور هم مخفی است */
+  display: none; 
 }
 
 @layer utilities {
@@ -45,7 +45,7 @@ body {
     background: linear-gradient(
       to bottom,
       rgba(255, 171, 8, 0.17) 0%,
-      rgba(255, 213, 131, 0.11) 80%,
+      rgba(255, 213, 131, 0.11) 77.65%,
       rgba(255, 255, 255, 0) 100%
     );
   }
@@ -53,7 +53,7 @@ body {
     background: linear-gradient(
       to top,
       rgba(255, 171, 8, 0.17) 0%,
-      rgba(255, 213, 131, 0.11) 80%,
+      rgba(255, 213, 131, 0.11) 77.65%,
       rgba(255, 255, 255, 0) 100%
     );
   }
