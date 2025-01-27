@@ -19,7 +19,6 @@ export default function Job() {
   const scrollToJobs = () => {
     if (jobListingsRef.current) {
       const offsetTop = jobListingsRef.current.getBoundingClientRect().top + window.scrollY;
-      console.log(window.scrollY)
       window.scrollTo({
         top: offsetTop - 100,
         behavior: "smooth",

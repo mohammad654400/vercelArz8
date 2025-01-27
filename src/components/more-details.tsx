@@ -1,8 +1,6 @@
 "use client";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
-import ArrowUp from "@/assets/icons/arrrow/arrowup";
-import { Span } from "next/dist/trace";
-import { space } from "postcss/lib/list";
+import ArrowUp from "@/assets/icons/arrrow/arrow-top";
 import React, { useState } from "react";
 
 const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
@@ -11,16 +9,16 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
 
   return (
     <div className="w-full mx-auto">
-      <h1 className="mt-8 mb-4 text-2xl">
+      <h1 className="mt-8 mb-4 text-[17px] sm:text-[33px] font-bold">
         <span className="text-primary"> {firstTitle}</span>
         {secondTitle}
       </h1>
       <div
         className={`relative overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          isExpanded ? "h-auto " : "max-h-20"
+          isExpanded ? "h-auto " : "max-h-64"
         }`}
       >
-        <p className="leading-10 text-justify">
+        <p className="!leading-10 text-justify text-sm sm:text-base">
             {text}
         </p>
 
@@ -32,9 +30,9 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
       <div>
         <button
           onClick={toggleExpand}
-          className="w-full mt-2 hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
+          className="w-full  hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
         >
-          {isExpanded ? <ArrowUp /> : <span className="w-5 h-5"><ArrowDown /></span> }
+          {isExpanded ? <span className="w-5 h-5"><ArrowUp /></span> : <span className="w-5 h-5"><ArrowDown /></span> }
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
         </button>
       </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import BNB from "@/assets/icons/bnb";
 import ChartUP from "@/assets/images/chartup.png";
@@ -94,8 +94,8 @@ export default function LivePriceTable() {
   );
   const [favorites, setFavorites] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
-  const [numberItem,setNumberItem] = useState(false)
-  const [filterKey,setFilterKey] = useState("")
+  const [numberItem, setNumberItem] = useState(false)
+  const [filterKey, setFilterKey] = useState("")
   // handler
   const toggleFavorite = (symbol: string) => {
     setFavorites((prevFavorites) => {
@@ -122,8 +122,8 @@ export default function LivePriceTable() {
         setDisplayedCurrencies(
           favorites
             ? currencies.filter((currency) =>
-                favorites.includes(currency.symbol)
-              )
+              favorites.includes(currency.symbol)
+            )
             : []
         );
         break;
@@ -186,32 +186,32 @@ export default function LivePriceTable() {
   return (
     <div className=" bg-background dark:bg-[#3C3B41] shadow-lg rounded-xl overflow-hidden">
       {/* search */}
-      <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-4 py-3 text-[#FFFFFF80]">
+      <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-2 py-3 text-[#FFFFFF80]">
         <div className="relative block md:hidden">
-         
+
           <button
             onClick={() => setOpen(!open)}
-            className="flex  text-sm justify-center items-center w-[110px] h-9 bg-primary text-white rounded-xl"
+            className="flex justify-center items-center px-2 py-2 bg-primary text-white rounded-xl"
           >
-            مورد علاقه{" "}
-            <span className="w-[20px] text-white mr-2"><ArrowDown/></span>
+            <span className="text-xs sm:text-sm font-bold whitespace-nowrap">مورد علاقه</span>
+            <span className="w-[9.4px] h-[9.4px] sm:w-4 sm:h-4 text-white mr-1"><ArrowDown /></span>
           </button>
           {open && (
-            
+
             <div className="fixed top-48 w-[300px] h-[439px] bg-background shadow-md border rounded-2xl pt-2 z-20 ">
-               <div className="absolute -top-[11px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
-                  <HalfCircle />
-               </div>
+              <div className="absolute -top-[11px] right-12 md:right-8 lg:right-8 text-background dark:text-background">
+                <HalfCircle />
+              </div>
               {filterOptions.map((option) => (
                 <button
                   key={option.key}
                   onClick={() => setFilterKey(option.key)}
-                  className={`flex w-[250px] justify-end flex-col mr-5 gap-4  px-3 py-2 rounded-lg text-sm  mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
+                  className={`flex w-[250px] justify-end flex-col mr-5 gap-4  px-3 py-2 rounded-lg text-xs sm:text-sm font-bold  mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
                 >
                   {option.label}
                 </button>
               ))}
-              <button onClick={() => (handleFilterChange(filterKey),setOpen(false)) } className=" flex py-3 mt-7 px-20 rounded-lg bg-primary mx-auto text-white">
+              <button onClick={() => (handleFilterChange(filterKey), setOpen(false))} className=" flex py-3 mt-7 px-20 rounded-lg bg-primary mx-auto text-white">
                 اعمال فیلتر
               </button>
             </div>
@@ -223,18 +223,17 @@ export default function LivePriceTable() {
             <button
               key={option.key}
               onClick={() => handleFilterChange(option.key)}
-              className={`px-3 py-1 rounded-lg text-sm ${
-                activeFilter === option.key
+              className={`px-3 py-1 rounded-lg text-sm ${activeFilter === option.key
                   ? "bg-yellow-400 text-white"
                   : "text-black dark:text-white"
-              }`}
+                }`}
             >
               {option.label}
             </button>
           ))}
         </div>
         <div className="flex gap-2">
-          
+
           <input
             type="text"
             placeholder="جستجو..."
@@ -244,22 +243,22 @@ export default function LivePriceTable() {
           />
 
 
-          <div className="relative cursor-pointer border text-black bg-background rounded-lg px-2 py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-14">
-            <div onClick={()=>(setNumberItem(!numberItem))} className="flex gap-1 items-center">
-             <span className="w-[14px] text-black"><ArrowDown/></span> {itemsPerPage} 
+          <div className="relative cursor-pointer border text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-14">
+            <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
+              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-lg">{itemsPerPage}</span>
             </div>
-             {numberItem?
-            <div className="flex flex-col gap-2 top-[35px] cursor-pointer -right-[1px] py-2 border w-[57px] bg-background rounded-xl absolute">
-              {[5, 10, 20, 50].map((item) => (
-                <p
-                  onClick={() =>( setItemsPerPage(item) ,setNumberItem(false))}
-                  className="mx-auto rounded-lg font-bold "
-                >
-                  {item}
-                </p>
-              ))}
-            </div>
-            :""
+            {numberItem ?
+              <div className="flex flex-col gap-2 top-[35px] cursor-pointer -right-[1px] py-2 border w-[57px] bg-background rounded-xl absolute">
+                {[5, 10, 20, 50].map((item) => (
+                  <p
+                    onClick={() => (setItemsPerPage(item), setNumberItem(false))}
+                    className="mx-auto rounded-lg font-bold "
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
+              : ""
             }
           </div>
         </div>
@@ -268,105 +267,112 @@ export default function LivePriceTable() {
       {/* table*/}
       {displayedCurrencies ? (
         <div className="p-4">
-          <div className="grid grid-cols-4 md:grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center py-3 font-semibold border-gray-300">
-            <div>نماد</div>
-            <div className="hidden md:block">قیمت به USDT</div>
-            <div className="">
-              قیمت به تومان <span className="block md:hidden">/USDT</span>
+          <div className="grid grid-cols-4 md:grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center justify-center py-3 font-semibold border-gray-300 items-center">
+            <span className="text-[7.3px] font-semibold md:text-xs">نماد</span>
+            <span className="hidden md:block">قیمت به USDT</span>
+            <div className="flex text-[7.3px] font-semibold md:text-xs  whitespace-nowrap">
+              قیمت به تومان <span className="block md:hidden text-[7.3px] font-semibold md:text-xs ">/USDT</span>
             </div>
-            <div>تغییرات 24h</div>
-            <div className="hidden md:block">نمودار 24h</div>
-            <div>عملیات</div>
+            <span className="text-[7.3px] font-semibold md:text-xs">تغییرات 24h</span>
+            <span className="hidden md:block text-[7.3px] font-semibold md:text-xs ">نمودار 24h</span>
+            <span className="text-[7.3px] font-semibold md:text-xs">عملیات</span>
           </div>
 
           <div className="divide-y divide-gray-200 text-[10px] md:text-sm">
-            {paginatedCurrencies.map((currency, index) => (
-              <div
-                key={index}
-                className="grid grid-cols-5 md:grid-cols-6 items-center text-center py-4"
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <button
-                    onClick={() => toggleFavorite(currency.symbol)}
-                    className={`text-2xl ${
-                      favorites.includes(currency.symbol)
-                        ? "text-yellow-400"
-                        : "text-secondary"
-                    }`}
-                  >
-                    <Star />
-                  </button>
-                  <div className="md:w-11 md:h-11 w-5">
-                    <span>{currency.icon}</span>
-                  </div>
-                  <span>{currency.name}</span>
-                </div>
+  {paginatedCurrencies.map((currency, index) => (
+    <div
+      key={index}
+      className={`grid ${
+        currency.priceUSDT && currency.priceIRR ? "grid-cols-4 md:grid-cols-6" : "grid-cols-4 md:grid-cols-4"
+      } items-center text-center py-4`}
+    >
+      {/* ستون 1: اطلاعات اصلی (ستاره، آیکون، نام) */}
+      <div className="flex items-center justify-center gap-2">
+        <button
+          onClick={() => toggleFavorite(currency.symbol)}
+          className={`text-2xl ${
+            favorites.includes(currency.symbol) ? "text-yellow-400" : "text-secondary"
+          }`}
+        >
+          <div className="sm:w-6 sm:h-6 w-[21px] h-[21px]"><Star /></div>
+          
+        </button>
+        <div className="flex flex-col gap-y-[2px]">
+        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">{currency.name}</span>
+        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">{currency.symbol}</span>
+        </div>
+       
+      </div>
 
-                <div className="md:col-span-0 md:hidden w-full mr-10 md:mr-0">
-                  <div className="">{currency.priceUSDT} $</div>
-                  <div className="">{currency.priceIRR} تومان</div>
-                </div>
+      {/* ستون 2: قیمت برای نمایشگر کوچک */}
+      <div className="md:col-span-0 md:hidden w-full ">
+        <div className="text-end sm:text-center">{currency.priceUSDT} $</div>
+        <div className="text-end sm:text-center">{currency.priceIRR} تومان</div>
+      </div>
 
-                <div className="col-span-0 hidden md:block md:col-span-1">{currency.priceUSDT} USDT</div>
-                <div className="col-span-0 hidden md:block md:col-span-1">{currency.priceIRR} تومان</div>
+      {/* ستون 3: قیمت برای نمایشگر متوسط و بزرگ */}
+      {currency.priceUSDT && (
+        <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceUSDT} USDT</div>
+      )}
+      {currency.priceIRR && (
+        <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceIRR} تومان</div>
+      )}
 
-                <div className=" md:col-span-0 md:hidden"></div>
+      {/* ستون 4: تغییر قیمت */}
+      <div
+        className={`text-center  ${
+          currency.change.startsWith("-") ? "text-red-500" : "text-green-500"
+        }`}
+      >
+        {currency.change}%
+      </div>
 
-                <div
-                  className={`ml-12 md:ml-0 ${
-                    currency.change.startsWith("-")
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  {currency.change}%
-                </div>
+      {/* ستون 5: نمودار (فقط برای نمایشگر متوسط و بزرگ) */}
+      <div className="hidden md:flex justify-center">
+        <Image src={ChartUP} alt="chart" width={64} height={31} />
+      </div>
 
-                <div className="hidden md:flex justify-center">
-                  <Image src={ChartUP} alt="chart" width={64} height={31} />
-                </div>
+      {/* ستون 6: جزئیات بیشتر */}
+      <div>
+        <Link href={`/coins/${currency.symbol}`}>
+          <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[10px] rounded-[5.22px] md:rounded-lg  ">
+            جزئیات بیشتر
+          </button>
+        </Link>
+      </div>
+    </div>
+  ))}
+</div>
 
-                <div>
-                  <Link href={`/coins/${currency.symbol}`}>
-                    <button className="border-2 border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[10px] rounded-lg">
-                      جزئیات بیشتر
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       ) : (
         "هیچ اطلاعاتی یافت نشد"
       )}
 
       {/* pagination*/}
-      <div className="flex justify-center items-center gap-6 p-4">
+      <div className="flex justify-center items-center gap-3 sm:gap-6 p-4">
         <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className={`rounded-full p-2 ${
-            currentPage === 1
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-yellow-400 hover:bg-gray-100"
-          }`}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+
+          className={`sm:rounded-[15px] rounded-[7px] p-2 bg-secondary `}
         >
-          <span className="material-icons">
+          <div className="sm:w-6 sm:h-6 w-3 h-3">
             <ArrowRight />
-          </span>
+          </div>
         </button>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 " style={{ direction: "ltr" }}>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 rounded-lg text-sm ${
-                currentPage === page
+              className={`px-3 py-1 rounded-lg text-sm ${currentPage === page
                   ? "bg-yellow-400 text-white"
                   : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-              }`}
+                }`}
             >
               {page}
             </button>
@@ -374,17 +380,13 @@ export default function LivePriceTable() {
         </div>
 
         <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-          className={`rounded-full p-2 ${
-            currentPage === totalPages
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-yellow-400 hover:bg-gray-100"
-          }`}
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className={`sm:rounded-[15px] rounded-[7px] p-2 bg-secondary`}
         >
-          <ArrowLeft />
+          <div className="sm:w-6 sm:h-6 w-3 h-3">
+            <ArrowLeft />
+          </div>
         </button>
       </div>
     </div>

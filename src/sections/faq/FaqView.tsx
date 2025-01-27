@@ -85,7 +85,7 @@ export default function FaqView() {
                       <div className="rounded-xl bg-secondary  mb-[10px]">
                         <button className="w-full h-full px-4 text-left font-medium flex justify-between py-[9px] lg:py-[26px] ">
                           <span className="text-start text-[10px] lg:text-sm font-semibold ml-2  leading-5">{item.title}</span>
-                          <span  >
+                          <span className="w-[14px] h-[14px] sm:w-[26px] sm:h -[26px]" >
                             <ArrowLeft />
                           </span>
                         </button>
@@ -107,12 +107,12 @@ export default function FaqView() {
       <div className="base-style" style={{ gap: "0" }}>
         <h2 className="hidden xl:flex text-[30px] font-bold mt-[60px] mb-[40px]">مرکز راهنمایی و سوالات متداول</h2>
 
-        <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[390px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense ">
+        <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[360px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense ">
 
           {categories.map((category) => (
             <div
               key={category.id}
-              className={`relative mx-auto flex flex-col mb-14 w-44 ${selectedCategory !== category.id ? "opacity-50" : ""}`}
+              className={`relative mx-auto flex flex-col mb-14 w-[155px] min-[380px]:w-44 ${selectedCategory !== category.id ? "opacity-50" : ""}`}
               onClick={() => setSelectedCategory(category.id)}
             >
               <div className="relative z-0">

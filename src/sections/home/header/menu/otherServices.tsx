@@ -8,80 +8,75 @@ import Link from "next/link";
 import React from "react";
 
 export default function OtherServices() {
+
+  const features = [
+    {
+      title: "گردونه شانس",
+      description: "هر روز یک شانس دارید تا ارزهای دیجیتال و جایزه نقدی برنده شوید.",
+      icon: <WheelIcon />,
+      link: "/wheel-luck",
+      badge: "جدید",
+    },
+    {
+      title: "تخفیفات",
+      description: "با تخفیف های ارزهشت دیگر کارمزد معاملات پرداخت نکنید.",
+      icon: <OfferIcon />,
+      link: null,
+      badge: null,
+    },
+    {
+      title: "کارت هدیه",
+      description: "کارت هدیه با موجودی رمز ارز ایجاد کنید و به دیگران هدیه بدهید.",
+      icon: <GiftCardIcon />,
+      link: "https://app.arz8.com/tools/gift-card",
+      badge: null,
+    },
+    {
+      title: "کسب درآمد",
+      description: "با دعوت از دوستان خود تا 30% از کارمزد معاملات انها را دریافت کنید.",
+      icon: <EarnMoneyIcon />,
+      link: "https://app.arz8.com/referrals",
+      badge: null,
+    },
+  ];
+
+
   return (
-    <div className="absolute z-50 top-[80px] -right-10 md:-right-24 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
-      <div className="text-fifth dark:text-secondary absolute right-24 rounded-xl -top-3 ">
+    <div className="absolute z-50 top-[80px] -right-10 md:-right-36 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
+      <div className="text-fifth dark:text-secondary absolute right-32 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
-      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
+      {features.map((feature, index) => (
+      <div
+        key={index}
+        className="relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]"
+      >
         <div className="flex flex-col gap-3">
-          <div className="flex justify-between gap-2">
-            <div className="flex gap-2">
-              <WheelIcon/>
-              <p>
-                <Link href='/wheel-luck'>
-                گردونه شانس
-                </Link>
-              </p>
+          <div className="flex justify-between gap-1 items-center">
+            <div className="flex gap-x-3">
+              <div className="w-5 h-5">{feature.icon}</div>
+              
+              {feature.link ? (
+                <p>
+                  <Link href={feature.link}><span className="text-base font-semibold">{feature.title}</span></Link>
+                </p>
+              ) : (
+                <p>{feature.title}</p>
+              )}
             </div>
-            <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10  flex justify-center text-background text-xs items-center">جدید</div>
-            <ArrowLeft />
+            {feature.badge && (
+              <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10 flex justify-center text-background text-xs items-center">
+                {feature.badge}
+              </div>
+            )}
+            <div className="w-[14px] h-[14px]">
+              <ArrowLeft />
+            </div>
           </div>
-          <p className="text-[10px]  ">
-            هر روز یک شانس دارید تا ارزهای دیجیتال و جایزه نقدی برنده شوید.
-          </p>
+          <p className="text-xs font-semibold !leading-6 text-sixth opacity-50">{feature.description}</p>
         </div>
       </div>
-      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between gap-2">
-            <div className="flex gap-2">
-             <OfferIcon/>
-              <p> تخفیفات</p>
-            </div>
-            <ArrowLeft />
-          </div>
-          <p className="text-[10px]">
-            با تخفیف های ارزهشت دیگر کارمزد معاملات پرداخت نکنید.
-          </p>
-        </div>
-      </div>
-      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between gap-2">
-            <div className="flex gap-2">
-             <GiftCardIcon/>
-              <p>
-                <Link href='https://app.arz8.com/tools/gift-card'>
-                کارت هدیه
-                </Link>
-              </p>
-            </div>
-            <ArrowLeft />
-          </div>
-          <p className="text-[10px]">
-            کارت هدیه با موجودی رمز ارز ایجاد کنید و به دیگران هدیه بدهید.
-          </p>
-        </div>
-      </div>
-      <div className=" relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41] ">
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between gap-2">
-            <div className="flex gap-2">
-             <EarnMoneyIcon/>
-              <p>
-                <Link href='https://app.arz8.com/referrals'>
-                کسب درآمد
-                </Link>
-              </p>
-            </div>
-            <ArrowLeft />
-          </div>
-          <p className="text-[10px]">
-            با دعوت از دوستان خود تا 30% از کارمزد معاملات انها را دریافت کنید.
-          </p>
-        </div>
-      </div>
+    ))}
     </div>
   );
 }

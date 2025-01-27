@@ -14,13 +14,29 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
     <div className="duration-500">
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center cursor-pointer py-3"
+        className={`flex justify-between items-center cursor-pointer py-3 ${
+          isOpen ? "text-primary" : "text-eighth"
+        }`}
       >
         <span>{title}</span>
-        <span className="w-5 h-5">{isOpen ? <ArrowDown /> : <ArrowUp />}</span>
+        <span
+          className={`w-5 h-5 ${
+            isOpen ? "text-primary" : "text-eighth"
+          }`}
+        >
+          {isOpen ? (
+            <span className="w-[10px] h-[10px]">
+              <ArrowUp />
+            </span>
+          ) : (
+            <span className="w-[10px] h-[10px]">
+              <ArrowDown />
+            </span>
+          )}
+        </span>
       </div>
       {isOpen && (
-        <div className="flex flex-col justify-center items-start w-full gap-1 py-2  text-xs ">
+        <div className="flex flex-col justify-center items-start w-full gap-1 py-2 text-xs">
           {children}
         </div>
       )}

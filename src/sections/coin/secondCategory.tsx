@@ -62,50 +62,51 @@ export default function SecondCategory({open,setOpen}:any) {
           <h1 className={`mb-2 ${!open ? "block" : "hidden"}`}>
             جدید ترین ارز های ما
           </h1>
-          <div className="hidden sm:block absolute left-0 w-6  bg-black opacity-0  z-10">
-            d
-          </div>
+     
             <span className="" onClick={() => setOpen(!open)}>
               <ArrowWithBorder />
             </span>
         </div>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={` ${
-              !open ? "border-b-2 border-gray-200" : "border-none"
-            } ${
-              (index + 1) % 3 == 0
-                ? "border-none"
-                : "border-b-2 border-gray-200"
-            }`}
-          >
-            <div>
-              <div className="flex justify-between mt-4 ">
-                <div className="flex items-center gap-2 pb-2">
+       {data.map((item, index) => (
+                <div
+                  key={index}
+                  className={` ${!open ? "border-b-2 border-gray-200" : "border-none"
+                    } ${(index + 1) % 3 == 0
+                      ? "border-none"
+                      : "border-b-2 border-gray-200"
+                    }`}
+                >
                   <div >
-                    <div className={`w-[41px] h-[41px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex justify-center items-center `}>
-                      <BNB />
-                    </div>
-                  </div>
-                  <div className={`text-sm ${!open ? "block" : "hidden"}`}>
-                    <p >{item.Persian}</p>
-                    <p>{item.name}</p>
+                    
+                      <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
+      
+                        <div className={`w-[41px] h-[41px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex  items-center `}>
+                          <BNB/>
+                        </div>
+      
+                        <div className={` ${!open ? "flex justify-between  w-full  " : "hidden"}`}>
+      
+                          <div className="h-full flex flex-col gap-y-3 items-center ">
+                            <p className="!leading-3 text-sm font-semibold" >{item.Persian}</p>
+                            <p className="leading-3 text-sm font-semibold opacity-50">{item.name}</p>
+                          </div>
+                          <div className={`flex flex-col gap-y-3 items-center `}>
+                            <div className="flex">
+                              <p className="leading-3 text-sm font-semibold ">{item.price} </p>
+                              <span className="leading-3 text-sm font-semibold mr-1">تومان</span>
+                            </div>
+                            <div dir="ltr" className="w-full flex ">
+                              <p className={`leading-3 text-sm font-semibold ${item.percentage > 0 ? " text-green-600" : "text-rose-500"}`}>%{item.percentage}</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                      </div>
+      
+                   
                   </div>
                 </div>
-                <div className={`${!open ? "block" : "hidden"}`}>
-                  <div className="flex gap-2 pb-2">
-                    <span>تومان</span>
-                    <p>{item.price} </p>
-                  </div>
-                  <div dir="ltr" className="w-full flex  justify-start">
-                  <p className={`${item.percentage > 0 ? " text-green-600" : "text-rose-500"}`}>{item.percentage}%</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+              ))}
       </div>
     </div>
   );

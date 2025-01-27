@@ -27,6 +27,11 @@ body {
   background: #ffc107;
   border-radius: 4px;
 } 
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #ffc107 transparent;
+}
+
 body {
   scrollbar-color: #ffc107 #f6f6f6; 
   scrollbar-width: thin;
@@ -35,9 +40,14 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
+scrollbar-hidden{
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
 
-.scrollbar-hidden:hover::-webkit-scrollbar {
-  display: none; 
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {

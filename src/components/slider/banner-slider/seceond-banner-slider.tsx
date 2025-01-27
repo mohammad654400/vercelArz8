@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function SecondBannerSlider() {
   const [currentSlide, setCurrentSlide] = useState(3);
-  console.log(currentSlide)
+  
 
   const settings = {
     infinite: true,

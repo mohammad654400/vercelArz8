@@ -7,7 +7,7 @@ export default function SideBar({ close }: any) {
   return (
     <div className="fixed flex top-0 right-0 z-50 w-full h-full xl:hidden  text-xs ">
       <div className="bg-secondary z-50  w-[249px] md:w-[70%] lg:w-[60%] ">
-        <div className="bg-background right-0 px-6 py-8 top-0 w-[160%] md:w-[70%] lg:w-[60%] h-full rounded-tl-3xl rounded-bl-3xl">
+        <div className="bg-background right-0 px-6 py-2 sm:py-3 top-0 w-[160%] md:w-[70%] lg:w-[60%] h-full rounded-tl-3xl rounded-bl-3xl">
           <div className="flex justify-between ">
             <div className="text-xl pt-2 ">منو</div>
             <div onClick={close} className="cursor-pointer relative right-3">
@@ -17,7 +17,7 @@ export default function SideBar({ close }: any) {
           <div className="mt-4 z-50 flex flex-col gap-4  ">
             <h1>منوی اصلی</h1>
             <Accordion title="قیمت ارزهای دیجیتال">
-              <div className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFC107] ">
+              <div className="w-full rounded-xl bg-secondary py-3 pr-4 !hover:bg-[#FFF6DD] !hover:border-[#FFC107]  ">
               <Link onClick={close} href='/coins/BTC'>
                 خرید و فروش سریع
               </Link>
