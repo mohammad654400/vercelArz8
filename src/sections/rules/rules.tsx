@@ -73,9 +73,6 @@ export default function Rules() {
                 <span className="w-full flex justify-center lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
                 <span className="w-full flex justify-center lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>
-
-
-
             {isDrawerOpen ? (
                 <div
                     className="fixed bottom-0 left-0 w-full bg-background shadow-[#9C9C9C40] shadow-[0px_0px_20.02px_0px_rgba(156,156,156,0.25)] rounded-t-[40px] h-[426px] z-20 "
@@ -152,7 +149,6 @@ export default function Rules() {
                 >
                     <span className="text-sm font-semibold">{selectedCategory.title}</span>
                     <span className="w-4 h-4">   <ArrowBottom /> </span>
-
                 </button>
             </div>
 

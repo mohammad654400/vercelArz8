@@ -31,7 +31,6 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #ffc107 transparent;
 }
-
 body {
   scrollbar-color: #ffc107 #f6f6f6; 
   scrollbar-width: thin;
@@ -48,6 +47,10 @@ scrollbar-hidden{
 
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+.scrollbar-hidden:hover::-webkit-scrollbar {
+  display: none; 
 }
 
 @layer utilities {

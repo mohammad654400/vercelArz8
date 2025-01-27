@@ -115,7 +115,6 @@ export default function DetailCoin() {
   const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
   const route = usePathname().split("/")[2];
-
   const coin = data.find((item) => item.name === route) || data[0];
 
   const handlerChenge = () => {
@@ -236,7 +235,7 @@ export default function DetailCoin() {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="flex w-full lg:w-[60%] h-[400px]  rounded-lg overflow-hidden order-2">
+        <div className="flex w-full lg:w-[60%] h-[400px]  rounded-lg overflow-hidden">
           <iframe
             src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22KRAKEN%3AUSDTUSD%7C1Y%22%5D%5D%2C%22chartOnly%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22locale%22%3A%22en%22%2C%22timezone%22%3A%22Asia%2FTehran%22%2C%22colorTheme%22%3A%22dark%22%2C%22autosize%22%3Atrue%2C%22showVolume%22%3Afalse%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Afalse%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Afalse%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%2210%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22area%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22isTransparent%22%3Atrue%2C%22dateRanges%22%3A%5B%221d%7C15%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22lineColor%22%3A%22%230072FF%22%2C%22topColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200.2)%22%2C%22bottomColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200)%22%7D"
             className="h-full w-full"

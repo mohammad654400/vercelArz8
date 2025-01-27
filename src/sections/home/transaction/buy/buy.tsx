@@ -27,6 +27,7 @@ export default function Buy({
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
   const { formatNumber, unformatNumber } = useFormattedNumber();
+
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };

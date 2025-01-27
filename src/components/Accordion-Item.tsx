@@ -77,7 +77,6 @@ export const AccordionItem = ({
           </span>
           <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px] flex items-start justify-start self-start my-2 lg:my-0">{isOpen ? <ArrowTop /> : <ArrowBottom />}</span>
         </button>
-
         <div
           className={`overflow-hidden transition-all duration-500 px-8  `}
           style={{
