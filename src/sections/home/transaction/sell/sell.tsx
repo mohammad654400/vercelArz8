@@ -134,7 +134,7 @@ export default function Buy({
           </div>
         </div>
 
-        <div className={`w-full flex justify-center pb-2 ${width<700? "mt-10":""} ${route=='calculate'? "mt-8" : ""}`}>
+        <div className={`w-full flex justify-center pb-2  ${route=='calculate'? "mt-8" : ""}`}>
           {open && (
             <CryptoModal
               currencies={currencies}
@@ -143,7 +143,7 @@ export default function Buy({
             />
           )}
           <button className={`
-          ${ route=='calculate'? "w-full xl:w-full" : ""}
+          ${route=='calculate'? "w-full xl:w-full" : ""}
           ${width<700? "w-full mt-0":"w-full xl:w-auto"}
           px-8 mt-9 md:mt-2 text-xl py-[13px] rounded-xl bg-[#F00500] text-white
             `}>

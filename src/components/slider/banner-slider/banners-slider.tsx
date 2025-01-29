@@ -20,7 +20,8 @@
       slidesToScroll: 1,
       arrows: false,
       dots: true,
-      beforeChange: (oldIndex: number, newIndex: number) =>
+      initialSlide: 0,
+     beforeChange: (oldIndex: number, newIndex: number) =>
         setCurrentSlide(newIndex),
       appendDots: (dots: any) => (
         <div
@@ -37,13 +38,13 @@
           </ul>
         </div>
       ),
-      customPaging: (i: number=0) => (
+      customPaging: (i: number) => (
         <div
           style={{
             width: "6px",
             height: "6px",
             borderRadius: "50%",
-            background: i === currentSlide ? "#E0E0E0" : "#E0E0E0",
+            background: i === currentSlide ? "#FFC107" : "#E0E0E0",
             transition: "background 0.3s ease",
           }}
         ></div>

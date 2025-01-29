@@ -106,7 +106,7 @@ export default function Buy({
             ${route===''?"mt-0 pt-8":"mt-6 pt-16"}
             ${
               route == "calculate"
-                ? "self-center rotate-90 lg:mt-9 ml-8 "
+                ? "self-center rotate-90 lg:mt-12 ml-8 "
                 : ""
             }
             cursor-pointer ${
