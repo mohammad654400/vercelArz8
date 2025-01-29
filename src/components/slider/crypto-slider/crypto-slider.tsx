@@ -76,7 +76,7 @@ export default function BannerSlider() {
               {cards.map((card, index) => (
                 <div
                   key={index}
-                  className="flex justify-center gap-8 md:gap-24 mt-4"
+                  className="flex justify-center gap-5 md:gap-24 mt-4"
                 >
                    <div className="flex flex-col justify-center ">
                     <div className="flex pb-1 gap-1 text-[10] md:text-[13.5px] font-semibold ">
@@ -106,7 +106,7 @@ export default function BannerSlider() {
                       }
                     `}
                   >
-                    <div className="flex flex-col justify-center items-end mr-1 md:mr-2">
+                    <div className="flex flex-col justify-center items-end mr-3 md:mr-2">
                       <p className="text-[10px] md:text-[12px] pb-1">{card.name}</p>
                       <p className="text-[10px] md:text-[12px] opacity-50">{card.symbol}</p>
                     </div>
