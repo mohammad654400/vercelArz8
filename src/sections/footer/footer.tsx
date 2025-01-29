@@ -34,22 +34,22 @@ export default function Footer() {
 
           <div className="flex flex-col gap-8 lg:w-[68%]">
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
-              <div className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> بـــــــــــــازار</p>
                 <Image alt="bazar" src={bazar} />
-              </div>
+              </Link>
               <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base ">وب اپلیکیشن</p>
                 <Image alt="bazar" src={webapp} />
               </div>
-              <div className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> مایکـــیت</p>
                 <Image alt="bazar" src={myket} />
-              </div>
-              <div className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              </Link>
+              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-sm "> دانلود مستقیم</p>
                 <Image alt="bazar" src={directDownload} />
-              </div>
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="flex justify-between ">
@@ -58,17 +58,13 @@ export default function Footer() {
                     راهنمای صرافی
                   </h1>
                   <ul className="flex flex-col gap-4">
-                    <li> خرید و فروش ارزدیحیتال </li>
-                    <li>قیمت لحظه ای ارز ها</li>
-                    <li>دانلود اپلیکیشن</li>
-                    <Link href="/calculate">
-                      <li>ماشین حساب</li>
-                    </Link>
-                    <li>گردونه شانس</li>
-                    <li>
-                      <Link href="/bugbounty">باگ بانتی</Link>
-                    </li>
-                    <li>وبلاگ</li>
+                    <Link href="/coins/BTC"> <li> خرید و فروش ارزدیحیتال </li></Link>
+                    <Link href="/coins"><li>قیمت لحظه ای ارز ها</li></Link>
+                    <Link href="/download"><li> دانلود اپلیکیشن</li></Link>
+                    <Link href="/calculate"> <li>ماشین حساب</li></Link>
+                    <Link href="/coin"><li>گردونه شانس </li></Link>
+                    <Link href="/bugbounty"><li>باگ بانتی</li></Link>
+                    <Link href="https://arz8.com/blog/"><li>وبلاگ</li></Link>
                   </ul>
                 </div>
                 <div className="">
@@ -76,14 +72,12 @@ export default function Footer() {
                     لینک های مفید
                   </p>
                   <ul className="flex flex-col gap-4">
-                    <li> ارسال تیکت پشتیبانی</li>
-                    <li> اموزش های صرافی</li>
-                    <li> قوانین و مقررات</li>
-                    <li>سطوح کاربری</li>
-                    <Link href="/contactus">
-                      <li> تماس با ما</li>
-                    </Link>
-                    <li> درباره ما</li>
+                    <Link href="https://app.arz8.com/support"> <li> ارسال تیکت پشتیبانی</li></Link>
+                    <Link href="/faq"><li> اموزش های صرافی</li></Link>
+                    <Link href="/rules"> <li> قوانین و مقررات</li></Link>
+                    <Link href="/fee"><li>  سطوح کاربری</li></Link>
+                    <Link href="/contact-us"><li> تماس با ما</li></Link>
+                    <Link href="/about"><li>درباره ما</li></Link>
                   </ul>
                 </div>
                 <div className="">

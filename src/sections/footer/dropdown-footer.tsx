@@ -4,11 +4,12 @@ import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
 import ArrowUp from "@/assets/icons/arrrow/arrowup";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import Link from "next/link";
 
 export default function DropdownMenu() {
   const [openSection, setOpenSection] = useState(null);
 
-  const toggleSection = (section:any) => {
+  const toggleSection = (section: any) => {
     setOpenSection(openSection === section ? null : section);
   };
 
@@ -21,19 +22,19 @@ export default function DropdownMenu() {
         >
           لینک‌های مفید
           <span className="text-primary text-xl">
-            {openSection === "links" ? 
-             <div className="text-black"><ArrowUp /></div>  :
-              <div className="text-foreground w-5 h-5"><ArrowDown /></div>
+            {openSection === "links" ?
+              <div className="text-white w-5 h-5"><ArrowUp /></div> :
+              <div className="text-white w-5 h-5"><ArrowDown /></div>
             }
           </span>
         </button>
         {openSection === "links" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <li className="hover:text-primary">خرید و فروش ارزدیجیتال</li>
-            <li className="hover:text-primary">دانلود اپلیکیشن</li>
-            <li className="hover:text-primary">قیمت لحظه‌ای ارزها</li>
-            <li className="hover:text-primary">وبلاگ</li>
-            <li className="hover:text-primary">گردونه شانس</li>
+            <Link href="/coins/BTC">خرید و فروش ارزدیجیتال<li className="hover:text-primary"></li></Link>
+            <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
+            <Link href="/coin"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
+            <Link href="https://arz8.com/blog/">وبلاگ <li className="hover:text-primary"></li></Link>
+            <Link href="/coin">گردونه شانس <li className="hover:text-primary"></li></Link>
           </ul>
         )}
       </div>
@@ -45,20 +46,20 @@ export default function DropdownMenu() {
         >
           راهنمای صرافی
           <span className="text-primary text-xl">
-            {openSection === "guide" ? 
-           <div className="text-black"><ArrowUp /></div>  :
-           <div className="text-foreground w-5 h-5"><ArrowDown /></div>  
-          }
+            {openSection === "guide" ?
+              <div className="text-white w-5 h-5"><ArrowUp /></div> :
+              <div className="text-white w-5 h-5"><ArrowDown /></div>
+            }
           </span>
         </button>
         {openSection === "guide" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <li className="hover:text-primary">آموزش‌های صرافی</li>
-            <li className="hover:text-primary">درباره ما</li>
-            <li className="hover:text-primary">تماس با ما</li>
-            <li className="hover:text-primary">ارسال تیکت پشتیبانی</li>
-            <li className="hover:text-primary">قوانین و مقررات</li>
-            <li className="hover:text-primary">سطوح کاربری</li>
+            <Link href="/faq"> <li className="hover:text-primary"> اموزش های صرافی</li></Link>
+            <Link href="/about"><li className="hover:text-primary">درباره ما</li></Link>
+            <Link href="/contact-us"> <li className="hover:text-primary">تماس با ما</li></Link>
+            <Link href="https://app.arz8.com/support"> <li className="hover:text-primary">ارسال تیکت پشتیبانی</li></Link>
+            <Link href="/rules"> <li className="hover:text-primary">قوانین و مقررات</li></Link>
+            <Link href="/fee"> <li className="hover:text-primary">سطوح کاربری</li></Link>
           </ul>
         )}
       </div>
@@ -70,8 +71,10 @@ export default function DropdownMenu() {
         >
           اطلاعات تماس
           <span className="text-primary text-xl">
-            {openSection === "contact" ?  <div className="text-black"><ArrowUp /></div>  :
-              <div className="text-foreground w-5 h-5"><ArrowDown /></div>}
+            {openSection === "contact" ?
+              <div className="text-white w-5 h-5"><ArrowUp /></div> :
+              <div className="text-white w-5 h-5"><ArrowDown /></div>
+            }
           </span>
         </button>
         {openSection === "contact" && (

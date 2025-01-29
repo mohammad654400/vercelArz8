@@ -67,7 +67,7 @@ const ImageCarousel = () => {
             <img src={prevImage} alt="Previous" className={imageClass} />
           </div>
 
-          <div className="lg:w-[340.67px] w-[270px] h-[479px] lg:h-[604px] flex-shrink-0 relative mx-[10px]">
+          <div className="lg:w-[340.67px] w-[240px] sm:w-[270px] h-[479px] lg:h-[604px] flex-shrink-0 relative mx-[10px]">
             <img src={currentImage} alt="Current" className={`${imageClass} lg:rounded-[27px]`} />
           </div>
 

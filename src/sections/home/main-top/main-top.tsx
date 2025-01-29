@@ -3,6 +3,7 @@ import MobileIcon from "@/assets/icons/mobile";
 import Ring from "@/assets/icons/ring";
 import BannerSlider from "@/components/slider/banner-slider/banners-slider";
 import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
+import Link from "next/link";
 import React from "react";
 
 export default function MainTop() {
@@ -33,7 +34,7 @@ export default function MainTop() {
               type="text"
             />
             <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 px-3 sm:px-2 md:px-6">
-              شروع کنید
+             <Link href="https://app.arz8.com/auth/login">شروع کنید</Link>
             </button>
           </div>
         </div>

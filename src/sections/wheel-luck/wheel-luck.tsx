@@ -130,7 +130,7 @@ export default function WheelLuck() {
           <div className="w-full order-1 xl:order-3 flex justify-center xl:justify-end items-center ">
             <Image
               src={wheel}
-              alt="image"     
+              alt="image"
             />
           </div>
         </div>
@@ -178,7 +178,7 @@ export default function WheelLuck() {
         </div>
 
         <div className='flex flex-col lg:flex-row'>
-          <div className='w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
+          <div className='w-[360px] sm:w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
             <ImageCarousel />
           </div>
           <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
@@ -187,7 +187,7 @@ export default function WheelLuck() {
             </p>
             <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
               <Link className='md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
-              <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center '>ثبت نام سریع</button>
+                <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center '>ثبت نام سریع</button>
               </Link>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function WheelLuck() {
               <div key={index} className='flex flex-col w-full py-[15px] px-[18px]  sm:px-3  bg-third rounded-xl'>
                 <div className='flex gap-4 items-center mb-2 sm:mb-3'>
                   <Image
-                    src={item.icon} 
+                    src={item.icon}
                     alt='icon'
                     className='w-10 h-10 md:w-[60px] md:h-[60px]'
                   />
@@ -240,7 +240,15 @@ export default function WheelLuck() {
         <div className='flex flex-col gap-10'>
           <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>سوالات متداول گردونه شانس ارزهشت</h2>
           <div className='flex flex-col gap-5'>
-            <Accordion items={AccordionData} />
+            <Accordion
+              items={AccordionData}
+              textTitle="text-[12px]"
+              smTextTitle="sm:text-xs"
+              lgTextTitle="lg:text-xs"
+              textContent="text-[10px]"
+              smTextContent="sm:text-sm"
+              lgTextContent="lg:text-sm"
+            />
           </div>
 
         </div>

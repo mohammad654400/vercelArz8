@@ -224,8 +224,8 @@ export default function LivePriceTable() {
               key={option.key}
               onClick={() => handleFilterChange(option.key)}
               className={`px-3 py-1 rounded-lg text-sm ${activeFilter === option.key
-                  ? "bg-yellow-400 text-white"
-                  : "text-black dark:text-white"
+                ? "bg-yellow-400 text-white"
+                : "text-black dark:text-white"
                 }`}
             >
               {option.label}
@@ -267,11 +267,11 @@ export default function LivePriceTable() {
       {/* table*/}
       {displayedCurrencies ? (
         <div className="p-4">
-          <div className="grid grid-cols-4 md:grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center justify-center py-3 font-semibold border-gray-300 items-center">
-            <span className="text-[7.3px] font-semibold md:text-xs">نماد</span>
+          <div className="grid grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center justify-center py-3 font-semibold border-gray-300 items-center">
+            <span className="text-[7.3px] font-semibold md:text-xs col-span-2 md:col-span-1">نماد</span>
             <span className="hidden md:block">قیمت به USDT</span>
-            <div className="flex text-[7.3px] font-semibold md:text-xs  whitespace-nowrap">
-              قیمت به تومان <span className="block md:hidden text-[7.3px] font-semibold md:text-xs ">/USDT</span>
+            <div className="flex text-center items-center justify-center text-[7.3px] font-semibold md:text-xs  whitespace-nowrap col-span-2 md:col-span-1">
+              قیمت به تومان <span className="block md:hidden text-[7.3px] font-semibold md:text-xs  ">/USDT</span>
             </div>
             <span className="text-[7.3px] font-semibold md:text-xs">تغییرات 24h</span>
             <span className="hidden md:block text-[7.3px] font-semibold md:text-xs ">نمودار 24h</span>
@@ -279,70 +279,68 @@ export default function LivePriceTable() {
           </div>
 
           <div className="divide-y divide-gray-200 text-[10px] md:text-sm">
-  {paginatedCurrencies.map((currency, index) => (
-    <div
-      key={index}
-      className={`grid ${
-        currency.priceUSDT && currency.priceIRR ? "grid-cols-4 md:grid-cols-6" : "grid-cols-4 md:grid-cols-4"
-      } items-center text-center py-4`}
-    >
-      {/* ستون 1: اطلاعات اصلی (ستاره، آیکون، نام) */}
-      <div className="flex items-center justify-center gap-2">
-        <button
-          onClick={() => toggleFavorite(currency.symbol)}
-          className={`text-2xl ${
-            favorites.includes(currency.symbol) ? "text-yellow-400" : "text-secondary"
-          }`}
-        >
-          <div className="sm:w-6 sm:h-6 w-[21px] h-[21px]"><Star /></div>
-          
-        </button>
-        <div className="flex flex-col gap-y-[2px]">
-        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">{currency.name}</span>
-        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">{currency.symbol}</span>
-        </div>
-       
-      </div>
+            {paginatedCurrencies.map((currency, index) => (
+              <div
+                key={index}
+                className={`grid ${currency.priceUSDT && currency.priceIRR ? "grid-cols-6 md:grid-cols-6" : "grid-cols-6 md:grid-cols-4"
+                  } items-center text-center py-4`}
+              >
+                {/* ستون 1: اطلاعات اصلی (ستاره، آیکون، نام) */}
+                <div className="flex items-center justify-center gap-2 col-span-2 md:col-span-1">
+                  <button
+                    onClick={() => toggleFavorite(currency.symbol)}
+                    className={`text-2xl ${favorites.includes(currency.symbol) ? "text-yellow-400" : "text-secondary"
+                      }`}
+                  >
+                    <div className="sm:w-6 sm:h-6 w-[21px] h-[21px]"><Star /></div>
 
-      {/* ستون 2: قیمت برای نمایشگر کوچک */}
-      <div className="md:col-span-0 md:hidden w-full ">
-        <div className="text-end sm:text-center">{currency.priceUSDT} $</div>
-        <div className="text-end sm:text-center">{currency.priceIRR} تومان</div>
-      </div>
+                  </button>
+                  <div className="min-h-5 min-w-5 w-5 h-5 md:h-11 md:w-11">{currency.icon}</div>
+                  <div className="flex flex-col gap-y-[2px]">
+                    <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">{currency.name}</span>
+                    <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">{currency.symbol}</span>
+                  </div>
 
-      {/* ستون 3: قیمت برای نمایشگر متوسط و بزرگ */}
-      {currency.priceUSDT && (
-        <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceUSDT} USDT</div>
-      )}
-      {currency.priceIRR && (
-        <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceIRR} تومان</div>
-      )}
+                </div>
 
-      {/* ستون 4: تغییر قیمت */}
-      <div
-        className={`text-center  ${
-          currency.change.startsWith("-") ? "text-red-500" : "text-green-500"
-        }`}
-      >
-        {currency.change}%
-      </div>
+                {/* ستون 2: قیمت برای نمایشگر کوچک */}
+                <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
+                  <div className="text-end sm:text-center">{currency.priceUSDT} $</div>
+                  <div className="text-end sm:text-center">{currency.priceIRR} تومان</div>
+                </div>
 
-      {/* ستون 5: نمودار (فقط برای نمایشگر متوسط و بزرگ) */}
-      <div className="hidden md:flex justify-center">
-        <Image src={ChartUP} alt="chart" width={64} height={31} />
-      </div>
+                {/* ستون 3: قیمت برای نمایشگر متوسط و بزرگ */}
+                {currency.priceUSDT && (
+                  <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceUSDT} USDT</div>
+                )}
+                {currency.priceIRR && (
+                  <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceIRR} تومان</div>
+                )}
 
-      {/* ستون 6: جزئیات بیشتر */}
-      <div>
-        <Link href={`/coins/${currency.symbol}`}>
-          <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[10px] rounded-[5.22px] md:rounded-lg  ">
-            جزئیات بیشتر
-          </button>
-        </Link>
-      </div>
-    </div>
-  ))}
-</div>
+                {/* ستون 4: تغییر قیمت */}
+                <div
+                  className={`text-center  ${currency.change.startsWith("-") ? "text-red-500" : "text-green-500"
+                    }`}
+                >
+                  {currency.change}%
+                </div>
+
+                {/* ستون 5: نمودار (فقط برای نمایشگر متوسط و بزرگ) */}
+                <div className="hidden md:flex justify-center">
+                  <Image src={ChartUP} alt="chart" width={64} height={31} />
+                </div>
+
+                {/* ستون 6: جزئیات بیشتر */}
+                <div>
+                  <Link href={`/coins/${currency.symbol}`}>
+                    <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                      جزئیات بیشتر
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
 
         </div>
       ) : (
@@ -370,8 +368,8 @@ export default function LivePriceTable() {
               key={page}
               onClick={() => setCurrentPage(page)}
               className={`px-3 py-1 rounded-lg text-sm ${currentPage === page
-                  ? "bg-yellow-400 text-white"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                ? "bg-yellow-400 text-white"
+                : "bg-gray-200 hover:bg-gray-300 text-gray-700"
                 }`}
             >
               {page}
