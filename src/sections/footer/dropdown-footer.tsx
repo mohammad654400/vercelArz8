@@ -34,7 +34,7 @@ export default function DropdownMenu() {
             <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
             <Link href="/coin"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
             <Link href="https://arz8.com/blog/">وبلاگ <li className="hover:text-primary"></li></Link>
-            <Link href="/coin">گردونه شانس <li className="hover:text-primary"></li></Link>
+            <Link href="/coin">گردونه شانس <li className="hover:text-primary mb-3"></li></Link>
           </ul>
         )}
       </div>
@@ -59,7 +59,7 @@ export default function DropdownMenu() {
             <Link href="/contact-us"> <li className="hover:text-primary">تماس با ما</li></Link>
             <Link href="https://app.arz8.com/support"> <li className="hover:text-primary">ارسال تیکت پشتیبانی</li></Link>
             <Link href="/rules"> <li className="hover:text-primary">قوانین و مقررات</li></Link>
-            <Link href="/fee"> <li className="hover:text-primary">سطوح کاربری</li></Link>
+            <Link href="/fee"> <li className="hover:text-primary mb-3">سطوح کاربری</li></Link>
           </ul>
         )}
       </div>
@@ -85,7 +85,7 @@ export default function DropdownMenu() {
             <li className="flex items-center gap-2">
               <Fax /> 021-91035288
             </li>
-            <li className="flex items-center gap-2 hover:text-primary">
+            <li className="flex items-center gap-2 hover:text-primary mb-3">
               <TownyFour /> پشتیبانی آنلاین
             </li>
           </ul>

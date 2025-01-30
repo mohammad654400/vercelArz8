@@ -73,7 +73,7 @@ const QuickGuide = () => {
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center justify-between mb-6">
         <h2 className="text-lg sm:text-2xl font-bold  text-center flex">راهنمای سریع</h2>
-        <button className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 sm:py-3 ">
+        <button className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 ">
           همه سوالات
           <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
             <ArrowLeft />
@@ -100,7 +100,7 @@ const QuickGuide = () => {
                    <span className="text-xs sm:text-base font-semibold"> {faq.question} </span> 
                 </button>
                 <span className="transform transition-transform">
-                  {activeRightIndex === index ? <p className="w-5 h-5"><ArrowUp /></p> : <p className="w-5 h-5"><ArrowDown /></p>}
+                  {activeRightIndex === index ? <p className="w-5 h-5"><ArrowUp /></p> : <p className="w-5 h-5 text-[#3C3B4180] dark:text-[#FFFFFF80]"><ArrowDown /></p>}
                 </span>
               </div>
 
@@ -118,7 +118,7 @@ const QuickGuide = () => {
 
         <div className="w-full">
           <div className="p-3 sm:p-5 border-[1px] border-[#ADADAD80] rounded-xl sm:rounded-2xl">
-            <div className="flex justify-center pb-5 text-lg sm:text-2xl font-extrabold opacity-50 ">
+            <div className="flex justify-center pb-5 text-lg sm:text-2xl font-extrabold text-[#ADADAD80] ">
               فیلم‌های آموزشی
             </div>
             {leftFAQs.map((faq, index) => (
@@ -145,7 +145,7 @@ const QuickGuide = () => {
                       
                       </span>
                     ) : (
-                      <p className="w-5 h-5">
+                      <p className="w-5 h-5 text-[#3C3B4180] dark:text-[#FFFFFF80]">
                         <ArrowDown />
                       </p>
                     )}

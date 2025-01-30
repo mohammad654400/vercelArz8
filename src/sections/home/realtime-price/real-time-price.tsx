@@ -167,7 +167,7 @@ export default function RealTimePrice() {
             ))}
           </div>
           <button className="text-xs w-40 text-black dark:text-white hidden md:block ">
-            <Link href="/coins">مشاهده تمام ارزها</Link>          </button>
+            <Link className="text-base font-semibold" href="/coins">مشاهده تمام ارزها</Link>          </button>
         </div>
         <div className="px-4 pt-[36px] w-full border-[1px] border-[#ADADAD80] border-t-0 rounded-b-xl">
           <div className="grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[13px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">

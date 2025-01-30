@@ -206,12 +206,12 @@ export default function LivePriceTable() {
                 <button
                   key={option.key}
                   onClick={() => setFilterKey(option.key)}
-                  className={`flex w-[250px] justify-end flex-col mr-5 gap-4  px-3 py-2 rounded-lg text-xs sm:text-sm font-bold  mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
+                  className={`flex w-[250px] justify-end flex-col mr-5 gap-4  px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold  mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
                 >
                   {option.label}
                 </button>
               ))}
-              <button onClick={() => (handleFilterChange(filterKey), setOpen(false))} className=" flex py-3 mt-7 px-20 rounded-lg bg-primary mx-auto text-white">
+              <button onClick={() => (handleFilterChange(filterKey), setOpen(false))} className=" flex py-2 mt-7 px-24 rounded-lg bg-primary mx-auto text-white">
                 اعمال فیلتر
               </button>
             </div>
@@ -243,16 +243,16 @@ export default function LivePriceTable() {
           />
 
 
-          <div className="relative cursor-pointer border text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-14">
+          <div className="relative cursor-pointer border text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
             <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
               <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-lg">{itemsPerPage}</span>
             </div>
             {numberItem ?
-              <div className="flex flex-col gap-2 top-[35px] cursor-pointer -right-[1px] py-2 border w-[57px] bg-background rounded-xl absolute">
+              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer -right-[9px] md::-right-[1px] py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
                 {[5, 10, 20, 50].map((item) => (
                   <p
                     onClick={() => (setItemsPerPage(item), setNumberItem(false))}
-                    className="mx-auto rounded-lg font-bold "
+                    className="mx-auto rounded-lg font-normal  "
                   >
                     {item}
                   </p>
@@ -292,10 +292,10 @@ export default function LivePriceTable() {
                     className={`text-2xl ${favorites.includes(currency.symbol) ? "text-yellow-400" : "text-secondary"
                       }`}
                   >
-                    <div className="sm:w-6 sm:h-6 w-[21px] h-[21px]"><Star /></div>
+                    <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]"><Star /></div>
 
                   </button>
-                  <div className="min-h-5 min-w-5 w-5 h-5 md:h-11 md:w-11">{currency.icon}</div>
+                  <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11">{currency.icon}</div>
                   <div className="flex flex-col gap-y-[2px]">
                     <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">{currency.name}</span>
                     <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">{currency.symbol}</span>
@@ -333,7 +333,7 @@ export default function LivePriceTable() {
                 {/* ستون 6: جزئیات بیشتر */}
                 <div>
                   <Link href={`/coins/${currency.symbol}`}>
-                    <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                    <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
                       جزئیات بیشتر
                     </button>
                   </Link>

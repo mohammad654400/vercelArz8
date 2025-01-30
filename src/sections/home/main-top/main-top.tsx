@@ -33,7 +33,7 @@ export default function MainTop() {
               className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px]"
               type="text"
             />
-            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 px-3 sm:px-2 md:px-6">
+            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
              <Link href="https://app.arz8.com/auth/login">شروع کنید</Link>
             </button>
           </div>
