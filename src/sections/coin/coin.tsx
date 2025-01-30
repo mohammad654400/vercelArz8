@@ -7,9 +7,10 @@ import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
 import BNB from "@/assets/icons/bnb";
+import useGetData from "@/hooks/useGetData";
+import Loading from "@/components/loading";
 
-
-const data = {
+const data2 = {
   firstTitle: "قیمت و لیست",
   secondTitle: " کامل ارزهای دیجیتال",
   text: `خرید و فروش ارز دیجیتال با صرافی ارز هشت: سریع، امن و مطمئن
@@ -32,7 +33,7 @@ const data = {
 };
 
 
-const listData= [
+const listData = [
   {
     price: "13,537,353",
     percentage: 1.37,
@@ -57,12 +58,14 @@ const listData= [
 ];
 
 export default function Coin() {
+  const { data, loading, error } = useGetData('info');
+  // console.log("2",data.cryptocurrency)
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
 
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setValue(inputValue);
@@ -79,7 +82,7 @@ export default function Coin() {
       }
     }
   };
-
+  if (loading) return <Loading />;
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">
@@ -120,13 +123,13 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData}/>
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData} />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"}  data={listData}/>
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={listData} />
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"}  data={listData}/>
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={listData} />
             </div>
             <div className="block xl:hidden">
               <SecondCategory open={open} setOpen={setOpen} />
@@ -137,9 +140,9 @@ export default function Coin() {
           </div>
         </div>
         <MoreDetails
-          firstTitle={data.firstTitle}
-          secondTitle={data.secondTitle}
-          text={data.text}
+          firstTitle={data2.firstTitle}
+          secondTitle={data2.secondTitle}
+          text={data2.text}
         />
       </div>
     </div>

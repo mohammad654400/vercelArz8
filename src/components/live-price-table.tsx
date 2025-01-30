@@ -9,7 +9,18 @@ import Star from "@/assets/icons/star";
 import Link from "next/link";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import HalfCircle from "@/assets/icons/halfCircle";
-
+// {
+//   "id": 5,
+//   "symbol": "USDT",
+//   "icon": "tether.svg",
+//   "color": "#22c879",
+//   "percent": 3,
+//   "name": {
+//       "en": "tether",
+//       "fa": "تتر"
+//   },
+//   "isFont": true
+// },
 const currencies = [
   {
     name: "بایننس کوین",
