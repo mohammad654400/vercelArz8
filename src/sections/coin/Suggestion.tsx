@@ -87,7 +87,7 @@ export default function Suggestion({ setSugesstions, value }: Isuggestoin) {
         onClick={() => setSugesstions(false)}
         className="fixed w-full h-full bg-black top-0 right-0 opacity-0"
       ></div>
-      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[265px] h-[189px] md:w-[546px] md:h-[270px] overflow-y-auto scrollbar-hidden bg-secondary p-1 md:p-4">
+      <div className="absolute top-2 rounded-xl text-black dark:text-white w-[300px] h-[189px] md:w-[546px] md:h-[270px] overflow-y-auto scrollbar-hidden bg-secondary p-1 md:p-4">
         <p className="text-xs px-3 pt-3  md:p-0 md:text-sm">نتایج پیدا شده :</p>
         <div>
           {filterData.length > 0 ? (

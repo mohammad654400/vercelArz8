@@ -1,32 +1,22 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
-import BNB from "@/assets/icons/bnb";
 import React, { useEffect } from "react";
 
-const data = [
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-];
+interface CategoryItem {
+  price: string;
+  percentage: number;
+  name: string;
+  Persian: string;
+  icon: JSX.Element;
+}
 
-export default function Category({ open, setOpen }: any) {
+interface CategoryProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  data: CategoryItem[];
+}
+
+export default function Category({ open, setOpen,title,data }: CategoryProps) {
 
   useEffect(() => {
     const handleResize = () => {
@@ -58,7 +48,7 @@ export default function Category({ open, setOpen }: any) {
             }`}
         >
           <h1 className={`mb-2 ${open ? "block" : "hidden"}`}>
-            جدید ترین ارز های ما
+          {title}
           </h1>
       
           <span className="" onClick={() => setOpen(!open)}>
@@ -79,7 +69,7 @@ export default function Category({ open, setOpen }: any) {
                 <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
 
                   <div className={`w-[41px] h-[41px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex  items-center `}>
-                    <BNB />
+                  {item.icon}
                   </div>
 
                   <div className={` ${open ? "flex justify-between  w-full  " : "hidden"}`}>

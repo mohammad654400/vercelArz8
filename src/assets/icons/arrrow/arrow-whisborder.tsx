@@ -11,7 +11,7 @@ export default function ArrowWithBorder() {
     >
       <path
         d="M9 22L15 22C20 22 22 20 22 15L22 9C22 4 20 2 15 2L9 2C4 2 2 4 2 9L2 15C2 20 4 22 9 22Z"
-        stroke="#292D32"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

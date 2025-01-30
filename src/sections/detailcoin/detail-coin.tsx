@@ -225,10 +225,12 @@ export default function DetailCoin() {
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
               onClick={() => handleFavorite(coin.name)}
-              className={`flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] ${favorite.includes(route) ? "text-primary" : ""
-                }`}
+              className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]" 
             >
-              <Star />
+              <Star
+               borderColor={favorite.includes(route) ? "none" : "currentColor"} 
+               backgroundColor={favorite.includes(route) ? "#FFC107" : "none"}
+              />
             </span>
           </div>
         </div>

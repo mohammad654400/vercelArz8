@@ -6,6 +6,8 @@ import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
+import BNB from "@/assets/icons/bnb";
+
 
 const data = {
   firstTitle: "قیمت و لیست",
@@ -28,6 +30,31 @@ const data = {
 صرافی ارز هشت؛ انتخاب هوشمندانه برای خرید و فروش ارزهای دیجیتال.
 با ما در تماس باشید و همین حالا وارد دنیای ارز دیجیتال شوید!`,
 };
+
+
+const listData= [
+  {
+    price: "13,537,353",
+    percentage: 1.37,
+    name: "AVAX",
+    Persian: "آوالانچ",
+    icon: <BNB />,
+  },
+  {
+    price: "13,537,353",
+    percentage: 1.37,
+    name: "AVAX",
+    Persian: "آوالانچ",
+    icon: <BNB />,
+  },
+  {
+    price: "13,537,353",
+    percentage: 1.37,
+    name: "AVAX",
+    Persian: "آوالانچ",
+    icon: <BNB />,
+  },
+];
 
 export default function Coin() {
   const [sugesstions, setSugesstions] = useState(false);
@@ -93,13 +120,13 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData}/>
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"}  data={listData}/>
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} />
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"}  data={listData}/>
             </div>
             <div className="block xl:hidden">
               <SecondCategory open={open} setOpen={setOpen} />

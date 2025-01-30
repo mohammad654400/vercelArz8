@@ -55,7 +55,7 @@ export default function SecondCategory({open,setOpen}:any) {
         <div
           className={`relative ${
             !open
-              ? "flex justify-between cursor-pointer"
+              ? "flex justify-between cursor-pointer "
               : "flex justify-center pt-4"
           }`}
         >

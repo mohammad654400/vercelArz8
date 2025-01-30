@@ -237,13 +237,13 @@ export default function LivePriceTable() {
           <input
             type="text"
             placeholder="جستجو..."
-            className="border border-gray-300 outline-none rounded-lg w-[165px] md:w-[250px] px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80] placeholder:text-sm"
+            className=" outline-none rounded-lg w-[165px] md:w-[250px] px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80] placeholder:text-sm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
 
-          <div className="relative cursor-pointer border text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
+          <div className="relative cursor-pointer  text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
             <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
               <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-lg">{itemsPerPage}</span>
             </div>
@@ -289,10 +289,14 @@ export default function LivePriceTable() {
                 <div className="flex items-center justify-center gap-2 col-span-2 md:col-span-1">
                   <button
                     onClick={() => toggleFavorite(currency.symbol)}
-                    className={`text-2xl ${favorites.includes(currency.symbol) ? "text-yellow-400" : "text-secondary"
-                      }`}
+                    className="text-2xl" 
                   >
-                    <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]"><Star /></div>
+                    <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]">
+                      <Star
+                        borderColor={favorites.includes(currency.symbol) ? "none" : "currentColor"}
+                        backgroundColor={favorites.includes(currency.symbol) ? "#FFC107" : "none"}
+                      />
+                    </div>
 
                   </button>
                   <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11">{currency.icon}</div>
@@ -355,7 +359,7 @@ export default function LivePriceTable() {
           }
           disabled={currentPage === totalPages}
 
-          className={`sm:rounded-[15px] rounded-[7px] p-2 bg-secondary `}
+          className={`w-6 h-6 sm:w-12 sm:h-12 flex items-center justify-center sm:rounded-[15px] rounded-[7px] p-2 bg-secondary `}
         >
           <div className="sm:w-6 sm:h-6 w-3 h-3">
             <ArrowRight />
@@ -367,7 +371,7 @@ export default function LivePriceTable() {
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 rounded-lg text-sm ${currentPage === page
+              className={`w-6 h-6 sm:w-12 sm:h-12 flex justify-center items-center text-center rounded-lg sm:rounded-[15px]  text-base sm:text-[27px] font-semibold ${currentPage === page
                 ? "bg-yellow-400 text-white"
                 : "bg-gray-200 hover:bg-gray-300 text-gray-700"
                 }`}
@@ -380,7 +384,7 @@ export default function LivePriceTable() {
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className={`sm:rounded-[15px] rounded-[7px] p-2 bg-secondary`}
+          className={`w-6 h-6 sm:w-12 sm:h-12 flex items-center justify-center sm:rounded-[15px] rounded-[7px] p-2 bg-secondary`}
         >
           <div className="sm:w-6 sm:h-6 w-3 h-3">
             <ArrowLeft />
