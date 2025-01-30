@@ -5,9 +5,13 @@ import Link from "next/link";
 
 export default function SideBar({ close }: any) {
   return (
-    <div className="fixed flex top-0 right-0 z-50 w-full h-full xl:hidden  text-xs  bg-[#ADADAD80] dark:bg-[#24242880] ">
-      <div className=" z-50  w-full h-full max-w-96 min-w-60 overflow-hidden  rounded-tl-3xl rounded-bl-3xl bg-background ">
-        <div className=" right-0 px-6 py-2 sm:py-3 top-0 w-full  h-full ">
+    <>
+      <div
+        onClick={close}
+        className="fixed inset-0 bg-[#ADADAD80] dark:bg-[#24242880] z-40"
+      ></div>
+      <div className="fixed flex top-0 right-0 z-50  h-full xl:hidden w-60  text-xs    ">
+        <div className=" right-0 px-6 py-2 sm:py-3 top-0 w-full  h-full bg-background  rounded-tl-3xl rounded-bl-3xl">
           <div className="flex justify-between ">
             <div className="text-xl pt-2 ">منو</div>
             <div onClick={close} className="cursor-pointer relative right-3">
@@ -66,10 +70,6 @@ export default function SideBar({ close }: any) {
           </div>
         </div>
       </div>
-      <div
-        onClick={close}
-        className="w-full h-full bg-foreground opacity-50"
-      ></div>
-    </div>
+    </>
   );
 }
