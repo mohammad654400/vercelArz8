@@ -50,7 +50,7 @@ export default function Category({ open, setOpen,title,data }: CategoryProps) {
           <h1 className={`mb-2 ${open ? "block" : "hidden"}`}>
           {title}
           </h1>
-      
+          <div className="hidden sm:block absolute left-0 w-6  bg-black opacity-0  z-10">d</div>
           <span className="" onClick={() => setOpen(!open)}>
             <ArrowWithBorder />
           </span>
