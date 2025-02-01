@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import MainTop from "./main-top/main-top";
 import TransAction from "@/sections/home/transaction/transAction";
@@ -7,7 +8,13 @@ import Banner from "./banner/banner";
 import Description from "./description/description";
 import QuickGuide from "./quick-guide/quick-guide";
 import Blog from "./blog/blog";
+import useGetData from "@/hooks/useGetData";
+
 export default function Home() {
+  const { data: infoData, error: infoError, loading: infoLoading } = useGetData('info');
+  const { data: homeData, error: homeError, loading: homeLoading } = useGetData('home');
+  
+  
   return (
     <div>
       <div className="base-style duration-1000">
