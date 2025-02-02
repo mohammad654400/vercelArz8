@@ -1,12 +1,67 @@
-
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AvalancheIcon from "@/assets/icons/avalancheIcon";
 
-export default function BannerSlider() {
+interface HomeData {
+  profit: Array<any>;
+  loss: Array<any>;
+}
+
+interface InfoData {
+  cryptocurrency: Array<{
+    symbol: string;
+    name: { fa: string };
+    icon: string | undefined;  
+    color: string | undefined;
+    isFont: boolean;
+  }>;
+}
+
+interface MergedData {
+  id: number;
+  symbol: string;
+  name: string;
+  icon: string | undefined;  
+  color: string | undefined;
+  isFont: boolean;
+  priceToman: number;
+  priceChangePercent: string;
+}
+
+export default function BannerSlider({ homeData, infoData }: { homeData: HomeData; infoData: InfoData }) {
+  
+  const chunkArray = (array: any[], size: number) => {
+    return array.reduce((acc, _, i) => {
+      if (i % size === 0) acc.push(array.slice(i, i + size));
+      return acc;
+    }, [] as any[][]);
+  };
+
+
+  const mergedData = useMemo<MergedData[]>(() => {
+    return (homeData?.profit || [])
+      .concat(homeData?.loss || [])
+      .map((item, index) => {
+        const matchedInfo = infoData?.cryptocurrency.find(crypto => crypto.symbol === item.symbol);
+
+        return {
+          id: index + 1,
+          symbol: item.symbol,
+          name: matchedInfo?.name?.fa || item.symbol,
+          icon: matchedInfo?.icon,
+          color: matchedInfo?.color,
+          isFont: matchedInfo?.isFont || false,
+          priceToman: item.priceToman, 
+          priceChangePercent: item.priceChangePercent,
+        };
+      });
+  }, [homeData, infoData]);
+
+  const chunkedData = useMemo<MergedData[][]>(() => chunkArray(mergedData, 4), [mergedData]);
+
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -17,82 +72,32 @@ export default function BannerSlider() {
     arrows: false,
     vertical: true,
     verticalSwiping: true,
-    appendDots: (dots: any) => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "5px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <ul style={{ display: "flex", margin: "0" }}>{dots}</ul>
-      </div>
-    ),
   };
-
-  const cards = [
-    {
-      id: 1,
-      price: "43,537,353",
-      percentage: "-1.37",
-      name: "آوالانچ",
-      symbol: "AVAX",
-      Icon: AvalancheIcon,
-    },
-    {
-      id: 2,
-      price: "43,537,353",
-      percentage: "1.37",
-      name: "آوالانچ",
-      symbol: "AVAX",
-      Icon: AvalancheIcon,
-    },
-    {
-      id: 3,
-      price: "43,537,353",
-      percentage: "1.37",
-      name: "آوالانچ",
-      symbol: "AVAX",
-      Icon: AvalancheIcon,
-    },
-    {
-      id: 4,
-      price: "43,537,353",
-      percentage: "1.37",
-      name: "آوالانچ",
-      symbol: "sui",
-      Icon: AvalancheIcon,
-    },
-  ];
 
   return (
     <div className="w-full">
       <Slider {...settings}>
-        {[1, 2, 3].map((page) => (
-          <div className="w-full" key={page}>
-            <div className="flex justify-between flex-wrap text-[10px] lg:text-sm w-full ">
-              {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className="flex justify-center gap-5 md:gap-24 mt-4"
-                >
-                   <div className="flex flex-col justify-center ">
-                    <div className="flex pb-1 gap-1 text-[10] md:text-[13.5px] font-semibold ">
+        {chunkedData.map((group: MergedData[], pageIndex: number) => (
+          <div className="w-full" key={pageIndex}>
+            <div className="flex justify-between flex-wrap text-[10px] lg:text-sm w-full">
+              {group.map((card,index) => (
+                <div key={card.id} className="flex justify-center gap-5 md:gap-10 mt-4">
+                
+                  <div className="flex flex-col justify-center">
+                    <div className="flex pb-1 gap-1 text-[10px] md:text-[13.5px] font-semibold">
                       <span>تومان</span>
-                      <p>{card.price}</p>
+                      <p>{card.priceToman}</p>
                     </div>
                     <p
                       className={`${
-                        parseFloat(card.percentage) < 0
-                          ? "text-red-500"
-                          : "text-green-500"
-                      } text-[10px]  md:text-[11px] font-semibold `}
+                        parseFloat(card.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                      } text-[10px] md:text-[11px] font-semibold`}
                     >
-                      % {card.percentage}
+                      % {card.priceChangePercent}
                     </p>
                   </div>
+
+      
                   <div
                     className={`flex items-center dark:border-10 ${
                       (index + 1) % 4 !== 0
@@ -111,7 +116,19 @@ export default function BannerSlider() {
                       <p className="text-[10px] md:text-[12px] opacity-50">{card.symbol}</p>
                     </div>
                     <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] object-cover">
-                      <card.Icon />
+                      {card.isFont ? (
+                        <i
+                          className={`object-cover cf cf-${card.symbol.toLowerCase()} ${
+                            card.color ? `text-${card.color}` : "text-black"
+                          }`}
+                        ></i>
+                      ) : (
+                        <img
+                          src={`https://app.arz8.com/api/images/currency/${card.icon}`}
+                          alt={card.symbol}
+                          className="w-full h-full"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

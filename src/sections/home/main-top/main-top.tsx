@@ -6,7 +6,7 @@ import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import Link from "next/link";
 import React from "react";
 
-export default function MainTop() {
+export default function MainTop({homeData,infoData}:any) {
   return (
     <div>
       <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
@@ -63,7 +63,7 @@ export default function MainTop() {
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 ">
         <div>
-          <CryptoSlider />
+          <CryptoSlider homeData={homeData} infoData={infoData}/>
         </div>
       </div>
     </div>
