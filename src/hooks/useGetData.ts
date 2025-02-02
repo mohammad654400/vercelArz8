@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useGetData = (endpoint: string) => {
-
     const baseUrl = "/api/proxy/landing"; 
-
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>(null);
