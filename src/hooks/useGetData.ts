@@ -1,49 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from "@tanstack/react-query";
 
-const useGetData = (endpoint: string) => {
+const baseUrl = "/api/proxy/landing";
 
-    const baseUrl = "/api/proxy/landing"; 
+const fetchData = async (endpoint: string) => {
+  const response = await fetch(`${baseUrl}/${endpoint}`, { method: "GET", cache: "no-store" });
+  if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+  return response.json();
+};
 
-    const [data, setData] = useState<any>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<any>(null);
-
-    const getData = async () => {
-        try {
-            const response = await fetch(`${baseUrl}/${endpoint}`, { method: 'GET', cache: "no-store" });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const result = await response.json();
-            return result;
-        } catch (error) {
-            console.error("Fetch error:", error);
-            setError(error);
-            return null;
-        }
-    };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const result = await getData();
-                if (result) {
-                    setData(result);
-                }
-            } catch (error) {
-                console.error("Effect error:", error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [endpoint]);
-
-    return { data, loading, error };
+const useGetData = (endpoint: string, refreshInterval?: number) => {
+  return useQuery({
+    queryKey: [endpoint], // Caches data by endpoint
+    queryFn: () => fetchData(endpoint), // Fetch function
+    staleTime: refreshInterval || 0, // Controls how long data is fresh
+    refetchInterval: refreshInterval, // Auto-refresh at the given interval
+    retry: 3, // Retries failed requests up to 3 times
+  });
 };
 
 export default useGetData;

@@ -9,10 +9,15 @@ import Description from "./description/description";
 import QuickGuide from "./quick-guide/quick-guide";
 import Blog from "./blog/blog";
 import useGetData from "@/hooks/useGetData";
+import Loading from "@/components/loading";
 
 export default function Home() {
-  const { data: infoData, error: infoError, loading: infoLoading } = useGetData('info');
-  const { data: homeData, error: homeError, loading: homeLoading } = useGetData('home');
+  const { data,isLoading,error } = useGetData('info',60000);
+
+  if(isLoading)return <Loading/>
+  if(error)return console.log(error)
+
+  console.log(data);
   
   
   return (
