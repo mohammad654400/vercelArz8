@@ -13,13 +13,15 @@ type TransAction = {
   width: any;
   coin: any;
   showPrice?: boolean;
+  isBuy:boolean
 };
 export default function Buy({
   toggle,
   currencies,
   width,
   coin,
-}:TransAction) {
+  isBuy,
+}: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(coin || currencies[0]);
   const [money, setMoney] = useState<string>("");
@@ -36,7 +38,7 @@ export default function Buy({
     setMoney(formatNumber(rawValue));
 
     if (currency) {
-      const calculatedAmount = parseFloat(rawValue) / currency.price;
+      const calculatedAmount = parseFloat(rawValue) / currency.price.sell;
       setAmount(calculatedAmount ? calculatedAmount.toFixed(8) : "");
     }
   };
@@ -46,7 +48,7 @@ export default function Buy({
     setAmount(formatNumber(rawValue));
 
     if (currency) {
-      const calculatedMoney = parseFloat(rawValue) * currency.price;
+      const calculatedMoney = parseFloat(rawValue) * currency.price.sell;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
@@ -84,7 +86,20 @@ export default function Buy({
             onClick={toggleOpen}
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
-            <div className="w-5 h-5">{currency.icon}</div>
+                <div className="w-5 h-5 ">
+                    {!currency.isFont ? (
+                      <img
+                        src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                        alt={currency.symbol}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <i
+                        className={`cf cf-${currency.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
+                        style={{ color: currency.color }}
+                      ></i>
+                    )}
+                  </div>
             <p className=" text-lg">{currency.name}</p>
             <span className="w-5 h-5">
               <ArrowDown />
@@ -125,11 +140,11 @@ export default function Buy({
           <div className={`gap-5 mt-5 text-xs md:text-sm ${
               width < 800 ? "hidden" : "md:flex "
             }`}>
-            <p>
-              قیمت خرید: {formatNumber(currency.price.toLocaleString())} تومان
+           <p>
+              قیمت خرید: {formatNumber(currency?.price.buy?.toLocaleString())} تومان
             </p>
             <p>
-              قیمت فروش: {formatNumber(currency.price.toLocaleString())} تومان
+              قیمت فروش: {formatNumber(currency?.price.sell?.toLocaleString())} تومان
             </p>
           </div>
         </div>
@@ -140,7 +155,10 @@ export default function Buy({
               currencies={currencies}
               setCurrency={setCurrency}
               toggle={toggleOpen}
+              hasLink={true}
+              isBuy={isBuy}
             />
+            
           )}
           <button className={`
           ${route=='calculate'? "w-full xl:w-full" : ""}

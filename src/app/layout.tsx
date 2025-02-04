@@ -14,7 +14,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa">
-      {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/monzanifabio/cryptofont/cryptofont.css"></link> */}
       <body>
         <ClientProvider>
           {children}
