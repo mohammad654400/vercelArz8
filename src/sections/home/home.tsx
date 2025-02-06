@@ -9,32 +9,24 @@ import Description from "./description/description";
 import QuickGuide from "./quick-guide/quick-guide";
 import Blog from "./blog/blog";
 import useGetData from "@/hooks/useGetData";
-import Logo from "@/assets/logo.png";
-import Image from 'next/image';
+import Loading from "@/components/loading";
 
 
 export default function Home() {
-  const { data: infoData, loading: infoLoading } = useGetData('info');
-  const { data: homeData, loading: homeLoading } = useGetData('home');
+  const { data: infoData, isLoading: infoLoading } = useGetData('info');
+  const { data: homeData, isLoading: homeLoading } = useGetData('home',60000);
 
-  
 
-  if (homeLoading && infoLoading) {
-    return (
-      <div className="w-full h-full bg-background flex justify-center items-center py-52 md:py-96">
-        <Image alt="logo" src={Logo} width={189} height={120} />
-      </div>
-    )
-  }
+  if (infoLoading && homeLoading) return <Loading />
 
   return (
 
     <div>
       <div className="base-style duration-1000">
         <MainTop homeData={homeData?.topChanges} infoData={infoData} />
-        <TransAction   homeData={homeData?.calculator} infoData={infoData}/>
+        <TransAction homeData={homeData?.calculator} infoData={infoData} />
         <SecondBannerSlider />
-        <RealTimePrice homeData={homeData?.table} infoData={infoData}  />
+        <RealTimePrice homeData={homeData?.table} infoData={infoData} />
 
 
       </div>

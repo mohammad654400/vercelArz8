@@ -58,7 +58,7 @@ const listData = [
 ];
 
 export default function Coin() {
-  const { data, loading, error } = useGetData('info');
+  const { data, isLoading, error } = useGetData('info');
   // console.log("2",data.cryptocurrency)
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
@@ -82,7 +82,7 @@ export default function Coin() {
       }
     }
   };
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">

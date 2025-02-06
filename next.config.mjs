@@ -13,7 +13,10 @@ const nextConfig = {
           source: "/api/proxy/landing/home", 
           destination: "https://app.arz8.com/api/landing/home", 
         },
-
+        {
+          source: "/api/proxy/landing/cryptocurrencies", 
+          destination: "https://app.arz8.com/api/landing/cryptocurrencies", 
+        },
       ];
     },
   };

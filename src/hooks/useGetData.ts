@@ -1,49 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from "@tanstack/react-query";
 
-const useGetData = (endpoint: string) => {
+const baseUrl = "/api/proxy/landing";
 
-    const baseUrl = "/api/proxy/landing"; 
+const fetchData = async (endpoint: string, params: Record<string, any> = {}) => {
 
-    const [data, setData] = useState<any>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<any>(null);
+  const queryString = new URLSearchParams(params).toString();
+  const url = `${baseUrl}/${endpoint}${queryString ? `?${queryString}` : ""}`;
 
-    const getData = async () => {
-        try {
-            const response = await fetch(`${baseUrl}/${endpoint}`, { method: 'GET', cache: "no-store" });
+  console.log("Request URL:", url); // چاپ URL درخواست در کنسول
+  console.log("Request Params:", params); // چاپ پارامترهای ارسالی
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const result = await response.json();
-            return result;
-        } catch (error) {
-            console.error("Fetch error:", error);
-            setError(error);
-            return null;
-        }
-    };
+  const response = await fetch(url, { method: "GET", cache: "no-store" });
+  if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+  return response.json();
+};
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const result = await getData();
-                if (result) {
-                    setData(result);
-                }
-            } catch (error) {
-                console.error("Effect error:", error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [endpoint]);
-
-    return { data, loading, error };
+const useGetData = (endpoint: string , refreshInterval?: number , params?: Record<string, any>) => {
+  return useQuery({
+    queryKey: [endpoint, params], // Caches data by endpoint
+    queryFn: () => fetchData(endpoint, params), // Fetch function
+    staleTime: refreshInterval || 0, // Controls how long data is fresh
+    refetchInterval: refreshInterval, // Auto-refresh at the given interval
+    retry: 3, // Retries failed requests up to 3 times
+  });
 };
 
 export default useGetData;

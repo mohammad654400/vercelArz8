@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import ChartUP from "@/assets/images/chartup.png";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import Link from "next/link";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
@@ -62,6 +61,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData }: {
   const { formatNumber } = useFormattedNumber();
   const [activeFilter, setActiveFilter] = useState("default");
   const [displayedCurrencies, setDisplayedCurrencies] = useState<MergedData[]>([]);
+  console.log("initialHomeData", initialHomeData);
 
 
   const infoMap = useMemo(
@@ -74,21 +74,24 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData }: {
   );
 
 
+  const filteredData = useMemo(() => {
+    if (!initialHomeData || !infoMap) return [];
 
-  useEffect(() => {  
-    if (initialHomeData && infoMap) {  
-      const filteredData = (initialHomeData[activeFilter] || []).map((currency) => ({  
-        ...currency,  
-        ...(infoMap[currency.symbol] || {}),  
-        name: infoMap[currency.symbol]?.name.fa || currency.symbol,  
-      }));  
-      setDisplayedCurrencies(filteredData);  
-    }  
-  }, [activeFilter, initialHomeData, infoMap]);  
+    return (initialHomeData[activeFilter] || []).map((currency) => ({
+      ...currency,
+      ...(infoMap[currency.symbol] || {}),
+      name: infoMap[currency.symbol]?.name.fa || currency.symbol,
+      priceToman: currency.priceToman,
+    }));
+  }, [activeFilter, initialHomeData, infoMap]);
 
-  if (!initialHomeData || !infoMap) {  
-    return <div>در حال بارگذاری...</div>;  
-  }  
+  useEffect(() => {
+    setDisplayedCurrencies(filteredData);
+  }, [filteredData]);
+
+  if (!initialHomeData || !infoMap) {
+    return <div>در حال بارگذاری...</div>;
+  }
 
 
   return (
