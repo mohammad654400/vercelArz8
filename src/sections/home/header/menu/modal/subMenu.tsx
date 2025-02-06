@@ -62,7 +62,7 @@ export default function SubMenu() {
           جدید ترین ارزها
         </div>
 
-        {displayedCurrencies?.map((item, index) => (
+        {displayedCurrencies?.map((item:any, index:any) => (
           <Link href={`/coins/${item.symbol}`} key={`coin-${index}`}>
             <div
 

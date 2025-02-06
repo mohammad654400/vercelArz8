@@ -1,9 +1,8 @@
-"use client";
-
 import useGetData from "@/hooks/useGetData";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+// دکمه‌های فیلتر
 const filterButtons = [
   { key: "default", label: "پیش فرض" },
   { key: "volume", label: "حجم معاملات" },
@@ -23,12 +22,15 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data: cryptocurrenciesData, isLoading, error } = useGetData(
+  const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
+
+  const { data: cryptocurrencies, isLoading, error } = useGetData(
     "cryptocurrencies",
     60000,
     { limit: 7, page, sort, search: searchQuery }
   );
 
+  // داده‌های فیلتر شده با استفاده از useMemo برای جلوگیری از محاسبات اضافی
   const filteredData = useMemo(() => {
     return cryptocurrenciesData?.lists.map((item: any) => {
       const info = infoMap[item.symbol];
@@ -40,25 +42,27 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     });
   }, [cryptocurrenciesData?.lists, infoMap]);
 
+  // اضافه کردن داده‌های فیلتر شده به لیست نمایش داده‌شده
   useEffect(() => {
     if (filteredData) {
       setDisplayedCurrencies((prev) => [...prev, ...filteredData]);
     }
   }, [filteredData]);
 
+  // تنظیمات مربوط به scroll افقی
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastElementRef = useRef<HTMLDivElement | null>(null);
 
+  // تابع شروع حرکت موس برای کشیدن
   const handleMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
     startX.current = e.pageX - (containerRef.current?.offsetLeft || 0);
     scrollLeft.current = containerRef.current?.scrollLeft || 0;
   };
 
+  // تابع حرکت موس برای کشیدن
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current) return;
     e.preventDefault();
@@ -69,15 +73,23 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     }
   };
 
+  // تابع خاتمه حرکت موس
   const handleMouseUpOrLeave = () => {
     isDragging.current = false;
   };
 
+  // useEffect برای بارگذاری داده‌ها
+  useEffect(() => {
+    setCryptocurrenciesData(cryptocurrencies);
+  }, [cryptocurrencies]);
+
+  // استفاده از IntersectionObserver برای بارگذاری صفحه بعدی
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastElementRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     observer.current = new IntersectionObserver(
       (entries) => {
-        console.log("entries", entries);
-
         if (entries[0].isIntersecting && cryptocurrenciesData?.lists.length > 0) {
           setPage((prev) => prev + 1);
         }
@@ -92,17 +104,23 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     return () => observer.current?.disconnect();
   });
 
+  // تغییرات در جستجو با استفاده از debounce
   const handelOnChanged = (value: string) => {
     setSearchQuery(value);
-    setTimeout(() => {
-      console.log("searchQuery", searchQuery);
-    },800)
+    setPage(1);
+    setDisplayedCurrencies([]);
 
+    // جلوگیری از درخواست‌های مکرر با استفاده از debounce
+    const timeoutId = setTimeout(() => {
+      setPage(1);
+    }, 800);
 
-  }
+    return () => clearTimeout(timeoutId);
+  };
 
   return (
     <div className="w-full z-50">
+      {/* ورودی جستجو */}
       <div className="mb-4">
         <input
           type="text"
@@ -112,11 +130,14 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
           className="w-full p-2 border border-[#ADADAD80] rounded-[10px] bg-secondary outline-none placeholder:text-xs"
         />
       </div>
+
+      {/* بخش فیلتر */}
       <div className="absolute top-[102px] -z-10 w-[90%] bg-secondary dark:bg-fifth h-[2px]"></div>
       <span className="w-9 block mb-4 pb-1 text-primary border-b-2 border-primary text-sm font-semibold">
         ارزها
       </span>
 
+      {/* دکمه‌های فیلتر */}
       <div
         ref={containerRef}
         onMouseDown={handleMouseDown}
@@ -144,6 +165,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
         ))}
       </div>
 
+      {/* جدول ارزها */}
       <div className="w-full bg-fifth dark:bg-secondary rounded-[5px]">
         <div className="flex text-right text-[#3C3B4180] dark:text-[#FFFFFF80] text-sm py-1 rounded-xl bg-secondary sticky top-0 z-10">
           <div className="w-1/3 pr-4">نماد</div>
@@ -194,7 +216,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
               </Link>
             ))
           ) : (
-            <div className="text-center py-4">در حال جستوجو</div>
+            <div className="text-center py-4">در حال جستوجو...</div>
           )}
         </div>
       </div>
