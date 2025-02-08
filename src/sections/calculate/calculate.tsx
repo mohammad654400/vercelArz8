@@ -15,7 +15,7 @@ export default function Calculate() {
 
       <main>
         <section className="max-w-[750px] mx-auto ">
-          <Transaction header={false}  showPrice={false}/>
+          <Transaction header={false} showPrice={false}/>
         </section>
 
         <Banner />

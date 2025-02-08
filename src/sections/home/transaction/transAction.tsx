@@ -38,8 +38,8 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
   showPrice?: boolean;
   header?: boolean;
   coin?:any;
-  homeData: HomeData;
-  infoData: InfoData;
+  homeData?: HomeData;
+  infoData?: InfoData;
 }) {
   const [isBuy, setIsBuy] = useState(true);
   const parentRef = useRef<HTMLDivElement | null>(null);

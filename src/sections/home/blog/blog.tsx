@@ -77,7 +77,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function Blog() {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider>(null);
 
   const settings = {
     dots: false,
@@ -132,7 +132,7 @@ export default function Blog() {
             </div>
           ))}
         </Slider>
-        <div className="absolute top-20 -left-0 md:-left-10 w-[37px] h-[37px] text-foreground cursor-pointer" onClick={() => sliderRef.current.slickNext()}>
+        <div className="absolute top-20 -left-0 md:-left-10 w-[37px] h-[37px] text-foreground cursor-pointer" onClick={() => sliderRef.current && sliderRef.current.slickNext()}>
           <LongArrow />
         </div>
       </div>
