@@ -221,13 +221,14 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
               </Link>
             ))
           ) : (
-            <div className="flex flex-col text-center py-4">
-            <div className="flex justify-center items-center my-5">
-              <div className="w-6 h-6 border-4 border-t-8 border-primary border-solid rounded-full animate-spin"></div>
+            /* From Uiverse.io by Cybercom682 */
+            <div className="text-center  mt-16">
+              <div
+                className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-yellow-500 mx-auto mb-5"
+              ></div>
+              <span className="text-zinc-900 dark:text-white text-xs">در حال بارگذاری ...</span>
+
             </div>
-            <span className=" text-sm text-gray-700">در حال جستجو...</span>
-          </div>
-          
           )}
         </div>
       </div>
