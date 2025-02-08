@@ -1,3 +1,4 @@
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import useGetData from "@/hooks/useGetData";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -17,6 +18,7 @@ interface CryptoTableProps {
 }
 
 const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
+  const { formatNumber } = useFormattedNumber();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any[]>([]);
   const [sort, setSort] = useState<string>("default");
   const [page, setPage] = useState(1);
@@ -30,24 +32,27 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     { limit: 7, page, sort, search: searchQuery }
   );
 
-  // داده‌های فیلتر شده با استفاده از useMemo برای جلوگیری از محاسبات اضافی
+
   const filteredData = useMemo(() => {
-    return cryptocurrenciesData?.lists.map((item: any) => {
-      const info = infoMap[item.symbol];
+    if (!cryptocurrenciesData?.lists) return [];
+
+    return cryptocurrenciesData.lists.map((item: any) => {
+      const info = infoMap[item.symbol] || {};
       return {
         ...item,
         ...info,
-        name: info?.name.fa,
+        name: info?.name?.fa || item.symbol, // مقدار پیش‌فرض اگر نام فارسی موجود نبود
       };
     });
   }, [cryptocurrenciesData?.lists, infoMap]);
 
-  // اضافه کردن داده‌های فیلتر شده به لیست نمایش داده‌شده
+  // اضافه کردن داده‌های جدید به لیست نمایش داده‌شده
   useEffect(() => {
-    if (filteredData) {
-      setDisplayedCurrencies((prev) => [...prev, ...filteredData]);
+    if (filteredData.length > 0) {
+      setDisplayedCurrencies((prev) => (page === 1 ? filteredData : [...prev, ...filteredData]));
     }
-  }, [filteredData]);
+  }, [filteredData, page]);
+
 
   // تنظیمات مربوط به scroll افقی
   const containerRef = useRef<HTMLDivElement>(null);
@@ -132,7 +137,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
       </div>
 
       {/* بخش فیلتر */}
-      <div className="absolute top-[102px] -z-10 w-[90%] bg-secondary dark:bg-fifth h-[2px]"></div>
+      <div className="absolute top-[99px] -z-10 w-[90%] bg-secondary dark:bg-fifth h-[2px]"></div>
       <span className="w-9 block mb-4 pb-1 text-primary border-b-2 border-primary text-sm font-semibold">
         ارزها
       </span>
@@ -149,7 +154,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
         {filterButtons.map((btn) => (
           <button
             key={btn.key}
-            className={`ml-2 px-2 py-1 text-xs font-semibold rounded-lg whitespace-nowrap text-center ${sort === btn.key
+            className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
               ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
               : "bg-transparent"
               }`}
@@ -167,20 +172,20 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
 
       {/* جدول ارزها */}
       <div className="w-full bg-fifth dark:bg-secondary rounded-[5px]">
-        <div className="flex text-right text-[#3C3B4180] dark:text-[#FFFFFF80] text-sm py-1 rounded-xl bg-secondary sticky top-0 z-10">
-          <div className="w-1/3 pr-4">نماد</div>
-          <div className="w-1/3">24H تغییرات</div>
-          <div className="w-1/3">قیمت به تومان</div>
+        <div className="flex text-right text-[#3C3B4180] dark:text-[#FFFFFF80] text-xs font-semibold  items-center py-1 rounded-xl bg-secondary sticky top-0 z-10">
+          <div className="w-2/5 flex items-center justify-start pr-4">نماد</div>
+          <div className="w-1/5 flex items-center justify-center">24H تغییرات</div>
+          <div className="w-2/5 flex items-center justify-center">قیمت به تومان</div>
         </div>
-        <div className="overflow-y-auto mt-2 max-h-[260px]">
+        <div className="overflow-y-auto mt-2 max-h-[250px]">
           {displayedCurrencies?.length > 0 ? (
             displayedCurrencies.map((crypto, index) => (
               <Link href={`/coins/${crypto.symbol}`} key={index}>
                 <div
                   ref={index === displayedCurrencies.length - 3 ? lastElementRef : null}
-                  className="ml-2 flex justify-between items-center border-b border-[#ADADAD80] py-2 text-sm"
+                  className="ml-2 flex w-full items-center border-b border-[#ADADAD80] py-2 text-sm"
                 >
-                  <div className="w-1/3 flex items-center gap-2">
+                  <div className="w-2/5 flex items-center gap-2">
                     <div className="w-[25px] h-[25px] flex">
                       {!crypto.isFont ? (
                         <img
@@ -204,19 +209,25 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                   <p
                     dir="ltr"
                     className={`${parseFloat(crypto.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
-                      } text-[10px] md:text-lg font-semibold text-end md:text-center`}
+                      } text-[10px]  font-semibold text-center w-1/5`}
                   >
                     {crypto.priceChangePercent} %
                   </p>
 
-                  <div className="w-1/3 pr-2 text-xs font-semibold">
-                    {crypto.priceToman} تومان
+                  <div className="w-2/5 pr-9 text-[8px] font-semibold">
+                    <span className="text-xs">{formatNumber(crypto.priceToman)}</span> تومان
                   </div>
                 </div>
               </Link>
             ))
           ) : (
-            <div className="text-center py-4">در حال جستوجو...</div>
+            <div className="flex flex-col text-center py-4">
+            <div className="flex justify-center items-center my-5">
+              <div className="w-6 h-6 border-4 border-t-8 border-primary border-solid rounded-full animate-spin"></div>
+            </div>
+            <span className=" text-sm text-gray-700">در حال جستجو...</span>
+          </div>
+          
           )}
         </div>
       </div>

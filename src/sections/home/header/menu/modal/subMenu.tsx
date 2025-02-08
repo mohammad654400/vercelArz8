@@ -19,8 +19,8 @@ interface CryptocurrencyInfo {
 
 export default function SubMenu() {
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
-  const { data: infoData, isLoading: infoLoading } = useGetData('info');
-  const { data: cryptocurrenciesData, isLoading, error } = useGetData("cryptocurrencies", 60000, {
+  const { data: infoData} = useGetData('info');
+  const { data: cryptocurrenciesData } = useGetData("cryptocurrencies",undefined, {
     limit: 7,
     page: 1,
     sort: "new",
@@ -53,7 +53,7 @@ export default function SubMenu() {
 
 
   return (
-    <div className="z-50 relative flex w-auto h-[480px] bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
+    <div className="z-50 relative flex w-auto h-[450px] bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
       <div className="text-fifth dark:text-secondary  absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
@@ -66,7 +66,7 @@ export default function SubMenu() {
           <Link href={`/coins/${item.symbol}`} key={`coin-${index}`}>
             <div
 
-              className="flex justify-start gap-x-3 mb-4 px-4 py-1 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600"
+              className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center "
             >
               {/* <div className="w-5 h-5">{item.icon}</div> */}
               <div className="w-5 h-5 flex">

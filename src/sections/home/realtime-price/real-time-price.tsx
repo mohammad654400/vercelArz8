@@ -61,7 +61,6 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData }: {
   const { formatNumber } = useFormattedNumber();
   const [activeFilter, setActiveFilter] = useState("default");
   const [displayedCurrencies, setDisplayedCurrencies] = useState<MergedData[]>([]);
-  console.log("initialHomeData", initialHomeData);
 
 
   const infoMap = useMemo(
