@@ -15,10 +15,7 @@ export default function Home() {
   const { data,isLoading,error } = useGetData('info',60000);
 
   if(isLoading)return <Loading/>
-  if(error)return console.log(error)
-
-  console.log(data);
-  
+  if(error)return console.log(error)  
   
   return (
     <div>

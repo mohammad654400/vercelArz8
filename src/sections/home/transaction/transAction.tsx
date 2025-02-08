@@ -71,9 +71,20 @@ export default function Transaction({ coin,header=true,showPrice}: any) {
   const [width, setWidth] = useState<number | undefined>();
   const parentRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (parentRef.current) {
-      setWidth(parentRef.current.offsetWidth);
-    }
+     const handleResize = ()=>{
+      if (parentRef.current){
+        setWidth(parentRef.current.offsetWidth);
+      }
+     }    
+     const resizeObserver = new ResizeObserver(handleResize)
+     if(parentRef.current){
+      resizeObserver.observe(parentRef.current)
+     }
+    
+
+     return () => {
+      resizeObserver.disconnect()
+     }
   }, []);
 
   return (

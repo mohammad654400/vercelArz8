@@ -60,18 +60,18 @@ export default function Buy({
       </div>
       <div
         className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${
-          width < 800 && route !== "calculate"
+          width < 1196 && route !== "calculate"
             ? "flex-col "
             :route === "calculate"
             ? "flex-col" 
-            : ""
+            : "flex-row"
         }`}
       >
         <div className="relative w-full">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
             className={`outline-none bg-background placeholder:text-lg text-[21px]  font-normal   h-[58px] 
-              ${width < 800 ? "w-full lg:w-full" : "lg:w-[414px]"}
+              ${width <1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
               ${route === "calculate" && "w-full "}
                  border rounded-xl mt-3 md:mt-5 pr-4`}
             type="text"
@@ -120,7 +120,7 @@ export default function Buy({
           <p>مقدار (دریافت می‌کنید)</p>
           <input
             className={`
-              ${width < 800 ? "lg:w-full" : "lg:w-[414px]"} ${
+              ${width <1196 ? "lg:w-full" : "lg:w-[414px]"} ${
               route === "calculate" && "w-full "
             } mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
             type="text"

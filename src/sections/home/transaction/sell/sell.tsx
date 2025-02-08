@@ -1,5 +1,5 @@
 import HalfCircle from "@/assets/icons/halfCircle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
 import CryptoModal from "../cryptoModal";
@@ -30,7 +30,7 @@ export default function Buy({
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
-
+  
   const handleMoneyChange = (value: string) => {
     const rawValue = unformatNumber(value);
     setMoney(formatNumber(rawValue));
@@ -50,7 +50,6 @@ export default function Buy({
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
-
   return (
     <div className="w-full ">
       <div className={`absolute -top-[12px] left-12 md:left-8 lg:right-44 text-background dark:text-background ${route==='calculate'?"hidden":""}`}>

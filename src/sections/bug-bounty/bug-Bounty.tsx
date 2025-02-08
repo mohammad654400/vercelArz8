@@ -36,7 +36,6 @@ export default function BugBounty() {
             alt=""
             className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
           />
-
           <Form />
           <Rules />
         </div>

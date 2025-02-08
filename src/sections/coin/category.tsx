@@ -37,7 +37,7 @@ export default function Category({ open, setOpen,title,data }: CategoryProps) {
     <div className="py-[30px]">
       <div
         className={`${open
-          ? "w-[250px] md:w-[364px] pt-4 md:pt-6 rounded-2xl mx-2 px-3 md:px-6 "
+          ? "w-[250px] md:w-[364px] pt-4 md:pt-5 rounded-2xl mx-2 px-3 md:px-6 "
           : "w-[72px] h-[283px] rounded-3xl overflow-hidden px-4 flex flex-col justify-between"
           } h-[283px] bg-[#F6F6F6] dark:bg-[#242428] pb-4`}
       >

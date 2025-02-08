@@ -14,7 +14,7 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-white">
+    <div className="flex items-center justify-center h-screen bg-back">
       <div className="flex flex-col items-center space-y-4">
         <div className="w-24 h-24 flex items-center justify-center">
         <Image src={logo} alt='arz8' width={189} height={120}/>

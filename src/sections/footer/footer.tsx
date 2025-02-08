@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
         </div>
         <div className=" w-full bg-secondary py-4 flex  sm:flex-row  justify-between gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[8px] md:text-[18px] gap-1 ">
+          <div className="flex justify-center items-center text-[7px] md:text-[18px] gap-1 ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>

@@ -31,10 +31,11 @@ export default function DropdownMenu() {
         {openSection === "links" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
             <Link href="/coins/BTC">خرید و فروش ارزدیجیتال<li className="hover:text-primary"></li></Link>
-            <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
             <Link href="/coin"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
+            <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
+            <Link href="/coin">گردونه شانس <li className="hover:text-primary"></li></Link>
+            <Link href="/calculate">ماشین حساب<li className="hover:text-primary"></li></Link>
             <Link href="https://arz8.com/blog/">وبلاگ <li className="hover:text-primary"></li></Link>
-            <Link href="/coin">گردونه شانس <li className="hover:text-primary mb-3"></li></Link>
           </ul>
         )}
       </div>
@@ -54,12 +55,12 @@ export default function DropdownMenu() {
         </button>
         {openSection === "guide" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <Link href="/faq"> <li className="hover:text-primary"> اموزش های صرافی</li></Link>
-            <Link href="/about"><li className="hover:text-primary">درباره ما</li></Link>
-            <Link href="/contact-us"> <li className="hover:text-primary">تماس با ما</li></Link>
             <Link href="https://app.arz8.com/support"> <li className="hover:text-primary">ارسال تیکت پشتیبانی</li></Link>
+            <Link href="/faq"> <li className="hover:text-primary"> اموزش های صرافی</li></Link>
             <Link href="/rules"> <li className="hover:text-primary">قوانین و مقررات</li></Link>
-            <Link href="/fee"> <li className="hover:text-primary mb-3">سطوح کاربری</li></Link>
+            <Link href="/fee"> <li className="hover:text-primary">سطوح کاربری</li></Link>
+            <Link href="/contact-us"> <li className="hover:text-primary">تماس با ما</li></Link>
+            <Link href="/about"><li className="hover:text-primary">درباره ما</li></Link>
           </ul>
         )}
       </div>
@@ -79,14 +80,14 @@ export default function DropdownMenu() {
         </button>
         {openSection === "contact" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <li className="flex items-center gap-2">
-              <Phone /> 021-284299
+            <li className="flex items-center gap-2 hover:text-primary ">
+              <TownyFour /> پشتیبانی آنلاین
             </li>
             <li className="flex items-center gap-2">
               <Fax /> 021-91035288
             </li>
-            <li className="flex items-center gap-2 hover:text-primary mb-3">
-              <TownyFour /> پشتیبانی آنلاین
+            <li className="flex items-center gap-2">
+              <Phone /> 021-284299
             </li>
           </ul>
         )}

@@ -32,7 +32,6 @@ const data2 = {
 با ما در تماس باشید و همین حالا وارد دنیای ارز دیجیتال شوید!`,
 };
 
-
 const listData = [
   {
     price: "13,537,353",
@@ -58,13 +57,12 @@ const listData = [
 ];
 
 export default function Coin() {
-  const { data, loading, error } = useGetData('info');
-  // console.log("2",data.cryptocurrency)
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
-
+  const {data,isLoading,error}=useGetData('info')
+  if (isLoading) return <Loading/>
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -73,7 +71,6 @@ export default function Coin() {
       setSugesstions(true);
     }
   };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (searchRef?.current) {
       if (e.key === "Escape") {
@@ -82,7 +79,6 @@ export default function Coin() {
       }
     }
   };
-  if (loading) return <Loading />;
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">
@@ -125,10 +121,10 @@ export default function Coin() {
             <div className="hidden xl:block">
               <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData} />
             </div>
-            <div >
+            <div>
               <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={listData} />
             </div>
-            <div className="hidden xl:block">
+            <div className="hidden md:block">
               <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={listData} />
             </div>
             <div className="block xl:hidden">

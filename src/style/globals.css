@@ -39,7 +39,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
-scrollbar-hidden{
+.scrollbar-hidden{
   -ms-overflow-style: none; 
   scrollbar-width: none; 
 }

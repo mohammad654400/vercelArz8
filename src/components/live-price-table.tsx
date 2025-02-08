@@ -198,7 +198,7 @@ export default function LivePriceTable() {
     <div className=" bg-background dark:bg-[#3C3B41] shadow-lg rounded-xl overflow-hidden">
       {/* search */}
       <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-2 py-3 text-[#FFFFFF80]">
-        <div className="relative block md:hidden">
+        <div className="relative block lg:hidden">
 
           <button
             onClick={() => setOpen(!open)}
@@ -229,12 +229,12 @@ export default function LivePriceTable() {
           )}
           <div className="absolute bg-black "></div>
         </div>
-        <div className="hidden md:flex gap-3">
+        <div className="hidden lg:flex gap-3">
           {filterOptions.map((option) => (
             <button
               key={option.key}
               onClick={() => handleFilterChange(option.key)}
-              className={`px-3 py-1 rounded-lg text-sm ${activeFilter === option.key
+              className={`px-3 py-1 rounded-lg text-xs ${activeFilter === option.key
                 ? "bg-yellow-400 text-white"
                 : "text-black dark:text-white"
                 }`}
@@ -248,7 +248,7 @@ export default function LivePriceTable() {
           <input
             type="text"
             placeholder="جستجو..."
-            className=" outline-none rounded-lg w-[165px] md:w-[250px] px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80] placeholder:text-sm"
+            className=" outline-none rounded-lg w-[165px] md:w-[250px] px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80] placeholder:text-xs"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -256,14 +256,14 @@ export default function LivePriceTable() {
 
           <div className="relative cursor-pointer  text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
             <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
-              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-lg">{itemsPerPage}</span>
+              <span className="flex justify-center items-center w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[12px] text-black ml-[2px] self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-[14px]">{itemsPerPage}</span>
             </div>
             {numberItem ?
-              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer -right-[9px] md::-right-[1px] py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
+              <div className="flex flex-col gap-1 md:gap-2 top-[40px] cursor-pointer -right-[2px] md::-right-[1px] py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
                 {[5, 10, 20, 50].map((item) => (
                   <p
                     onClick={() => (setItemsPerPage(item), setNumberItem(false))}
-                    className="mx-auto rounded-lg font-normal  "
+                    className="mx-auto  rounded-lg font-normal  "
                   >
                     {item}
                   </p>
@@ -296,7 +296,6 @@ export default function LivePriceTable() {
                 className={`grid ${currency.priceUSDT && currency.priceIRR ? "grid-cols-6 md:grid-cols-6" : "grid-cols-6 md:grid-cols-4"
                   } items-center text-center py-4`}
               >
-                {/* ستون 1: اطلاعات اصلی (ستاره، آیکون، نام) */}
                 <div className="flex items-center justify-center gap-2 col-span-2 md:col-span-1">
                   <button
                     onClick={() => toggleFavorite(currency.symbol)}
@@ -318,13 +317,11 @@ export default function LivePriceTable() {
 
                 </div>
 
-                {/* ستون 2: قیمت برای نمایشگر کوچک */}
                 <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
                   <div className="text-end sm:text-center">{currency.priceUSDT} $</div>
                   <div className="text-end sm:text-center">{currency.priceIRR} تومان</div>
                 </div>
 
-                {/* ستون 3: قیمت برای نمایشگر متوسط و بزرگ */}
                 {currency.priceUSDT && (
                   <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceUSDT} USDT</div>
                 )}
@@ -332,7 +329,6 @@ export default function LivePriceTable() {
                   <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceIRR} تومان</div>
                 )}
 
-                {/* ستون 4: تغییر قیمت */}
                 <div
                   className={`text-center  ${currency.change.startsWith("-") ? "text-red-500" : "text-green-500"
                     }`}
@@ -340,12 +336,10 @@ export default function LivePriceTable() {
                   {currency.change}%
                 </div>
 
-                {/* ستون 5: نمودار (فقط برای نمایشگر متوسط و بزرگ) */}
                 <div className="hidden md:flex justify-center">
                   <Image src={ChartUP} alt="chart" width={64} height={31} />
                 </div>
 
-                {/* ستون 6: جزئیات بیشتر */}
                 <div>
                   <Link href={`/coins/${currency.symbol}`}>
                     <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
@@ -363,26 +357,26 @@ export default function LivePriceTable() {
       )}
 
       {/* pagination*/}
-      <div className="flex justify-center items-center gap-3 sm:gap-6 p-4">
+      <div className="flex justify-center items-center gap-3 sm:gap-3 p-4">
         <button
           onClick={() =>
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
 
-          className={`w-6 h-6 sm:w-12 sm:h-12 flex items-center justify-center sm:rounded-[15px] rounded-[7px] p-2 bg-secondary `}
+          className={`w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center sm:rounded-[7px] rounded-[7px] p-2 bg-secondary `}
         >
           <div className="sm:w-6 sm:h-6 w-3 h-3">
             <ArrowRight />
           </div>
         </button>
 
-        <div className="flex items-center gap-2 " style={{ direction: "ltr" }}>
+        <div className="flex justify-center items-center gap-2 " style={{ direction: "ltr" }}>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`w-6 h-6 sm:w-12 sm:h-12 flex justify-center items-center text-center rounded-lg sm:rounded-[15px]  text-base sm:text-[27px] font-semibold ${currentPage === page
+              className={`w-6 h-6 sm:w-7 sm:h-7 flex justify-center items-center text-center rounded-lg sm:rounded-[7px]  text-base sm:text-[14px] font-semibold ${currentPage === page
                 ? "bg-yellow-400 text-white"
                 : "bg-gray-200 hover:bg-gray-300 text-gray-700"
                 }`}
@@ -395,7 +389,7 @@ export default function LivePriceTable() {
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className={`w-6 h-6 sm:w-12 sm:h-12 flex items-center justify-center sm:rounded-[15px] rounded-[7px] p-2 bg-secondary`}
+          className={`w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center sm:rounded-[7px] rounded-[7px] p-2 bg-secondary`}
         >
           <div className="sm:w-6 sm:h-6 w-3 h-3">
             <ArrowLeft />
