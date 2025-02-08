@@ -1,13 +1,59 @@
 import BitCoin from "@/assets/icons/bitcoin";
 import HalfCircle from "@/assets/icons/halfCircle";
 import Search from "@/assets/icons/search";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import CryptoTable from "./cryptoTable";
 import Link from "next/link";
+import useGetData from "@/hooks/useGetData";
+
+interface CryptocurrencyInfo {
+  id: number;
+  symbol: string;
+  name: { fa: string; en?: string };
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+}
+
 
 export default function SubMenu() {
+  const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+  const { data: infoData} = useGetData('info');
+  const { data: cryptocurrenciesData } = useGetData("cryptocurrencies",undefined, {
+    limit: 7,
+    page: 1,
+    sort: "new",
+  });
+
+  const infoMap = useMemo(() => {
+    const map: Record<string, CryptocurrencyInfo> = {};
+    infoData?.cryptocurrency.forEach((info: CryptocurrencyInfo) => {
+      map[info.symbol] = info;
+    });
+    return map;
+  }, [infoData]);
+
+
+  const filteredData = useMemo(() => {
+    return cryptocurrenciesData?.lists.map((item: any) => {
+      const info = infoMap[item.symbol];
+      return {
+        ...item,
+        ...info,
+        name: info?.name.fa , 
+      };
+    });
+  }, [cryptocurrenciesData?.lists, infoMap]);
+
+  useEffect(() => {
+    setDisplayedCurrencies(filteredData);
+  }, [filteredData]);
+
+
+
   return (
-    <div className="z-50 relative flex w-auto h-[480px] bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
+    <div className="z-50 relative flex w-auto h-[450px] bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
       <div className="text-fifth dark:text-secondary  absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
@@ -16,23 +62,29 @@ export default function SubMenu() {
           جدید ترین ارزها
         </div>
 
-        {[
-          { title: "خرید بیتکوین",symbol:"BTN", icon: <BitCoin /> },
-          { title: "خرید شیبا",symbol:"SHIB", icon: <BitCoin /> },
-          { title: "خرید بایننس کوین",symbol:"BTN", icon: <BitCoin /> },
-          { title: "خرید اتریوم",symbol:"ETH", icon: <BitCoin /> },
-          { title: "خرید آوالانچ",symbol:"AVAX", icon: <BitCoin /> },
-          { title: "خرید ترون",symbol:"TRX", icon: <BitCoin /> },
-          { title: "خرید بیتکوین",symbol:"BTN", icon: <BitCoin /> },
-        ].map((item, index) => (
+        {displayedCurrencies?.map((item:any, index:any) => (
           <Link href={`/coins/${item.symbol}`} key={`coin-${index}`}>
-          <div
-          
-            className="flex justify-start gap-x-3 mb-4 px-4 py-1 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600"
-          >
-            <div className="w-5 h-5">{item.icon}</div>
-            <span className="text-sm font-semibold"> {item.title}</span>
-          </div>
+            <div
+
+              className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center "
+            >
+              {/* <div className="w-5 h-5">{item.icon}</div> */}
+              <div className="w-5 h-5 flex">
+                {!item.isFont ? (
+                  <img
+                    src={`https://app.arz8.com/api/images/currency/${item.icon}`}
+                    alt={item.symbol}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <i
+                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: item.color }}
+                  ></i>
+                )}
+              </div>
+              <span className="text-sm font-semibold">خرید {item.name}</span>
+            </div>
           </Link>
         ))}
         <Link href='/coins'>
@@ -50,7 +102,7 @@ export default function SubMenu() {
             <Search />
           </div>
         </div>
-        <CryptoTable />
+        <CryptoTable infoMap={infoMap} />
       </div>
     </div>
   );

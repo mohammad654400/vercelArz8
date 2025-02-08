@@ -1,14 +1,18 @@
 import Search from "@/assets/icons/search";
 import Link from "next/link";
 import React, { useState } from "react";
-export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=false }: any) {
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy }: any) {
   const [search, setSearch] = useState("");
 
-  const filteredCurrencies = currencies.filter(
-    (currency: any) =>
-      currency.name.includes(search) ||
-      currency.symbol.toLowerCase().includes(search.toLowerCase())
+  // const filteredCurrencies = currencies.filter(
+  //   (currency: any) =>
+  //     currency.name.includes(search) || (currency.symbol ?? "").toLowerCase().includes(search.toLowerCase())
+  // );
+  const filteredCurrencies = currencies.filter((currency: any) =>
+    (currency.name ?? "").toLowerCase().includes(search.toLowerCase()) ||
+    (currency.symbol ?? "").toLowerCase().includes(search.toLowerCase())
   );
+
 
   const handleBackgroundClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -61,7 +65,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=f
           />
           <span className="absolute left-6">
             <p className="w-5 h-5">
-            <Search />
+              <Search />
             </p>
           </span>
         </div>
@@ -69,25 +73,47 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=f
         <div className="h-[400px] overflow-y-auto px-2 ">
           {filteredCurrencies.map((currency: any, index: any) => (
             hasLink ? (
-              <Link
-                href={`/coins/${currency.name}`}
+              <div
                 key={index}
                 onClick={() => handleCurrencySelect(currency)}
                 className=" flex items-center rounded-2xl justify-between px-4 py-3
                 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
               >
                 <div className="flex items-center gap-2 ">
-                  <div className="w-9 h-9">{currency.icon}</div>
+                  <div className="w-9 h-9 ">
+                    {!currency.isFont ? (
+                      <img
+                        src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                        alt={currency.symbol}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <i
+                        className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                        style={{ color: currency.color }}
+                      ></i>
+                    )}
+                  </div>
                   <div>
                     <p className="text-sm font-semibold">{currency.name}</p>
                     <p className="text-xs text-gray-500">{currency.symbol}</p>
                   </div>
                 </div>
                 <div className="text-left">
-                  <p className="text-sm">{currency.price} تومان</p>
-                  <p className="text-xs text-green-500">+{currency.change}%</p>
+                  {isBuy ? (
+                    <p className="text-sm">{currency.price.buy} تومان</p>
+                  ) : (
+                    <p className="text-sm">{currency.price.sell} تومان</p>
+                  )}
+                  <p
+                    style={{ direction: "ltr" }}
+                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                      } text-xs  font-semibold  `}
+                  >
+                    {currency.priceChangePercent} %
+                  </p>
                 </div>
-              </Link>
+              </div>
             ) : (
               <></>
             )

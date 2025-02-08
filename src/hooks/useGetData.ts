@@ -2,20 +2,34 @@ import { useQuery } from "@tanstack/react-query";
 
 const baseUrl = "/api/proxy/landing";
 
-const fetchData = async (endpoint: string) => {
-  const response = await fetch(`${baseUrl}/${endpoint}`, { method: "GET", cache: "no-store" });
+const fetchData = async (endpoint: string, params: Record<string, any> = {}) => {
+
+  const queryString = new URLSearchParams(params).toString();
+  const url = `${baseUrl}/${endpoint}${queryString ? `?${queryString}` : ""}`;
+
+  // console.log("Request URL:", url); 
+  // console.log("Request Params:", params); 
+  // console.log("queryString:", queryString); 
+
+  const response = await fetch(url, { method: "GET", cache: "no-store" });
   if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
   return response.json();
 };
 
-const useGetData = (endpoint: string, refreshInterval?: number) => {
+const useGetData = (
+  endpoint: string,
+  refreshInterval: number = 0,
+  params?: Record<string, any>
+) => {
   return useQuery({
-    queryKey: [endpoint], // Caches data by endpoint
-    queryFn: () => fetchData(endpoint), // Fetch function
-    staleTime: refreshInterval || 0, // Controls how long data is fresh
-    refetchInterval: refreshInterval, // Auto-refresh at the given interval
-    retry: 3, // Retries failed requests up to 3 times
+    queryKey: [endpoint, params],
+    queryFn: () => fetchData(endpoint, params),
+    staleTime: refreshInterval > 0 ? refreshInterval : Infinity,
+    refetchInterval: refreshInterval > 0 ? refreshInterval : false, 
+    retry: 3,
+    refetchOnWindowFocus: false,
   });
 };
+
 
 export default useGetData;

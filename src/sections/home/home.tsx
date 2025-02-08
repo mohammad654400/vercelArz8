@@ -11,19 +11,23 @@ import Blog from "./blog/blog";
 import useGetData from "@/hooks/useGetData";
 import Loading from "@/components/loading";
 
-export default function Home() {
-  const { data,isLoading,error } = useGetData('info',60000);
 
-  if(isLoading)return <Loading/>
-  if(error)return console.log(error)  
-  
+export default function Home() {
+  const { data: infoData, isLoading: infoLoading } = useGetData('info');
+  const { data: homeData, isLoading: homeLoading } = useGetData('home',60000);
+
+  if (infoLoading && homeLoading) return <Loading />
+
   return (
+
     <div>
       <div className="base-style duration-1000">
-        <MainTop />
-        <TransAction />
+        <MainTop homeData={homeData?.topChanges} infoData={infoData} />
+        <TransAction homeData={homeData?.calculator} infoData={infoData} />
         <SecondBannerSlider />
-        <RealTimePrice />
+        <RealTimePrice homeData={homeData?.table} infoData={infoData} />
+
+
       </div>
       <div className="px-5 md:px-12 lg:px-16 xl:px-0">
         <Banner />
@@ -37,3 +41,4 @@ export default function Home() {
     </div>
   );
 }
+

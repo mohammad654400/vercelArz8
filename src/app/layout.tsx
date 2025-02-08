@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="fa">
       <body>
         <ClientProvider>
-        {children}
+          {children}
         </ClientProvider>
       </body>
     </html>
