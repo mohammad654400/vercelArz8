@@ -1,6 +1,6 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
@@ -57,13 +57,36 @@ const listData = [
   },
 ];
 
+
+interface CryptocurrencyInfo {
+  id: number;
+  symbol: string;
+  name: { fa: string; en?: string };
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+}
+
 export default function Coin() {
-  const { data, isLoading, error } = useGetData('info');
-  // console.log("2",data.cryptocurrency)
+
+  const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+  const { data: infoData, isLoading, error } = useGetData('info');
+
+
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
+
+  const infoMap = useMemo(() => {
+    const map: Record<string, CryptocurrencyInfo> = {};
+    infoData?.cryptocurrency.forEach((info: CryptocurrencyInfo) => {
+      map[info.symbol] = info;
+    })
+    return map;
+  }, [infoData]);
+
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,7 +159,7 @@ export default function Coin() {
             </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
-            <LivePriceTable />
+            <LivePriceTable infoMap={infoMap} />
           </div>
         </div>
         <MoreDetails
