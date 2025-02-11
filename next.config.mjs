@@ -3,10 +3,16 @@ import withPWA from "next-pwa";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{
-      protocol: 'https',
-      hostname: 'app.arz8.com'
-    }]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'app.arz8.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'arz8.com'
+      }
+    ]
   },
   async rewrites() {
     return [
