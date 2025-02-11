@@ -1,12 +1,17 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
-import React, { useEffect } from "react";
+import Link from "next/link";
+import React, { useEffect, useMemo, useState } from "react";
 
 interface CategoryItem {
-  price: string;
-  percentage: number;
+  priceToman: string;
+  lastPrice: number;
   name: string;
-  Persian: string;
-  icon: JSX.Element;
+  symbol: string;
+  icon: string;
+  color: string;
+  isFont: boolean;
+  percent: number;
+  priceChangePercent: any
 }
 
 interface CategoryProps {
@@ -14,9 +19,13 @@ interface CategoryProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   data: CategoryItem[];
+  infoMap: any
 }
 
-export default function Category({ open, setOpen,title,data }: CategoryProps) {
+export default function Category({ open, setOpen, title, data, infoMap }: CategoryProps) {
+
+  const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,6 +42,29 @@ export default function Category({ open, setOpen,title,data }: CategoryProps) {
     };
   }, []);
 
+
+  const filteredData = useMemo(() => {
+
+
+    return data?.map((item: any) => {
+      const info = infoMap[item.symbol] || [{}];
+      return {
+        ...item,
+        ...info,
+        name: info?.name?.fa,
+      };
+    });
+  }, [data, infoMap]);
+
+  useEffect(() => {
+    if (Array.isArray(filteredData)) {
+      setDisplayedCurrencies(filteredData);
+    } else {
+      setDisplayedCurrencies([]);
+    }
+  }, [filteredData]);
+
+
   return (
     <div className="py-[30px]">
       <div
@@ -48,53 +80,68 @@ export default function Category({ open, setOpen,title,data }: CategoryProps) {
             }`}
         >
           <h1 className={`mb-2 ${open ? "block" : "hidden"}`}>
-          {title}
+            {title}
           </h1>
           <div className="hidden sm:block absolute left-0 w-6  bg-black opacity-0  z-10">d</div>
           <span className="" onClick={() => setOpen(!open)}>
             <ArrowWithBorder />
           </span>
         </div>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={` ${open ? "border-b-2 border-gray-200" : "border-none"
-              } ${(index + 1) % 3 == 0
-                ? "border-none"
-                : "border-b-2 border-gray-200"
-              }`}
-          >
-            <div >
-              
-                <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
 
-                  <div className={`w-[41px] h-[41px] rounded-full bg-[#F6F6F6] dark:bg-[#242428] flex  items-center `}>
-                  {item.icon}
+        {Array.isArray(displayedCurrencies) && displayedCurrencies.length > 0 ? (
+          displayedCurrencies.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={` ${open ? "border-b border-[#ADADAD80]" : "border-none"
+                  } ${(index + 1) % 3 == 0
+                    ? "border-none"
+                    : "border-b border-[#ADADAD80]"
+                  }`}
+              >
+
+                <Link href={`coins/${item.symbol}`} className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
+
+                  <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
+                    {!item.isFont ? (
+                      <img
+                        src={`https://app.arz8.com/api/images/currency/${item.icon}`}
+                        alt={item.symbol}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <i
+                        className={`cf cf-${item.symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                        style={{ color: item.color }}
+                      ></i>
+                    )}
                   </div>
 
                   <div className={` ${open ? "flex justify-between  w-full  " : "hidden"}`}>
 
-                    <div className="h-full flex flex-col gap-y-3 items-center ">
-                      <p className="!leading-3 text-sm font-semibold" >{item.Persian}</p>
-                      <p className="leading-3 text-sm font-semibold opacity-50">{item.name}</p>
+                    <div className="h-full flex flex-col gap-y-3 items-start ">
+                      <p className="!leading-3 text-sm font-semibold" >{item.name}</p>
+                      <p className="leading-3 text-sm font-semibold opacity-50">{item.symbol}</p>
                     </div>
                     <div className={`flex flex-col gap-y-3 items-center `}>
                       <div className="flex">
-                        <p className="leading-3 text-sm font-semibold ">{item.price} </p>
+                        <p className="leading-3 text-sm font-semibold ">{item.priceToman} </p>
                         <span className="leading-3 text-sm font-semibold mr-1">تومان</span>
                       </div>
                       <div dir="ltr" className="w-full flex ">
-                        <p className={`leading-3 text-sm font-semibold ${item.percentage > 0 ? " text-green-600" : "text-rose-500"}`}>%{item.percentage}</p>
+                        <p className={`leading-3 text-sm font-semibold ${item.priceChangePercent > 0 ? " text-green-600" : "text-rose-500"}`}>%{item.priceChangePercent}</p>
                       </div>
                     </div>
                   </div>
 
-                </div>
+                </Link>
 
-             
-            </div>
-          </div>
-        ))}
+              </div>
+            );
+          })
+        ) : (
+          <p>No data available</p>
+        )}
       </div>
     </div>
   );

@@ -38,6 +38,7 @@ export default function SubMenu() {
   const filteredData = useMemo(() => {
     return cryptocurrenciesData?.lists.map((item: any) => {
       const info = infoMap[item.symbol];
+      
       return {
         ...item,
         ...info,
@@ -68,7 +69,6 @@ export default function SubMenu() {
 
               className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center "
             >
-              {/* <div className="w-5 h-5">{item.icon}</div> */}
               <div className="w-5 h-5 flex">
                 {!item.isFont ? (
                   <img
