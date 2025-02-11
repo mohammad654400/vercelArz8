@@ -6,9 +6,9 @@ import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
-import BNB from "@/assets/icons/bnb";
 import useGetData from "@/hooks/useGetData";
 import Loading from "@/components/loading";
+
 
 const data2 = {
   firstTitle: "قیمت و لیست",
@@ -32,32 +32,6 @@ const data2 = {
 با ما در تماس باشید و همین حالا وارد دنیای ارز دیجیتال شوید!`,
 };
 
-
-const listData = [
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-];
-
-
 interface CryptocurrencyInfo {
   id: number;
   symbol: string;
@@ -70,8 +44,27 @@ interface CryptocurrencyInfo {
 
 export default function Coin() {
 
-  const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
   const { data: infoData, isLoading, error } = useGetData('info');
+  const { data: maxData } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "profit",  
+  });
+  
+  const { data: minData } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "loss",  
+  });
+  
+  const { data: newData } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "new",  
+  });
+
 
 
   const [sugesstions, setSugesstions] = useState(false);
@@ -146,13 +139,13 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists}  infoMap={infoMap}/>
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap}/>
             </div>
             <div className="block xl:hidden">
               <SecondCategory open={open} setOpen={setOpen} />
