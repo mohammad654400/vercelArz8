@@ -65,7 +65,9 @@ export default function SideBar({ close }: any) {
             <Link href="/job">
               <p>فرصت های شغلی</p>
             </Link>
-
+            <Link className="pt-2" onClick={close} href="https://arz8.com/blog">
+             <p>بلاگ</p>
+            </Link>
             <Link href="https://app.arz8.com/auth/login" className="mt-5 sm:mt-10 w-full bg-primary text-sm sm:text-xl font-semibold py-1 leading-7 sm:leading-10 text-white rounded-[9.85px] sm:rounded-2xl text-center">ورود / عضویت</Link>
           </div>
         </div>

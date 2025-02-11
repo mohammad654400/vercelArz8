@@ -27,14 +27,17 @@ export default function Menu() {
       <div className="flex justify-center items-center w-[80]  h-full hover:text-primary cursor-pointer pr-">
         <Link href="/job">فرصت های شغلی</Link>
       </div>
-      <div className="relative flex justify-center items-center h-full  gap-2  group cursor-pointer">
+      <div className="relative flex justify-center items-center h-full  group cursor-pointer">
         <p className="hover:text-primary"> سایر خدمات</p>
-        <div className="group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
+        <div className="mr-3 group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />
         </div>
         <div className="hidden group-hover:block">
           <OtherServices />
         </div>
+      </div>
+      <div className="group flex justify-center items-center  h-full hover:text-primary cursor-pointer ">
+        <Link href="https://arz8.com/blog">بلاگ</Link>
       </div>
     </div>
   );
