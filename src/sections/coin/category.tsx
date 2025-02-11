@@ -1,4 +1,5 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
+import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 
 interface CategoryItem {
@@ -45,7 +46,7 @@ export default function Category({ open, setOpen, title, data, infoMap }: Catego
   const filteredData = useMemo(() => {
 
 
-    return data.map((item: any) => {
+    return data?.map((item: any) => {
       const info = infoMap[item.symbol] || [{}];
       return {
         ...item,
@@ -91,18 +92,17 @@ export default function Category({ open, setOpen, title, data, infoMap }: Catego
           displayedCurrencies.map((item, index) => {
             return (
               <div
-              key={index}
-              className={` ${open ? "border-b border-[#ADADAD80]" : "border-none"
-                } ${(index + 1) % 3 == 0
-                  ? "border-none"
-                  : "border-b border-[#ADADAD80]"
-                }`}
-            >
-              <div >
-                
-                  <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
-  
-                    <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
+                key={index}
+                className={` ${open ? "border-b border-[#ADADAD80]" : "border-none"
+                  } ${(index + 1) % 3 == 0
+                    ? "border-none"
+                    : "border-b border-[#ADADAD80]"
+                  }`}
+              >
+
+                <Link href={`coins/${item.symbol}`} className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
+
+                  <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
                     {!item.isFont ? (
                       <img
                         src={`https://app.arz8.com/api/images/currency/${item.icon}`}
@@ -115,34 +115,32 @@ export default function Category({ open, setOpen, title, data, infoMap }: Catego
                         style={{ color: item.color }}
                       ></i>
                     )}
-                    </div>
-  
-                    <div className={` ${open ? "flex justify-between  w-full  " : "hidden"}`}>
-  
-                      <div className="h-full flex flex-col gap-y-3 items-start ">
-                        <p className="!leading-3 text-sm font-semibold" >{item.name}</p>
-                        <p className="leading-3 text-sm font-semibold opacity-50">{item.symbol}</p>
-                      </div>
-                      <div className={`flex flex-col gap-y-3 items-center `}>
-                        <div className="flex">
-                          <p className="leading-3 text-sm font-semibold ">{item.priceToman} </p>
-                          <span className="leading-3 text-sm font-semibold mr-1">تومان</span>
-                        </div>
-                        <div dir="ltr" className="w-full flex ">
-                          <p className={`leading-3 text-sm font-semibold ${item.priceChangePercent > 0 ? " text-green-600" : "text-rose-500"}`}>%{item.priceChangePercent}</p>
-                        </div>
-                      </div>
-                    </div>
-  
                   </div>
-  
-               
+
+                  <div className={` ${open ? "flex justify-between  w-full  " : "hidden"}`}>
+
+                    <div className="h-full flex flex-col gap-y-3 items-start ">
+                      <p className="!leading-3 text-sm font-semibold" >{item.name}</p>
+                      <p className="leading-3 text-sm font-semibold opacity-50">{item.symbol}</p>
+                    </div>
+                    <div className={`flex flex-col gap-y-3 items-center `}>
+                      <div className="flex">
+                        <p className="leading-3 text-sm font-semibold ">{item.priceToman} </p>
+                        <span className="leading-3 text-sm font-semibold mr-1">تومان</span>
+                      </div>
+                      <div dir="ltr" className="w-full flex ">
+                        <p className={`leading-3 text-sm font-semibold ${item.priceChangePercent > 0 ? " text-green-600" : "text-rose-500"}`}>%{item.priceChangePercent}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </Link>
+
               </div>
-            </div>
             );
           })
         ) : (
-          <p>No data available</p> 
+          <p>No data available</p>
         )}
       </div>
     </div>

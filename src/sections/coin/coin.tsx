@@ -45,32 +45,35 @@ interface CryptocurrencyInfo {
 export default function Coin() {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [sugesstions, setSugesstions] = useState(false);
+  const [value, setValue] = useState("");
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const [open, setOpen] = useState(true);
 
   const { data: infoData, isLoading, error } = useGetData('info');
   const { data: maxData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
-    sort: "profit",  
+    sort: "profit",
   });
-  
+
   const { data: minData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
-    sort: "loss",  
+    sort: "loss",
   });
-  
+
   const { data: newData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
-    sort: "new",  
+    sort: "new",
   });
-
-
-
-  const [sugesstions, setSugesstions] = useState(false);
-  const [value, setValue] = useState("");
-  const searchRef = useRef<HTMLInputElement | null>(null);
-  const [open, setOpen] = useState(true);
+  const { data: searchData } = useGetData("cryptocurrencies", 60000, {
+    limit: 5,
+    page: 1,
+    sort: "default",
+    search: searchQuery,
+  });
 
   const infoMap = useMemo(() => {
     const map: Record<string, CryptocurrencyInfo> = {};
@@ -79,8 +82,6 @@ export default function Coin() {
     })
     return map;
   }, [infoData]);
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -124,7 +125,13 @@ export default function Coin() {
             />
             <div className="w-full h-full">
               {sugesstions && (
-                <Suggestion setSugesstions={setSugesstions} value={value} />
+                <Suggestion
+                  setSuggestions={setSugesstions}
+                  value={value}
+                  setSearchQuery={setSearchQuery}
+                  searchData={searchData?.lists}
+                  infoMap={infoMap}
+                />
               )}
             </div>
             <span className="w-6 h-6 md:w-[54px] md:h-[54px] absolute left-7 sm:left-[25px] top-[26px] sm:top-[25px] bg-primary rounded-[9.4px] md:rounded-2xl flex justify-center items-center">
@@ -142,10 +149,10 @@ export default function Coin() {
               <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists}  infoMap={infoMap}/>
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap}/>
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
             <div className="block xl:hidden">
               <SecondCategory open={open} setOpen={setOpen} />

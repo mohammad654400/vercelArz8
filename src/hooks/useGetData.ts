@@ -7,10 +7,6 @@ const fetchData = async (endpoint: string, params: Record<string, any> = {}) => 
   const queryString = new URLSearchParams(params).toString();
   const url = `${baseUrl}/${endpoint}${queryString ? `?${queryString}` : ""}`;
 
-  console.log("Request URL:", url); 
-  console.log("Request Params:", params); 
-  console.log("queryString:", queryString); 
-
   const response = await fetch(url, { method: "GET", cache: "no-store" });
   if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
   return response.json();

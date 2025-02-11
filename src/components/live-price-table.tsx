@@ -157,7 +157,7 @@ export default function LivePriceTable({ infoMap }: any) {
               key={btn.key}
               className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
                 ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-                : "bg-transparent"
+                : "text-[#3C3B41] dark:text-[#FFFFFF80]"
                 }`}
               onClick={(e) => {
                 e.stopPropagation();
@@ -226,7 +226,6 @@ export default function LivePriceTable({ infoMap }: any) {
                 className={`grid ${currency.lastPrice && currency.priceToman ? "grid-cols-6 md:grid-cols-6" : "grid-cols-6 md:grid-cols-4"
                   } items-center text-center py-4`}
               >
-                {/* ستون 1: اطلاعات اصلی (ستاره، آیکون، نام) */}
                 <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
                   <button
                     onClick={() => toggleFavorite(currency.symbol)}
@@ -260,13 +259,13 @@ export default function LivePriceTable({ infoMap }: any) {
 
                 </div>
 
-                {/* ستون 2: قیمت برای نمایشگر کوچک */}
+
                 <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
                   <div className="text-end sm:text-center">{currency.lastPrice} $</div>
                   <div className="text-end sm:text-center">{currency.priceToman} تومان</div>
                 </div>
 
-                {/* ستون 3: قیمت برای نمایشگر متوسط و بزرگ */}
+          
                 {currency.lastPrice && (
                   <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.lastPrice} USDT</div>
                 )}
@@ -274,7 +273,7 @@ export default function LivePriceTable({ infoMap }: any) {
                   <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceToman} تومان</div>
                 )}
 
-                {/* ستون 4: تغییر قیمت */}
+    
                 <div
                   className={`text-center  ${currency.priceChangePercent?.startsWith("-") ? "text-red-500" : "text-green-500"
                     }`}
@@ -282,12 +281,12 @@ export default function LivePriceTable({ infoMap }: any) {
                   {currency.priceChangePercent}%
                 </div>
 
-                {/* ستون 5: نمودار (فقط برای نمایشگر متوسط و بزرگ) */}
+            
                 <div className="hidden md:flex justify-center">
                   <Image src={ChartUP} alt="chart" width={64} height={31} />
                 </div>
 
-                {/* ستون 6: جزئیات بیشتر */}
+             
                 <div>
                   <Link href={`/coins/${currency.symbol}`}>
                     <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
