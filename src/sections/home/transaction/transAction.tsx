@@ -34,12 +34,14 @@ interface InfoData {
 
 
 
-export default function Transaction({ coin, header = true, showPrice, homeData, infoData }: {
+export default function Transaction({ coin, header = true, showPrice, homeData, infoData ,infoLoading,homeLoading }: {
   showPrice?: boolean;
   header?: boolean;
   coin?:any;
   homeData?: HomeData;
   infoData?: InfoData;
+  infoLoading:boolean;
+  homeLoading:boolean
 }) {
   const [isBuy, setIsBuy] = useState(true);
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -134,6 +136,8 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
             coin={coin}
             showPrice={showPrice}
             isBuy={isBuy}
+            infoLoading={infoLoading}
+            homeLoading={homeLoading}
           />
         ) : (
           <Sell
@@ -143,6 +147,8 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
             coin={coin}
             showPrice={showPrice}
             isBuy={isBuy}
+            infoLoading={infoLoading}
+            homeLoading={homeLoading}
           />
         )}
       </div>

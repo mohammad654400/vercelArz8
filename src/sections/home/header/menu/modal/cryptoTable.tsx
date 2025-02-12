@@ -2,6 +2,7 @@ import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import useGetData from "@/hooks/useGetData";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const filterButtons = [
   { key: "default", label: "پیش فرض" },
@@ -14,9 +15,10 @@ const filterButtons = [
 
 interface CryptoTableProps {
   infoMap: any;
+  infoLoading: boolean
 }
 
-const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
+const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
   const { formatNumber } = useFormattedNumber();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any[]>([]);
   const [sort, setSort] = useState<string>("default");
@@ -25,7 +27,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
 
   const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
 
-  const { data: cryptocurrencies, isLoading, error } = useGetData(
+  const { data: cryptocurrencies, isLoading:cryptocurrenciesLoading } = useGetData(
     "cryptocurrencies",
     60000,
     { limit: 7, page, sort, search: searchQuery }
@@ -40,7 +42,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
       return {
         ...item,
         ...info,
-        name: info?.name?.fa || item.symbol, 
+        name: info?.name?.fa || item.symbol,
       };
     });
   }, [cryptocurrenciesData?.lists, infoMap]);
@@ -116,7 +118,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
 
   return (
     <div className="w-full z-50">
-  
+
       <div className="mb-4">
         <input
           type="text"
@@ -169,7 +171,32 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
           <div className="w-2/5 flex items-center justify-center">قیمت به تومان</div>
         </div>
         <div className="overflow-y-auto mt-2 max-h-[250px]">
-          {displayedCurrencies?.length > 0 ? (
+          {infoLoading && cryptocurrenciesLoading || displayedCurrencies?.length === 0 ? (
+            Array(4).fill(0).map((_, index) => (
+              <div
+                key={index}
+                className=" flex w-full items-center border-b border-[#ADADAD80] py-2 text-sm"
+              >
+                <div className="w-2/5 flex items-center gap-2">
+                  <div className="w-[25px] h-[25px] flex">
+                    <Skeleton circle={true} width={25} height={25} />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <Skeleton width={60} height={10} />
+                    <Skeleton width={40} height={8} />
+                  </div>
+                </div>
+
+                <div className="w-1/5 text-center">
+                  <Skeleton width={50} height={10} />
+                </div>
+
+                <div className="w-2/5 pr-9 text-right">
+                  <Skeleton width={80} height={10} />
+                </div>
+              </div>
+            ))
+          ) :  (
             displayedCurrencies.map((crypto, index) => (
               <Link href={`/coins/${crypto.symbol}`} key={index}>
                 <div
@@ -200,7 +227,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                   <p
                     dir="ltr"
                     className={`${parseFloat(crypto.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
-                      } text-[10px]  font-semibold text-center w-1/5`}
+                      } text-[10px] font-semibold text-center w-1/5`}
                   >
                     {crypto.priceChangePercent} %
                   </p>
@@ -211,16 +238,8 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                 </div>
               </Link>
             ))
-          ) : (
-
-            <div className="text-center  mt-16">
-              <div
-                className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-yellow-500 mx-auto mb-5"
-              ></div>
-              <span className="text-zinc-900 dark:text-white text-xs">در حال بارگذاری ...</span>
-
-            </div>
           )}
+
         </div>
       </div>
     </div>

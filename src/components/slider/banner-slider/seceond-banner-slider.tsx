@@ -20,7 +20,7 @@ export default function SecondBannerSlider() {
     slidesToShow: 3,
     slidesToScroll: 3,
     arrows: false,
-    dots: true,
+    dots: false,
     initialSlide: 0,
      beforeChange: (oldIndex: number, newIndex: number) =>
         setCurrentSlide(newIndex),

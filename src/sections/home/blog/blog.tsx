@@ -70,7 +70,7 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
   return (
     <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
       <Image className="rounded-3xl" alt={title} src={imageUrl || "/fallback-image.jpg"} width={276} height={180} />
-      <p className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
+      <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
       </p>
       <div className="flex justify-between items-center w-full">
@@ -80,5 +80,6 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
         <div className="border border-foreground px-2 py-1 rounded-[15px] text-sm leading-6">مقالات</div>
       </div>
     </div>
+    
   );
 }

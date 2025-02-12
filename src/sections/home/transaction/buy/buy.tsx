@@ -13,7 +13,9 @@ type TransAction = {
   width: any;
   coin: any;
   showPrice?: boolean;
-  isBuy:boolean
+  isBuy:boolean;
+  infoLoading:boolean;
+  homeLoading:boolean
 };
 export default function Buy({
   toggle,
@@ -22,6 +24,8 @@ export default function Buy({
   coin,
   showPrice,
   isBuy,
+  infoLoading,
+  homeLoading 
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any>(coin || currencies[0]);
@@ -78,13 +82,13 @@ export default function Buy({
             className={`outline-none bg-background placeholder:text-lg text-[21px]  font-normal   h-[58px] 
               ${width <1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
               ${route === "calculate" && "w-full "}
-                 border rounded-xl mt-3 md:mt-5 pr-4`}
+                 border rounded-xl mt-3  pr-4`}
             type="text"
             value={money}
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-9 px-5 py-[11px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} className="w-[25px] h-[25px]" />
             <p className=" text-lg">IRT</p>
           </div>
@@ -108,15 +112,10 @@ export default function Buy({
         <div
           onClick={toggle}
           className={`
-            ${route===''?"mt-0 pt-8":"mt-6 pt-16"}
-            ${
-              route == "calculate"
-                ? "self-center rotate-90 lg:mt-12 ml-8 "
-                : ""
-            }
-            cursor-pointer ${
-              width < 700 ? "" : "pt-5 px-5 "
-            }  md:mt-6  md:my-5  lg:mt-0 self-end mb:10 md:mb-10`}
+            ${route == "calculate"? "self-center rotate-90 lg:mt-12 ml-8 ": ""}
+            ${route===''?"mt-0 pt-8":"mt-2 pt-8 md:pt-10"}
+            ${width < 700 ? "" : "pt-5 px-5 "} 
+            cursor-pointer  md:mt-6  md:my-5 lg:mt-0 self-end mb:10 md:mb-10`}
         >
           <ArrowChange />
         </div>
@@ -167,13 +166,16 @@ export default function Buy({
               toggle={toggleOpen}
               hasLink={true}
               isBuy={isBuy}
+              infoLoading={infoLoading}
+              homeLoading={homeLoading}
             />
           )}
           <button
             className={`
-              ${route == "calculate" ? "w-full  xl:w-full" : ""}${
+              ${route == "calculate" ? "w-full  xl:w-full" : ""}
+              ${
               width < 700 ? "w-full " : "lg:w-auto px-10"
-            }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full mt-2 md:mt-2`}
+            }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
           >
             شروع خرید
           </button>

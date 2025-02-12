@@ -9,30 +9,23 @@ import Description from "./description/description";
 import QuickGuide from "./quick-guide/quick-guide";
 import Blog from "./blog/blog";
 import useGetData from "@/hooks/useGetData";
-import Loading from "@/components/loading";
 
 
 export default function Home() {
   const { data: infoData, isLoading: infoLoading } = useGetData('info');
-  const { data: homeData, isLoading: homeLoading } = useGetData('home',60000);
-
-  if (infoLoading && homeLoading) return <Loading />
+  const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
 
   return (
-
     <div>
       <div className="base-style duration-1000">
-        <MainTop homeData={homeData?.topChanges} infoData={infoData} />
-        <TransAction homeData={homeData?.calculator} infoData={infoData} />
+        <MainTop homeData={homeData?.topChanges} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
+        <TransAction homeData={homeData?.calculator} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
         <SecondBannerSlider />
-        <RealTimePrice homeData={homeData?.table} infoData={infoData} />
-
-
+        <RealTimePrice homeData={homeData?.table} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
       </div>
       <div className="px-5 md:px-12 lg:px-16 xl:px-0">
         <Banner />
       </div>
-
       <div className="base-style">
         <QuickGuide />
         <Blog />
