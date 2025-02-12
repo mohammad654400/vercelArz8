@@ -79,7 +79,7 @@ export default function Buy({
               ${width < 800 ? "lg:w-full" : "lg:w-[414px]"} 
               ${route=='calculate'? "lg:w-full lg:mt-5" : "mb-10"}
               ${route===''?"mb-8":""}
-                text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-5  pr-4`}
+                text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-2 pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -87,7 +87,7 @@ export default function Buy({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[32px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
                 <div className="w-5 h-5 ">
                     {!currency.isFont ? (
@@ -112,11 +112,10 @@ export default function Buy({
         <div
           onClick={toggle}
           className={`
-            ${route===''?"mt-0 pt-0 ":"mt-6 pt-5"}
+            ${route===''?"mt-0 pt-0 ":"mt-0 pt-0"}
             ${
               width < 700 ? " " : "pt-5 px-5 "
             }
-            ${route===''?"pt-0":""}
           ${
             route == "calculate"
               ? "self-center rotate-90 lg:mt-14"
@@ -152,7 +151,9 @@ export default function Buy({
           </div>
         </div>
 
-        <div className={`w-full flex justify-center pb-2  ${route=='calculate'? "mt-8" : ""}`}>
+        <div className={`w-full flex justify-center pb-2
+           ${route==''? "pt-8 md:pb-8" : "mt-0 md:mt-10"}
+          ${route=='calculate'? "mt-8" : ""}`}>
           {open && (
             <CryptoModal
               currencies={currencies}
@@ -163,13 +164,11 @@ export default function Buy({
               infoLoading={infoLoading}
               homeLoading={homeLoading}
             />
-            
           )}
           <button className={`
           ${route=='calculate'? "w-full xl:w-full" : ""}
           ${width<700? "w-full mt-0":"w-full xl:w-auto"}
-          px-8 mt-9 md:mt-2 text-xl py-[13px] rounded-xl bg-[#F00500] text-white
-            `}>
+          px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white`}>
             شروع فروش
           </button>
         </div>

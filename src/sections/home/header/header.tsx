@@ -50,7 +50,7 @@ export default function Header() {
         bg-background
         ${
           isScrolled
-            ? "bg-white/30 dark:bg-black/10 backdrop-blur-sm  shadow-sm top-0 "
+            ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm  shadow-sm top-0 "
             : "md:bg-transparent  bg-secondary"
         }
       `}
