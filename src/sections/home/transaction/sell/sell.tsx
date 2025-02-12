@@ -13,7 +13,9 @@ type TransAction = {
   width: any;
   coin: any;
   showPrice?: boolean;
-  isBuy:boolean
+  isBuy:boolean;
+  infoLoading:boolean;
+  homeLoading:boolean
 };
 export default function Buy({
   toggle,
@@ -21,6 +23,8 @@ export default function Buy({
   width,
   coin,
   isBuy,
+  infoLoading,
+  homeLoading 
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(coin || currencies[0]);
@@ -156,6 +160,8 @@ export default function Buy({
               toggle={toggleOpen}
               hasLink={true}
               isBuy={isBuy}
+              infoLoading={infoLoading}
+              homeLoading={homeLoading}
             />
             
           )}

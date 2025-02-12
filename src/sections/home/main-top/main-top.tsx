@@ -6,7 +6,7 @@ import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-export default function MainTop({ homeData, infoData }: any) {
+export default function MainTop({ homeData, infoData,infoLoading,homeLoading }: any) {
 
   const phoneNumberRef = useRef<HTMLInputElement | null>(null);
 
@@ -69,7 +69,7 @@ export default function MainTop({ homeData, infoData }: any) {
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 ">
         <div>
-          <CryptoSlider homeData={homeData} infoData={infoData} />
+          <CryptoSlider homeData={homeData} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
         </div>
       </div>
     </div>

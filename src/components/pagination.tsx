@@ -31,7 +31,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
         className={`w-5 h-5 sm:w-10 sm:h-10 flex items-center justify-center rounded-[7px] sm:rounded-[15px] p-2 bg-secondary ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
           }`}
       >
-        <div className="sm:w-5 sm:h-5 w-3 h-3">
+        <div className="min-w-4 min-h-4">
           <ArrowRight />
         </div>
       </button>
@@ -42,13 +42,13 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
           <button
             key={index}
             onClick={() => typeof page === "number" && setCurrentPage(page)}
-            className={`w-5 h-5 sm:w-10 sm:h-10 flex justify-center items-center text-center rounded-lg sm:rounded-[15px] text-sm  font-semibold ${currentPage === page
+            className={`w-5 h-5 sm:w-10 sm:h-10  rounded-[7px] sm:rounded-[15px] flex  justify-center items-center text-center ${currentPage === page
               ? "bg-yellow-400 text-white"
               : "bg-gray-200 hover:bg-gray-300 text-gray-700"
               }`}
             disabled={page === "..."}
           >
-            {page}
+            <span className="flex w-full h-auto items-center pt-1 sm:pt-0 justify-center text-[10px] sm:text-base  font-semibold">{page}</span>
           </button>
         ))}
       </div>
@@ -59,7 +59,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
         className={`w-5 h-5 sm:w-10 sm:h-10 flex items-center justify-center rounded-[7px] sm:rounded-[15px] p-2 bg-secondary ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
           }`}
       >
-        <div className="sm:w-5 sm:h-5 w-3 h-3">
+        <div className="min-w-4 min-h-4">
           <ArrowLeft />
         </div>
       </button>
