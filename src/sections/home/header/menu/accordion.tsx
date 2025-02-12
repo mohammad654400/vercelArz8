@@ -1,5 +1,5 @@
 import ArrowDown from "@/assets/icons/arrrow/arrowDown"; 
-import ArrowUp from "@/assets/icons/arrrow/arrowUp"; 
+import ArrowUp from "@/assets/icons/arrrow/arrowup"; 
 import React, { useState } from "react"; 
  
 interface AccordionProps { 
