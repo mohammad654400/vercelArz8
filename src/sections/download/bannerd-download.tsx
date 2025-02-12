@@ -14,13 +14,13 @@ import Link from "next/link";
 export default function BannerDownload({ showWaveDivider }: { showWaveDivider: boolean }) {
   return (
     <div className="w-full bg-[#242428] h-[697px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
-      <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
+      <div className="flex flex-col base-style h-full z-10 !gap-0" >
         <div className="w-full h-full text-white text-center">
           <div className="w-full h-full justify-center items-center flex flex-col lg:flex-row">
 
-            <div className="w-full   order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
+            <div className="w-full order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
               <div className="flex flex-col ">
-                <h1 className="text-[26px] lg:text-[40px] font-extrabold">
+                <h1 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
                 </h1>
                 <span className="text-xs lg:text-lg mt-2 font-bold">

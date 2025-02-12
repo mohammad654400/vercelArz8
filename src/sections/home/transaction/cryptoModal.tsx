@@ -1,7 +1,9 @@
 import Search from "@/assets/icons/search";
-import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import React, { useState } from "react";
-export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy }: any) {
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy,  infoLoading,
+  homeLoading  }: any) {
   const [search, setSearch] = useState("");
 
   // const filteredCurrencies = currencies.filter(
@@ -26,7 +28,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
     setCurrency(currency);
     toggle();
   };
-
+  console.log("infoLoading:", infoLoading);
+  console.log("homeLoading:", homeLoading);
+  
   return (
     <div
       onClick={handleBackgroundClick}
@@ -71,53 +75,83 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
         </div>
 
         <div className="h-[400px] overflow-y-auto px-2 ">
-          {filteredCurrencies.map((currency: any, index: any) => (
-            hasLink ? (
+          {infoLoading === true || homeLoading === true ? (
+            Array(5).fill(0).map((_, index) => (
               <div
                 key={index}
-                onClick={() => handleCurrencySelect(currency)}
-                className=" flex items-center rounded-2xl justify-between px-4 py-3
-                hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                className="flex items-center rounded-2xl justify-between px-4 py-3 "
               >
-                <div className="flex items-center gap-2 ">
-                  <div className="w-9 h-9 ">
-                    {!currency.isFont ? (
-                      <img
-                        src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
-                        alt={currency.symbol}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <i
-                        className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
-                        style={{ color: currency.color }}
-                      ></i>
-                    )}
+                <div className="flex items-center gap-2">
+                  {/* اسکلت برای آیکون */}
+                  <div className="w-9 h-9">
+                    <Skeleton circle={true} width={36} height={36} />
                   </div>
+
                   <div>
-                    <p className="text-sm font-semibold">{currency.name}</p>
-                    <p className="text-xs text-gray-500">{currency.symbol}</p>
+                    {/* اسکلت برای نام و نماد */}
+                    <Skeleton width={80} height={14} />
+                    <Skeleton width={40} height={10} style={{ marginTop: "4px" }} />
                   </div>
                 </div>
+
                 <div className="text-left">
-                  {isBuy ? (
-                    <p className="text-sm">{currency.price.buy} تومان</p>
-                  ) : (
-                    <p className="text-sm">{currency.price.sell} تومان</p>
-                  )}
-                  <p
-                    style={{ direction: "ltr" }}
-                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
-                      } text-xs  font-semibold  `}
-                  >
-                    {currency.priceChangePercent} %
-                  </p>
+                  {/* اسکلت برای قیمت خرید یا فروش */}
+                  <Skeleton width={70} height={14} />
+                  {/* اسکلت برای تغییر درصد */}
+                  <Skeleton width={40} height={10} style={{ marginTop: "4px" }} />
                 </div>
               </div>
-            ) : (
-              <></>
-            )
-          ))}
+            ))
+          ) : (
+            filteredCurrencies.map((currency: any, index: any) => (
+              hasLink ? (
+                <div
+                  key={index}
+                  onClick={() => handleCurrencySelect(currency)}
+                  className="flex items-center rounded-2xl justify-between px-4 py-3
+        hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-9 h-9">
+                      {!currency.isFont ? (
+                        <img
+                          src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                          alt={currency.symbol}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <i
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                          style={{ color: currency.color }}
+                        ></i>
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">{currency.name}</p>
+                      <p className="text-xs text-gray-500">{currency.symbol}</p>
+                    </div>
+                  </div>
+
+                  <div className="text-left">
+                    {isBuy ? (
+                      <p className="text-sm">{currency.price.buy} تومان</p>
+                    ) : (
+                      <p className="text-sm">{currency.price.sell} تومان</p>
+                    )}
+                    <p
+                      style={{ direction: "ltr" }}
+                      className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                        } text-xs  font-semibold  `}
+                    >
+                      {currency.priceChangePercent} %
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )
+            ))
+          )}
         </div>
       </div>
     </div>
