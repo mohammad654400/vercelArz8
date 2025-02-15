@@ -84,17 +84,17 @@ export default function SubMenu() {
                 className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center"
               >
                 <div className="w-5 h-5 flex">
-                  {!item.isFont ? (
-                    <img
-                      src={`https://app.arz8.com/api/images/currency/${item.icon}`}
-                      alt={item.symbol}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
+                  {item.isFont ? (
                     <i
-                      className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
-                      style={{ color: item.color }}
-                    ></i>
+                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: item.color }}
+                  ></i>
+                  ) : (
+                    <img
+                    src={`https://app.arz8.com/api/images/currency/${item.icon}`}
+                    alt={item.symbol}
+                    className="w-full h-full object-cover"
+                  />
                   )}
                 </div>
                 <span className="text-sm font-semibold">خرید {item.name}</span>

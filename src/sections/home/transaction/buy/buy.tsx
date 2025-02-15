@@ -13,9 +13,9 @@ type TransAction = {
   width: any;
   coin: any;
   showPrice?: boolean;
-  isBuy:boolean;
-  infoLoading:boolean;
-  homeLoading:boolean
+  isBuy: boolean;
+  infoLoading: boolean;
+  homeLoading: boolean
 };
 export default function Buy({
   toggle,
@@ -25,7 +25,7 @@ export default function Buy({
   showPrice,
   isBuy,
   infoLoading,
-  homeLoading 
+  homeLoading
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any>(coin || currencies[0]);
@@ -49,7 +49,7 @@ export default function Buy({
   };
   useEffect(() => {
     setCurrency(coin || currencies[0]);
-  },[currencies])
+  }, [currencies])
 
   const handleAmountChange = (value: string) => {
     const rawValue = unformatNumber(value);
@@ -64,23 +64,22 @@ export default function Buy({
   return (
     <div className="w-full">
       <div className={` -top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
-         ${route==='calculate'?"hidden":"absolute"}`}>
+         ${route === 'calculate' ? "hidden" : "absolute"}`}>
         <HalfCircle />
       </div>
       <div
-        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${
-          width < 1196 && route !== "calculate"
+        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${width < 1196 && route !== "calculate"
             ? "flex-col "
-            :route === "calculate"
-            ? "flex-col" 
-            : "flex-row"
-        }`}
+            : route === "calculate"
+              ? "flex-col"
+              : "flex-row"
+          }`}
       >
         <div className="relative w-full">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
             className={`outline-none bg-background placeholder:text-lg text-[21px]  font-normal   h-[58px] 
-              ${width <1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
+              ${width < 1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
               ${route === "calculate" && "w-full "}
                  border rounded-xl mt-3  pr-4`}
             type="text"
@@ -95,8 +94,7 @@ export default function Buy({
           <div
             className={`
               gap-5 mt-5 text-xs md:text-sm 
-              ${
-                width < 800 ? "hidden" : "md:flex "
+              ${width < 800 ? "hidden" : "md:flex "
               }
             `}
           >
@@ -112,8 +110,8 @@ export default function Buy({
         <div
           onClick={toggle}
           className={`
-            ${route == "calculate"? "self-center rotate-90 lg:mt-12 ml-8 ": ""}
-            ${route===''?"mt-0 pt-8":"mt-2 pt-8 md:pt-10"}
+            ${route == "calculate" ? "self-center rotate-90 lg:mt-12 ml-8 " : ""}
+            ${route === '' ? "mt-0 pt-8" : "mt-2 pt-8 md:pt-10"}
             ${width < 700 ? "" : "pt-5 px-5 "} 
             cursor-pointer  md:mt-6  md:my-5 lg:mt-0 self-end mb:10 md:mb-10`}
         >
@@ -124,9 +122,8 @@ export default function Buy({
           <p>مقدار (دریافت می‌کنید)</p>
           <input
             className={`
-              ${width <1196 ? "lg:w-full" : "lg:w-[414px]"} ${
-              route === "calculate" && "w-full "
-            } mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
+              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} ${route === "calculate" && "w-full "
+              } mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -138,19 +135,19 @@ export default function Buy({
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
             <div className="w-5 h-5 ">
-                    {!currency?.isFont ? (
-                      <img
-                        src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
-                        alt={currency?.symbol}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <i
-                        className={`cf cf-${currency.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
-                        style={{ color: currency.color }}
-                      ></i>
-                    )}
-                  </div>
+              {currency?.isFont ? (
+                <i
+                  className={`cf cf-${currency.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
+                  style={{ color: currency.color }}
+                ></i>
+              ) : (
+                <img
+                  src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
+                  alt={currency?.symbol}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
             <p className=" text-lg">{currency?.name}</p>
             <span className="w-5 h-5">
               <ArrowDown />
@@ -173,9 +170,8 @@ export default function Buy({
           <button
             className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
-              ${
-              width < 700 ? "w-full " : "lg:w-auto px-10"
-            }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
+              ${width < 700 ? "w-full " : "lg:w-auto px-10"
+              }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
           >
             شروع خرید
           </button>

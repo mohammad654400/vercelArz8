@@ -183,17 +183,17 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
                   <div className="flex flex-col justify-start pl-0 pr-0 col-span-2">
                     <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
                       <div className="w-[28px] h-[28px] md:w-[44px] md:h-[44px] flex">
-                        {!currency.isFont ? (
+                        {currency.isFont ? (
+                          <i
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[28px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
+                            style={{ color: currency.color }}
+                          ></i>
+                        ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                             alt={currency.symbol}
                             className="w-full h-full object-cover"
                           />
-                        ) : (
-                          <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-[28px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
-                            style={{ color: currency.color }}
-                          ></i>
                         )}
                       </div>
 

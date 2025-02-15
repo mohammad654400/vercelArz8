@@ -96,7 +96,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                 </div>
 
                 <div className="text-left">
-                  
+
                   <Skeleton width={70} height={14} baseColor={baseColor} highlightColor={highlightColor} />
                   <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} style={{ marginTop: "4px" }} />
                 </div>
@@ -113,17 +113,17 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-9 h-9">
-                      {!currency.isFont ? (
+                      {currency.isFont ? (
+                        <i
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                          style={{ color: currency.color }}
+                        ></i>
+                      ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                           alt={currency.symbol}
                           className="w-full h-full object-cover"
                         />
-                      ) : (
-                        <i
-                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
-                          style={{ color: currency.color }}
-                        ></i>
                       )}
                     </div>
                     <div>

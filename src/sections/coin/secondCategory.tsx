@@ -159,17 +159,17 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap, in
                 <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
 
                   <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
-                    {!item.isFont ? (
+                    {item.isFont ? (
+                      <i
+                        className={`cf cf-${item.symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                        style={{ color: item.color }}
+                      ></i>
+                    ) : (
                       <img
                         src={`https://app.arz8.com/api/images/currency/${item.icon}`}
                         alt={item.symbol}
                         className="w-full h-full object-cover"
                       />
-                    ) : (
-                      <i
-                        className={`cf cf-${item.symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`}
-                        style={{ color: item.color }}
-                      ></i>
                     )}
                   </div>
 

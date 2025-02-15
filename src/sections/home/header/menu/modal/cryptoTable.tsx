@@ -185,8 +185,8 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
                     <Skeleton circle={true} width={25} height={25} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <Skeleton width={60} height={10}  baseColor={baseColor} highlightColor={highlightColor} />
-                    <Skeleton width={40} height={8}  baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={60} height={10} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={8} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                 </div>
 
@@ -208,17 +208,17 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
                 >
                   <div className="w-2/5 flex items-center gap-2">
                     <div className="w-[25px] h-[25px] flex">
-                      {!crypto.isFont ? (
+                      {crypto.isFont ? (
+                        <i
+                          className={`cf cf-${crypto.symbol.toLowerCase()} text-[25px] w-full h-full flex items-center justify-center object-cover`}
+                          style={{ color: crypto.color }}
+                        ></i>
+                      ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${crypto.icon}`}
                           alt={crypto.symbol}
                           className="w-full h-full object-cover"
                         />
-                      ) : (
-                        <i
-                          className={`cf cf-${crypto.symbol.toLowerCase()} text-[25px] w-full h-full flex items-center justify-center object-cover`}
-                          style={{ color: crypto.color }}
-                        ></i>
                       )}
                     </div>
                     <div className="flex flex-col gap-1">

@@ -53,7 +53,7 @@ const chunkArray = (array: any[], size: number) => {
   }, [] as any[][]);
 };
 
-export default function BannerSlider({ homeData, infoData,infoLoading,homeLoading }: { homeData: HomeData; infoData: InfoData;infoLoading:boolean;homeLoading:boolean }) {
+export default function BannerSlider({ homeData, infoData, infoLoading, homeLoading }: { homeData: HomeData; infoData: InfoData; infoLoading: boolean; homeLoading: boolean }) {
   const { baseColor, highlightColor } = useTheme();
   const [mergedData, setMergedData] = useState<MergedData[]>([]);
 
@@ -121,11 +121,11 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                   `}
                   >
                     <div className="flex flex-col justify-center items-end mr-1 sm:mr-3 md:mr-2">
-                      <Skeleton width={50} height={10} baseColor={baseColor} highlightColor={highlightColor}/>
-                      <Skeleton width={30} height={10} baseColor={baseColor} highlightColor={highlightColor}/>
+                      <Skeleton width={50} height={10} baseColor={baseColor} highlightColor={highlightColor} />
+                      <Skeleton width={30} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                     </div>
                     <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] my-auto">
-                      <Skeleton width="100%" height="100%" circle={true} baseColor={baseColor} highlightColor={highlightColor}/>
+                      <Skeleton width="100%" height="100%" circle={true} baseColor={baseColor} highlightColor={highlightColor} />
                     </div>
                   </div>
                 </div>
@@ -167,17 +167,17 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                         <p className="text-[10px] md:text-[12px] opacity-50">{card.symbol}</p>
                       </div>
                       <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] object-cover">
-                        {!card.isFont ? (
+                        {card.isFont ? (
+                          <i
+                            className={`cf cf-${card.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center`}
+                            style={{ color: card.color }}
+                          ></i>
+                        ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${card.icon}`}
                             alt={card.symbol}
                             className="w-full h-full object-cover"
                           />
-                        ) : (
-                          <i
-                            className={`cf cf-${card.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center`}
-                            style={{ color: card.color }}
-                          ></i>
                         )}
                       </div>
                     </div>

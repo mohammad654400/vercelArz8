@@ -292,18 +292,18 @@ export default function LivePriceTable({ infoMap }: any) {
                         />
                       </div>
                     </button>
-                    <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11">
-                      {!currency.isFont ? (
-                        <img
-                          src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
-                          alt={currency.symbol}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
+                    <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
+                      {currency.isFont ? (
                         <i
-                          className={`cf cf-${currency.symbol.toLowerCase()} text-[24px] w-full h-full flex items-center justify-center object-cover`}
-                          style={{ color: currency.color }}
-                        ></i>
+                        className={`cf cf-${currency.symbol.toLowerCase()} text-[24px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
+                        style={{ color: currency.color }}
+                      ></i>
+                      ) : (
+                        <img
+                        src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                        alt={currency.symbol}
+                        className="w-full h-full object-cover"
+                      />
                       )}
                     </div>
                     <div className="flex flex-col gap-y-[2px]">
