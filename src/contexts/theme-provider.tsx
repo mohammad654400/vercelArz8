@@ -1,9 +1,11 @@
-import React, { createContext, useState, useContext, useEffect,useCallback } from "react";
+import React, { createContext, useState, useContext, useEffect, useCallback } from "react";
 
 interface ThemeContextType {
   theme: string;
   toggleTheme: () => void;
   isThemeLoaded: boolean;
+  baseColor: string;
+  highlightColor: string;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -52,6 +54,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   }, []);
 
+  
+  const baseColor = themeState.theme === "dark" ? "#585858" : "#f0f0f0";
+  const highlightColor = themeState.theme === "dark" ? "#646464" : "#ddd";
+
   if (!themeState.isThemeLoaded) {
     return <div className="theme-loading"></div>;
   }
@@ -60,6 +66,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     theme: themeState.theme,
     toggleTheme,
     isThemeLoaded: themeState.isThemeLoaded,
+    baseColor,       
+    highlightColor,  
   };
 
   return (

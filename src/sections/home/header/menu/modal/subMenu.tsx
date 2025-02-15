@@ -5,6 +5,7 @@ import CryptoTable from "./cryptoTable";
 import Link from "next/link";
 import useGetData from "@/hooks/useGetData";
 import Skeleton from "react-loading-skeleton";
+import { useTheme } from "@/contexts/theme-provider";
 
 interface CryptocurrencyInfo {
   id: number;
@@ -18,6 +19,7 @@ interface CryptocurrencyInfo {
 
 
 export default function SubMenu() {
+    const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
   const { data: infoData, isLoading: infoLoading } = useGetData('info');
   const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading,isError } = useGetData("cryptocurrencies", undefined, {
@@ -70,9 +72,9 @@ export default function SubMenu() {
               className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center"
             >
               <div className="w-5 h-5 flex">
-                <Skeleton circle={true} width={20} height={20} />
+                <Skeleton circle={true} width={20} height={20}  baseColor={baseColor} highlightColor={highlightColor}/>
               </div>
-              <Skeleton width={100} height={14} />
+              <Skeleton width={100} height={14} baseColor={baseColor} highlightColor={highlightColor}/>
             </div>
           ))
         ) : (
@@ -82,17 +84,17 @@ export default function SubMenu() {
                 className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center"
               >
                 <div className="w-5 h-5 flex">
-                  {!item.isFont ? (
-                    <img
-                      src={`https://app.arz8.com/api/images/currency/${item.icon}`}
-                      alt={item.symbol}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
+                  {item.isFont ? (
                     <i
-                      className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
-                      style={{ color: item.color }}
-                    ></i>
+                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: item.color }}
+                  ></i>
+                  ) : (
+                    <img
+                    src={`https://app.arz8.com/api/images/currency/${item.icon}`}
+                    alt={item.symbol}
+                    className="w-full h-full object-cover"
+                  />
                   )}
                 </div>
                 <span className="text-sm font-semibold">خرید {item.name}</span>

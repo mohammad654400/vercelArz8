@@ -33,37 +33,50 @@ export default function Buy({
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
   const { formatNumber, unformatNumber } = useFormattedNumber();
-
+  
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
+    setAmount("")
+    setMoney("")
   };
-
+  
   const handleMoneyChange = (value: string) => {
-    const rawValue = unformatNumber(value);
-    setMoney(formatNumber(rawValue));
-
+    let rawValue = value.replace(/[^0-9]/g, "");
+  
+    setMoney(rawValue);
+  
     if (currency) {
       const calculatedAmount = parseFloat(rawValue) / currency.price.buy;
       setAmount(calculatedAmount ? calculatedAmount.toFixed(8) : "");
     }
   };
-  useEffect(() => {
-    setCurrency(coin || currencies[0]);
-  },[currencies])
-
+  
+  
+  
   const handleAmountChange = (value: string) => {
-    const rawValue = unformatNumber(value);
-    setAmount(formatNumber(rawValue));
-
+    let rawValue = value.replace(/[^0-9.]/g, "");
+  
+    if ((rawValue.match(/\./g) || []).length > 1) {
+      return;
+    }
+  
+    setAmount(rawValue);
+  
     if (currency) {
       const calculatedMoney = parseFloat(rawValue) * currency.price.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
+  
+
+  useEffect(() => {
+    setCurrency(coin || currencies[0]);
+  },[currencies])
+
 
   return (
     <div className="w-full">
-      <div className={` -top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
+      <div className={` -top-[8px] md:-top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
          ${route==='calculate'?"hidden":"absolute"}`}>
         <HalfCircle />
       </div>
@@ -79,18 +92,21 @@ export default function Buy({
         <div className="relative w-full">
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
+          autoComplete="off"
+          pattern="[0-9]*"
+          inputMode="decimal"
             className={`outline-none bg-background placeholder:text-lg text-[21px]  font-normal   h-[58px] 
               ${width <1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
               ${route === "calculate" && "w-full "}
                  border rounded-xl mt-3  pr-4`}
             type="text"
-            value={money}
+            value={formatNumber(money)}
             onChange={(e) => handleMoneyChange(e.target.value)}
-            placeholder="مثال: 500000"
+            placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-9 px-5 py-[11px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-9 px-5 py-[12px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} className="w-[25px] h-[25px]" />
-            <p className=" text-lg">IRT</p>
+            <p>IRT</p>
           </div>
           <div
             className={`
@@ -100,10 +116,10 @@ export default function Buy({
               }
             `}
           >
-            <p>
+            <p className="text-xs">
               قیمت خرید: {formatNumber(currency?.price.buy?.toLocaleString())} تومان
             </p>
-            <p>
+            <p className="text-xs">
               قیمت فروش: {formatNumber(currency?.price.sell?.toLocaleString())} تومان
             </p>
           </div>
@@ -123,6 +139,8 @@ export default function Buy({
         <div className={`relative  w-full`}>
           <p>مقدار (دریافت می‌کنید)</p>
           <input
+            pattern="[0-9]*"
+            inputMode="decimal"
             className={`
               ${width <1196 ? "lg:w-full" : "lg:w-[414px]"} ${
               route === "calculate" && "w-full "
@@ -137,7 +155,7 @@ export default function Buy({
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
-            <div className="w-5 h-5 ">
+            <div className="w-5 h-7 flex justify-center items-center ">
                     {!currency?.isFont ? (
                       <img
                         src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
@@ -151,7 +169,7 @@ export default function Buy({
                       ></i>
                     )}
                   </div>
-            <p className=" text-lg">{currency?.name}</p>
+            <p className="">{currency?.name}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>

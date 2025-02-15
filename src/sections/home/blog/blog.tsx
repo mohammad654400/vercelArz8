@@ -6,6 +6,9 @@ import LongArrow from "@/assets/icons/arrrow/long-arrow";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from "react-loading-skeleton";
+import { useTheme } from "@/contexts/theme-provider";
+ 
 
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/wp/v2/posts?per_page=4&_fields=id,title,link,yoast_head_json");
@@ -14,6 +17,7 @@ const fetchBlogs = async () => {
 };
 
 export default function Blog() {
+    const { baseColor, highlightColor } = useTheme();
   const sliderRef = useRef<Slider>(null);
 
   const { data: blogs, isLoading, error } = useQuery({
@@ -39,7 +43,7 @@ export default function Blog() {
     <div className="flex flex-col gap-y-[14px] md:gap-y-[60px] sm:mt-16">
       <div className="flex gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
         <div className="font-bold text-lg md:text-4xl w-full">
-          <span className="flex justify-center xl:justify-start">بلاگ ارز هشت</span>
+          <h1 className="flex justify-center xl:justify-start">بلاگ ارز هشت</h1>
         </div>
       </div>
 
@@ -48,14 +52,28 @@ export default function Blog() {
         <Slider ref={sliderRef} {...settings} className="ml-14">
           {isLoading
             ? [...Array(4)].map((_, index) => (
-                <BlogCard key={index} title="در حال بارگذاری..." link="#" imageUrl={null} />
-              ))
+              <div dir="rtl" className="bg-background flex flex-col rounded-lg max-w-[285px] max-h-[286px] transition-all duration-300 px-2" key={index}>
+                <Skeleton
+                  height={180}
+                  width={276}
+                  className="rounded-3xl "
+                  baseColor={baseColor}
+                  highlightColor={highlightColor}
+                />
+
+                <Skeleton height={30} width={200} baseColor={baseColor} highlightColor={highlightColor}/>
+                <div className="flex justify-between">
+                  <Skeleton height={30} width={60} baseColor={baseColor} highlightColor={highlightColor}/>
+                  <Skeleton height={30} width={60} baseColor={baseColor} highlightColor={highlightColor}/>
+                </div>
+              </div>
+            ))
             : blogs?.map((blog: any) => {
-                const imageUrl = blog.yoast_head_json?.og_image?.[0]?.url || "/fallback-image.jpg";
-                return (
-                  <BlogCard key={blog.id} title={blog.title.rendered} link={blog.link} imageUrl={imageUrl} />
-                );
-              })}
+              const imageUrl = blog.yoast_head_json?.og_image?.[0]?.url || "/fallback-image.jpg";
+              return (
+                <BlogCard key={blog.id} title={blog.title.rendered} link={blog.link} imageUrl={imageUrl} />
+              );
+            })}
         </Slider>
         <div className="absolute top-20 -left-0 md:-left-10 w-[37px] h-[37px] text-foreground cursor-pointer" onClick={() => sliderRef.current?.slickNext()}>
           <LongArrow />
@@ -80,6 +98,6 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
         <div className="border border-foreground px-2 py-1 rounded-[15px] text-sm leading-6">مقالات</div>
       </div>
     </div>
-    
+
   );
 }

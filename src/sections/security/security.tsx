@@ -29,11 +29,11 @@ export default function Security() {
                         </div>
 
 
-                        <div className="grid gap-y-5 gap-x-[42px] grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 w-full grid-flow-row-dense justify-between">
+                        <div className="grid gap-y-5 gap-x-4 sm:gap-x-[42px] grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 w-full grid-flow-row-dense justify-between">
                             {cardData.map((card, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col rounded-[20px]  bg-fifth justify-center items-center min-w-[172px] min-h-[172px] sm:w-full  xl:max-w-[165px] xl:max-h-[165px] "
+                                    className="flex flex-col rounded-[20px]  bg-fifth justify-center items-center min-w-[162px] min-h-[162px] sm:w-full  xl:max-w-[155px] xl:max-h-[155px] "
                                 >
                                     <div className="w-[73px] h-[73px] sm:h-[70px] sm:w-[70px]">
                                         <card.icon />

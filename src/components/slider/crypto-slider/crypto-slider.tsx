@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; // برای استایل‌دهی به اسکللت‌ها
+import { useTheme } from "@/contexts/theme-provider";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
 interface HomeCurrency {
   symbol: string;
@@ -41,7 +43,7 @@ interface MergedData {
   icon: string | undefined;
   color: string | undefined;
   isFont: boolean;
-  priceToman: number;
+  priceToman: string;
   priceChangePercent: string;
 }
 
@@ -52,10 +54,10 @@ const chunkArray = (array: any[], size: number) => {
   }, [] as any[][]);
 };
 
-export default function BannerSlider({ homeData, infoData,infoLoading,homeLoading }: { homeData: HomeData; infoData: InfoData;infoLoading:boolean;homeLoading:boolean }) {
-
+export default function BannerSlider({ homeData, infoData, infoLoading, homeLoading }: { homeData: HomeData; infoData: InfoData; infoLoading: boolean; homeLoading: boolean }) {
+  const { baseColor, highlightColor } = useTheme();
   const [mergedData, setMergedData] = useState<MergedData[]>([]);
-
+  const { formatNumber } = useFormattedNumber()
   useEffect(() => {
     const newMergedData =
       (homeData?.profit || []).concat(homeData?.loss || [])
@@ -69,7 +71,7 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
             icon: matchedInfo?.icon,
             color: matchedInfo?.color,
             isFont: matchedInfo?.isFont || false,
-            priceToman: parseFloat(item.priceToman),
+            priceToman: item?.priceToman ,
             priceChangePercent: item.priceChangePercent,
           };
         });
@@ -91,6 +93,8 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
     verticalSwiping: true,
   };
 
+
+
   return (
     <div className="w-full">
       <Slider {...settings}>
@@ -101,8 +105,8 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                 <div key={index} className="flex justify-between w-full h-full pl-3 md:pl-4">
                   {/* قیمت و درصد تغییر */}
                   <div className="flex flex-col justify-center">
-                    <Skeleton width={60} height={12} />
-                    <Skeleton width={40} height={10} />
+                    <Skeleton width={60} height={12} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
                   {/* آیکون و اطلاعات ارز */}
@@ -118,11 +122,11 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                   `}
                   >
                     <div className="flex flex-col justify-center items-end mr-1 sm:mr-3 md:mr-2">
-                      <Skeleton width={50} height={10} />
-                      <Skeleton width={30} height={10} />
+                      <Skeleton width={50} height={10} baseColor={baseColor} highlightColor={highlightColor} />
+                      <Skeleton width={30} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                     </div>
                     <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] my-auto">
-                      <Skeleton width="100%" height="100%" circle={true} />
+                      <Skeleton width="100%" height="100%" circle={true} baseColor={baseColor} highlightColor={highlightColor} />
                     </div>
                   </div>
                 </div>
@@ -138,7 +142,7 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                     <div className="flex flex-col justify-center">
                       <div className="flex pb-1 gap-x-1 text-[10px] md:text-[13.5px] font-semibold">
                         <span className="text-[8px]">تومان</span>
-                        <p>{card.priceToman}</p>
+                        <p>{formatNumber(card.priceToman)}</p>
                       </div>
                       <p
                         className={`${parseFloat(card.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
@@ -164,17 +168,17 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                         <p className="text-[10px] md:text-[12px] opacity-50">{card.symbol}</p>
                       </div>
                       <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] object-cover">
-                        {!card.isFont ? (
+                        {card.isFont ? (
+                          <i
+                            className={`cf cf-${card.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center`}
+                            style={{ color: card.color }}
+                          ></i>
+                        ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${card.icon}`}
                             alt={card.symbol}
                             className="w-full h-full object-cover"
                           />
-                        ) : (
-                          <i
-                            className={`cf cf-${card.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center`}
-                            style={{ color: card.color }}
-                          ></i>
                         )}
                       </div>
                     </div>

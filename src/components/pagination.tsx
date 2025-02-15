@@ -44,7 +44,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
             onClick={() => typeof page === "number" && setCurrentPage(page)}
             className={`w-5 h-5 sm:w-10 sm:h-10  rounded-[7px] sm:rounded-[15px] flex  justify-center items-center text-center ${currentPage === page
               ? "bg-yellow-400 text-white"
-              : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+              : "bg-secondary hover:bg-gray-300 text-[#3C3B41] dark:text-[#FFFFFF]"
               }`}
             disabled={page === "..."}
           >

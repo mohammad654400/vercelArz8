@@ -6,7 +6,7 @@ import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-export default function MainTop({ homeData, infoData,infoLoading,homeLoading }: any) {
+export default function MainTop({ homeData, infoData, infoLoading, homeLoading }: any) {
 
   const phoneNumberRef = useRef<HTMLInputElement | null>(null);
 
@@ -30,12 +30,18 @@ export default function MainTop({ homeData, infoData,infoLoading,homeLoading }: 
               <MobileIcon />
             </span>
             <input
+              dir="rtl"
               maxLength={11}
-              typeof="number"
+              type="tel"
               ref={phoneNumberRef}
               placeholder="شماره موبایل خود را وارد کنید"
               className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px]"
-              type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
+              onInput={(e) => {
+                const input = e.target as HTMLInputElement; 
+                input.value = input.value.replace(/\D/g, '');
+              }}
             />
             <Link href={`https://app.arz8.com/auth/login?phone=${phoneNumberRef.current?.value}`}>
               <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
