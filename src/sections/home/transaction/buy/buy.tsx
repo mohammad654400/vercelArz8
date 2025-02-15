@@ -69,14 +69,14 @@ export default function Buy({
   };
   
 
-
   useEffect(() => {
     setCurrency(coin || currencies[0]);
   },[currencies])
 
+
   return (
     <div className="w-full">
-      <div className={` -top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
+      <div className={` -top-[8px] md:-top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
          ${route==='calculate'?"hidden":"absolute"}`}>
         <HalfCircle />
       </div>
@@ -104,9 +104,9 @@ export default function Buy({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-9 px-5 py-[11px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-9 px-5 py-[12px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} className="w-[25px] h-[25px]" />
-            <p className=" text-lg">IRT</p>
+            <p>IRT</p>
           </div>
           <div
             className={`
@@ -155,7 +155,7 @@ export default function Buy({
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
-            <div className="w-5 h-5 ">
+            <div className="w-5 h-7 flex justify-center items-center ">
                     {!currency?.isFont ? (
                       <img
                         src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
@@ -169,7 +169,7 @@ export default function Buy({
                       ></i>
                     )}
                   </div>
-            <p className=" text-lg">{currency?.name}</p>
+            <p className="">{currency?.name}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>
