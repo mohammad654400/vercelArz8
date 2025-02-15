@@ -9,6 +9,8 @@ import useGetData from "@/hooks/useGetData";
 import Pagination from "./pagination";
 import HalfCircle from "@/assets/icons/halfCircle";
 import Skeleton from "react-loading-skeleton";
+import { useTheme } from "@/contexts/theme-provider";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
 
 const filterOptions = [
@@ -22,9 +24,9 @@ const filterOptions = [
   { label: "جدیدترین", key: "new" },
 ];
 
-export default function LivePriceTable({ infoMap, infoLoading }: any) {
-
-
+export default function LivePriceTable({ infoMap }: any) {
+  const { baseColor, highlightColor } = useTheme();
+  const { formatNumber } = useFormattedNumber();
   const [open, setOpen] = useState(false);
   const [numberItem, setNumberItem] = useState(false)
   const [displayedCurrencies, setDisplayedCurrencies] = useState<{ lists: any[]; total: number }>({ lists: [], total: 0 });
@@ -34,6 +36,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
   const [numberPage, setNumberPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5)
   const [filterKey, setFilterKey] = useState<string>("default");
+  const [textFilter, setTextFilter] = useState<string>("پیش فرض")
   const [favorites, setFavorites] = useState<string[]>(
     () => JSON.parse(localStorage.getItem("favorites") || "[]")
   );
@@ -66,7 +69,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
     return params;
   }, [sort, favorites, limit, numberPage, searchQuery]);
 
-  const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", 60000, getRequestParams);
+  const { data: cryptocurrenciesData } = useGetData("cryptocurrencies", 60000, getRequestParams);
 
 
 
@@ -127,7 +130,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
             onClick={() => setOpen(!open)}
             className="flex justify-center items-center px-2 py-2 bg-primary text-white rounded-xl"
           >
-            <span className="text-xs sm:text-sm font-bold whitespace-nowrap">مورد علاقه</span>
+            <span className="text-xs sm:text-sm font-bold whitespace-nowrap">{textFilter}</span>
             <span className="w-[9.4px] h-[9.4px] sm:w-4 sm:h-4 text-white mr-1"><ArrowDown /></span>
           </button>
           {open && (
@@ -139,7 +142,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
               {filterOptions.map((option) => (
                 <button
                   key={option.key}
-                  onClick={() => setFilterKey(option.key)}
+                  onClick={() => { setFilterKey(option.key); setTextFilter(option.label); }}
                   className={`flex w-[250px] justify-end flex-col mr-5 gap-4  px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold  mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
                 >
                   {option.label}
@@ -185,15 +188,15 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
 
           <div className="relative cursor-pointer  text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
             <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
-              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-lg">{limit}</span>
+              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-base">{limit}</span>
             </div>
             {numberItem ?
-              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer -right-[9px] md::-right-[1px] py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
+              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer px-0 py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
                 {[5, 10, 20, 50].map((item) => (
                   <p
                     key={item}
                     onClick={() => handleLimitChange(item)}
-                    className="mx-auto rounded-lg font-normal cursor-pointer"
+                    className="mx-auto rounded-lg font-normal cursor-pointer !text-xs md:text-sm"
                   >
                     {item}
                   </p>
@@ -207,7 +210,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
       </div>
 
       {/* table*/}
-      {displayedCurrencies.lists ? (
+      {displayedCurrencies?.lists ? (
         <div className="p-4">
           <div className="grid grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center justify-center py-3 font-semibold border-gray-300 items-center">
             <span className="text-[7.3px] font-semibold md:text-xs col-span-2 md:col-span-1">نماد</span>
@@ -221,15 +224,16 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
           </div>
 
           <div className="divide-y divide-gray-200 text-[10px] md:text-sm">
-            {infoLoading || cryptocurrenciesLoading || displayedCurrencies.lists.length === 0 ? (
+            {displayedCurrencies.lists.length === 0 ? (
               [...Array(5)].map((_, index) => (
                 <div key={index} className="grid grid-cols-6 md:grid-cols-6 items-center text-center py-4">
 
-                  {/* ستاره و اطلاعات ارز */}
                   <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
                     <Skeleton
                       width={24}
                       height={24}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
                       className="bg-gray-300"
                       style={{
                         clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
@@ -237,41 +241,35 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
                       }}
                     />
 
-                    {/* اسکلت برای آیکون ستاره */}
-                    <Skeleton circle width={40} height={40} /> {/* اسکلت برای آیکون ارز */}
+                    <Skeleton circle width={40} height={40} baseColor={baseColor} highlightColor={highlightColor} /> {/* اسکلت برای آیکون ارز */}
                     <div className="flex flex-col items-start gap-y-[2px]">
-                      <Skeleton width={80} height={16} />
-                      <Skeleton width={50} height={12} />
+                      <Skeleton width={40} height={16} baseColor={baseColor} highlightColor={highlightColor} />
+                      <Skeleton width={20} height={12} baseColor={baseColor} highlightColor={highlightColor} />
                     </div>
                   </div>
 
-                  {/* قیمت دلار و تومان (حالت موبایل) */}
                   <div className="md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3">
-                    <Skeleton width={60} height={16} />
-                    <Skeleton width={80} height={16} />
+                    <Skeleton width={30} height={16} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={16} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
-                  {/* قیمت دلار و تومان (دسکتاپ) */}
                   <div className="hidden md:block md:col-span-1 text-center">
-                    <Skeleton width={60} height={16} />
+                    <Skeleton width={40} height={16} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                   <div className="hidden md:block md:col-span-1 text-center">
-                    <Skeleton width={80} height={16} />
+                    <Skeleton width={40} height={16} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
-                  {/* درصد تغییر قیمت */}
                   <div className="text-center">
-                    <Skeleton width={50} height={16} />
+                    <Skeleton width={20} height={16} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
-                  {/* چارت */}
                   <div className="hidden md:flex justify-center">
-                    <Skeleton width={64} height={31} />
+                    <Skeleton width={50} height={31} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
-                  {/* دکمه جزئیات بیشتر */}
                   <div>
-                    <Skeleton width={80} height={30} />
+                    <Skeleton width={50} height={30} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                 </div>
               ))
@@ -309,8 +307,8 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
                       )}
                     </div>
                     <div className="flex flex-col gap-y-[2px]">
-                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">{currency.name}</span>
-                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">{currency.symbol}</span>
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">  {currency?.name?.length > 10 ? currency.name.slice(0, 10) + "..." : currency?.name}</span>
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">  {currency?.symbol?.length > 7 ? "..." + currency.symbol.slice(0, 7) : currency?.symbol}</span>
                     </div>
 
                   </div>
@@ -318,7 +316,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
 
                   <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
                     <div className="text-end sm:text-center">{currency.lastPrice} $</div>
-                    <div className="text-end sm:text-center">{currency.priceToman} تومان</div>
+                    <div className="text-end sm:text-center"> {sort === "min" ? currency.priceToman : formatNumber(currency.priceToman)} تومان</div>
                   </div>
 
 
@@ -326,7 +324,7 @@ export default function LivePriceTable({ infoMap, infoLoading }: any) {
                     <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.lastPrice} USDT</div>
                   )}
                   {currency.priceToman && (
-                    <div className="col-span-0 hidden md:block md:col-span-1 text-center">{currency.priceToman} تومان</div>
+                    <div className="col-span-0 hidden md:block md:col-span-1 text-center"> {sort === "min" ? currency.priceToman : formatNumber(currency.priceToman)}تومان</div>
                   )}
 
 

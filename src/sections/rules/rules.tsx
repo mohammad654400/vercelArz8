@@ -70,8 +70,8 @@ export default function Rules() {
             </div>
 
             <div className="flex flex-col w-full  justify-center items-center text-center sm:px-[58px] lg:px-0 mb-10">
-                <span className="w-full flex justify-center lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
-                <span className="w-full flex justify-center lg:px-[198px] text-sm lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
+                <span className="w-full flex justify-center lg:px-[198px] text-[13px] lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
+                <span className="w-full flex justify-center lg:px-[198px] text-[13px] lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
             </div>
             {isDrawerOpen ? (
                 <div

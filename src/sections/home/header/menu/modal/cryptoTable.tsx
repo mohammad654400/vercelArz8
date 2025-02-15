@@ -1,3 +1,4 @@
+import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import useGetData from "@/hooks/useGetData";
 import Link from "next/link";
@@ -24,10 +25,12 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
   const [sort, setSort] = useState<string>("default");
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const { baseColor, highlightColor } = useTheme();
+
 
   const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
 
-  const { data: cryptocurrencies, isLoading:cryptocurrenciesLoading } = useGetData(
+  const { data: cryptocurrencies, isLoading: cryptocurrenciesLoading } = useGetData(
     "cryptocurrencies",
     60000,
     { limit: 7, page, sort, search: searchQuery }
@@ -179,24 +182,24 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
               >
                 <div className="w-2/5 flex items-center gap-2">
                   <div className="w-[25px] h-[25px] flex">
-                    <Skeleton circle={true} width={25} height={25} />
+                    <Skeleton circle={true} width={25} height={25} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <Skeleton width={60} height={10} />
-                    <Skeleton width={40} height={8} />
+                    <Skeleton width={60} height={10}  baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={8}  baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
                 </div>
 
                 <div className="w-1/5 text-center">
-                  <Skeleton width={50} height={10} />
+                  <Skeleton width={50} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                 </div>
 
                 <div className="w-2/5 pr-9 text-right">
-                  <Skeleton width={80} height={10} />
+                  <Skeleton width={80} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                 </div>
               </div>
             ))
-          ) :  (
+          ) : (
             displayedCurrencies.map((crypto, index) => (
               <Link href={`/coins/${crypto.symbol}`} key={index}>
                 <div

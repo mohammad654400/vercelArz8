@@ -1,4 +1,5 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
+import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -26,7 +27,7 @@ interface CategoryProps {
 }
 
 export default function Category({ open, setOpen, title, data, infoMap, infoLoading, isLoading }: CategoryProps) {
-
+  const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
 
 
@@ -47,8 +48,6 @@ export default function Category({ open, setOpen, title, data, infoMap, infoLoad
 
 
   const filteredData = useMemo(() => {
-
-
     return data?.map((item: any) => {
       const info = infoMap[item.symbol] || [{}];
       return {
@@ -93,22 +92,29 @@ export default function Category({ open, setOpen, title, data, infoMap, infoLoad
 
         {isLoading || infoLoading || displayedCurrencies.length === 0 ? (
           [...Array(3)].map((_, index) => (
-            <div className="flex flex-col">
-              <div key={index} className=" py-1 flex items-center gap-x-3 md:gap-x-5">
+            <div key={index} className="flex flex-col">
+              <div className=" py-1 flex items-center gap-x-3 md:gap-x-5">
                 <div className="flex justify-center items-center my-auto">
-                  <Skeleton circle width={41} height={41} />
+                  <Skeleton circle width={41} height={41} baseColor={baseColor} highlightColor={highlightColor} />
                 </div>
-                <div className="flex flex-col ">
-                  <Skeleton width={80} height={16} />
-                  <Skeleton width={50} height={14} />
+                <div className="flex flex-col mr-1">
+                  <Skeleton width={70} height={16} baseColor={baseColor} highlightColor={highlightColor} />
+                  <Skeleton width={40} height={14} baseColor={baseColor} highlightColor={highlightColor} />
                 </div>
                 <div className="mr-auto flex flex-col ">
-                  <Skeleton width={80} height={16} />
-                  <Skeleton width={60} height={14} />
+                  <Skeleton width={70} height={16} baseColor={baseColor} highlightColor={highlightColor} />
+                  <Skeleton width={50} height={14} baseColor={baseColor} highlightColor={highlightColor} />
                 </div>
               </div>
-              <Skeleton height={1} width="100%" />
-            </div>
+              {index !== 2 && (
+                <Skeleton
+                  height={1}
+                  width="100%"
+                  baseColor={baseColor}
+                  highlightColor={highlightColor}
+                />
+              )}           
+               </div>
           ))
         ) : Array.isArray(displayedCurrencies) && displayedCurrencies?.length > 0 ? (
           displayedCurrencies.map((item, index) => (

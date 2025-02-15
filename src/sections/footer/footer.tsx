@@ -62,8 +62,8 @@ export default function Footer() {
                     <Link href="/coins"><li>قیمت لحظه ای ارز ها</li></Link>
                     <Link href="/download"><li> دانلود اپلیکیشن</li></Link>
                     <Link href="/calculate"> <li>ماشین حساب</li></Link>
-                    <Link href="/coin"><li>گردونه شانس </li></Link>
-                    <Link href="/bugbounty"><li>باگ بانتی</li></Link>
+                    <Link href="/wheel-luck"><li>گردونه شانس </li></Link>
+                    <Link href="/bug-bounty"><li>باگ بانتی</li></Link>
                     <Link href="https://arz8.com/blog/"><li>وبلاگ</li></Link>
                   </ul>
                 </div>

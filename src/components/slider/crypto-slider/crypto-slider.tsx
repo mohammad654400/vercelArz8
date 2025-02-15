@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; // برای استایل‌دهی به اسکللت‌ها
+import { useTheme } from "@/contexts/theme-provider";
 
 interface HomeCurrency {
   symbol: string;
@@ -53,7 +54,7 @@ const chunkArray = (array: any[], size: number) => {
 };
 
 export default function BannerSlider({ homeData, infoData,infoLoading,homeLoading }: { homeData: HomeData; infoData: InfoData;infoLoading:boolean;homeLoading:boolean }) {
-
+  const { baseColor, highlightColor } = useTheme();
   const [mergedData, setMergedData] = useState<MergedData[]>([]);
 
   useEffect(() => {
@@ -91,6 +92,8 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
     verticalSwiping: true,
   };
 
+
+
   return (
     <div className="w-full">
       <Slider {...settings}>
@@ -101,8 +104,8 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                 <div key={index} className="flex justify-between w-full h-full pl-3 md:pl-4">
                   {/* قیمت و درصد تغییر */}
                   <div className="flex flex-col justify-center">
-                    <Skeleton width={60} height={12} />
-                    <Skeleton width={40} height={10} />
+                    <Skeleton width={60} height={12} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
                   {/* آیکون و اطلاعات ارز */}
@@ -118,11 +121,11 @@ export default function BannerSlider({ homeData, infoData,infoLoading,homeLoadin
                   `}
                   >
                     <div className="flex flex-col justify-center items-end mr-1 sm:mr-3 md:mr-2">
-                      <Skeleton width={50} height={10} />
-                      <Skeleton width={30} height={10} />
+                      <Skeleton width={50} height={10} baseColor={baseColor} highlightColor={highlightColor}/>
+                      <Skeleton width={30} height={10} baseColor={baseColor} highlightColor={highlightColor}/>
                     </div>
                     <div className="w-[22px] h-[22px] md:w-[33px] md:h-[33px] my-auto">
-                      <Skeleton width="100%" height="100%" circle={true} />
+                      <Skeleton width="100%" height="100%" circle={true} baseColor={baseColor} highlightColor={highlightColor}/>
                     </div>
                   </div>
                 </div>

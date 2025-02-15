@@ -54,16 +54,16 @@ const Fee: React.FC = () => {
     ];
 
     return (
-        <div className="base-style bg-background">
+        <div  className="base-style bg-background">
 
-            <div className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-[76px] sm:mt-[122px] lg:mt-32 mb-16 md:mb-36">
+            <section  className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-[76px] sm:mt-[122px] lg:mt-32 mb-16 md:mb-36">
 
-                <div className="flex flex-col w-full h-[200px] min-[380px]:h-[174px] sm:h-[296px] gap-[15px] sm:gap-[35px] lg:gap-[29px]  bg-[#242428] rounded-[17.6px] sm:rounded-[30px] justify-center items-center px-[9.5px] py-[15px] sm:px-[19px] lg:px-[157px] ">
+                <header className="flex flex-col w-full h-[200px] min-[380px]:h-[174px] sm:h-[296px] gap-[15px] sm:gap-[35px] lg:gap-[29px]  bg-[#242428] rounded-[17.6px] sm:rounded-[30px] justify-center items-center px-[9.5px] py-[15px] sm:px-[19px] lg:px-[157px] ">
                     <h2 className="w-full text-center text-[20px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h2>
                     <span className="w-full text-xs sm:text-sm lg:text-base font-semibold text-[#FFFFFF] text-center leading-[28px] sm:leading-[40px] lg:leading-[40px]" >
                         ارز هشت به دنبال فراهم آوردن بستری امن برای انجام معاملات ارز دیجیتال کاربران است . ما در ارز هشت از ابتدای شروع فعالیت سعی کردیم امکانات درخور کاربران ارزشمند خود داشته باشیم و همواره در حال به روز رسانی و بهبود عملکرد ارز هشت هستیم.
                     </span>
-                </div>
+                </header>
 
                 <div className="flex flex-col gap-10 sm:gap-[50px] lg:gap-[80px]">
 
@@ -128,7 +128,7 @@ const Fee: React.FC = () => {
                     lgTextContentLeading="lg:leading-[38.3px]"
                 />
 
-            </div>
+            </section>
 
 
         </div>
