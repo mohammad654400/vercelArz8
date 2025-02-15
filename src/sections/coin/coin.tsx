@@ -7,7 +7,6 @@ import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
 import useGetData from "@/hooks/useGetData";
-import Loading from "@/components/loading";
 
 
 const data2 = {
@@ -108,9 +107,7 @@ export default function Coin() {
             قیمت لحظه ای ارز های دیحیتال
           </h1>
           <p className="text-xs sm:text-sm pt-5 font-normal text-center w-[330px] sm:w-[477px] md:w-[575px] !leading-6 sm:!leading-10 ">
-            در این صفحه، قیمت لحظه‌ای و بروزترین تغییرات ارزهای دیجیتال محبوب را
-            مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را
-            جستجو کنید
+          برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید.
           </p>
           <div className="relative p-5 ">
             <input
@@ -159,7 +156,7 @@ export default function Coin() {
             </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
-            <LivePriceTable infoMap={infoMap} infoLoading={infoLoading} />
+            <LivePriceTable infoMap={infoMap}  />
           </div>
         </div>
         <MoreDetails

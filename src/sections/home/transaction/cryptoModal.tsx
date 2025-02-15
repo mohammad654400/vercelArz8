@@ -2,9 +2,12 @@ import Search from "@/assets/icons/search";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import React, { useState } from "react";
-export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy,  infoLoading,
-  homeLoading  }: any) {
+import { useTheme } from "@/contexts/theme-provider";
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, infoLoading,
+  homeLoading }: any) {
   const [search, setSearch] = useState("");
+  const { baseColor, highlightColor } = useTheme();
+
 
   // const filteredCurrencies = currencies.filter(
   //   (currency: any) =>
@@ -30,13 +33,13 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
   };
   console.log("infoLoading:", infoLoading);
   console.log("homeLoading:", homeLoading);
-  
+
   return (
     <div
       onClick={handleBackgroundClick}
-      className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 "
     >
-      <div onClick={e => e.stopPropagation()} className="w-[388px] bg-background rounded-2xl shadow-xl overflow-hidden">
+      <div onClick={e => e.stopPropagation()} className="w-[388px] max-w-[85%] bg-background rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-semibold">انتخاب ارز</h2>
@@ -74,7 +77,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
           </span>
         </div>
 
-        <div className="h-[400px] overflow-y-auto px-2 ">
+        <div className="h-[300px] md:h-[400px] overflow-y-auto px-2 ">
           {infoLoading === true || homeLoading === true ? (
             Array(5).fill(0).map((_, index) => (
               <div
@@ -82,23 +85,20 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                 className="flex items-center rounded-2xl justify-between px-4 py-3 "
               >
                 <div className="flex items-center gap-2">
-                  {/* اسکلت برای آیکون */}
                   <div className="w-9 h-9">
-                    <Skeleton circle={true} width={36} height={36} />
+                    <Skeleton circle={true} width={36} height={36} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
                   <div>
-                    {/* اسکلت برای نام و نماد */}
-                    <Skeleton width={80} height={14} />
-                    <Skeleton width={40} height={10} style={{ marginTop: "4px" }} />
+                    <Skeleton width={80} height={14} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} style={{ marginTop: "4px" }} />
                   </div>
                 </div>
 
                 <div className="text-left">
-                  {/* اسکلت برای قیمت خرید یا فروش */}
-                  <Skeleton width={70} height={14} />
-                  {/* اسکلت برای تغییر درصد */}
-                  <Skeleton width={40} height={10} style={{ marginTop: "4px" }} />
+
+                  <Skeleton width={70} height={14} baseColor={baseColor} highlightColor={highlightColor} />
+                  <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} style={{ marginTop: "4px" }} />
                 </div>
               </div>
             ))
@@ -113,17 +113,17 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-9 h-9">
-                      {!currency.isFont ? (
+                      {currency.isFont ? (
+                        <i
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                          style={{ color: currency.color }}
+                        ></i>
+                      ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                           alt={currency.symbol}
                           className="w-full h-full object-cover"
                         />
-                      ) : (
-                        <i
-                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
-                          style={{ color: currency.color }}
-                        ></i>
                       )}
                     </div>
                     <div>

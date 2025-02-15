@@ -7,8 +7,7 @@ interface FeeContentProps {
   }
 
   interface TableRow {
-    string: string;
-    
+    [key: string]: string;
   }
   
   export const TabContent: React.FC<FeeContentProps> = ({ tableHeaders, tableData, listData }) => {
@@ -19,7 +18,7 @@ interface FeeContentProps {
             <thead className="w-full">
               <tr className="flex w-full text-foreground">
                 {tableHeaders.map((header, index) => (
-                  <th key={index} className="py-[14px] border-b-2 border-primary w-1/6 min-w-[130px] sm:min-w-[180px] text-center text-[10px] sm:text-base font-semibold text-foreground">
+                  <th key={header.key}  scope="col" className="py-[14px] border-b-2 border-primary w-1/6 min-w-[130px] sm:min-w-[180px] text-center text-[10px] sm:text-base font-semibold text-foreground">
                     {header.label}
                   </th>
                 ))}

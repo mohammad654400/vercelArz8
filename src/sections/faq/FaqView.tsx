@@ -51,8 +51,8 @@ export default function FaqView() {
 
 
   return (
-    <div className="bg-background pt-20">
- <div className="w-full bg-[#242428] h-[221px] sm:h-[362px]">
+    <section  className="bg-background pt-20">
+      <header  className="w-full bg-[#242428] h-[221px] sm:h-[362px]">
         <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
 
           <div className="w-full h-full flex flex-col  justify-center items-center self-center ">
@@ -101,16 +101,16 @@ export default function FaqView() {
             <WaveDivider strokeColor="#FFFFFF" />
           </div>
         </div>
-      </div>
+      </header>
 
 
-      <div className="base-style" style={{ gap: "0" }}>
+      <section  className="base-style" style={{ gap: "0" }}>
         <h2 className="hidden xl:flex text-[30px] font-bold mt-[60px] mb-[40px]">مرکز راهنمایی و سوالات متداول</h2>
 
         <div className="relative mb-10 mt-[105px] xl:mt-0  grid min-[360px]:grid-cols-2  sm:grid-cols-3  min-[1150px]:grid-cols-6 w-full h-full gap-4 grid-flow-row-dense ">
 
           {categories.map((category) => (
-            <div
+            <article
               key={category.id}
               className={`relative mx-auto flex flex-col mb-14 w-[155px] min-[380px]:w-44 ${selectedCategory !== category.id ? "opacity-50" : ""}`}
               onClick={() => setSelectedCategory(category.id)}
@@ -134,7 +134,7 @@ export default function FaqView() {
                   <div className="text-4xl z-10 w-14 h-14">
                     <category.icon />
                   </div>
-                  <span className="text-lg font-semibold  mt-2 z-10">{category.title}</span>
+                  <span className="text-sm sm:text-lg font-semibold  mt-2 z-10">{category.title}</span>
                 </div>
               </div>
               {selectedCategory === category.id && (
@@ -142,7 +142,7 @@ export default function FaqView() {
                   <WaveDivider position="absolute" strokeColor="#FFC107" />
                 </div>
               )}
-            </div>
+            </article>
           ))}
         </div>
         <div className="w-full flex flex-col gap-[10px] sm:gap-[20px] lg:gap-[20px]">
@@ -172,8 +172,8 @@ export default function FaqView() {
           ))}
         </div>
 
-      </div>
+      </section>
 
-    </div>
+    </section>
   );
 }
