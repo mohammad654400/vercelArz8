@@ -7,6 +7,7 @@ import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; // برای استایل‌دهی به اسکللت‌ها
 import { useTheme } from "@/contexts/theme-provider";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
 interface HomeCurrency {
   symbol: string;
@@ -42,7 +43,7 @@ interface MergedData {
   icon: string | undefined;
   color: string | undefined;
   isFont: boolean;
-  priceToman: number;
+  priceToman: string;
   priceChangePercent: string;
 }
 
@@ -56,7 +57,7 @@ const chunkArray = (array: any[], size: number) => {
 export default function BannerSlider({ homeData, infoData, infoLoading, homeLoading }: { homeData: HomeData; infoData: InfoData; infoLoading: boolean; homeLoading: boolean }) {
   const { baseColor, highlightColor } = useTheme();
   const [mergedData, setMergedData] = useState<MergedData[]>([]);
-
+  const { formatNumber } = useFormattedNumber()
   useEffect(() => {
     const newMergedData =
       (homeData?.profit || []).concat(homeData?.loss || [])
@@ -70,7 +71,7 @@ export default function BannerSlider({ homeData, infoData, infoLoading, homeLoad
             icon: matchedInfo?.icon,
             color: matchedInfo?.color,
             isFont: matchedInfo?.isFont || false,
-            priceToman: parseFloat(item.priceToman),
+            priceToman: item?.priceToman ,
             priceChangePercent: item.priceChangePercent,
           };
         });
@@ -141,7 +142,7 @@ export default function BannerSlider({ homeData, infoData, infoLoading, homeLoad
                     <div className="flex flex-col justify-center">
                       <div className="flex pb-1 gap-x-1 text-[10px] md:text-[13.5px] font-semibold">
                         <span className="text-[8px]">تومان</span>
-                        <p>{card.priceToman}</p>
+                        <p>{formatNumber(card.priceToman)}</p>
                       </div>
                       <p
                         className={`${parseFloat(card.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
