@@ -44,6 +44,7 @@ interface CryptocurrencyInfo {
 export default function Coin() {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [symbolsQuery, setSymbolsQuery] = useState<string[]>([]);
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -72,6 +73,7 @@ export default function Coin() {
     page: 1,
     sort: "default",
     search: searchQuery,
+    symbols:symbolsQuery
   });
 
   const infoMap = useMemo(() => {
@@ -126,8 +128,10 @@ export default function Coin() {
                   setSuggestions={setSugesstions}
                   value={value}
                   setSearchQuery={setSearchQuery}
+                  setSymbolsQuery={setSymbolsQuery}
                   searchData={searchData?.lists}
                   infoMap={infoMap}
+                  symbolsQuery={symbolsQuery}
                 />
               )}
             </div>

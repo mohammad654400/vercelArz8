@@ -121,7 +121,7 @@ export default function LivePriceTable({ infoMap }: any) {
 
 
   return (
-    <div className=" bg-background dark:bg-[#3C3B41] shadow-lg rounded-xl overflow-hidden">
+    <div className=" bg-background dark:bg-[#3C3B41]  rounded-xl overflow-hidden">
       {/* search */}
       <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-2 py-3 text-[#FFFFFF80]">
         <div className="relative block md:hidden">

@@ -14,7 +14,7 @@ const fetchData = async (endpoint: string, params: Record<string, any> = {}) => 
 
 const useGetData = (
   endpoint: string,
-  refreshInterval: number = 0 ,
+  refreshInterval: number = 0,
   params?: Record<string, any>
 ) => {
   return useQuery({
