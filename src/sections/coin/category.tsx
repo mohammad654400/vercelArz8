@@ -1,5 +1,6 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
 import { useTheme } from "@/contexts/theme-provider";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -29,6 +30,7 @@ interface CategoryProps {
 export default function Category({ open, setOpen, title, data, infoMap, infoLoading, isLoading }: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+  const {formatNumber} = useFormattedNumber()
 
 
   useEffect(() => {
@@ -152,7 +154,7 @@ export default function Category({ open, setOpen, title, data, infoMap, infoLoad
                   </div>
                   <div className={`flex flex-col gap-y-3 items-center `}>
                     <div className="flex">
-                      <p className="leading-3 text-sm font-semibold ">{item.priceToman} </p>
+                      <p className="leading-3 text-sm font-semibold ">{formatNumber(item.priceToman)} </p>
                       <span className="leading-3 text-sm font-semibold mr-1">تومان</span>
                     </div>
                     <div dir="ltr" className="w-full flex ">
