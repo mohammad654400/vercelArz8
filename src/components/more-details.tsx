@@ -33,7 +33,7 @@ const MoreDetails = ({firstTitle,secondTitle,text}:any) => {
           className="w-full  hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2 bg-opacity-0"
         >
           {isExpanded ? <span className="w-5 h-5"><ArrowUp /></span> : <span className="w-5 h-5"><ArrowDown /></span> }
-          {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
+          {isExpanded ? <span className="text-sm sm:text-lg">نمایش کمتر</span> : <span  className="text-sm sm:text-lg"> نمایش بیشتر</span>}
         </button>
       </div>
     </div>

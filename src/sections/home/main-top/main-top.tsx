@@ -17,12 +17,12 @@ export default function MainTop({ homeData, infoData, infoLoading, homeLoading }
           <h1 className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
           </h1>
-          <p className="text-[13.23px] sm:text-base font-semibold">
+          <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
             <span className="text-primary text-xl sm:text-3xl font-semibold">1300</span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
-          <p className="mx-auto text-sm md:text-lg md:mx-0  opacity-50">
+          <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
             در سریع ترین زمان ممکن ثبت نام کنید.
           </p>
           <div className="relative flex items-center">
