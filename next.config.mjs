@@ -25,9 +25,9 @@ const nextConfig = {
         destination: "https://app.arz8.com/api/landing/home",
       },
       {
-        source: "/api/proxy/landing/cryptocurrencies",
-        destination: "https://app.arz8.com/api/landing/cryptocurrencies",
-      },
+        source: "/api/proxy/landing/cryptocurrencies/:slug*",
+        destination: "https://app.arz8.com/api/landing/cryptocurrencies/:slug*",
+      }
     ];
   },
 };
