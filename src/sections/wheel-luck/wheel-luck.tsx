@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import wheel from "@/assets/images/wheelluck/wheell.png"
 import ImageCarousel from './Image-Carousel'
 import Discount from "@/assets/icons/wheel/discount"
@@ -79,7 +79,7 @@ export const AccordionData = [
 ]
 
 export default function WheelLuck() {
-
+    const [selectItem, setSelectItem] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -242,6 +242,8 @@ export default function WheelLuck() {
           <div className='flex flex-col gap-5'>
             <Accordion
               items={AccordionData}
+                 defaultOpenId={selectItem}
+                    onToggle={(id) => setSelectItem(id)}
               textTitle="text-[12px]"
               smTextTitle="sm:text-xl"
               lgTextTitle="lg:text-xl"

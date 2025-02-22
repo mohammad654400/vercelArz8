@@ -81,7 +81,7 @@ export default function Buy({
         <HalfCircle />
       </div>
       <div
-        className={`flex justify-between items-center rounded-xl  px-4 w-full   ${
+        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${
           width < 1196 && route !== "calculate"
             ? "flex-col "
             :route === "calculate"

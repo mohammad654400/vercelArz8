@@ -7,7 +7,7 @@ interface AccordionProps {
   titleBgColor?: string;
   contentBgColor?: string;
   highlightEnabled?:boolean;
-
+  onToggle: (id: number) => void;
   gap?: string;
   smGap?: string;
   lgGap?: string;
@@ -26,6 +26,7 @@ interface AccordionProps {
 export default function Accordion({ 
   items, 
   defaultOpenId,
+  onToggle,
   titleBgColor,
   contentBgColor,
   highlightEnabled,
@@ -53,7 +54,11 @@ export default function Accordion({
   const [openItemId, setOpenItemId] = useState<number | null>( defaultOpenId || null);  
 
   const handleToggle = (id: number) => {
-    setOpenItemId((prevId) => (prevId === id ? null : id));
+    const newOpenItemId = openItemId === id ? null : id;
+    setOpenItemId(newOpenItemId);
+    if (newOpenItemId !== null) {
+      onToggle(newOpenItemId);
+    }
   };
 
   useEffect(() => {

@@ -73,7 +73,7 @@ export const AccordionData = [
     id: 1,
     title: "چگونه ارزهای دیگر را به بیت کوین تبدیل کنیم؟",
     content:
-    "در دنیای پر از پدیده‌ و اصطلاحات ارز دیجیتال یکی از واژه‌هایی که هیاهو به همراه داشته است، عبارت “بول ران” (Bull Run) است. این اصطلاح همیشه به زمانی اشاره دارد که بازار در وضعیت گاوی و یا صعودی قرار دارد."
+      "در دنیای پر از پدیده‌ و اصطلاحات ارز دیجیتال یکی از واژه‌هایی که هیاهو به همراه داشته است، عبارت “بول ران” (Bull Run) است. این اصطلاح همیشه به زمانی اشاره دارد که بازار در وضعیت گاوی و یا صعودی قرار دارد."
   },
 
   {
@@ -86,7 +86,7 @@ export const AccordionData = [
     id: 3,
     title: "آیا سطح حساب کاربری در برنده شدن جایزه گردونه شانس تأثیرگذار است؟",
     content:
-      "بله، در گردونه شانس جدید «ارز هشت»، جوایزی که برای هر سطح در نظر گرفته شده متفاوت است و این موضوع وابسته به حجم معاملات و گردش 30 روزه شما در سایت است. سطوح کاربری برای چرخش گردونه به شرح زیر است:\n\n1. **سطح برنزی:** برای کاربرانی که احراز هویت اولیه (اطلاعات هویتی) را کامل کرده و حجم معاملات آن‌ها در طی 1 ماه بین 0 تا 100 میلیون تومان بوده است.\n\n2. **سطح نقره‌ای:** گردونه شانس برای کاربرانی قابل چرخش است که حجم معاملاتی یک ماه اخیرشان از 100 میلیون تا 400 میلیون تومان باشد.\n\n3. **سطح طلایی:** در این سطح، مبلغ گردش معاملاتی شما باید در یک ماه از 400 میلیون تا 1 میلیارد تومان باشد تا بتوانید گردونه طلایی را بچرخانید.\n\n4. **سطح کریستالی:** آخرین سطح، سطح کریستالی است که جوایز ویژه‌ای برای آن در نظر گرفته شده. برای چرخاندن گردونه در این سطح، حجم معاملات شما در یک ماه باید بیشتر از 1 میلیارد تومان باشد.\n\n**نکته:** در سطح‌های طلایی و کریستالی گزینه پوچ وجود ندارد و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.",
+      "بله، در گردونه شانس جدید «ارز هشت»، جوایزی که برای هر سطح در نظر گرفته شده متفاوت است و این موضوع وابسته به حجم معاملات و گردش 30 روزه شما در سایت است. سطوح کاربری برای چرخش گردونه به شرح زیر است:<br/>1.  سطح برنزی:  برای کاربرانی که احراز هویت اولیه (اطلاعات هویتی) را کامل کرده و حجم معاملات آن‌ها در طی 1 ماه بین 0 تا 100 میلیون تومان بوده است.<br/>2.  سطح نقره‌ای:  گردونه شانس برای کاربرانی قابل چرخش است که حجم معاملاتی یک ماه اخیرشان از 100 میلیون تا 400 میلیون تومان باشد.<br/>3.  سطح طلایی:  در این سطح، مبلغ گردش معاملاتی شما باید در یک ماه از 400 میلیون تا 1 میلیارد تومان باشد تا بتوانید گردونه طلایی را بچرخانید.<br/>4.  سطح کریستالی:  آخرین سطح، سطح کریستالی است که جوایز ویژه‌ای برای آن در نظر گرفته شده. برای چرخاندن گردونه در این سطح، حجم معاملات شما در یک ماه باید بیشتر از 1 میلیارد تومان باشد.<br/> نکته:  در سطح‌های طلایی و کریستالی گزینه پوچ وجود ندارد و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.",
   },
   {
     id: 4,
@@ -116,6 +116,7 @@ export default function DetailCoin() {
   const [favorite, setFavorites] = useState<string[]>([]);
   const route = usePathname().split("/")[2];
   const coin = data.find((item) => item.name === route) || data[0];
+  const [selectItem, setSelectItem] = useState<number | null>(null);
 
   const handlerChenge = () => {
     setOpenModal(!openModal);
@@ -202,22 +203,22 @@ export default function DetailCoin() {
           </div>
 
           <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
-          <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
+            <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
 
-            <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
-              ${coin.price}
-            </p>
-            <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
-              {coin.priceIR} تومان
-            </p>
+              <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
+                ${coin.price}
+              </p>
+              <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
+                {coin.priceIR} تومان
+              </p>
 
-          </div>
+            </div>
 
-          <div className="w-9 h-9 sm:w-[61px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
-            <span className="text-[#33B028] h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold">
-              {coin.percentage}
-            </span>
-          </div>
+            <div className="w-9 h-9 sm:w-[61px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
+              <span className="text-[#33B028] h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold">
+                {coin.percentage}
+              </span>
+            </div>
           </div>
         </div>
         <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
@@ -225,11 +226,11 @@ export default function DetailCoin() {
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
               onClick={() => handleFavorite(coin.name)}
-              className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]" 
+              className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
             >
               <Star
-               borderColor={favorite.includes(route) ? "none" : "currentColor"} 
-               backgroundColor={favorite.includes(route) ? "#FFC107" : "none"}
+                borderColor={favorite.includes(route) ? "none" : "currentColor"}
+                backgroundColor={favorite.includes(route) ? "#FFC107" : "none"}
               />
             </span>
           </div>
@@ -272,6 +273,8 @@ export default function DetailCoin() {
 
           <div className="flex flex-col gap-5 mt-10 lg:mt-11">
             <Accordion
+              defaultOpenId={selectItem}
+              onToggle={(id) => setSelectItem(id)}
               items={AccordionData}
               titleBgColor="bg-[#FFEAC1] dark:bg-[#242428]"
               contentBgColor="bg-[#FFF9EE] dark:bg-[#302F34]"

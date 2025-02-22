@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 import ArrowTop from "@/assets/icons/arrrow/arrow-top";
 
@@ -35,10 +35,23 @@ export const AccordionItem = ({
   contentClasses,
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState<number | undefined>(0);
   const dynamicTitleClasses = titleClasses;
   const dynamicContentClasses = videoLink
     ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
     : contentClasses;
+
+  useLayoutEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen, videoLink, content]); // Recalculate when content changes or isOpen changes
+
+  const handleIframeLoad = () => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  };
 
   return (
     <div
@@ -80,9 +93,9 @@ export const AccordionItem = ({
           </div>
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 px-8  `}
+          className={`overflow-hidden transition-all duration-500 px-8`}
           style={{
-            maxHeight: isOpen ? contentRef.current?.scrollHeight : 0,
+            height: isOpen ? contentHeight : 0,
           }}
           ref={contentRef}
         >
@@ -91,14 +104,15 @@ export const AccordionItem = ({
               videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
             }`}
           >
-            {videoLink && (
+            {videoLink && isOpen && (
               <div className="flex-shrink-0 sm:w-2/5 w-full">
                 <iframe
                   src={sanitizeApparatUrl(videoLink)}
                   title="آموزش ویدئویی"
-                  className="w-full aspect-video rounded-xl  mb-2 sm:mb-5"
+                  className="w-full aspect-video rounded-xl mb-2 sm:mb-5"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  onLoad={handleIframeLoad} 
                 ></iframe>
               </div>
             )}
