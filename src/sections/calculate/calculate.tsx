@@ -13,7 +13,8 @@ export default function Calculate() {
         </div>
       </header>
 
-      <main className="flex flex-col gap-10 lg:gap-[100px]" >
+
+      <main>
         <section className="max-w-[750px] mx-auto ">
           <Transaction header={false} showPrice={false} infoLoading={false} homeLoading={false}/>
         </section>
@@ -23,7 +24,7 @@ export default function Calculate() {
         <section className="base-style">
           <div className="flex flex-col gap-1">
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-xs sm:text-sm lg:text-xl font-bold mb-1">
+              <h2 className="text-sm lg:text-xl font-bold mb-1">
                 ماشین حساب تبدیل قیمت ارزهای دیجیتال صرافی ارز هشت
               </h2>
               <p >
@@ -37,8 +38,9 @@ export default function Calculate() {
             </article>
 
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-xs sm:text-sm lg:text-xl font-bold mb-1">
+              <h2 className="text-sm lg:text-xl font-bold mb-1">
                 مزایای استفاده از ماشین حساب ارز دیجیتال ارز هشت
+
               </h2>
               <ul className="flex flex-col list-decimal list-inside ">
                 <li>تبدیل دقیق ارزها</li>
@@ -55,7 +57,7 @@ export default function Calculate() {
             </article>
 
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-xs sm:text-sm lg:text-xl font-bold mb-1">
+              <h2 className="text-sm lg:text-xl font-bold mb-1">
                 ویژگی‌های منحصربه‌فرد ماشین حساب ارز دیجیتال ارز هشت
               </h2>
               <ul className="flex flex-col list-decimal list-inside ">
@@ -68,7 +70,7 @@ export default function Calculate() {
             </article>
 
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-xs sm:text-sm lg:text-xl font-bold mb-1">
+              <h2 className="text-sm lg:text-xl font-bold mb-1">
                 نحوه استفاده از ماشین حساب ارز دیجیتال ارز هشت
               </h2>
               <ul className="flex flex-col list-decimal list-inside ">
@@ -84,7 +86,7 @@ export default function Calculate() {
             </article>
 
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-xs sm:text-sm lg:text-xl font-bold mb-1">شروع معامله در صرافی ارز هشت</h2>
+              <h2 className="text-sm lg:text-xl font-bold mb-1">شروع معامله در صرافی ارز هشت</h2>
               <p className="">
                 پس از محاسبات اولیه با ماشین حساب تبدیل ارز دیجیتال، می‌توانید در
                 صرافی ارز هشت ثبت‌نام کنید و مراحل احراز هویت خود را طی کنید. این
