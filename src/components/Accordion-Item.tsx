@@ -35,10 +35,7 @@ export const AccordionItem = ({
   contentClasses,
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const dynamicTitleClasses = videoLink
-    ? "text-sm sm:text-[21px] lg:text-[20px]"
-    : titleClasses;
+  const dynamicTitleClasses = titleClasses;
   const dynamicContentClasses = videoLink
     ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
     : contentClasses;
@@ -69,16 +66,18 @@ export const AccordionItem = ({
       >
         <button
           onClick={() => onToggle(id)}
-          className={`w-full text-left font-medium flex justify-between  px-8 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+          className={`w-full text-left font-medium flex justify-between  px-4 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
         >
           <span
             className={`text-start self-center font-semibold ml-[5px] !leading-6 sm:leading-[33.8px] ${dynamicTitleClasses}`}
           >
             {title}
           </span>
-          <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px] flex items-start justify-start self-start my-2 lg:my-0">
-            {isOpen ? <ArrowTop /> : <ArrowBottom />}
-          </span>
+          <div className=" min-w-7 lg:min-w-11 flex items-start justify-end self-start  my-1 lg:my-0">
+            <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px]">
+              {isOpen ? <ArrowTop /> : <ArrowBottom />}
+            </span>
+          </div>
         </button>
         <div
           className={`overflow-hidden transition-all duration-500 px-8  `}

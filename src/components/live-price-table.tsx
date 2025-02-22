@@ -244,7 +244,7 @@ export default function LivePriceTable({ infoMap }: any) {
             </span>
           </div>
 
-          <div className="min-h-96 divide-y divide-gray-200 text-[10px] md:text-sm">
+          <div className="min-h-80 divide-y divide-gray-200 text-[10px] md:text-sm">
             {displayedCurrencies.lists.length === 0
               ? [...Array(5)].map((_, index) => (
                   <div

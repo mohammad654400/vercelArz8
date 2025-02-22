@@ -23,7 +23,7 @@ export default function Home() {
         <SecondBannerSlider />
         <RealTimePrice homeData={homeData?.table} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
       </div>
-      <div className="px-5 md:px-12 lg:px-16 xl:px-0">
+      <div className="px-5 md:px-12 lg:px-16 xl:px-0 mt-[72px] mb-10 lg:my-[100px]">
         <Banner />
       </div>
       <div className="base-style">

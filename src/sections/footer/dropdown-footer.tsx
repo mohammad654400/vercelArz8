@@ -31,7 +31,7 @@ export default function DropdownMenu() {
         {openSection === "links" && (
           <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
             <Link href="/coins/BTC">خرید و فروش ارزدیجیتال<li className="hover:text-primary"></li></Link>
-            <Link href="/coin"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
+            <Link href="/coins"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
             <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
             <Link href="/coin">گردونه شانس <li className="hover:text-primary"></li></Link>
             <Link href="/calculate">ماشین حساب<li className="hover:text-primary"></li></Link>
