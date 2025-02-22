@@ -4,7 +4,7 @@ import SendIcon from "@/assets/icons/detailcoin/send";
 import SocialIcons from "@/assets/icons/detailcoin/socialicons";
 import DocumentCode from "@/assets/icons/detailcoin/documentcode";
 import Star from "@/assets/icons/star";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import TransAction from "@/sections/home/transaction/transAction";
 import DetailDescription from "./description";
 import ArrowBotton from "@/assets/icons/arrrow/arrowup";
@@ -17,6 +17,40 @@ import Earth from "@/assets/icons/detailcoin/earth";
 import CryptoModal from "@/sections/home/transaction/cryptoModal";
 import { usePathname } from "next/navigation";
 import Segment from "./segment";
+import TradingViewSimpleChart from "@/components/charts/trading-view-simple-chart";
+import useGetData from "@/hooks/useGetData";
+import TradingViewAdvancedChart from "@/components/charts/trading-view-advanced-chart";
+import { useTheme } from "@/contexts/theme-provider";
+import CryptoDetails from "./crypto-details";
+import Skeleton from "react-loading-skeleton";
+
+interface HomeCurrency {
+  symbol: string;
+  price: {
+    buy: string;
+    sell: string;
+  }
+  fee: string;
+  priceChangePercent: string
+}
+
+interface HomeData {
+  [key: string]: HomeCurrency[];
+}
+
+interface CryptocurrencyInfo {
+  id: number;
+  symbol: string;
+  name: { fa: string; en?: string };
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+}
+
+interface InfoData {
+  cryptocurrency: CryptocurrencyInfo[];
+}
 
 interface Comment {
   id: string;
@@ -68,7 +102,8 @@ const data = [
     icon: <BNB />,
   },
 ];
-export const AccordionData = [
+
+const AccordionData = [
   {
     id: 1,
     title: "چگونه ارزهای دیگر را به بیت کوین تبدیل کنیم؟",
@@ -86,7 +121,7 @@ export const AccordionData = [
     id: 3,
     title: "آیا سطح حساب کاربری در برنده شدن جایزه گردونه شانس تأثیرگذار است؟",
     content:
-      "بله، در گردونه شانس جدید «ارز هشت»، جوایزی که برای هر سطح در نظر گرفته شده متفاوت است و این موضوع وابسته به حجم معاملات و گردش 30 روزه شما در سایت است. سطوح کاربری برای چرخش گردونه به شرح زیر است:<br/>1.  سطح برنزی:  برای کاربرانی که احراز هویت اولیه (اطلاعات هویتی) را کامل کرده و حجم معاملات آن‌ها در طی 1 ماه بین 0 تا 100 میلیون تومان بوده است.<br/>2.  سطح نقره‌ای:  گردونه شانس برای کاربرانی قابل چرخش است که حجم معاملاتی یک ماه اخیرشان از 100 میلیون تا 400 میلیون تومان باشد.<br/>3.  سطح طلایی:  در این سطح، مبلغ گردش معاملاتی شما باید در یک ماه از 400 میلیون تا 1 میلیارد تومان باشد تا بتوانید گردونه طلایی را بچرخانید.<br/>4.  سطح کریستالی:  آخرین سطح، سطح کریستالی است که جوایز ویژه‌ای برای آن در نظر گرفته شده. برای چرخاندن گردونه در این سطح، حجم معاملات شما در یک ماه باید بیشتر از 1 میلیارد تومان باشد.<br/> نکته:  در سطح‌های طلایی و کریستالی گزینه پوچ وجود ندارد و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.",
+      "بله، در گردونه شانس جدید «ارز هشت»، جوایزی که برای هر سطح در نظر گرفته شده متفاوت است و این موضوع وابسته به حجم معاملات و گردش 30 روزه شما در سایت است. سطوح کاربری برای چرخش گردونه به شرح زیر است: <br/>1.  سطح برنزی:  برای کاربرانی که احراز هویت اولیه (اطلاعات هویتی) را کامل کرده و حجم معاملات آن‌ها در طی 1 ماه بین 0 تا 100 میلیون تومان بوده است. <br/>2.  سطح نقره‌ای:  گردونه شانس برای کاربرانی قابل چرخش است که حجم معاملاتی یک ماه اخیرشان از 100 میلیون تا 400 میلیون تومان باشد. <br/>3.  سطح طلایی:  در این سطح، مبلغ گردش معاملاتی شما باید در یک ماه از 400 میلیون تا 1 میلیارد تومان باشد تا بتوانید گردونه طلایی را بچرخانید. <br/>4.  سطح کریستالی:  آخرین سطح، سطح کریستالی است که جوایز ویژه‌ای برای آن در نظر گرفته شده. برای چرخاندن گردونه در این سطح، حجم معاملات شما در یک ماه باید بیشتر از 1 میلیارد تومان باشد. <br/> نکته:  در سطح‌های طلایی و کریستالی گزینه پوچ وجود ندارد و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.",
   },
   {
     id: 4,
@@ -114,9 +149,51 @@ export default function DetailCoin() {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
-  const route = usePathname().split("/")[2];
-  const coin = data.find((item) => item.name === route) || data[0];
+  const [isAdvancedChart, setIsAdvancedChart] = useState<boolean>(false)
+  const { theme, baseColor, highlightColor } = useTheme()
   const [selectItem, setSelectItem] = useState<number | null>(null);
+
+
+  const route = usePathname().split("/")[2].toUpperCase();
+  const { data: infoData, isLoading: infoIsLoading } = useGetData('info')
+  const { data: coinData, isLoading: coinIsLoading, error } = useGetData(`cryptocurrencies/${route}`, 6000)
+  const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
+  const coin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route) || data[0];
+
+  const coinChart = coinData?.chart
+
+  const currentCoin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route)
+
+  // array for 
+  const newCryptos = coinData?.new.map((crypto: any) => {
+    const match = infoData?.cryptocurrency?.find((item: any) => item.symbol === crypto.symbol);
+    return {
+      symbol: crypto.symbol,
+      icon: match?.icon || "default.svg",
+      name: match?.name?.fa || "نامشخص",
+      iconColor: match?.color || "#f7931a",
+      iconIsfont: match?.isFont || false,
+      lastPrice: crypto.lastPrice,
+      priceChangePercent: crypto.priceChangePercent,
+    };
+  });
+
+  const mostProfitCryptos = coinData?.profit.map((crypto: any) => {
+    const match = infoData?.cryptocurrency?.find((item: any) => item.symbol === crypto.symbol);
+    return {
+      symbol: crypto.symbol,
+      icon: match?.icon || "default.svg",
+      name: match?.name?.fa || "نامشخص",
+      iconColor: match?.color || "#f7931a",
+      iconIsfont: match?.isFont || false,
+      lastPrice: crypto.lastPrice,
+      priceChangePercent: crypto.priceChangePercent,
+    };
+  });
+
+
+
+
 
   const handlerChenge = () => {
     setOpenModal(!openModal);
@@ -166,18 +243,67 @@ export default function DetailCoin() {
     setReplyingTo(null);
   };
 
+  // -------------------------------
+
+  const cryptoMap = useMemo(() => {
+    return new Map(infoData?.cryptocurrency.map((crypto: any) => [crypto.symbol, crypto]));
+  }, [infoData]);
+
+  const filterData = useMemo(() => {
+    return Object.values(homeData ?? {}).flat().map((item: any) => {
+      const matchedInfo: Partial<CryptocurrencyInfo> = cryptoMap.get(item.symbol) || {};
+      return {
+        id: matchedInfo.id || 0,
+        symbol: item.symbol,
+        name: matchedInfo.name?.fa || "نامشخص",
+        icon: matchedInfo.icon || "",
+        color: matchedInfo.color || "#000",
+        isFont: matchedInfo.isFont || false,
+        percent: matchedInfo.percent || 0,
+        price: item.price,
+        fee: item.fee || "0",
+        priceChangePercent: item.priceChangePercent,
+      };
+    });
+  }, [homeData, cryptoMap]);
+
+
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
-      <div className="w-full justify-between flex  items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
-        <div className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:px-4 rounded-[9px] sm:rounded-2xl">
+      <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px]  ">
+        <div onClick={handlerChenge} className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:px-4 rounded-[9px] sm:rounded-2xl cursor-pointer">
+          <div className="flex  h-full justify-center gap-x-2">
+            <div className="w-7 h-7 lg:w-12 lg:h-12 my-auto">
+              {infoIsLoading ? (
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle width={41} height={41} />
+              ) : currentCoin ? (
+                currentCoin.isFont ? (
+                  <i
+                    className={`cf cf-${currentCoin.symbol?.toLowerCase() || "default"} text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: currentCoin.color || "#000" }}
+                  ></i>
+                ) : (
+                  <img
+                    src={currentCoin.icon ? `https://app.arz8.com/api/images/currency/${currentCoin.icon}` : "/default-image.png"}
+                    alt={currentCoin.symbol || "Unknown Coin"}
+                    className="w-full h-full object-cover"
+                  />
+                )
+              ) : (
+                <p>Coin not found</p>
+              )}
+            </div>
 
-          <div className="flex  h-full justify-center gap-x-2 ">
-            <div className="w-7 h-7 lg:w-12 lg:h-12 my-auto">{coin.icon}</div>
             <div className="flex flex-col  h-full justify-center gap-y-[6px] sm:gap-y-3 ">
-              <div className="flex gap-x-1 md:gap-x-2 " onClick={handlerChenge}>
-                <p className="text-xs sm:text-lg font-semibold !leading-3">
-                  {coin.Persian}
-                </p>
+              <div className="flex gap-x-1 md:gap-x-2 ">
+                {infoIsLoading ?
+                  <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={80} height={28} />
+                  :
+                  <p className="text-xs sm:text-lg font-semibold !leading-3">
+                    {coin.name.fa}
+                  </p>
+                }
+
                 <div
                   className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
                     }`}
@@ -187,7 +313,7 @@ export default function DetailCoin() {
                 </div>
                 {openModal ? (
                   <CryptoModal
-                    currencies={data}
+                    currencies={filterData}
                     toggle={setOpenModal}
                     setCurrency={setCurrency}
                     hasLink={true}
@@ -196,31 +322,55 @@ export default function DetailCoin() {
                   ""
                 )}
               </div>
-              <span className="text-xs sm:text-lg font-semibold opacity-50 flex !leading-3">
-                {coin.name}
-              </span>
+              {infoIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={60} height={18} />
+                :
+                <span className="text-xs sm:text-lg font-semibold opacity-50 flex !leading-3">
+                  {coin.name.en}
+                </span>
+              }
+
             </div>
           </div>
 
           <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
+
             <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
-
-              <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
-                ${coin.price}
-              </p>
-              <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
-                {coin.priceIR} تومان
-              </p>
-
+              {infoIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={70} height={24} />
+                :
+                <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
+                  ${coinData?.lastPrice}
+                </p>
+              }
+              {infoIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} />
+                :
+                <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
+                  {coinData?.priceToman.buy} تومان
+                </p>
+              }
             </div>
 
-            <div className="w-9 h-9 sm:w-[61px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
-              <span className="text-[#33B028] h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold">
-                {coin.percentage}
-              </span>
-            </div>
+            {
+              infoIsLoading ? (
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle width={46} height={46} />
+              ) : (
+                <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
+                  <span
+                    dir="ltr"
+                    className={`h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold ${coinData?.priceChangePercent?.includes("-") ? "text-[#F00500]" : "text-[#33B028]"
+                      }`}
+                  >
+                    {coinData?.priceChangePercent}%
+                  </span>
+                </div>
+              )
+            }
+
           </div>
         </div>
+
         <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
           <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
@@ -237,22 +387,32 @@ export default function DetailCoin() {
         </div>
       </div>
 
+      {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="flex w-full lg:w-[60%] h-[400px]  rounded-lg overflow-hidden">
-          <iframe
-            src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=en#%7B%22symbols%22%3A%5B%5B%22KRAKEN%3AUSDTUSD%7C1Y%22%5D%5D%2C%22chartOnly%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22locale%22%3A%22en%22%2C%22timezone%22%3A%22Asia%2FTehran%22%2C%22colorTheme%22%3A%22dark%22%2C%22autosize%22%3Atrue%2C%22showVolume%22%3Afalse%2C%22showMA%22%3Afalse%2C%22hideDateRanges%22%3Afalse%2C%22hideMarketStatus%22%3Afalse%2C%22hideSymbolLogo%22%3Afalse%2C%22scalePosition%22%3A%22right%22%2C%22scaleMode%22%3A%22Normal%22%2C%22fontFamily%22%3A%22-apple-system%2C%20BlinkMacSystemFont%2C%20Trebuchet%20MS%2C%20Roboto%2C%20Ubuntu%2C%20sans-serif%22%2C%22fontSize%22%3A%2210%22%2C%22noTimeScale%22%3Afalse%2C%22valuesTracking%22%3A%221%22%2C%22changeMode%22%3A%22price-and-percent%22%2C%22chartType%22%3A%22area%22%2C%22maLineColor%22%3A%22%232962FF%22%2C%22maLineWidth%22%3A1%2C%22maLength%22%3A9%2C%22lineWidth%22%3A2%2C%22lineType%22%3A0%2C%22isTransparent%22%3Atrue%2C%22dateRanges%22%3A%5B%221d%7C15%22%2C%221m%7C30%22%2C%223m%7C60%22%2C%2212m%7C1D%22%2C%2260m%7C1W%22%2C%22all%7C1M%22%5D%2C%22lineColor%22%3A%22%230072FF%22%2C%22topColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200.2)%22%2C%22bottomColor%22%3A%22rgba(0%2C%20114%2C%20255%2C%200)%22%7D"
-            className="h-full w-full"
-            frameBorder="0"
-          ></iframe>
+        <div className="flex flex-col gap-4  w-full lg:w-[60%]">
+          <div className="rounded-[10px] p-2 flex items-center gap-3 bg-third w-[230px]">
+            <button onClick={() => setIsAdvancedChart(false)} className={`p-2 rounded-md text-sm ${!isAdvancedChart ? 'bg-fifth text-seventh' : 'bg-none text-sixth text-opacity-50'}`}>نمودار ساده</button>
+            <button onClick={() => setIsAdvancedChart(true)} className={`p-2 rounded-md text-sm ${isAdvancedChart ? 'bg-fifth text-seventh' : 'bg-none text-sixth text-opacity-50'}`}>نمودار پیشرفته</button>
+          </div>
+          <div className={`w-full lg:h-full h-96 rounded-lg overflow-hidden ${isAdvancedChart ? 'hidden' : 'block'}`}>
+            <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
+          </div>
+          <div className={`w-full lg:h-full h-96 rounded-lg overflow-hidden ${isAdvancedChart ? 'block' : 'hidden'}`}>
+            <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
+          </div>
         </div>
+
         <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
-          <TransAction coin={coin} infoLoading={false} homeLoading={false} />
+          <TransAction coin={filterData?.find(item => item.symbol === route)}
+            infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
         </div>
+
+
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="order-2  w-full lg:w-[60%] rounded-xl">
-          <CurrentPrice />
+          <CurrentPrice currentPrice={coinData?.lastPrice} currentPriceChange={coinData?.priceChangePercent} />
           <div className="mt-10">
             <div className="hidden lg:flex mb-5 gap-4">
               <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
@@ -298,17 +458,51 @@ export default function DetailCoin() {
         </div>
 
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">
-          <DescriptionTable />
+          <DescriptionTable
+            persianName={currentCoin?.name.fa}
+            symbol={route.toLocaleUpperCase()}
+            lastDollarPrice={coinData?.lastPrice}
+            lastTomanPrice={coinData?.priceToman.buy}
+            dailyChangePercent={coinData?.priceChangePercent}
+            dailyTransactionVolume={coinData?.quoteVolume}
+          />
 
           <div className="hidden lg:flex flex-col w-full mt-10">
             <h1 className="text-xl font-bold mb-5">بیشترین رشد</h1>
-            <Segment data={data} />
+            {/* <Segment data={data} /> */}
+            {mostProfitCryptos?.map((item: any, index: number) => (
+              <div key={index} className="border-b-2 last:border-b-0 border-gray-200 py-[10px] ">
+                <CryptoDetails
+                  icon={item.icon}
+                  persianName={item.name}
+                  symbol={item.symbol}
+                  lastDollarPrice={item.lastPrice}
+                  priceChangePercent={item.priceChangePercent}
+                  iconColor={item.iconColor}
+                  iconIsFont={item.iconIsfont}
+                  isLoading={infoIsLoading || coinIsLoading ? true : false}
+                />
+              </div>
+            ))}
 
             <h1 className="text-xl font-bold mb-5 mt-10">
               جدید ترین ارز های ما
             </h1>
-
-            <Segment data={data} />
+            {/* <Segment data={data} /> */}
+            {newCryptos?.map((item: any, index: number) => (
+              <div key={index} className="border-b-2 last:border-b-0 border-gray-200 py-[10px] ">
+                <CryptoDetails
+                  icon={item.icon}
+                  persianName={item.name}
+                  symbol={item.symbol}
+                  lastDollarPrice={item.lastPrice}
+                  priceChangePercent={item.priceChangePercent}
+                  iconColor={item.iconColor}
+                  iconIsFont={item.iconIsfont}
+                  isLoading={infoIsLoading || coinIsLoading ? true : false}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
