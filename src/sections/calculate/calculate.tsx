@@ -1,9 +1,15 @@
+"use client"
 import React from "react";
 import Transaction from "@/sections/home/transaction/transAction";
 import Banner from "@/sections/home/banner/banner";
+import useGetData from "@/hooks/useGetData";
 
 export default function Calculate() {
+  const { data: infoData, isLoading: infoLoading } = useGetData('info');
+  const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
+
   return (
+    
     <>
       <header className="base-style pt-[77px] lg:pt-[187px] mb-10 lg:mb-[100px]">
         <div className="w-full flex justify-center">
@@ -16,7 +22,7 @@ export default function Calculate() {
 
       <main>
         <section className="max-w-[750px] mx-auto ">
-          <Transaction header={false} showPrice={false} infoLoading={false} homeLoading={false}/>
+          <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={false} homeLoading={false}/>
         </section>
 
         <Banner />
