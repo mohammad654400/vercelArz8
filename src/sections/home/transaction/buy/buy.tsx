@@ -46,7 +46,7 @@ export default function Buy({
     setMoney(rawValue);
   
     if (currency) {
-      const calculatedAmount = parseFloat(rawValue) / currency.price.buy;
+      const calculatedAmount = parseFloat(rawValue) / currency.price?.buy;
       setAmount(calculatedAmount ? calculatedAmount.toFixed(8) : "");
     }
   };
@@ -63,7 +63,7 @@ export default function Buy({
     setAmount(rawValue);
   
     if (currency) {
-      const calculatedMoney = parseFloat(rawValue) * currency.price.buy;
+      const calculatedMoney = parseFloat(rawValue) * currency.price?.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
@@ -117,10 +117,10 @@ export default function Buy({
             `}
           >
             <p className="text-xs">
-              قیمت خرید: {formatNumber(currency?.price.buy?.toLocaleString())} تومان
+              قیمت خرید: {formatNumber(currency?.price?.buy?.toLocaleString())} تومان
             </p>
             <p className="text-xs">
-              قیمت فروش: {formatNumber(currency?.price.sell?.toLocaleString())} تومان
+              قیمت فروش: {formatNumber(currency?.price?.sell?.toLocaleString())} تومان
             </p>
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function Buy({
               currencies={currencies}
               setCurrency={setCurrency}
               toggle={toggleOpen}
-              hasLink={true}
+              hasLink={route === 'coins' ? true : false}
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}

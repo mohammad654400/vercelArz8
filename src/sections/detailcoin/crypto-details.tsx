@@ -47,7 +47,7 @@ const CryptoDetails = ({ icon, persianName, symbol, lastDollarPrice, priceChange
       </div>
       <div className="flex flex-col text-end gap-1">
         {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={60} height={25} /> : <p className="text-[21px] font-semibold">{lastDollarPrice}</p>}
-        {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={18} /> : <p className="text-lg font-semibold text-[#33B028]">{priceChangePercent}</p>}
+        {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={18} /> : <p dir="ltr" className={`text-lg font-semibold ${priceChangePercent.includes('-') ? 'text-[#F00500]' : 'text-[#33B028]'}`}>{priceChangePercent} %</p>}
       </div>
     </div>
   );
