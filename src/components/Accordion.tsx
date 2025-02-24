@@ -7,7 +7,7 @@ interface AccordionProps {
   titleBgColor?: string;
   contentBgColor?: string;
   highlightEnabled?:boolean;
-
+  onToggle: (id: number) => void;
   gap?: string;
   smGap?: string;
   lgGap?: string;
@@ -26,11 +26,10 @@ interface AccordionProps {
 export default function Accordion({ 
   items, 
   defaultOpenId,
+  onToggle,
   titleBgColor,
   contentBgColor,
   highlightEnabled,
-
-
   gap = "gap-2.5", 
   smGap = "sm:gap-3.5",
   lgGap = "lg:gap-5",
@@ -52,12 +51,14 @@ export default function Accordion({
     return null;
   }
 
-  const [openItemId, setOpenItemId] = useState<number | null>(
-    defaultOpenId || null
-  );
+  const [openItemId, setOpenItemId] = useState<number | null>( defaultOpenId || null);  
 
   const handleToggle = (id: number) => {
-    setOpenItemId((prevId) => (prevId === id ? null : id));
+    const newOpenItemId = openItemId === id ? null : id;
+    setOpenItemId(newOpenItemId);
+    if (newOpenItemId !== null) {
+      onToggle(newOpenItemId);
+    }
   };
 
   useEffect(() => {
@@ -74,7 +75,6 @@ export default function Accordion({
     <div className={`accordion w-full  mx-auto flex flex-col ${gapClasses}`}>
 
       {items.map((item) => (
-        <div key={item.id}  >
           <AccordionItem
             key={item.id}
             id={item.id}
@@ -89,8 +89,6 @@ export default function Accordion({
             titleClasses={titleClasses}
             contentClasses={contentClasses}
           />
-        </div>
-
       ))}
     </div>
   );

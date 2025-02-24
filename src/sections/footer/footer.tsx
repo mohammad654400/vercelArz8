@@ -95,8 +95,9 @@ export default function Footer() {
                     </div>
                     <div className="flex gap-2">
                       <Phone />
-                      <li> 021-284299</li>
+                      <a href="tel:021284299" className="cursor-pointer">021-284299</a>
                     </div>
+
                   </ul>
                 </div>
               </div>

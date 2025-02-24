@@ -9,6 +9,7 @@ import {
     ScheduleWithdrawListText, ScheduleWithdrawTableHeaders, ScheduleWithdrawTableBody
 } from "./data/feeData";
 
+
 interface TabProps {
     [key: number]: {
         transformOrigin: string;
@@ -28,6 +29,7 @@ let allTabs: Tab[] = [
 
 const Fee: React.FC = () => {
     const [activeTab, setActiveTab] = useState<number>(0);
+    const [selectItem, setSelectItem] = useState<number | null>(null);
 
     const handleTabClick = useCallback((id: number) => {
         setActiveTab(id);
@@ -111,6 +113,8 @@ const Fee: React.FC = () => {
 
                 <Accordion
                     items={AccordionData}
+                    defaultOpenId={selectItem}
+                    onToggle={(id) => setSelectItem(id)}
                     gap="gap-[10px]"
                     smGap="sm:gap-[15px]"
                     lgGap="lg:gap-[15px]"

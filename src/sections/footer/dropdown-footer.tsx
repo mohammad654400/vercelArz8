@@ -7,91 +7,93 @@ import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import Link from "next/link";
 
 export default function DropdownMenu() {
-  const [openSection, setOpenSection] = useState(null);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
-  const toggleSection = (section: any) => {
+  const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
   };
 
   return (
-    <div className="flex flex-col gap-4 p-4 rounded-lg ">
-      <div className="border-b border-gray-300">
-        <button
-          onClick={() => toggleSection("links")}
-          className="flex justify-between w-full items-center text-right  text-[16px] font-bold py-2"
-        >
-          لینک‌های مفید
-          <span className="text-primary text-xl">
-            {openSection === "links" ?
-              <div className="text-white w-5 h-5"><ArrowUp /></div> :
-              <div className="text-white w-5 h-5"><ArrowDown /></div>
-            }
-          </span>
-        </button>
-        {openSection === "links" && (
-          <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <Link href="/coins/BTC">خرید و فروش ارزدیجیتال<li className="hover:text-primary"></li></Link>
-            <Link href="/coin"> قیمت لحظه‌ای ارزها  <li className="hover:text-primary"></li></Link>
-            <Link href="/download"> دانلود اپلیکیشن<li className="hover:text-primary"></li></Link>
-            <Link href="/coin">گردونه شانس <li className="hover:text-primary"></li></Link>
-            <Link href="/calculate">ماشین حساب<li className="hover:text-primary"></li></Link>
-            <Link href="https://arz8.com/blog/">وبلاگ <li className="hover:text-primary"></li></Link>
-          </ul>
-        )}
-      </div>
+    <div className="flex flex-col gap-4 p-4 rounded-lg">
+      {/* Useful Links */}
+      <DropdownItem
+        title="لینک‌های مفید"
+        section="links"
+        isOpen={openSection === "links"}
+        toggle={toggleSection}
+      >
+        <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
+          <li><Link href="/coins/BTC" className="hover:text-primary">خرید و فروش ارزدیجیتال</Link></li>
+          <li><Link href="/coins" className="hover:text-primary">قیمت لحظه‌ای ارزها</Link></li>
+          <li><Link href="/download" className="hover:text-primary">دانلود اپلیکیشن</Link></li>
+          <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
+          <li><Link href="/calculate" className="hover:text-primary">ماشین حساب</Link></li>
+          <li><Link href="https://arz8.com/blog/" className="hover:text-primary">وبلاگ</Link></li>
+        </ul>
+      </DropdownItem>
 
-      <div className="border-b border-gray-300">
-        <button
-          onClick={() => toggleSection("guide")}
-          className="flex justify-between w-full items-center text-right  text-[16px] font-bold py-2"
-        >
-          راهنمای صرافی
-          <span className="text-primary text-xl">
-            {openSection === "guide" ?
-              <div className="text-white w-5 h-5"><ArrowUp /></div> :
-              <div className="text-white w-5 h-5"><ArrowDown /></div>
-            }
-          </span>
-        </button>
-        {openSection === "guide" && (
-          <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <Link href="https://app.arz8.com/support"> <li className="hover:text-primary">ارسال تیکت پشتیبانی</li></Link>
-            <Link href="/faq"> <li className="hover:text-primary"> اموزش های صرافی</li></Link>
-            <Link href="/rules"> <li className="hover:text-primary">قوانین و مقررات</li></Link>
-            <Link href="/fee"> <li className="hover:text-primary">سطوح کاربری</li></Link>
-            <Link href="/contact-us"> <li className="hover:text-primary">تماس با ما</li></Link>
-            <Link href="/about"><li className="hover:text-primary">درباره ما</li></Link>
-          </ul>
-        )}
-      </div>
+      {/* Exchange Guide */}
+      <DropdownItem
+        title="راهنمای صرافی"
+        section="guide"
+        isOpen={openSection === "guide"}
+        toggle={toggleSection}
+      >
+        <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
+          <li><Link href="https://app.arz8.com/support" className="hover:text-primary">ارسال تیکت پشتیبانی</Link></li>
+          <li><Link href="/faq" className="hover:text-primary">آموزش‌های صرافی</Link></li>
+          <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
+          <li><Link href="/fee" className="hover:text-primary">سطوح کاربری</Link></li>
+          <li><Link href="/contact-us" className="hover:text-primary">تماس با ما</Link></li>
+          <li><Link href="/about" className="hover:text-primary">درباره ما</Link></li>
+        </ul>
+      </DropdownItem>
 
-      <div className="border-b border-gray-300">
-        <button
-          onClick={() => toggleSection("contact")}
-          className="flex justify-between w-full items-center text-right text-[16px] font-bold py-2"
-        >
-          اطلاعات تماس
-          <span className="text-primary text-xl">
-            {openSection === "contact" ?
-              <div className="text-white w-5 h-5"><ArrowUp /></div> :
-              <div className="text-white w-5 h-5"><ArrowDown /></div>
-            }
-          </span>
-        </button>
-        {openSection === "contact" && (
-          <ul className="mt-2 pl-4 text-[14px]  flex flex-col gap-4 cursor-pointer">
-            <li className="flex items-center gap-2 hover:text-primary ">
-              <TownyFour /> پشتیبانی آنلاین
-            </li>
-            <li className="flex items-center gap-2">
-              <Fax /> 021-91035288
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone /> 021-284299
-            </li>
-          </ul>
-        )}
-      </div>
+      {/* Contact Information */}
+      <DropdownItem
+        title="اطلاعات تماس"
+        section="contact"
+        isOpen={openSection === "contact"}
+        toggle={toggleSection}
+      >
+        <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
+          <li className="flex items-center gap-2 hover:text-primary"><TownyFour /> پشتیبانی آنلاین</li>
+          <li className="flex items-center gap-2"><Fax /> 021-91035288</li>
+          <li className="flex items-center gap-2"><Phone /> <a href="tel:021284299">021-284299</a> </li>
+        </ul>
+      </DropdownItem>
     </div>
   );
 }
+
+interface DropdownItemProps {
+  title: string;
+  section: string;
+  isOpen: boolean;
+  toggle: (section: string) => void;
+  children: React.ReactNode;
+}
+
+const DropdownItem: React.FC<DropdownItemProps> = ({ title, section, isOpen, toggle, children }) => {
+  return (
+    <div>
+      <button
+        onClick={() => toggle(section)}
+        className="flex justify-between w-full items-center text-right text-[16px] font-bold py-2 pr-3"
+        aria-expanded={isOpen}
+      >
+        <span className="absolute bg-primary h-6 right-9 w-1 rounded-lg"></span>
+        {title}
+        <span className="text-primary text-xl">
+          {isOpen ? <p className="w-5 h-5 text-foreground" ><ArrowUp/></p> :  <p className="w-5 h-5 text-foreground" ><ArrowDown/></p> }
+        </span>
+      </button>
+
+      <div
+        className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};

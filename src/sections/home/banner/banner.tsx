@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <div className="w-full  self-center my-[100px]">
+    <div className="w-full  self-center">
       <div className="w-full bg-[#242428] h-[310px] sm:h-[400px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
         <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
           <div className="w-full h-full text-white text-center">
@@ -75,7 +75,7 @@ export default function Banner() {
            
             <div className=" w-full h-full justify-center items-center flex lg:hidden flex-col">
               <div className="flex  flex-col pt-8 pb-6 gap-y-3">
-                <h1 className="text-center text-base sm:text-3xl font-extrabold">
+                <h1 className="text-center text-lg sm:text-3xl font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
                 </h1>
                 <span className="text-center text-[8px] sm:text-base font-bold">
@@ -133,7 +133,7 @@ function DownloadOption({ Icon, label }: { Icon: React.FC; label: string }) {
       <div className={`flex lg:w-[45px] lg:h-[45px] sm:w-6 sm:h-6 w-4 h-4`}>
         <Icon />
       </div>
-      <span className="flex text-[4px] sm:text-[8px] lg:text-[11px] font-semibold">{label}</span>
+      <span className="flex text-[5px] sm:text-[8px] lg:text-[11px] font-semibold">{label}</span>
       </div>
       )
 }

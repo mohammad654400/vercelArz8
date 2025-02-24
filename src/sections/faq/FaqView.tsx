@@ -29,7 +29,6 @@ export default function FaqView() {
     );
   }, [searchQuery, newData]);
 
-
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedCategory(0);
     setSearchQuery(event.target.value);
@@ -149,14 +148,15 @@ export default function FaqView() {
           {filteredQuestions.map((filteredQuestion) => (
             <div
               className="w-full"
+              key={filteredQuestion.id}
               ref={(el) => {
                 itemRefs.current[filteredQuestion.id] = el;
               }}
-              key={filteredQuestion.id}
             >
               <Accordion
                 items={[filteredQuestion]}
                 defaultOpenId={selectItem}
+                onToggle={(id) => setSelectItem(id)}
                 textTitle="text-xs"
                 smTextTitle="sm:text-base"
                 lgTextTitle="lg:text-base"
@@ -166,7 +166,6 @@ export default function FaqView() {
                 textContentLeading="leading-[25px]"
                 smTextContentLeading="sm:leading-[38.3px]"
                 lgTextContentLeading="lg:leading-[38.3px]"
-
               />
             </div>
           ))}

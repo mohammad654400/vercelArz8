@@ -16,6 +16,7 @@ type TransAction = {
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
+  currentCoin:any
 };
 export default function Sell({
   toggle,
@@ -25,9 +26,10 @@ export default function Sell({
   isBuy,
   infoLoading,
   homeLoading,
+  currentCoin
 }: TransAction) {
   const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any | null>(coin || currencies[0]);
+  const [currency, setCurrency] = useState<any | null>(coin);
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
@@ -64,6 +66,8 @@ export default function Sell({
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
+
+
   
 
   return (
@@ -103,9 +107,12 @@ export default function Sell({
           />
           <div
             onClick={toggleOpen}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[32px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
+            className={`absolute group cursor-pointer flex gap-2 items-center left-1
+             top-[36px] md:top-[32px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+             ${route == "calculate" ? "md:top-[44px]" : "md:top-[32px]"}
+             `}
           >
-            <div className="w-5 h-7 flex justify-center items-center">
+            <div className="min-w-6 h-7 flex justify-center items-center">
               {!currency.isFont ? (
                 <img
                   src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
@@ -183,6 +190,8 @@ export default function Sell({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
+              currentCoin={currentCoin}
+
             />
           )}
           <button

@@ -147,16 +147,16 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={profitLoading} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap}  />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={lossLoading} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap}/>
             </div>
             <div className="block xl:hidden">
-              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
+              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">

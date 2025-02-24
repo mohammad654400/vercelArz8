@@ -21,8 +21,8 @@ interface CryptocurrencyInfo {
 export default function SubMenu() {
     const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
-  const { data: infoData, isLoading: infoLoading } = useGetData('info');
-  const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading,isError } = useGetData("cryptocurrencies", undefined, {
+  const { data: infoData } = useGetData('info');
+  const { data: cryptocurrenciesData } = useGetData("cryptocurrencies", undefined, {
     limit: 7,
     page: 1,
     sort: "new",
@@ -65,7 +65,7 @@ export default function SubMenu() {
           جدید ترین ارزها
         </div>
 
-        {infoLoading || cryptocurrenciesLoading ? (
+        {displayedCurrencies == 0 ? (
           Array(7).fill(0).map((_, index) => (
             <div
               key={`skeleton-${index}`}
@@ -118,7 +118,7 @@ export default function SubMenu() {
             <Search />
           </div>
         </div>
-        <CryptoTable infoMap={infoMap} infoLoading={infoLoading}  />
+        <CryptoTable infoMap={infoMap}  />
       </div>
     </div>
   );

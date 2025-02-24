@@ -34,9 +34,9 @@ export default function LivePriceTable({ infoMap }: any) {
   }>({ lists: [], total: 0 });
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sort, setSort] = useState<string>("default");
-  const [limit, setLimit] = useState<string>("5");
+  const [limit, setLimit] = useState<string>("10");
   const [numberPage, setNumberPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [filterKey, setFilterKey] = useState<string>("default");
   const [textFilter, setTextFilter] = useState<string>("پیش فرض");
   const [favorites, setFavorites] = useState<string[]>(() =>
@@ -204,7 +204,7 @@ export default function LivePriceTable({ infoMap }: any) {
               <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-sm">{limit}</span>
             </div>
             {numberItem ?
-              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer px-0 py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute ">
+              <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer px-0 py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute z-10">
                 {[5, 10, 20, 50].map((item) => (
                   <div key={item} onClick={() => handleLimitChange(item)} className="flex py-1">
                     <p className="mx-auto rounded-lg font-normal cursor-pointer !text-xs md:text-sm">
@@ -244,9 +244,9 @@ export default function LivePriceTable({ infoMap }: any) {
             </span>
           </div>
 
-          <div className="min-h-96 divide-y divide-gray-200 text-[10px] md:text-sm">
+          <div className="min-h-80 divide-y divide-gray-200 text-[10px] md:text-sm">
             {displayedCurrencies.lists.length === 0
-              ? [...Array(5)].map((_, index) => (
+              ? [...Array(parseInt(limit))].map((_, index) => (
                   <div
                     key={index}
                     className="grid grid-cols-6 md:grid-cols-6 items-center text-center py-4"

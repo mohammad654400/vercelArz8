@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 import ArrowTop from "@/assets/icons/arrrow/arrow-top";
 
@@ -35,13 +35,23 @@ export const AccordionItem = ({
   contentClasses,
 }: AccordionItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const dynamicTitleClasses = videoLink
-    ? "text-sm sm:text-[21px] lg:text-[20px]"
-    : titleClasses;
+  const [contentHeight, setContentHeight] = useState<number | undefined>(0);
+  const dynamicTitleClasses = titleClasses;
   const dynamicContentClasses = videoLink
     ? "text-xs sm:text-[15px] lg:text-[14px] leading-[25px] sm:leading-[14.9px] lg:leading-[30px]"
     : contentClasses;
+
+  useLayoutEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen, videoLink, content]); // Recalculate when content changes or isOpen changes
+
+  const handleIframeLoad = () => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  };
 
   return (
     <div
@@ -69,21 +79,23 @@ export const AccordionItem = ({
       >
         <button
           onClick={() => onToggle(id)}
-          className={`w-full text-left font-medium flex justify-between  px-8 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+          className={`w-full text-left font-medium flex justify-between  px-4 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
         >
           <span
             className={`text-start self-center font-semibold ml-[5px] !leading-6 sm:leading-[33.8px] ${dynamicTitleClasses}`}
           >
             {title}
           </span>
-          <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px] flex items-start justify-start self-start my-2 lg:my-0">
-            {isOpen ? <ArrowTop /> : <ArrowBottom />}
-          </span>
+          <div className=" min-w-7 lg:min-w-11 flex items-start justify-end self-start  my-1 lg:my-0">
+            <span className="w[17.6px] h-[17.6px] lg:w[33px] lg:h-[33px]">
+              {isOpen ? <ArrowTop /> : <ArrowBottom />}
+            </span>
+          </div>
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 px-8  `}
+          className={`overflow-hidden transition-all duration-500 px-8`}
           style={{
-            maxHeight: isOpen ? contentRef.current?.scrollHeight : 0,
+            height: isOpen ? contentHeight : 0,
           }}
           ref={contentRef}
         >
@@ -92,20 +104,21 @@ export const AccordionItem = ({
               videoLink ? "flex flex-col sm:flex-row items-start gap-4" : ""
             }`}
           >
-            {videoLink && (
+            {videoLink && isOpen && (
               <div className="flex-shrink-0 sm:w-2/5 w-full">
                 <iframe
                   src={sanitizeApparatUrl(videoLink)}
                   title="آموزش ویدئویی"
-                  className="w-full aspect-video rounded-xl  mb-2 sm:mb-5"
+                  className="w-full aspect-video rounded-xl mb-2 sm:mb-5"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  onLoad={handleIframeLoad} 
                 ></iframe>
               </div>
             )}
             {content && (
               <div
-                className={`flex-1  font-normal ${dynamicContentClasses}  mb-2 sm:mb-5 ${
+                className={`flex-1 text-justify  font-normal ${dynamicContentClasses}  mb-2 sm:mb-5 ${
                   videoLink ? "sm:w-2/5 w-full" : ""
                 }`}
               >
