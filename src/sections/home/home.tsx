@@ -2,7 +2,6 @@
 import React from "react";
 import MainTop from "./main-top/main-top";
 import TransAction from "@/sections/home/transaction/transAction";
-import SecondBannerSlider from "@/components/slider/banner-slider/seceond-banner-slider";
 import RealTimePrice from "./realtime-price/real-time-price";
 import Banner from "./banner/banner";
 import Description from "./description/description";
@@ -20,7 +19,6 @@ export default function Home() {
       <div className="base-style duration-1000">
         <MainTop homeData={homeData?.topChanges} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
         <TransAction homeData={homeData?.calculator} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
-        <SecondBannerSlider />
         <RealTimePrice homeData={homeData?.table} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
       </div>
       <div className="px-5 md:px-12 lg:px-16 xl:px-0 mt-[72px] mb-10 lg:my-[100px]">

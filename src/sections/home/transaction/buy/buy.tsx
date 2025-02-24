@@ -1,5 +1,5 @@
 import HalfCircle from "@/assets/icons/halfCircle";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
 import CryptoModal from "../cryptoModal";
@@ -16,6 +16,7 @@ type TransAction = {
   isBuy:boolean;
   infoLoading:boolean;
   homeLoading:boolean
+  currentCoin:any
 };
 export default function Buy({
   toggle,
@@ -25,10 +26,11 @@ export default function Buy({
   showPrice,
   isBuy,
   infoLoading,
-  homeLoading 
+  homeLoading ,
+  currentCoin
 }: TransAction) {
   const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any>(coin || currencies[0]);
+  const [currency, setCurrency] = useState<any>(coin);
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
@@ -68,15 +70,13 @@ export default function Buy({
     }
   };
   
-
-  useEffect(() => {
-    setCurrency(coin || currencies[0]);
-  },[currencies])
-
-
+  // useEffect(()=>{
+  //   setCurrency(currencies[1])
+  // },[currencies])
+  
   return (
     <div className="w-full">
-      <div className={` -top-[8px] md:-top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
+      <div className={`-top-[8px] md:-top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
          ${route==='calculate'?"hidden":"absolute"}`}>
         <HalfCircle />
       </div>
@@ -155,7 +155,7 @@ export default function Buy({
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
-            <div className="w-5 h-7 flex justify-center items-center ">
+            <div className="min-w-6 h-7 flex justify-center items-center ">
                     {!currency?.isFont ? (
                       <img
                         src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
@@ -186,6 +186,7 @@ export default function Buy({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
+              currentCoin={currentCoin}
             />
           )}
           <button
