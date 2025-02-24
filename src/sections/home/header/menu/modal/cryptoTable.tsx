@@ -16,10 +16,9 @@ const filterButtons = [
 
 interface CryptoTableProps {
   infoMap: any;
-  infoLoading: boolean
 }
 
-const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
+const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
   const { formatNumber } = useFormattedNumber();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any[]>([]);
   const [sort, setSort] = useState<string>("default");
@@ -30,7 +29,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
 
   const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
 
-  const { data: cryptocurrencies, isLoading: cryptocurrenciesLoading } = useGetData(
+  const { data: cryptocurrencies} = useGetData(
     "cryptocurrencies",
     60000,
     { limit: 7, page, sort, search: searchQuery }
@@ -174,7 +173,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap, infoLoading }) => {
           <div className="w-2/5 flex items-center justify-center">قیمت به تومان</div>
         </div>
         <div className="overflow-y-auto mt-2 max-h-[250px]">
-          {infoLoading && cryptocurrenciesLoading || displayedCurrencies?.length === 0 ? (
+          { displayedCurrencies?.length === 0 ? (
             Array(4).fill(0).map((_, index) => (
               <div
                 key={index}

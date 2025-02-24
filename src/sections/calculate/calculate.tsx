@@ -9,9 +9,9 @@ export default function Calculate() {
   const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
 
   return (
-    
+
     <>
-      <header className="base-style pt-[77px] lg:pt-[187px] mb-10 lg:mb-[100px]">
+      <header className="base-style pt-[77px] lg:pt-[187px] mb-4 lg:mb-[68px]">
         <div className="w-full flex justify-center">
           <h1 className="text-lg lg:text-[35px] pb-[10px] lg:pb-5 border-b-[2.67px] lg:border-b-[5px] border-primary">
             ماشین حساب ارز های دیجیتال
@@ -22,10 +22,12 @@ export default function Calculate() {
 
       <main>
         <section className="max-w-[750px] mx-auto ">
-          <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={false} homeLoading={false}/>
+          <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={false} homeLoading={false} />
         </section>
 
-        <Banner />
+        <div className="mt-4 mb-10 lg:mt-[68px] lg:mb-[100px]">
+          <Banner />
+        </div>
 
         <section className="base-style">
           <div className="flex flex-col gap-1">

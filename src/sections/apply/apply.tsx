@@ -115,7 +115,7 @@ export default function ApplyPage({ title }: { title: string }) {
     };
 
     return (
-        <div className="base-style w-full pt-28">
+        <div className="base-style w-full py-28">
             <div className="w-full">
                 <h1 className="text-xl font-bold text-center mb-3">فرم ارسال درخواست و رزومه</h1>
                 <h2 className="text-xs font-semibold text-center opacity-50 mb-8">{title}</h2>

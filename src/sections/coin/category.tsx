@@ -23,11 +23,10 @@ interface CategoryProps {
   title: string;
   data: CategoryItem[];
   infoMap: any;
-  infoLoading: boolean;
-  isLoading: boolean;
+
 }
 
-export default function Category({ open, setOpen, title, data, infoMap, infoLoading, isLoading }: CategoryProps) {
+export default function Category({ open, setOpen, title, data, infoMap}: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
   const {formatNumber} = useFormattedNumber()
@@ -92,7 +91,7 @@ export default function Category({ open, setOpen, title, data, infoMap, infoLoad
           </span>
         </div>
 
-        {isLoading || infoLoading || displayedCurrencies.length === 0 ? (
+        { displayedCurrencies.length === 0 ? (
           [...Array(3)].map((_, index) => (
             <div key={index} className="flex flex-col">
               <div className=" py-1 flex items-center gap-x-3 md:gap-x-5">

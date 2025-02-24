@@ -118,7 +118,7 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap, in
           </span>
         </div>
 
-        {isLoading || infoLoading || displayedCurrencies.length === 0 ? (
+        { displayedCurrencies?.length === 0 ? (
           [...Array(3)].map((_, index) => (
             <div key={index} className="flex flex-col">
               <div className=" py-1 flex items-center gap-x-3 md:gap-x-5">

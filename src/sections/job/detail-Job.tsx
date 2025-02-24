@@ -11,6 +11,7 @@ export default function DetailJob() {
 
     const handlerOpen = () => {
         setIsOpen(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const jobDetails = [
