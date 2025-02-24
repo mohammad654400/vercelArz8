@@ -46,12 +46,10 @@ interface CategoryProps {
   title: string;
   data: CategoryItem[];
   infoMap: any;
-  infoLoading: boolean;
-  isLoading: boolean;
 }
 
 
-export default function SecondCategory({ open, setOpen, title, data, infoMap, infoLoading, isLoading }: CategoryProps) {
+export default function SecondCategory({ open, setOpen, title, data, infoMap}: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
 
