@@ -55,7 +55,6 @@ export default function Suggestion({
     if (storedHistory) {
       try {
         const parsedHistory = JSON.parse(storedHistory);
-        console.log("تعداد آیتم‌های storedHistory:", parsedHistory.length);
         setHistorySearch(parsedHistory);
       } catch (error) {
         console.error("Error parsing search history:", error);
@@ -145,7 +144,7 @@ export default function Suggestion({
         <p className="text-xs px-3 pt-3 md:p-0 md:text-sm">نتایج پیدا شده :</p>
         <div>
           {historySearch.length === 0 && value.trim() === "" ? (
-            <div>
+            <div className="flex w-full justify-center mt-5">
               <span>حافظه خالی است</span>
             </div>
           ) : isLoading ? (
@@ -211,7 +210,7 @@ export default function Suggestion({
               </div>
             ))
           ) : (
-            <div>
+            <div className="flex w-full justify-center mt-5">
               <span>موردی یافت نشد</span>
             </div>
           )}
