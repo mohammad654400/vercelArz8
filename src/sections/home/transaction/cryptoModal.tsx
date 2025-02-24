@@ -1,14 +1,25 @@
 import Search from "@/assets/icons/search";
-import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import React, { useState } from "react";
-export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=false }: any) {
-  const [search, setSearch] = useState("");
+import { useTheme } from "@/contexts/theme-provider";
+import Link from "next/link";
 
-  const filteredCurrencies = currencies.filter(
-    (currency: any) =>
-      currency.name.includes(search) ||
-      currency.symbol.toLowerCase().includes(search.toLowerCase())
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, infoLoading, homeLoading,currentCoin }: any) {
+
+  const [search, setSearch] = useState("");
+  const { baseColor, highlightColor } = useTheme();
+
+
+  // const filteredCurrencies = currencies.filter(
+  //   (currency: any) =>
+  //     currency.name.includes(search) || (currency.symbol ?? "").toLowerCase().includes(search.toLowerCase())
+  // );
+  const filteredCurrencies = currencies.filter((currency: any) =>
+    (currency.name ?? "").toLowerCase().includes(search.toLowerCase()) ||
+    (currency.symbol ?? "").toLowerCase().includes(search.toLowerCase())
   );
+
 
   const handleBackgroundClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -20,15 +31,16 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=f
 
   const handleCurrencySelect = (currency: any) => {
     setCurrency(currency);
+    currentCoin(currency)
     toggle();
   };
 
   return (
     <div
       onClick={handleBackgroundClick}
-      className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 "
     >
-      <div onClick={e => e.stopPropagation()} className="w-[388px] bg-background rounded-2xl shadow-xl overflow-hidden">
+      <div onClick={e => e.stopPropagation()} className="w-[388px] max-w-[85%] bg-background rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-semibold">انتخاب ارز</h2>
@@ -61,37 +73,130 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink=f
           />
           <span className="absolute left-6">
             <p className="w-5 h-5">
-            <Search />
+              <Search />
             </p>
           </span>
         </div>
 
-        <div className="h-[400px] overflow-y-auto px-2 ">
-          {filteredCurrencies.map((currency: any, index: any) => (
-            hasLink ? (
-              <Link
-                href={`/coins/${currency.name}`}
+        <div className="h-[300px] md:h-[400px] overflow-y-auto px-2 ">
+          {infoLoading === true || homeLoading === true ? (
+            Array(5).fill(0).map((_, index) => (
+              <div
                 key={index}
-                onClick={() => handleCurrencySelect(currency)}
-                className=" flex items-center rounded-2xl justify-between px-4 py-3
-                hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                className="flex items-center rounded-2xl justify-between px-4 py-3 "
               >
-                <div className="flex items-center gap-2 ">
-                  <div className="w-9 h-9">{currency.icon}</div>
+                <div className="flex items-center gap-2">
+                  <div className="w-9 h-9">
+                    <Skeleton circle={true} width={36} height={36} baseColor={baseColor} highlightColor={highlightColor} />
+                  </div>
+
                   <div>
-                    <p className="text-sm font-semibold">{currency.name}</p>
-                    <p className="text-xs text-gray-500">{currency.symbol}</p>
+                    <Skeleton width={80} height={14} baseColor={baseColor} highlightColor={highlightColor} />
+                    <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} style={{ marginTop: "4px" }} />
                   </div>
                 </div>
+
                 <div className="text-left">
-                  <p className="text-sm">{currency.price} تومان</p>
-                  <p className="text-xs text-green-500">+{currency.change}%</p>
+
+                  <Skeleton width={70} height={14} baseColor={baseColor} highlightColor={highlightColor} />
+                  <Skeleton width={40} height={10} baseColor={baseColor} highlightColor={highlightColor} style={{ marginTop: "4px" }} />
                 </div>
-              </Link>
-            ) : (
-              <></>
-            )
-          ))}
+              </div>
+            ))
+          ) : (
+            filteredCurrencies.map((currency: any, index: any) => (
+              hasLink ? (
+                <Link href={`/coins/${currency.symbol}`} key={index}>
+
+                  <div
+                    key={index}
+                    onClick={() => handleCurrencySelect(currency)}
+                    className="flex items-center rounded-2xl justify-between px-4 py-3 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-9 h-9">
+                        {currency.isFont ? (
+                          <i
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                            style={{ color: currency.color }}
+                          ></i>
+                        ) : (
+                          <img
+                            src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                            alt={currency.symbol}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold">{currency.name}</p>
+                        <p className="text-xs text-gray-500">{currency.symbol}</p>
+                      </div>
+                    </div>
+
+                    <div className="text-left">
+                      {isBuy ? (
+                        <p className="text-sm">{currency.price?.buy} تومان</p>
+                      ) : (
+                        <p className="text-sm">{currency.price?.sell} تومان</p>
+                      )}
+                      <p
+                        style={{ direction: "ltr" }}
+                        className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                          } text-xs  font-semibold  `}
+                      >
+                        {currency.priceChangePercent} %
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <>
+                <div
+                    key={index}
+                    onClick={() => handleCurrencySelect(currency)}
+                    className="flex items-center rounded-2xl justify-between px-4 py-3 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-9 h-9">
+                        {currency.isFont ? (
+                          <i
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                            style={{ color: currency.color }}
+                          ></i>
+                        ) : (
+                          <img
+                            src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                            alt={currency.symbol}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold">{currency.name}</p>
+                        <p className="text-xs text-gray-500">{currency.symbol}</p>
+                      </div>
+                    </div>
+
+                    <div className="text-left">
+                      {isBuy ? (
+                        <p className="text-sm">{currency.price?.buy} تومان</p>
+                      ) : (
+                        <p className="text-sm">{currency.price?.sell} تومان</p>
+                      )}
+                      <p
+                        style={{ direction: "ltr" }}
+                        className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                          } text-xs  font-semibold  `}
+                      >
+                        {currency.priceChangePercent} %
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )
+            ))
+          )}
         </div>
       </div>
     </div>

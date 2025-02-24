@@ -4,9 +4,12 @@ import Ring from "@/assets/icons/ring";
 import BannerSlider from "@/components/slider/banner-slider/banners-slider";
 import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
-export default function MainTop() {
+export default function MainTop({ homeData, infoData, infoLoading, homeLoading }: any) {
+
+  const phoneNumberRef = useRef<HTMLInputElement | null>(null);
+
   return (
     <div>
       <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
@@ -14,12 +17,12 @@ export default function MainTop() {
           <h1 className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
           </h1>
-          <p className="text-[13.23px] sm:text-base font-semibold">
+          <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
             <span className="text-primary text-xl sm:text-3xl font-semibold">1300</span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
-          <p className="mx-auto text-sm md:text-lg md:mx-0  opacity-50">
+          <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
             در سریع ترین زمان ممکن ثبت نام کنید.
           </p>
           <div className="relative flex items-center">
@@ -27,15 +30,24 @@ export default function MainTop() {
               <MobileIcon />
             </span>
             <input
+              dir="rtl"
               maxLength={11}
-              typeof="number"
+              type="tel"
+              ref={phoneNumberRef}
               placeholder="شماره موبایل خود را وارد کنید"
               className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px]"
-              type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
+              onInput={(e) => {
+                const input = e.target as HTMLInputElement; 
+                input.value = input.value.replace(/\D/g, '');
+              }}
             />
-            <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
-             <Link href="https://app.arz8.com/auth/login">شروع کنید</Link>
-            </button>
+            <Link href={`https://app.arz8.com/auth/login?phone=${phoneNumberRef.current?.value}`}>
+              <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
+                شروع کنید
+              </button>
+            </Link>
           </div>
         </div>
         <div>
@@ -63,7 +75,7 @@ export default function MainTop() {
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 ">
         <div>
-          <CryptoSlider />
+          <CryptoSlider homeData={homeData} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
         </div>
       </div>
     </div>

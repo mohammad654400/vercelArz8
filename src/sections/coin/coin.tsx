@@ -1,14 +1,13 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import MoreDetails from "@/components/more-details";
 import Suggestion from "./Suggestion";
 import SecondCategory from "./secondCategory";
-import BNB from "@/assets/icons/bnb";
 import useGetData from "@/hooks/useGetData";
-import Loading from "@/components/loading";
+
 
 const data2 = {
   firstTitle: "قیمت و لیست",
@@ -32,39 +31,58 @@ const data2 = {
 با ما در تماس باشید و همین حالا وارد دنیای ارز دیجیتال شوید!`,
 };
 
-
-const listData = [
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "13,537,353",
-    percentage: 1.37,
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-];
+interface CryptocurrencyInfo {
+  id: number;
+  symbol: string;
+  name: { fa: string; en?: string };
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+}
 
 export default function Coin() {
-  const { data, loading, error } = useGetData('info');
-  // console.log("2",data.cryptocurrency)
+
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [symbolsQuery, setSymbolsQuery] = useState<string[]>([]);
   const [sugesstions, setSugesstions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
 
+  const { data: infoData, isLoading: infoLoading, error } = useGetData('info');
+  const { data: maxData, isLoading: profitLoading } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "profit",
+  });
+
+  const { data: minData, isLoading: lossLoading } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "loss",
+  });
+
+  const { data: newData, isLoading: newLoading } = useGetData("cryptocurrencies", 60000, {
+    limit: 3,
+    page: 1,
+    sort: "new",
+  });
+  const { data: searchData,isLoading:searchLoading } = useGetData("cryptocurrencies", 60000, {
+    limit: 5,
+    page: 1,
+    sort: "default",
+    search: searchQuery,
+    symbols:symbolsQuery
+  });
+
+  const infoMap = useMemo(() => {
+    const map: Record<string, CryptocurrencyInfo> = {};
+    infoData?.cryptocurrency.forEach((info: CryptocurrencyInfo) => {
+      map[info.symbol] = info;
+    })
+    return map;
+  }, [infoData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -82,7 +100,7 @@ export default function Coin() {
       }
     }
   };
-  if (loading) return <Loading />;
+
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">
@@ -91,9 +109,7 @@ export default function Coin() {
             قیمت لحظه ای ارز های دیحیتال
           </h1>
           <p className="text-xs sm:text-sm pt-5 font-normal text-center w-[330px] sm:w-[477px] md:w-[575px] !leading-6 sm:!leading-10 ">
-            در این صفحه، قیمت لحظه‌ای و بروزترین تغییرات ارزهای دیجیتال محبوب را
-            مشاهده کنید. برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را
-            جستجو کنید
+          برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید.
           </p>
           <div className="relative p-5 ">
             <input
@@ -108,7 +124,15 @@ export default function Coin() {
             />
             <div className="w-full h-full">
               {sugesstions && (
-                <Suggestion setSugesstions={setSugesstions} value={value} />
+                <Suggestion
+                  setSuggestions={setSugesstions}
+                  value={value}
+                  setSearchQuery={setSearchQuery}
+                  setSymbolsQuery={setSymbolsQuery}
+                  searchData={searchData?.lists}
+                  infoMap={infoMap}
+                  symbolsQuery={symbolsQuery}
+                />
               )}
             </div>
             <span className="w-6 h-6 md:w-[54px] md:h-[54px] absolute left-7 sm:left-[25px] top-[26px] sm:top-[25px] bg-primary rounded-[9.4px] md:rounded-2xl flex justify-center items-center">
@@ -123,20 +147,20 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={profitLoading} />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={lossLoading} />
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={listData} />
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
             </div>
             <div className="block xl:hidden">
-              <SecondCategory open={open} setOpen={setOpen} />
+              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
             </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
-            <LivePriceTable />
+            <LivePriceTable infoMap={infoMap}  />
           </div>
         </div>
         <MoreDetails

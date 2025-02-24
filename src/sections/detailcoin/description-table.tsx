@@ -1,44 +1,54 @@
 import React from 'react'
 
-export default function DescriptionTable() {
+type DescriptionTableProps = {
+  persianName: string;
+  symbol: string;
+  lastDollarPrice: string;
+  lastTomanPrice: string;
+  dailyChangePercent: string;
+  dailyTransactionVolume: string;
+}
+
+export default function DescriptionTable({ persianName, symbol, lastDollarPrice, lastTomanPrice, dailyChangePercent, dailyTransactionVolume }: DescriptionTableProps) {
   return (
-         <div className=" grid grid-cols-1  text-right border rounded-xl p-6">
-                {[
-                  { title: "نام ارز", value: "بایننس کوین" },
-                  { title: "نماد", value: "BNB" },
-                  { title: "قیمت جهانی (دلار)", value: "$43,120.3" },
-                  { title: "آخرین قیمت (تومان)", value: "2,237,949,713" },
-                  {
-                    title: "تغییرات روزانه (درصد)",
-                    value: "0.45%",
-                    color: "text-green-400",
-                  },
-                  { title: "حجم معاملات روزانه (دلار)", value: "42,928,015,128" },
-                  { title: "رتبه در بازار", value: "1" },
-                  { title: "ارزش بازار (دلار)", value: "844,932,708,457" },
-                ].map((item, index) => (
-                  <div key={index} className="w-full border-b-2 last:border-b-0">
-                    <div className="flex justify-between py-6">
-                      <p
-                        key={`title-${index}`}
-                        className="text-sm lg:text-base font-semibold  text-#666668 dark:text-white"
-                      >
-    
-                        {item.title}
-    
-                      </p>
-                      <p
-                        key={`value-${index}`}
-                        className={`text-sm lg:text-base font-semibold  text-#666668 dark:text-white ${item.color || ""
-                          }`}
-                      >
-    
-                        {item.value}
-    
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+    <div className=" grid grid-cols-1 text-right border rounded-xl p-6">
+
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">نام ارز</p>
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{persianName}</p>
+        </div>
+      </div>
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">نماد</p>
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{symbol}</p>
+        </div>
+      </div>
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">قیمت جهانی (دلار)</p>
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{lastDollarPrice} $</p>
+        </div>
+      </div>
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">آخرین قیمت (تومان)</p>
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{lastTomanPrice}</p>
+        </div>
+      </div>
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">تغییرات روزانه (درصد)</p>
+          <p dir='ltr' className={`text-sm lg:text-base font-semibold ${dailyChangePercent?.includes('-') ? 'text-[#F00500]' : 'text-[#30E0A1]'}`}>{dailyChangePercent} %</p>
+        </div>
+      </div>
+      <div className="w-full border-b-2 last:border-b-0">
+        <div className="flex justify-between py-6">
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">حجم معاملات روزانه (دلار)</p>
+          <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{dailyTransactionVolume}</p>
+        </div>
+      </div>
+    </div>
   )
 }

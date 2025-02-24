@@ -7,13 +7,15 @@ import Info from "@/assets/icons/rules/info";
 export default function DownloadApp() {
   return (
     <div className="bg-background pt-[127px]">
+      <header>
       <BannerDownload showWaveDivider={true} />
+      </header>
       <div
-        className="base-style my-[65px] lg:my-[113px]"
-        style={{ gap: "0px" }}
+        className="base-style my-[65px] lg:my-[113px] !gap-0"
+    
       >
         <div className="flex bg-primary w-full rounded-[20px] p-[13px] items-center  lg:mb-[69px] mb-[40px]">
-          <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]">
+          <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]" aria-label="Info Icon">
             <Info />
           </div>
           <span className="text-[13px] lg:text-base font-normal lg:font-semibold mr-[10px] text-[#242428]">
@@ -28,23 +30,23 @@ export default function DownloadApp() {
         </div>
 
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2  lg:grid-cols-3  w-full grid-flow-row-dense mt-10 lg:mt-[82px]">
-          {cardData.map((card, index) => (
+          {cardData.map((card) => (
             <div
-              key={index}
+              key={card.title}
               className="flex flex-col  rounded-[20px] bg-third justify-center items-center py-5 lg:py-0  w-full mx-auto h-[338px] max-w-[390px]"
             >
               <div className="h-[102px] w-[102px] mb-6">
                 <card.icon />
               </div>
-              <span className="text-[27px] font-semibold text-seventh mb-2">
+              <h2 className="text-[27px] font-semibold text-seventh mb-2">
                 {card.title}
-              </span>
-              <span
+              </h2>
+              <p
                 className="text-base font-normal text-sixth opacity-50 text-center px-8"
                 style={{ lineHeight: "35px" }}
               >
                 {card.description}
-              </span>
+              </p>
             </div>
           ))}
         </div>

@@ -50,7 +50,7 @@ export default function Header() {
         bg-background
         ${
           isScrolled
-            ? "bg-secondary shadow-sm top-0 "
+            ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm  shadow-sm top-0 "
             : "md:bg-transparent  bg-secondary"
         }
       `}
@@ -112,8 +112,10 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <span className="xl:hidden  w-[30px] h-[30px]">
-              <UserIcon />
+            <span className="xl:hidden cursor-pointer  w-[30px] h-[30px]">
+              <Link href="https://app.arz8.com/auth/login">
+                <UserIcon />
+              </Link>
             </span>
           </div>
         </div>

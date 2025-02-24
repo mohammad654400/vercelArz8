@@ -1,148 +1,99 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import BNB from "@/assets/icons/bnb";
-import ChartUP from "@/assets/images/chartup.png";
 import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import Link from "next/link";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
+import Skeleton from "react-loading-skeleton";
+import { useTheme } from "@/contexts/theme-provider";
 
-const currencies = [
-  {
-    name: "بایننس",
-    symbol: "BNB",
-    priceIRR: "43,537,353",
-    priceUSDT: "626.25",
-    change: "1.37",
-    chart: "up",
-    icon: <BNB />,
+interface HomeCurrency {
+  symbol: string;
+  priceToman: string;
+  quoteVolume: string
+  priceChangePercent: string;
+  lastPrice?: string;
+}
 
-    popular: true,
-  },
-  {
-    name: "سولانا",
-    symbol: "BNB",
-    priceIRR: "43,537,353",
-    priceUSDT: "626.25",
-    change: "1.37",
-    chart: "up",
-    icon: <BNB />,
-    popular: true,
-  },
-  {
-    name: "لینک",
-    symbol: "BNB",
-    priceIRR: "43,537,353",
-    priceUSDT: "626.25",
-    change: "1.37",
-    chart: "up",
-    icon: <BNB />,
-    popular: true,
-  },
-  {
-    name: "شیبا",
-    symbol: "SHIB",
-    priceIRR: "1.745413",
-    priceUSDT: "0.00001",
-    change: "1.37-",
-    chart: "down",
-    icon: <BNB />,
-    popular: false,
-  },
-  {
-    name: "اتریوم",
-    symbol: "ETH",
-    priceIRR: "221,129,648",
-    priceUSDT: "1750.00",
-    change: "2.52",
-    chart: "up",
-    icon: <BNB />,
-    popular: true,
-  },
-  {
-    name: "آوالانچ",
-    symbol: "AVAX",
-    priceIRR: "2,456,474",
-    priceUSDT: "15.37",
-    change: "8.21",
-    chart: "up",
-    icon: <BNB />,
-    popular: false,
-  },
-  {
-    name: "ترون",
-    symbol: "TRX",
-    priceIRR: "13,778",
-    priceUSDT: "0.090",
-    change: "3.37-",
-    chart: "down",
-    icon: <BNB />,
-    popular: true,
-  },
-];
+interface HomeData {
+  [key: string]: HomeCurrency[];
+}
+
+interface CryptocurrencyInfo {
+  id: number;
+  symbol: string;
+  name: { fa: string; en?: string };
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+}
+
+interface InfoData {
+  cryptocurrency: CryptocurrencyInfo[];
+}
+interface MergedData {
+  id: number;
+  symbol: string;
+  name: string;
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  percent: number;
+  priceToman: string;
+  quoteVolume: string;
+  priceChangePercent: string;
+  lastPrice?: string;
+}
 
 const filterOptions = [
-  { label: "محبوب‌ترین‌ها", key: "popular", mobile: true },
-  { label: "گران ترین", key: "mostExpensive", mobile: false },
-  { label: "ارزان ترین", key: "cheapest", mobile: false },
-  { label: "بیشترین رشد", key: "mostGrowth", mobile: true },
-  { label: "بیشترین ضرر", key: "mostLoss", mobile: true },
-  { label: "جدیدترین", key: "newest", mobile: false },
+  { label: "محبوب‌ترین‌ها", key: "default", mobile: true },
+  { label: "بیشترین حجم", key: "volume", mobile: false },
+  { label: "کمترین قیمت", key: "min", mobile: false },
+  { label: "بیشترین قیمت", key: "max", mobile: false },
+  { label: "بیشترین رشد", key: "profit", mobile: true },
+  { label: "بیشترین ضرر", key: "loss", mobile: true },
+  { label: "جدیدترین", key: "new", mobile: false },
 ];
 
-export default function RealTimePrice() {
-  const [activeFilter, setActiveFilter] = useState("popular");
-  const [displayedCurrencies, setDisplayedCurrencies] = useState(
-    currencies.filter((currency) => currency.popular)
+export default function RealTimePrice({ homeData: initialHomeData, infoData, infoLoading, homeLoading }: {
+  homeData: HomeData;
+  infoData: InfoData;
+  infoLoading: boolean;
+  homeLoading: boolean
+
+}) {
+  const { formatNumber } = useFormattedNumber();
+  const [activeFilter, setActiveFilter] = useState("default");
+  const [displayedCurrencies, setDisplayedCurrencies] = useState<MergedData[]>([]);
+  const { baseColor, highlightColor } = useTheme();
+
+  const infoMap = useMemo(
+    () =>
+      infoData?.cryptocurrency.reduce((acc, item) => {
+        acc[item.symbol] = item;
+        return acc;
+      }, {} as Record<string, InfoData["cryptocurrency"][0]>),
+    [infoData]
   );
 
-  const handleFilterChange = (filterKey: any) => {
-    setActiveFilter(filterKey);
 
-    switch (filterKey) {
-      case "popular":
-        setDisplayedCurrencies(
-          currencies.filter((currency) => currency.popular)
-        );
-        break;
-      case "mostExpensive":
-        setDisplayedCurrencies(
-          [...currencies].sort(
-            (a, b) =>
-              parseFloat(b.priceUSDT.replace(/,/g, "")) -
-              parseFloat(a.priceUSDT.replace(/,/g, ""))
-          )
-        );
-        break;
-      case "cheapest":
-        setDisplayedCurrencies(
-          [...currencies].sort(
-            (a, b) =>
-              parseFloat(a.priceUSDT.replace(/,/g, "")) -
-              parseFloat(b.priceUSDT.replace(/,/g, ""))
-          )
-        );
-        break;
-      case "mostGrowth":
-        setDisplayedCurrencies(
-          [...currencies]
-            .filter((c) => !c.change.startsWith("-"))
-            .sort((a, b) => parseFloat(b.change) - parseFloat(a.change))
-        );
-        break;
-      case "mostLoss":
-        setDisplayedCurrencies(
-          [...currencies]
-            .filter((c) => c.change.startsWith("-"))
-            .sort((a, b) => parseFloat(a.change) - parseFloat(b.change))
-        );
-        break;
-      case "newest":
-        setDisplayedCurrencies(currencies);
-        break;
-      default:
-        setDisplayedCurrencies(currencies);
-    }
-  };
+  const filteredData = useMemo(() => {
+    if (!initialHomeData || !infoMap) return [];
+
+    return (initialHomeData[activeFilter] || []).map((currency) => ({
+      ...currency,
+      ...(infoMap[currency.symbol] || {}),
+      name: infoMap[currency.symbol]?.name.fa || currency.symbol,
+      priceToman: currency.priceToman,
+    }));
+  }, [activeFilter, initialHomeData, infoMap]);
+
+  useEffect(() => {
+    setDisplayedCurrencies(filteredData);
+  }, [filteredData]);
+
+
 
   return (
     <div>
@@ -152,17 +103,18 @@ export default function RealTimePrice() {
       <div className="bg-background overflow-hidden w-full ">
         <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#47444480] rounded-t-xl">
           <div className="flex justify-center md:justify-start gap-3 w-full ">
+
             {filterOptions.map((option) => (
               <button
                 key={option.key}
-                onClick={() => handleFilterChange(option.key)}
+                onClick={() => setActiveFilter(option.key)}
                 className={`px-3   py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
-                    ? "bg-yellow-400 text-white"
-                    : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
+                  ? "bg-yellow-400 text-white"
+                  : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
               >
                 <span className="text-xs font-semibold sm:text-base ">{option.label}</span>
-                
+
               </button>
             ))}
           </div>
@@ -170,65 +122,129 @@ export default function RealTimePrice() {
             <Link className="text-base font-semibold" href="/coins">مشاهده تمام ارزها</Link>          </button>
         </div>
         <div className="px-4 pt-[36px] w-full border-[1px] border-[#ADADAD80] border-t-0 rounded-b-xl">
-          <div className="grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[13px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
-            <div className="flex  justify-start mr-5">نماد</div>
+          <div className="px-2 grid grid-cols-5 md:grid-cols-8 text-[#47444480] dark:text-[#FFFFFF80] text-[11px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
+            <div className="flex justify-start mr-5 col-span-2 ">نماد</div>
             <div className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
-            <div className="pl-0 pr-0">قیمت به تومان</div>
+            <div className="pl-0 pr-0 col-span-2">قیمت به تومان</div>
             <div className="pl-0 pr-0">تغییرات 24h</div>
             <div className="hidden md:block pl-0 pr-0">نمودار 24h</div>
             <div className="hidden md:flex justify-end ml-5">عملیات</div>
           </div>
 
           <div className="divide-y-[3.5px] divide-gray-200 text-[13px] w-full">
-            {displayedCurrencies.map((currency, index) => (
-              <div
-                key={index}
-                className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
-              >
-                <div className="flex flex-col justify-start pl-0 pr-0">
-                  <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
-                    <div>
-                      <div className="w-[32px] h[32px] md:w-[44px] md:h-[44px]">{currency.icon}</div>
-                    </div>
-                    <div className="flex flex-col  justify-center gap-y-1">
-                      <span className="text-sm md:text-[17px] font-semibold">{currency.name}</span>
-                      <p className="text-sm md:text-[17px] font-semibold text-right hidden md:block opacity-45 w-auto">
-                        {currency.symbol}
-                      </p>
+            {infoLoading || homeLoading ? (
+              Array(6).fill(0).map((_, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-5 md:grid-cols-8 max-w-[1165px] items-center text-center py-4"
+                >
+                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-2">
+                    <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
+                      <div className="w-[28px] h-[28px] md:w-[44px] md:h-[44px] flex">
+                        <Skeleton width={28} height={28} circle={true} baseColor={baseColor} highlightColor={highlightColor} />
+                      </div>
+
+
+                      <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
+                        <Skeleton width={50} height={12} baseColor={baseColor} highlightColor={highlightColor} />
+                        <Skeleton width={30} height={10} baseColor={baseColor} highlightColor={highlightColor} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="w-full hidden md:block md:text-[21px] font-semibold">
-                  ${currency.priceUSDT}
+                  <div className="w-full hidden md:block md:text-lg font-semibold">
+                    <Skeleton width={60} height={14} baseColor={baseColor} highlightColor={highlightColor} />
+                  </div>
+
+                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-2">
+                    <Skeleton width={50} height={12} baseColor={baseColor} highlightColor={highlightColor} />
+                    <span className="text-[8px] md:text-sm font-semibold opacity-50">تومان</span>
+                  </div>
+
+                  <div className="text-[10px] md:text-lg font-semibold text-end md:text-center ml-10 md:ml-0">
+                    <Skeleton width={40} height={12} baseColor={baseColor} highlightColor={highlightColor} />
+                  </div>
+
+                  <div className="md:flex justify-center m-auto hidden object-cover">
+                    <Skeleton width={120} height={44} baseColor={baseColor} highlightColor={highlightColor} />
+                  </div>
+
+                  <div className="hidden md:flex justify-end pl-0 pr-0">
+                    <Skeleton width={119} height={46} borderRadius={10} baseColor={baseColor} highlightColor={highlightColor} />
+                  </div>
                 </div>
-                <div className=" md:text-[21px] font-semibold">{currency.priceIRR} تومان</div>
+              ))
+            ) : (
+              displayedCurrencies.map((currency, index) => (
                 <div
-                  className={`pr-2 md:pr-0 md:text-[21px] font-semibold ${currency.change.endsWith("-")
-                      ? "text-red-500"
-                      : "text-green-500"
-                    }`}
+                  key={index}
+                  className="grid grid-cols-5 md:grid-cols-8 max-w-[1165px] items-center text-center py-4"
                 >
-                  % {currency.change}
-                </div>
-                <div className="md:flex justify-center m-auto hidden object-cover">
-                  <Image src={ChartUP} alt="chart" width={120} height={44} />
-                </div>
+                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-2">
+                    <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
+                      <div className="w-[28px] h-[28px] md:w-[44px] md:h-[44px] flex">
+                        {currency.isFont ? (
+                          <i
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[28px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
+                            style={{ color: currency.color }}
+                          ></i>
+                        ) : (
+                          <img
+                            src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                            alt={currency.symbol}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
 
-                <div className="flex justify-end pl-0 pr-0">
-                  <button className="text-sm border border-primary text-primary w-[119px] h-[46px] rounded-[10px] hidden md:block">
-                    جزئیات بیشتر
-                  </button>
+                      <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
+                        <span className="text-[10px] md:text-base font-semibold text-start">{currency.name}</span>
+                        <p className="text-[10px] md:text-base font-semibold text-right opacity-45 w-auto">
+                          {currency.symbol}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full hidden md:block md:text-lg font-semibold">
+                    ${currency.lastPrice}
+                  </div>
+
+                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-2">
+                    <span className="text-[10px] md:text-lg font-semibold">
+                      {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                    </span>
+                    <span className="text-[8px] md:text-sm font-semibold">تومان</span>
+                  </div>
+
+                  <p
+                    style={{ direction: "ltr" }}
+                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
+                      } text-[10px] md:text-lg font-semibold text-end md:text-center`}
+                  >
+                    {currency.priceChangePercent} %
+                  </p>
+
+                  <div className="md:flex justify-center m-auto hidden object-cover">
+                    <Image src={`https://cdn.arz8.com/charts/1d/${currency.symbol}.svg`} alt="chart" width={120} height={44} />
+                  </div>
+
+                  <Link href={`/coins/${currency.symbol}`} className="flex justify-end pl-0 pr-0">
+                    <button className="text-sm border border-primary text-primary w-[119px] h-[46px] rounded-[10px] hidden md:block">
+                      جزئیات بیشتر
+                    </button>
+                  </Link>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
+
           </div>
           <div className="sm:hidden flex justify-center items-center gap-3 py-6 px-5 cursor-pointer">
             <span >
               <Link href="/coins">مشاهده تمام ارزها</Link>
             </span>
             <div className="w-[17px] h-[17px]"> <ArrowLeft /></div>
-           
+
           </div>
         </div>
       </div>

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export const useFormattedNumber = () => {
   const formatNumber = (value: string) => {
     if (!value) return "";

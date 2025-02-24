@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "../assets/fonts/cryptofont.css";
 @import "../assets/fonts/index.css";
 @import "./theme/light.css";
 @import "./theme/dark.css";
@@ -39,7 +39,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
-scrollbar-hidden{
+.scrollbar-hidden{
   -ms-overflow-style: none; 
   scrollbar-width: none; 
 }

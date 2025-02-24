@@ -62,8 +62,8 @@ export default function Footer() {
                     <Link href="/coins"><li>قیمت لحظه ای ارز ها</li></Link>
                     <Link href="/download"><li> دانلود اپلیکیشن</li></Link>
                     <Link href="/calculate"> <li>ماشین حساب</li></Link>
-                    <Link href="/coin"><li>گردونه شانس </li></Link>
-                    <Link href="/bugbounty"><li>باگ بانتی</li></Link>
+                    <Link href="/wheel-luck"><li>گردونه شانس </li></Link>
+                    <Link href="/bug-bounty"><li>باگ بانتی</li></Link>
                     <Link href="https://arz8.com/blog/"><li>وبلاگ</li></Link>
                   </ul>
                 </div>
@@ -95,8 +95,9 @@ export default function Footer() {
                     </div>
                     <div className="flex gap-2">
                       <Phone />
-                      <li> 021-284299</li>
+                      <a href="tel:021284299" className="cursor-pointer">021-284299</a>
                     </div>
+
                   </ul>
                 </div>
               </div>
@@ -107,7 +108,7 @@ export default function Footer() {
           </div>
         </div>
         <div className=" w-full bg-secondary py-4 flex  sm:flex-row  justify-between gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[8px] md:text-[18px] gap-1 ">
+          <div className="flex justify-center items-center text-[7px] md:text-[18px] gap-1 ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>

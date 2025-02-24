@@ -26,7 +26,7 @@ const Tab = React.memo(({ name, isActive, onClick, transformOrigin, transitionDe
       ></span>
 
       <span
-        className={`relative z-10 transition-all duration-300 text-base sm:text-[25px]  font-semibold focus:outline-none overflow-hidden" ${
+        className={`relative z-10 transition-all duration-300 text-sm sm:text-base lg:text-[25px]  font-semibold focus:outline-none overflow-hidden" ${
           isActive ? "text-sixth" : "text-sixth opacity-50  hover:opacity-90"
         }`}
       >
