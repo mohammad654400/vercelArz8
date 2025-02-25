@@ -55,7 +55,7 @@ function TradingViewSimpleChart({ coinChart, theme }: TradingViewSimpleChartProp
           "1d|1",
           "1m|30",
           "3m|60",
-          "12m|1D",
+          "12m|1W",
           "60m|1W",
           "all|1M"
         ]
@@ -70,9 +70,8 @@ function TradingViewSimpleChart({ coinChart, theme }: TradingViewSimpleChartProp
     };
 
   }, [coinChart, theme]);
-
   return (
-    <div className="tradingview-widget-container" ref={container}>
+    <div className="tradingview-widget-container" ref={container} style={{ border: 'none' }}>
       <div className="tradingview-widget-container__widget"></div>
       <div className="tradingview-widget-copyright">
         <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
@@ -81,6 +80,7 @@ function TradingViewSimpleChart({ coinChart, theme }: TradingViewSimpleChartProp
       </div>
     </div>
   );
+
 }
 
 export default memo(TradingViewSimpleChart);

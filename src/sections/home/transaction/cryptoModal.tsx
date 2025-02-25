@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
 
-export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, infoLoading, homeLoading,currentCoin }: any) {
+export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, infoLoading, homeLoading, setCurrentCoin }: any) {
 
   const [search, setSearch] = useState("");
   const { baseColor, highlightColor } = useTheme();
@@ -31,7 +31,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
 
   const handleCurrencySelect = (currency: any) => {
     setCurrency(currency);
-    currentCoin(currency)
+    setCurrentCoin(currency);
     toggle();
   };
 

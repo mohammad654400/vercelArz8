@@ -16,7 +16,7 @@ type TransAction = {
   isBuy:boolean;
   infoLoading:boolean;
   homeLoading:boolean
-  currentCoin:any
+  setCurrentCoin:any
 };
 export default function Buy({
   toggle,
@@ -27,8 +27,9 @@ export default function Buy({
   isBuy,
   infoLoading,
   homeLoading ,
-  currentCoin
+  setCurrentCoin
 }: TransAction) {
+
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any>(coin);
   const [money, setMoney] = useState<string>("");
@@ -73,6 +74,7 @@ export default function Buy({
   // useEffect(()=>{
   //   setCurrency(currencies[1])
   // },[currencies])
+
   
   return (
     <div className="w-full">
@@ -186,7 +188,7 @@ export default function Buy({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              currentCoin={currentCoin}
+              setCurrentCoin={setCurrentCoin}
             />
           )}
           <button

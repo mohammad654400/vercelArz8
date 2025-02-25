@@ -60,49 +60,6 @@ interface Comment {
   replies: Comment[];
 }
 
-const data = [
-  {
-    price: "43,537,353",
-    priceIR: "43,537,353",
-    percentage: "% 3",
-    name: "AAVE",
-    Persian: "آوه",
-    icon: <BNB />,
-  },
-  {
-    price: "43,537,353",
-    percentage: "% 1.37",
-    priceIR: "43,537,353",
-    name: "BTC",
-    Persian: "بیت کوین",
-    icon: <BNB />,
-  },
-  {
-    price: "43,537,353",
-    percentage: "% 1.37",
-    priceIR: "43,537,353",
-    name: "AVAX",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "43,537353",
-    percentage: "% 1.37",
-    priceIR: "43,537,353",
-    name: "SUI",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-  {
-    price: "43,537,353",
-    percentage: "% 1.37",
-    priceIR: "43,537,353",
-    name: "FTM",
-    Persian: "آوالانچ",
-    icon: <BNB />,
-  },
-];
-
 const AccordionData = [
   {
     id: 1,
@@ -144,6 +101,7 @@ const AccordionData = [
 ];
 
 export default function DetailCoin() {
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -158,11 +116,18 @@ export default function DetailCoin() {
   const { data: infoData, isLoading: infoIsLoading } = useGetData('info')
   const { data: coinData, isLoading: coinIsLoading, error } = useGetData(`cryptocurrencies/${route}`, 6000)
   const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
-  const coin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route) || data[0];
+  const coin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route);
 
   const coinChart = coinData?.chart
 
-  const currentCoin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route)
+  const [currentCoin, setCurrentCoin] = useState<any>(null); // Initially null
+  useEffect(() => {
+    if (infoData) {
+      const foundCoin = infoData.cryptocurrency?.find((item: any) => item.symbol === route);
+      setCurrentCoin(foundCoin || null); // Set currentCoin when data is available
+    }
+  }, [infoData, route]);
+
 
   // array for 
   const newCryptos = coinData?.new.map((crypto: any) => {
@@ -207,12 +172,12 @@ export default function DetailCoin() {
       : setFavorites([]);
   }, [currency]);
 
-  const handleFavorite = (name: string) => {
+  const handleFavorite = (symbol: string) => {
     let updatedFavorites;
-    if (favorite.includes(name)) {
-      updatedFavorites = favorite.filter((item) => item !== name);
+    if (favorite.includes(symbol)) {
+      updatedFavorites = favorite.filter((item) => item !== symbol);
     } else {
-      updatedFavorites = [...favorite, name];
+      updatedFavorites = [...favorite, symbol];
     }
 
     setFavorites(updatedFavorites);
@@ -250,66 +215,74 @@ export default function DetailCoin() {
   }, [infoData]);
 
   const filterData = useMemo(() => {
-    return Object.values(homeData ?? {}).flat().map((item: any) => {
-      const matchedInfo: Partial<CryptocurrencyInfo> = cryptoMap.get(item.symbol) || {};
-      return {
-        id: matchedInfo.id || 0,
-        symbol: item.symbol,
-        name: matchedInfo.name?.fa || "نامشخص",
-        icon: matchedInfo.icon || "",
-        color: matchedInfo.color || "#000",
-        isFont: matchedInfo.isFont || false,
-        percent: matchedInfo.percent || 0,
-        price: item.price,
-        fee: item.fee || "0",
-        priceChangePercent: item.priceChangePercent,
-      };
-    });
+    if (!homeData || !cryptoMap.size) return []; // Ensure data exists
+
+    return Object.values(homeData)
+      .flat()
+      .map((item: any) => {
+        const matchedInfo = cryptoMap.get(item.symbol) as Partial<CryptocurrencyInfo> | undefined;
+
+        // Skip if matchedInfo is undefined or an empty object
+        if (!matchedInfo || Object.keys(matchedInfo).length === 0) {
+          return null; // Return null for items we want to exclude
+        }
+
+        return {
+          id: matchedInfo.id || 0,
+          symbol: item.symbol || "Unknown",
+          name: matchedInfo.name?.fa || "نامشخص",
+          icon: matchedInfo.icon || "default.svg",
+          color: matchedInfo.color || "#000",
+          isFont: matchedInfo.isFont || false,
+          percent: matchedInfo.percent || 0,
+          price: item.price || 0,
+          fee: item.fee || "0",
+          priceChangePercent: item.priceChangePercent || 0,
+        };
+      })
+      .filter(Boolean); // Remove null values from the array
   }, [homeData, cryptoMap]);
+
 
 
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
       <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px]  ">
-        <div onClick={handlerChenge} className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:px-4 rounded-[9px] sm:rounded-2xl cursor-pointer">
+        <div onClick={handlerChenge} className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:pr-4 sm:pl-2 rounded-[9px] sm:rounded-2xl cursor-pointer">
           <div className="flex  h-full justify-center gap-x-2">
-            <div className="w-7 h-7 lg:w-12 lg:h-12 my-auto">
-              {infoIsLoading ? (
-                <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle width={41} height={41} />
+            <div className="w-7 h-7 lg:w-12 lg:h-12 sm:my-auto">
+              {infoIsLoading || coinIsLoading ? (
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle className="w-[30px] sm:w-[41px] h-[30px] sm:h-[41px] sm:-translate-y-2 lg:translate-y-0 " />
               ) : currentCoin ? (
-                currentCoin.isFont ? (
+                currentCoin?.isFont ? (
                   <i
-                    className={`cf cf-${currentCoin.symbol?.toLowerCase() || "default"} text-[41px] w-full h-full flex items-center justify-center object-cover`}
-                    style={{ color: currentCoin.color || "#000" }}
+                    className={`cf cf-${currentCoin?.symbol?.toLowerCase() || "default"} text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: currentCoin?.color || "#000" }}
                   ></i>
                 ) : (
                   <img
-                    src={currentCoin.icon ? `https://app.arz8.com/api/images/currency/${currentCoin.icon}` : "/default-image.png"}
-                    alt={currentCoin.symbol || "Unknown Coin"}
+                    src={currentCoin?.icon ? `https://app.arz8.com/api/images/currency/${currentCoin?.icon}` : "/default-image.png"}
+                    alt={currentCoin?.symbol || "Unknown Coin"}
                     className="w-full h-full object-cover"
                   />
                 )
               ) : (
-                <p>Coin not found</p>
+                <p>X</p>
               )}
             </div>
 
             <div className="flex flex-col  h-full justify-center gap-y-[6px] sm:gap-y-3 ">
               <div className="flex gap-x-1 md:gap-x-2 ">
-                {infoIsLoading ?
-                  <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={80} height={28} />
+                {infoIsLoading || coinIsLoading ?
+                  <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-4 md:w-[80px] md:h-[28px]" />
                   :
                   <p className="text-xs sm:text-lg font-semibold !leading-3">
-                    {coin.name.fa}
+                    {coin?.name?.fa}
                   </p>
                 }
 
-                <div
-                  className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
-                    }`}
-                >
+                <div className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""}`}>
                   <ArrowBotton />
-
                 </div>
                 {openModal ? (
                   <CryptoModal
@@ -317,16 +290,17 @@ export default function DetailCoin() {
                     toggle={setOpenModal}
                     setCurrency={setCurrency}
                     hasLink={true}
+                    setCurrentCoin={setCurrentCoin}
                   />
                 ) : (
                   ""
                 )}
               </div>
-              {infoIsLoading ?
-                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={60} height={18} />
+              {infoIsLoading || coinIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={60} height={18} className=" !w-12 !h-3  md:w-[60px] md:h-[18px]" />
                 :
                 <span className="text-xs sm:text-lg font-semibold opacity-50 flex !leading-3">
-                  {coin.name.en}
+                  {coin?.name?.en}
                 </span>
               }
 
@@ -336,30 +310,30 @@ export default function DetailCoin() {
           <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
 
             <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
-              {infoIsLoading ?
-                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={70} height={24} />
+              {infoIsLoading || coinIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={70} height={24} className="!w-[55px] !h-[16px]  md:w-[70px] md:h-[24px]" />
                 :
                 <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
                   ${coinData?.lastPrice}
                 </p>
               }
-              {infoIsLoading ?
-                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} />
+              {infoIsLoading || coinIsLoading ?
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} className="!w-[38px] !h-[12px]  md:w-[50px] md:h-[44px]" />
                 :
-                <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3">
-                  {coinData?.priceToman.buy} تومان
+                <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3 items-center">
+                  {coinData?.priceToman.buy} <span className="text-[9px] md:text-base mr-1">تومان</span>
                 </p>
               }
             </div>
 
             {
-              infoIsLoading ? (
-                <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle width={46} height={46} />
+              infoIsLoading || coinIsLoading ? (
+                <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={46} height={46} className="!w-[26px] !h-[26px]  md:w-[46px] md:h-[46px]" />
               ) : (
                 <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
                   <span
                     dir="ltr"
-                    className={`h-full w-full text-xs lg:text-[21px] flex text-center items-center justify-center font-semibold ${coinData?.priceChangePercent?.includes("-") ? "text-[#F00500]" : "text-[#33B028]"
+                    className={`h-full w-full text-[10px] sm:text-lg flex text-center items-center justify-center font-semibold ${coinData?.priceChangePercent?.includes("-") ? "text-[#F00500]" : "text-[#33B028]"
                       }`}
                   >
                     {coinData?.priceChangePercent}%
@@ -375,12 +349,12 @@ export default function DetailCoin() {
           <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
-              onClick={() => handleFavorite(coin.name)}
+              onClick={() => handleFavorite(coin?.symbol)}
               className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
             >
               <Star
-                borderColor={favorite.includes(route) ? "none" : "currentColor"}
-                backgroundColor={favorite.includes(route) ? "#FFC107" : "none"}
+                borderColor={favorite.includes(coin?.symbol) ? "none" : "currentColor"}
+                backgroundColor={favorite.includes(coin?.symbol) ? "#FFC107" : "none"}
               />
             </span>
           </div>
@@ -389,26 +363,37 @@ export default function DetailCoin() {
 
       {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="flex flex-col gap-4  w-full lg:w-[60%]">
-          <div className="rounded-[10px] p-2 flex items-center gap-3 bg-third w-[230px]">
-            <button onClick={() => setIsAdvancedChart(false)} className={`p-2 rounded-md text-sm ${!isAdvancedChart ? 'bg-fifth text-seventh' : 'bg-none text-sixth text-opacity-50'}`}>نمودار ساده</button>
-            <button onClick={() => setIsAdvancedChart(true)} className={`p-2 rounded-md text-sm ${isAdvancedChart ? 'bg-fifth text-seventh' : 'bg-none text-sixth text-opacity-50'}`}>نمودار پیشرفته</button>
+        <div className="flex flex-col gap-4 w-full lg:w-[60%]">
+          <div className="rounded-[10px] p-4 flex items-center gap-[14px] bg-secondary w-[240px] relative">
+            <div className={`absolute  h-9 bg-fifth rounded-md transition ${isAdvancedChart ? '-translate-x-[104px] w-[110px]' : 'w-[100px]'}`}></div>
+            <button onClick={() => setIsAdvancedChart(false)} className={`w-24 rounded text-center text-sm z-10  ${!isAdvancedChart ? 'text-seventh' : 'text-sixth text-opacity-50'}`}>نمودار ساده</button>
+            <button onClick={() => setIsAdvancedChart(true)} className={`w-24 rounded text-center text-sm z-10  ${isAdvancedChart ? 'text-seventh' : 'text-sixth text-opacity-50'}`}>نمودار پیشرفته</button>
           </div>
-          <div className={`w-full lg:h-full h-96 rounded-lg overflow-hidden ${isAdvancedChart ? 'hidden' : 'block'}`}>
-            <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
+
+          {/* Skeleton loading for SimpleChart */}
+          <div className={`w-full lg:h-full h-96 rounded-xl border-[0.88px] border-[#ADADAD80] overflow-hidden  ${isAdvancedChart ? 'hidden' : 'block'}`}>
+            {coinChart ? (
+              <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
+            ) : (
+              <Skeleton height="100%" width="100%" baseColor={baseColor} highlightColor={highlightColor} />
+            )}
           </div>
-          <div className={`w-full lg:h-full h-96 rounded-lg overflow-hidden ${isAdvancedChart ? 'block' : 'hidden'}`}>
-            <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
+
+          {/* Skeleton loading for AdvancedChart */}
+          <div className={`w-full lg:h-full h-96 rounded-xl border-[0.88px] border-[#ADADAD80] overflow-hidden  ${isAdvancedChart ? 'block' : 'hidden'}`}>
+            {coinChart ? (
+              <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
+            ) : (
+              <Skeleton height="100%" width="100%" baseColor={baseColor} highlightColor={highlightColor} />
+            )}
           </div>
         </div>
 
-        <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
-          <TransAction coin={filterData?.find(item => item.symbol === route)}
-            infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
+        <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
+          <TransAction coin={filterData?.find(item => item?.symbol === route)} infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
         </div>
-
-
       </div>
+
 
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="order-2  w-full lg:w-[60%] rounded-xl">
