@@ -283,132 +283,155 @@
 //         </div>
 //     );
 // }
-"use client"
+"use client";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import usePostData from "@/hooks/usePostData";
 import OrbitAnimation from "./animation/OrbitAnimation";
 import PhotoContactSupport from "@/assets/images/contactUs/Asset 1@300x 2.png";
-import Call from "@/assets/icons/contactUs/call";
-import Email from "@/assets/icons/contactUs/email";
-import Location from "@/assets/icons/contactUs/location";
-import Support from "@/assets/icons/contactUs/support";
-import Telegram from "@/assets/icons/contactUs/telegram";
-import Modal from '@/components/Modal';
+import Modal from "@/components/Modal";
 import ErrorContactUs from "@/assets/icons/modal/errorContactUs";
 import SuccessContactUs from "@/assets/icons/modal/successContactUs";
-import { validationSchema } from './yup/validationSchema';
+import { validationSchema } from "./yup/validationSchema";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface ModalLine {
-    text: string;
-    highlightedWords?: { word: string; color: "green" | "red" }[];
+  text: string;
+  highlightedWords?: { word: string; color: "green" | "red" }[];
 }
 
 interface FormData {
-    fullName: string;
-    phoneNumber: string;
-    message: string;
+  fullName: string;
+  phoneNumber: string;
+  message: string;
 }
 
 export default function ContactUs() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState<"success" | "error">("success");
-    const [modalLines, setModalLines] = useState<ModalLine[]>([]);
-    const [errors, setErrors] = useState<Record<string, string>>({});
-    const formDataRef = useRef<FormData>({ fullName: "", phoneNumber: "", message: "" });
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"success" | "error">("success");
+  const [modalLines, setModalLines] = useState<ModalLine[]>([]);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const formDataRef = useRef<FormData>({ fullName: "", phoneNumber: "", message: "" });
 
-    const { mutate, isError, isSuccess ,data} = usePostData('contact-us', 
-        () => {
-            setModalType("success");
-            setModalLines([{ text: "پیام شما با موفقیت ارسال شد.", highlightedWords: [{ word: "موفقیت", color: "green" }] }]);
-            setIsModalOpen(true);
-        }, 
-        () => {
-            setModalType("error");
-            setModalLines([{ text: "ارسال پیام با مشکل روبرو شد", highlightedWords: [{ word: "مشکل", color: "red" }] }]);
-            setIsModalOpen(true);
-        }
-    );
+  const { mutate, isError, isSuccess, data } = usePostData(
+    "contact-us",
+    () => {
+      setModalType("success");
+      setModalLines([{ text: "پیام شما با موفقیت ارسال شد.", highlightedWords: [{ word: "موفقیت", color: "green" }] }]);
+      setIsModalOpen(true);
+    },
+    () => {
+      setModalType("error");
+      setModalLines([{ text: "ارسال پیام با مشکل روبرو شد", highlightedWords: [{ word: "مشکل", color: "red" }] }]);
+      setIsModalOpen(true);
+    }
+  );
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        formDataRef.current[name as keyof FormData] = value;
-    };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    formDataRef.current[name as keyof FormData] = value;
+  };
 
-    const validateForm = useCallback(async () => {
-        try {
-            await validationSchema.validate(formDataRef.current, { abortEarly: false });
-            setErrors({});
-            return true;
-        } catch (err: any) {
-            const newErrors: Record<string, string> = {};
-            err.inner.forEach((error: Yup.ValidationError) => {
-                if (error.path) newErrors[error.path] = error.message;
-            });
-            setErrors(newErrors);
-            return false;
-        }
-    }, []);
+  const validateForm = useCallback(async () => {
+    try {
+      await validationSchema.validate(formDataRef.current, { abortEarly: false });
+      setErrors({});
+      return true;
+    } catch (err: any) {
+      const newErrors: Record<string, string> = {};
+      err.inner.forEach((error: Yup.ValidationError) => {
+        if (error.path) newErrors[error.path] = error.message;
+      });
+      setErrors(newErrors);
+      return false;
+    }
+  }, []);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const isValid = await validateForm();
-        if (isValid) {
-            mutate({
-                name: formDataRef.current.fullName,
-                mobile: formDataRef.current.phoneNumber,
-                msg: formDataRef.current.message,
-                recaptcha: "test"
-            });
-        }
-    };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const isValid = await validateForm();
+    if (!isValid) return;
 
-    return (
-        <div className="bg-background base-style">
-            <div className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8 justify-between">
-                <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
-                    <div className="grid gap-[10px]">
-                        <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl font-bold">تماس با پشتیبانی صرافی ارزهشت</h1>
-                        <span className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
-                            ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.
-                        </span>
-                    </div>
-                </div>
-                <div className="flex w-full lg:w-[40%] order-1 lg:order-2 justify-center lg:justify-end">
-                    <Image src={PhotoContactSupport} alt="Contact Us Image" width={392} height={504} layout="intrinsic" priority />
-                </div>
-            </div>
+    if (!executeRecaptcha) {
+      console.error("reCAPTCHA not loaded yet.");
+      return;
+    }
 
-            <form onSubmit={handleSubmit} className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] bg-secondary p-5 rounded-xl z-10">
-                <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
-                <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
-                    <div className="flex flex-col w-full sm:w-1/2 mb-4 sm:mb-0">
-                        <label htmlFor="fullName" className="block text-Seventh text-base font-normal">نام خانوادگی</label>
-                        <input id="fullName" name="fullName" type="text" className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none" onChange={handleChange} />
-                        {errors.fullName && <div className="text-red-500 text-sm">{errors.fullName}</div>}
-                    </div>
-                    <div className="flex flex-col w-full sm:w-1/2">
-                        <label htmlFor="phoneNumber" className="block text-Seventh text-base font-normal">شماره تماس</label>
-                        <input id="phoneNumber" name="phoneNumber" type="text" className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none" onChange={handleChange} />
-                        {errors.phoneNumber && <div className="text-red-500 text-sm">{errors.phoneNumber}</div>}
-                    </div>
-                </div>
+    try {
+      const recaptchaToken = await executeRecaptcha("contact_form");
+      
+      mutate({
+        name: formDataRef.current.fullName,
+        mobile: formDataRef.current.phoneNumber,
+        msg: formDataRef.current.message,
+        recaptcha: recaptchaToken, 
+      });
+      console.log("recapthca",recaptchaToken)
+      console.log('data',data)
 
-                <div className="flex flex-col h-[40%] mb-7">
-                    <label htmlFor="message" className="block text-Seventh text-base font-normal">پیام</label>
-                    <textarea id="message" name="message" className="w-full sm:h-48 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none" onChange={handleChange} />
-                    {errors.message && <div className="text-red-500 text-sm">{errors.message}</div>}
-                </div>
+    } catch (error) {
+      console.error("reCAPTCHA error:", error);
+    }
+  };
 
-                <button type="submit" className="lg:w-60 w-full h-14 bg-primary text-white px-4 py-2 rounded-xl transition-colors self-end">
-                    ارسال درخواست
-                </button>
-            </form>
-
-            {isModalOpen && (
-                <Modal isOpen={isModalOpen} type={modalType} lines={modalLines} icon={modalType === "success" ? <SuccessContactUs/> : <ErrorContactUs/>} onClose={() => setIsModalOpen(false)} />
-            )}
+  return (
+    // <GoogleReCaptchaProvider
+    //       reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+    //       scriptProps={{
+    //         async: true,
+    //         defer: true,
+    //         appendTo: "head",
+    //       }}
+    //       >
+    <div className="bg-background base-style">
+      <div className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8 justify-between">
+        <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
+          <div className="grid gap-[10px]">
+            <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl font-bold">
+              تماس با پشتیبانی صرافی ارزهشت
+            </h1>
+            <span className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
+              ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده است تا در سریع‌ترین زمان ممکن به شما کمک کند.
+            </span>
+          </div>
         </div>
-    );
+        <div className="flex w-full lg:w-[40%] order-1 lg:order-2 justify-center lg:justify-end">
+          <Image src={PhotoContactSupport} alt="Contact Us Image" width={392} height={504} layout="intrinsic" priority />
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] bg-secondary p-5 rounded-xl z-10">
+        <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
+        <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
+          <div className="flex flex-col w-full sm:w-1/2 mb-4 sm:mb-0">
+            <label htmlFor="fullName" className="block text-Seventh text-base font-normal">نام خانوادگی</label>
+            <input id="fullName" name="fullName" type="text" className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none" onChange={handleChange} />
+            {errors.fullName && <div className="text-red-500 text-sm">{errors.fullName}</div>}
+          </div>
+          <div className="flex flex-col w-full sm:w-1/2">
+            <label htmlFor="phoneNumber" className="block text-Seventh text-base font-normal">شماره تماس</label>
+            <input id="phoneNumber" name="phoneNumber" type="text" className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none" onChange={handleChange} />
+            {errors.phoneNumber && <div className="text-red-500 text-sm">{errors.phoneNumber}</div>}
+          </div>
+        </div>
+
+        <div className="flex flex-col h-[40%] mb-7">
+          <label htmlFor="message" className="block text-Seventh text-base font-normal">پیام</label>
+          <textarea id="message" name="message" className="w-full sm:h-48 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none" onChange={handleChange} />
+          {errors.message && <div className="text-red-500 text-sm">{errors.message}</div>}
+        </div>
+
+        <button type="submit" className="lg:w-60 w-full h-14 bg-primary text-white px-4 py-2 rounded-xl transition-colors self-end">
+          ارسال درخواست
+        </button>
+      </form>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} type={modalType} lines={modalLines} icon={modalType === "success" ? <SuccessContactUs /> : <ErrorContactUs />} onClose={() => setIsModalOpen(false)} />
+      )}
+    </div>
+    // </GoogleReCaptchaProvider>
+  );
 }

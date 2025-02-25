@@ -14,7 +14,7 @@ export default function ClientProvider({ children }: { children: React.ReactNode
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="h-screen dark:bg-dark-no-gradient bg-custom-gradient">
           <FeaturesBanner />
