@@ -16,7 +16,7 @@ type TransAction = {
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
-  currentCoin:any
+  setCurrentCoin:any
 };
 export default function Sell({
   toggle,
@@ -26,7 +26,7 @@ export default function Sell({
   isBuy,
   infoLoading,
   homeLoading,
-  currentCoin
+  setCurrentCoin
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(coin);
@@ -190,7 +190,7 @@ export default function Sell({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              currentCoin={currentCoin}
+              setCurrentCoin={setCurrentCoin}
 
             />
           )}

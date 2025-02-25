@@ -216,6 +216,9 @@ export default function Transaction({
   const [isBuy, setIsBuy] = useState(true);
   const [width, setWidth] = useState<number | undefined>();
   const [currentCoin, setCurrentCoin] = useState<any>(null);
+  console.log("Transaction.tsx - setCurrentCoin:", setCurrentCoin);
+  console.log("Transaction.tsx - Type of setCurrentCoin:", typeof setCurrentCoin);
+  
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -339,7 +342,7 @@ export default function Transaction({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              currentCoin={setCurrentCoin}
+              setCurrentCoin={setCurrentCoin}
             />
           ) : (
             <Sell
@@ -351,7 +354,7 @@ export default function Transaction({
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              currentCoin={setCurrentCoin}
+              setCurrentCoin={setCurrentCoin}
             />
           )}
         </div>
