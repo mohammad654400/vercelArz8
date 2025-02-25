@@ -404,7 +404,7 @@ export default function DetailCoin() {
 
         <div className="flex flex-col h-full w-full lg:w-[38.6%]  rounded-lg">
           <TransAction coin={filterData?.find(item => item.symbol === route)}
-            infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
+            isLoading={infoIsLoading || homeLoading} homeData={homeData} infoData={infoData} />
         </div>
 
 

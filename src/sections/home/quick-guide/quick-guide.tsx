@@ -4,6 +4,7 @@ import ArrowLeft from "@/assets/icons/arrrow/arrowLeft";
 import ArrowUp from "@/assets/icons/arrrow/arrow-top";
 import RhombusIcon from "@/assets/icons/rhombus";
 import { useState } from "react";
+import Link from "next/link";
 
 interface FAQItem {
   question: string;
@@ -73,13 +74,13 @@ const QuickGuide = () => {
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center justify-between mb-6">
         <h2 className="text-lg sm:text-2xl font-bold  text-center flex">راهنمای سریع</h2>
-        <button className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 ">
+        <Link href={"./faq"} className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 ">
           همه سوالات
           <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
             <ArrowLeft />
           </div>
 
-        </button>
+        </Link>
       </div>
       <div className="w-full flex flex-col md:flex-row gap-x-11 gap-y-4 mx-auto bg-background ">
         <div className="w-full  pr-0 md:pr-4 ">
