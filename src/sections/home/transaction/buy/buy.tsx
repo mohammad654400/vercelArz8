@@ -29,7 +29,7 @@ export default function Buy({
   homeLoading ,
   setCurrentCoin
 }: TransAction) {
-  console.log('buy: ' ,typeof setCurrentCoin)
+
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any>(coin);
   const [money, setMoney] = useState<string>("");
@@ -74,6 +74,7 @@ export default function Buy({
   // useEffect(()=>{
   //   setCurrency(currencies[1])
   // },[currencies])
+
   
   return (
     <div className="w-full">

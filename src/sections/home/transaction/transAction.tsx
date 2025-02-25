@@ -216,9 +216,7 @@ export default function Transaction({
   const [isBuy, setIsBuy] = useState(true);
   const [width, setWidth] = useState<number | undefined>();
   const [currentCoin, setCurrentCoin] = useState<any>(null);
-  console.log("Transaction.tsx - setCurrentCoin:", setCurrentCoin);
-  console.log("Transaction.tsx - Type of setCurrentCoin:", typeof setCurrentCoin);
-  
+
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -263,27 +261,33 @@ export default function Transaction({
 
   // Memoize filtered data
   const filterData = useMemo(() => {
-    if (!homeData || !infoData) return [];
+    if (!homeData || !cryptoMap.size) return []; // Ensure data exists
 
     return Object.values(homeData)
       .flat()
-      .map((item) => {
-        const matchedInfo: Partial<CryptocurrencyInfo> =
-          cryptoMap.get(item.symbol) || {};
+      .map((item: any) => {
+        const matchedInfo = cryptoMap.get(item.symbol) as Partial<CryptocurrencyInfo> | undefined;
+
+        // Skip if matchedInfo is undefined or an empty object
+        if (!matchedInfo || Object.keys(matchedInfo).length === 0) {
+          return null; // Return null for items we want to exclude
+        }
+
         return {
           id: matchedInfo.id || 0,
-          symbol: item.symbol,
+          symbol: item.symbol || "Unknown",
           name: matchedInfo.name?.fa || "نامشخص",
-          icon: matchedInfo.icon || "",
+          icon: matchedInfo.icon || "default.svg",
           color: matchedInfo.color || "#000",
           isFont: matchedInfo.isFont || false,
           percent: matchedInfo.percent || 0,
-          price: item.price,
+          price: item.price || 0,
           fee: item.fee || "0",
-          priceChangePercent: item.priceChangePercent,
+          priceChangePercent: item.priceChangePercent || 0,
         };
-      });
-  }, [homeData, infoData, cryptoMap]);
+      })
+      .filter(Boolean); // Remove null values from the array
+  }, [homeData, cryptoMap]);
 
   // Set current coin if not set
   useEffect(() => {
@@ -295,26 +299,23 @@ export default function Transaction({
   return (
     <div
       ref={parentRef}
-      className={`${
-        !header ? "border-none" : ""
-      } border-2 border-[#cccbcb80] rounded-xl text-[13px] md:text`}
+      className={`${!header ? "border-none" : ""
+        } border-2 border-[#cccbcb80] rounded-xl text-[13px] md:text`}
     >
       {/* Header Section */}
       {header && (
         <div className="flex w-full gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-xl">
           <div
             onClick={() => setIsBuy(true)}
-            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${
-              isBuy ? "text-green-500 font-bold" : "text-gray-500"
-            }`}
+            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${isBuy ? "text-green-500 font-bold" : "text-gray-500"
+              }`}
           >
             خرید از ارز هشت
           </div>
           <div
             onClick={() => setIsBuy(false)}
-            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${
-              !isBuy ? "text-red-500 font-bold" : "text-gray-500"
-            }`}
+            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${!isBuy ? "text-red-500 font-bold" : "text-gray-500"
+              }`}
           >
             فروش به ارز هشت
           </div>
@@ -325,7 +326,7 @@ export default function Transaction({
       {!dataLoaded ? (
         <div className="relative w-full duration-500">
           <Skeleton
-           className="w-full h-48"
+            className="w-full h-48"
             baseColor={baseColor}
             highlightColor={highlightColor}
           />

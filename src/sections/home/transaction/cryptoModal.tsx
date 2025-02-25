@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, infoLoading, homeLoading, setCurrentCoin }: any) {
 
-  console.log('cryptoModal: ', typeof setCurrentCoin)
   const [search, setSearch] = useState("");
   const { baseColor, highlightColor } = useTheme();
 

@@ -101,6 +101,7 @@ const AccordionData = [
 ];
 
 export default function DetailCoin() {
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -119,7 +120,14 @@ export default function DetailCoin() {
 
   const coinChart = coinData?.chart
 
-  const [currentCoin, setCurrentCoin] = useState<any>(infoData?.cryptocurrency?.find((item: any) => item.symbol === route))
+  const [currentCoin, setCurrentCoin] = useState<any>(null); // Initially null
+  useEffect(() => {
+    if (infoData) {
+      const foundCoin = infoData.cryptocurrency?.find((item: any) => item.symbol === route);
+      setCurrentCoin(foundCoin || null); // Set currentCoin when data is available
+    }
+  }, [infoData, route]);
+
 
   // array for 
   const newCryptos = coinData?.new.map((crypto: any) => {
@@ -207,22 +215,34 @@ export default function DetailCoin() {
   }, [infoData]);
 
   const filterData = useMemo(() => {
-    return Object.values(homeData ?? {}).flat().map((item: any) => {
-      const matchedInfo: Partial<CryptocurrencyInfo> = cryptoMap.get(item.symbol) || {};
-      return {
-        id: matchedInfo.id || 0,
-        symbol: item.symbol,
-        name: matchedInfo.name?.fa || "نامشخص",
-        icon: matchedInfo.icon || "",
-        color: matchedInfo.color || "#000",
-        isFont: matchedInfo.isFont || false,
-        percent: matchedInfo.percent || 0,
-        price: item.price,
-        fee: item.fee || "0",
-        priceChangePercent: item.priceChangePercent,
-      };
-    });
+    if (!homeData || !cryptoMap.size) return []; // Ensure data exists
+
+    return Object.values(homeData)
+      .flat()
+      .map((item: any) => {
+        const matchedInfo = cryptoMap.get(item.symbol) as Partial<CryptocurrencyInfo> | undefined;
+
+        // Skip if matchedInfo is undefined or an empty object
+        if (!matchedInfo || Object.keys(matchedInfo).length === 0) {
+          return null; // Return null for items we want to exclude
+        }
+
+        return {
+          id: matchedInfo.id || 0,
+          symbol: item.symbol || "Unknown",
+          name: matchedInfo.name?.fa || "نامشخص",
+          icon: matchedInfo.icon || "default.svg",
+          color: matchedInfo.color || "#000",
+          isFont: matchedInfo.isFont || false,
+          percent: matchedInfo.percent || 0,
+          price: item.price || 0,
+          fee: item.fee || "0",
+          priceChangePercent: item.priceChangePercent || 0,
+        };
+      })
+      .filter(Boolean); // Remove null values from the array
   }, [homeData, cryptoMap]);
+
 
 
   return (
@@ -234,15 +254,15 @@ export default function DetailCoin() {
               {infoIsLoading || coinIsLoading ? (
                 <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle className="w-[30px] sm:w-[41px] h-[30px] sm:h-[41px] sm:-translate-y-2 lg:translate-y-0 " />
               ) : currentCoin ? (
-                currentCoin.isFont ? (
+                currentCoin?.isFont ? (
                   <i
-                    className={`cf cf-${currentCoin.symbol?.toLowerCase() || "default"} text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-cover`}
-                    style={{ color: currentCoin.color || "#000" }}
+                    className={`cf cf-${currentCoin?.symbol?.toLowerCase() || "default"} text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                    style={{ color: currentCoin?.color || "#000" }}
                   ></i>
                 ) : (
                   <img
-                    src={currentCoin.icon ? `https://app.arz8.com/api/images/currency/${currentCoin.icon}` : "/default-image.png"}
-                    alt={currentCoin.symbol || "Unknown Coin"}
+                    src={currentCoin?.icon ? `https://app.arz8.com/api/images/currency/${currentCoin?.icon}` : "/default-image.png"}
+                    alt={currentCoin?.symbol || "Unknown Coin"}
                     className="w-full h-full object-cover"
                   />
                 )
@@ -257,7 +277,7 @@ export default function DetailCoin() {
                   <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-4 md:w-[80px] md:h-[28px]" />
                   :
                   <p className="text-xs sm:text-lg font-semibold !leading-3">
-                    {coin.name.fa}
+                    {coin?.name?.fa}
                   </p>
                 }
 
@@ -329,7 +349,7 @@ export default function DetailCoin() {
           <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
-              onClick={() => handleFavorite(coin.name)}
+              onClick={() => handleFavorite(coin?.name)}
               className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
             >
               <Star
@@ -370,7 +390,7 @@ export default function DetailCoin() {
         </div>
 
         <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
-          <TransAction coin={filterData?.find(item => item.symbol === route)} infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
+          <TransAction coin={filterData?.find(item => item?.symbol === route)} infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
         </div>
       </div>
 

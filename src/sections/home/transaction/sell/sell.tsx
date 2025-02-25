@@ -82,7 +82,7 @@ export default function Sell({
       <div
         className={`flex justify-between items-center rounded-xl   py-6 md:py-8 px-4 
           ${
-            width < 800 && route !== "calculate"
+            width < 1196 && route !== "calculate"
               ? "flex-col "
               : route === "calculate"
               ? "flex-col"
@@ -96,7 +96,7 @@ export default function Sell({
            pattern="[0-9]*"
             inputMode="decimal"
             className={`
-              ${width < 800 ? "lg:w-full" : "lg:w-[414px]"} 
+              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
               ${route == "calculate" ? "lg:w-full lg:mt-5" : "mb-10"}
               ${route === "" ? "mb-8" : ""}
                 text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-2 pr-4`}
