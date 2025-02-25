@@ -287,7 +287,7 @@ export default function DetailCoin() {
                 {openModal ? (
                   <CryptoModal
                     currencies={filterData}
-                    toggle={setOpenModal}
+                    toggle={() => setOpenModal(!openModal)}
                     setCurrency={setCurrency}
                     hasLink={true}
                     setCurrentCoin={setCurrentCoin}
