@@ -22,7 +22,7 @@ export default function Calculate() {
 
       <main>
         <section className="max-w-[750px] mx-auto ">
-          <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={false} homeLoading={false} />
+          <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={infoLoading} homeLoading={homeLoading} />
         </section>
 
         <div className="mt-4 mb-10 lg:mt-[68px] lg:mb-[100px]">

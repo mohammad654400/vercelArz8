@@ -4,30 +4,6 @@ import { useTheme } from "@/contexts/theme-provider";
 import React, { useEffect, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
-// const data = [
-//   {
-//     price: "43,537,353",
-//     percentage: 1.37,
-//     name: "AVAX",
-//     Persian: "آوالانچ",
-//     icon: <BNB />,
-//   },
-//   {
-//     price: "43,537,353",
-//     percentage: 1.37,
-//     name: "AVAX",
-//     Persian: "آوالانچ",
-//     icon: <BNB />,
-//   },
-//   {
-//     price: "43,537,353",
-//     percentage: 1.37,
-//     name: "AVAX",
-//     Persian: "آوالانچ",
-//     icon: <BNB />,
-//   },
-// ];
-
 interface CategoryItem {
   priceToman: string;
   lastPrice: number;
@@ -46,10 +22,11 @@ interface CategoryProps {
   title: string;
   data: CategoryItem[];
   infoMap: any;
+
 }
 
 
-export default function SecondCategory({ open, setOpen, title, data, infoMap}: CategoryProps) {
+export default function SecondCategory({ open, setOpen, title, data, infoMap }: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
 

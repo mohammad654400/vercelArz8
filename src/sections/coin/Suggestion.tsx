@@ -145,7 +145,7 @@ export default function Suggestion({
         <div>
           {historySearch.length === 0 && value.trim() === "" ? (
             <div className="flex w-full justify-center mt-5">
-              <span>حافظه خالی است</span>
+              <span>تاریخچه ای وجود ندارد</span>
             </div>
           ) : isLoading ? (
             <div className="flex flex-col mt-2 sm:mt-3 gap-y-1 sm:gap-y-3">

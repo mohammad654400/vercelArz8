@@ -32,8 +32,8 @@ interface CryptocurrencyInfo {
   percent: number;
 }
 
-interface InfoData {
-  cryptocurrency: CryptocurrencyInfo[];
+interface InfoMap {
+  [symbol: string]: CryptocurrencyInfo;
 }
 
 interface MergedData {
@@ -54,32 +54,23 @@ const chunkArray = (array: any[], size: number) => {
   }, [] as any[][]);
 };
 
-export default function BannerSlider({ homeData, infoData, infoLoading, homeLoading }: { homeData: HomeData; infoData: InfoData; infoLoading: boolean; homeLoading: boolean }) {
+export default function BannerSlider({ homeData, infoMap,isLoading}: { homeData: HomeData; infoMap: InfoMap; isLoading: boolean }) {
   const { baseColor, highlightColor } = useTheme();
-  const [mergedData, setMergedData] = useState<MergedData[]>([]);
   const { formatNumber } = useFormattedNumber()
-  useEffect(() => {
-    const newMergedData =
-      (homeData?.profit || []).concat(homeData?.loss || [])
-        .map((item, index) => {
-          const matchedInfo = infoData?.cryptocurrency.find(crypto => crypto.symbol === item.symbol);
 
-          return {
-            id: index + 1,
-            symbol: item.symbol,
-            name: matchedInfo?.name?.fa || item.symbol,
-            icon: matchedInfo?.icon,
-            color: matchedInfo?.color,
-            isFont: matchedInfo?.isFont || false,
-            priceToman: item?.priceToman ,
-            priceChangePercent: item.priceChangePercent,
-          };
-        });
 
-    setMergedData(newMergedData);
-  }, [homeData, infoData]);
+    const filteredData = useMemo(() => {
+      if (!homeData || !infoMap) return [];
+  
+      return (homeData?.profit || []).concat(homeData?.loss || []).map((currency) => ({
+        ...currency,
+        ...(infoMap[currency.symbol] || {}),
+        name: infoMap[currency.symbol]?.name.fa || currency.symbol,
+        priceToman: currency.priceToman,
+      }));
+    }, [ homeData, infoMap]);
 
-  const chunkedData = useMemo(() => chunkArray(mergedData, 4), [mergedData]);
+  const chunkedData = useMemo(() => chunkArray(filteredData, 4), [filteredData]);
 
   const settings = {
     infinite: true,
@@ -98,7 +89,7 @@ export default function BannerSlider({ homeData, infoData, infoLoading, homeLoad
   return (
     <div className="w-full">
       <Slider {...settings}>
-        {infoLoading || homeLoading ? (
+        {isLoading ? (
           <div className="w-full">
             <div className="grid grid-cols-2 lg:grid-cols-4 text-[10px] md:text-sm w-full gap-y-[14px] lg:gap-y-3">
               {Array(4).fill(0).map((_, index) => (
