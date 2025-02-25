@@ -42,6 +42,7 @@ export default function LivePriceTable({ infoMap }: any) {
   const [favorites, setFavorites] = useState<string[]>(() =>
     JSON.parse(localStorage.getItem("favorites") || "[]")
   );
+  
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -101,11 +102,6 @@ export default function LivePriceTable({ infoMap }: any) {
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
 
-    const timeoutId = setTimeout(() => {
-      setNumberPage(1);
-    }, 8000);
-
-    return () => clearTimeout(timeoutId);
   };
   const handleLimitChange = (newLimit: number) => {
     setLimit(newLimit.toString());
@@ -173,11 +169,10 @@ export default function LivePriceTable({ infoMap }: any) {
           {filterOptions.map((btn) => (
             <button
               key={btn.key}
-              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${
-                sort === btn.key
-                  ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-                  : "text-[#3C3B41] dark:text-[#FFFFFF80]"
-              }`}
+              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
+                ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
+                : "text-[#3C3B41] dark:text-[#FFFFFF80]"
+                }`}
               onClick={(e) => {
                 e.stopPropagation();
                 setSort(btn.key);
@@ -190,7 +185,7 @@ export default function LivePriceTable({ infoMap }: any) {
           ))}
         </div>
         <div className="flex gap-2">
-        <input
+          <input
             type="text"
             placeholder="جستجو ..."
             value={searchQuery}
@@ -247,216 +242,219 @@ export default function LivePriceTable({ infoMap }: any) {
           <div className="min-h-80 divide-y divide-gray-200 text-[10px] md:text-sm">
             {displayedCurrencies.lists.length === 0
               ? [...Array(parseInt(limit))].map((_, index) => (
-                  <div
-                    key={index}
-                    className="grid grid-cols-6 md:grid-cols-6 items-center text-center py-4"
-                  >
-                    <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
-                      <Skeleton
-                        width={24}
-                        height={24}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                        className="bg-gray-300"
-                        style={{
-                          clipPath:
-                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                        }}
-                      />
-                      <Skeleton
-                        circle
-                        width={40}
-                        height={40}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />{" "}
-                      {/* اسکلت برای آیکون ارز */}
-                      <div className="flex flex-col items-start gap-y-[2px]">
-                        <Skeleton
-                          width={40}
-                          height={16}
-                          baseColor={baseColor}
-                          highlightColor={highlightColor}
-                        />
-                        <Skeleton
-                          width={20}
-                          height={12}
-                          baseColor={baseColor}
-                          highlightColor={highlightColor}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3">
-                      <Skeleton
-                        width={30}
-                        height={16}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />
+                <div
+                  key={index}
+                  className="grid grid-cols-6 md:grid-cols-6 items-center text-center py-4"
+                >
+                  <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
+                    <Skeleton
+                      width={24}
+                      height={24}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                      className="bg-gray-300"
+                      style={{
+                        clipPath:
+                          "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                      }}
+                    />
+                    <Skeleton
+                      circle
+                      width={40}
+                      height={40}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />{" "}
+                    {/* اسکلت برای آیکون ارز */}
+                    <div className="flex flex-col items-start gap-y-[2px]">
                       <Skeleton
                         width={40}
                         height={16}
                         baseColor={baseColor}
                         highlightColor={highlightColor}
                       />
-                    </div>
-
-                    <div className="hidden md:block md:col-span-1 text-center">
-                      <Skeleton
-                        width={40}
-                        height={16}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />
-                    </div>
-                    <div className="hidden md:block md:col-span-1 text-center">
-                      <Skeleton
-                        width={40}
-                        height={16}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />
-                    </div>
-
-                    <div className="text-center">
                       <Skeleton
                         width={20}
-                        height={16}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />
-                    </div>
-
-                    <div className="hidden md:flex justify-center">
-                      <Skeleton
-                        width={50}
-                        height={31}
-                        baseColor={baseColor}
-                        highlightColor={highlightColor}
-                      />
-                    </div>
-
-                    <div>
-                      <Skeleton
-                        width={50}
-                        height={30}
+                        height={12}
                         baseColor={baseColor}
                         highlightColor={highlightColor}
                       />
                     </div>
                   </div>
-                ))
+
+                  <div className="md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3">
+                    <Skeleton
+                      width={30}
+                      height={16}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                    <Skeleton
+                      width={40}
+                      height={16}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+
+                  <div className="hidden md:block md:col-span-1 text-center">
+                    <Skeleton
+                      width={40}
+                      height={16}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+                  <div className="hidden md:block md:col-span-1 text-center">
+                    <Skeleton
+                      width={40}
+                      height={16}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+
+                  <div className="text-center">
+                    <Skeleton
+                      width={20}
+                      height={16}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+
+                  <div className="hidden md:flex justify-center">
+                    <Skeleton
+                      width={50}
+                      height={31}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+
+                  <div>
+                    <Skeleton
+                      width={50}
+                      height={30}
+                      baseColor={baseColor}
+                      highlightColor={highlightColor}
+                    />
+                  </div>
+                </div>
+              ))
               : displayedCurrencies.lists.map((currency, index) => (
-                  <div
-                    key={index}
-                    className={`grid ${
-                      currency.lastPrice && currency.priceToman
-                        ? "grid-cols-6 md:grid-cols-6"
-                        : "grid-cols-6 md:grid-cols-4"
+                <div
+                  key={index}
+                  className={`grid ${currency.lastPrice && currency.priceToman
+                    ? "grid-cols-6 md:grid-cols-6"
+                    : "grid-cols-6 md:grid-cols-4"
                     } items-center text-center py-4`}
-                  >
-                    <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
-                      <button
-                        onClick={() => toggleFavorite(currency.symbol)}
-                        className="text-2xl"
-                      >
-                        <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]">
-                          <Star
-                            borderColor={
-                              favorites.includes(currency.symbol)
-                                ? "none"
-                                : "currentColor"
-                            }
-                            backgroundColor={
-                              favorites.includes(currency.symbol)
-                                ? "#FFC107"
-                                : "none"
-                            }
-                          />
-                        </div>
-                      </button>
-                      <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
-                        {currency.isFont ? (
-                          <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-[24px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
-                            style={{ color: currency.color }}
-                          ></i>
-                        ) : (
-                          <img
-                            src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
-                            alt={currency.symbol}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-y-[2px]">
-                        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
-                          {" "}
-                          {currency?.name?.length > 10
-                            ? currency.name.slice(0, 10) + "..."
-                            : currency?.name}
-                        </span>
-                        <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
-                          {" "}
-                          {currency?.symbol?.length > 7
-                            ? "..." + currency.symbol.slice(0, 7)
-                            : currency?.symbol}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
-                      <div className="text-end sm:text-center">
-                        {currency.lastPrice} $
-                      </div>
-                      <div className="text-end sm:text-center">
-                        {" "}
-                        {sort === "min"
-                          ? currency.priceToman
-                          : formatNumber(currency.priceToman)}{" "}
-                        تومان
-                      </div>
-                    </div>
-
-                    {currency.lastPrice && (
-                      <div className="col-span-0 hidden md:block md:col-span-1 text-center">
-                        {currency.lastPrice} USDT
-                      </div>
-                    )}
-                    {currency.priceToman && (
-                      <div className="col-span-0 hidden md:block md:col-span-1 text-center">
-                        {" "}
-                        {sort === "min"
-                          ? currency.priceToman
-                          : formatNumber(currency.priceToman)}
-                        تومان
-                      </div>
-                    )}
-
-                    <div
-                      className={`text-center  ${
-                        currency.priceChangePercent?.startsWith("-")
-                          ? "text-red-500"
-                          : "text-green-500"
-                      }`}
+                >
+                  <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
+                    <button
+                      onClick={() => toggleFavorite(currency.symbol)}
+                      className="text-2xl"
                     >
-                      {currency.priceChangePercent}%
+                      <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]">
+                        <Star
+                          borderColor={
+                            favorites.includes(currency.symbol)
+                              ? "none"
+                              : "currentColor"
+                          }
+                          backgroundColor={
+                            favorites.includes(currency.symbol)
+                              ? "#FFC107"
+                              : "none"
+                          }
+                        />
+                      </div>
+                    </button>
+                    <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
+                      {currency.isFont ? (
+                        <i
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[24px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
+                          style={{ color: currency.color }}
+                        ></i>
+                      ) : (
+                        <img
+                          src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                          alt={currency.symbol}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
-
-                    <div className="hidden md:flex justify-center">
-                      <Image src={ChartUP} alt="chart" width={64} height={31} />
-                    </div>
-
-                    <div>
-                      <Link href={`/coins/${currency.symbol}`}>
-                        <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
-                          جزئیات بیشتر
-                        </button>
-                      </Link>
+                    <div className="flex flex-col gap-y-[2px]">
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
+                        {" "}
+                        {currency?.name?.length > 10
+                          ? currency.name.slice(0, 10) + "..."
+                          : currency?.name}
+                      </span>
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
+                        {" "}
+                        {currency?.symbol?.length > 7
+                          ? "..." + currency.symbol.slice(0, 7)
+                          : currency?.symbol}
+                      </span>
                     </div>
                   </div>
-                ))}
+
+                  <div className="md:col-span-0 md:hidden w-full col-span-2 md:col-span-1 flex flex-col items-end pl-3 ">
+                    <div className="text-end sm:text-center">
+                      {currency.lastPrice} $
+                    </div>
+                    <div className="text-end sm:text-center">
+                      {" "}
+                      {sort === "min"
+                        ? currency.priceToman
+                        : formatNumber(currency.priceToman)}{" "}
+                      تومان
+                    </div>
+                  </div>
+
+                  {currency.lastPrice && (
+                    <div className="col-span-0 hidden md:block md:col-span-1 text-center">
+                      {currency.lastPrice} USDT
+                    </div>
+                  )}
+                  {currency.priceToman && (
+                    <div className="col-span-0 hidden md:block md:col-span-1 text-center">
+                      {" "}
+                      {sort === "min"
+                        ? currency.priceToman
+                        : formatNumber(currency.priceToman)}
+                      تومان
+                    </div>
+                  )}
+
+                  <div
+                  dir="ltr"
+                    className={`text-center  ${currency.priceChangePercent?.startsWith("-")
+                      ? "text-red-500"
+                      : "text-green-500"
+                      }`}
+                  >
+                    {currency.priceChangePercent}%
+                  </div>
+
+                  <div className="hidden md:flex justify-center" style={{
+                    filter: parseFloat(currency.priceChangePercent) < 0
+                      ? 'brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)'
+                      : 'brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)'
+                  }}>
+                    <Image src={ChartUP} alt="chart" width={64} height={31} />
+                  </div>
+
+                  <div>
+                    <Link href={`/coins/${currency.symbol}`}>
+                      <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                        جزئیات بیشتر
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       ) : (

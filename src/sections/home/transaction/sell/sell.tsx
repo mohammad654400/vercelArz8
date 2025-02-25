@@ -14,8 +14,7 @@ type TransAction = {
   coin: any;
   showPrice?: boolean;
   isBuy: boolean;
-  infoLoading: boolean;
-  homeLoading: boolean;
+  isLoading: boolean;
   currentCoin:any
 };
 export default function Sell({
@@ -24,8 +23,7 @@ export default function Sell({
   width,
   coin,
   isBuy,
-  infoLoading,
-  homeLoading,
+  isLoading,
   currentCoin
 }: TransAction) {
   const [open, setOpen] = useState(false);
@@ -188,8 +186,7 @@ export default function Sell({
               toggle={toggleOpen}
               hasLink={route === 'coins' ? true : false}
               isBuy={isBuy}
-              infoLoading={infoLoading}
-              homeLoading={homeLoading}
+              isLoading={isLoading}
               currentCoin={currentCoin}
 
             />

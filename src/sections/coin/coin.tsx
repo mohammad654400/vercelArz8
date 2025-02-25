@@ -50,30 +50,30 @@ export default function Coin() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
 
-  const { data: infoData, isLoading: infoLoading, error } = useGetData('info');
-  const { data: maxData, isLoading: profitLoading } = useGetData("cryptocurrencies", 60000, {
+  const { data: infoData } = useGetData('info');
+  const { data: maxData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "profit",
   });
 
-  const { data: minData, isLoading: lossLoading } = useGetData("cryptocurrencies", 60000, {
+  const { data: minData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "loss",
   });
 
-  const { data: newData, isLoading: newLoading } = useGetData("cryptocurrencies", 60000, {
+  const { data: newData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "new",
   });
-  const { data: searchData,isLoading:searchLoading } = useGetData("cryptocurrencies", 60000, {
+  const { data: searchData } = useGetData("cryptocurrencies", 60000, {
     limit: 5,
     page: 1,
     sort: "default",
     search: searchQuery,
-    symbols:symbolsQuery
+    symbols: symbolsQuery
   });
 
   const infoMap = useMemo(() => {
@@ -109,7 +109,7 @@ export default function Coin() {
             قیمت لحظه ای ارز های دیحیتال
           </h1>
           <p className="text-xs sm:text-sm pt-5 font-normal text-center w-[330px] sm:w-[477px] md:w-[575px] !leading-6 sm:!leading-10 ">
-          برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید.
+            برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید.
           </p>
           <div className="relative p-5 ">
             <input
@@ -147,20 +147,20 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={profitLoading} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={lossLoading} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
             </div>
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
+              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
             <div className="block xl:hidden">
-              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} infoLoading={infoLoading} isLoading={newLoading} />
+              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
-            <LivePriceTable infoMap={infoMap}  />
+            <LivePriceTable infoMap={infoMap} />
           </div>
         </div>
         <MoreDetails

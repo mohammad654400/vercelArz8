@@ -29,9 +29,10 @@ interface CryptocurrencyInfo {
   percent: number;
 }
 
-interface InfoData {
-  cryptocurrency: CryptocurrencyInfo[];
+interface InfoMap {
+  [symbol: string]: CryptocurrencyInfo;
 }
+
 interface MergedData {
   id: number;
   symbol: string;
@@ -56,26 +57,16 @@ const filterOptions = [
   { label: "جدیدترین", key: "new", mobile: false },
 ];
 
-export default function RealTimePrice({ homeData: initialHomeData, infoData, infoLoading, homeLoading }: {
+export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLoading }: {
   homeData: HomeData;
-  infoData: InfoData;
-  infoLoading: boolean;
-  homeLoading: boolean
+  infoMap: InfoMap;
+  isLoading: boolean;
 
 }) {
   const { formatNumber } = useFormattedNumber();
   const [activeFilter, setActiveFilter] = useState("default");
   const [displayedCurrencies, setDisplayedCurrencies] = useState<MergedData[]>([]);
   const { baseColor, highlightColor } = useTheme();
-
-  const infoMap = useMemo(
-    () =>
-      infoData?.cryptocurrency.reduce((acc, item) => {
-        acc[item.symbol] = item;
-        return acc;
-      }, {} as Record<string, InfoData["cryptocurrency"][0]>),
-    [infoData]
-  );
 
 
   const filteredData = useMemo(() => {
@@ -113,7 +104,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
                   : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
               >
-                <span className="text-xs font-semibold sm:text-base ">{option.label}</span>
+                <span className="text-xs font-semibold sm:text-sm ">{option.label}</span>
 
               </button>
             ))}
@@ -122,23 +113,23 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
             <Link className="text-base font-semibold" href="/coins">مشاهده تمام ارزها</Link>          </button>
         </div>
         <div className="px-4 pt-[36px] w-full border-[1px] border-[#ADADAD80] border-t-0 rounded-b-xl">
-          <div className="px-2 grid grid-cols-5 md:grid-cols-8 text-[#47444480] dark:text-[#FFFFFF80] text-[11px] md:text-sm w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
-            <div className="flex justify-start mr-5 col-span-2 ">نماد</div>
+          <div className="px-2 grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[10px] md:text-xs w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
+            <div className="block ">نماد</div>
             <div className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
-            <div className="pl-0 pr-0 col-span-2">قیمت به تومان</div>
+            <div className="pl-0 pr-0 col-span-1">قیمت به تومان</div>
             <div className="pl-0 pr-0">تغییرات 24h</div>
             <div className="hidden md:block pl-0 pr-0">نمودار 24h</div>
-            <div className="hidden md:flex justify-end ml-5">عملیات</div>
+            <div className="hidden md:flex justify-center ml-5">عملیات</div>
           </div>
 
-          <div className="divide-y-[3.5px] divide-gray-200 text-[13px] w-full">
-            {infoLoading || homeLoading ? (
+          <div className="divide-y-[1px] divide-[#ADADAD80] dark:divide-[#FFFFFF80]  text-[13px] w-full">
+            {isLoading ? (
               Array(6).fill(0).map((_, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-5 md:grid-cols-8 max-w-[1165px] items-center text-center py-4"
+                  className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
                 >
-                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-2">
+                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
                     <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
                       <div className="w-[28px] h-[28px] md:w-[44px] md:h-[44px] flex">
                         <Skeleton width={28} height={28} circle={true} baseColor={baseColor} highlightColor={highlightColor} />
@@ -156,7 +147,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
                     <Skeleton width={60} height={14} baseColor={baseColor} highlightColor={highlightColor} />
                   </div>
 
-                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-2">
+                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-1">
                     <Skeleton width={50} height={12} baseColor={baseColor} highlightColor={highlightColor} />
                     <span className="text-[8px] md:text-sm font-semibold opacity-50">تومان</span>
                   </div>
@@ -178,14 +169,14 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
               displayedCurrencies.map((currency, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-5 md:grid-cols-8 max-w-[1165px] items-center text-center py-4"
+                  className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
                 >
-                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-2">
-                    <div className="flex items-center gap-2 justify-start pr-2 md:pr-0">
-                      <div className="w-[28px] h-[28px] md:w-[44px] md:h-[44px] flex">
+                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
+                    <div className="flex items-center gap-2 justify-start pr-2 md:pr-4">
+                    <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
                         {currency.isFont ? (
                           <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-[28px] md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-2xl md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
                             style={{ color: currency.color }}
                           ></i>
                         ) : (
@@ -198,41 +189,61 @@ export default function RealTimePrice({ homeData: initialHomeData, infoData, inf
                       </div>
 
                       <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
-                        <span className="text-[10px] md:text-base font-semibold text-start">{currency.name}</span>
-                        <p className="text-[10px] md:text-base font-semibold text-right opacity-45 w-auto">
-                          {currency.symbol}
-                        </p>
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
+                        {" "}
+                        {currency?.name?.length > 14
+                          ? currency.name.slice(0, 11) + "..."
+                          : currency?.name}
+                      </span>
+                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
+                        {" "}
+                        {currency?.symbol?.length > 7
+                          ? "..." + currency.symbol.slice(0, 7)
+                          : currency?.symbol}
+                      </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="w-full hidden md:block md:text-lg font-semibold">
+                  <div className="w-full hidden md:block md:text-base font-semibold">
                     ${currency.lastPrice}
                   </div>
 
-                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-2">
-                    <span className="text-[10px] md:text-lg font-semibold">
+                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-1">
+                    <span className="text-[10px] md:text-base font-semibold">
                       {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
                     </span>
                     <span className="text-[8px] md:text-sm font-semibold">تومان</span>
                   </div>
 
                   <p
-                    style={{ direction: "ltr" }}
-                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"
-                      } text-[10px] md:text-lg font-semibold text-end md:text-center`}
+                    dir="ltr"
+                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
+                      } text-[10px] md:text-base font-semibold text-center`}
                   >
                     {currency.priceChangePercent} %
                   </p>
+                  <div
+                    className="md:flex justify-center m-auto hidden object-cover"
+                    style={{
+                      filter: parseFloat(currency.priceChangePercent) < 0
+                        ? 'brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)'
+                        : 'brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)'
+                    }}
 
-                  <div className="md:flex justify-center m-auto hidden object-cover">
-                    <Image src={`https://cdn.arz8.com/charts/1d/${currency.symbol}.svg`} alt="chart" width={120} height={44} />
+                  >
+                    <Image
+                      src={`https://cdn.arz8.com/charts/1d/${currency.symbol}.svg`}
+                      alt="chart"
+                        width={120}
+                      height={44}
+                    />
                   </div>
 
-                  <Link href={`/coins/${currency.symbol}`} className="flex justify-end pl-0 pr-0">
-                    <button className="text-sm border border-primary text-primary w-[119px] h-[46px] rounded-[10px] hidden md:block">
-                      جزئیات بیشتر
-                    </button>
+                  <Link href={`/coins/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
+                  <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                        جزئیات بیشتر
+                      </button>
                   </Link>
                 </div>
               ))
