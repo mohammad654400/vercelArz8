@@ -172,12 +172,12 @@ export default function DetailCoin() {
       : setFavorites([]);
   }, [currency]);
 
-  const handleFavorite = (name: string) => {
+  const handleFavorite = (symbol: string) => {
     let updatedFavorites;
-    if (favorite.includes(name)) {
-      updatedFavorites = favorite.filter((item) => item !== name);
+    if (favorite.includes(symbol)) {
+      updatedFavorites = favorite.filter((item) => item !== symbol);
     } else {
-      updatedFavorites = [...favorite, name];
+      updatedFavorites = [...favorite, symbol];
     }
 
     setFavorites(updatedFavorites);
@@ -349,12 +349,12 @@ export default function DetailCoin() {
           <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
             <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
             <span
-              onClick={() => handleFavorite(coin?.name)}
+              onClick={() => handleFavorite(coin?.symbol)}
               className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
             >
               <Star
-                borderColor={favorite.includes(route) ? "none" : "currentColor"}
-                backgroundColor={favorite.includes(route) ? "#FFC107" : "none"}
+                borderColor={favorite.includes(coin?.symbol) ? "none" : "currentColor"}
+                backgroundColor={favorite.includes(coin?.symbol) ? "#FFC107" : "none"}
               />
             </span>
           </div>
