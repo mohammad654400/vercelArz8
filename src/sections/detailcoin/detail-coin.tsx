@@ -15,7 +15,7 @@ import CurrentPrice from "./current-price";
 import DescriptionTable from "./description-table";
 import Earth from "@/assets/icons/detailcoin/earth";
 import CryptoModal from "@/sections/home/transaction/cryptoModal";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Segment from "./segment";
 import TradingViewSimpleChart from "@/components/charts/trading-view-simple-chart";
 import useGetData from "@/hooks/useGetData";
@@ -23,6 +23,7 @@ import TradingViewAdvancedChart from "@/components/charts/trading-view-advanced-
 import { useTheme } from "@/contexts/theme-provider";
 import CryptoDetails from "./crypto-details";
 import Skeleton from "react-loading-skeleton";
+import ChartContainer from "./charts-container";
 
 interface HomeCurrency {
   symbol: string;
@@ -110,6 +111,7 @@ export default function DetailCoin() {
   const [isAdvancedChart, setIsAdvancedChart] = useState<boolean>(false)
   const { theme, baseColor, highlightColor } = useTheme()
   const [selectItem, setSelectItem] = useState<number | null>(null);
+  const [isCopied, setIsCopied] = useState<boolean>(false)
 
 
   const route = usePathname().split("/")[2].toUpperCase();
@@ -128,6 +130,13 @@ export default function DetailCoin() {
     }
   }, [infoData, route]);
 
+  // handle 404 error
+  const router = useRouter();
+  useEffect(() => {
+    if (infoData && !infoData?.cryptocurrency?.some((item: any) => item.symbol === route)) {
+      router.push('/not-found')
+    }
+  }, [infoData, route, router])
 
   // array for 
   const newCryptos = coinData?.new.map((crypto: any) => {
@@ -243,6 +252,13 @@ export default function DetailCoin() {
       .filter(Boolean); // Remove null values from the array
   }, [homeData, cryptoMap]);
 
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href)
+    setIsCopied(true)
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 2500);
+  }
 
 
   return (
@@ -347,7 +363,9 @@ export default function DetailCoin() {
 
         <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
           <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
-            <span className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"><SendIcon /></span>
+            <button onClick={handleCopyLink} className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
+              {isCopied ? <span className="text-xs text-[#33B028]">کپی شد!</span> : <SendIcon />}
+            </button>
             <span
               onClick={() => handleFavorite(coin?.symbol)}
               className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
@@ -361,33 +379,10 @@ export default function DetailCoin() {
         </div>
       </div>
 
-      {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
       <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="flex flex-col gap-4 w-full lg:w-[60%]">
-          <div className="rounded-[10px] p-4 flex items-center gap-[14px] bg-secondary w-[240px] relative">
-            <div className={`absolute  h-9 bg-fifth rounded-md transition ${isAdvancedChart ? '-translate-x-[104px] w-[110px]' : 'w-[100px]'}`}></div>
-            <button onClick={() => setIsAdvancedChart(false)} className={`w-24 rounded text-center text-sm z-10  ${!isAdvancedChart ? 'text-seventh' : 'text-sixth text-opacity-50'}`}>نمودار ساده</button>
-            <button onClick={() => setIsAdvancedChart(true)} className={`w-24 rounded text-center text-sm z-10  ${isAdvancedChart ? 'text-seventh' : 'text-sixth text-opacity-50'}`}>نمودار پیشرفته</button>
-          </div>
 
-          {/* Skeleton loading for SimpleChart */}
-          <div className={`w-full lg:h-full h-96 rounded-xl border-[0.88px] border-[#ADADAD80] overflow-hidden  ${isAdvancedChart ? 'hidden' : 'block'}`}>
-            {coinChart ? (
-              <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
-            ) : (
-              <Skeleton height="100%" width="100%" baseColor={baseColor} highlightColor={highlightColor} />
-            )}
-          </div>
-
-          {/* Skeleton loading for AdvancedChart */}
-          <div className={`w-full lg:h-full h-96 rounded-xl border-[0.88px] border-[#ADADAD80] overflow-hidden  ${isAdvancedChart ? 'block' : 'hidden'}`}>
-            {coinChart ? (
-              <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
-            ) : (
-              <Skeleton height="100%" width="100%" baseColor={baseColor} highlightColor={highlightColor} />
-            )}
-          </div>
-        </div>
+        {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
+        <ChartContainer coinChart={coinChart} theme={theme} />
 
         <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
           <TransAction coin={filterData?.find(item => item?.symbol === route)} infoLoading={false} homeLoading={false} homeData={homeData} infoData={infoData} />
