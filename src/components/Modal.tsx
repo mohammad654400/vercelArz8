@@ -12,7 +12,7 @@ interface Line {
 
 interface ModalProps {
   isOpen: boolean;
-  type: "success" | "error";
+  type: "success" | "error" | "loading";
   icon: React.ReactNode; 
   lines: Line[]; 
   onClose: () => void; 

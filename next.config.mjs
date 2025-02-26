@@ -33,6 +33,10 @@ const nextConfig = {
       {
         source: "/api/proxy/landing/form/contact-us",
         destination: "https://app.arz8.com/api/landing/form/contact-us",
+      },
+      {
+        source: "/api/proxy/landing/form/jobs",
+        destination: "https://app.arz8.com/api/landing/form/jobs",
       }
     ];
   },

@@ -3,6 +3,7 @@ import { usePathname, notFound } from 'next/navigation';
 import React, { useState } from 'react';
 import { jobListings } from './data/data';
 import ApplyPage from '../apply/apply';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 export default function DetailJob() {
     const route = usePathname().split('/')[2];
@@ -29,7 +30,16 @@ export default function DetailJob() {
     return (
         <div className="bg-background base-style">
             {open ? (
-                <ApplyPage title={job.titleFn} />
+                <GoogleReCaptchaProvider
+                    reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                    scriptProps={{
+                        async: true,
+                        defer: true,
+                        appendTo: "head",
+                    }}
+                >
+                    <ApplyPage title={job.titleFn} />
+                </GoogleReCaptchaProvider>
             ) : (
                 <div className='mt-[76px] sm:mt-[174px] lg:mt-[215px] '>
                     <h1 className="text-xl  sm:text-[38.8px] lg:text-4xl  lg:mb-[114px] sm:mb-[108px] mb-[20px] font-bold  flex justify-center text-eighth">{job.titleFn}</h1>

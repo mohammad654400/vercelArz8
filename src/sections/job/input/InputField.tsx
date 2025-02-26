@@ -89,7 +89,7 @@ const FormField: React.FC<InputFieldProps> = ({
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
-                    autoComplete="off"
+                    autoComplete="on"
                     className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12"
                 />
             )}

@@ -2,17 +2,18 @@ import { useMutation } from "@tanstack/react-query";
 
 const baseUrl = "/api/proxy/landing/form";
 
-const postData = async (endpoint: string, data: Record<string, any>) => {
+const postData = async (endpoint: string, data: Record<string, any> | FormData) => {
+  const isFormData = data instanceof FormData;
+
   const response = await fetch(`${baseUrl}/${endpoint}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    headers: isFormData ? undefined : { "Content-Type": "application/json" },
+    body: isFormData ? data : JSON.stringify(data),
   });
-  if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+  if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}, Error: ${response.text()}`);
   return response.json();
 };
+
 
 const usePostData = (endpoint: string, onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
   const mutation = useMutation({
