@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, memo } from "react";
+import React, { useEffect, useRef, memo } from "react";
 
 type TradingViewAdvancedChartProps = {
   coinChart: string;
@@ -7,8 +7,6 @@ type TradingViewAdvancedChartProps = {
 
 function TradingViewAdvancedChart({ coinChart, theme }: TradingViewAdvancedChartProps) {
   const container = useRef<HTMLDivElement | null>(null);
-  const chartWrapper = useRef<HTMLDivElement | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     // Clear previous content to avoid duplicates
@@ -44,27 +42,8 @@ function TradingViewAdvancedChart({ coinChart, theme }: TradingViewAdvancedChart
     };
   }, [coinChart, theme]);
 
-  // Toggle fullscreen mode
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      chartWrapper.current?.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
-    }
-  };
-
   return (
-    <div ref={chartWrapper} className="relative w-full h-full">
-      {/* Fullscreen Button */}
-      <button
-        onClick={toggleFullscreen}
-        className="absolute top-2 right-2 bg-gray-800 text-white px-3 py-1 rounded-lg z-50"
-      >
-        {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-      </button>
-
+    <div className="relative w-full h-full">
       {/* TradingView Chart */}
       <div
         className="tradingview-widget-container"
@@ -73,7 +52,7 @@ function TradingViewAdvancedChart({ coinChart, theme }: TradingViewAdvancedChart
       >
         <div
           className="tradingview-widget-container__widget"
-          style={{ height: "calc(100% - 32px)", width: "100%" }}
+          style={{ height: "100%", width: "100%" }}
         ></div>
         <div className="tradingview-widget-copyright">
           <a

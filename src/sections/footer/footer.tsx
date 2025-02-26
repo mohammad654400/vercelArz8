@@ -74,6 +74,7 @@ export default function Footer() {
                   <ul className="flex flex-col gap-4">
                     <Link href="https://app.arz8.com/support"> <li> ارسال تیکت پشتیبانی</li></Link>
                     <Link href="/faq"><li> اموزش های صرافی</li></Link>
+                    <Link href="/about"><li>فرصت های شغلی</li></Link>
                     <Link href="/rules"> <li> قوانین و مقررات</li></Link>
                     <Link href="/fee"><li>  سطوح کاربری</li></Link>
                     <Link href="/contact-us"><li> تماس با ما</li></Link>

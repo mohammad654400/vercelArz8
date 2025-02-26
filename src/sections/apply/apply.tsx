@@ -10,6 +10,7 @@ import SuccessJob from "@/assets/icons/modal/successJob"
 import usePostData from '@/hooks/usePostData';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Spinner from '@/components/spinner'
+
 interface ModalLine {
     text: string;
     highlightedWords?: { word: string; color: "green" | "red" }[];
@@ -23,7 +24,7 @@ interface FormDataType {
     marriage: string;
     conscription: string;
     file: File | null;
-    }
+}
 
 export default function ApplyPage({ title }: { title: string }) {
     const [errors, setErrors] = useState<Record<string, string>>({});

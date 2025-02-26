@@ -23,7 +23,7 @@ function TradingViewSimpleChart({ coinChart, theme }: TradingViewSimpleChartProp
       {
         "symbols": [
           [
-            "${coinChart}"
+            "${coinChart}|1M"
           ]
         ],
         "chartOnly": false,
