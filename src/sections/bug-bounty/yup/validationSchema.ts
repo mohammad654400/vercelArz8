@@ -17,11 +17,12 @@ const fileValidationSchema = Yup.mixed()
 const emailValidationRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required("نام و نام خانوادگی الزامی است."),
-  email: Yup.string()
-    .email("ایمیل معتبر نیست.")
-    .matches(emailValidationRegex, "ایمیل باید یک الگوی معتبر داشته باشد.")
-    .required("ایمیل الزامی است."),
+  fullName: Yup.string()
+          .min(3, "نام و نام خانوادگی باید حداقل3 حرف باشد.")
+          .required("نام و نام خانوادگی الزامی است."),
+  email:Yup.string().email()
+      .required("ایمیل الزامی است."),
+      
   title: Yup.string().required("عنوان الزامی است."),
   vulnerableSector: Yup.string().required("انتخاب بخش آسیب‌پذیر الزامی است."),
   description: Yup.string().required("توضیحات خطا الزامی است."),
