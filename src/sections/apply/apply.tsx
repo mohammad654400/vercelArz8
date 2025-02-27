@@ -48,7 +48,7 @@ export default function ApplyPage({ title }: { title: string }) {
         file: null,
     });
 
-    const { mutate, isError, isSuccess } = usePostData("jobs");
+    const { mutate, isError, isSuccess ,} = usePostData("jobs");
 
     useEffect(() => {
         if (isSuccess) {

@@ -8,6 +8,8 @@ import SuccessJob from "@/assets/icons/modal/successJob"
 import * as Yup from 'yup';
 import usePostData from '@/hooks/usePostData';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import Cookies from "js-cookie";
+import { SHA256 } from "crypto-js";
 
 
 interface ModalLine {
@@ -17,25 +19,19 @@ interface ModalLine {
 
 
 export default function FormBugBounty() {
-	const { executeRecaptcha } = useGoogleReCaptcha()
+
+	const { executeRecaptcha } = useGoogleReCaptcha();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 	const [totalFileSize, setTotalFileSize] = useState(0);
-
 	const [isChecked, setIsChecked] = useState(false);
-
-
-
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalType, setModalType] = useState<"success" | "error" | "loading">("loading");
 	const [modalLines, setModalLines] = useState<ModalLine[]>([]);
 
-
 	const handleCheckboxChange = () => {
 		setIsChecked(!isChecked);
 	};
-
-
 
 	const formDataRef = useRef<{
 		fullName: string;
@@ -58,7 +54,7 @@ export default function FormBugBounty() {
 		Offer: "",
 	});
 
-	const { mutate, isError, isSuccess } = usePostData('bug-bounty')
+	const { mutate, isError, isSuccess } = usePostData("bug-bounty");
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -70,12 +66,11 @@ export default function FormBugBounty() {
 			setModalLines([{ text: "ارسال پیام با مشکل روبرو شد", highlightedWords: [{ word: "مشکل", color: "red" }] }]);
 			setIsModalOpen(true);
 		}
-	}, [isError, isSuccess])
-
+	}, [isError, isSuccess]);
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
-		formDataRef.current = { ...formDataRef.current, [name]: value }
+		formDataRef.current = { ...formDataRef.current, [name]: value };
 	}, []);
 
 	const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,10 +91,9 @@ export default function FormBugBounty() {
 		setUploadedFiles((prevFiles) => {
 			const combinedFiles = [...prevFiles, ...newUploadedFiles];
 
-
-			const imageFiles = combinedFiles.filter(file => ["image/jpeg", "image/png"].includes(file.type));
-			const videoOrZipFiles = combinedFiles.filter(file =>
-				["video/mp4", "application/zip", "application/octet-stream"].includes(file.type) || file.name.endsWith('.zip')
+			const imageFiles = combinedFiles.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
+			const videoOrZipFiles = combinedFiles.filter((file) =>
+				["video/mp4", "application/zip", "application/octet-stream"].includes(file.type) || file.name.endsWith(".zip")
 			);
 
 			if (imageFiles.length > 5) {
@@ -125,7 +119,6 @@ export default function FormBugBounty() {
 		const removedFileSize = uploadedFiles[index].size;
 		setUploadedFiles(updatedFiles);
 		setTotalFileSize((prev) => prev - removedFileSize);
-		// به‌روزرسانی files در formDataRef بعد از حذف  
 		formDataRef.current.files = updatedFiles;
 	}, [uploadedFiles]);
 
@@ -148,6 +141,12 @@ export default function FormBugBounty() {
 		}
 	}, []);
 
+	const hashFormData = (data: any) => {
+		const { files, ...dataWithoutFiles } = data; // Exclude files
+		const dataString = JSON.stringify(dataWithoutFiles);
+		return SHA256(dataString).toString(); // Hash only the textual data
+	};
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const isValid = await validateForm();
@@ -157,52 +156,62 @@ export default function FormBugBounty() {
 			console.error("reCAPTCHA هنوز بارگذاری نشده است.");
 			return;
 		}
-		console.log("formDataRef",formDataRef);
-		
 
-		try {
-			const reCaptchaToken = await executeRecaptcha('bug_bounty');
-			const formData = new FormData();
+		// Generate hash for form fields excluding files
+		const currentHash = hashFormData(formDataRef.current);
+		const previousHash = Cookies.get("formHash");
 
-			formData.append('name', formDataRef.current.fullName);
-			formData.append('email', formDataRef.current.email);
-			formData.append('title', formDataRef.current.title);
-			formData.append('section', formDataRef.current.vulnerableSector);
-			formData.append('description', formDataRef.current.description);
-			formData.append('route', formDataRef.current.pathOfError);
-			if (formDataRef.current.Offer) {
-				formData.append('proposal', formDataRef.current.Offer);
-			}
-			formData.append('recaptcha', reCaptchaToken);
-			if (formDataRef.current.files.length > 0) {
-				formDataRef.current.files.forEach((file, index) => {
-					formData.append('file', file); // Append each file separately
-				});
-			}
-			else {
-				console.log('bug-bounty form data: no file to transfer');
-				return
-			}
+		if (currentHash === previousHash) {
+			console.warn("Duplicate submission detected.");
 
-			mutate(formData);
-			setModalType("loading");
+			// Show the modal with the duplicate message
+			setModalType("error");
 			setModalLines([
 				{
-					text: "رزومه ی شما در حال آپلود است",
-					highlightedWords: [{ word: "آپلود", color: "green" }],
-				},
-				{
-					text: "...لطفا منتظر بمانید",
-
+					text: "این پیام قبلاً ارسال شده است",
+					highlightedWords: [{ word: "قبلاً", color: "red" }],
 				},
 			]);
-
-			// Now you can send formData using fetch or mutate function
-		} catch (error) {
-			console.error('خطای ارسال فرم:', error);
+			setIsModalOpen(true);
+			return;
 		}
 
+		// Store new hash in cookies (expires in 1 day)
+		Cookies.set("formHash", currentHash, { expires: 1 });
+
+		try {
+			const reCaptchaToken = await executeRecaptcha("bug_bounty");
+			const formData = new FormData();
+
+			formData.append("name", formDataRef.current.fullName);
+			formData.append("email", formDataRef.current.email);
+			formData.append("title", formDataRef.current.title);
+			formData.append("section", formDataRef.current.vulnerableSector);
+			formData.append("description", formDataRef.current.description);
+			formData.append("route", formDataRef.current.pathOfError);
+			if (formDataRef.current.Offer) {
+				formData.append("proposal", formDataRef.current.Offer);
+			}
+			formData.append("recaptcha", reCaptchaToken);
+
+			formDataRef.current.files.forEach((file) => {
+				formData.append("file", file);
+			});
+
+			mutate(formData);
+
+			setModalType("loading");
+			setModalLines([
+				{ text: "رزومه ی شما در حال آپلود است", highlightedWords: [{ word: "آپلود", color: "green" }] },
+				{ text: "...لطفا منتظر بمانید" },
+			]);
+			setIsModalOpen(true);
+		} catch (error) {
+			console.error("خطای ارسال فرم:", error);
+		}
 	};
+
+
 
 	return (
 		<div className=" rounded-[30px] w-full py-10 px-5 bg-[#FFFFFF] dark:bg-[#242428]">
