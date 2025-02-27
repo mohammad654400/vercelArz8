@@ -33,7 +33,6 @@ const generateSignature = (
 
   const dataToHash = `${method} landing/${cleanEndpoint} ${timestamp} ${paramsJson}`;
 
-  console.log("dataToHash:", dataToHash);
 
   return crypto.createHmac("sha256", SECRET_KEY).update(dataToHash).digest("hex");
 };
@@ -41,9 +40,7 @@ const generateSignature = (
 
 const fetchData = async (endpoint: string, params: Record<string, any> = {}) => {
   const timestamp = Math.floor(Date.now() / 1000).toString();
-
-  console.log("timestamp:", timestamp);
-  
+    
   const relativePath = endpoint + (Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : "");
 
   const signature = generateSignature("GET", relativePath, timestamp, params);

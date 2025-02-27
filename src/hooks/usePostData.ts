@@ -35,8 +35,6 @@ const generateSignature = (
 
   const dataToHash = `POST landing/form/${endpoint} ${timestamp} ${payloadJson}`;
 
-  console.log("dataToHash:", dataToHash);
-
   return crypto.createHmac("sha256", SECRET_KEY).update(dataToHash).digest("hex");
 };
 
