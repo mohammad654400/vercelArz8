@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
-import FormField from '@/sections/job/input/InputField';
+import FormField from '@/sections/job/input/inputField';
 import validationSchema from './yup/validationSchema';
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
@@ -176,8 +176,8 @@ export default function FormBugBounty() {
                         type="text"
                         onChange={handleChange}
                         error={errors.fullName}
-
                     />
+
                     <FormField
                         name="email"
                         label="ایمیل"
@@ -185,6 +185,7 @@ export default function FormBugBounty() {
                         onChange={handleChange}
                         error={errors.email}
                     />
+
                     <FormField
                         name="title"
                         label="عنوان باگ "
@@ -192,6 +193,7 @@ export default function FormBugBounty() {
                         onChange={handleChange}
                         error={errors.title}
                     />
+
                     <FormField
                         name="vulnerableSector"
                         label="بخش آسیب پذیر"

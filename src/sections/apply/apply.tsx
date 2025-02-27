@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 import { validationSchema } from './yup/validation-schema';
-import FormField from '@/sections/job/input/InputField';
+import InputSelect from '@/sections/job/input/InputSelect';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
@@ -10,6 +10,8 @@ import SuccessJob from "@/assets/icons/modal/successJob"
 import usePostData from '@/hooks/usePostData';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Spinner from '@/components/spinner'
+import Cookies from "js-cookie";
+import { SHA256 } from "crypto-js";
 
 interface ModalLine {
     text: string;
@@ -50,10 +52,16 @@ export default function ApplyPage({ title }: { title: string }) {
 
     useEffect(() => {
         if (isSuccess) {
+            const submissionHash = createSubmissionHash();
             setModalType("success");
             setModalLines([{ text: "پیام شما با موفقیت ارسال شد.", highlightedWords: [{ word: "موفقیت", color: "green" }] }]);
             setIsModalOpen(true);
-            window.location.reload();
+            Cookies.set("last_submission_hash", submissionHash, {
+                expires: 1,
+                secure: true,
+                sameSite: "Strict"
+            });
+            setTimeout(() => window.location.reload(), 2000)
         } else if (isError) {
             setModalType("error");
             setModalLines([{ text: "ارسال پیام با مشکل روبرو شد", highlightedWords: [{ word: "مشکل", color: "red" }] }]);
@@ -67,13 +75,11 @@ export default function ApplyPage({ title }: { title: string }) {
             ...formDataRef.current,
             [name]: value,
         };
-        console.log(`Field "${name}" changed: `, value);
     }, []);
 
     const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            console.log("Selected file:", file);
 
             // Checking file size
             if (file.size > 20 * 1024 * 1024) {
@@ -104,14 +110,12 @@ export default function ApplyPage({ title }: { title: string }) {
             // Store file in formDataRef
             formDataRef.current.file = file;
             setUploadedFileName(file.name);
-            console.log("File uploaded successfully:", file.name);
         }
     }, []);
 
 
     const validateForm = useCallback(async () => {
         try {
-            console.log("Validating form data:", formDataRef.current);
             await validationSchema.validate(formDataRef.current, { abortEarly: false });
             setErrors({});
             return true;
@@ -128,6 +132,12 @@ export default function ApplyPage({ title }: { title: string }) {
         }
     }, []);
 
+    const createSubmissionHash = (): string => {
+        const { name, mobile, email } = formDataRef.current;
+        const submissionString = `${name.trim()}-${mobile.trim()}-${email.trim()}`;
+        return SHA256(submissionString).toString();
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isValid = await validateForm();
@@ -137,6 +147,23 @@ export default function ApplyPage({ title }: { title: string }) {
             console.error("reCAPTCHA هنوز بارگذاری نشده است.");
             return;
         }
+
+        const currentSubmissionHash = createSubmissionHash();
+
+        const lastSubmissionHash = Cookies.get("last_submission_hash");
+
+        if (lastSubmissionHash === currentSubmissionHash) {
+            setModalType("error");
+            setModalLines([
+                {
+                    text: "این پیام قبلاً ارسال شده است",
+                    highlightedWords: [{ word: "قبلاً", color: "red" }],
+                },
+            ]);
+            setIsModalOpen(true);
+            return;
+        }
+
 
         try {
             const recaptchaToken = await executeRecaptcha("apply_form");
@@ -184,32 +211,28 @@ export default function ApplyPage({ title }: { title: string }) {
                     <div className="w-full flex flex-col gap-4">
                         <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-4 '>
 
-                            <FormField
-                                name="name"
-                                label="نام و خانوادگی"
-                                type="text"
-                                onChange={handleChange}
-                                error={errors.name}
-                            />
-                            <FormField
-                                name="mobile"
-                                label="شماره تماس"
-                                type="text"
-                                onChange={handleChange}
-                                error={errors.mobile}
-                            />
-                            <FormField
-                                name="email"
-                                label="ایمیل"
-                                type="text"
-                                onChange={handleChange}
-                                error={errors.email}
-                            />
+                            <div>
+                                <label className="block text-sm font-medium mb-2">نام و نام خانوادگی</label>
+                                <input type="text" name="name" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
+                                {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">شماره تماس</label>
+                                <input type="text" name="mobile" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
+                                {errors.mobile && <p className="text-red-500 text-xs">{errors.mobile}</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">ایمیل</label>
+                                <input type="text" name="email" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
+                                {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                            </div>
+
                             <div className='z-10'>
-                                <FormField
+                                <InputSelect
                                     name="marriage"
                                     label="وضعیت تاهل"
-                                    type="select"
                                     options={["", "متاهل", "مجرد"]}
                                     onChange={handleChange}
                                     error={errors.marriage}
@@ -217,10 +240,9 @@ export default function ApplyPage({ title }: { title: string }) {
                             </div>
 
                             <div className='z-10'>
-                                <FormField
+                                <InputSelect
                                     name="conscription"
                                     label="وضعیت نظام وظیفه"
-                                    type="select"
                                     options={["", "خانم هستم", "مشمول", "معافیت تحصیلی", "معاف داعم"]}
                                     onChange={handleChange}
                                     error={errors.conscription}
