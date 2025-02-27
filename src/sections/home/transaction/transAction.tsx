@@ -324,9 +324,9 @@ export default function Transaction({
 
       {/* Main Content Section */}
       {!dataLoaded ? (
-        <div className="relative w-full duration-500">
+        <div className="relative w-full h-full duration-500">
           <Skeleton
-            className="w-full h-48"
+            className="!w-full !h-48 !pt-2"
             baseColor={baseColor}
             highlightColor={highlightColor}
           />
