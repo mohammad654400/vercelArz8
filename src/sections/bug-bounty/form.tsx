@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
-import FormField from '@/sections/job/input/InputField';
+import FormField from '@/sections/job/input/inputField';
 import validationSchema from './yup/validationSchema';
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
