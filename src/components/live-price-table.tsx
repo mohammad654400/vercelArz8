@@ -42,7 +42,7 @@ export default function LivePriceTable({ infoMap }: any) {
   const [favorites, setFavorites] = useState<string[]>(() =>
     JSON.parse(localStorage.getItem("favorites") || "[]")
   );
-  
+
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -240,7 +240,11 @@ export default function LivePriceTable({ infoMap }: any) {
           </div>
 
           <div className="min-h-80 divide-y divide-gray-200 text-[10px] md:text-sm">
-            {displayedCurrencies.lists.length === 0
+            {sort === "favorites" && favorites.length < 1 ? (
+              <div className="p-4 text-center  text-sm md:text-lg text-gray-500">
+                موردی وجود ندارد
+              </div>
+            ) : displayedCurrencies.lists.length === 0
               ? [...Array(parseInt(limit))].map((_, index) => (
                 <div
                   key={index}
@@ -429,7 +433,7 @@ export default function LivePriceTable({ infoMap }: any) {
                   )}
 
                   <div
-                  dir="ltr"
+                    dir="ltr"
                     className={`text-center  ${currency.priceChangePercent?.startsWith("-")
                       ? "text-red-500"
                       : "text-green-500"
