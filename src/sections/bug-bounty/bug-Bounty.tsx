@@ -10,6 +10,7 @@ import Form from "./form";
 import bgBugLight from "@/assets/images/bugbounty/bgBugLight.png";
 import bgBugDark from "@/assets/images/bugbounty/bgBugDark.png";
 import { useTheme } from "@/contexts/theme-provider";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function BugBounty() {
   const { theme } = useTheme();
@@ -36,7 +37,16 @@ export default function BugBounty() {
             alt=""
             className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
           />
-          <Form />
+          <GoogleReCaptchaProvider
+            reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+            scriptProps={{
+              async: true,
+              defer: true,
+              appendTo: "head",
+            }}>
+            <Form />
+          </GoogleReCaptchaProvider>
+
           <Rules />
         </div>
       ) : (
