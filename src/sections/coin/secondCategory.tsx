@@ -1,6 +1,7 @@
 import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
 import BNB from "@/assets/icons/bnb";
 import { useTheme } from "@/contexts/theme-provider";
+import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -93,7 +94,7 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap }: 
           </span>
         </div>
 
-        { displayedCurrencies?.length === 0 ? (
+        {displayedCurrencies?.length === 0 ? (
           [...Array(3)].map((_, index) => (
             <div key={index} className="flex flex-col">
               <div className=" py-1 flex items-center gap-x-3 md:gap-x-5">
@@ -131,7 +132,7 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap }: 
             >
               <div >
 
-                <div className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
+                <Link href={`coins/${item.symbol}`} className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]">
 
                   <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
                     {item.isFont ? (
@@ -165,7 +166,7 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap }: 
                     </div>
                   </div>
 
-                </div>
+                </Link>
 
 
               </div>

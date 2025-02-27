@@ -42,7 +42,7 @@ export default function LivePriceTable({ infoMap }: any) {
   const [favorites, setFavorites] = useState<string[]>(() =>
     JSON.parse(localStorage.getItem("favorites") || "[]")
   );
-
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -76,7 +76,9 @@ export default function LivePriceTable({ infoMap }: any) {
     60000,
     getRequestParams
   );
-
+  useEffect(() => {
+    setIsLoading(true);
+  }, [getRequestParams]);
   const filteredData = useMemo(() => {
     if (!cryptocurrenciesData) return { lists: [], total: 0 };
 
@@ -94,10 +96,15 @@ export default function LivePriceTable({ infoMap }: any) {
   }, [cryptocurrenciesData, infoMap]);
 
   useEffect(() => {
-    setDisplayedCurrencies(filteredData);
-  }, [filteredData]);
+    if (cryptocurrenciesData) {
+      setDisplayedCurrencies(filteredData);
+      setIsLoading(false);
+    }
+  }, [cryptocurrenciesData, filteredData]);
+  
 
   const handelOnChanged = (value: string) => {
+    setIsLoading(true)
     setSearchQuery(value);
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
@@ -109,6 +116,7 @@ export default function LivePriceTable({ infoMap }: any) {
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
     setNumberItem(false);
+    setIsLoading(true)
   };
 
   const totalPages =
@@ -177,6 +185,7 @@ export default function LivePriceTable({ infoMap }: any) {
                 e.stopPropagation();
                 setSort(btn.key);
                 setNumberPage(1);
+                setIsLoading(true)
                 setDisplayedCurrencies({ lists: [], total: 0 });
               }}
             >
@@ -244,8 +253,8 @@ export default function LivePriceTable({ infoMap }: any) {
               <div className="p-4 text-center  text-sm md:text-lg text-gray-500">
                 موردی وجود ندارد
               </div>
-            ) : displayedCurrencies.lists.length === 0
-              ? [...Array(parseInt(limit))].map((_, index) => (
+            ) : isLoading ? (
+              [...Array(parseInt(limit))].map((_, index) => (
                 <div
                   key={index}
                   className="grid grid-cols-6 md:grid-cols-6 items-center text-center py-4"
@@ -346,6 +355,12 @@ export default function LivePriceTable({ infoMap }: any) {
                   </div>
                 </div>
               ))
+
+            ) : displayedCurrencies.lists.length === 0
+              ?
+              <div className="p-4 text-center  text-sm md:text-lg text-gray-500">
+                موردی وجود ندارد
+              </div>
               : displayedCurrencies.lists.map((currency, index) => (
                 <div
                   key={index}
@@ -474,3 +489,4 @@ export default function LivePriceTable({ infoMap }: any) {
     </div>
   );
 }
+
