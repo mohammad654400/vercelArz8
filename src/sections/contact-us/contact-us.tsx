@@ -343,7 +343,7 @@ export default function ContactUs() {
           type={modalType}
           lines={modalLines}
           icon={
-            modalType === "success" ? <div className="lg:w-24 lg:h-44 "><SuccessContactUs /></div> : <ErrorContactUs />
+            modalType === "success" ? <div className="lg:w-24 lg:h-44 "><SuccessContactUs /></div> : <div className="lg:w-24 lg:h-44 "><ErrorContactUs /></div>
           }
           onClose={() => setIsModalOpen(false)}
         />
