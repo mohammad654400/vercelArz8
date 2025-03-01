@@ -33,6 +33,7 @@ export default function LivePriceTable({ infoMap }: any) {
     total: number;
   }>({ lists: [], total: 0 });
   const [searchQuery, setSearchQuery] = useState<string>("");
+    const [delayedSearchQuery , setDelayedSearchQuery] = useState("");
   const [sort, setSort] = useState<string>("default");
   const [limit, setLimit] = useState<string>("10");
   const [numberPage, setNumberPage] = useState(1);
@@ -56,12 +57,20 @@ export default function LivePriceTable({ infoMap }: any) {
     );
   }, []);
 
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      setDelayedSearchQuery(searchQuery);
+    }, 800);
+  
+    return () => clearTimeout(searchTimeout);
+  }, [searchQuery]);
+
   const getRequestParams = useMemo(() => {
     const params: any = {
       limit,
       page: numberPage,
       sort,
-      search: searchQuery,
+      search: delayedSearchQuery,
     };
 
     if (sort === "favorites" && favorites.length > 0) {
@@ -69,7 +78,7 @@ export default function LivePriceTable({ infoMap }: any) {
     }
 
     return params;
-  }, [sort, favorites, limit, numberPage, searchQuery]);
+  }, [sort, favorites, limit, numberPage, delayedSearchQuery]);
 
   const { data: cryptocurrenciesData } = useGetData(
     "cryptocurrencies",
@@ -100,7 +109,9 @@ export default function LivePriceTable({ infoMap }: any) {
       setDisplayedCurrencies(filteredData);
       setIsLoading(false);
     }
-  }, [cryptocurrenciesData, filteredData]);
+  }, [cryptocurrenciesData, filteredData,favorites
+
+  ]);
   
 
   const handelOnChanged = (value: string) => {
@@ -108,7 +119,6 @@ export default function LivePriceTable({ infoMap }: any) {
     setSearchQuery(value);
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
-
   };
   const handleLimitChange = (newLimit: number) => {
     setLimit(newLimit.toString());
@@ -174,22 +184,22 @@ export default function LivePriceTable({ infoMap }: any) {
         </div>
 
         <div className="hidden md:flex gap-3">
-          {filterOptions.map((btn) => (
+          {filterOptions.map((item) => (
             <button
-              key={btn.key}
-              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
+              key={item.key}
+              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === item.key
                 ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
                 : "text-[#3C3B41] dark:text-[#FFFFFF80]"
                 }`}
               onClick={(e) => {
                 e.stopPropagation();
-                setSort(btn.key);
+                setSort(item.key);
                 setNumberPage(1);
                 setIsLoading(true)
                 setDisplayedCurrencies({ lists: [], total: 0 });
               }}
             >
-              {btn.label}
+              {item.label}
             </button>
           ))}
         </div>
