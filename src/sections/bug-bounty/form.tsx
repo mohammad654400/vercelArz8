@@ -153,7 +153,6 @@ export default function FormBugBounty() {
 		if (!isValid) return;
 
 		if (!executeRecaptcha) {
-			console.error("reCAPTCHA هنوز بارگذاری نشده است.");
 			return;
 		}
 
@@ -162,7 +161,6 @@ export default function FormBugBounty() {
 		const previousHash = Cookies.get("formHash");
 
 		if (currentHash === previousHash) {
-			console.warn("Duplicate submission detected.");
 
 			// Show the modal with the duplicate message
 			setModalType("error");
@@ -207,7 +205,9 @@ export default function FormBugBounty() {
 			]);
 			setIsModalOpen(true);
 		} catch (error) {
-			console.error("خطای ارسال فرم:", error);
+			setModalType("error");
+			setModalLines([{ text: "ارسال پیام با مشکل روبرو شد", highlightedWords: [{ word: "مشکل", color: "red" }] }]);
+			setIsModalOpen(true);
 		}
 	};
 
