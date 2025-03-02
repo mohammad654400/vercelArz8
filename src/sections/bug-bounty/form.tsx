@@ -11,6 +11,17 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Cookies from "js-cookie";
 import { SHA256 } from "crypto-js";
 
+interface FormDataType {
+	fullName: string;
+	email: string;
+	title: string;
+	vulnerableSector: string;
+	description: string;
+	Offer?: string;
+	pathOfError?: string;
+	files: File[];
+}
+
 
 interface ModalLine {
 	text: string;
@@ -127,21 +138,26 @@ export default function FormBugBounty() {
 			await validationSchema.validate(formDataRef.current, { abortEarly: false });
 			setErrors({});
 			return true;
-		} catch (err: any) {
+		} catch (err: unknown) {
 			const newErrors: Record<string, string> = {};
-			if (err.inner) {
-				err.inner.forEach((error: Yup.ValidationError) => {
+
+			// Ensure err is a Yup.ValidationError before accessing its properties
+			if (err instanceof Yup.ValidationError) {
+				err.inner.forEach((error) => {
 					if (error.path) {
 						newErrors[error.path] = error.message;
 					}
 				});
 			}
+
 			setErrors(newErrors);
 			return false;
 		}
 	}, []);
 
-	const hashFormData = (data: any) => {
+
+	const hashFormData = (data: FormDataType) => {
+		console.log(data);
 		const { files, ...dataWithoutFiles } = data; // Exclude files
 		const dataString = JSON.stringify(dataWithoutFiles);
 		return SHA256(dataString).toString(); // Hash only the textual data
