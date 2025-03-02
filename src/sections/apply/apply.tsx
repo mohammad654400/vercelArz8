@@ -236,7 +236,7 @@ export default function ApplyPage({ title }: { title: string }) {
                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                             </div>
 
-                            <div className='z-10'>
+                            <div className='z-20'>
                                 <InputSelect
                                     name="marriage"
                                     label="وضعیت تاهل"

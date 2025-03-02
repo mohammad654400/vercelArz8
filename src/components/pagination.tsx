@@ -21,7 +21,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
   const pages = getPages();
 
   return (
-    <div className="flex justify-center items-center gap-3  p-4">
+    <div className="flex justify-center items-center gap-1 sm:gap-2  p-4">
 
 
     
@@ -37,7 +37,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }: 
       </button>
 
  
-      <div className="flex items-center gap-2" style={{ direction: "ltr" }}>
+      <div className="flex items-center gap-1 sm:gap-2" style={{ direction: "ltr" }}>
         {pages.map((page, index) => (
           <button
             key={index}
