@@ -464,6 +464,7 @@ export default function DetailCoin() {
             lastTomanPrice={coinData?.priceToman.buy}
             dailyChangePercent={coinData?.priceChangePercent}
             dailyTransactionVolume={coinData?.quoteVolume}
+            isLoading={infoIsLoading || coinIsLoading ? true : false}
           />
 
           <div className="hidden lg:flex flex-col w-full mt-10">
