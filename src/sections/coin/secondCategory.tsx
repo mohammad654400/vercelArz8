@@ -124,10 +124,10 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap }: 
           displayedCurrencies.map((item: CategoryItem, index: number) => (
             <div
               key={index}
-              className={` ${!open ? "border-b-2 border-gray-200" : "border-none"
+              className={` ${!open ? "border-b border-[#ADADAD80]" : "border-none"
                 } ${(index + 1) % 3 == 0
                   ? "border-none"
-                  : "border-b-2 border-gray-200"
+                  : "border-b border-[#ADADAD80]"
                 }`}
             >
               <div >

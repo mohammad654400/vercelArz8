@@ -12,6 +12,7 @@ import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
+
 const filterOptions = [
   { label: "مورد علاقه ", key: "favorites" },
   { label: "پیش فرض", key: "default" },

@@ -79,7 +79,7 @@ export const AccordionData = [
 ]
 
 export default function WheelLuck() {
-    const [selectItem, setSelectItem] = useState<number | null>(null);
+  const [selectItem, setSelectItem] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -119,12 +119,12 @@ export default function WheelLuck() {
 
         <div className="flex flex-col xl:flex-row gap-y-10   w-full justify-between  ">
           <div className=" w-full flex flex-col justify-center order-2">
-            <h1 className='text-base md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
+            <h1 className='text-lg md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
             <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
 
 
             <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}>
-              <button className=' bg-primary w-full h-full text-white text-[15px] lg:text-xl font-bold rounded-[15.3px] xl:rounded-[20px]'>گرداندن گردونه</button>
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]'>گرداندن گردونه</button>
             </Link>
           </div>
           <div className="w-full order-1 xl:order-3 flex justify-center xl:justify-end items-center ">
@@ -136,7 +136,7 @@ export default function WheelLuck() {
         </div>
 
         <div className='flex flex-col gap-5 lg:gap-10'>
-          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
+          <h2 className='text-lg md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
           <div className='w-full overflow-x-auto custom-scrollbar' ref={containerRef}>
             <div className='flex flex-row gap-4 w-full'
               onMouseDown={handleMouseDown}
@@ -182,12 +182,12 @@ export default function WheelLuck() {
             <ImageCarousel />
           </div>
           <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
-            <h3 className='text-xl md-text-2xl  xl:text-3xl font-bold mb-[16px] lg:mb-[28px]'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
+            <h3 className='text-lg md-text-2xl  xl:text-3xl font-bold mb-[16px] lg:mb-[28px]'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
             <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
             </p>
             <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
-              <Link className='md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
-                <button className='text-xl lg:text-3xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center '>ثبت نام سریع</button>
+              <Link className='mt-2 md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
+                <button className='text-xl lg:text-2xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center '>ثبت نام سریع</button>
               </Link>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function WheelLuck() {
         </div>
 
         <div className='flex flex-col'>
-          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>جوایز طبق سطح کاربری</h2>
+          <h2 className='text-lg md:text-2xl lg:text-3xl font-bold'>جوایز طبق سطح کاربری</h2>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5 mt-[26px] lg:mt-10'>
             {awards.map((item, index) => (
@@ -222,12 +222,12 @@ export default function WheelLuck() {
 
         <div className='flex flex-col lg:flex-row  justify-between '>
           <div className=" w-full lg:w-[55%] flex flex-col justify-center order-3 lg:order-1  ">
-            <h2 className='text-xl md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
+            <h2 className='text-lg md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
             <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 
             <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="#">
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-3xl font-bold rounded-[15px]  lg:rounded-[20px]'>چرخش گردونه</button>
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px]  lg:rounded-[20px]'>چرخش گردونه</button>
             </Link>
           </div>
           <div className='w-full lg:w-[45%] order-2 flex justify-center'>
@@ -238,16 +238,16 @@ export default function WheelLuck() {
 
 
         <div className='flex flex-col gap-10'>
-          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-Seventh'>سوالات متداول گردونه شانس ارزهشت</h2>
+          <h2 className='text-lg md:text-2xl lg:text-3xl font-bold text-Seventh'>سوالات متداول گردونه شانس ارزهشت</h2>
           <div className='flex flex-col gap-5'>
             <Accordion
               items={AccordionData}
-                 defaultOpenId={selectItem}
-                    onToggle={(id) => setSelectItem(id)}
-              textTitle="text-[12px]"
+              defaultOpenId={selectItem}
+              onToggle={(id) => setSelectItem(id)}
+              textTitle="text-[13px]"
               smTextTitle="sm:text-xl"
               lgTextTitle="lg:text-xl"
-              textContent="text-[10px]"
+              textContent="text-[11px]"
               smTextContent="sm:text-sm"
               lgTextContent="lg:text-sm"
             />
