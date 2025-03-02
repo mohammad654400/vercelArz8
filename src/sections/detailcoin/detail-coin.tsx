@@ -302,12 +302,13 @@ export default function DetailCoin() {
                         className="!w-16 !h-2 md:w-[80px] md:h-[28px] !p-0 !mb-0" // Removed !-mb-2 and added !mb-0
                       />
                     ) : (
-                      <p className="text-xs sm:text-lg font-semibold !leading-3">
+                      <p className="text-[10px] sm:text-lg font-semibold !leading-3 truncate max-w-[80px] sm:max-w-[150px]">
                         {coin?.name?.fa}
                       </p>
+
                     )}
 
-                    <div className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""}`}>
+                    <div className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""} ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}>
                       <ArrowBotton />
                     </div>
                     {openModal ? (
@@ -331,7 +332,7 @@ export default function DetailCoin() {
                       className="!w-12 !h-3 md:w-[60px] md:h-[18px] !p-0 !mt-0" // Removed !-mt-2 and added !mt-0
                     />
                   ) : (
-                    <span className="text-xs sm:text-lg font-semibold opacity-50 flex !leading-3">
+                    <span className="text-[10px] sm:text-lg font-semibold opacity-50 flex !leading-3">
                       {coin?.name?.en}
                     </span>
                   )}
@@ -345,15 +346,15 @@ export default function DetailCoin() {
                   {infoIsLoading || coinIsLoading ?
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={70} height={24} className="!w-[55px] !h-[16px]  md:w-[70px] md:h-[24px]" />
                     :
-                    <p className="text-xs sm:text-[21px] font-semibold flex leading-3">
+                    <p className="text-[10px] sm:text-[21px] font-semibold flex leading-3">
                       ${coinData?.lastPrice}
                     </p>
                   }
                   {infoIsLoading || coinIsLoading ?
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} className="!w-[38px] !h-[12px]  md:w-[50px] md:h-[44px]" />
                     :
-                    <p dir="rtl" className="text-xs sm:text-sm font-semibold flex leading-3 items-center">
-                      {coinData?.priceToman.buy} <span className="text-[9px] md:text-base mr-1">تومان</span>
+                    <p dir="rtl" className="text-[10px] sm:text-sm font-semibold flex leading-3 items-center">
+                      {coinData?.priceToman.buy} <span className="text-[8px] md:text-base mr-1">تومان</span>
                     </p>
                   }
                 </div>

@@ -18,7 +18,7 @@ export default function SendIcon() {
       />
       <path
         d="M13.0586 17.6312L17.6828 12.9941"
-        stroke="#292D32"
+        stroke="currentColor"
         strokeWidth="1.86"
         strokeLinecap="round"
         strokeLinejoin="round"

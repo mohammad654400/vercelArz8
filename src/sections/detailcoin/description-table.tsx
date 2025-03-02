@@ -22,7 +22,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">نام ارز</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{persianName}</p>
@@ -32,7 +32,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">نماد</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{symbol}</p>
@@ -42,7 +42,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">قیمت جهانی (دلار)</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{lastDollarPrice} $</p>
@@ -52,7 +52,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">آخرین قیمت (تومان)</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{lastTomanPrice}</p>
@@ -62,7 +62,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">تغییرات روزانه (درصد)</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p dir='ltr' className={`text-sm lg:text-base font-semibold ${dailyChangePercent?.includes('-') ? 'text-[#F00500]' : 'text-[#30E0A1]'}`}>{dailyChangePercent} %</p>
@@ -72,7 +72,7 @@ export default function DescriptionTable({ persianName, symbol, lastDollarPrice,
       <div className="w-full border-b-2 last:border-b-0">
         <div className="flex justify-between py-6">
           <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">حجم معاملات روزانه (دلار)</p>
-          {!isLoading ?
+          {isLoading ?
             <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-16 !h-5" />
             :
             <p className="text-sm lg:text-base font-semibold text-[#666668] dark:text-white">{dailyTransactionVolume}</p>
