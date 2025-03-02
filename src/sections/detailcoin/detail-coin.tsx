@@ -271,7 +271,7 @@ export default function DetailCoin() {
           :
           <>
             <div onClick={handlerChenge} className="flex justify-between items-center w-[70%]  md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:pr-4 sm:pl-2 rounded-[9px] sm:rounded-2xl cursor-pointer">
-              <div className="flex  h-full justify-center gap-x-2">
+              <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4 items-center ">
                 <div className="w-7 h-7 lg:w-12 lg:h-12 sm:my-auto">
                   {infoIsLoading || coinIsLoading ? (
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle className="w-[30px] sm:w-[41px] h-[30px] sm:h-[41px] sm:-translate-y-2 lg:translate-y-0 " />
@@ -293,7 +293,7 @@ export default function DetailCoin() {
                   )}
                 </div>
 
-                <div className={`flex flex-col h-full justify-center ${infoIsLoading || coinIsLoading ? "gap-y-0" : "gap-y-[2px] sm:gap-y-1"}`}>
+                <div className={`flex flex-col h-full justify-center gap-y-[2px] sm:gap-y-3`}>
                   <div className="flex gap-x-1 md:gap-x-2">
                     {infoIsLoading || coinIsLoading ? (
                       <Skeleton
