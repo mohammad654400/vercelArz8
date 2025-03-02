@@ -447,13 +447,13 @@ export default function DetailCoin() {
             />
           </div>
 
-          <div className=" flex mt-10">
+          {/* <div className=" flex mt-10">
             <FormViews addComment={addComment} />
-          </div>
+          </div> */}
 
-          <div className=" mt-10">
+          {/* <div className=" mt-10">
             <Views comments={comments} setReplyingTo={setReplyingTo} />
-          </div>
+          </div> */}
         </div>
 
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">

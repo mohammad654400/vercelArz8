@@ -24,6 +24,7 @@ export default function DropdownMenu() {
       >
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
           <li><Link href="/coins/BTC" className="hover:text-primary">خرید و فروش ارزدیجیتال</Link></li>
+
           <li><Link href="/coins" className="hover:text-primary">قیمت لحظه‌ای ارزها</Link></li>
           <li><Link href="/download" className="hover:text-primary">دانلود اپلیکیشن</Link></li>
           <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
@@ -42,6 +43,7 @@ export default function DropdownMenu() {
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
           <li><Link href="https://app.arz8.com/support" className="hover:text-primary">ارسال تیکت پشتیبانی</Link></li>
           <li><Link href="/faq" className="hover:text-primary">آموزش‌های صرافی</Link></li>
+          <Link href="/job"><li>فرصت های شغلی</li></Link> 
           <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
           <li><Link href="/fee" className="hover:text-primary">سطوح کاربری</Link></li>
           <li><Link href="/contact-us" className="hover:text-primary">تماس با ما</Link></li>

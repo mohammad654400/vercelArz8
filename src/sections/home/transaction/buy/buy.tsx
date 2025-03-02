@@ -7,6 +7,7 @@ import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import Link from "next/link";
 type TransAction = {
   toggle: any;
   currencies: any;
@@ -195,10 +196,12 @@ export default function Buy({
             className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
               ${
-              width < 700 ? "w-full " : "lg:w-auto px-10"
+                width < 700 ? "w-full " : "lg:w-auto px-10"
             }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
           >
+                <Link href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
             شروع خرید
+          </Link>
           </button>
         </div>
       </div>
