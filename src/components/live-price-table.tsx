@@ -12,7 +12,43 @@ import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
-const filterOptions = [
+interface CryptocurrencyInfo {
+  symbol: string;
+  name:
+    | {
+        fa: string;
+        en?: string;
+      }
+    | string;
+  icon?: string;
+  color?: string;
+  isFont: boolean;
+  lastPrice?: string;
+  priceToman?: string;
+  priceChangePercent?: string;
+}
+
+interface ProcessedCryptocurrencyInfo extends Omit<CryptocurrencyInfo, "name"> {
+  name: string;
+}
+
+interface FilterOption {
+  label: string;
+  key: string;
+}
+
+interface LivePriceTableProps {
+  infoMap: Record<string, CryptocurrencyInfo>;
+}
+
+interface DisplayedCurrencies {
+  lists: CryptocurrencyInfo[];
+  total: number;
+}
+
+const ITEMS_PER_PAGE_OPTIONS = [5, 10, 20, 50];
+
+const filterOptions: FilterOption[] = [
   { label: "مورد علاقه ", key: "favorites" },
   { label: "پیش فرض", key: "default" },
   { label: "محبوب‌ترین‌ها", key: "popular" },
@@ -23,41 +59,56 @@ const filterOptions = [
   { label: "جدیدترین", key: "new" },
 ];
 
-export default function LivePriceTable({ infoMap }: any) {
+export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
   const { baseColor, highlightColor } = useTheme();
   const { formatNumber } = useFormattedNumber();
+
+  // UI State
   const [open, setOpen] = useState(false);
   const [numberItem, setNumberItem] = useState(false);
+  const [textFilter, setTextFilter] = useState<string>("پیش فرض");
+
+  // Data State
   const [displayedCurrencies, setDisplayedCurrencies] = useState<{
-    lists: any[];
+    lists: ProcessedCryptocurrencyInfo[];
     total: number;
   }>({ lists: [], total: 0 });
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sort, setSort] = useState<string>("default");
+  const [filterKey, setFilterKey] = useState<string>("default");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // Pagination State
   const [limit, setLimit] = useState<string>("10");
   const [numberPage, setNumberPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [filterKey, setFilterKey] = useState<string>("default");
-  const [textFilter, setTextFilter] = useState<string>("پیش فرض");
-  const [favorites, setFavorites] = useState<string[]>(() =>
-    JSON.parse(localStorage.getItem("favorites") || "[]")
-  );
-  const [isLoading, setIsLoading] = useState<boolean>(true)
 
+  // Favorites State
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("favorites") || "[]");
+    } catch {
+      return [];
+    }
+  });
+
+  // Persist favorites to localStorage
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
+  // Toggle favorite callback
   const toggleFavorite = useCallback((symbol: string) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(symbol)
-        ? prevFavorites.filter((fav) => fav !== symbol)
-        : [...prevFavorites, symbol]
+    setFavorites((prev) =>
+      prev.includes(symbol)
+        ? prev.filter((fav) => fav !== symbol)
+        : [...prev, symbol]
     );
   }, []);
 
+  // Request parameters for API call
   const getRequestParams = useMemo(() => {
-    const params: any = {
+    const params: Record<string, any> = {
       limit,
       page: numberPage,
       sort,
@@ -71,58 +122,74 @@ export default function LivePriceTable({ infoMap }: any) {
     return params;
   }, [sort, favorites, limit, numberPage, searchQuery]);
 
+  // Fetch data
   const { data: cryptocurrenciesData } = useGetData(
     "cryptocurrencies",
     60000,
     getRequestParams
   );
+
+  // Set loading state when request params change
   useEffect(() => {
     setIsLoading(true);
   }, [getRequestParams]);
+
+  // Process fetched data
   const filteredData = useMemo(() => {
     if (!cryptocurrenciesData) return { lists: [], total: 0 };
 
     return {
-      lists: cryptocurrenciesData.lists.map((item: any) => {
-        const info = infoMap[item.symbol] || [{}];
+      lists: cryptocurrenciesData.lists.map((item: CryptocurrencyInfo) => {
+        const info = infoMap[item.symbol] || {};
+        const processedName =
+          typeof info.name === "object"
+            ? info.name.fa
+            : info.name || item.symbol;
+
         return {
           ...item,
           ...info,
-          name: info?.name?.fa,
+          name: processedName,
         };
       }),
       total: cryptocurrenciesData.total || 0,
     };
   }, [cryptocurrenciesData, infoMap]);
 
+  // Update displayed currencies when data changes
   useEffect(() => {
     if (cryptocurrenciesData) {
       setDisplayedCurrencies(filteredData);
       setIsLoading(false);
     }
-  }, [cryptocurrenciesData, filteredData]);
-  
+  }, [cryptocurrenciesData, filteredData, favorites]);
 
-  const handelOnChanged = (value: string) => {
-    setIsLoading(true)
+  // Handle search input change
+  const handleSearchChange = useCallback((value: string) => {
+    setIsLoading(true);
     setSearchQuery(value);
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
+  }, []);
 
-  };
-  const handleLimitChange = (newLimit: number) => {
+  // Handle items per page change
+  const handleLimitChange = useCallback((newLimit: number) => {
     setLimit(newLimit.toString());
     setItemsPerPage(newLimit);
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
     setNumberItem(false);
-    setIsLoading(true)
-  };
+    setIsLoading(true);
+  }, []);
 
-  const totalPages =
-    sort !== "favorites"
-      ? Math.ceil(displayedCurrencies.total / itemsPerPage)
-      : Math.ceil(favorites.length / itemsPerPage);
+  // Calculate total pages
+  const totalPages = useMemo(
+    () =>
+      sort !== "favorites"
+        ? Math.ceil(displayedCurrencies.total / itemsPerPage)
+        : Math.ceil(favorites.length / itemsPerPage),
+    [sort, displayedCurrencies.total, itemsPerPage, favorites.length]
+  );
 
   return (
     <div className=" bg-background dark:bg-[#3C3B41]  rounded-xl overflow-hidden">
@@ -177,15 +244,16 @@ export default function LivePriceTable({ infoMap }: any) {
           {filterOptions.map((btn) => (
             <button
               key={btn.key}
-              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
-                ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-                : "text-[#3C3B41] dark:text-[#FFFFFF80]"
-                }`}
+              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${
+                sort === btn.key
+                  ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
+                  : "text-[#3C3B41] dark:text-[#FFFFFF80]"
+              }`}
               onClick={(e) => {
                 e.stopPropagation();
                 setSort(btn.key);
                 setNumberPage(1);
-                setIsLoading(true)
+                setIsLoading(true);
                 setDisplayedCurrencies({ lists: [], total: 0 });
               }}
             >
@@ -198,27 +266,37 @@ export default function LivePriceTable({ infoMap }: any) {
             type="text"
             placeholder="جستجو ..."
             value={searchQuery}
-            onChange={(e) => handelOnChanged(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className=" outline-none rounded-lg w-[165px] md:w-[250px] px-3 py-1 text-black dark:bg-[#3C3B41] dark:text-[#FFFFFF80] placeholder:text-[10px] sm:placeholder:text-sm"
           />
 
-
           <div className="relative cursor-pointer  text-black bg-background rounded-lg   py-1 dark:bg-[#3C3B41] dark:text-[#FFFFFF80] w-9 md:w-[54px]">
-            <div onClick={() => (setNumberItem(!numberItem))} className="flex gap-1 items-center justify-center h-full">
-              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center"><ArrowDown /></span> <span className="flex text-[10px] sm:text-sm">{limit}</span>
+            <div
+              onClick={() => setNumberItem(!numberItem)}
+              className="flex gap-1 items-center justify-center h-full"
+            >
+              <span className="flex w-[9.4px] h-[9.4px] sm:w-[14px] sm:h-[14px] text-black self-center">
+                <ArrowDown />
+              </span>{" "}
+              <span className="flex text-[10px] sm:text-sm">{limit}</span>
             </div>
-            {numberItem ?
+            {numberItem ? (
               <div className="flex flex-col gap-1 md:gap-2 top-[35px] cursor-pointer px-0 py-2 border w-10 md:w-[57px] bg-background rounded-xl absolute z-10">
-                {[5, 10, 20, 50].map((item) => (
-                  <div key={item} onClick={() => handleLimitChange(item)} className="flex py-1">
+                {ITEMS_PER_PAGE_OPTIONS.map((item) => (
+                  <div
+                    key={item}
+                    onClick={() => handleLimitChange(item)}
+                    className="flex py-1"
+                  >
                     <p className="mx-auto rounded-lg font-normal cursor-pointer !text-xs md:text-sm">
                       {item}
                     </p>
                   </div>
                 ))}
               </div>
-              : ""
-            }
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -355,19 +433,19 @@ export default function LivePriceTable({ infoMap }: any) {
                   </div>
                 </div>
               ))
-
-            ) : displayedCurrencies.lists.length === 0
-              ?
+            ) : displayedCurrencies.lists.length === 0 ? (
               <div className="p-4 text-center  text-sm md:text-lg text-gray-500">
                 موردی وجود ندارد
               </div>
-              : displayedCurrencies.lists.map((currency, index) => (
+            ) : (
+              displayedCurrencies.lists.map((currency, index) => (
                 <div
                   key={index}
-                  className={`grid ${currency.lastPrice && currency.priceToman
-                    ? "grid-cols-6 md:grid-cols-6"
-                    : "grid-cols-6 md:grid-cols-4"
-                    } items-center text-center py-4`}
+                  className={`grid ${
+                    currency.lastPrice && currency.priceToman
+                      ? "grid-cols-6 md:grid-cols-6"
+                      : "grid-cols-6 md:grid-cols-4"
+                  } items-center text-center py-4`}
                 >
                   <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
                     <button
@@ -405,10 +483,9 @@ export default function LivePriceTable({ infoMap }: any) {
                     </div>
                     <div className="flex flex-col gap-y-[2px]">
                       <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
-                        {" "}
                         {currency?.name?.length > 10
                           ? currency.name.slice(0, 10) + "..."
-                          : currency?.name}
+                          : currency?.name || currency?.symbol || ""}
                       </span>
                       <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
                         {" "}
@@ -426,8 +503,8 @@ export default function LivePriceTable({ infoMap }: any) {
                     <div className="text-end sm:text-center">
                       {" "}
                       {sort === "min"
-                        ? currency.priceToman
-                        : formatNumber(currency.priceToman)}{" "}
+                        ? currency.priceToman || ""
+                        : formatNumber(currency.priceToman || "0")}
                       تومان
                     </div>
                   </div>
@@ -441,27 +518,32 @@ export default function LivePriceTable({ infoMap }: any) {
                     <div className="col-span-0 hidden md:block md:col-span-1 text-center">
                       {" "}
                       {sort === "min"
-                        ? currency.priceToman
-                        : formatNumber(currency.priceToman)}
+                        ? currency.priceToman || ""
+                        : formatNumber(currency.priceToman || "0")}
                       تومان
                     </div>
                   )}
 
                   <div
                     dir="ltr"
-                    className={`text-center  ${currency.priceChangePercent?.startsWith("-")
-                      ? "text-red-500"
-                      : "text-green-500"
-                      }`}
+                    className={`text-center  ${
+                      currency.priceChangePercent?.startsWith("-")
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
                   >
-                    {currency.priceChangePercent}%
+                    {currency.priceChangePercent || "0"}%
                   </div>
 
-                  <div className="hidden md:flex justify-center" style={{
-                    filter: parseFloat(currency.priceChangePercent) < 0
-                      ? 'brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)'
-                      : 'brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)'
-                  }}>
+                  <div
+                    className="hidden md:flex justify-center"
+                    style={{
+                      filter:
+                        parseFloat(currency.priceChangePercent || "0") < 0
+                          ? "brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)"
+                          : "brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)",
+                    }}
+                  >
                     <Image src={ChartUP} alt="chart" width={64} height={31} />
                   </div>
 
@@ -473,7 +555,8 @@ export default function LivePriceTable({ infoMap }: any) {
                     </Link>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
       ) : (
@@ -489,4 +572,3 @@ export default function LivePriceTable({ infoMap }: any) {
     </div>
   );
 }
-
