@@ -214,19 +214,26 @@ export default function ApplyPage({ title }: { title: string }) {
                             <div>
                                 <label className="block text-sm font-medium mb-2">نام و نام خانوادگی</label>
                                 <input type="text" name="name" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
-                                {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+                                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
 
                             <div>
                                 <label className="block text-sm font-medium mb-2">شماره تماس</label>
-                                <input type="text" name="mobile" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
-                                {errors.mobile && <p className="text-red-500 text-xs">{errors.mobile}</p>}
+                                <input
+                                    type="tel"
+                                    name="mobile"
+                                    maxLength={11}  
+                                    className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12"
+                                    onChange={handleChange}
+                                    onInput={(e) => (e.target as HTMLInputElement).value = (e.target as HTMLInputElement).value.replace(/\D/g, '')} // جلوگیری از ورود حروف
+                                />
+                                {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>}
                             </div>
 
                             <div>
                                 <label className="block text-sm font-medium mb-2">ایمیل</label>
-                                <input type="text" name="email" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
-                                {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                                <input type="email" name="email" className="w-full p-2 rounded-lg border border-[#ADADAD] bg-transparent focus:ring-0 focus:outline-none h-12" onChange={handleChange} />
+                                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                             </div>
 
                             <div className='z-10'>

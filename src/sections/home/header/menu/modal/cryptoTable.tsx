@@ -25,14 +25,23 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { baseColor, highlightColor } = useTheme();
-
-
   const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
+  const [delayedSearchQuery, setDelayedSearchQuery] = useState("");
+  
 
-  const { data: cryptocurrencies} = useGetData(
+
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      setDelayedSearchQuery(searchQuery);
+    }, 800);
+
+    return () => clearTimeout(searchTimeout);
+  }, [searchQuery]);
+
+  const { data: cryptocurrencies } = useGetData(
     "cryptocurrencies",
     60000,
-    { limit: 7, page, sort, search: searchQuery }
+    { limit: 7, page, sort, search: delayedSearchQuery }
   );
 
 
@@ -110,12 +119,6 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     setSearchQuery(value);
     setPage(1);
     setDisplayedCurrencies([]);
-
-    const timeoutId = setTimeout(() => {
-      setPage(1);
-    }, 8000);
-
-    return () => clearTimeout(timeoutId);
   };
 
   return (
@@ -146,21 +149,21 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
         onMouseLeave={handleMouseUpOrLeave}
         className="flex w-full items-center rounded-[5px] mb-5 overflow-x-auto scrollbar-hidden"
       >
-        {filterButtons.map((btn) => (
+        {filterButtons.map((item) => (
           <button
-            key={btn.key}
-            className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === btn.key
+            key={item.key}
+            className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === item.key
               ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
               : "bg-transparent"
               }`}
             onClick={(e) => {
               e.stopPropagation();
-              setSort(btn.key);
+              setSort(item.key);
               setPage(1);
               setDisplayedCurrencies([]);
             }}
           >
-            {btn.label}
+            {item.label}
           </button>
         ))}
       </div>

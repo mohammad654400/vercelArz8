@@ -74,6 +74,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
     total: number;
   }>({ lists: [], total: 0 });
   const [searchQuery, setSearchQuery] = useState<string>("");
+    const [delayedSearchQuery , setDelayedSearchQuery] = useState("");
   const [sort, setSort] = useState<string>("default");
   const [filterKey, setFilterKey] = useState<string>("default");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -106,13 +107,21 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
     );
   }, []);
 
-  // Request parameters for API call
+
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      setDelayedSearchQuery(searchQuery);
+    }, 800);
+  
+    return () => clearTimeout(searchTimeout);
+  }, [searchQuery]);
+
   const getRequestParams = useMemo(() => {
     const params: Record<string, any> = {
       limit,
       page: numberPage,
       sort,
-      search: searchQuery,
+      search: delayedSearchQuery,
     };
 
     if (sort === "favorites" && favorites.length > 0) {
@@ -120,7 +129,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
     }
 
     return params;
-  }, [sort, favorites, limit, numberPage, searchQuery]);
+  }, [sort, favorites, limit, numberPage, delayedSearchQuery]);
 
   // Fetch data
   const { data: cryptocurrenciesData } = useGetData(
@@ -162,8 +171,9 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
       setDisplayedCurrencies(filteredData);
       setIsLoading(false);
     }
-  }, [cryptocurrenciesData, filteredData, favorites]);
+  }, [cryptocurrenciesData, filteredData,favorites
 
+  ]);
   // Handle search input change
   const handleSearchChange = useCallback((value: string) => {
     setIsLoading(true);
@@ -171,16 +181,15 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
   }, []);
-
-  // Handle items per page change
-  const handleLimitChange = useCallback((newLimit: number) => {
+  
+  const handleLimitChange = (newLimit: number) => {
     setLimit(newLimit.toString());
     setItemsPerPage(newLimit);
     setNumberPage(1);
     setDisplayedCurrencies({ lists: [], total: 0 });
     setNumberItem(false);
     setIsLoading(true);
-  }, []);
+  };
 
   // Calculate total pages
   const totalPages = useMemo(
@@ -241,23 +250,23 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
         </div>
 
         <div className="hidden md:flex gap-3">
-          {filterOptions.map((btn) => (
+          {filterOptions.map((item) => (
             <button
-              key={btn.key}
-              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${
-                sort === btn.key
-                  ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-                  : "text-[#3C3B41] dark:text-[#FFFFFF80]"
-              }`}
+
+              key={item.key}
+              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === item.key
+                ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
+                : "text-[#3C3B41] dark:text-[#FFFFFF80]"
+                }`}
               onClick={(e) => {
                 e.stopPropagation();
-                setSort(btn.key);
+                setSort(item.key);
                 setNumberPage(1);
                 setIsLoading(true);
                 setDisplayedCurrencies({ lists: [], total: 0 });
               }}
             >
-              {btn.label}
+              {item.label}
             </button>
           ))}
         </div>
