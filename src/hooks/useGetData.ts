@@ -91,15 +91,16 @@ const fetchData = async (endpoint: string, params: Record<string, any> = {}) => 
 };
 
 
-const useGetData = (endpoint: string, params?: Record<string, any>, refreshInterval?: number) => {
+const useGetData = (endpoint: string, refreshInterval?: number, params?: Record<string, any>) => {
   return useQuery({
-    queryKey: [endpoint, params], // Cache based on endpoint & params
-    queryFn: () => fetchData(endpoint, params), // Pass params
-    staleTime: refreshInterval || 0, // Controls freshness
-    refetchInterval: refreshInterval, // Auto-refresh
-    retry: 3, // Retries failed requests
+    queryKey: [endpoint, params],
+    queryFn: () => fetchData(endpoint, params), 
+    staleTime: refreshInterval || 0, 
+    refetchInterval: refreshInterval, 
+    retry: 3, 
   });
 };
+
 
 
 export default useGetData;
