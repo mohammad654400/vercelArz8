@@ -10,30 +10,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'arz8.com' }
     ]
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/proxy/landing/info",
-        destination: "https://app.arz8.com/api/landing/info",
-      },
-      {
-        source: "/api/proxy/landing/home",
-        destination: "https://app.arz8.com/api/landing/home",
-      },
-      {
-        source: "/api/cryptocurrencies/:path*",
-        destination: "https://app.arz8.com/api/landing/cryptocurrencies/:path*",
-      },
-      {
-        source: "/api/proxy/landing/cryptocurrencies/:path*",
-        destination: "https://app.arz8.com/api/landing/cryptocurrencies/:path*",
-      },
-      {
-        source: "/api/proxy/landing/form/contact-us",
-        destination: "https://app.arz8.com/api/landing/form/contact-us",
-      }
-    ];
-  }
 };
 
 const withPWAConfig = withPWA({
