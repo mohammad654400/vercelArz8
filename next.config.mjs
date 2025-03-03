@@ -16,34 +16,34 @@ const nextConfig = {
       }
     ]
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/proxy/landing/info",
-        destination: "https://app.arz8.com/api/landing/info",
-      },
-      {
-        source: "/api/proxy/landing/home",
-        destination: "https://app.arz8.com/api/landing/home",
-      },
-      {
-        source: "/api/proxy/landing/cryptocurrencies/:slug*",
-        destination: "https://app.arz8.com/api/landing/cryptocurrencies/:slug*",
-      },
-      {
-        source: "/api/proxy/landing/form/contact-us",
-        destination: "https://app.arz8.com/api/landing/form/contact-us",
-      },
-      {
-        source: "/api/proxy/landing/form/jobs",
-        destination: "https://app.arz8.com/api/landing/form/jobs",
-      },
-      {
-        source: "/api/proxy/landing/form/bug-bounty",
-        destination: "https://app.arz8.com/api/landing/form/bug-bounty",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/proxy/landing/info",
+  //       destination: "https://app.arz8.com/api/landing/info",
+  //     },
+  //     {
+  //       source: "/api/proxy/landing/home",
+  //       destination: "https://app.arz8.com/api/landing/home",
+  //     },
+  //     {
+  //       source: "/api/proxy/landing/cryptocurrencies/:slug*",
+  //       destination: "https://app.arz8.com/api/landing/cryptocurrencies/:slug*",
+  //     },
+  //     {
+  //       source: "/api/proxy/landing/form/contact-us",
+  //       destination: "https://app.arz8.com/api/landing/form/contact-us",
+  //     },
+  //     {
+  //       source: "/api/proxy/landing/form/jobs",
+  //       destination: "https://app.arz8.com/api/landing/form/jobs",
+  //     },
+  //     {
+  //       source: "/api/proxy/landing/form/bug-bounty",
+  //       destination: "https://app.arz8.com/api/landing/form/bug-bounty",
+  //     },
+  //   ];
+  // },
 };
 
 

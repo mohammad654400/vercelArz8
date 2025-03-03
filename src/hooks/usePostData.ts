@@ -2,7 +2,7 @@
 import { useMutation } from "@tanstack/react-query";
 import crypto from "crypto";
 
-const baseUrl = "/api/proxy/landing/form";
+const baseUrl = "https://app.arz8.com/api/landing/form";
 const SECRET_KEY = "XBPGNB6GEXUPWES22VU2OBOHX6G49LHACNLBNVP3KZKIXBXA3GIHFZM40INDJXRL";
 
 // Signature generation function
