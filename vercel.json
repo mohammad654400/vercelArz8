@@ -9,7 +9,7 @@
       ]
     },
     {
-      "source": "/cryptocurrencies",
+      "source": "/api/cryptocurrencies",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,POST" },
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "source": "/cryptocurrencies/(.*)",
+      "source": "/api/cryptocurrencies/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,POST" },
