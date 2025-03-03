@@ -134,8 +134,8 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
   // Fetch data
   const { data: cryptocurrenciesData } = useGetData(
     "cryptocurrencies",
-    60000,
-    getRequestParams
+    getRequestParams,
+    60000
   );
 
   // Set loading state when request params change
