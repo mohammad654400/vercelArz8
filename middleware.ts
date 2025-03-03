@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // اگر درخواست از نوع OPTIONS است (preflight CORS request)
+  // For preflight requests
   if (request.method === 'OPTIONS') {
     return new NextResponse(null, {
       status: 204,
@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
     });
   }
   
-  // برای سایر درخواست‌ها
+  // For all other requests
   const response = NextResponse.next();
   
   response.headers.set('Access-Control-Allow-Origin', '*');
@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
+// Apply middleware to ALL routes
 export const config = {
-  // مسیرهای مشکل‌دار را اضافه کنید
-  matcher: ['/cryptocurrencies', '/cryptocurrencies/:path*', '/api/proxy/landing/cryptocurrencies/:path*']
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)']
 };
