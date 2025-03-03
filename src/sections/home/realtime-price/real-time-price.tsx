@@ -241,6 +241,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                         alt="chart"
                         width={120}
                         height={44}
+                        className="w-auto h-auto"
                       />
                     </div>
 

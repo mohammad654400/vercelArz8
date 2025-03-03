@@ -53,8 +53,9 @@ export default function BugBounty() {
         <div className="py-[76px] lg:py-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
           <Image
             src={backgroundImage}
-            alt=""
+             alt="Background Image"
             className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
+            priority
           />
 
           <div className="flex flex-col items-center">
