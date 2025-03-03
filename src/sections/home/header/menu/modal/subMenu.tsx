@@ -22,7 +22,7 @@ export default function SubMenu() {
     const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
   const { data: infoData , isLoading:infoLoading } = useGetData('info');
-  const { data: cryptocurrenciesData , isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", undefined, {
+  const { data: cryptocurrenciesData , isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies",{
     limit: 7,
     page: 1,
     sort: "new",

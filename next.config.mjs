@@ -6,17 +6,52 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'app.arz8.com' },
-      { protocol: 'https', hostname: 'arz8.com' }
+      {
+        protocol: 'https',
+        hostname: 'app.arz8.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'arz8.com'
+      }
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/proxy/landing/info",
+        destination: "https://app.arz8.com/api/landing/info",
+      },
+      {
+        source: "/api/proxy/landing/home",
+        destination: "https://app.arz8.com/api/landing/home",
+      },
+      {
+        source: "/api/proxy/landing/cryptocurrencies/:slug*",
+        destination: "https://app.arz8.com/api/landing/cryptocurrencies/:slug*",
+      },
+      {
+        source: "/api/proxy/landing/form/contact-us",
+        destination: "https://app.arz8.com/api/landing/form/contact-us",
+      },
+      {
+        source: "/api/proxy/landing/form/jobs",
+        destination: "https://app.arz8.com/api/landing/form/jobs",
+      },
+      {
+        source: "/api/proxy/landing/form/bug-bounty",
+        destination: "https://app.arz8.com/api/landing/form/bug-bounty",
+      },
+    ];
+  },
 };
+
 
 const withPWAConfig = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: isDevelopment,
+  disable: isDevelopment, // Enable in all environments
   scope: '/',
   sw: '/sw.js',
   reloadOnOnline: true,
@@ -30,7 +65,7 @@ const withPWAConfig = withPWA({
         cacheName: 'https-calls',
         expiration: {
           maxEntries: 150,
-          maxAgeSeconds: 30 * 24 * 60 * 60
+          maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
         },
         cacheableResponse: {
           statuses: [0, 200]
@@ -44,7 +79,7 @@ const withPWAConfig = withPWA({
         cacheName: 'image-cache',
         expiration: {
           maxEntries: 50,
-          maxAgeSeconds: 7 * 24 * 60 * 60
+          maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
         }
       }
     },
@@ -55,7 +90,7 @@ const withPWAConfig = withPWA({
         cacheName: 'static-resources',
         expiration: {
           maxEntries: 50,
-          maxAgeSeconds: 24 * 60 * 60
+          maxAgeSeconds: 24 * 60 * 60 // 24 hours
         }
       }
     },
@@ -64,10 +99,10 @@ const withPWAConfig = withPWA({
       handler: 'NetworkFirst',
       options: {
         cacheName: 'others',
-        networkTimeoutSeconds: 10,
+        networkTimeoutSeconds: 10, // ✅ Keep only under NetworkFirst
         expiration: {
           maxEntries: 50,
-          maxAgeSeconds: 24 * 60 * 60
+          maxAgeSeconds: 24 * 60 * 60 // 24 hours
         },
         cacheableResponse: {
           statuses: [0, 200]
@@ -76,7 +111,7 @@ const withPWAConfig = withPWA({
     }
   ],
   fallbacks: {
-    document: '/offline'
+    document: '/offline' // Optional: specify an offline fallback page
   }
 });
 
