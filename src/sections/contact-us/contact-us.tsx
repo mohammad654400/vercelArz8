@@ -235,11 +235,11 @@ export default function ContactUs() {
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
     },
     []
   );
@@ -266,48 +266,48 @@ export default function ContactUs() {
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    e.preventDefault();
 
       if (isSubmitting || isPending) return;
 
-      const isValid = await validateForm();
-      if (!isValid) return;
+    const isValid = await validateForm();
+    if (!isValid) return;
 
-      const currentSubmissionHash = createSubmissionHash(formData);
+    const currentSubmissionHash = createSubmissionHash(formData);
 
-      if (submissionHistory.includes(currentSubmissionHash)) {
-        setModalType("error");
-        setModalLines([
-          {
-            text: "این پیام قبلاً ارسال شده است",
-            highlightedWords: [{ word: "قبلاً", color: "red" }],
-          },
-        ]);
-        setIsModalOpen(true);
-        return;
-      }
+    if (submissionHistory.includes(currentSubmissionHash)) {
+      setModalType("error");
+      setModalLines([
+        {
+          text: "این پیام قبلاً ارسال شده است",
+          highlightedWords: [{ word: "قبلاً", color: "red" }],
+        },
+      ]);
+      setIsModalOpen(true);
+      return;
+    }
 
-      if (!executeRecaptcha) {
-        console.error("reCAPTCHA not loaded yet.");
-        return;
-      }
+    if (!executeRecaptcha) {
+      console.error("reCAPTCHA not loaded yet.");
+      return;
+    }
 
-      setIsSubmitting(true);
+    setIsSubmitting(true);
 
-      try {
-        const recaptchaToken = await executeRecaptcha("contact_form");
+    try {
+      const recaptchaToken = await executeRecaptcha("contact_form");
         saveSubmission(currentSubmissionHash);
 
-        mutate({
-          name: formData.fullName,
-          mobile: formData.phoneNumber,
-          msg: formData.message,
-          recaptcha: recaptchaToken,
-        });
-      } catch (error) {
-        console.error("reCAPTCHA error:", error);
-        setIsSubmitting(false);
-      }
+      mutate({
+        name: formData.fullName,
+        mobile: formData.phoneNumber,
+        msg: formData.message,
+        recaptcha: recaptchaToken,
+      });
+    } catch (error) {
+      console.error("reCAPTCHA error:", error);
+      setIsSubmitting(false);
+    }
     },
     [
       formData,
@@ -420,15 +420,15 @@ export default function ContactUs() {
           />
         </div>
       </div>
-
+      
       <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
         <ContactForm
           onSubmit={handleSubmit}
           isSubmitting={isSubmitting || isPending}
           errors={errors}
           formData={formData}
-          onChange={handleChange}
-        />
+              onChange={handleChange}
+            />
         <div className="absolute w-[50%] h-full left-0 top-0">
           <div className="relative w-full h-full flex justify-center items-center">
             <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2">

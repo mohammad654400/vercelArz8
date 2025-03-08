@@ -58,13 +58,13 @@ export default function Footer() {
                     راهنمای صرافی
                   </h1>
                   <ul className="flex flex-col gap-4">
-                    <Link href="/coins/BTC"> <li> خرید و فروش ارزدیحیتال </li></Link>
-                    <Link href="/coins"><li>قیمت لحظه ای ارز ها</li></Link>
-                    <Link href="/download"><li> دانلود اپلیکیشن</li></Link>
-                    <Link href="/calculate"> <li>ماشین حساب</li></Link>
-                    <Link href="/wheel-luck"><li>گردونه شانس </li></Link>
-                    <Link href="/bug-bounty"><li>باگ بانتی</li></Link>
-                    <Link href="https://arz8.com/blog/"><li>وبلاگ</li></Link>
+                    <Link href="/coins/BTC"> <li className=" hover:text-primary"> خرید و فروش ارزدیحیتال </li></Link>
+                    <Link href="/coins"><li className=" hover:text-primary">قیمت لحظه ای ارز ها</li></Link>
+                    <Link href="/download"><li className=" hover:text-primary"> دانلود اپلیکیشن</li></Link>
+                    <Link href="/calculate"> <li className=" hover:text-primary">ماشین حساب</li></Link>
+                    <Link href="/wheel-luck"><li className=" hover:text-primary">گردونه شانس </li></Link>
+                    <Link href="/bug-bounty"><li className=" hover:text-primary">باگ بانتی</li></Link>
+                    <Link href="https://arz8.com/blog/"><li className=" hover:text-primary">وبلاگ</li></Link>
                   </ul>
                 </div>
                 <div className="">
@@ -72,13 +72,13 @@ export default function Footer() {
                     لینک های مفید
                   </p>
                   <ul className="flex flex-col gap-4">
-                    <Link href="https://app.arz8.com/support"> <li> ارسال تیکت پشتیبانی</li></Link>
-                    <Link href="/faq"><li> اموزش های صرافی</li></Link>
-                    <Link href="/job"><li>فرصت های شغلی</li></Link>
-                    <Link href="/rules"> <li> قوانین و مقررات</li></Link>
-                    <Link href="/fee"><li>  سطوح کاربری</li></Link>
-                    <Link href="/contact-us"><li> تماس با ما</li></Link>
-                    <Link href="/about"><li>درباره ما</li></Link>
+                    <Link href="https://app.arz8.com/support"> <li className=" hover:text-primary"> ارسال تیکت پشتیبانی</li></Link>
+                    <Link href="/faq"><li className=" hover:text-primary"> اموزش های صرافی</li></Link>
+                    <Link href="/job"><li className=" hover:text-primary">فرصت های شغلی</li></Link>
+                    <Link href="/rules"> <li className=" hover:text-primary"> قوانین و مقررات</li></Link>
+                    <Link href="/fee"><li className=" hover:text-primary">  سطوح کاربری</li></Link>
+                    <Link href="/contact-us"><li className=" hover:text-primary"> تماس با ما</li></Link>
+                    <Link href="/about"><li className=" hover:text-primary">درباره ما</li></Link>
                   </ul>
                 </div>
                 <div className="">
@@ -114,20 +114,30 @@ export default function Footer() {
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
           <div className="flex justify-center items-center gap-4 dark:text-secondary sm:order-last ">
-            <span className="hidden md:block dark:text-gray-300 pl-1">
+            <span className="hidden md:block dark:text-gray-300 pl-1 cursor-pointer dark:hover:text-primary hover:text-primary">
+              <Link href='https://www.youtube.com/channel/UCD1InrQ1dXUdUtSORnjp68w'>
               <YouTube />
+              </Link>
             </span>
-            <span className="hidden md:block dark:text-gray-300">
+            <span className="hidden md:block dark:text-gray-300  cursor-pointer dark:hover:text-primary hover:text-primary">
+              <Link href='https://www.aparat.com/arz8com'>
               <Aparat />
+              </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300 dark:hover:text-primary hover:text-primary cursor-pointer">
+              <Link href='https://x.com/Arz8official'>
               <Twitter />
+              </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer hover:text-primary">
+              <Link href='https://t.me/arz8com'>
               <Telegram />
+              </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
+            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer hover:text-primary">
+              <Link href='https://www.instagram.com/arz8_official/?hl=en-gb'>
               <Instagram />
+              </Link>
             </span>
           </div>
         </div>
