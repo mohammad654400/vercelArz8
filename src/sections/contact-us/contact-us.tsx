@@ -15,8 +15,8 @@ import { SHA256 } from "crypto-js";
 import Call from "@/assets/icons/contactUs/call";
 import Email from "@/assets/icons/contactUs/email";
 import Support from "@/assets/icons/contactUs/support";
-import Telegram from "@/assets/icons/footer/telegram";
 import Location from "@/assets/icons/contactUs/location";
+import Telegram from "@/assets/icons/contactUs/telegram";
 
 interface ModalLine {
   text: string;

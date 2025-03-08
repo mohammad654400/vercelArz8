@@ -128,9 +128,9 @@ export default function Footer() {
               <Twitter />
               </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer hover:text-primary">
+            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer  hover:text-primary">
               <Link href='https://t.me/arz8com'>
-              <Telegram />
+              <Telegram/>
               </Link>
             </span>
             <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer hover:text-primary">
