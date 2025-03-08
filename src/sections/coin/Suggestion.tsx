@@ -182,14 +182,14 @@ export default function Suggestion({
                       <span className="w-[26px] h-[26px] md:w-[46px] md:h-[46px] rounded-full  flex justify-center items-center">
                         {item.isFont ? (
                           <i
-                            className={`cf cf-${item.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center`}
+                            className={`cf cf-${item.symbol.toLowerCase()} text-[22px] md:text-[33px] w-full h-full flex items-center justify-center object-fill`}
                             style={{ color: item.colorIcon }}
                           ></i>
                         ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${item.icon}`}
                             alt={item.symbol}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-fill"
                           />
                         )}
                       </span>

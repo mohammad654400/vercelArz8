@@ -50,20 +50,20 @@ export default function Coin() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
 
-  const { data: infoData } = useGetData('info');
-  const { data: maxData } = useGetData("cryptocurrencies", 60000, {
+  const { data: infoData} = useGetData('info');
+  const { data: maxData} = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "profit",
   });
 
-  const { data: minData } = useGetData("cryptocurrencies", 60000, {
+  const { data: minData} = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "loss",
   });
 
-  const { data: newData } = useGetData("cryptocurrencies", 60000, {
+  const { data: newData} = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "new",
@@ -147,10 +147,10 @@ export default function Coin() {
         <div className="flex flex-col">
           <div className="flex justify-between">
             <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap}  />
             </div>
             <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
+              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap}   />
             </div>
             <div className="hidden xl:block">
 

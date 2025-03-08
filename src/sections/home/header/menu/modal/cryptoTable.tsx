@@ -212,14 +212,14 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                     <div className="w-[25px] h-[25px] flex">
                       {crypto.isFont ? (
                         <i
-                          className={`cf cf-${crypto.symbol.toLowerCase()} text-[25px] w-full h-full flex items-center justify-center object-cover`}
+                          className={`cf cf-${crypto.symbol.toLowerCase()} text-[25px] w-full h-full flex items-center justify-center object-fill`}
                           style={{ color: crypto.color }}
                         ></i>
                       ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${crypto.icon}`}
                           alt={crypto.symbol}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-fill"
                         />
                       )}
                     </div>

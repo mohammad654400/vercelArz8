@@ -86,14 +86,14 @@ export default function SubMenu() {
                 <div className="w-5 h-5 flex">
                   {item.isFont ? (
                     <i
-                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-cover`}
+                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-fill`}
                     style={{ color: item.color }}
                   ></i>
                   ) : (
                     <img
                     src={`https://app.arz8.com/api/images/currency/${item.icon}`}
                     alt={item.symbol}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                   )}
                 </div>

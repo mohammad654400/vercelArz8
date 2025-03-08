@@ -97,7 +97,7 @@ const QuickGuide = () => {
                   }
                   className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                 >
-                   {activeRightIndex !== index && <RhombusIcon />}
+                <RhombusIcon />
                    <span className="text-xs sm:text-base font-semibold"> {faq.question} </span> 
                 </button>
                 <span className="transform transition-transform">
