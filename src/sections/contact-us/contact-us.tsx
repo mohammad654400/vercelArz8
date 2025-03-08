@@ -415,7 +415,6 @@ export default function ContactUs() {
             alt="Contact Us Image"
             width={392}
             height={504}
-            layout="intrinsic"
             priority
           />
         </div>

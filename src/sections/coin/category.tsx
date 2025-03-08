@@ -3,7 +3,8 @@ import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface CategoryItem {
   priceToman: string;
@@ -26,10 +27,11 @@ interface CategoryProps {
 
 }
 
-export default function Category({ open, setOpen, title, data, infoMap}: CategoryProps) {
+export default function Category({ open, setOpen, title, data, infoMap }: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
-  const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
-  const {formatNumber} = useFormattedNumber()
+  const [displayedCurrencies, setDisplayedCurrencies] = useState<CategoryItem[]>([]);
+  const { formatNumber } = useFormattedNumber()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export default function Category({ open, setOpen, title, data, infoMap}: Categor
   useEffect(() => {
     if (Array.isArray(filteredData)) {
       setDisplayedCurrencies(filteredData);
+      setIsLoading(false);
     } else {
       setDisplayedCurrencies([]);
     }
@@ -91,7 +94,7 @@ export default function Category({ open, setOpen, title, data, infoMap}: Categor
           </span>
         </div>
 
-        { displayedCurrencies.length === 0 ? (
+        { isLoading  ? (
           [...Array(3)].map((_, index) => (
             <div key={index} className="flex flex-col">
               <div className=" py-1 flex items-center gap-x-3 md:gap-x-5">
@@ -117,7 +120,7 @@ export default function Category({ open, setOpen, title, data, infoMap}: Categor
               )}
             </div>
           ))
-        ) : Array.isArray(displayedCurrencies) && displayedCurrencies?.length > 0 ? (
+        ) :  displayedCurrencies.length > 0 ? (
           displayedCurrencies.map((item, index) => (
             <div
               key={index}
@@ -133,14 +136,14 @@ export default function Category({ open, setOpen, title, data, infoMap}: Categor
                 <div className={`min-w-[41px] w-[41px] h-[41px] rounded-full  flex  items-center `}>
                   {item.isFont ? (
                     <i
-                      className={`cf cf-${item.symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`}
+                      className={`cf cf-${item.symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-fill`}
                       style={{ color: item.color }}
                     ></i>
                   ) : (
                     <img
                       src={`https://app.arz8.com/api/images/currency/${item.icon}`}
                       alt={item.symbol}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-fill"
                     />
                   )}
                 </div>

@@ -155,7 +155,7 @@ export default function Sell({
             placeholder="مثال: 500,000"
           />
           <div className="absolute flex justify-center items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
-            <Image alt="iran" src={flag} className="w-[25px] h-[28px]" />
+            <Image alt="iran" src={flag} width={25} height={28} className="w-[25px] h-[28px]" />
             <p>IRT</p>
           </div>
           <div

@@ -116,14 +116,14 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                       <div className="w-9 h-9">
                         {currency.isFont ? (
                           <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-fill flex items-center justify-center`}
                             style={{ color: currency.color }}
                           ></i>
                         ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                             alt={currency.symbol}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-fill"
                           />
                         )}
                       </div>
@@ -159,14 +159,14 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                     <div className="w-9 h-9">
                       {currency.isFont ? (
                         <i
-                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-fill flex items-center justify-center`}
                           style={{ color: currency.color }}
                         ></i>
                       ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                           alt={currency.symbol}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-fill"
                         />
                       )}
                     </div>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import React, { useRef, useState } from 'react'
 import wheel from "@/assets/images/wheelluck/wheell.png"
-import ImageCarousel from './Image-Carousel'
+ import ImageCarousel from './Image-Carousel'
 import Discount from "@/assets/icons/wheel/discount"
 import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
@@ -205,6 +205,8 @@ export default function WheelLuck() {
                   <Image
                     src={item.icon}
                     alt='icon'
+                    width={60}
+                    height={60}
                     className='w-10 h-10 md:w-[60px] md:h-[60px]'
                   />
                   <span className='text-base sm:text-[18.9px] font-bold'>{item.title}</span>
@@ -231,7 +233,7 @@ export default function WheelLuck() {
             </Link>
           </div>
           <div className='w-full lg:w-[45%] order-2 flex justify-center'>
-            <Image className='' src={Ghar} alt='Ghar' width={305} height={633} />
+            <Image className='w-[305px] h-[633px]' src={Ghar} alt='Ghar' width={305} height={633}/>
           </div>
 
         </div>

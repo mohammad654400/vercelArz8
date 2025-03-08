@@ -54,8 +54,8 @@
     return (
       <div className="w-[281px] h-[337px] lg:w-80 max-w-screen-lg mx-auto relative">
         <Slider {...settings}>
-          <div className=" flex flex-col items-center justify-center w-[281px]">
-            <Image alt="banner" src={wheel} width={290} height={242} className="object-cover flex" />
+          <div className=" flex flex-col items-center justify-center w-[290px] ">
+            <Image alt="banner" src={wheel} priority={true} width={290} height={242} className="object-cover flex w-full h-full" />
             <div className="flex flex-col">
               <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 گردونه شانس
@@ -65,8 +65,8 @@
               </p>
             </div>
           </div>
-          <div className=" flex flex-col items-center justify-center w-[281px]">
-            <Image alt="banner" src={laptop} width={290} height={242} className="object-cover flex" />
+          <div className=" flex flex-col items-center justify-center w-[290px]">
+            <Image alt="banner" src={laptop} priority={true} width={290} height={242} className="object-cover flex w-full h-full" />
             <div className="flex flex-col">
               <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 کسب درآمد
@@ -76,8 +76,8 @@
               </p>
             </div>
           </div>
-          <div className=" flex flex-col items-center justify-center w-[281px]">
-            <Image alt="banner" src={cash} width={290} height={242} className="object-cover flex" />
+          <div className=" flex flex-col items-center justify-center w-[290px]">
+            <Image alt="banner" src={cash} priority={true} width={290} height={242} className="object-cover flex w-full h-full" />
             <div className="flex flex-col">
             <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 حفاظت از دارایی ها

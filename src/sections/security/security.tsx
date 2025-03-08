@@ -15,6 +15,7 @@ export default function Security() {
                         <Image
                             src={btcMining}
                             alt="image"
+                            priority
                         />
                     </div>
 
