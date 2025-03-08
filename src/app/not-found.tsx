@@ -17,7 +17,7 @@ export default function NotFound() {
           <h2 className='text-primary text-base md:text-[63px] font-bold md:py-5'>ارور 404</h2>
           <div className='flex flex-col gap-y-10 justify-center items-center'>
             <span className='md:text-[27px] text-sm font-normal  md:py-5'>صفحه مورد نظرتان یافت نشد .</span>
-            <Image src={Image404} alt='404' />
+            <Image src={Image404} alt='404' quality={100} />
           </div>
 
         </div>

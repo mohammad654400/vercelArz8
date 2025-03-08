@@ -553,7 +553,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                           : "brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)",
                     }}
                   >
-                    <Image src={ChartUP} alt="chart" width={64} height={31} />
+                    <Image src={ChartUP} alt="chart" width={64} height={31} quality={100} />
                   </div>
 
                   <div>

@@ -49,7 +49,7 @@ export default function Banner() {
                 </div>
 
                 <div className="flex items-center gap-x-4">
-                  <Image src={QrCode} alt="QrCode"  className="w-[102px] h-[102px]"></Image>
+                  <Image src={QrCode} alt="QrCode" quality={100} className="w-[102px] h-[102px]"></Image>
 
                   <div className="flex flex-col gap-y-3">
                     <span className="text-white text-xl font-bold">برای دانلود اپلیکیشن</span>
@@ -68,6 +68,7 @@ export default function Banner() {
                   width={413}
                   height={534}
                   className="object-contain"
+                  quality={100}
                 />
               </div>
 
@@ -91,7 +92,7 @@ export default function Banner() {
 
 
                   <div className="flex flex-col items-center gap-y-3">
-                    <Image src={QrCode} alt="QrCode" className="w-[70px] h-16"></Image>
+                    <Image src={QrCode} alt="QrCode" className="w-[70px] h-16" quality={100}></Image>
 
                     <div className="flex flex-col gap-y-1">
                       <span className="text-white text-[8px] sm:text-xs font-bold">برای دانلود اپلیکیشن</span>
@@ -117,6 +118,8 @@ export default function Banner() {
                     width={148}
                     height={192}
                     className="max-h-[192px] max-w-[148px] justify-center items-center self-center"
+                    quality={100}
+
                   />
                 </div>
 

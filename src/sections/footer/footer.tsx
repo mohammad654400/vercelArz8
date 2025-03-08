@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="flex gap-8 flex-wrap justify-center w-full md:justify-center lg:justify-between ">
           <div className="lg:px-0 px-5 md:w-2/3 w-full lg:w-[25%]">
             <div className="flex justify-start items-center gap-1 lg:gap ">
-              <Image alt="ارز هشت" src={logo} width={64} height={64} />
+              <Image alt="ارز هشت" src={logo} width={64} height={64} quality={100} />
               <h1 className="text-[30px] font-extrabold">ارزهشت</h1>
             </div>
             <p className="text-justify text-[14px] leading-10  ">
@@ -36,19 +36,19 @@ export default function Footer() {
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
               <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> بـــــــــــــازار</p>
-                <Image alt="bazar" src={bazar} />
+                <Image alt="bazar" src={bazar} quality={100} />
               </Link>
               <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base ">وب اپلیکیشن</p>
-                <Image alt="bazar" src={webapp} />
+                <Image alt="bazar" src={webapp}  quality={100}  />
               </div>
               <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-base"> مایکـــیت</p>
-                <Image alt="bazar" src={myket} />
+                <Image alt="bazar" src={myket}   quality={100} />
               </Link>
               <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
                 <p className="text-sm "> دانلود مستقیم</p>
-                <Image alt="bazar" src={directDownload} />
+                <Image alt="bazar" src={directDownload}  quality={100}  />
               </Link>
             </div>
             <div className="hidden md:block">
@@ -62,7 +62,6 @@ export default function Footer() {
                     <Link href="/coins"><li className=" hover:text-primary">قیمت لحظه ای ارز ها</li></Link>
                     <Link href="/download"><li className=" hover:text-primary"> دانلود اپلیکیشن</li></Link>
                     <Link href="/calculate"> <li className=" hover:text-primary">ماشین حساب</li></Link>
-                    <Link href="/wheel-luck"><li className=" hover:text-primary">گردونه شانس </li></Link>
                     <Link href="/bug-bounty"><li className=" hover:text-primary">باگ بانتی</li></Link>
                     <Link href="https://arz8.com/blog/"><li className=" hover:text-primary">وبلاگ</li></Link>
                   </ul>
