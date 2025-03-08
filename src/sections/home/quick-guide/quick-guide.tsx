@@ -52,7 +52,7 @@ const faqs: FAQItem[] = [
 
 const QuickGuide = () => {
   const [activeRightIndex, setActiveRightIndex] = useState<number | null>(null);
-  const [activeLeftIndex, setActiveLeftIndex] = useState<number | null>(null);
+  const [activeLeftIndex, setActiveLeftIndex] = useState<number | null>(0);
 
   const rightFAQs = faqs.filter((faq) => !faq.videoUrl);
   const leftFAQs = faqs.filter((faq) => faq.videoUrl);
