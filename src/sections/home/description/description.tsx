@@ -3,6 +3,7 @@ import BigArrow from "@/assets/icons/bigarrow";
 import MobileIcon from "@/assets/icons/mobile";
 import React, { useState } from "react";
 import MoreDetails from "@/components/more-details";
+import Link from "next/link";
 const data = {
   firstTitle: "خرید و فروش سریع ",
   secondTitle: "ارزهای دیجیتال باارز هشت",
@@ -32,6 +33,12 @@ const data = {
 const Description = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpand = () => setIsExpanded(!isExpanded);
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
+  
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPhoneNumber(e.target.value);
+    };
+  
   return (
     <div className="w-full mx-auto">
       <MoreDetails
@@ -64,15 +71,28 @@ const Description = () => {
 
               {/* Input Field */}
               <input
+              dir="rtl"
                 placeholder="شماره موبایل خود را وارد کنید"
                 className="w-full text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 pl-24 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
-                type="text"
+                maxLength={11}
+                minLength={11}
+                type="tel"
+                value={phoneNumber}
+                onChange={handlePhoneChange}
+                pattern="[0-9]*"
+                inputMode="numeric"
+                onInput={(e) => {
+                  const input = e.target as HTMLInputElement;
+                  input.value = input.value.replace(/\D/g, '');
+                }}
               />
 
               {/* Start Button */}
+              <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
               <button className="absolute left-2 top-1/2 -translate-y-1/2 px-4 text-for cursor-pointer rounded-lg bg-primary py-[10px] text-xs">
                 <p className="text-white">شروع کنید</p>
               </button>
+              </Link>
             </div>
           </div>
         </div>
