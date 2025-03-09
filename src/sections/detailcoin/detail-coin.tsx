@@ -340,7 +340,7 @@ export default function DetailCoin() {
 
               </div>
 
-              <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
+              <div   className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
 
                 <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
                   {infoIsLoading || coinIsLoading ?
