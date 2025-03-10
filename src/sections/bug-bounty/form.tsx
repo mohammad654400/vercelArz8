@@ -149,6 +149,13 @@ export default function FormBugBounty() {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+
+		if (!isChecked) {
+			setErrors((prev) => ({ ...prev, acceptCheckbox: "پذیرش قوانین الزامی است." }));
+			return;
+		}
+
 		const isValid = await validateForm();
 		if (!isValid) return;
 
@@ -326,7 +333,7 @@ export default function FormBugBounty() {
 
 					<label
 						htmlFor="accept-checkbox"
-						className={`w-5 h-5 lg:w-9 lg:h-9 flex items-start justify-center rounded lg:rounded-lg border border-[#ADADAD80] cursor-pointer ${isChecked ? "bg-[#FFF6DD]" : "bg-white"
+						className={`min-w-5 w-5 h-5 lg:w-9 lg:h-9 flex items-start justify-center rounded lg:rounded-lg border border-[#ADADAD80] cursor-pointer ${isChecked ? "bg-[#FFF6DD]" : "bg-white"
 							}`}>
 						{isChecked && (
 							<svg
@@ -346,14 +353,19 @@ export default function FormBugBounty() {
 						)}
 					</label>
 
+					<div className='flex flex-col '>
+						<label
+							htmlFor="accept-checkbox"
+							className="lg:text-[25px] text-sm font-normal flex  self-center text-foreground mr-2 lg:mr-[17px] leading-6"
+						>
+							ارسال این گزارش به معنی پذیرش قوانین و مقررات باگ بانتی ارزهشت است.
+						</label>
+						{errors.acceptCheckbox && <p className="text-red-500 text-xs mt-2 lg:mt-5 mr-2 lg:mr-4">{errors.acceptCheckbox}</p>}
 
-					<label
-						htmlFor="accept-checkbox"
-						className="lg:text-[25px] text-sm font-normal flex  self-center text-foreground mr-[17px]"
-					>
-						ارسال این گزارش به معنی پذیرش قوانین و مقررات باگ بانتی ارزهشت است.
-					</label>
+					</div>
+
 				</div>
+
 				<button type="submit" className="w-[124px] h-[40px] lg:w-[232px] lg:h-[75px] bg-primary text-white px-4 py-2 rounded-xl self-end text-[13.44px] lg:text-[25px]">
 					ارسال درخواست
 				</button>
