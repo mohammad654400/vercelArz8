@@ -28,7 +28,7 @@ export default function RootLayout({
         /> */}
 
         {/* Goftino Chat Widget */}
-        <Script
+        {/* <Script
           id="goftino-widget"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -56,7 +56,7 @@ export default function RootLayout({
       });
     `,
           }}
-        />
+        /> */}
       </head>
       <body>
         <ClientProvider>{children}</ClientProvider>

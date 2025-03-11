@@ -66,7 +66,7 @@
             </div>
           </div>
           <div className=" flex flex-col items-center justify-center w-[290px]">
-            <Image alt="banner" src={laptop} priority={true} width={290} height={242} className="object-cover flex w-full h-full" />
+            <Image alt="banner" src={laptop} priority={true} width={290} height={242} quality={100} className="object-cover flex w-full h-full" />
             <div className="flex flex-col">
               <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 کسب درآمد
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div className=" flex flex-col items-center justify-center w-[290px]">
-            <Image alt="banner" src={cash} priority={true} width={290} height={242} className="object-cover flex w-full h-full" />
+            <Image alt="banner" src={cash} priority={true} width={290} height={242} quality={100} className="object-cover flex w-full h-full" />
             <div className="flex flex-col">
             <p className="mt-2 mx-auto  text-[23px] font-bold ">
                 حفاظت از دارایی ها

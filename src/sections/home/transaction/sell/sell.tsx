@@ -17,7 +17,7 @@ type TransAction = {
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
-  setCurrentCoin:any
+  setCurrentCoin: any;
 };
 export default function Sell({
   toggle,
@@ -27,7 +27,7 @@ export default function Sell({
   isBuy,
   infoLoading,
   homeLoading,
-  setCurrentCoin
+  setCurrentCoin,
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(coin);
@@ -38,8 +38,8 @@ export default function Sell({
 
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
-    setAmount("")
-    setMoney("")
+    setAmount("");
+    setMoney("");
   };
 
   const handleMoneyChange = (value: string) => {
@@ -55,21 +55,18 @@ export default function Sell({
 
   const handleAmountChange = (value: string) => {
     let rawValue = value.replace(/[^0-9.]/g, "");
-  
+
     if ((rawValue.match(/\./g) || []).length > 1) {
       return;
     }
-  
+
     setAmount(rawValue);
-  
+
     if (currency) {
       const calculatedMoney = parseFloat(rawValue) * currency.price?.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
-
-
-  
 
   return (
     <div className="w-full ">
@@ -94,7 +91,7 @@ export default function Sell({
         <div className="relative w-full ">
           <p>مقدار (دریافت می‌کنید)</p>
           <input
-           pattern="[0-9]*"
+            pattern="[0-9]*"
             inputMode="decimal"
             className={`
               ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
@@ -187,12 +184,11 @@ export default function Sell({
               currencies={currencies}
               setCurrency={setCurrency}
               toggle={toggleOpen}
-              hasLink={route === 'coins' ? true : false}
+              hasLink={route === "coins" ? true : false}
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
               setCurrentCoin={setCurrentCoin}
-
             />
           )}
           <button
@@ -201,9 +197,9 @@ export default function Sell({
               ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
               px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white`}
           >
-              <Link href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
-            شروع فروش
-          </Link>
+            <Link href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
+              شروع فروش
+            </Link>
           </button>
         </div>
       </div>
