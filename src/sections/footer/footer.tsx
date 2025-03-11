@@ -108,8 +108,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className=" w-full bg-secondary py-4 flex  sm:flex-row  justify-between gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[7px] md:text-[18px] gap-1 ">
+        <div className=" w-full bg-secondary py-4 flex flex-col  sm:flex-row  justify-between gap-3  sm:justify-between px-2 sm:px-5 rounded-lg mt-16 mb-10 md:my-24 ">
+          <div className="flex flex-wrap justify-center items-center text-xs md:text-[18px] gap-1 ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
@@ -120,13 +120,13 @@ export default function Footer() {
             <span className="hidden md:block dark:text-gray-300">
               <Aparat />
             </span>
-            <span className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300">
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[34px] md:h-[34px] dark:text-gray-300">
               <Twitter />
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[38px] md:h-[38px] dark:text-gray-300">
               <Telegram />
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300">
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[38px] md:h-[38px] dark:text-gray-300">
               <Instagram />
             </span>
           </div>

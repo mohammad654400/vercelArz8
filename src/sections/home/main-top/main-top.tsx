@@ -50,9 +50,13 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
               }}
             />
             <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
-              <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
+              <button className="absolute left-[10px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
+  rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
+  transition-transform duration-200 ease-in-out 
+  hover:scale-105 active:scale-95">
                 شروع کنید
               </button>
+
             </Link>
           </div>
         </div>
