@@ -6,23 +6,23 @@ import { cardData } from "./data/data";
 import Info from "@/assets/icons/rules/info";
 
 export default function DownloadApp() {
-      const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
 
-      useEffect(() => {
-        if (titleRef.current) {
-          titleRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, []);
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
   return (
     <div className="bg-background pt-[127px]">
       <header>
-      <BannerDownload showWaveDivider={true} />
+        <BannerDownload showWaveDivider={true} />
       </header>
       <div
         className="base-style my-[65px] lg:my-[113px] !gap-0"
-    
+        ref={titleRef}
       >
-        <div  className="flex bg-primary w-full rounded-[20px] p-[13px] items-center  lg:mb-[69px] mb-[40px]">
+        <div className="flex bg-primary w-full rounded-[20px] p-[13px] items-center  lg:mb-[69px] mb-[40px]">
           <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]" aria-label="Info Icon">
             <Info />
           </div>
@@ -31,7 +31,7 @@ export default function DownloadApp() {
             اقدام کنید.
           </span>
         </div>
-        <div ref={titleRef} className="hidden lg:flex flex-col  self-center">
+        <div className="hidden lg:flex flex-col  self-center">
           <h1 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">
             برخی امکانات اپلیکیشن صرافی ارز هشت{" "}
           </h1>
