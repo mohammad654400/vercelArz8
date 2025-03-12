@@ -75,7 +75,6 @@ export default function SecondCategory({
     <div className="py-[30px]">
   <div
     className={`
-      transition-all duration-500 ease-in-out
       ${
         !open
           ? "w-[250px] md:w-[364px] pt-4 md:pt-6 rounded-2xl mx-2 px-3 md:px-6 "
