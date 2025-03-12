@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import directDownload from "@/assets/images/footer/directDownload.png";
 import Myket from "@/assets/icons/downloadApp/miket";
+import DirectDownload from "@/assets/icons/footer/directDownload"
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
 import YouTube from "@/assets/icons/footer/youtube";
@@ -37,22 +38,24 @@ export default function Footer() {
               <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#27b681] hover:border-[#27b681] dark:hover:border-[#27b681]">
                 <p className="text-base"> بـــــــــــــازار</p>
                 <div className="w-6 h-6 ">
-                  <CafeBazar/>
+                  <CafeBazar />
                 </div>               </Link>
               <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white  hover:text-primary hover:border-primary dark:hover:border-primary">
                 <p className="text-base ">وب اپلیکیشن</p>
                 <div className="w-6 h-6 ">
-                  <Web/>
+                  <Web />
                 </div>              </div>
               <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#0091EA] hover:border-[#0091EA] dark:hover:border-[#0091EA]">
                 <p className="text-base"> مایکـــیت</p>
                 <div className="w-6 h-6 ">
-                  <Myket/>
+                  <Myket />
                 </div>
               </Link>
-              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#4a80f5] hover:border-[#4a80f5] dark:hover:border-[#4a80f5]">
                 <p className="text-sm "> دانلود مستقیم</p>
-                <Image alt="bazar" src={directDownload} quality={100} />
+                <div className="w-6 h-6 ">
+                  <DirectDownload />
+                </div>
               </Link>
             </div>
             <div className="hidden md:block">
