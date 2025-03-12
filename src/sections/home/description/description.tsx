@@ -33,12 +33,12 @@ const data = {
 const Description = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpand = () => setIsExpanded(!isExpanded);
-    const [phoneNumber, setPhoneNumber] = useState<string>("");
-  
-    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPhoneNumber(e.target.value);
-    };
-  
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  };
+
   return (
     <div className="w-full mx-auto">
       <MoreDetails
@@ -71,7 +71,7 @@ const Description = () => {
 
               {/* Input Field */}
               <input
-              dir="rtl"
+                dir="rtl"
                 placeholder="شماره موبایل خود را وارد کنید"
                 className="w-full text-white h-12 bg-[#282624] rounded-xl outline-none pr-10 pl-24 border border-[#ADADAD80] placeholder:text-[10px] md:placeholder:text-sm placeholder:text-gray-500"
                 maxLength={11}
@@ -89,9 +89,9 @@ const Description = () => {
 
               {/* Start Button */}
               <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
-              <button className="absolute left-2 top-1/2 -translate-y-1/2 px-4 text-for cursor-pointer rounded-lg bg-primary py-[10px] text-xs">
-                <p className="text-white">شروع کنید</p>
-              </button>
+                <button className="absolute left-2 top-1/2 -translate-y-1/2 px-4 text-for cursor-pointer rounded-lg bg-primary py-[10px] text-xs hover:px-[18px] hover:py-[11px]">
+                  <p className="text-white">شروع کنید</p>
+                </button>
               </Link>
             </div>
           </div>

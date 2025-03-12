@@ -12,7 +12,7 @@ interface HomeCurrency {
   priceToman: string;
   quoteVolume: string
   priceChangePercent: string;
-  lastPrice?: string;
+  lastPrice: string;
 }
 
 interface HomeData {
@@ -44,7 +44,7 @@ interface MergedData {
   priceToman: string;
   quoteVolume: string;
   priceChangePercent: string;
-  lastPrice?: string;
+  lastPrice: string;
 }
 
 const filterOptions = [
@@ -77,8 +77,11 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
       ...(infoMap[currency.symbol] || {}),
       name: infoMap[currency.symbol]?.name.fa || currency.symbol,
       priceToman: currency.priceToman,
+      lastPrice: currency.lastPrice
     }));
   }, [activeFilter, initialHomeData, infoMap]);
+
+  
 
   useEffect(() => {
     setDisplayedCurrencies(filteredData);
@@ -99,12 +102,12 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
               <button
                 key={option.key}
                 onClick={() => setActiveFilter(option.key)}
-                className={`px-2 sm:px-3   py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
+                className={`px-2 sm:px-3  py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
                   ? "bg-yellow-400 text-white"
                   : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
               >
-                <span className="text-xs font-semibold sm:text-sm ">{option.label}</span>
+                <span className="text-xs font-semibold sm:text-sm hover:text-primary ">{option.label}</span>
 
               </button>
             ))}
@@ -114,10 +117,10 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
         </div>
         <div className="px-4 pt-[36px] w-full border-[1px] border-[#ADADAD80] border-t-0 rounded-b-xl">
           <div className="px-2 grid grid-cols-3 md:grid-cols-6 text-[#47444480] dark:text-[#FFFFFF80] text-[10px] md:text-xs w-full rounded-2xl bg-secondary text-center py-3 font-semibold border-gray-300 ">
-            <div className="block ">نماد</div>
+            <div className="block">نماد</div>
             <div className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
-            <div className="pl-0 pr-0 col-span-1">قیمت به تومان</div>
-            <div className="pl-0 pr-0">تغییرات 24h</div>
+            <div className="pl-0 pr-0 col-span-1 text-end md:text-center">قیمت به تومان</div>
+            <div className="pl-0 pr-0 text-end ml-3 md:ml-0 md:text-center">تغییرات 24h</div>
             <div className="hidden md:block pl-0 pr-0">نمودار 24h</div>
             <div className="hidden md:flex justify-center ml-5">عملیات</div>
           </div>
@@ -175,7 +178,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                   <div className="hidden md:grid grid-cols-6 w-full items-center text-center py-4 ">
 
                     <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
-                      <div className="flex items-center gap-2 justify-start pr-4">
+                      <div className="flex items-center gap-3 justify-start pr-4">
                         <div className=" h-11 w-11 min-h-11 min-w-11">
                           {currency.isFont ? (
                             <i
@@ -209,12 +212,13 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                     </div>
 
                     <div className="w-full block md:text-base font-semibold">
-                      ${currency.lastPrice}
+                      { formatNumber(currency.lastPrice)}
+
                     </div>
 
                     <div className="flex flex-row md:justify-center items-center text-center gap-x-2 col-span-1">
                       <span className="text-[10px] md:text-base font-semibold">
-                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                        { formatNumber(currency.priceToman)}
                       </span>
                       <span className="text-[8px] md:text-sm font-semibold">تومان</span>
                     </div>
@@ -254,15 +258,15 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                   </div>
 
 
-                  <Link href={`/coins/${currency.symbol}`} className="grid md:hidden grid-cols-3 w-full items-center text-center py-4">
+                  <Link href={`/coins/${currency.symbol}`} className="grid md:hidden grid-cols-9 w-full items-center text-center py-4">
 
 
-                    <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
-                      <div className="flex items-center gap-2 justify-start pr-2 md:pr-4">
-                        <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
+                    <div className="flex flex-col justify-start pl-0 pr-0 col-span-4">
+                      <div className="flex items-center gap-2 justify-start pr-2  col-span-1">
+                        <div className="min-h-8 min-w-8 w-8 h-8">
                           {currency.isFont ? (
                             <i
-                              className={`cf cf-${currency.symbol.toLowerCase()} text-2xl md:text-[44px] w-full h-full flex items-center justify-center object-fill`}
+                              className={`cf cf-${currency.symbol.toLowerCase()} text-[32px] md:text-[44px] w-full h-full flex items-center justify-center object-fill`}
                               style={{ color: currency.color }}
                             ></i>
                           ) : (
@@ -274,14 +278,14 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                           )}
                         </div>
 
-                        <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
-                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
+                        <div className="flex flex-col justify-center gap-y-1">
+                          <span className="text-start whitespace-nowrap sm:text-base text-xs sm:font-semibold">
                             {" "}
-                            {currency?.name?.length > 14
-                              ? currency.name.slice(0, 11) + "..."
+                            {currency?.name?.length > 12
+                              ? currency.name.slice(0, 9) + "..."
                               : currency?.name}
                           </span>
-                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
+                          <span className="text-start whitespace-nowrap sm:text-base text-xs sm:font-semibold opacity-50">
                             {" "}
                             {currency?.symbol?.length > 7
                               ? "..." + currency.symbol.slice(0, 7)
@@ -291,17 +295,17 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-1">
-                      <span className="text-[10px] md:text-base font-semibold">
-                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                    <div className="flex flex-col  gap-x-2 col-span-2">
+                      <span className="text-xs  font-semibold">
+                        {formatNumber(currency.priceToman)}
                       </span>
-                      <span className="text-[8px] md:text-sm font-semibold">تومان</span>
+                      <span className="text-[8px] font-semibold">تومان</span>
                     </div>
 
                     <p
                       dir="ltr"
                       className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
-                        } text-[10px] md:text-base font-semibold text-center`}
+                        } text-xs font-semibold text-center col-span-3`}
                     >
                       {currency.priceChangePercent} %
                     </p>

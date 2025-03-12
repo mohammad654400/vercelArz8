@@ -1,18 +1,26 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 
 import BannerDownload from "./bannerd-download";
 import { cardData } from "./data/data";
 import Info from "@/assets/icons/rules/info";
 
 export default function DownloadApp() {
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
   return (
     <div className="bg-background pt-[127px]">
       <header>
-      <BannerDownload showWaveDivider={true} />
+        <BannerDownload showWaveDivider={true} />
       </header>
       <div
         className="base-style my-[65px] lg:my-[113px] !gap-0"
-    
+        ref={titleRef}
       >
         <div className="flex bg-primary w-full rounded-[20px] p-[13px] items-center  lg:mb-[69px] mb-[40px]">
           <div className="lg:w-[49px] lg:h-[49px] w-[20px] h-[20px]" aria-label="Info Icon">

@@ -48,11 +48,10 @@ export default function Header() {
         z-30 
         transition-all
         bg-background
-        ${
-          isScrolled
+        ${isScrolled
             ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm  shadow-sm top-0 "
             : "md:bg-transparent  bg-secondary"
-        }
+          }
       `}
       >
         <div className="flex items-center self-center justify-between px-[14px]  md:px-6 h-14  md:h-[78px] ">
@@ -85,7 +84,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center md:gap-[24px] gap-[9px] h-full md:gap-">
-            <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center ">
+            <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary">
               <Link href="https://app.arz8.com/auth/login">
                 <p>ورود یا عضویت</p>
               </Link>

@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
-import bazar from "@/assets/images/footer/bazar.png";
 import directDownload from "@/assets/images/footer/directDownload.png";
-import myket from "@/assets/images/footer/myket.png";
-import webapp from "@/assets/images/footer/webapp.png";
+import Myket from "@/assets/icons/downloadApp/miket";
+import DirectDownload from "@/assets/icons/footer/directDownload"
+import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
+import Web from "@/assets/icons/downloadApp/web";
 import YouTube from "@/assets/icons/footer/youtube";
 import Instagram from "@/assets/icons/footer/instagram";
 import Telegram from "@/assets/icons/footer/telegram";
@@ -34,21 +35,27 @@ export default function Footer() {
 
           <div className="flex flex-col gap-8 lg:w-[68%]">
             <div className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
-              <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#27b681] hover:border-[#27b681] dark:hover:border-[#27b681]">
                 <p className="text-base"> بـــــــــــــازار</p>
-                <Image alt="bazar" src={bazar} quality={100} />
-              </Link>
-              <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+                <div className="w-6 h-6 ">
+                  <CafeBazar />
+                </div>               </Link>
+              <div className="flex justify-between px-2 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white  hover:text-primary hover:border-primary dark:hover:border-primary">
                 <p className="text-base ">وب اپلیکیشن</p>
-                <Image alt="bazar" src={webapp}  quality={100}  />
-              </div>
-              <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+                <div className="w-6 h-6 ">
+                  <Web />
+                </div>              </div>
+              <Link href={"https://myket.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#0091EA] hover:border-[#0091EA] dark:hover:border-[#0091EA]">
                 <p className="text-base"> مایکـــیت</p>
-                <Image alt="bazar" src={myket}   quality={100} />
+                <div className="w-6 h-6 ">
+                  <Myket />
+                </div>
               </Link>
-              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white">
+              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#4a80f5] hover:border-[#4a80f5] dark:hover:border-[#4a80f5]">
                 <p className="text-sm "> دانلود مستقیم</p>
-                <Image alt="bazar" src={directDownload}  quality={100}  />
+                <div className="w-6 h-6 ">
+                  <DirectDownload />
+                </div>
               </Link>
             </div>
             <div className="hidden md:block">
@@ -91,7 +98,7 @@ export default function Footer() {
                     </div>
                     <div className="flex gap-2">
                       <Fax />
-                      <li>021-91035288 </li>
+                      <a href="tel:02191035288" className="cursor-pointer">021-91035288</a>
                     </div>
                     <div className="flex gap-2">
                       <Phone />
@@ -107,35 +114,39 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className=" w-full bg-secondary py-4 flex  sm:flex-row  justify-between gap-3  sm:justify-between px-5 rounded-lg my-24 ">
-          <div className="flex justify-center items-center text-[7px] md:text-[18px] gap-1 ">
+        <div className=" w-full bg-secondary py-4 flex flex-col  sm:flex-row  justify-between gap-3  sm:justify-between px-2 sm:px-5 rounded-lg mt-16 mb-10 md:my-24 ">
+          <div className="flex flex-wrap justify-center items-center text-xs md:text-[18px] gap-1 ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">صرافی ارزدیجیتال ارزهشت</span> است.
           </div>
           <div className="flex justify-center items-center gap-4 dark:text-secondary sm:order-last ">
-            <span className="hidden md:block dark:text-gray-300 pl-1 cursor-pointer dark:hover:text-primary hover:text-primary">
+            <span className="hidden md:block dark:text-gray-300 pl-1 cursor-pointer dark:hover:text-[#CD201F] hover:text-[#CD201F]">
               <Link href='https://www.youtube.com/channel/UCD1InrQ1dXUdUtSORnjp68w'>
-              <YouTube />
+                <YouTube />
               </Link>
             </span>
-            <span className="hidden md:block dark:text-gray-300  cursor-pointer dark:hover:text-primary hover:text-primary">
+            <span className="hidden md:block dark:text-gray-300  cursor-pointer dark:hover:text-[#ED145B] hover:text-[#ED145B]">
               <Link href='https://www.aparat.com/arz8com'>
-              <Aparat />
+                <Aparat />
               </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[34px] md:h-[34px] dark:text-gray-300 dark:hover:text-primary hover:text-primary cursor-pointer">
-              <Link href='https://x.com/Arz8official'>
-              <Twitter />
+
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[34px] md:h-[34px] dark:text-gray-300">
+              <Link href='https://x.com/Arz8official' >
+                <Twitter />
               </Link>
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer  hover:text-primary">
+
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-[#0088CC] cursor-pointer  hover:text-[#0088CC]">
               <Link href='https://t.me/arz8com'>
-              <Telegram/>
+                <Telegram />
               </Link>
+
+
             </span>
-            <span className="w-[10px] h-[10px] md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-primary cursor-pointer hover:text-primary">
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[38px] md:h-[38px] dark:text-gray-300 dark:hover:text-[#F77737] cursor-pointer hover:text-[#F77737]">
               <Link href='https://www.instagram.com/arz8_official/?hl=en-gb'>
-              <Instagram />
+                <Instagram />
               </Link>
             </span>
           </div>

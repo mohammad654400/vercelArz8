@@ -32,7 +32,8 @@ export default function BugBounty() {
       {open ? (
         <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
           <div className="flex w-full justify-center">
-            <div onClick={() => window.location.reload()} className="flex cursor-pointer h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 ">
+            <div onClick={() => setOpen(false)} className="flex h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 ">
+
               <span className="w-5 h-5 lg:w-6 lg:h-6"><Back /></span>
               <span className="hidden lg:flex text-2xl font-normal">بازگشت</span>
             </div>

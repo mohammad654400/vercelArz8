@@ -254,9 +254,9 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
             <button
 
               key={item.key}
-              className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === item.key
+              className={`ml-2 px-2 h-[25px] text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center  ${sort === item.key
                 ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-                : "text-[#3C3B41] dark:text-[#FFFFFF80]"
+                : "text-[#3C3B41] dark:text-[#FFFFFF80] hover:text-primary dark:hover:text-primary "
                 }`}
               onClick={(e) => {
                 e.stopPropagation();

@@ -4,6 +4,7 @@ import qrCodeDark from "@/assets/images/downloadApp/qrcode/qrcodedark.png";
 import qrCodeLight from "@/assets/images/downloadApp/qrcode/qrcodelight.png";
 import HalfCircle from "@/assets/icons/halfCircle";
 import { useTheme } from "@/contexts/theme-provider";
+import Link from "next/link";
 export default function DownloadSection() {
   const { theme } = useTheme();
   return (
@@ -13,6 +14,7 @@ export default function DownloadSection() {
       </div>
       <p className="flex justify-center pb-[21px]">اسکن کنید:</p>
       <div className="flex flex-col justify-center items-center gap-2">
+       <Link href="./download">
         {theme === "light" ? (
           <Image
             alt="qrcode"
@@ -30,6 +32,7 @@ export default function DownloadSection() {
             className="mb-8"
           />
         )}
+        </Link>
         <div className=" w-[256px] text-[13px] px-[70px] py-4 bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px] ">
           دانلود از کافه بازار
         </div>

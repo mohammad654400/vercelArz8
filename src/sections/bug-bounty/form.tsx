@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import DocumentUpload from "@/assets/icons/job/documentUpload";
 import FormField from '@/sections/job/input/inputField';
+import InputSelect from '@/sections/job/input/InputSelect';
 import validationSchema from './yup/validationSchema';
 import Modal from '@/components/Modal';
 import ErrorJob from "@/assets/icons/modal/errorJob"
@@ -247,10 +248,9 @@ export default function FormBugBounty() {
 						onChange={handleChange}
 						error={errors.title}
 					/>
-					<FormField
+					<InputSelect
 						name="vulnerableSector"
 						label="بخش آسیب پذیر"
-						type="select"
 						options={["احراز هویت", "خرید", "فروش", "برداشت ارزی", "برداشت ریالی", "سایر"]}
 						onChange={handleChange}
 						error={errors.vulnerableSector}
