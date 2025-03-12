@@ -66,7 +66,7 @@ export default function FaqView() {
               <input
                 type="text"
                 placeholder="سوال خود را بنویسید..."
-                className="flex-1 w-full  bg-transparent px-4 py-3 text-white focus:outline-none"
+                className="flex-1 w-full text-xs sm:text-base  bg-transparent px-4 py-3 text-white focus:outline-none"
                 onChange={handleSearch}
               />
               <div className="w-8 h-8 p-[6px] sm:w-[54px] sm:h-[54px] sm:p-[10px] lg:w-[61px] lg:h-[61px] lg:p-[12px] rounded-[11px] sm:rounded-[17px] lg:rounded-xl bg-[#FFC107]">

@@ -60,7 +60,7 @@ const FormField: React.FC<InputFieldProps> = ({
                             <div
                                 key={option}
                                 onClick={() => handleOptionClick(option)}
-                                className="px-4 py-2  hover:bg-gray-300 cursor-pointer "
+                                className="px-4 py-2  hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer "
                             >
                                 {option}
                             </div>

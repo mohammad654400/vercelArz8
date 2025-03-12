@@ -82,7 +82,7 @@ const ChartContainer = ({ coinChart, theme }: any) => {
 
       {/* Chart Container - Takes Full Height in Fullscreen */}
       <div
-        className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} rounded-xl border-[0.88px] border-[#ADADAD80] overflow-hidden`}
+        className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} rounded-xl `}
       >
         {coinChart ? (
           isAdvancedChart ? (
@@ -91,7 +91,7 @@ const ChartContainer = ({ coinChart, theme }: any) => {
             <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
           )
         ) : (
-          <Skeleton height="100%" width="100%" baseColor={baseColor} highlightColor={highlightColor} />
+          <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-full !h-full !-mt-10 " />
         )}
       </div>
     </div>

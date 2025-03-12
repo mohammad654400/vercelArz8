@@ -49,7 +49,7 @@ export default function Banner() {
                 </div>
 
                 <div className="flex items-center gap-x-4">
-                  <Image src={QrCode} alt="QrCode" width={108} height={102}></Image>
+                  <Image src={QrCode} alt="QrCode" quality={100} className="w-[102px] h-[102px]"></Image>
 
                   <div className="flex flex-col gap-y-3">
                     <span className="text-white text-xl font-bold">برای دانلود اپلیکیشن</span>
@@ -65,6 +65,10 @@ export default function Banner() {
                 <Image
                   alt="نمایش اپلیکیشن روی تلفن همراه"
                   src={Phone}
+                  width={413}
+                  height={534}
+                  className="object-contain"
+                  quality={100}
                 />
               </div>
 
@@ -72,7 +76,7 @@ export default function Banner() {
             </div>
 
 
-           
+
             <div className=" w-full h-full justify-center items-center flex lg:hidden flex-col">
               <div className="flex  flex-col pt-8 pb-6 gap-y-3">
                 <h1 className="text-center text-lg sm:text-3xl font-extrabold">
@@ -88,7 +92,7 @@ export default function Banner() {
 
 
                   <div className="flex flex-col items-center gap-y-3">
-                    <Image src={QrCode} alt="QrCode" width={70} height={65}></Image>
+                    <Image src={QrCode} alt="QrCode" className="w-[70px] h-16" quality={100}></Image>
 
                     <div className="flex flex-col gap-y-1">
                       <span className="text-white text-[8px] sm:text-xs font-bold">برای دانلود اپلیکیشن</span>
@@ -111,7 +115,11 @@ export default function Banner() {
                   <Image
                     alt="نمایش اپلیکیشن روی تلفن همراه"
                     src={Phone}
+                    width={148}
+                    height={192}
                     className="max-h-[192px] max-w-[148px] justify-center items-center self-center"
+                    quality={100}
+
                   />
                 </div>
 
@@ -134,6 +142,6 @@ function DownloadOption({ Icon, label }: { Icon: React.FC; label: string }) {
         <Icon />
       </div>
       <span className="flex text-[5px] sm:text-[8px] lg:text-[11px] font-semibold">{label}</span>
-      </div>
-      )
+    </div>
+  )
 }

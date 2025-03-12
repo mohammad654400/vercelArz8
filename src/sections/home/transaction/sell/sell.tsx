@@ -7,6 +7,7 @@ import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
+import Link from "next/link";
 type TransAction = {
   toggle: any;
   currencies: any;
@@ -16,7 +17,7 @@ type TransAction = {
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
-  setCurrentCoin:any
+  setCurrentCoin: any;
 };
 export default function Sell({
   toggle,
@@ -26,7 +27,7 @@ export default function Sell({
   isBuy,
   infoLoading,
   homeLoading,
-  setCurrentCoin
+  setCurrentCoin,
 }: TransAction) {
   const [open, setOpen] = useState(false);
   const [currency, setCurrency] = useState<any | null>(coin);
@@ -37,8 +38,8 @@ export default function Sell({
 
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
-    setAmount("")
-    setMoney("")
+    setAmount("");
+    setMoney("");
   };
 
   const handleMoneyChange = (value: string) => {
@@ -54,21 +55,18 @@ export default function Sell({
 
   const handleAmountChange = (value: string) => {
     let rawValue = value.replace(/[^0-9.]/g, "");
-  
+
     if ((rawValue.match(/\./g) || []).length > 1) {
       return;
     }
-  
+
     setAmount(rawValue);
-  
+
     if (currency) {
       const calculatedMoney = parseFloat(rawValue) * currency.price?.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
-
-
-  
 
   return (
     <div className="w-full ">
@@ -91,24 +89,25 @@ export default function Sell({
         `}
       >
         <div className="relative w-full ">
-          <p>مقدار (دریافت می‌کنید)</p>
+          <p className="mb-1 inline-block">مقدار (دریافت می‌کنید)</p>
           <input
-           pattern="[0-9]*"
+            pattern="[0-9]*"
             inputMode="decimal"
             className={`
               ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
               ${route == "calculate" ? "lg:w-full lg:mt-5" : "mb-10"}
-              ${route === "" ? "mb-8" : ""}
-                text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-2 pr-4`}
+              ${route === "" ? "md:mb-5 mb-8" : ""}
+                text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-4 pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
             placeholder="مثال: 0.005"
           />
+          {/* cryptoModal---------------------------------------------- */}
           <div
             onClick={toggleOpen}
             className={`absolute group cursor-pointer flex gap-2 items-center left-1
-             top-[36px] md:top-[32px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+             top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
              ${route == "calculate" ? "md:top-[44px]" : "md:top-[32px]"}
              `}
           >
@@ -131,37 +130,9 @@ export default function Sell({
               <ArrowDown />
             </span>
           </div>
-        </div>
-        <div
-          onClick={toggle}
-          className={`
-            ${route === "" ? "mt-0 pt-0 " : "mt-0 pt-0"}
-            ${width < 700 ? " " : "pt-5 px-5 "}
-          ${route == "calculate" ? "self-center rotate-90 lg:mt-14" : ""}
-           cursor-pointer  md:my-5  lg:mt-0 self-end mb:10 md:mb-10`}
-        >
-          <ArrowChange />
-        </div>
-        <div className="relative w-full ">
-          <p>مبلغ (پرداخت می‌کنید)</p>
-          <input
-            className={`${width < 800 ? "lg:w-full" : "lg:w-[414px]"}
-             ${
-               route == "calculate" ? "lg:w-full" : ""
-             } outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full  border rounded-xl mt-3 md:mt-5 ${
-              route === "" ? "mb-2" : "mb-10"
-            } md:mb-0 pr-4`}
-            type="text"
-            value={formatNumber(money)}
-            onChange={(e) => handleMoneyChange(e.target.value)}
-            placeholder="مثال: 500,000"
-          />
-          <div className="absolute flex justify-center items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
-            <Image alt="iran" src={flag} className="w-[25px] h-[28px]" />
-            <p>IRT</p>
-          </div>
+          {/* sell price and buy price -------------------------------- */}
           <div
-            className={`gap-5 mt-5 text-xs md:text-sm ${
+            className={`gap-5  text-xs md:text-sm ${
               width < 800 ? "hidden" : "md:flex "
             }`}
           >
@@ -177,6 +148,38 @@ export default function Sell({
         </div>
 
         <div
+          onClick={toggle}
+          className={`
+            rotate-180
+            ${route === "" ? "mt-0 pt-0 " : "mt-0 pt-0"}
+            ${width < 700 ? " " : "pt-5 px-5 "}
+          ${route == "calculate" ? "self-center rotate-90 lg:mt-14" : ""}
+           cursor-pointer  md:my-5  lg:mt-0 self-end mb:10 md:mb-`}
+        >
+          <ArrowChange />
+        </div>
+
+        <div className="relative w-full ">
+          <p>مبلغ (پرداخت می‌کنید)</p>
+          <input
+            className={`
+             ${width < 800 ? "lg:w-full" : "lg:w-[414px]"}
+             ${route == "calculate" ? "lg:w-full" : ""} 
+             ${route === "" ? "mb-2" : "mb-10"} 
+             outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
+              `}
+            type="text"
+            value={formatNumber(money)}
+            onChange={(e) => handleMoneyChange(e.target.value)}
+            placeholder="مثال: 500,000"
+          />
+          <div className="absolute flex justify-center items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
+            <Image alt="iran" src={flag} width={25} height={28} quality={100} className="w-[25px] h-[28px]" />
+            <p>IRT</p>
+          </div>
+        </div>
+
+        <div
           className={`w-full flex justify-center pb-2
            ${route == "" ? "pt-8 md:pb-8" : "mt-0 md:mt-10"}
           ${route == "calculate" ? "mt-8" : ""}`}
@@ -186,22 +189,23 @@ export default function Sell({
               currencies={currencies}
               setCurrency={setCurrency}
               toggle={toggleOpen}
-              hasLink={route === 'coins' ? true : false}
+              hasLink={route === "coins" ? true : false}
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
               setCurrentCoin={setCurrentCoin}
-
             />
           )}
+              <Link className="w-full px-0 md:px-8" href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
           <button
             className={`
-          ${route == "calculate" ? "w-full xl:w-full" : ""}
-          ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
-          px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white`}
+              ${route == "calculate" ? "w-full xl:w-full" : ""}
+              ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
+              px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white`}
           >
-            شروع فروش
+              شروع فروش
           </button>
+            </Link>
         </div>
       </div>
     </div>

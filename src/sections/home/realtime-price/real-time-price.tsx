@@ -99,7 +99,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
               <button
                 key={option.key}
                 onClick={() => setActiveFilter(option.key)}
-                className={`px-3   py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
+                className={`px-2 sm:px-3   py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
                   ? "bg-yellow-400 text-white"
                   : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
@@ -169,82 +169,145 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
               displayedCurrencies.map((currency, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-3 md:grid-cols-6 max-w-[1165px] items-center text-center py-4"
+                  className="max-w-[1165px]"
                 >
-                  <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
-                    <div className="flex items-center gap-2 justify-start pr-2 md:pr-4">
-                    <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
-                        {currency.isFont ? (
-                          <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-2xl md:text-[44px] w-full h-full flex items-center justify-center object-cover`}
-                            style={{ color: currency.color }}
-                          ></i>
-                        ) : (
-                          <img
-                            src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
-                            alt={currency.symbol}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
 
-                      <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
-                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
-                        {" "}
-                        {currency?.name?.length > 14
-                          ? currency.name.slice(0, 11) + "..."
-                          : currency?.name}
-                      </span>
-                      <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
-                        {" "}
-                        {currency?.symbol?.length > 7
-                          ? "..." + currency.symbol.slice(0, 7)
-                          : currency?.symbol}
-                      </span>
+                  <div className="hidden md:grid grid-cols-6 w-full items-center text-center py-4 ">
+
+                    <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
+                      <div className="flex items-center gap-2 justify-start pr-4">
+                        <div className=" h-11 w-11 min-h-11 min-w-11">
+                          {currency.isFont ? (
+                            <i
+                              className={`cf cf-${currency.symbol.toLowerCase()} text-[44px] w-full h-full flex items-center justify-center object-fill`}
+                              style={{ color: currency.color }}
+                            ></i>
+                          ) : (
+                            <img
+                              src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                              alt={currency.symbol}
+                              className="w-full h-full object-fill"
+                            />
+                          )}
+                        </div>
+
+                        <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
+                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
+                            {" "}
+                            {currency?.name?.length > 14
+                              ? currency.name.slice(0, 11) + "..."
+                              : currency?.name}
+                          </span>
+                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
+                            {" "}
+                            {currency?.symbol?.length > 7
+                              ? "..." + currency.symbol.slice(0, 7)
+                              : currency?.symbol}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="w-full hidden md:block md:text-base font-semibold">
-                    ${currency.lastPrice}
-                  </div>
+                    <div className="w-full block md:text-base font-semibold">
+                      ${currency.lastPrice}
+                    </div>
 
-                  <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-1">
-                    <span className="text-[10px] md:text-base font-semibold">
-                      {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
-                    </span>
-                    <span className="text-[8px] md:text-sm font-semibold">تومان</span>
-                  </div>
+                    <div className="flex flex-row md:justify-center items-center text-center gap-x-2 col-span-1">
+                      <span className="text-[10px] md:text-base font-semibold">
+                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                      </span>
+                      <span className="text-[8px] md:text-sm font-semibold">تومان</span>
+                    </div>
 
-                  <p
-                    dir="ltr"
-                    className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
-                      } text-[10px] md:text-base font-semibold text-center`}
-                  >
-                    {currency.priceChangePercent} %
-                  </p>
-                  <div
-                    className="md:flex justify-center m-auto hidden object-cover"
-                    style={{
-                      filter: parseFloat(currency.priceChangePercent) < 0
-                        ? 'brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)'
-                        : 'brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)'
-                    }}
+                    <p
+                      dir="ltr"
+                      className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
+                        } text-base font-semibold text-center`}
+                    >
+                      {currency.priceChangePercent} %
+                    </p>
 
-                  >
-                    <Image
-                      src={`https://cdn.arz8.com/charts/1d/${currency.symbol}.svg`}
-                      alt="chart"
+                    <div
+                      className="md:flex justify-center m-auto hidden object-cover"
+                      style={{
+                        filter: parseFloat(currency.priceChangePercent) < 0
+                          ? 'brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)'
+                          : 'brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)'
+                      }}
+
+                    >
+                      <Image
+                        src={`https://cdn.arz8.com/charts/1d/${currency.symbol}.svg`}
+                        alt="chart"
                         width={120}
-                      height={44}
-                    />
-                  </div>
+                        height={44}
+                        className="w-auto h-auto"
+                      />
+                    </div>
 
-                  <Link href={`/coins/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
-                  <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                    <Link href={`/coins/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
+                      <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
                         جزئیات بیشتر
                       </button>
+                    </Link>
+
+                  </div>
+
+
+                  <Link href={`/coins/${currency.symbol}`} className="grid md:hidden grid-cols-3 w-full items-center text-center py-4">
+
+
+                    <div className="flex flex-col justify-start pl-0 pr-0 col-span-1">
+                      <div className="flex items-center gap-2 justify-start pr-2 md:pr-4">
+                        <div className="min-h-6 min-w-6 w-6 h-6 md:h-11 md:w-11 md:min-h-11 md:min-w-11">
+                          {currency.isFont ? (
+                            <i
+                              className={`cf cf-${currency.symbol.toLowerCase()} text-2xl md:text-[44px] w-full h-full flex items-center justify-center object-fill`}
+                              style={{ color: currency.color }}
+                            ></i>
+                          ) : (
+                            <img
+                              src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
+                              alt={currency.symbol}
+                              className="w-full h-full object-fill"
+                            />
+                          )}
+                        </div>
+
+                        <div className="flex flex-col justify-center gap-y-1 md:gap-y-2">
+                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold">
+                            {" "}
+                            {currency?.name?.length > 14
+                              ? currency.name.slice(0, 11) + "..."
+                              : currency?.name}
+                          </span>
+                          <span className="text-start whitespace-nowrap sm:text-base text-[10px] sm:font-semibold opacity-50">
+                            {" "}
+                            {currency?.symbol?.length > 7
+                              ? "..." + currency.symbol.slice(0, 7)
+                              : currency?.symbol}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row md:justify-center md:items-center md:text-center gap-x-2 col-span-1">
+                      <span className="text-[10px] md:text-base font-semibold">
+                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                      </span>
+                      <span className="text-[8px] md:text-sm font-semibold">تومان</span>
+                    </div>
+
+                    <p
+                      dir="ltr"
+                      className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
+                        } text-[10px] md:text-base font-semibold text-center`}
+                    >
+                      {currency.priceChangePercent} %
+                    </p>
                   </Link>
+
+
                 </div>
               ))
             )}

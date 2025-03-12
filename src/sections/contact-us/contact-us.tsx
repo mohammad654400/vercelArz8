@@ -1,7 +1,6 @@
-
 "use client";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
 import usePostData from "@/hooks/usePostData";
 import OrbitAnimation from "./animation/OrbitAnimation";
@@ -13,6 +12,11 @@ import { validationSchema } from "./yup/validationSchema";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Cookies from "js-cookie";
 import { SHA256 } from "crypto-js";
+import Call from "@/assets/icons/contactUs/call";
+import Email from "@/assets/icons/contactUs/email";
+import Support from "@/assets/icons/contactUs/support";
+import Location from "@/assets/icons/contactUs/location";
+import Telegram from "@/assets/icons/contactUs/telegram";
 
 interface ModalLine {
   text: string;
@@ -25,34 +29,115 @@ interface FormData {
   message: string;
 }
 
+interface ContactFormProps {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  isSubmitting: boolean;
+  errors: Record<string, string>;
+  formData: FormData;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+}
+
 // Cookie will expire after 24 hours
 const COOKIE_EXPIRY = 1;
 const SUBMISSION_HISTORY_KEY = "contactSubmissionHistory";
 
-export default function ContactUs() {
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"success" | "error">("success");
-  const [modalLines, setModalLines] = useState<ModalLine[]>([]);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+// Memoized Components
+const ContactForm = memo(
+  ({
+    onSubmit,
+    isSubmitting,
+    errors,
+    formData,
+    onChange,
+  }: ContactFormProps) => (
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] bg-secondary p-5 rounded-xl z-10"
+    >
+      <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
+      <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
+        <div className="flex flex-col w-full sm:w-1/2 mb-4 sm:mb-0">
+          <label
+            htmlFor="fullName"
+            className="block text-Seventh text-base font-normal"
+          >
+            نام خانوادگی
+          </label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            value={formData.fullName}
+            className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none"
+            onChange={onChange}
+          />
+          {errors.fullName && (
+            <div className="text-red-500 text-sm">{errors.fullName}</div>
+          )}
+        </div>
+        <div className="flex flex-col w-full sm:w-1/2">
+          <label
+            htmlFor="phoneNumber"
+            className="block text-Seventh text-base font-normal"
+          >
+            شماره تماس
+          </label>
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            type="text"
+            value={formData.phoneNumber}
+            className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none"
+            onChange={onChange}
+          />
+          {errors.phoneNumber && (
+            <div className="text-red-500 text-sm">{errors.phoneNumber}</div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col h-[40%] mb-7">
+        <label
+          htmlFor="message"
+          className="block text-Seventh text-base font-normal"
+        >
+          پیام
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          className="w-full sm:h-48 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none"
+          onChange={onChange}
+        />
+        {errors.message && (
+          <div className="text-red-500 text-sm">{errors.message}</div>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className={`lg:w-60 w-full h-14 px-4 py-2 rounded-xl transition-colors self-end ${
+          isSubmitting
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-primary text-white hover:bg-primary/90"
+        }`}
+      >
+        {isSubmitting ? "در حال ارسال..." : "ارسال درخواست"}
+      </button>
+    </form>
+  )
+);
+
+ContactForm.displayName = "ContactForm";
+
+// Custom Hooks
+const useSubmissionHistory = () => {
   const [submissionHistory, setSubmissionHistory] = useState<string[]>([]);
-  
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    phoneNumber: "",
-    message: "",
-  });
 
-  // Store the original ref for compatibility
-  const formDataRef = useRef<FormData>(formData);
-
-  // Keep ref in sync with state
-  useEffect(() => {
-    formDataRef.current = formData;
-  }, [formData]);
-
-  // Load submission history from cookies when component mounts
   useEffect(() => {
     const loadSubmissionHistory = () => {
       try {
@@ -62,7 +147,6 @@ export default function ContactUs() {
         }
       } catch (error) {
         console.error("Error loading submission history:", error);
-        // Fallback to cookies if localStorage fails
         const cookieHistory = Cookies.get(SUBMISSION_HISTORY_KEY);
         if (cookieHistory) {
           try {
@@ -77,7 +161,52 @@ export default function ContactUs() {
     loadSubmissionHistory();
   }, []);
 
-  const { mutate, isError, isSuccess, data, isPending } = usePostData(
+  const saveSubmission = useCallback(
+    (hash: string) => {
+      const updatedHistory = [...submissionHistory, hash].slice(-10);
+      setSubmissionHistory(updatedHistory);
+
+      try {
+        localStorage.setItem(
+          SUBMISSION_HISTORY_KEY,
+          JSON.stringify(updatedHistory)
+        );
+        Cookies.set(SUBMISSION_HISTORY_KEY, JSON.stringify(updatedHistory), {
+          expires: COOKIE_EXPIRY,
+          sameSite: "strict",
+        });
+      } catch (error) {
+        console.error("Error saving submission history:", error);
+      }
+    },
+    [submissionHistory]
+  );
+
+  return { submissionHistory, saveSubmission };
+};
+
+export default function ContactUs() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"success" | "error">("success");
+  const [modalLines, setModalLines] = useState<ModalLine[]>([]);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { submissionHistory, saveSubmission } = useSubmissionHistory();
+
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    phoneNumber: "",
+    message: "",
+  });
+
+  const formDataRef = useRef<FormData>(formData);
+
+  useEffect(() => {
+    formDataRef.current = formData;
+  }, [formData]);
+
+  const { mutate, isPending } = usePostData(
     "contact-us",
     () => {
       setModalType("success");
@@ -88,8 +217,7 @@ export default function ContactUs() {
         },
       ]);
       setIsModalOpen(true);
-      // Reset form after successful submission
-      resetForm();
+      setFormData({ fullName: "", phoneNumber: "", message: "" });
       setIsSubmitting(false);
     },
     () => {
@@ -105,29 +233,20 @@ export default function ContactUs() {
     }
   );
 
-  const resetForm = () => {
-    setFormData({
-      fullName: "",
-      phoneNumber: "",
-      message: "",
-    });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+    },
+    []
+  );
 
   const validateForm = useCallback(async () => {
     try {
-      await validationSchema.validate(formData, {
-        abortEarly: false,
-      });
+      await validationSchema.validate(formData, { abortEarly: false });
       setErrors({});
       return true;
     } catch (err: any) {
@@ -140,50 +259,22 @@ export default function ContactUs() {
     }
   }, [formData]);
 
-  // Create a secure hash of the submission
-  const createSubmissionHash = (data: FormData): string => {
+  const createSubmissionHash = useCallback((data: FormData): string => {
     const submissionString = `${data.fullName.trim()}-${data.phoneNumber.trim()}-${data.message.trim()}`;
     return SHA256(submissionString).toString();
-  };
+  }, []);
 
-  // Save submission history to both localStorage and cookies for redundancy
-  const saveSubmissionToHistory = (hash: string) => {
-    const updatedHistory = [...submissionHistory, hash];
-    
-    // Keep only the last 10 submissions to prevent the history from growing too large
-    const trimmedHistory = updatedHistory.slice(-10);
-    
-    setSubmissionHistory(trimmedHistory);
-    
-    try {
-      // Primary storage: localStorage
-      localStorage.setItem(SUBMISSION_HISTORY_KEY, JSON.stringify(trimmedHistory));
-      
-      // Backup storage: cookies (with expiration)
-      Cookies.set(SUBMISSION_HISTORY_KEY, JSON.stringify(trimmedHistory), { 
-        expires: COOKIE_EXPIRY,
-        sameSite: 'strict' 
-      });
-    } catch (error) {
-      console.error("Error saving submission history:", error);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Prevent duplicate submissions or multiple clicks
-    if (isSubmitting || isPending) {
-      return;
-    }
-    
+
+      if (isSubmitting || isPending) return;
+
     const isValid = await validateForm();
     if (!isValid) return;
 
-    // Create hash of current submission
     const currentSubmissionHash = createSubmissionHash(formData);
-    
-    // Check if this is a duplicate submission by comparing against history
+
     if (submissionHistory.includes(currentSubmissionHash)) {
       setModalType("error");
       setModalLines([
@@ -205,9 +296,7 @@ export default function ContactUs() {
 
     try {
       const recaptchaToken = await executeRecaptcha("contact_form");
-
-      // Add submission to history before making API call
-      saveSubmissionToHistory(currentSubmissionHash);
+        saveSubmission(currentSubmissionHash);
 
       mutate({
         name: formData.fullName,
@@ -219,7 +308,19 @@ export default function ContactUs() {
       console.error("reCAPTCHA error:", error);
       setIsSubmitting(false);
     }
-  };
+    },
+    [
+      formData,
+      isSubmitting,
+      isPending,
+      validateForm,
+      createSubmissionHash,
+      submissionHistory,
+      executeRecaptcha,
+      saveSubmission,
+      mutate,
+    ]
+  );
 
   return (
     <div className="bg-background base-style">
@@ -236,6 +337,77 @@ export default function ContactUs() {
               است تا در سریع‌ترین زمان ممکن به شما کمک کند.
             </span>
           </div>
+
+          <div className="flex flex-col">
+            <span className="text-foreground text-base font-semibold mb-5">
+              اطلاعات تماس
+            </span>
+
+            <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full">
+              <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col">
+                <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between">
+                  <div className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
+                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                      <Call />
+                    </div>
+                    <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                      021-284299
+                    </span>
+                  </div>
+                  <div className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
+                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                      <Support />
+                    </div>
+                    <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                      پشتیبانی آنلاین
+                    </span>
+                  </div>
+                </div>
+                <div className="flex h-[54px] sm:h-[99px] w-full justify-between p-2 sm:p-3 flex-col rounded-xl bg-secondary">
+                  <div className="flex items-center">
+                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                      <Location />
+                    </div>
+                    <span className="xl:text-xl lg:text-base text-xs text-foreground mr-2 sm:mr-3 font-normal">
+                      آدرس
+                    </span>
+                  </div>
+                  <span className="xl:text-xl lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">
+                    مراغه جام جم ، مجتمع سهند ، طبقه 5
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex w-[35%] sm:w-[28%] h-full">
+                <div className="flex-col gap-4 w-full h-full flex">
+                  <div className="flex h-[30px] sm:h-[53px] gap-4 w-full">
+                    <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                      <span className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
+                        تلگرام
+                      </span>
+                    </div>
+                    <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                      <span className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
+                        ایمیل
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex h-[54px] sm:h-[99px] gap-4 w-full">
+                    <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                      <div className="w-10 h-10 sm:h-14 sm:w-14">
+                        <Telegram />
+                      </div>
+                    </div>
+                    <div className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                      <div className="w-10 h-10 sm:h-14 sm:w-14">
+                        <Email />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="flex w-full lg:w-[40%] order-1 lg:order-2 justify-center lg:justify-end">
           <Image
@@ -243,91 +415,19 @@ export default function ContactUs() {
             alt="Contact Us Image"
             width={392}
             height={504}
-            layout="intrinsic"
             priority
           />
         </div>
       </div>
+      
       <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
-        <form
+        <ContactForm
           onSubmit={handleSubmit}
-          className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] bg-secondary p-5 rounded-xl z-10"
-        >
-          <span className="text-Seventh text-xl font-bold mb-7">
-            ارسال پیام
-          </span>
-          <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
-            <div className="flex flex-col w-full sm:w-1/2 mb-4 sm:mb-0">
-              <label
-                htmlFor="fullName"
-                className="block text-Seventh text-base font-normal"
-              >
-                نام خانوادگی
-              </label>
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                value={formData.fullName}
-                className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none"
-                onChange={handleChange}
-              />
-              {errors.fullName && (
-                <div className="text-red-500 text-sm">{errors.fullName}</div>
-              )}
-            </div>
-            <div className="flex flex-col w-full sm:w-1/2">
-              <label
-                htmlFor="phoneNumber"
-                className="block text-Seventh text-base font-normal"
-              >
-                شماره تماس
-              </label>
-              <input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="text"
-                value={formData.phoneNumber}
-                className="w-full text-foreground bg-fifth h-12 mt-2 px-4 rounded-lg focus:outline-none"
-                onChange={handleChange}
-              />
-              {errors.phoneNumber && (
-                <div className="text-red-500 text-sm">{errors.phoneNumber}</div>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-col h-[40%] mb-7">
-            <label
-              htmlFor="message"
-              className="block text-Seventh text-base font-normal"
-            >
-              پیام
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              className="w-full sm:h-48 bg-fifth text-foreground mt-2 p-4 rounded-lg focus:outline-none"
+          isSubmitting={isSubmitting || isPending}
+          errors={errors}
+          formData={formData}
               onChange={handleChange}
             />
-            {errors.message && (
-              <div className="text-red-500 text-sm">{errors.message}</div>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting || isPending}
-            className={`lg:w-60 w-full h-14 px-4 py-2 rounded-xl transition-colors self-end ${
-              isSubmitting || isPending
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-primary text-white hover:bg-primary/90"
-            }`}
-          >
-            {isSubmitting || isPending ? "در حال ارسال..." : "ارسال درخواست"}
-          </button>
-        </form>
         <div className="absolute w-[50%] h-full left-0 top-0">
           <div className="relative w-full h-full flex justify-center items-center">
             <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2">
@@ -343,7 +443,15 @@ export default function ContactUs() {
           type={modalType}
           lines={modalLines}
           icon={
-            modalType === "success" ? <div className="lg:w-24 lg:h-44 "><SuccessContactUs /></div> : <div className="lg:w-24 lg:h-44 "><ErrorContactUs /></div>
+            modalType === "success" ? (
+              <div className="lg:w-24 lg:h-44">
+                <SuccessContactUs />
+              </div>
+            ) : (
+              <div className="lg:w-24 lg:h-44">
+                <ErrorContactUs />
+              </div>
+            )
           }
           onClose={() => setIsModalOpen(false)}
         />

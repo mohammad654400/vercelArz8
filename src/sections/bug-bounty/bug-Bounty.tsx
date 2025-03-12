@@ -9,6 +9,8 @@ import Rules from "./rules";
 import Form from "./form";
 import bgBugLight from "@/assets/images/bugbounty/bgBugLight.png";
 import bgBugDark from "@/assets/images/bugbounty/bgBugDark.png";
+import Back from "@/assets/icons/bugbounty/back";
+
 import { useTheme } from "@/contexts/theme-provider";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
@@ -29,9 +31,17 @@ export default function BugBounty() {
     <div className="base-style" style={{ gap: 0 }}>
       {open ? (
         <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
-          <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
-            رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
-          </h3>
+          <div className="flex w-full justify-center">
+            <div onClick={() => window.location.reload()} className="flex cursor-pointer h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 ">
+              <span className="w-5 h-5 lg:w-6 lg:h-6"><Back /></span>
+              <span className="hidden lg:flex text-2xl font-normal">بازگشت</span>
+            </div>
+            <h3 className="text-[11px] sm:text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mx-2 lg:mx-10 leading-4 lg:leading-9">
+              رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
+            </h3>
+            <div className="w-7 xl:w-[154px]"></div>
+          </div>
+
           <Image
             src={backgroundImage}
             alt=""
@@ -53,8 +63,9 @@ export default function BugBounty() {
         <div className="py-[76px] lg:py-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
           <Image
             src={backgroundImage}
-            alt=""
+            alt="Background Image"
             className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
+            priority
           />
 
           <div className="flex flex-col items-center">

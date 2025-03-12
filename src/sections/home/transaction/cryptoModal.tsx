@@ -4,12 +4,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 import React, { useState } from "react";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
 
 export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, isLoading, setCurrentCoin }: any) {
 
   const [search, setSearch] = useState("");
   const { baseColor, highlightColor } = useTheme();
+  const { formatNumber } = useFormattedNumber();
 
 
   // const filteredCurrencies = currencies.filter(
@@ -116,14 +118,14 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                       <div className="w-9 h-9">
                         {currency.isFont ? (
                           <i
-                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                            className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-fill flex items-center justify-center`}
                             style={{ color: currency.color }}
                           ></i>
                         ) : (
                           <img
                             src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                             alt={currency.symbol}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-fill"
                           />
                         )}
                       </div>
@@ -135,9 +137,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
 
                     <div className="text-left">
                       {isBuy ? (
-                        <p className="text-sm">{currency.price?.buy} تومان</p>
+                        <p className="text-sm">{formatNumber(currency.price?.buy)} تومان</p>
                       ) : (
-                        <p className="text-sm">{currency.price?.sell} تومان</p>
+                        <p className="text-sm">{formatNumber(currency.price?.sell)} تومان</p>
                       )}
                       <p
                         style={{ direction: "ltr" }}
@@ -159,14 +161,14 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                     <div className="w-9 h-9">
                       {currency.isFont ? (
                         <i
-                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-cover flex items-center justify-center`}
+                          className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-fill flex items-center justify-center`}
                           style={{ color: currency.color }}
                         ></i>
                       ) : (
                         <img
                           src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                           alt={currency.symbol}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-fill"
                         />
                       )}
                     </div>
@@ -178,9 +180,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
 
                   <div className="text-left">
                     {isBuy ? (
-                      <p className="text-sm">{currency.price?.buy} تومان</p>
+                      <p className="text-sm">{formatNumber(currency.price?.buy)} تومان</p>
                     ) : (
-                      <p className="text-sm">{currency.price?.sell} تومان</p>
+                      <p className="text-sm">{formatNumber(currency.price?.sell)} تومان</p>
                     )}
                     <p
                       style={{ direction: "ltr" }}

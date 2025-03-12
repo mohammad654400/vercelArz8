@@ -52,7 +52,7 @@ const faqs: FAQItem[] = [
 
 const QuickGuide = () => {
   const [activeRightIndex, setActiveRightIndex] = useState<number | null>(null);
-  const [activeLeftIndex, setActiveLeftIndex] = useState<number | null>(null);
+  const [activeLeftIndex, setActiveLeftIndex] = useState<number | null>(0);
 
   const rightFAQs = faqs.filter((faq) => !faq.videoUrl);
   const leftFAQs = faqs.filter((faq) => faq.videoUrl);
@@ -97,7 +97,7 @@ const QuickGuide = () => {
                   }
                   className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                 >
-                   {activeRightIndex !== index && <RhombusIcon />}
+                <RhombusIcon />
                    <span className="text-xs sm:text-base font-semibold"> {faq.question} </span> 
                 </button>
                 <span className="transform transition-transform">

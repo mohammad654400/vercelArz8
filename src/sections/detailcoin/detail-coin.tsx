@@ -1,5 +1,4 @@
 "use client";
-import BNB from "@/assets/icons/bnb";
 import SendIcon from "@/assets/icons/detailcoin/send";
 import SocialIcons from "@/assets/icons/detailcoin/socialicons";
 import DocumentCode from "@/assets/icons/detailcoin/documentcode";
@@ -9,17 +8,12 @@ import TransAction from "@/sections/home/transaction/transAction";
 import DetailDescription from "./description";
 import ArrowBotton from "@/assets/icons/arrrow/arrowup";
 import Accordion from "@/components/Accordion";
-import Views from "./views";
-import FormViews from "./form-views";
 import CurrentPrice from "./current-price";
 import DescriptionTable from "./description-table";
 import Earth from "@/assets/icons/detailcoin/earth";
 import CryptoModal from "@/sections/home/transaction/cryptoModal";
 import { usePathname, useRouter } from "next/navigation";
-import Segment from "./segment";
-import TradingViewSimpleChart from "@/components/charts/trading-view-simple-chart";
 import useGetData from "@/hooks/useGetData";
-import TradingViewAdvancedChart from "@/components/charts/trading-view-advanced-chart";
 import { useTheme } from "@/contexts/theme-provider";
 import CryptoDetails from "./crypto-details";
 import Skeleton from "react-loading-skeleton";
@@ -108,7 +102,6 @@ export default function DetailCoin() {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
-  const [isAdvancedChart, setIsAdvancedChart] = useState<boolean>(false)
   const { theme, baseColor, highlightColor } = useTheme()
   const [selectItem, setSelectItem] = useState<number | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false)
@@ -116,7 +109,7 @@ export default function DetailCoin() {
 
   const route = usePathname().split("/")[2].toUpperCase();
   const { data: infoData, isLoading: infoIsLoading } = useGetData('info')
-  const { data: coinData, isLoading: coinIsLoading, error } = useGetData(`cryptocurrencies/${route}`, 6000)
+  const { data: coinData, isLoading: coinIsLoading } = useGetData(`cryptocurrencies/${route}`, 6000)
   const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
   const coin = infoData?.cryptocurrency?.find((item: any) => item.symbol === route);
 
@@ -448,13 +441,13 @@ export default function DetailCoin() {
             />
           </div>
 
-          <div className=" flex mt-10">
+          {/* <div className=" flex mt-10">
             <FormViews addComment={addComment} />
-          </div>
+          </div> */}
 
-          <div className=" mt-10">
+          {/* <div className=" mt-10">
             <Views comments={comments} setReplyingTo={setReplyingTo} />
-          </div>
+          </div> */}
         </div>
 
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">

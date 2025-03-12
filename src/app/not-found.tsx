@@ -17,7 +17,7 @@ export default function NotFound() {
           <h2 className='text-primary text-base md:text-[63px] font-bold md:py-5'>ارور 404</h2>
           <div className='flex flex-col gap-y-10 justify-center items-center'>
             <span className='md:text-[27px] text-sm font-normal  md:py-5'>صفحه مورد نظرتان یافت نشد .</span>
-            <Image src={Image404} alt='404' />
+            <Image src={Image404} alt='404' quality={100} />
           </div>
 
         </div>
@@ -25,8 +25,8 @@ export default function NotFound() {
           <button className='text-white w-full h-full text-base md:text-xl font-bold text-center'>بازگشت به صفحه اصلی</button>
         </Link>
 
-        <div className='w-full grid grid-cols-2 md:grid-cols-4 grid-flow-row-dense gap-3'>
-          <Link className='flex flex-col w-[183px] h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/download"}>
+        <div className='w-full grid grid-cols-2 sm:grid-cols-4 grid-flow-row-dense gap-3 mb-20'>
+          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/download"}>
             <div className='w-[56px] h-[56px]'>
               <Download />
             </div>
@@ -34,7 +34,7 @@ export default function NotFound() {
 
           </Link>
 
-          <Link className='flex flex-col w-[183px] h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-end  md:justify-self-center' href={"/contact-us"}>
+          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-end  md:justify-self-center' href={"/contact-us"}>
             <div className='w-[56px] h-[56px]'>
               <GeneralQuestions />
             </div>
@@ -42,7 +42,7 @@ export default function NotFound() {
 
           </Link>
 
-          <Link className='flex flex-col w-[183px] h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/coins"}>
+          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/coins"}>
             <div className='w-[56px] h-[56px]'>
               <Arz />
             </div>
@@ -51,7 +51,7 @@ export default function NotFound() {
           </Link>
 
 
-          <Link className='flex flex-col w-[183px] h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-end  md:justify-self-center' href={"https://app.arz8.com/auth/register"}>
+          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-end  md:justify-self-center' href={"https://app.arz8.com/auth/register"}>
             <div className='w-[56px] h-[56px]'>
               <Login />
             </div>
