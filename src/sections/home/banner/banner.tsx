@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Phone from "@/assets/images/downloadApp/phone.png";
 import Android from "@/assets/icons/downloadApp/android";
+import GooglePlay from "@/assets/icons/downloadApp/googlePlay";
 import Myket from "@/assets/icons/downloadApp/miket";
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
@@ -19,7 +20,7 @@ export default function Banner() {
 
               <div className="w-full   h-full flex flex-col justify-center text-center">
                 <div className="flex flex-col pb-11">
-                  <h1 className="text-start text-[35px] font-extrabold">
+                  <h1  className="text-start text-[35px] font-extrabold">
                     دانلود اپلیکیشن صرافی ارزهشت
                   </h1>
                   <span className="text-start text-base font-bold">
@@ -42,14 +43,18 @@ export default function Banner() {
                   </div>
                 </ul>
                 <div className="flex w-full lg:justify-start justify-start py-[30px]">
-                  <Link className="z-20" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
-                  <Link className="z-20" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
-                  <Link className="z-20" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
-                  <Link className="z-20" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                  <Link className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
+                  <Link className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                  <Link className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
+                  <Link className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                  <Link className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
+
                 </div>
 
                 <div className="flex items-center gap-x-4">
+                  <Link href="/download">
                   <Image src={QrCode} alt="QrCode" quality={100} className="w-[102px] h-[102px]"></Image>
+                  </Link>
 
                   <div className="flex flex-col gap-y-3">
                     <span className="text-white text-xl font-bold">برای دانلود اپلیکیشن</span>
@@ -106,6 +111,7 @@ export default function Banner() {
                     <Link className="z-20 flex" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                     <Link className="z-20 flex" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                     <Link className="z-20 flex" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                    <Link className="z-20 flex" href={""}><DownloadOption Icon={GooglePlay} label="گوگل پلی" /> </Link>
                   </div>
 
                 </div>

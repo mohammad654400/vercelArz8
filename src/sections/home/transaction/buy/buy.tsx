@@ -192,17 +192,15 @@ export default function Buy({
               setCurrentCoin={setCurrentCoin}
             />
           )}
-          <button
+          <Link href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}
             className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
               ${
                 width < 700 ? "w-full " : "lg:w-auto px-10"
-            }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
+            }  text-xl text-white text-center  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
           >
-                <Link href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
             شروع خرید
           </Link>
-          </button>
         </div>
       </div>
     </div>

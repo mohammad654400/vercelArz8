@@ -30,6 +30,22 @@ interface CategoryProps {
 export default function SecondCategory({ open, setOpen, title, data, infoMap }: CategoryProps) {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+const handleTouchStart = (e: React.TouchEvent) => {
+  setTouchStartX(e.touches[0].clientX);
+};
+
+const handleTouchEnd = (e: React.TouchEvent) => {
+  if (touchStartX === null) return;
+  const touchEndX = e.changedTouches[0].clientX;
+  if (touchEndX - touchStartX > 50) {
+    setOpen(true); // کشیدن به راست
+  } else if (touchStartX - touchEndX > 50) {
+    setOpen(false); // کشیدن به چپ
+  }
+  setTouchStartX(null);
+}
 
   const [] = useState()
   useEffect(() => {
@@ -72,7 +88,7 @@ export default function SecondCategory({ open, setOpen, title, data, infoMap }: 
 
 
   return (
-    <div className="py-[30px]">
+    <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} className="py-[30px]">
       <div
         className={`${!open
           ? "w-[250px] md:w-[364px] pt-4 md:pt-6 rounded-2xl mx-2 px-3 md:px-6 "

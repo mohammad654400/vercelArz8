@@ -12,7 +12,7 @@ interface HomeCurrency {
   priceToman: string;
   quoteVolume: string
   priceChangePercent: string;
-  lastPrice?: string;
+  lastPrice: string;
 }
 
 interface HomeData {
@@ -44,7 +44,7 @@ interface MergedData {
   priceToman: string;
   quoteVolume: string;
   priceChangePercent: string;
-  lastPrice?: string;
+  lastPrice: string;
 }
 
 const filterOptions = [
@@ -77,8 +77,11 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
       ...(infoMap[currency.symbol] || {}),
       name: infoMap[currency.symbol]?.name.fa || currency.symbol,
       priceToman: currency.priceToman,
+      lastPrice: currency.lastPrice
     }));
   }, [activeFilter, initialHomeData, infoMap]);
+
+  
 
   useEffect(() => {
     setDisplayedCurrencies(filteredData);
@@ -209,12 +212,13 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                     </div>
 
                     <div className="w-full block md:text-base font-semibold">
-                      ${currency.lastPrice}
+                      { formatNumber(currency.lastPrice)}
+
                     </div>
 
                     <div className="flex flex-row md:justify-center items-center text-center gap-x-2 col-span-1">
                       <span className="text-[10px] md:text-base font-semibold">
-                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                        { formatNumber(currency.priceToman)}
                       </span>
                       <span className="text-[8px] md:text-sm font-semibold">تومان</span>
                     </div>
@@ -293,7 +297,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
 
                     <div className="flex flex-col  gap-x-2 col-span-2">
                       <span className="text-xs  font-semibold">
-                        {activeFilter === "min" ? currency.priceToman : formatNumber(currency.priceToman)}
+                        {formatNumber(currency.priceToman)}
                       </span>
                       <span className="text-[8px] font-semibold">تومان</span>
                     </div>
