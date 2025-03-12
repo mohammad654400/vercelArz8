@@ -105,13 +105,14 @@ export default function Buy({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-10 px-5 py-[12px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1 top-10 md:top-10 px-5 py-[12px]  rounded-xl bg-third">
             <Image
               alt="iran"
               src={flag}
               width={25}
               height={25}
               className="w-[25px] h-[25px]"
+              quality={100}
             />
             <p>IRT</p>
           </div>
