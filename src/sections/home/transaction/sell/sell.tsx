@@ -107,7 +107,7 @@ export default function Sell({
           <div
             onClick={toggleOpen}
             className={`absolute group cursor-pointer flex gap-2 items-center left-1
-             top-[36px] md:top-[42px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+             top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
              ${route == "calculate" ? "md:top-[44px]" : "md:top-[32px]"}
              `}
           >
