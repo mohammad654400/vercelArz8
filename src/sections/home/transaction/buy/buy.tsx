@@ -91,7 +91,7 @@ export default function Buy({
         }`}
       >
         <div className="relative w-full">
-          <span className="mb-1 inline-block">مبلغ (پرداخت می‌کنید)</span>
+          <span className="mt-1 inline-block">مبلغ (پرداخت می‌کنید)</span>
           <input
             autoComplete="off"
             pattern="[0-9]*"
@@ -105,13 +105,14 @@ export default function Buy({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-9 md:top-10 px-5 py-[12px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1 top-[40px] md:top-10 px-5 py-[12px]  rounded-xl bg-third">
             <Image
               alt="iran"
               src={flag}
               width={25}
               height={25}
               className="w-[25px] h-[25px]"
+              quality={100}
             />
             <p>IRT</p>
           </div>
@@ -136,11 +137,11 @@ export default function Buy({
           onClick={toggle}
           className={`
             ${
-              route == "calculate" ? "self-center rotate-90 lg:mt-12 ml-8 " : ""
+              route == "calculate" ? "self-center rotate-90 h-22 lg:mt-12  ml-7  " : ""
             }
             ${route === "" ? "mt-0 pt-8" : "mt-2 pt-8 md:pt-10"}
-            ${width < 700 ? "" : "pt-5 px-5 "} 
-            cursor-pointer  md:mt-6  md:my-5 lg:mt-0 self-end mb:10 md:mb-10`}
+            ${width < 700 ? "" : "pt-5 px-5 md:mb-10"} 
+            cursor-pointer  md:mt-6  md:my-5 lg:mt-0 self-end mb:10 `}
         >
           <ArrowChange />
         </div>
@@ -151,9 +152,11 @@ export default function Buy({
             pattern="[0-9]*"
             inputMode="decimal"
             className={`
-              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} ${
-              route === "calculate" && "w-full "
-            } mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
+              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
+              ${route === "calculate" && "w-full "}
+              ${route == "calculate" ? "lg:w-full mb-8 pt-0 mt-0 " : ""} 
+ 
+              mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -199,16 +202,16 @@ export default function Buy({
             />
           )}
           <Link
-            className="w-full px-0 md:px-8"
+            className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`}
             href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}
           >
             <button
               className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
-              ${
-                width < 700 ? "w-full " : "lg:w-auto px-10"
-              }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2
-               hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(47,161,37)] active:shadow-none active:translate-y-0 active:bg-[#33B028]`}
+              ${width < 700 ? "w-full " : "lg:w-auto px-10"} 
+                 text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2
+                 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(47,161,37)] active:shadow-none active:translate-y-0 active:bg-[#33B028]
+                 `}
             >
               شروع خرید
             </button>

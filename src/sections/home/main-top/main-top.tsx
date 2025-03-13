@@ -24,7 +24,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           </h1>
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
-            <span className="text-primary text-xl sm:text-3xl font-semibold">1300</span>{" "}
+            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
           <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">

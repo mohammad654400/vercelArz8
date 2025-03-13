@@ -89,7 +89,7 @@ export default function Sell({
         `}
       >
         <div className="relative w-full ">
-          <p className="mb-1 inline-block">مقدار (دریافت می‌کنید)</p>
+          <p className="inline-block">مقدار (دریافت می‌کنید)</p>
           <input
             pattern="[0-9]*"
             inputMode="decimal"
@@ -107,8 +107,8 @@ export default function Sell({
           <div
             onClick={toggleOpen}
             className={`absolute group cursor-pointer flex gap-2 items-center left-1
-             top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
-             ${route == "calculate" ? "md:top-[44px]" : "md:top-[32px]"}
+             top-[36px] md:top-[40px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+             ${route == "calculate" ? "md:top-[48px]" : "md:top-[32px]"}
              `}
           >
             <div className="min-w-6 h-7 flex justify-center items-center">
@@ -150,23 +150,22 @@ export default function Sell({
         <div
           onClick={toggle}
           className={`
-            rotate-180
-            ${route === "" ? "mt-0 pt-0 " : "mt-0 pt-0"}
-            ${width < 700 ? " " : "pt-5 px-5 "}
-          ${route == "calculate" ? "self-center rotate-90 lg:mt-14" : ""}
-           cursor-pointer  md:my-5  lg:mt-0 self-end mb:10 md:mb-`}
+            ${route === "" ? "mt-0 pt-0 md:mb-10" : "mt-0 pt-0"}
+            ${width < 700 ? "" : "pt-5 px-5 "}
+          ${route == "calculate" ? "self-center -rotate-90 lg:mt-14 mt-6 " : ""}
+           cursor-pointer  md:my-5  lg:mt-0 self-end mb:10 `}
         >
           <ArrowChange />
         </div>
 
-        <div className="relative w-full ">
+        <div className={`relative w-full  ${route === "calculate"?"md:mt-8 mt-4 ":""}`}>
           <p>مبلغ (پرداخت می‌کنید)</p>
           <input
             className={`
              ${width < 800 ? "lg:w-full" : "lg:w-[414px]"}
-             ${route == "calculate" ? "lg:w-full" : ""} 
-             ${route === "" ? "mb-2" : "mb-10"} 
-             outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
+             ${route == "calculate" ? "lg:w-full mb-0  " : ""} 
+             ${route === "" ? "mb-2 " : "mb-10 md:mb-1"} 
+             outline-none bg-background placeholder:text-lg text-[21px] font-normal  h-[58px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10   pr-4
               `}
             type="text"
             value={formatNumber(money)}
@@ -196,7 +195,8 @@ export default function Sell({
               setCurrentCoin={setCurrentCoin}
             />
           )}
-              <Link className="w-full px-0 md:px-8" href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
+              <Link className={`w-full px-0 ${route === "" ? " md:px-8" : "px-0"}`} 
+              href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}>
           <button
             className={`
               ${route == "calculate" ? "w-full xl:w-full" : ""}

@@ -487,6 +487,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                           src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
                           alt={currency.symbol}
                           className="w-full h-full object-fill"
+                        
                         />
                       )}
                     </div>
