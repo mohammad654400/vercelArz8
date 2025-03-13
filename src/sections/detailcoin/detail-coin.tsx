@@ -18,6 +18,7 @@ import { useTheme } from "@/contexts/theme-provider";
 import CryptoDetails from "./crypto-details";
 import Skeleton from "react-loading-skeleton";
 import ChartContainer from "./charts-container";
+import { useFormattedNumber } from "@/hooks/useFormatted-number";
 
 interface HomeCurrency {
   symbol: string;
@@ -103,6 +104,7 @@ export default function DetailCoin() {
   const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
   const { theme, baseColor, highlightColor } = useTheme()
+  const { formatNumber } = useFormattedNumber();
   const [selectItem, setSelectItem] = useState<number | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false)
 
@@ -296,7 +298,11 @@ export default function DetailCoin() {
                       />
                     ) : (
                       <p className="text-[10px] sm:text-lg font-semibold !leading-3 truncate max-w-[80px] sm:max-w-[150px]">
-                        {coin?.name?.fa}
+                        {coin?.name?.fa?.length < 12 ?
+                          coin?.name?.fa
+                          :
+                          coin?.name?.fa.slice(0, 12) + '...'
+                        }
                       </p>
 
                     )}
@@ -326,28 +332,32 @@ export default function DetailCoin() {
                     />
                   ) : (
                     <span className="text-[10px] sm:text-lg font-semibold opacity-50 flex !leading-3">
-                      {coin?.name?.en}
+                      {coin?.name?.en?.length < 12 ?
+                        coin?.name?.en
+                        :
+                        '...' + coin?.name?.en.slice(0, 12)
+                      }
                     </span>
                   )}
                 </div>
 
               </div>
 
-              <div   className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
+              <div className="flex  h-full justify-center gap-x-2 sm:gap-x-4">
 
                 <div className="flex flex-col h-full  justify-center items-end gap-y-[6px] sm:gap-y-3 ">
                   {infoIsLoading || coinIsLoading ?
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={70} height={24} className="!w-[55px] !h-[16px]  md:w-[70px] md:h-[24px]" />
                     :
                     <p className="text-[10px] sm:text-[21px] font-semibold flex leading-3">
-                      ${coinData?.lastPrice}
+                      ${formatNumber(coinData?.lastPrice)}
                     </p>
                   }
                   {infoIsLoading || coinIsLoading ?
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} className="!w-[38px] !h-[12px]  md:w-[50px] md:h-[44px]" />
                     :
                     <p dir="rtl" className="text-[10px] sm:text-sm font-semibold flex leading-3 items-center">
-                      {coinData?.priceToman.buy} <span className="text-[8px] md:text-base mr-1">تومان</span>
+                      {formatNumber(coinData?.priceToman.buy)} <span className="text-[8px] md:text-base mr-1">تومان</span>
                     </p>
                   }
                 </div>
@@ -405,7 +415,7 @@ export default function DetailCoin() {
 
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         <div className="order-2  w-full lg:w-[60%] rounded-xl">
-          <CurrentPrice currentPrice={coinData?.lastPrice} currentPriceChange={coinData?.priceChangePercent} />
+          <CurrentPrice currentPrice={formatNumber(coinData?.lastPrice)} currentPriceChange={coinData?.priceChangePercent} />
           <div className="mt-10">
             <div className="hidden lg:flex mb-5 gap-4">
               <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
@@ -454,10 +464,10 @@ export default function DetailCoin() {
           <DescriptionTable
             persianName={currentCoin?.name.fa}
             symbol={route.toLocaleUpperCase()}
-            lastDollarPrice={coinData?.lastPrice}
-            lastTomanPrice={coinData?.priceToman.buy}
+            lastDollarPrice={formatNumber(coinData?.lastPrice)}
+            lastTomanPrice={formatNumber(coinData?.priceToman.buy)}
             dailyChangePercent={coinData?.priceChangePercent}
-            dailyTransactionVolume={coinData?.quoteVolume}
+            dailyTransactionVolume={formatNumber(coinData?.quoteVolume)}
             isLoading={infoIsLoading || coinIsLoading ? true : false}
           />
 
@@ -470,7 +480,7 @@ export default function DetailCoin() {
                   icon={item.icon}
                   persianName={item.name}
                   symbol={item.symbol}
-                  lastDollarPrice={item.lastPrice}
+                  lastDollarPrice={formatNumber(item.lastPrice)}
                   priceChangePercent={item.priceChangePercent}
                   iconColor={item.iconColor}
                   iconIsFont={item.iconIsfont}
@@ -489,7 +499,7 @@ export default function DetailCoin() {
                   icon={item.icon}
                   persianName={item.name}
                   symbol={item.symbol}
-                  lastDollarPrice={item.lastPrice}
+                  lastDollarPrice={formatNumber(item.lastPrice)}
                   priceChangePercent={item.priceChangePercent}
                   iconColor={item.iconColor}
                   iconIsFont={item.iconIsfont}
