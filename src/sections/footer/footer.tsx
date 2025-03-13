@@ -131,7 +131,7 @@ export default function Footer() {
               </Link>
             </span>
 
-            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[34px] md:h-[34px] dark:text-gray-300">
+            <span className="min-w-5 min-h-5 w-5 h-5 md:w-[34px] md:h-[34px] dark:text-gray-300 dark:hover:text-primary hover:text-primary">
               <Link href='https://x.com/Arz8official' >
                 <Twitter />
               </Link>

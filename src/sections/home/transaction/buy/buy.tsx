@@ -207,7 +207,8 @@ export default function Buy({
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
               ${
                 width < 700 ? "w-full " : "lg:w-auto px-10"
-              }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2`}
+              }  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2
+               hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(47,161,37)] active:shadow-none active:translate-y-0 active:bg-[#33B028]`}
             >
               شروع خرید
             </button>

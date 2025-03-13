@@ -104,10 +104,10 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                 onClick={() => setActiveFilter(option.key)}
                 className={`px-2 sm:px-3  py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
                   ? "bg-yellow-400 text-white"
-                  : "text-[#3C3B4180] dark:text-[#FFFFFF80]"
+                  : "text-[#3C3B4180] dark:text-[#FFFFFF80] hover:text-primary dark:hover:text-primary"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
               >
-                <span className="text-xs font-semibold sm:text-sm hover:text-primary ">{option.label}</span>
+                <span className="text-xs font-semibold sm:text-sm  ">{option.label}</span>
 
               </button>
             ))}

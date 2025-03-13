@@ -201,7 +201,8 @@ export default function Sell({
             className={`
               ${route == "calculate" ? "w-full xl:w-full" : ""}
               ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
-              px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white`}
+              px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white
+              duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[#e90500] active:shadow-none active:translate-y-0 active:bg-[#F00500]`}
           >
               شروع فروش
           </button>
