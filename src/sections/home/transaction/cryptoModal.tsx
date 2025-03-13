@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
+import IconClose from "@/assets/icons/icon-close";
 
 
 export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, isLoading, setCurrentCoin }: any) {
@@ -47,21 +48,8 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-semibold">انتخاب ارز</h2>
-          <button onClick={toggle} className="w-6 h-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6 text-gray-500 hover:text-black"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+          <button onClick={toggle} className="w-6 h-6 text-gray-600 hover:text-black">
+            <IconClose />
           </button>
         </div>
 
