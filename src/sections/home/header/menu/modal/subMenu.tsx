@@ -81,7 +81,7 @@ export default function SubMenu() {
           displayedCurrencies?.map((item: any, index: any) => (
             <Link href={`/coins/${item.symbol}`} key={`coin-${index}`}>
               <div
-                className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center"
+                className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#D2D2D240] dark:hover:bg-[#3C3B4180] items-center"
               >
                 <div className="w-5 h-5 flex">
                   {item.isFont ? (

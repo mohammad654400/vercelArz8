@@ -88,7 +88,7 @@ const Description = () => {
               />
 
               {/* Start Button */}
-              <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
+              <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "https://app.arz8.com/auth/register"}>
                 <button className="absolute left-2 top-1/2 -translate-y-1/2 px-4 text-for cursor-pointer rounded-lg bg-primary py-[10px] text-xs hover:px-[18px] hover:py-[11px]">
                   <p className="text-white">شروع کنید</p>
                 </button>

@@ -22,12 +22,13 @@ export default function DropdownMenu() {
         isOpen={openSection === "links"}
         toggle={toggleSection}
       >
- <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
+        <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
           <li><Link href="https://app.arz8.com/support" className="hover:text-primary">ارسال تیکت پشتیبانی</Link></li>
           <li><Link href="/faq" className="hover:text-primary">آموزش‌های صرافی</Link></li>
-          <Link href="/job"><li>فرصت های شغلی</li></Link> 
+          <li><Link href="/job" className="hover:text-primary">فرصت های شغلی</Link></li>
           <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
           <li><Link href="/fee" className="hover:text-primary">سطوح کاربری</Link></li>
+          <li><Link href="/authenticate" className="hover:text-primary">احراز هویت</Link></li>
           <li><Link href="/contact-us" className="hover:text-primary">تماس با ما</Link></li>
           <li><Link href="/about" className="hover:text-primary">درباره ما</Link></li>
         </ul>
@@ -87,7 +88,7 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ title, section, isOpen, tog
         <span className="absolute bg-primary h-6 right-9 w-1 rounded-lg"></span>
         {title}
         <span className="text-primary text-xl">
-          {isOpen ? <p className="w-5 h-5 text-foreground" ><ArrowUp/></p> :  <p className="w-5 h-5 text-foreground" ><ArrowDown/></p> }
+          {isOpen ? <p className="w-5 h-5 text-foreground" ><ArrowUp /></p> : <p className="w-5 h-5 text-foreground" ><ArrowDown /></p>}
         </span>
       </button>
 

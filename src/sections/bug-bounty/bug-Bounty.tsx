@@ -32,7 +32,7 @@ export default function BugBounty() {
       {open ? (
         <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
           <div className="flex w-full justify-center">
-            <div onClick={() => setOpen(false)} className="flex h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 ">
+            <div onClick={() => setOpen(false)} className="flex h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 cursor-pointer">
 
               <span className="w-5 h-5 lg:w-6 lg:h-6"><Back /></span>
               <span className="hidden lg:flex text-2xl font-normal">بازگشت</span>
@@ -88,7 +88,7 @@ export default function BugBounty() {
 
             <button
               onClick={toggleTransaction}
-              className="text-white bg-primary py-3 px-6 rounded-xl lg:rounded-[20px] text-[15px] lg:text-[25px] font-semibold w-full h-11 lg:h-[75px] lg:w-[232px]"
+              className="text-white bg-primary py-3 px-6 rounded-xl lg:rounded-[20px] text-[15px] lg:text-[25px] font-semibold w-full h-11 lg:h-[75px] lg:w-[232px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary"
             >
               ارسال باگ
             </button>
@@ -158,7 +158,7 @@ export default function BugBounty() {
             </p>
             <button
               onClick={toggleTransaction}
-              className="bg-primary h-[75px] w-[340px] text-[28px] font-bold rounded-[20px] text-white"
+              className="bg-primary h-[75px] w-[340px] text-[28px] font-bold rounded-[20px] text-white  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary"
             >
               ارسال باگ
             </button>

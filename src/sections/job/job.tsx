@@ -37,7 +37,7 @@ export default function Job() {
           </p>
           <button
             onClick={scrollToJobs}
-            className="flex w-full md:w-[178px]  py-2  bg-primary text-white text-base  md:text-2xl font-bold rounded-[13px] md:rounded-[15px] justify-center items-center">
+            className="flex w-full md:w-[178px]  py-2  bg-primary text-white text-base  md:text-2xl font-bold rounded-[13px] md:rounded-[15px] justify-center items-center transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary">
             مشاهده فرصت
           </button>
         </div>
@@ -97,7 +97,7 @@ export default function Job() {
                 </div>
               </div>
               <Link className='flex justify-center items-center' href={`job/${item.title}`}>
-                <button className='text-white w-full  bg-primary md:text-base sm:text-xs text-[8px] font-bold rounded-[9px] md:rounded-[15px] whitespace-nowrap px-2 py-2 md:px-7 md:py-3'>مشاهده جزئیات</button>
+                <button className='text-white w-full  bg-primary md:text-base sm:text-xs text-[8px] font-bold rounded-[9px] md:rounded-[15px] whitespace-nowrap px-2 py-2 md:px-7 md:py-3  hover:px-3 active:px-2 md:hover:px-8 md:active:px-7 '>مشاهده جزئیات</button>
               </Link>
             </div>
           ))}

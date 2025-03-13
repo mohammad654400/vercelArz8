@@ -154,7 +154,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
             key={item.key}
             className={`ml-2 px-2 h-[25px]  text-xs font-semibold rounded-lg whitespace-nowrap text-center flex items-center justify-center ${sort === item.key
               ? "bg-[#FFF4D8] text-primary dark:bg-[#64542c] border border-primary"
-              : "bg-transparent"
+              : "bg-transparent hover:text-primary"
               }`}
             onClick={(e) => {
               e.stopPropagation();

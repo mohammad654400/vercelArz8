@@ -83,8 +83,10 @@ export default function Footer() {
                     <Link href="/job"><li className=" hover:text-primary">فرصت های شغلی</li></Link>
                     <Link href="/rules"> <li className=" hover:text-primary"> قوانین و مقررات</li></Link>
                     <Link href="/fee"><li className=" hover:text-primary">  سطوح کاربری</li></Link>
+                    <Link href="/authenticate"><li className=" hover:text-primary">احراز هویت</li></Link>
                     <Link href="/contact-us"><li className=" hover:text-primary"> تماس با ما</li></Link>
                     <Link href="/about"><li className=" hover:text-primary">درباره ما</li></Link>
+
                   </ul>
                 </div>
                 <div className="">

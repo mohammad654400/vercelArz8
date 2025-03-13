@@ -49,7 +49,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
                 input.value = input.value.replace(/\D/g, '');
               }}
             />
-            <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
+            <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "https://app.arz8.com/auth/register"}>
               <button className="absolute left-[10px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
   rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
   transition-transform duration-200 ease-in-out 
