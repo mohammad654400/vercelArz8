@@ -77,7 +77,7 @@ export default function Blog() {
 function BlogCard({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) {
   return (
     <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
-      <Image className="rounded-3xl max-w-[261px] max-h-[124px]"  alt={title} src={imageUrl || "/fallback-image.jpg"} width={261} height={124} />
+      <Image className="rounded-3xl max-w-[261px] max-h-[124px]"  alt={title} src={imageUrl || "/fallback-image.jpg"} width={261} height={124} quality={100} />
       <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
       </p>
