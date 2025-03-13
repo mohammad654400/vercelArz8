@@ -20,7 +20,7 @@ export default function Authentication() {
 
 
             <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"https://app.arz8.com/auth/register"}>
-              <button className=' bg-primary w-full h-full text-white text-[15px] lg:text-xl font-bold rounded-[15.3px] xl:rounded-[20px]'>ثبت نام و احراز هویت</button>
+              <button className=' bg-primary w-full h-full text-white text-[15px] lg:text-xl font-bold rounded-[15.3px] xl:rounded-[20px] transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>ثبت نام و احراز هویت</button>
             </Link>
           </div>
           <div className="w-[273px] xl:w-[715.9px] h-[268px] xl:h-[406px]  order-1 xl:order-3 flex justify-center items-center self-center">
@@ -67,9 +67,9 @@ export default function Authentication() {
             احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است.
           </span>
 
-          <button className='h-[24px] w-[109px] lg:h-[75px] lg:w-[340px] items-center justify-center rounded-[6.47px] xl:rounded-[20px] flex text-[9px] lg:text-[28px] font-bold text-white bg-primary'>
+          <Link href={"https://app.arz8.com/auth/register"} className='h-[24px] w-[109px] lg:h-[75px] lg:w-[340px] items-center justify-center rounded-[6.47px] xl:rounded-[20px] flex text-[9px] lg:text-[28px] font-bold text-white bg-primary transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:translate-y-0 active:bg-primary'>
             ثبت نام و احراز هویت
-          </button>
+          </Link>
         </div>
       </div>
     </div>

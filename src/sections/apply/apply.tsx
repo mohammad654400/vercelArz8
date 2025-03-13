@@ -289,7 +289,7 @@ export default function ApplyPage({ title }: { title: string }) {
 
                         </div>
 
-                        <button type="submit" className="self-end w-full h-[38px] sm:h-16 bg-primary text-white text-sm px-4 py-2 rounded-xl mt-10 lg:mt-12 lg:w-48 lg:h-12 lg:rounded-2xl lg:text-xl">
+                        <button type="submit" className="self-end w-full h-[38px] sm:h-16 bg-primary text-white text-sm px-4 py-2 rounded-xl mt-10 lg:mt-12 lg:w-48 lg:h-12 lg:rounded-2xl lg:text-xl  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary">
                             ارسال درخواست
                         </button>
                     </div>

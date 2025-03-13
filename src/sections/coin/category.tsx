@@ -250,7 +250,6 @@ export default function Category({
     <div className="py-[30px]">
       <div
         className={`
-          transition-all duration-300
           ${
           open
             ? "w-[250px] md:w-[364px] pt-4 md:pt-5 rounded-2xl mx-2 px-3 md:px-6 "

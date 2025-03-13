@@ -74,12 +74,13 @@ const QuickGuide = () => {
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center justify-between mb-6">
         <h2 className="text-lg sm:text-2xl font-bold  text-center flex">راهنمای سریع</h2>
-        <Link href={"./faq"} className="flex text-[18px] md:text-2xl font-semibold  gap-2 items-center justify-center text-white  bg-primary rounded-2xl px-[10px] py-2 ">
+        <Link
+          href={"./faq"}
+          className="group flex text-[18px] md:text-2xl font-semibold gap-2 items-center justify-center text-white bg-primary rounded-2xl px-[10px] py-2 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:translate-y-0 active:bg-primary">
           همه سوالات
-          <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
+          <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] transition-transform duration-300 group-hover:translate-x-1">
             <ArrowLeft />
           </div>
-
         </Link>
       </div>
       <div className="w-full flex flex-col md:flex-row gap-x-11 gap-y-4 mx-auto bg-background ">
@@ -97,8 +98,8 @@ const QuickGuide = () => {
                   }
                   className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                 >
-                <RhombusIcon />
-                   <span className="text-xs sm:text-base font-semibold"> {faq.question} </span> 
+                  <RhombusIcon />
+                  <span className="text-xs sm:text-base font-semibold"> {faq.question} </span>
                 </button>
                 <span className="transform transition-transform">
                   {activeRightIndex === index ? <p className="w-5 h-5"><ArrowUp /></p> : <p className="w-5 h-5 text-[#3C3B4180] dark:text-[#FFFFFF80]"><ArrowDown /></p>}
@@ -134,16 +135,16 @@ const QuickGuide = () => {
                     }
                     className="w-full text-right flex justify-start gap-2 items-center py-3 font-medium"
                   >
-                     {activeLeftIndex !== index && <RhombusIcon />}
-                    <span className="text-xs sm:text-base font-semibold">{faq.question}</span> 
+                    {activeLeftIndex !== index && <RhombusIcon />}
+                    <span className="text-xs sm:text-base font-semibold">{faq.question}</span>
                   </button>
                   <span className="transform transition-transform">
                     {activeLeftIndex === index ? (
                       <span className="dark:text-white">
                         <p className="w-5 h-5">
-                        <ArrowUp />
+                          <ArrowUp />
                         </p>
-                      
+
                       </span>
                     ) : (
                       <p className="w-5 h-5 text-[#3C3B4180] dark:text-[#FFFFFF80]">

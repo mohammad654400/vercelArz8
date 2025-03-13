@@ -127,7 +127,7 @@ export default function DetailJob() {
                                     ))}
                                     <button
                                         onClick={handlerOpen}
-                                        className="w-full h-[38px] sm:h-[60px] lg:h-14 text-base sm:text-xl lg:text-[19px] bg-primary text-white rounded-xl sm:rounded-[18px] mt-8 self-center"
+                                        className="w-full h-[38px] sm:h-[60px] lg:h-14 text-base sm:text-xl lg:text-[19px] bg-primary text-white rounded-xl sm:rounded-[18px] mt-8 self-center  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:translate-y-0 active:bg-primary"
                                     >
                                         ارسال رزومه
                                     </button>

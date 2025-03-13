@@ -123,7 +123,7 @@ const ContactForm = memo(
         className={`lg:w-60 w-full h-14 px-4 py-2 rounded-xl transition-colors self-end ${
           isSubmitting
             ? "bg-gray-400 cursor-not-allowed"
-            : "bg-primary text-white hover:bg-primary/90"
+            : "bg-primary text-white  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary"
         }`}
       >
         {isSubmitting ? "در حال ارسال..." : "ارسال درخواست"}

@@ -8,6 +8,8 @@ import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
 import WaveDivider from "@/assets/icons/waveDivider";
 import BG from "@/assets/images/downloadApp/bg.png";
+import GooglePlay from "@/assets/icons/downloadApp/googlePlay";
+
 
 import Link from "next/link";
 
@@ -15,11 +17,11 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
   return (
     <div className="w-full bg-[#242428] h-[697px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
       <div className="flex flex-col base-style h-full z-10 !gap-0" >
-        <section  className="w-full h-full text-white text-center">
+        <section className="w-full h-full text-white text-center">
           <div className="w-full h-full justify-center items-center flex flex-col lg:flex-row">
 
-            <article   className="w-full order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
-              <div  className="flex flex-col ">
+            <article className="w-full order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
+              <div className="flex flex-col ">
                 <h1 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
                 </h1>
@@ -34,10 +36,11 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
                 <h2><li>احراز هویت سریع</li></h2>
               </ul>
               <div className="flex w-full lg:justify-start justify-around ">
-                <Link className="z-20" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
-                <Link className="z-20" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
-                <Link className="z-20" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
-                <Link className="z-20" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                <Link className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
+                <Link className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                <Link className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
+                <Link className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                <Link className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
               </div>
             </article>
             <div className="w-[215px] h-[278px] mt-10 lg:mt-[30]  lg:w-[413px] lg:h-[534px]  order-2 flex justify-center lg:justify-end  items-center ">
@@ -49,9 +52,9 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
           </div>
         </section>
         {showWaveDivider && (
-        <div className="w-full flex justify-center text-[#242428] mt-[29px] lg:mt-[39px] ">
-          <WaveDivider strokeColor="#FFFFFF" />
-        </div>
+          <div className="w-full flex justify-center text-[#242428] mt-[20px] sm:mt-[29px] lg:mt-[39px] ">
+            <WaveDivider strokeColor="#FFFFFF" />
+          </div>
         )}
       </div>
     </div>

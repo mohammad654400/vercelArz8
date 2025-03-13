@@ -24,7 +24,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           </h1>
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
-            <span className="text-primary text-xl sm:text-3xl font-semibold">1300</span>{" "}
+            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
           <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
@@ -49,10 +49,14 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
                 input.value = input.value.replace(/\D/g, '');
               }}
             />
-            <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "#"}>
-              <button className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6">
+            <Link href={phoneNumber ? `https://app.arz8.com/auth/register?mobile=${phoneNumber}` : "https://app.arz8.com/auth/register"}>
+              <button className="absolute left-[10px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
+  rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
+  transition-transform duration-200 ease-in-out 
+  hover:scale-105 active:scale-95">
                 شروع کنید
               </button>
+
             </Link>
           </div>
         </div>
