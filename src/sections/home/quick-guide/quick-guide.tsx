@@ -76,7 +76,7 @@ const QuickGuide = () => {
         <h2 className="text-lg sm:text-2xl font-bold  text-center flex">راهنمای سریع</h2>
         <Link
           href={"./faq"}
-          className="group flex text-[18px] md:text-2xl font-semibold gap-2 items-center justify-center text-white bg-primary rounded-2xl px-[10px] py-2 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary">
+          className="group flex text-[18px] md:text-2xl font-semibold gap-2 items-center justify-center text-white bg-primary rounded-2xl px-[10px] py-2 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:translate-y-0 active:bg-primary">
           همه سوالات
           <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] transition-transform duration-300 group-hover:translate-x-1">
             <ArrowLeft />

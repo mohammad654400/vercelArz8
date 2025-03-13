@@ -37,7 +37,7 @@ export default function Job() {
           </p>
           <button
             onClick={scrollToJobs}
-            className="flex w-full md:w-[178px]  py-2  bg-primary text-white text-base  md:text-2xl font-bold rounded-[13px] md:rounded-[15px] justify-center items-center transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary">
+            className="flex w-full md:w-[178px]  py-2  bg-primary text-white text-base  md:text-2xl font-bold rounded-[13px] md:rounded-[15px] justify-center items-center transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary">
             مشاهده فرصت
           </button>
         </div>

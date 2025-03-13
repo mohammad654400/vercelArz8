@@ -124,7 +124,7 @@ export default function WheelLuck() {
 
 
             <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}>
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary'>گرداندن گردونه</button>
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>گرداندن گردونه</button>
             </Link>
           </div>
           <div className="w-full order-1 xl:order-3 flex justify-center xl:justify-end items-center ">
@@ -187,7 +187,7 @@ export default function WheelLuck() {
             </p>
             <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
               <Link className='mt-2 md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
-                <button className='text-xl lg:text-2xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary'>ثبت نام سریع</button>
+                <button className='text-xl lg:text-2xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>ثبت نام سریع</button>
               </Link>
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function WheelLuck() {
 
 
             <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="#">
-              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px]  lg:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary'>چرخش گردونه</button>
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px]  lg:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>چرخش گردونه</button>
             </Link>
           </div>
           <div className='w-full lg:w-[45%] order-2 flex justify-center'>

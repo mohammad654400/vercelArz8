@@ -366,7 +366,7 @@ export default function FormBugBounty() {
 
 				</div>
 
-				<button type="submit" className="w-[124px] h-[40px] lg:w-[232px] lg:h-[75px] bg-primary text-white px-4 py-2 rounded-xl self-end text-[13.44px] lg:text-[25px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)] active:shadow-none active:translate-y-0 active:bg-primary">
+				<button type="submit" className="w-[124px] h-[40px] lg:w-[232px] lg:h-[75px] bg-primary text-white px-4 py-2 rounded-xl self-end text-[13.44px] lg:text-[25px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary">
 					ارسال درخواست
 				</button>
 			</form>
