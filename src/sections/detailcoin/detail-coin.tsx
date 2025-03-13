@@ -289,7 +289,7 @@ export default function DetailCoin() {
                 </div>
 
                 <div className={`flex flex-col h-full justify-center gap-y-[2px] sm:gap-y-3`}>
-                  <div className="flex gap-x-1 md:gap-x-2">
+                  <div className="flex items-center gap-x-1 md:gap-x-2">
                     {infoIsLoading || coinIsLoading ? (
                       <Skeleton
                         baseColor={baseColor}
@@ -297,7 +297,7 @@ export default function DetailCoin() {
                         className="!w-16 !h-2 md:w-[80px] md:h-[28px] !p-0 !mb-0" // Removed !-mb-2 and added !mb-0
                       />
                     ) : (
-                      <p className="text-[10px] sm:text-lg font-semibold !leading-3 truncate max-w-[80px] sm:max-w-[150px]">
+                      <p className="text-[10px] sm:text-lg font-semibold   truncate max-w-[80px] sm:max-w-[150px]">
                         {coin?.name?.fa?.length < 12 ?
                           coin?.name?.fa
                           :

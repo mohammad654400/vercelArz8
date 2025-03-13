@@ -125,7 +125,7 @@ export default function Sell({
                 ></i>
               )}
             </div>
-            <p>{currency.name}</p>
+            <p>{currency?.symbol}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>

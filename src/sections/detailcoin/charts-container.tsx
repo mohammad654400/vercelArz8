@@ -81,10 +81,10 @@ const ChartContainer = ({ coinChart, theme }: any) => {
       {
         coinChart ?
           <>
-            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${isAdvancedChart ? "" : "hidden"} border-r`}>
+            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${isAdvancedChart ? "" : "hidden"} `}>
               <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
             </div>
-            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${!isAdvancedChart ? "" : "hidden"} border-r`}>
+            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${!isAdvancedChart ? "" : "hidden"} `}>
               <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
             </div>
           </>

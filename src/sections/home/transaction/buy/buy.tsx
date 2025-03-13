@@ -181,7 +181,7 @@ export default function Buy({
                 ></i>
               )}
             </div>
-            <p className="">{currency?.name}</p>
+            <p className="">{currency?.symbol}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>
