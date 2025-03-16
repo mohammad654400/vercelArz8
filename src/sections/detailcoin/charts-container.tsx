@@ -11,13 +11,13 @@ const ChartContainer = ({ coinChart, theme }: any) => {
   const [isAdvancedChart, setIsAdvancedChart] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
-
   const toggleFullscreen = () => {
     const elem = chartContainerRef.current;
 
     if (!elem) return;
 
     if (!document.fullscreenElement && !getWebkitFullscreenElement()) {
+      // Enter fullscreen
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
       } else if (isWebkitElement(elem)) {
@@ -25,16 +25,27 @@ const ChartContainer = ({ coinChart, theme }: any) => {
       }
       setIsFullscreen(true);
     } else {
+      // Exit fullscreen
       if (document.exitFullscreen) {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => handleFullscreenExitFallback());
       } else if (isWebkitDocument(document)) {
         document.webkitExitFullscreen();
+      } else {
+        handleFullscreenExitFallback();
       }
       setIsFullscreen(false);
     }
   };
 
-  // Helper functions to ensure TypeScript safety
+  // Fallback method for iOS to exit fullscreen by reloading the page (last resort)
+  const handleFullscreenExitFallback = () => {
+    if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+      document.body.style.overflow = "auto"; // Ensure scrolling is enabled
+      window.location.reload(); // Hard reset (last resort if nothing else works)
+    }
+  };
+
+  // Helper functions
   const getWebkitFullscreenElement = (): Element | null => {
     return "webkitFullscreenElement" in document
       ? (document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement || null
@@ -48,6 +59,7 @@ const ChartContainer = ({ coinChart, theme }: any) => {
   const isWebkitDocument = (doc: Document): doc is Document & { webkitExitFullscreen: () => void } => {
     return "webkitExitFullscreen" in doc;
   };
+
 
   // Listen for fullscreen change (handles exit via ESC key)
   useEffect(() => {
