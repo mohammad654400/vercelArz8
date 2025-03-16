@@ -41,7 +41,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
               value={phoneNumber}
               onChange={handlePhoneChange}
               placeholder="شماره موبایل خود را وارد کنید"
-              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px]"
+              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px] placeholder:text-xs"
               pattern="[0-9]*"
               inputMode="numeric"
               onInput={(e) => {
