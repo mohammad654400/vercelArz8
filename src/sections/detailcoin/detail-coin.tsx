@@ -356,8 +356,8 @@ export default function DetailCoin() {
                   {infoIsLoading || coinIsLoading ?
                     <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={14} className="!w-[38px] !h-[12px]  md:w-[50px] md:h-[44px]" />
                     :
-                    <p dir="rtl" className="text-[10px] sm:text-sm font-semibold flex leading-3 items-center">
-                      {formatNumber(coinData?.priceToman.buy)} <span className="text-[8px] md:text-base mr-1">تومان</span>
+                    <p dir="rtl" className="text-[9px] sm:text-sm font-semibold flex leading-3 items-center">
+                      {formatNumber(coinData?.priceToman.buy)} <span className="text-[7px] md:text-base mr-1">تومان</span>
                     </p>
                   }
                 </div>
@@ -369,7 +369,7 @@ export default function DetailCoin() {
                     <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
                       <span
                         dir="ltr"
-                        className={`h-full w-full text-[10px] sm:text-lg flex text-center items-center justify-center font-semibold ${coinData?.priceChangePercent?.includes("-") ? "text-[#F00500]" : "text-[#33B028]"
+                        className={`h-full w-full text-[9px] sm:text-lg flex text-center items-center justify-center font-medium ${coinData?.priceChangePercent?.includes("-") ? "text-[#F00500]" : "text-[#33B028]"
                           }`}
                       >
                         {coinData?.priceChangePercent}%

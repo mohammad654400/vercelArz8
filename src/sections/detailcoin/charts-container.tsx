@@ -13,13 +13,40 @@ const ChartContainer = ({ coinChart, theme }: any) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      chartContainerRef.current?.requestFullscreen();
+    const elem = chartContainerRef.current;
+
+    if (!elem) return;
+
+    if (!document.fullscreenElement && !getWebkitFullscreenElement()) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (isWebkitElement(elem)) {
+        elem.webkitRequestFullscreen();
+      }
       setIsFullscreen(true);
     } else {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (isWebkitDocument(document)) {
+        document.webkitExitFullscreen();
+      }
       setIsFullscreen(false);
     }
+  };
+
+  // Helper functions to ensure TypeScript safety
+  const getWebkitFullscreenElement = (): Element | null => {
+    return "webkitFullscreenElement" in document
+      ? (document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement || null
+      : null;
+  };
+
+  const isWebkitElement = (elem: Element): elem is Element & { webkitRequestFullscreen: () => void } => {
+    return "webkitRequestFullscreen" in elem;
+  };
+
+  const isWebkitDocument = (doc: Document): doc is Document & { webkitExitFullscreen: () => void } => {
+    return "webkitExitFullscreen" in doc;
   };
 
   // Listen for fullscreen change (handles exit via ESC key)
