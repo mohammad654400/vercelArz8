@@ -76,14 +76,18 @@ export default function Blog() {
 // Blog Card Component
 function BlogCard({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) {
   return (
-    <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
+    <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2 pb-2">
       <Image className="rounded-3xl max-w-[261px] max-h-[124px]"  alt={title} src={imageUrl || "/fallback-image.jpg"} width={261} height={124} quality={100} />
       <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
       </p>
       <div className="flex justify-between items-center w-full">
-        <a href={link} className="text-primary text-sm md:text-base font-bold">
-          ...ادامه مطلب
+        <a href={link} className="bg-primary text-sm rounded-lg py-2 px-2 md:text-sm text-secondary
+                 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)]
+                  dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-primary  active:translate-y-0 
+
+        ">
+          ادامه مطلب
         </a>
         <div className="border border-foreground px-2 py-1 rounded-[15px] text-sm leading-6">مقالات</div>
       </div>
