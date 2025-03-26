@@ -19,9 +19,9 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
     <div>
       <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
         <div className="flex flex-col md:justify-center w-[489px] gap-3 sm:gap-6">
-          <h1 className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
+          <span className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
-          </h1>
+          </span>
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
             <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}

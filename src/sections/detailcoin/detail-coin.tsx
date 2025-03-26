@@ -460,7 +460,7 @@ export default function DetailCoin() {
           />
 
           <div className="hidden lg:flex flex-col w-full mt-10">
-            <h1 className="text-xl font-bold mb-5">بیشترین رشد</h1>
+            <h3 className="text-xl font-bold mb-5">بیشترین رشد</h3>
             {/* <Segment data={data} /> */}
             {mostProfitCryptos?.map((item: any, index: number) => (
               <div key={index} className="border-b-2 last:border-b-0 border-gray-200 py-[10px] ">
@@ -477,9 +477,9 @@ export default function DetailCoin() {
               </div>
             ))}
 
-            <h1 className="text-xl font-bold mb-5 mt-10">
+            <h3 className="text-xl font-bold mb-5 mt-10">
               جدید ترین ارز های ما
-            </h1>
+            </h3>
             {/* <Segment data={data} /> */}
             {newCryptos?.map((item: any, index: number) => (
               <div key={index} className="border-b-2 last:border-b-0 border-gray-200 py-[10px] ">

@@ -20,9 +20,9 @@ export default function Banner() {
 
               <div className="w-full   h-full flex flex-col justify-center text-center">
                 <div className="flex flex-col pb-11">
-                  <h1  className="text-start text-[35px] font-extrabold">
+                  <h2  className="text-start text-[35px] font-extrabold">
                     دانلود اپلیکیشن صرافی ارزهشت
-                  </h1>
+                  </h2>
                   <span className="text-start text-base font-bold">
                     با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
                   </span>
@@ -84,9 +84,9 @@ export default function Banner() {
 
             <div className=" w-full h-full justify-center items-center flex lg:hidden flex-col">
               <div className="flex  flex-col pt-8 pb-6 gap-y-3">
-                <h1 className="text-center text-lg sm:text-3xl font-extrabold">
+                <h2 className="text-center text-lg sm:text-3xl font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
-                </h1>
+                </h2>
                 <span className="text-center text-[8px] sm:text-base font-bold">
                   با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
                 </span>

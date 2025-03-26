@@ -43,7 +43,7 @@ export default function Blog() {
     <div className="flex flex-col gap-y-[14px] md:gap-y-[60px] sm:mt-16">
       <div className="flex gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
         <div className="font-bold text-lg md:text-4xl w-full">
-          <h1 className="flex justify-center xl:justify-start">بلاگ ارز هشت</h1>
+          <h2 className="flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
         </div>
       </div>
 

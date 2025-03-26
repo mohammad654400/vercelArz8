@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="lg:px-0 px-5 md:w-2/3 w-full lg:w-[25%]">
             <div className="flex justify-start items-center gap-1 lg:gap ">
               <Image alt="ارز هشت" src={logo} width={64} height={64} quality={100} />
-              <h1 className="text-[30px] font-extrabold">ارزهشت</h1>
+              <span className="text-[30px] font-extrabold">ارزهشت</span>
             </div>
             <p className="text-justify text-[14px] leading-10  ">
               از اردیبهشت ماه سال 1397 آغاز به فعالیت کرده که در ابتدا سامانه
@@ -61,9 +61,9 @@ export default function Footer() {
             <div className="hidden md:block">
               <div className="flex justify-between ">
                 <div className="">
-                  <h1 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
+                  <p className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
                     راهنمای صرافی
-                  </h1>
+                  </p>
                   <ul className="flex flex-col gap-4">
                     <Link href="/coins/BTC"> <li className=" hover:text-primary"> خرید و فروش ارزدیحیتال </li></Link>
                     <Link href="/coins"><li className=" hover:text-primary">قیمت لحظه ای ارز ها</li></Link>

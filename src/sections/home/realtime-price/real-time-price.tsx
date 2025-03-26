@@ -70,16 +70,15 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
 
 
   const filteredData = useMemo(() => {
-    if (!initialHomeData || !infoMap) return [];
-
-    return (initialHomeData[activeFilter] || []).map((currency) => ({
+    if (!initialHomeData?.[activeFilter] || !infoMap) return [];
+    
+    return initialHomeData[activeFilter].map((currency) => ({
       ...currency,
       ...(infoMap[currency.symbol] || {}),
       name: infoMap[currency.symbol]?.name.fa || currency.symbol,
-      priceToman: currency.priceToman,
-      lastPrice: currency.lastPrice
     }));
   }, [activeFilter, initialHomeData, infoMap]);
+  
 
   
 
@@ -91,9 +90,9 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
 
   return (
     <div>
-      <p className="flex justify-center md:justify-start text-[18px] md:text-2xl font-semibold mb-5 mt-8">
+      <h2 className="flex justify-center md:justify-start text-[18px] md:text-2xl font-semibold mb-5 mt-8">
         قیمت لحظه ای ارزهای دیجیتال
-      </p>
+      </h2>
       <div className="bg-background overflow-hidden w-full ">
         <div className="flex justify-between items-center bg-secondary px-4 py-3 text-[#47444480] rounded-t-xl">
           <div className="flex justify-center md:justify-start gap-3 w-full ">
@@ -245,6 +244,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                         alt="chart"
                         width={120}
                         height={44}
+                        loading="lazy"
                         className="w-auto h-auto"
                       />
                     </div>
