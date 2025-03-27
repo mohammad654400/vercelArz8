@@ -23,7 +23,7 @@ export default function DropdownMenu() {
         toggle={toggleSection}
       >
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
-          <li><Link href="https://app.arz8.com/support" className="hover:text-primary">ارسال تیکت پشتیبانی</Link></li>
+          <li><Link href="https://app.arz8.com/support" className="hover:text-primary" >ارسال تیکت پشتیبانی</Link></li>
           <li><Link href="/faq" className="hover:text-primary">آموزش‌های صرافی</Link></li>
           <li><Link href="/job" className="hover:text-primary">فرصت های شغلی</Link></li>
           <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
@@ -79,13 +79,13 @@ interface DropdownItemProps {
 
 const DropdownItem: React.FC<DropdownItemProps> = ({ title, section, isOpen, toggle, children }) => {
   return (
-    <div>
+    <section>
       <button
         onClick={() => toggle(section)}
         className="flex justify-between w-full items-center text-right text-[16px] font-bold py-2 pr-3"
         aria-expanded={isOpen}
       >
-        <span className="absolute bg-primary h-6 right-9 w-1 rounded-lg"></span>
+        <h3 className="absolute bg-primary h-6 right-9 w-1 rounded-lg"></h3>
         {title}
         <span className="text-primary text-xl">
           {isOpen ? <p className="w-5 h-5 text-foreground" ><ArrowUp /></p> : <p className="w-5 h-5 text-foreground" ><ArrowDown /></p>}
@@ -97,6 +97,6 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ title, section, isOpen, tog
       >
         {children}
       </div>
-    </div>
+    </section>
   );
 };
