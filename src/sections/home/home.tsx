@@ -37,7 +37,8 @@ export default function Home() {
   );
 
   return (
-    <div>
+    <main>
+      <h1 className="sr-only">صرافی ارز دیجیتال - خرید و فروش ارزهای دیجیتال</h1>
       <div className="base-style duration-1000">
         <MainTop homeData={homeData?.topChanges} infoMap={infoMap} isLoading={infoLoading || homeLoading} />
         <TransAction homeData={homeData?.calculator} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
@@ -51,7 +52,6 @@ export default function Home() {
         <Blog />
         <Description />
       </div>
-    </div>
+    </main>
   );
 }
-
