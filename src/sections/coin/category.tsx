@@ -257,7 +257,10 @@ export default function Category({
         } h-[283px] bg-[#F6F6F6] dark:bg-[#242428] pb-4 cursor-pointer`}
         onTouchStart={() => {
           if (window.innerWidth < 842) {
-            setOpen(!open);
+            setTimeout(() => {
+              
+              setOpen(!open);
+            }, 250);
           }
         }}
       >

@@ -77,11 +77,11 @@ export default function BannerSlider() {
               alt={slide.title}
               src={slide.image}
               width={290}
-              height={242}
+              height={100}
               quality={100}
               priority={index === 0}
-              sizes="(max-width: 768px) 290px, 100vw"
-              className="object-contain w-full h-auto"
+              // sizes="(max-width: 768px) 290px, 100vw"
+              className="object-contain w-[284px] h-[229px]"
             />
             <div className="flex flex-col text-center">
               <h4 className="mt-2 text-[23px] font-bold">{slide.title}</h4>

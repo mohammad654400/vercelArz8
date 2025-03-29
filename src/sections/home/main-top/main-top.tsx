@@ -41,7 +41,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
               value={phoneNumber}
               onChange={handlePhoneChange}
               placeholder="شماره موبایل خود را وارد کنید"
-              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px]"
+              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px] placeholder:text-xs"
               pattern="[0-9]*"
               inputMode="numeric"
               onInput={(e) => {
@@ -74,6 +74,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
         className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] "
         aria-label="آخرین اطلاعیه‌ها"
       >
+
         <div className="flex gap-2 items-center md:gap-2">
           <span className="w-3 h-3 sm:w-4 sm:h-4 mx-1 sm:mr-5 flex self-center items-center ">
             <Ring />
@@ -93,6 +94,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 " >
         <CryptoSlider homeData={homeData} infoMap={infoMap} isLoading={isLoading} />
+
       </div>
     </div>
   );

@@ -227,7 +227,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                     </div>
 
                     <Link href={`/coins/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
-                      <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                      <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
                         جزئیات بیشتر
                       </button>
                     </Link>

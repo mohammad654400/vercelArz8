@@ -13,13 +13,40 @@ const ChartContainer = ({ coinChart, theme }: any) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      chartContainerRef.current?.requestFullscreen();
+    const elem = chartContainerRef.current;
+
+    if (!elem) return;
+
+    if (!document.fullscreenElement && !getWebkitFullscreenElement()) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (isWebkitElement(elem)) {
+        elem.webkitRequestFullscreen();
+      }
       setIsFullscreen(true);
     } else {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (isWebkitDocument(document)) {
+        document.webkitExitFullscreen();
+      }
       setIsFullscreen(false);
     }
+  };
+
+  // Helper functions to ensure TypeScript safety
+  const getWebkitFullscreenElement = (): Element | null => {
+    return "webkitFullscreenElement" in document
+      ? (document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement || null
+      : null;
+  };
+
+  const isWebkitElement = (elem: Element): elem is Element & { webkitRequestFullscreen: () => void } => {
+    return "webkitRequestFullscreen" in elem;
+  };
+
+  const isWebkitDocument = (doc: Document): doc is Document & { webkitExitFullscreen: () => void } => {
+    return "webkitExitFullscreen" in doc;
   };
 
   // Listen for fullscreen change (handles exit via ESC key)
@@ -44,23 +71,20 @@ const ChartContainer = ({ coinChart, theme }: any) => {
       <div className="flex gap-4 items-center">
         <div className="rounded-[10px] p-4 flex items-center gap-[14px] bg-secondary w-[240px] relative">
           <div
-            className={`absolute h-9 bg-fifth rounded-md transition ${
-              isAdvancedChart ? "-translate-x-[104px] w-[110px]" : "w-[100px]"
-            }`}
+            className={`absolute h-9 bg-fifth rounded-md transition ${isAdvancedChart ? "-translate-x-[104px] w-[110px]" : "w-[100px]"
+              }`}
           ></div>
           <button
             onClick={() => setIsAdvancedChart(false)}
-            className={`w-24 rounded text-center text-sm z-10 ${
-              !isAdvancedChart ? "text-seventh" : "text-sixth text-opacity-50"
-            }`}
+            className={`w-24 rounded text-center text-sm z-10 ${!isAdvancedChart ? "text-seventh" : "text-sixth text-opacity-50"
+              }`}
           >
             نمودار ساده
           </button>
           <button
             onClick={() => setIsAdvancedChart(true)}
-            className={`w-24 rounded text-center text-sm z-10 ${
-              isAdvancedChart ? "text-seventh" : "text-sixth text-opacity-50"
-            }`}
+            className={`w-24 rounded text-center text-sm z-10 ${isAdvancedChart ? "text-seventh" : "text-sixth text-opacity-50"
+              }`}
           >
             نمودار پیشرفته
           </button>
@@ -81,19 +105,21 @@ const ChartContainer = ({ coinChart, theme }: any) => {
       </div>
 
       {/* Chart Container - Takes Full Height in Fullscreen */}
-      <div
-        className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} rounded-xl `}
-      >
-        {coinChart ? (
-          isAdvancedChart ? (
-            <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
-          ) : (
-            <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
-          )
-        ) : (
-          <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-full !h-full !-mt-10 " />
-        )}
-      </div>
+      {
+        coinChart ?
+          <>
+            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${isAdvancedChart ? "" : "hidden"} `}>
+              <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
+            </div>
+            <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${!isAdvancedChart ? "" : "hidden"} `}>
+              <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
+            </div>
+          </>
+          :
+          <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} rounded-xl `}>
+            <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-full !h-full !-mt-10 " />
+          </div>
+      }
     </div>
   );
 };

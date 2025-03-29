@@ -93,6 +93,7 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
         quality={100}
         loading="lazy"
       />
+
       <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
       </p>
@@ -101,6 +102,7 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
           ...ادامه مطلب
         </Link>
         <div className="border-[0.74px] border-foreground px-[10px]  rounded-[15px] text-sm font-semibold leading-6 text-center">مقالات</div>
+
       </div>
     </div>
   );

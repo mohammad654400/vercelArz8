@@ -521,7 +521,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
 
                   {currency.lastPrice && (
                     <div className="col-span-0 hidden md:block md:col-span-1 text-center">
-                      {currency.lastPrice} USDT
+                      {formatNumber(currency.lastPrice)} USDT
                     </div>
                   )}
                   {currency.priceToman && (
@@ -553,13 +553,13 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                           ? "brightness(0) saturate(100%) invert(36%) sepia(77%) saturate(1131%) hue-rotate(324deg) brightness(94%) contrast(90%)"
                           : "brightness(0) saturate(100%) invert(50%) sepia(55%) saturate(506%) hue-rotate(112deg) brightness(101%) contrast(90%)",
                     }}
-                  >
+                  > 
                     <Image src={ChartUP} alt="chart" width={64} height={31} quality={100} />
                   </div>
 
                   <div>
                     <Link href={`/coins/${currency.symbol}`}>
-                      <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  ">
+                      <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
                         جزئیات بیشتر
                       </button>
                     </Link>

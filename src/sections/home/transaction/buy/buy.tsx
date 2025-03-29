@@ -105,7 +105,7 @@ export default function Buy({
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center gap-3 left-1 top-[40px] md:top-10 px-5 py-[12px]  rounded-xl bg-third">
+          <div className="absolute flex items-center  gap-3 left-1 top-[40px] md:top-10 px-5 py-[12px]  rounded-xl bg-third">
             <Image
               alt="iran"
               src={flag}
@@ -181,7 +181,7 @@ export default function Buy({
                 ></i>
               )}
             </div>
-            <p className="">{currency?.name}</p>
+            <p className="">{currency?.symbol}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>
@@ -203,7 +203,7 @@ export default function Buy({
           )}
           <Link
             className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`}
-            href={`https://app.arz8.com/order/buy?c=${currency.symbol}`}
+            href={`https://app.arz8.com/order/buy?c=${currency.symbol}&amount=${amount}`}
           >
             <button
               className={`
