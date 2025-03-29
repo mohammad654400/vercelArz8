@@ -2,6 +2,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import ArrowRight from '@/assets/icons/wheel/arrowRight';
 import ArrowLeft from '@/assets/icons/wheel/arrowLeft';
+import Image from 'next/image'; 
+
 import ImageOne from '@/assets/images/wheelluck/ImageOne.png'
 import ImageTwo from '@/assets/images/wheelluck/ImageTwo.png'
 import ImageThree from '@/assets/images/wheelluck/ImageThree.png'
@@ -59,21 +61,41 @@ const ImageCarousel = () => {
       >
         <ArrowRight />
       </button>
-
       <div className="overflow-hidden relative w-full h-full">
         <div className="flex transition-all duration-500">
           <div className="w-[49.89px] lg:w-[62.88px] h-[479px] lg:h-[604px] flex-shrink-0 relative">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-[#242428] to-[#20202000] rounded-[16px] lg:rounded-[21px]" />
-            <img src={prevImage} alt="Previous" className={imageClass} />
+            <Image 
+              src={prevImage} 
+              alt="Previous" 
+              layout="fill" 
+              objectFit="cover" 
+              className={imageClass} 
+              loading="lazy"
+            />
           </div>
 
           <div className="lg:w-[340.67px] w-[240px] sm:w-[270px] h-[479px] lg:h-[604px] flex-shrink-0 relative mx-[10px]">
-            <img src={currentImage} alt="Current" className={`${imageClass} lg:rounded-[27px]`} />
+            <Image 
+              src={currentImage} 
+              alt="Current" 
+              layout="fill" 
+              objectFit="cover" 
+              className={`${imageClass} lg:rounded-[27px]`} 
+              loading="lazy"
+            />
           </div>
 
           <div className="w-[49.89px] lg:w-[62.88px] h-[479px] lg:h-[604px] flex-shrink-0 relative">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#242428] to-[#20202000] rounded-[16px] lg:rounded-[21px]" />
-            <img src={nextImage} alt="Next" className={imageClass} />
+            <Image 
+              src={nextImage} 
+              alt="Next" 
+              layout="fill" 
+              objectFit="cover" 
+              className={imageClass} 
+              loading="lazy"
+            />
           </div>
         </div>
       </div>

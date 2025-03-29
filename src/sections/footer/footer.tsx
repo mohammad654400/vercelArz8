@@ -63,6 +63,24 @@ export default function Footer() {
             </nav>
             <div className="hidden md:block">
               <div className="flex justify-between ">
+
+                <section>
+                  <h3 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary">
+                    لینک های مفید
+                  </h3>
+                  <ul className="flex flex-col gap-4">
+                    <li className=" hover:text-primary"><Link href="https://app.arz8.com/support">ارسال تیکت پشتیبانی</Link></li>
+                    <li className=" hover:text-primary"><Link href="/faq">آموزش‌های صرافی</Link></li>
+                    <li className=" hover:text-primary"><Link href="/job">فرصت‌های شغلی</Link></li>
+                    <li className=" hover:text-primary"><Link href="/rules">قوانین و مقررات</Link></li>
+                    <li  className="hover:text-primary"><Link href="/wheel-luck">گردونه شانس</Link></li>
+                    <li className=" hover:text-primary"><Link href="/fee">سطوح کاربری</Link></li>
+                    <li className=" hover:text-primary"><Link href="/authenticate">احراز هویت</Link></li>
+                    <li className=" hover:text-primary"><Link href="/contact-us">تماس با ما</Link></li>
+                    <li className=" hover:text-primary"><Link href="/about">درباره ما</Link></li>
+                  </ul>
+                </section>
+
                 <section >
                   <h3 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
                     راهنمای صرافی
@@ -78,24 +96,7 @@ export default function Footer() {
 
                   </ul>
                 </section>
-                <section>
-                  <h3 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary">
-                    لینک های مفید
-                  </h3>
-                  <ul className="flex flex-col gap-4">
 
-
-                    <li className=" hover:text-primary"><Link href="https://app.arz8.com/support">ارسال تیکت پشتیبانی</Link></li>
-                    <li className=" hover:text-primary"><Link href="/faq">آموزش‌های صرافی</Link></li>
-                    <li className=" hover:text-primary"><Link href="/job">فرصت‌های شغلی</Link></li>
-                    <li className=" hover:text-primary"><Link href="/rules">قوانین و مقررات</Link></li>
-                    <li className=" hover:text-primary"><Link href="/fee">سطوح کاربری</Link></li>
-                    <li className=" hover:text-primary"><Link href="/authenticate">احراز هویت</Link></li>
-                    <li className=" hover:text-primary"><Link href="/contact-us">تماس با ما</Link></li>
-                    <li className=" hover:text-primary"><Link href="/about">درباره ما</Link></li>
-
-                  </ul>
-                </section>
                 <section className="">
                   <h3 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary ">
                     اطلاعات تماس

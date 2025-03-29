@@ -17,7 +17,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
 
   return (
     <div>
-      <div className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
+      <section className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
         <div className="flex flex-col md:justify-center w-[489px] gap-3 sm:gap-6">
           <span className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
             با خیال راحت معامله کنید،
@@ -69,7 +69,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
         <aside>
           <BannerSlider />
         </aside>
-      </div>
+      </section>
       <section
         className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] "
         aria-label="آخرین اطلاعیه‌ها"
@@ -91,9 +91,9 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
         </div>
       </section>
       <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
-      <section className="w-full mt-4 z-30 " aria-label="بیشترین قیمت لحظه‌ای ارزهای دیجیتال و کمترین قیمت لحظه‌ای ارزهای دیجیتال">
+      <div className="w-full mt-4 z-30 " >
         <CryptoSlider homeData={homeData} infoMap={infoMap} isLoading={isLoading} />
-      </section>
+      </div>
     </div>
   );
 }

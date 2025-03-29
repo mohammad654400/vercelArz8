@@ -27,14 +27,14 @@ export default function Home() {
   const { data: infoData, isLoading: infoLoading } = useGetData('info');
   const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
 
-  const infoMap = useMemo(
-    () =>
-      infoData?.cryptocurrency.reduce((acc: Record<string, CryptocurrencyInfo>, item: CryptocurrencyInfo) => {
-        acc[item.symbol] = item;
-        return acc;
-      }, {} as Record<string, InfoData["cryptocurrency"][0]>),
-    [infoData]
-  );
+
+  const infoMap = useMemo(() => {
+    if (!infoData?.cryptocurrency) return {};
+    return infoData.cryptocurrency.reduce((acc: Record<string, CryptocurrencyInfo>, item: CryptocurrencyInfo) => {
+      acc[item.symbol] = item;
+      return acc;
+    }, {});
+  }, [infoData]);
 
   return (
     <main>

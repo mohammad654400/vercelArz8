@@ -86,7 +86,7 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
     <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
       <Image
         className="rounded-3xl max-w-[261px] max-h-[124px]"
-        alt={title}
+        alt={`تصویر مقاله: ${title}`}
         src={imageUrl || "/fallback-image.jpg"}
         width={261}
         height={124}
