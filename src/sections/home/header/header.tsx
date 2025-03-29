@@ -73,9 +73,9 @@ export default function Header() {
                   property="false"
                   className="md:w-[64px] md:h-[64px] md:object-cover w-[31px] h-[31px] "
                 />
-                <h1 className="text-[17px] md:text-[34px] font-extrabold">
+                <span className="text-[17px] md:text-[34px] font-extrabold">
                   ارزهشت
-                </h1>
+                </span>
               </div>
             </Link>
             <div className="hidden xl:flex w-full h-full">

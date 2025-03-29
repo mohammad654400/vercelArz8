@@ -11,7 +11,6 @@ import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
 import Accordion from '@/components/Accordion'
 import Ghar from '@/assets/images/wheelluck/ghar.png'
-
 import Silver from "@/assets/images/wheelluck/Silver.png"
 import Bronze from "@/assets/images/wheelluck/Bronze.png"
 import Gold from "@/assets/images/wheelluck/Gold.png"
@@ -111,19 +110,19 @@ export default function WheelLuck() {
 
 
   return (
-    <div className='base-style' style={{ gap: "0" }}>
+    <div className='base-style !gap-0'>
 
-      <div className='flex flex-col gap-10 lg:gap-24 mt-28'>
+      <main className='flex flex-col gap-10 lg:gap-24 mt-28'>
 
 
 
-        <div className="flex flex-col xl:flex-row gap-y-10   w-full justify-between  ">
+        <section className="flex flex-col xl:flex-row gap-y-10   w-full justify-between  ">
           <div className=" w-full flex flex-col justify-center order-2">
             <h1 className='text-lg md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
             <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
 
 
-            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}>
+            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}  aria-label="گردونه شانس صرافی ارزهشت">
               <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>گرداندن گردونه</button>
             </Link>
           </div>
@@ -131,11 +130,12 @@ export default function WheelLuck() {
             <Image
               src={wheel}
               alt="image"
+              loading='lazy'
             />
           </div>
-        </div>
+        </section>
 
-        <div className='flex flex-col gap-5 lg:gap-10'>
+        <section className='flex flex-col gap-5 lg:gap-10'>
           <h2 className='text-lg md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
           <div className='w-full overflow-x-auto custom-scrollbar' ref={containerRef}>
             <div className='flex flex-row gap-4 w-full'
@@ -175,7 +175,7 @@ export default function WheelLuck() {
             </div>
           </div>
 
-        </div>
+        </section>
 
         <div className='flex flex-col lg:flex-row'>
           <div className='w-[360px] sm:w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
@@ -208,6 +208,7 @@ export default function WheelLuck() {
                     width={60}
                     height={60}
                     className='w-10 h-10 md:w-[60px] md:h-[60px]'
+                    loading='lazy'
                   />
                   <span className='text-base sm:text-[18.9px] font-bold'>{item.title}</span>
                 </div>
@@ -233,7 +234,7 @@ export default function WheelLuck() {
             </Link>
           </div>
           <div className='w-full lg:w-[45%] order-2 flex justify-center'>
-            <Image className='w-[305px] h-[633px]' src={Ghar} alt='Ghar' width={305} height={633}/>
+            <Image loading='lazy' className='w-[305px] h-[633px]' src={Ghar} alt='Ghar' width={305} height={633}/>
           </div>
 
         </div>
@@ -256,7 +257,7 @@ export default function WheelLuck() {
           </div>
 
         </div>
-      </div>
+      </main>
     </div>
   )
 }

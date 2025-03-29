@@ -163,6 +163,7 @@ const QuickGuide = () => {
                           className="w-full aspect-video rounded-[20px] "
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
+                          loading="lazy"
                         ></iframe>
                         <p className="text-xs sm:text-sm font-normal leading-[18px] py-3">{faq.answer}</p>
                       </div>

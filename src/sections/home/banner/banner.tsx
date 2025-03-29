@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <div className="w-full  self-center">
+    <section className="w-full  self-center">
       <div className="w-full bg-[#242428] h-[310px] sm:h-[400px] lg:h-[614px]" style={{ backgroundImage: `url(${BG.src})` }}>
         <div className="flex flex-col base-style h-full z-10" style={{ gap: "0px" }}>
           <div className="w-full h-full text-white text-center">
@@ -20,40 +20,39 @@ export default function Banner() {
 
               <div className="w-full   h-full flex flex-col justify-center text-center">
                 <div className="flex flex-col pb-11">
-                  <h1  className="text-start text-[35px] font-extrabold">
+                  <h2 className="text-start text-[35px] font-extrabold">
                     دانلود اپلیکیشن صرافی ارزهشت
-                  </h1>
-                  <span className="text-start text-base font-bold">
+                  </h2>
+                  <p className="text-start text-base font-bold">
                     با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
-                  </span>
+                  </p>
                 </div>
 
                 <ul className="flex flex-col text-start text-lg font-semibold gap-y-5">
-                  <div className="flex gap-x-[5px] items-center">
-                    <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
-                    <li>دسترسی به بیش از 1600 ارز دیجیتال</li>
-                  </div>
-                  <div className="flex gap-x-[5px] items-center">
-                    <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
-                    <li >پشتیبانی سریع و 24 ساعته</li>
-                  </div>
-                  <div className="flex gap-x-[5px] items-center">
-                    <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
-                    <li>احراز هویت سریع</li>
-                  </div>
+                  {[
+                    "دسترسی به بیش از 1600 ارز دیجیتال",
+                    "پشتیبانی سریع و 24 ساعته",
+                    "احراز هویت سریع",
+                  ].map((item, index) => (
+                    <li key={index} className="flex gap-x-[5px] items-center">
+                      <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
-                <div className="flex w-full lg:justify-start justify-start py-[30px]">
-                  <Link className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
-                  <Link className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
-                  <Link className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
-                  <Link className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
-                  <Link className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
 
-                </div>
+                <nav  className="flex w-full lg:justify-start justify-start py-[30px]" aria-label="دانلود اپلیکیشن">
+                  <Link  className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
+                  <Link  className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                  <Link  className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
+                  <Link  className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
+                  <Link  className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
+
+                </nav>
 
                 <div className="flex items-center gap-x-4">
                   <Link href="/download">
-                  <Image src={QrCode} alt="QrCode" quality={100} className="w-[102px] h-[102px]"></Image>
+                    <Image loading="lazy" src={QrCode}   alt="دانلود اپلیکیشن از طریق QR Code" quality={100} className="w-[102px] h-[102px]" ></Image>
                   </Link>
 
                   <div className="flex flex-col gap-y-3">
@@ -74,6 +73,7 @@ export default function Banner() {
                   height={534}
                   className="object-contain"
                   quality={100}
+                  loading="lazy"
                 />
               </div>
 
@@ -84,12 +84,12 @@ export default function Banner() {
 
             <div className=" w-full h-full justify-center items-center flex lg:hidden flex-col">
               <div className="flex  flex-col pt-8 pb-6 gap-y-3">
-                <h1 className="text-center text-lg sm:text-3xl font-extrabold">
+                <h2 className="text-center text-lg sm:text-3xl font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
-                </h1>
-                <span className="text-center text-[8px] sm:text-base font-bold">
+                </h2>
+                <p className="text-center text-[8px] sm:text-base font-bold">
                   با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
-                </span>
+                </p>
               </div>
 
               <div className="flex w-full h-full justify-between">
@@ -97,7 +97,7 @@ export default function Banner() {
 
 
                   <div className="flex flex-col items-center gap-y-3">
-                    <Image src={QrCode} alt="QrCode" className="w-[70px] h-16" quality={100}></Image>
+                    <Image src={QrCode}   alt="دانلود اپلیکیشن از طریق QR Code" className="w-[70px] h-16" quality={100} loading="lazy"></Image>
 
                     <div className="flex flex-col gap-y-1">
                       <span className="text-white text-[8px] sm:text-xs font-bold">برای دانلود اپلیکیشن</span>
@@ -106,13 +106,13 @@ export default function Banner() {
 
                   </div>
 
-                  <div className="flex w-full  justify-center mt-[10px] sm:mt-5">
+                  <nav className="flex w-full  justify-center mt-[10px] sm:mt-5">
                     <Link className="z-20 flex" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
                     <Link className="z-20 flex" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                     <Link className="z-20 flex" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                     <Link className="z-20 flex" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
                     <Link className="z-20 flex" href={""}><DownloadOption Icon={GooglePlay} label="گوگل پلی" /> </Link>
-                  </div>
+                  </nav>
 
                 </div>
 
@@ -125,7 +125,7 @@ export default function Banner() {
                     height={192}
                     className="max-h-[192px] max-w-[148px] justify-center items-center self-center"
                     quality={100}
-
+                    loading="lazy"
                   />
                 </div>
 
@@ -138,7 +138,7 @@ export default function Banner() {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 function DownloadOption({ Icon, label }: { Icon: React.FC; label: string }) {

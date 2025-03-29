@@ -22,9 +22,9 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
 
             <article className="w-full order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
               <div className="flex flex-col ">
-                <h1 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
+                <h2 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
-                </h1>
+                </h2>
                 <p className="text-xs lg:text-lg mt-2 md:mt-5 font-bold">
                   با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
                 </p>
