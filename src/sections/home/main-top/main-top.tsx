@@ -64,7 +64,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           <BannerSlider />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] ">
+      {/* <div className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] ">
         <div className="flex gap-2 items-center md:gap-2">
           <div className="w-3 h-3 sm:w-4 sm:h-4 mx-1 sm:mr-5 flex self-center items-center ">
             <Ring />
@@ -80,8 +80,8 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
             <ArrowLeft />
           </div>
         </div>
-      </div>
-      <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
+      </div> */}
+      <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-4 md:mt-8  "></div>
       <div className="w-full mt-4 z-30 ">
         <div>
           <CryptoSlider homeData={homeData} infoMap={infoMap} isLoading={isLoading} />

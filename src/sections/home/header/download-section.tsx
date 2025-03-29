@@ -33,13 +33,19 @@ export default function DownloadSection() {
           />
         )}
         </Link>
-        <div className=" w-[256px] text-[13px] px-[70px] py-4 bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px] ">
+        <div className=" w-[256px] text-[13px] px-[70px] py-4 bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px] 
+         duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(47,161,37)]  active:translate-y-0 
+        ">
           دانلود از کافه بازار
         </div>
-        <div className="px-[80px] w-[256px] py-4 text-[13px] bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px]">
+        <div className="px-[80px] w-[256px] py-4 text-[13px] bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px]
+         duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[#0091EA]  active:translate-y-0 
+        ">
           دانلود از مایکت
         </div>
-        <div className="mb-5 px-[80px] w-[256px] text-[13px] py-4 bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px]">
+        <div className="mb-5 px-[80px] w-[256px] text-[13px] py-4 bg-[#F6F6F6] dark:bg-[#302F34] rounded-[10px]
+         duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-primary  active:translate-y-0 
+        ">
           دانلود مستقیم
         </div>
       </div>

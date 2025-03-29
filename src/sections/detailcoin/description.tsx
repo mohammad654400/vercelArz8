@@ -35,9 +35,9 @@ export default function DetailDescription() {
         onClick={toggleExpand}
         className="w-full mt-2 text-primary focus:outline-none text-2xl font-semibold"
       >
-        <div className="flex justify-center items-center gap-x-3 text-2xl">
+        <div className="flex justify-center items-center gap-x-3 text-xl">
           {isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
-          {isExpanded ? <span className=" w-[30px] h-[30px]"><ArrowTop /> </span> : <span className=" w-[30px] h-[30px]"><ArrowBottom /></span>}
+          {isExpanded ? <span className=" w-[25px] h-[25px]"><ArrowTop /> </span> : <span className=" w-[25px] h-[25px]"><ArrowBottom /></span>}
         </div>
 
       </button>

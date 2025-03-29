@@ -96,7 +96,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
           ) : filteredCurrencies.length > 0 ? (
             filteredCurrencies.map((currency: any, index: any) => (
               hasLink ? (
-                <Link href={`/coins/${currency.symbol}`} key={index}>
+                <Link  href={`/coins/${currency.symbol}`} key={index}>
                   <div
                     key={index}
                     onClick={() => handleCurrencySelect(currency)}
@@ -143,10 +143,10 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
                 <div
                   key={index}
                   onClick={() => handleCurrencySelect(currency)}
-                  className="flex items-center rounded-2xl justify-between px-4 py-3 hover:bg-[#FFF6DD] dark:hover:bg-[#3C3B41] cursor-pointer"
+                  className="flex items-center rounded-2xl justify-between px-4 py-3 hover:bg-[#FFF6DD] dark:hover:bg-[#4f4e55] cursor-pointer"
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="w-9 h-9">
+                  <div className="flex items-center gap-2 ">
+                    <div className="w-9 h-9 active:bg-orange-400">
                       {currency.isFont ? (
                         <i
                           className={`cf cf-${currency.symbol.toLowerCase()} text-[36px] object-fill flex items-center justify-center`}
