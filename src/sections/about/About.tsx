@@ -9,7 +9,7 @@ export default function About() {
             <div className="flex flex-col pt-20  xl:flex-row w-full justify-between ">
                 <div className=" w-full flex flex-col justify-center order-2  mt-10 md:mt-[113px] xl:mt-0">
                     <h1 className='text-xl sm:text-[40px] font-bold text-Seventh'>درباره صرافی ارزهشت</h1>
-                    <p className='text-sm sm:text-[19px] font-semibold  text-sixth  leading-[35px] sm:leading-[60px] text-justify mt-[10px] md:mt-[39px]'>صرافی ارزهشت با هدف ایجاد یک پلتفرم مطمئن و پیشرفته برای معامله‌گران و سرمایه‌گذاران ارزهای دیجیتال راه‌اندازی شده است. تیم ما از متخصصین با تجربه در حوزه فناوری بلاکچین، امنیت اطلاعات و بازارهای مالی تشکیل شده و متعهد است بهترین خدمات ممکن را به شما ارائه دهد.</p>
+                    <p className='text-sm sm:text-[19px] font-semibold  text-sixth  leading-[35px] sm:leading-[60px] text-justify mt-[10px] md:mt-[39px]'>صرافی ارزهشت با هدف فراهم کردن پلتفرمی امن و پیشرفته برای معامله‌گران و سرمایه‌گذاران ارزهای دیجیتال راه‌اندازی شده است. تیم ما متشکل از متخصصان با تجربه در بلاکچین، امنیت اطلاعات و بازارهای مالی است و تلاش می‌کند بهترین خدمات را به شما ارائه دهد.</p>
                 </div>
                 <div className="h-full  w-full  order-1 xl:order-3 flex justify-center xl:justify-end items-center self-center">
                     <Image

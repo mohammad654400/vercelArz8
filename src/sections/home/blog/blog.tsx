@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
-import BlogSchema from "./blog-schema";
+import BlogSchema from "../../../schemas/blog-schema";
 
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/api/v1/latest-posts?limit=8");
@@ -36,8 +36,8 @@ export default function Blog() {
     draggable: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2, } },
-      { breakpoint: 449, settings: { slidesToShow: 1, slidesToScroll: 1, } },
+      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 449, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
@@ -50,7 +50,6 @@ export default function Blog() {
           <h2 className="font-bold text-lg md:text-4xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
         </div>
 
-        {/* Scrollable Cards Section */}
         <div className="relative">
           <Slider ref={sliderRef} {...settings} className="ml-14">
             {isLoading
@@ -65,8 +64,8 @@ export default function Blog() {
                 </div>
               ))
               : blogs?.map((blog: any, index: number) => (
-                <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
-              ))}
+              <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
+            ))}
           </Slider>
           <button
             aria-label="مشاهده اسلاید بعدی بلاگ"

@@ -85,7 +85,7 @@ export default function Header() {
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center md:gap-[24px] gap-[9px] h-full md:gap-">
             <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer flex justify-center items-center transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary">
-              <Link href="https://app.arz8.com/auth/login">
+              <Link href="https://app.arz8.com/auth/login" aria-label="ورود یا عضویت">
                 <p>ورود یا عضویت</p>
               </Link>
             </div>
@@ -100,6 +100,7 @@ export default function Header() {
             <div
               className="cursor-pointer pr-1  md:pr-0 -order-1 md:order-1"
               onClick={toggleTheme}
+              aria-label="Toggle Theme"
             >
               {theme == "light" ? (
                 <div className="md:w-[42px] l-1 md:h-[42px] w-[25px] h-[25px] mt-1 md:mt-0">
@@ -112,7 +113,7 @@ export default function Header() {
               )}
             </div>
             <span className="xl:hidden cursor-pointer  w-[30px] h-[30px]">
-              <Link href="https://app.arz8.com/auth/login">
+              <Link href="https://app.arz8.com/auth/login" aria-label="User Profile">
                 <UserIcon />
               </Link>
             </span>
