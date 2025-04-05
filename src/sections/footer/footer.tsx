@@ -16,7 +16,7 @@ import Fax from "@/assets/icons/footer/fax";
 import TownyFour from "@/assets/icons/footer/TownyFour";
 import DropdownFooter from "./dropdown-footer";
 import Link from "next/link";
-import FooterSchema from "./footer-schema";
+import FooterSchema from "../../schemas/footer-schema";
 export default function Footer() {
   return (
     <footer className="flex flex-col gap-8 bg-custom-gradient2 sm:px-[120px] pt-[279px] ">
@@ -78,6 +78,7 @@ export default function Footer() {
                     <li className=" hover:text-primary"><Link href="/authenticate">احراز هویت</Link></li>
                     <li className=" hover:text-primary"><Link href="/contact-us">تماس با ما</Link></li>
                     <li className=" hover:text-primary"><Link href="/about">درباره ما</Link></li>
+                    <li className=" hover:text-primary"><Link href="/security">امنیت</Link></li>
                   </ul>
                 </section>
 

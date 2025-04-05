@@ -123,8 +123,7 @@ export default function Rules() {
                                     key={item.id}
                                     onClick={() => tabClick(item.id, item.title)}
                                     className={`flex h-[54px] px-3 rounded-[20px] items-center justify-center whitespace-nowrap text-base font-semibold mx-[5px] cursor-pointer ${isSelected ? "bg-primary text-white" : "bg-fifth text-sixth"
-                                        }`}
-                                >
+                                        }`}>
                                     <span className="truncate select-none text-sm lg:text-base font-semibold">
                                         {item.title}
                                     </span>
@@ -158,9 +157,10 @@ export default function Rules() {
                         <div className="w-5">
                             <span className="mt-[6px] lg:mt-[14px] w-[15px] h-[15px] rounded bg-primary flex justify-start items-start rotate-45" />
                         </div>
-                        <span className="text-xs sm:text-base lg:text-[19px] font-normal text-foreground text-justify leading-[28px] sm:leading-[47px]">
-                            {item.text}
-                        </span>
+                        <p
+                            className="text-xs sm:text-base lg:text-[19px] font-normal text-foreground text-justify leading-[28px] sm:leading-[47px]"
+                            dangerouslySetInnerHTML={{ __html: item.text }}
+                        />
                     </li>
                 ))}
             </ul>

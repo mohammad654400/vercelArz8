@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
-import BlogSchema from "./blog-schema";
+import BlogSchema from "../../../schemas/blog-schema";
 
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/api/v1/latest-posts?limit=8");
@@ -36,8 +36,8 @@ export default function Blog() {
     draggable: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2, } },
-      { breakpoint: 449, settings: { slidesToShow: 1, slidesToScroll: 1, } },
+      { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 449, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
@@ -50,7 +50,6 @@ export default function Blog() {
           <h2 className="font-bold text-lg md:text-4xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
         </div>
 
-        {/* Scrollable Cards Section */}
         <div className="relative">
           <Slider ref={sliderRef} {...settings} className="ml-14">
             {isLoading
@@ -83,7 +82,6 @@ export default function Blog() {
 // Blog Card Component
 function BlogCard({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) {
   return (
-
     <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
       <Image
         className="rounded-3xl max-w-[261px] max-h-[124px]"
@@ -94,15 +92,17 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
         quality={100}
         loading="lazy"
       />
+
       <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
       </p>
       <div className="flex justify-between items-center w-full">
-
         <Link href={link} className="text-primary text-sm md:text-base font-bold">
           ...ادامه مطلب
         </Link>
-        <div className="border-[0.74px] border-foreground px-[10px]  rounded-[15px] text-sm font-semibold leading-6 text-center">مقالات</div>
+        <div className="border-[0.74px] border-foreground
+        px-[10px]  rounded-[15px] text-sm font-semibold leading-6 text-center">مقالات</div>
+
       </div>
     </div>
   );

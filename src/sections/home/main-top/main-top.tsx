@@ -4,7 +4,7 @@ import Ring from "@/assets/icons/ring";
 import BannerSlider from "@/components/slider/banner-slider/banners-slider";
 import CryptoSlider from "@/components/slider/crypto-slider/crypto-slider";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
 import { useState } from "react";
 
@@ -24,7 +24,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           </span>
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
-            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}
+            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۸۰۰ </span>{" "}
             ارزدیجیتال در صرافی ارزهشت
           </p>
           <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
@@ -68,13 +68,13 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
         </div>
         <aside>
           <BannerSlider />
-
         </aside>
       </section>
       <section
         className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] "
         aria-label="آخرین اطلاعیه‌ها"
       >
+
         <div className="flex gap-2 items-center md:gap-2">
           <span className="w-3 h-3 sm:w-4 sm:h-4 mx-1 sm:mr-5 flex self-center items-center ">
             <Ring />
@@ -90,11 +90,12 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
             <ArrowLeft />
           </div>
         </div>
-
       </section>
-      <div className="w-full h-[2px] bg-[#ADADAD80] dark:bg-[#242428] mt-5"></div>
+      <div className="w-full h-[2px] bg-[#ADADAD80]
+      dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 " >
         <CryptoSlider homeData={homeData} infoMap={infoMap} isLoading={isLoading} />
+
       </div>
     </div>
   );

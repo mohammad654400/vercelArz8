@@ -15,8 +15,8 @@ export default function Authentication() {
 
         <div className="flex flex-col xl:flex-row gap-10 xl:gap-[92px]  w-full justify-between  ">
           <div className=" w-full flex flex-col justify-center order-2">
-            <h1 className='text-base md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>احراز هویت سریع در صرافی ارزهشت</h1>
-            <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>احراز هویت در صرافی ارز هشت، یکی از ساده‌ترین و سریع‌ترین فرآیندها در بین صرافی‌های ارز دیجیتال ایرانی است. این صرافی با رعایت قوانین بین‌المللی و داخلی برای جلوگیری از تخلفات مالی، احراز هویت کاربران را به شکلی آسان طراحی کرده است تا تمامی افراد بتوانند در کمترین زمان ممکن از خدمات خرید و فروش ارز دیجیتال بهره‌مند شوند.</p>
+            <h1 className='text-base md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>احراز هویت سریع در صرافی ارز هشت</h1>
+            <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>در صرافی ارز هشت، فرآیند احراز هویت یکی از ساده‌ترین و سریع‌ترین روش‌ها در بین صرافی‌های ارز دیجیتال ایرانی است. این صرافی با رعایت قوانین داخلی و بین‌المللی برای جلوگیری از تخلفات مالی، احراز هویت کاربران را به شکلی آسان طراحی کرده تا همه افراد بتوانند در کمترین زمان ممکن از خدمات خرید و فروش ارز دیجیتال استفاده کنند.</p>
 
 
             <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"https://app.arz8.com/auth/register"}>

@@ -118,8 +118,8 @@ export default function WheelLuck() {
 
         <section className="flex flex-col xl:flex-row gap-y-10   w-full justify-between  ">
           <div className=" w-full flex flex-col justify-center order-2">
-            <h1 className='text-lg md:text-2xl lg:text-3xl xl:text-[40px] font-bold text-Seventh'>گردونه شانس صرافی ارز هشت</h1>
-            <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>گردونه شانس یکی از امکانات جدید و هیجان‌انگیز پلتفرم ارز هشت است که به تازگی رونمایی شده و فرصت ویژه‌ای برای کاربران فراهم کرده است. با این قابلیت، تمامی کاربران می‌توانند هر ۲۴ ساعت یک‌بار گردونه را به صورت کاملاً رایگان بچرخانند و شانس خود را برای دریافت جوایز ارز دیجیتال امتحان کنند.</p>
+            <h1 className='text-lg md:text-2xl lg:text-2xl  font-bold text-Seventh'>گردونه شانس ارز هشت – شانست رو امتحان کن! </h1>
+            <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>هیجان رو به اوج برسون! صرافی ارز هشت با گردونه شانس، یه فرصت ویژه برات فراهم کرده. حالا می‌تونی هر ۲۴ ساعت یک‌بار، کاملاً رایگان گردونه رو بچرخونی و شانس خودت رو برای برنده شدن جوایز ارز دیجیتال امتحان کنی.</p>
 
 
             <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}  aria-label="گردونه شانس صرافی ارزهشت">
@@ -136,7 +136,7 @@ export default function WheelLuck() {
         </section>
 
         <section className='flex flex-col gap-5 lg:gap-10'>
-          <h2 className='text-lg md:text-2xl lg:text-3xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
+          <h2 className='text-lg md:text-2xl lg:text-2xl font-bold'>جوایز گزدونه شانس ارزهشت</h2>
           <div className='w-full overflow-x-auto custom-scrollbar' ref={containerRef}>
             <div className='flex flex-row gap-4 w-full'
               onMouseDown={handleMouseDown}
@@ -182,8 +182,8 @@ export default function WheelLuck() {
             <ImageCarousel />
           </div>
           <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
-            <h3 className='text-lg md-text-2xl  xl:text-3xl font-bold mb-[16px] lg:mb-[28px]'>همین الان ثبت نام کن و گردونه رو بچرخون!</h3>
-            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>با گردونه شانس، ارز دیجیتال رایگان دریافت کنید! پس از برنده شدن، می‌توانید مبلغ جایزه را به‌راحتی به حساب بانکی خود برداشت کنید و از این طریق به‌سادگی از یک صرافی ارز دیجیتال درآمد دلاری کسب کنید.
+            <h2 className='text-lg md-text-xl  lg:text-xl font-bold mb-[16px] lg:mb-[28px]'>با گردونه شانس ارز هشت، هر روز یه قدم به درآمد دلاری نزدیک‌تر شو!</h2>
+            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>کافیه ثبت‌نام کنی، گردونه رو بچرخونی و ارز دیجیتال رایگان برنده بشی. بعد از برد، می‌تونی جایزه‌ات رو به‌راحتی به حساب بانکیت برداشت کنی و از یه صرافی معتبر درآمد دلاری کسب کنی.
             </p>
             <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
               <Link className='mt-2 md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
@@ -225,7 +225,7 @@ export default function WheelLuck() {
 
         <div className='flex flex-col lg:flex-row  justify-between '>
           <div className=" w-full lg:w-[55%] flex flex-col justify-center order-3 lg:order-1  ">
-            <h2 className='text-lg md:text-2xl lg:text-3xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
+            <h2 className='text-lg md:text-2xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>چگونه از گردونه شانس صرافی ارز 8 استفاده کنیم؟</h2>
             <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 

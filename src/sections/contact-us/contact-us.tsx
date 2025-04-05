@@ -330,12 +330,9 @@ export default function ContactUs() {
             <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl font-bold">
               تماس با پشتیبانی صرافی ارزهشت
             </h1>
-            <span className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
-              ما در کنار شما هستیم تا پاسخگوی تمامی سوالات، پیشنهادات و نیازهای
-              شما باشیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای
-              بهبود خدمات ما دارید، با ما در ارتباط باشید. تیم پشتیبانی ما آماده
-              است تا در سریع‌ترین زمان ممکن به شما کمک کند.
-            </span>
+            <p className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
+            ما همیشه در کنار شما هستیم تا به سوالات، پیشنهادات و نیازهای شما پاسخ دهیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با تیم پشتیبانی ما در تماس باشید. ما آماده‌ایم تا در سریع‌ترین زمان ممکن به شما کمک کنیم.
+            </p>
           </div>
 
           <div className="flex flex-col">

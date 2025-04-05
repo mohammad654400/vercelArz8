@@ -79,7 +79,7 @@ export default function SubMenu() {
           ))
         ) : (
           displayedCurrencies?.map((item: any, index: any) => (
-            <Link href={`/coins/${item.symbol}`} key={`coin-${index}`}>
+            <Link href={`/coins/${item.symbol}`} key={`coin-${index}`} aria-label={`خرید ${item.name}`}>
               <div
                 className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#D2D2D240] dark:hover:bg-[#3C3B4180] items-center"
               >
@@ -92,25 +92,25 @@ export default function SubMenu() {
                   ) : (
                     <img
                     src={`https://app.arz8.com/api/images/currency/${item.icon}`}
-                    alt={item.symbol}
+                    alt={`نماد ${item.name}`}
                     className="w-full h-full object-fill"
                   />
                   )}
                 </div>
-                <span className="text-sm font-semibold">خرید {item.name}</span>
+                <h3 className="text-sm font-semibold">خرید {item.name}</h3>
               </div>
             </Link>
           ))
         )}
 
         <Link href='/coins'>
-          <div className="flex justify-center px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-bold py-2">
+          <button className="flex justify-center w-full px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-bold py-2">
             همه ارز ها
-          </div>
+          </button>
         </Link>
-        <div className="mt-[10px] flex justify-center  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2">
+        <button className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2">
           خرید و فروش سریع
-        </div>
+        </button>
       </div>
       <div className="relative px-4 py-5 w-[400px]">
         <div className="flex justify-center items-center bg-primary absolute left-5 top-[26px] rounded-lg w-7 h-7 ">

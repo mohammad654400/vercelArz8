@@ -32,6 +32,7 @@ export default function DropdownMenu() {
           <li><Link href="/authenticate" className="hover:text-primary">احراز هویت</Link></li>
           <li><Link href="/contact-us" className="hover:text-primary">تماس با ما</Link></li>
           <li><Link href="/about" className="hover:text-primary">درباره ما</Link></li>
+          <li><Link href="/security" className="hover:text-primary">امنیت</Link></li>
         </ul>
       </DropdownItem>
 

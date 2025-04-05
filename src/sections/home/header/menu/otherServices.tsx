@@ -47,7 +47,7 @@ export default function OtherServices() {
         <HalfCircle />
       </div>
       {features.map((feature, index) => (
-      <div
+      <article
         key={index}
         className="relative gap-3 w-[288px] px-4 py-2 hover:bg-[#F6F6F6] rounded-lg dark:hover:bg-[#3C3B41]"
       >
@@ -57,12 +57,12 @@ export default function OtherServices() {
               <div className="w-5 h-5">{feature.icon}</div>
               
               {feature.link ? (
-                <p>
-                  <Link href={feature.link}><span className="text-base font-semibold">{feature.title}</span></Link>
-                </p>
+                <h3>
+                  <Link href={feature.link} aria-label={feature.title}><span className="text-base font-semibold">{feature.title}</span></Link>
+                </h3>
               ) : (
-                <p>{feature.title}</p>
-              )}
+                <h3 className="text-base font-semibold">{feature.title}</h3>
+              )}  
             </div>
             {feature.badge && (
               <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10 flex justify-center text-background text-xs items-center">
@@ -73,9 +73,9 @@ export default function OtherServices() {
               <ArrowLeft />
             </div>
           </div>
-          <p className="text-xs font-semibold !leading-6 text-sixth opacity-50">{feature.description}</p>
+          <p className="text-xs font-semibold !leading-6 text-sixth opacity-50"  aria-describedby="feature-description">{feature.description}</p>
         </div>
-      </div>
+      </article>
     ))}
     </div>
   );

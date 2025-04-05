@@ -24,15 +24,14 @@ export default function Banner() {
                     دانلود اپلیکیشن صرافی ارزهشت
                   </h2>
                   <p className="text-start text-base font-bold">
-                    با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
-                  </p>
+                  با اپلیکیشن ارزهشت، راحت و مطمئن معامله کنید:                  </p>
                 </div>
 
                 <ul className="flex flex-col text-start text-lg font-semibold gap-y-5">
                   {[
-                    "دسترسی به بیش از 1600 ارز دیجیتال",
-                    "پشتیبانی سریع و 24 ساعته",
-                    "احراز هویت سریع",
+                    "دسترسی به بیش از 1800 ارز دیجیتال",
+                    "احراز هویت سریع و آسان",
+                    "پشتیبانی 24 ساعته، همیشه کنار شما",
                   ].map((item, index) => (
                     <li key={index} className="flex gap-x-[5px] items-center">
                       <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
