@@ -56,6 +56,10 @@ interface Comment {
   replies: Comment[];
 }
 
+type DetailCoinProps = {
+  coinName: string;
+}
+
 const AccordionData = [
   {
     id: 1,
@@ -96,7 +100,7 @@ const AccordionData = [
   },
 ];
 
-export default function DetailCoin() {
+export default function DetailCoin({ coinName }: DetailCoinProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -109,13 +113,10 @@ export default function DetailCoin() {
 
   const route = usePathname().split("/")[2].toUpperCase();
   const { data: infoData, isLoading: infoIsLoading } = useGetData("info");
-  const { data: coinData, isLoading: coinIsLoading } = useGetData(
-    `cryptocurrencies/${route}`,
-    6000
-  );
+  const { data: coinData, isLoading: coinIsLoading } = useGetData(`cryptocurrencies/${coinName}`, 60000);
   const { data: homeData, isLoading: homeLoading } = useGetData("home", 60000);
   const coin = infoData?.cryptocurrency?.find(
-    (item: any) => item.symbol === route
+    (item: any) => item.symbol === coinName
   );
 
   const coinChart = coinData?.chart;
@@ -124,22 +125,22 @@ export default function DetailCoin() {
   useEffect(() => {
     if (infoData) {
       const foundCoin = infoData.cryptocurrency?.find(
-        (item: any) => item.symbol === route
+        (item: any) => item.symbol === coinName
       );
       setCurrentCoin(foundCoin || null); // Set currentCoin when data is available
     }
-  }, [infoData, route]);
+  }, [infoData, coinName]);
 
   // handle 404 error
   const router = useRouter();
   useEffect(() => {
     if (
       infoData &&
-      !infoData?.cryptocurrency?.some((item: any) => item.symbol === route)
+      !infoData?.cryptocurrency?.some((item: any) => item.symbol === coinName)
     ) {
       router.push("/not-found");
     }
-  }, [infoData, route, router]);
+  }, [infoData, coinName, router]);
 
   // array for
   const newCryptos = coinData?.new.map((crypto: any) => {
@@ -297,9 +298,8 @@ export default function DetailCoin() {
                   ) : currentCoin ? (
                     currentCoin?.isFont ? (
                       <i
-                        className={`cf cf-${
-                          currentCoin?.symbol?.toLowerCase() || "default"
-                        } text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-fill`}
+                        className={`cf cf-${currentCoin?.symbol?.toLowerCase() || "default"
+                          } text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-fill`}
                         style={{ color: currentCoin?.color || "#000" }}
                       ></i>
                     ) : (
@@ -335,9 +335,8 @@ export default function DetailCoin() {
 
                     {/* Arrow Icon */}
                     <div
-                      className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${
-                        !openModal ? "rotate-180" : ""
-                      } ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}
+                      className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
+                        } ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}
                     >
                       <ArrowBotton />
                     </div>
@@ -419,11 +418,10 @@ export default function DetailCoin() {
                   <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
                     <span
                       dir="ltr"
-                      className={`h-full w-full text-[9px] sm:text-lg flex text-center items-center justify-center font-medium ${
-                        coinData?.priceChangePercent?.includes("-")
+                      className={`h-full w-full text-[9px] sm:text-lg flex text-center items-center justify-center font-medium ${coinData?.priceChangePercent?.includes("-")
                           ? "text-[#F00500]"
                           : "text-[#33B028]"
-                      }`}
+                        }`}
                     >
                       {coinData?.priceChangePercent}%
                     </span>
@@ -471,7 +469,7 @@ export default function DetailCoin() {
 
         <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
           <TransAction
-            coin={filterData?.find((item) => item?.symbol === route)}
+            coin={filterData?.find((item) => item?.symbol === coinName)}
             infoLoading={false}
             homeLoading={false}
             homeData={homeData}
@@ -533,7 +531,7 @@ export default function DetailCoin() {
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">
           <DescriptionTable
             persianName={currentCoin?.name.fa}
-            symbol={route.toLocaleUpperCase()}
+            symbol={coinName.toLocaleUpperCase()}
             lastDollarPrice={formatNumber(coinData?.lastPrice)}
             lastTomanPrice={formatNumber(coinData?.priceToman.buy)}
             dailyChangePercent={coinData?.priceChangePercent}
