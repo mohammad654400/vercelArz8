@@ -58,6 +58,7 @@ interface Comment {
 
 type DetailCoinProps = {
   coinName: string;
+  coinDescription: string;
 }
 
 const AccordionData = [
@@ -100,7 +101,8 @@ const AccordionData = [
   },
 ];
 
-export default function DetailCoin({ coinName }: DetailCoinProps) {
+export default function DetailCoin({ coinName, coinDescription }: DetailCoinProps) {
+  console.log(coinDescription)
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -118,6 +120,7 @@ export default function DetailCoin({ coinName }: DetailCoinProps) {
   const coin = infoData?.cryptocurrency?.find(
     (item: any) => item.symbol === coinName
   );
+
 
   const coinChart = coinData?.chart;
 
@@ -499,7 +502,7 @@ export default function DetailCoin({ coinName }: DetailCoinProps) {
                 <span className="text-xs">ایکس BNB</span>
               </div>
             </div>
-            <DetailDescription />
+            <DetailDescription coinDescription={coinDescription} />
           </div>
 
           <div className="flex flex-col gap-5 mt-10 lg:mt-11">
