@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Phone from "@/assets/images/downloadApp/phone.png";
-import Android from "@/assets/icons/downloadApp/android";
 import GooglePlay from "@/assets/icons/downloadApp/googlePlay";
 import Myket from "@/assets/icons/downloadApp/miket";
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
@@ -41,7 +40,6 @@ export default function Banner() {
                 </ul>
 
                 <nav  className="flex w-full lg:justify-start justify-start py-[30px]" aria-label="دانلود اپلیکیشن">
-                  <Link  className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
                   <Link  className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                   <Link  className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                   <Link  className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
@@ -106,7 +104,7 @@ export default function Banner() {
                   </div>
 
                   <nav className="flex w-full  justify-center mt-[10px] sm:mt-5">
-                    <Link className="z-20 flex" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
+                    {/* <Link className="z-20 flex" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link> */}
                     <Link className="z-20 flex" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                     <Link className="z-20 flex" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                     <Link className="z-20 flex" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>

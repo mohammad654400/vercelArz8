@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Phone from "@/assets/images/downloadApp/phone.png";
-import Phone2 from "@/assets/images/downloadApp/phone2.png";
-import Android from "@/assets/icons/downloadApp/android";
 import Myket from "@/assets/icons/downloadApp/miket";
 import CafeBazar from "@/assets/icons/downloadApp/cafeBazar";
 import Web from "@/assets/icons/downloadApp/web";
@@ -22,21 +20,20 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
 
             <article className="w-full order-3 lg:order-1 h-full flex flex-col justify-center text-center lg:text-start lg:mt-0 mt-10">
               <div className="flex flex-col ">
-                <h2 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
+                <h1 className="text-2xl sm:text-[26px] lg:text-[40px] font-extrabold">
                   دانلود اپلیکیشن صرافی ارزهشت
-                </h2>
+                </h1>
                 <p className="text-xs lg:text-lg mt-2 md:mt-5 font-bold">
                   با اپلیکیشن ارزهشت در یک صرافی تمام عیار معامله کنید.
                 </p>
               </div>
 
               <ul className="gap-[19px] lg:gap-[30px] mt-[32px] mb-[43px] lg:mt-[76px] lg:mb-[74px] self-center lg:self-start text-start list-disc list-inside text-[13px]  lg:text-[21px] font-semibold">
-                <h2><li>دسترسی به بیش از 1600 ارز دیجیتال</li></h2>
+                <h2><li>دسترسی به بیش از 1800 ارز دیجیتال</li></h2>
                 <h2><li className="my-4">پشتیبانی سریع و 24 ساعته</li></h2>
                 <h2><li>احراز هویت سریع</li></h2>
               </ul>
               <div className="flex w-full lg:justify-start justify-around ">
-                <Link className="z-20 hover:text-[#4a80f5]" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link>
                 <Link className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                 <Link className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                 <Link className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>

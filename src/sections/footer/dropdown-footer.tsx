@@ -26,7 +26,7 @@ export default function DropdownMenu() {
           <li><Link href="https://app.arz8.com/support" className="hover:text-primary" >ارسال تیکت پشتیبانی</Link></li>
           <li><Link href="/faq" className="hover:text-primary">آموزش‌های صرافی</Link></li>
           <li><Link href="/job" className="hover:text-primary">فرصت های شغلی</Link></li>
-          <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
+          <li><Link href="/terms" className="hover:text-primary">قوانین و مقررات</Link></li>
           <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
           <li><Link href="/wage" className="hover:text-primary">سطوح کاربری</Link></li>
           <li><Link href="/authenticate" className="hover:text-primary">احراز هویت</Link></li>
@@ -46,7 +46,7 @@ export default function DropdownMenu() {
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
           <li><Link href="/coins/BTC" className="hover:text-primary">خرید و فروش ارزدیجیتال</Link></li>
           <li><Link href="/coins" className="hover:text-primary">قیمت لحظه‌ای ارزها</Link></li>
-          <li><Link href="/download" className="hover:text-primary">دانلود اپلیکیشن</Link></li>
+          <li><Link href="/application" className="hover:text-primary">دانلود اپلیکیشن</Link></li>
           <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
           <li><Link href="/calculate" className="hover:text-primary">ماشین حساب</Link></li>
           <li><Link href="/bug-bounty" className="hover:text-primary">باگ بانتی</Link></li>

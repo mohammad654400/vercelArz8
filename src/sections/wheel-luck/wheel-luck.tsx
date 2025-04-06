@@ -122,7 +122,7 @@ export default function WheelLuck() {
             <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>هیجان رو به اوج برسون! صرافی ارز هشت با گردونه شانس، یه فرصت ویژه برات فراهم کرده. حالا می‌تونی هر ۲۴ ساعت یک‌بار، کاملاً رایگان گردونه رو بچرخونی و شانس خودت رو برای برنده شدن جوایز ارز دیجیتال امتحان کنی.</p>
 
 
-            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"#"}  aria-label="گردونه شانس صرافی ارزهشت">
+            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"https://app.arz8.com/tools/wheel"}  aria-label="گردونه شانس صرافی ارزهشت">
               <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>گرداندن گردونه</button>
             </Link>
           </div>
@@ -229,7 +229,7 @@ export default function WheelLuck() {
             <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>به طور کلی استفاده از گردونه صرافی ارز هشت، شرایط پیچیده ای ندارد، فقط کافی است تا در صرافی ثبت نام کنید و هر روز شانس‌تان را برای برنده شدن امتحان کنید.</p>
 
 
-            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="#">
+            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="https://app.arz8.com/tools/wheel">
               <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px]  lg:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>چرخش گردونه</button>
             </Link>
           </div>

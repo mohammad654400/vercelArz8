@@ -2,7 +2,6 @@
 
 import { ThemeProvider } from "@/contexts/theme-provider";
 import Footer from "@/sections/footer/footer";
-import FeaturesBanner from "@/sections/home/features-banner/features-banner";
 import Header from "@/sections/home/header/header";
 import { usePathname, useRouter } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

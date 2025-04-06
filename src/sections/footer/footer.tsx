@@ -54,12 +54,12 @@ export default function Footer() {
                   <Myket />
                 </div>
               </Link>
-              <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#4a80f5] hover:border-[#4a80f5] dark:hover:border-[#4a80f5]">
+              {/* <Link href={"https://cdn.arz8.com/application.apk"} className="flex justify-between px-2  items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#4a80f5] hover:border-[#4a80f5] dark:hover:border-[#4a80f5]">
                 <p className="text-sm "> دانلود مستقیم</p>
                 <div className="w-6 h-6 ">
                   <DirectDownload />
                 </div>
-              </Link>
+              </Link> */}
             </nav>
             <div className="hidden md:block">
               <div className="flex justify-between ">
@@ -72,7 +72,7 @@ export default function Footer() {
                     <li className=" hover:text-primary"><Link href="https://app.arz8.com/support">ارسال تیکت پشتیبانی</Link></li>
                     <li className=" hover:text-primary"><Link href="/faq">آموزش‌های صرافی</Link></li>
                     <li className=" hover:text-primary"><Link href="/job">فرصت‌های شغلی</Link></li>
-                    <li className=" hover:text-primary"><Link href="/rules">قوانین و مقررات</Link></li>
+                    <li className=" hover:text-primary"><Link href="/terms">قوانین و مقررات</Link></li>
                     <li  className="hover:text-primary"><Link href="/wheel-luck">گردونه شانس</Link></li>
                     <li className=" hover:text-primary"><Link href="/wage">سطوح کاربری</Link></li>
                     <li className=" hover:text-primary"><Link href="/authenticate">احراز هویت</Link></li>
