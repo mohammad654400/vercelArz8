@@ -97,7 +97,7 @@ export default function BannerSlider({ homeData, infoMap,isLoading}: { homeData:
             <div className="w-full" key={pageIndex}>
               <div className="grid grid-cols-2 lg:grid-cols-4 text-[10px] md:text-sm w-full gap-y-[14px] lg:gap-y-3 ">
                 {group.map((card, index) => (
-                  <Link href={`/coins/${card.symbol}`} key={card.id} className="flex justify-between w-full h-full  pl-3 md:pl-4">
+                  <Link href={`/price-cryptocurrencies/${card.symbol}`} key={card.id} className="flex justify-between w-full h-full  pl-3 md:pl-4">
                     <div className="flex flex-col justify-center">
                       <div className="flex pb-1 gap-x-1 text-[10px] md:text-[13.5px] font-semibold">
                         <span className="text-[8px]">تومان</span>

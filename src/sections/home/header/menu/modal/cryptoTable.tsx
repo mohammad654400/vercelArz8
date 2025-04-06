@@ -203,7 +203,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
             ))
           ) : (
             displayedCurrencies.map((crypto, index) => (
-              <Link href={`/coins/${crypto.symbol}`} key={index}>
+              <Link href={`/price-cryptocurrencies/${crypto.symbol}`} key={index}>
                 <div
                   ref={index === displayedCurrencies.length - 3 ? lastElementRef : null}
                   className="ml-2 flex w-full items-center border-b border-[#ADADAD80] py-2 text-sm"

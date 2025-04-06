@@ -44,8 +44,8 @@ export default function DropdownMenu() {
         toggle={toggleSection}
       >
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
-          <li><Link href="/coins/BTC" className="hover:text-primary">خرید و فروش ارزدیجیتال</Link></li>
-          <li><Link href="/coins" className="hover:text-primary">قیمت لحظه‌ای ارزها</Link></li>
+          <li><Link href="/price-cryptocurrencies/BTC" className="hover:text-primary">خرید و فروش ارزدیجیتال</Link></li>
+          <li><Link href="/price-cryptocurrencies" className="hover:text-primary">قیمت لحظه‌ای ارزها</Link></li>
           <li><Link href="/download" className="hover:text-primary">دانلود اپلیکیشن</Link></li>
           <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
           <li><Link href="/calculate" className="hover:text-primary">ماشین حساب</Link></li>

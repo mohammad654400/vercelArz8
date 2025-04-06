@@ -17,7 +17,7 @@ export default function Menu() {
         </div>
       </div>
       <div className="flex justify-center items-center  h-full hover:text-primary cursor-pointer" role="menuitem">
-       <Link href='/coins/BTC' aria-label="خرید و فروش آنی">
+       <Link href='/price-cryptocurrencies/BTC' aria-label="خرید و فروش آنی">
         خرید و فروش آنی
        </Link>
       </div>

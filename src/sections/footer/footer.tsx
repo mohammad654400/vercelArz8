@@ -88,8 +88,8 @@ export default function Footer() {
                   </h3>
                   <ul className="flex flex-col gap-4">
 
-                    <li className=" hover:text-primary"><Link href="/coins/BTC">خرید و فروش ارز دیجیتال</Link></li>
-                    <li className=" hover:text-primary"><Link href="/coins">قیمت لحظه‌ای ارزها</Link></li>
+                    <li className=" hover:text-primary"><Link href="/price-cryptocurrencies/BTC">خرید و فروش ارز دیجیتال</Link></li>
+                    <li className=" hover:text-primary"><Link href="/price-cryptocurrencies">قیمت لحظه‌ای ارزها</Link></li>
                     <li className=" hover:text-primary"><Link href="/download">دانلود اپلیکیشن</Link></li>
                     <li className=" hover:text-primary"><Link href="/calculate">ماشین حساب</Link></li>
                     <li className=" hover:text-primary"><Link href="/bug-bounty">باگ بانتی</Link></li>

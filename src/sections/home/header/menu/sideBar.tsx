@@ -42,16 +42,16 @@ export default function SideBar({ close }: { close: () => void }) {
               <Link href="/" onClick={handleClose}><h1>منوی اصلی</h1></Link>
               <Accordion title="قیمت ارزهای دیجیتال">
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] hover:border-[#FFC107] transition-all">
-                  <Link onClick={handleClose} href="/coins/BTC">خرید و فروش سریع</Link>
+                  <Link onClick={handleClose} href="/price-cryptocurrencies/BTC">خرید و فروش سریع</Link>
                 </div>
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
-                  <Link onClick={handleClose} href="/coins">ارز های جدید</Link>
+                  <Link onClick={handleClose} href="/price-cryptocurrencies">ارز های جدید</Link>
                 </div>
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
-                  <Link onClick={handleClose} href="/coins">لیست همه ارز ها</Link>
+                  <Link onClick={handleClose} href="/price-cryptocurrencies">لیست همه ارز ها</Link>
                 </div>
               </Accordion>
-              <Link onClick={handleClose} href="/coins/BTC"><p className="pb-3">خرید و فروش انی </p></Link>
+              <Link onClick={handleClose} href="/price-cryptocurrencies/BTC"><p className="pb-3">خرید و فروش انی </p></Link>
               <Link onClick={handleClose} href="/faq"><p>سوالات متداول</p></Link>
               <Accordion title="سایر خدمات">
                 <div className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
