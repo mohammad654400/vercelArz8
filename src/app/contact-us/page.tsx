@@ -2,6 +2,7 @@
 import React from 'react';
 import ContactUs from "@/sections/contact-us/contact-us";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import ContactUsSchema from '@/schemas/contactus-schema';
 
 export default function ContactUsPage() {
   return (
@@ -13,6 +14,7 @@ export default function ContactUsPage() {
         appendTo: "head",
       }}
     >
+      <ContactUsSchema/>
       <ContactUs />
     </GoogleReCaptchaProvider>
   );
