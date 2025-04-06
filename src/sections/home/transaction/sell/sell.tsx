@@ -89,7 +89,7 @@ export default function Sell({
         `}
       >
         <div className="relative w-full ">
-          <p className="inline-block">مقدار (دریافت می‌کنید)</p>
+          <p className="inline-block">مقدار (پرداخت می کنید)</p>
           <input
             pattern="[0-9]*"
             inputMode="decimal"
@@ -163,7 +163,7 @@ export default function Sell({
             route === "calculate" ? "md:mt-8 mt-4 " : ""
           }`}
         >
-          <p>مبلغ (پرداخت می‌کنید)</p>
+          <p>مبلغ (دریافت می کنید)</p>
           <input
             className={`
              ${width < 800 ? "lg:w-full" : "lg:w-[414px]"}
