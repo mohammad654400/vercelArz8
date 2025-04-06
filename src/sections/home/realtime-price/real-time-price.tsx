@@ -113,7 +113,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
             ))}
           </nav>
           <Link
-            href="/coins"
+            href="/price-cryptocurrencies"
             className="text-xs w-40 text-black dark:text-white hidden md:block"
             aria-label="مشاهده تمام ارزها"
           >
@@ -226,7 +226,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                       />
                     </div>
 
-                    <Link href={`/coins/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
+                    <Link href={`/price-cryptocurrencies/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
                       <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
                         جزئیات بیشتر
                       </button>
@@ -235,7 +235,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                   </div>
 
 
-                  <Link href={`/coins/${currency.symbol}`} className="grid md:hidden grid-cols-9 w-full items-center text-center py-4">
+                  <Link href={`/price-cryptocurrencies/${currency.symbol}`} className="grid md:hidden grid-cols-9 w-full items-center text-center py-4">
 
 
                     <div className="flex flex-col justify-start pl-0 pr-0 col-span-4">
@@ -297,7 +297,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
           </div>
           <div className="sm:hidden flex justify-center items-center gap-3 py-6 px-5 cursor-pointer">
             <span >
-              <Link href="/coins">مشاهده تمام ارزها</Link>
+              <Link href="/price-cryptocurrencies">مشاهده تمام ارزها</Link>
             </span>
             <div className="w-[17px] h-[17px]"> <ArrowLeft /></div>
 

@@ -96,7 +96,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
           ) : filteredCurrencies.length > 0 ? (
             filteredCurrencies.map((currency: any, index: any) => (
               hasLink ? (
-                <Link  href={`/coins/${currency.symbol}`} key={index}>
+                <Link  href={`/price-cryptocurrencies/${currency.symbol}`} key={index}>
                   <div
                     key={index}
                     onClick={() => handleCurrencySelect(currency)}

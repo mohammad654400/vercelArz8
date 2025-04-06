@@ -21,7 +21,7 @@ const CryptoDetails = ({ icon, persianName, symbol, lastDollarPrice, priceChange
 
 
   return (
-    <Link href={`/coins/${symbol}`}>
+    <Link href={`/price-cryptocurrencies/${symbol}`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="w-[52px] h-[52px]">
