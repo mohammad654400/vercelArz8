@@ -50,7 +50,7 @@ export default function Banner() {
                 </nav>
 
                 <div className="flex items-center gap-x-4">
-                  <Link href="/download">
+                  <Link href="/application">
                     <Image loading="lazy" src={QrCode}   alt="دانلود اپلیکیشن از طریق QR Code" quality={100} className="w-[102px] h-[102px]" ></Image>
                   </Link>
 

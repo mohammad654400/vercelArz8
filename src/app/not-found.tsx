@@ -26,7 +26,7 @@ export default function NotFound() {
         </Link>
 
         <div className='w-full grid grid-cols-2 sm:grid-cols-4 grid-flow-row-dense gap-3 mb-20'>
-          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/download"}>
+          <Link className='flex flex-col w-[153px] h-[153px] md:w-[183px] md:h-[183px] rounded-[20px] bg-third justify-center items-center gap-2 md:gap-7 justify-self-start  md:justify-self-center' href={"/application"}>
             <div className='w-[56px] h-[56px]'>
               <Download />
             </div>

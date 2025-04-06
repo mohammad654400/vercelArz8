@@ -42,7 +42,7 @@ const DownloadNotification = () => {
       </div>
       <div className="flex gap-1 items-center">
         <Link
-          href="/download"
+          href="/application"
           className="bg-white text-black p-[6px] text-[10px] rounded-lg"
           onClick={hideNotification} // Hide notification when the user clicks the download button
         >

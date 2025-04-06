@@ -14,7 +14,7 @@ export default function DownloadSection() {
       </div>
       <p className="flex justify-center pb-[21px]">اسکن کنید:</p>
       <div className="flex flex-col justify-center items-center gap-2">
-       <Link href="./download">
+       <Link href="./application">
         {theme === "light" ? (
           <Image
             alt="qrcode"

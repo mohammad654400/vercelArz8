@@ -1,11 +1,11 @@
 
 "use client";
 import React, { useState, useMemo, useCallback, useRef } from "react";
-import { tabBar, tabData } from "./data/rules-data";
+import { tabBar, tabData } from "./data/terms-data";
 import Info from "@/assets/icons/rules/info";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 
-export default function Rules() {
+export default function Terms() {
     const [selectedCategory, setSelectedCategory] = useState<{ id: number; title: string }>({
         id: 0,
         title: tabBar[0]?.title || "شرایط و قوانین کلی",

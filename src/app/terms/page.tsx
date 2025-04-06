@@ -1,8 +1,8 @@
-import Rules from '@/sections/rules/rules'
+import Terms from '@/sections/terms/terms'
 import React from 'react'
 
 export default function RulesPage() {
   return (
-    <Rules/>
+    <Terms/>
   )
 }

@@ -74,7 +74,7 @@ export default function Footer() {
                     <li className=" hover:text-primary"><Link href="/job">فرصت‌های شغلی</Link></li>
                     <li className=" hover:text-primary"><Link href="/rules">قوانین و مقررات</Link></li>
                     <li  className="hover:text-primary"><Link href="/wheel-luck">گردونه شانس</Link></li>
-                    <li className=" hover:text-primary"><Link href="/fee">سطوح کاربری</Link></li>
+                    <li className=" hover:text-primary"><Link href="/wage">سطوح کاربری</Link></li>
                     <li className=" hover:text-primary"><Link href="/authenticate">احراز هویت</Link></li>
                     <li className=" hover:text-primary"><Link href="/contact-us">تماس با ما</Link></li>
                     <li className=" hover:text-primary"><Link href="/about">درباره ما</Link></li>
@@ -90,7 +90,7 @@ export default function Footer() {
 
                     <li className=" hover:text-primary"><Link href="/coins/BTC">خرید و فروش ارز دیجیتال</Link></li>
                     <li className=" hover:text-primary"><Link href="/coins">قیمت لحظه‌ای ارزها</Link></li>
-                    <li className=" hover:text-primary"><Link href="/download">دانلود اپلیکیشن</Link></li>
+                    <li className=" hover:text-primary"><Link href="/application">دانلود اپلیکیشن</Link></li>
                     <li className=" hover:text-primary"><Link href="/calculate">ماشین حساب</Link></li>
                     <li className=" hover:text-primary"><Link href="/bug-bounty">باگ بانتی</Link></li>
                     <li className=" hover:text-primary"><Link href="https://arz8.com/blog/">وبلاگ</Link></li>

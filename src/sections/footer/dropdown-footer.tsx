@@ -28,7 +28,7 @@ export default function DropdownMenu() {
           <li><Link href="/job" className="hover:text-primary">فرصت های شغلی</Link></li>
           <li><Link href="/rules" className="hover:text-primary">قوانین و مقررات</Link></li>
           <li><Link href="/wheel-luck" className="hover:text-primary">گردونه شانس</Link></li>
-          <li><Link href="/fee" className="hover:text-primary">سطوح کاربری</Link></li>
+          <li><Link href="/wage" className="hover:text-primary">سطوح کاربری</Link></li>
           <li><Link href="/authenticate" className="hover:text-primary">احراز هویت</Link></li>
           <li><Link href="/contact-us" className="hover:text-primary">تماس با ما</Link></li>
           <li><Link href="/about" className="hover:text-primary">درباره ما</Link></li>

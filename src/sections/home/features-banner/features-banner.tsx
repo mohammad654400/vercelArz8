@@ -4,7 +4,7 @@ import logo from "@/assets/logo.png";
 import Link from "next/link";
 export default function FeaturesBanner() {
   return (
-    <Link href="/download">
+    <Link href="/application">
       <div className="w-full h-12 md:h-14 bg-[#242428] text-white  flex justify-center items-center gap-2">
         <Image
           alt="ارز هشت"

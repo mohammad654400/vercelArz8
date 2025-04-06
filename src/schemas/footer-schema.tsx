@@ -101,7 +101,7 @@ export default function FooterSchema() {
                   "@type": "ListItem",
                   "position": 4,
                   "name": "قوانین و مقررات",
-                  "url": "https://arz8.com/rules"
+                  "url": "https://arz8.com/terms"
                 },
                 {
                   "@type": "ListItem",
@@ -113,7 +113,7 @@ export default function FooterSchema() {
                   "@type": "ListItem",
                   "position": 6,
                   "name": "سطوح کاربری",
-                  "url": "https://arz8.com/fee"
+                  "url": "https://arz8.com/wage"
                 },
                 {
                   "@type": "ListItem",
@@ -144,6 +144,12 @@ export default function FooterSchema() {
                   "position": 11, 
                   "name": "وبلاگ",  
                   "url": "https://arz8.com/blog"  
+                } ,
+                {  
+                  "@type": "ListItem",  
+                  "position": 12, 
+                  "name": "دانلود اپلیکیشن",  
+                  "url": "https://arz8.com/application"  
                 } 
               ]
             }

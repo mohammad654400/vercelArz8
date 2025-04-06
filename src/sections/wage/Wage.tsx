@@ -7,7 +7,7 @@ import { TabContent } from "./tab/TabContent";
 import {
     TransactionFeeListText, TransactionFeesTableBody, TransactionFeesTableHeaders, AccordionData,
     ScheduleWithdrawListText, ScheduleWithdrawTableHeaders, ScheduleWithdrawTableBody
-} from "./data/feeData";
+} from "./data/wageData";
 
 
 interface TabProps {
