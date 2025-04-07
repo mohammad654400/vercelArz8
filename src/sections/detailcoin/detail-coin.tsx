@@ -19,6 +19,7 @@ import CryptoDetails from "./crypto-details";
 import Skeleton from "react-loading-skeleton";
 import ChartContainer from "./charts-container";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
+import DetailCoinSchema from "@/schemas/DetailCoinSchema";
 
 interface HomeCurrency {
   symbol: string;
@@ -102,7 +103,6 @@ const AccordionData = [
 ];
 
 export default function DetailCoin({ coinName, coinDescription }: DetailCoinProps) {
-  console.log(coinDescription)
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -272,321 +272,334 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
   };
 
   return (
-    <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
-      <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
-        {infoIsLoading || coinIsLoading ? (
-          <div className="h-[44px] w-[267px] sm:w-[434px] sm:h-[75px] md:w-[590px] rounded-lg overflow-hidden ">
-            <Skeleton
-              baseColor={baseColor}
-              highlightColor={highlightColor}
-              className="!w-full !h-full !rounded-lg !overflow-hidden"
-            />
-          </div>
-        ) : (
-          <>
-            <div
-              onClick={handlerChenge}
-              className="flex justify-between items-center w-[70%] md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:pr-4 sm:pl-2 rounded-[9px] sm:rounded-2xl cursor-pointer gap-2 sm:gap-4"
-            >
-              <div className="flex h-full justify-center gap-x-2 sm:gap-x-4 items-center min-w-0">
-                {/* Coin Icon */}
-                <div className="w-7 h-7 lg:w-12 lg:h-12 sm:my-auto">
-                  {infoIsLoading || coinIsLoading ? (
-                    <Skeleton
-                      baseColor={baseColor}
-                      highlightColor={highlightColor}
-                      circle
-                      className="w-[30px] sm:w-[41px] h-[30px] sm:h-[41px] sm:-translate-y-2 lg:translate-y-0"
-                    />
-                  ) : currentCoin ? (
-                    currentCoin?.isFont ? (
-                      <i
-                        className={`cf cf-${currentCoin?.symbol?.toLowerCase() || "default"
-                          } text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-fill`}
-                        style={{ color: currentCoin?.color || "#000" }}
-                      ></i>
-                    ) : (
-                      <img
-                        src={
-                          currentCoin?.icon
-                            ? `https://app.arz8.com/api/images/currency/${currentCoin?.icon}`
-                            : "/default-image.png"
-                        }
-                        alt={currentCoin?.symbol || "Unknown Coin"}
-                        className="w-full h-full object-fill"
-                      />
-                    )
-                  ) : (
-                    <p>X</p>
-                  )}
-                </div>
+    <>
+      {/* <DetailCoinSchema
+        coinName={coinName}
+        coinTitle={`${coin?.name?.fa} (${coin?.symbol?.toUpperCase()})`}
+        coinLogo={currentCoin?.isFont ? `cf cf-${currentCoin?.symbol?.toLowerCase()}` : `https://app.arz8.com/api/images/currency/${currentCoin?.icon}`}
+        isFontIcon={currentCoin?.isFont}  // Pass whether it's a Font Awesome icon or not
+        priceUSD={formatNumber(coinData?.lastPrice)}
+        priceToman={formatNumber(coinData?.priceToman.buy)}
+        change24h={coinData?.priceChangePercent}
+        description={coinDescription}
+      /> */}
 
-                {/* Coin Name Container */}
-                <div className="flex flex-col h-full justify-center gap-y-[2px] sm:gap-y-3 min-w-0">
-                  <div className="flex items-center gap-x-1 md:gap-x-2 min-w-0">
+      <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
+        <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
+          {infoIsLoading || coinIsLoading ? (
+            <div className="h-[44px] w-[267px] sm:w-[434px] sm:h-[75px] md:w-[590px] rounded-lg overflow-hidden ">
+              <Skeleton
+                baseColor={baseColor}
+                highlightColor={highlightColor}
+                className="!w-full !h-full !rounded-lg !overflow-hidden"
+              />
+            </div>
+          ) : (
+            <>
+              <div
+                onClick={handlerChenge}
+                className="flex justify-between items-center w-[70%] md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:pr-4 sm:pl-2 rounded-[9px] sm:rounded-2xl cursor-pointer gap-2 sm:gap-4"
+              >
+                <div className="flex h-full justify-center gap-x-2 sm:gap-x-4 items-center min-w-0">
+                  {/* Coin Icon */}
+                  <div className="w-7 h-7 lg:w-12 lg:h-12 sm:my-auto">
                     {infoIsLoading || coinIsLoading ? (
                       <Skeleton
                         baseColor={baseColor}
                         highlightColor={highlightColor}
-                        className="!w-16 !h-2 md:w-[80px] md:h-[28px] !p-0 !mb-0"
+                        circle
+                        className="w-[30px] sm:w-[41px] h-[30px] sm:h-[41px] sm:-translate-y-2 lg:translate-y-0"
+                      />
+                    ) : currentCoin ? (
+                      currentCoin?.isFont ? (
+                        <i
+                          className={`cf cf-${currentCoin?.symbol?.toLowerCase() || "default"
+                            } text-3xl md:text-[41px] w-full h-full flex items-center justify-center object-fill`}
+                          style={{ color: currentCoin?.color || "#000" }}
+                        ></i>
+                      ) : (
+                        <img
+                          src={
+                            currentCoin?.icon
+                              ? `https://app.arz8.com/api/images/currency/${currentCoin?.icon}`
+                              : "/default-image.png"
+                          }
+                          alt={currentCoin?.symbol || "Unknown Coin"}
+                          className="w-full h-full object-fill"
+                        />
+                      )
+                    ) : (
+                      <p>X</p>
+                    )}
+                  </div>
+
+                  {/* Coin Name Container */}
+                  <div className="flex flex-col h-full justify-center gap-y-[2px] sm:gap-y-3 min-w-0">
+                    <div className="flex items-center gap-x-1 md:gap-x-2 min-w-0">
+                      {infoIsLoading || coinIsLoading ? (
+                        <Skeleton
+                          baseColor={baseColor}
+                          highlightColor={highlightColor}
+                          className="!w-16 !h-2 md:w-[80px] md:h-[28px] !p-0 !mb-0"
+                        />
+                      ) : (
+                        <p className="text-[10px] sm:text-lg font-semibold truncate flex-1 min-w-0 overflow-hidden">
+                          {coin?.name?.fa}
+                        </p>
+                      )}
+
+                      {/* Arrow Icon */}
+                      <div
+                        className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
+                          } ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}
+                      >
+                        <ArrowBotton />
+                      </div>
+                      {openModal && (
+                        <CryptoModal
+                          currencies={filterData}
+                          toggle={() => setOpenModal(!openModal)}
+                          setCurrency={setCurrency}
+                          hasLink={true}
+                          setCurrentCoin={setCurrentCoin}
+                        />
+                      )}
+                    </div>
+
+                    {/* English Name */}
+                    {infoIsLoading || coinIsLoading ? (
+                      <Skeleton
+                        baseColor={baseColor}
+                        highlightColor={highlightColor}
+                        width={60}
+                        height={18}
+                        className="!w-12 !h-3 md:w-[60px] md:h-[18px] !p-0 !mt-0"
                       />
                     ) : (
-                      <p className="text-[10px] sm:text-lg font-semibold truncate flex-1 min-w-0 overflow-hidden">
-                        {coin?.name?.fa}
+                      <span dir="ltr" className="text-[10px] sm:text-lg font-semibold opacity-50 !leading-3 truncate block max-w-full text-right">
+                        {coin?.name?.en}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Price and Change Section */}
+                <div className="flex h-full justify-center gap-x-2 sm:gap-x-4">
+                  <div className="flex flex-col h-full justify-center items-end gap-y-[6px] sm:gap-y-3">
+                    {infoIsLoading || coinIsLoading ? (
+                      <Skeleton
+                        baseColor={baseColor}
+                        highlightColor={highlightColor}
+                        width={70}
+                        height={24}
+                        className="!w-[55px] !h-[16px] md:w-[70px] md:h-[24px]"
+                      />
+                    ) : (
+                      <p className="text-[10px] sm:text-[21px] font-semibold flex leading-3">
+                        ${formatNumber(coinData?.lastPrice)}
                       </p>
                     )}
-
-                    {/* Arrow Icon */}
-                    <div
-                      className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
-                        } ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}
-                    >
-                      <ArrowBotton />
-                    </div>
-                    {openModal && (
-                      <CryptoModal
-                        currencies={filterData}
-                        toggle={() => setOpenModal(!openModal)}
-                        setCurrency={setCurrency}
-                        hasLink={true}
-                        setCurrentCoin={setCurrentCoin}
+                    {infoIsLoading || coinIsLoading ? (
+                      <Skeleton
+                        baseColor={baseColor}
+                        highlightColor={highlightColor}
+                        width={50}
+                        height={14}
+                        className="!w-[38px] !h-[12px] md:w-[50px] md:h-[44px]"
                       />
+                    ) : (
+                      <p
+                        dir="rtl"
+                        className="text-[9px] sm:text-sm flex leading-3 items-center"
+                      >
+                        {formatNumber(coinData?.priceToman.buy)}
+                        <span className="text-[7px] font-semibold md:text-base mr-[2px]">
+                          تومان
+                        </span>
+                      </p>
                     )}
                   </div>
 
-                  {/* English Name */}
+                  {/* Price Change Box */}
                   {infoIsLoading || coinIsLoading ? (
                     <Skeleton
                       baseColor={baseColor}
                       highlightColor={highlightColor}
-                      width={60}
-                      height={18}
-                      className="!w-12 !h-3 md:w-[60px] md:h-[18px] !p-0 !mt-0"
+                      width={46}
+                      height={46}
+                      className="!w-[26px] !h-[26px] md:w-[46px] md:h-[46px]"
                     />
                   ) : (
-                    <span dir="ltr" className="text-[10px] sm:text-lg font-semibold opacity-50 !leading-3 truncate block max-w-full text-right">
-                      {coin?.name?.en}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Price and Change Section */}
-              <div className="flex h-full justify-center gap-x-2 sm:gap-x-4">
-                <div className="flex flex-col h-full justify-center items-end gap-y-[6px] sm:gap-y-3">
-                  {infoIsLoading || coinIsLoading ? (
-                    <Skeleton
-                      baseColor={baseColor}
-                      highlightColor={highlightColor}
-                      width={70}
-                      height={24}
-                      className="!w-[55px] !h-[16px] md:w-[70px] md:h-[24px]"
-                    />
-                  ) : (
-                    <p className="text-[10px] sm:text-[21px] font-semibold flex leading-3">
-                      ${formatNumber(coinData?.lastPrice)}
-                    </p>
-                  )}
-                  {infoIsLoading || coinIsLoading ? (
-                    <Skeleton
-                      baseColor={baseColor}
-                      highlightColor={highlightColor}
-                      width={50}
-                      height={14}
-                      className="!w-[38px] !h-[12px] md:w-[50px] md:h-[44px]"
-                    />
-                  ) : (
-                    <p
-                      dir="rtl"
-                      className="text-[9px] sm:text-sm flex leading-3 items-center"
-                    >
-                      {formatNumber(coinData?.priceToman.buy)}
-                      <span className="text-[7px] font-semibold md:text-base mr-[2px]">
-                        تومان
-                      </span>
-                    </p>
-                  )}
-                </div>
-
-                {/* Price Change Box */}
-                {infoIsLoading || coinIsLoading ? (
-                  <Skeleton
-                    baseColor={baseColor}
-                    highlightColor={highlightColor}
-                    width={46}
-                    height={46}
-                    className="!w-[26px] !h-[26px] md:w-[46px] md:h-[46px]"
-                  />
-                ) : (
-                  <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
-                    <span
-                      dir="ltr"
-                      className={`h-full w-full text-[9px] sm:text-lg flex text-center items-center justify-center font-medium ${coinData?.priceChangePercent?.includes("-")
+                    <div className="w-9 h-9 sm:w-[70px] sm:h-[61px] bg-background rounded-md sm:rounded-[10px] dark:bg-[#302F34] flex self-center">
+                      <span
+                        dir="ltr"
+                        className={`h-full w-full text-[9px] sm:text-lg flex text-center items-center justify-center font-medium ${coinData?.priceChangePercent?.includes("-")
                           ? "text-[#F00500]"
                           : "text-[#33B028]"
-                        }`}
-                    >
-                      {coinData?.priceChangePercent}%
-                    </span>
-                  </div>
+                          }`}
+                      >
+                        {coinData?.priceChangePercent}%
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+
+          <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
+            <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
+              <button
+                onClick={handleCopyLink}
+                className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
+              >
+                {isCopied ? (
+                  <span className="text-[8px] sm:text-xs text-[#33B028]">
+                    کپی شد!
+                  </span>
+                ) : (
+                  <SendIcon />
                 )}
-              </div>
+              </button>
+              <span
+                onClick={() => handleFavorite(coin?.symbol)}
+                className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
+              >
+                <Star
+                  borderColor={
+                    favorite.includes(coin?.symbol) ? "none" : "currentColor"
+                  }
+                  backgroundColor={
+                    favorite.includes(coin?.symbol) ? "#FFC107" : "none"
+                  }
+                />
+              </span>
             </div>
-          </>
-        )}
-
-        <div className="flex items-center w-[25%] max-w-[70px] sm:max-w-[121px] h-full justify-center">
-          <div className="flex items-center justify-center gap-x-2 sm:gap-x-3 bg-secondary h-full w-full rounded-[9px] sm:rounded-2xl">
-            <button
-              onClick={handleCopyLink}
-              className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
-            >
-              {isCopied ? (
-                <span className="text-[8px] sm:text-xs text-[#33B028]">
-                  کپی شد!
-                </span>
-              ) : (
-                <SendIcon />
-              )}
-            </button>
-            <span
-              onClick={() => handleFavorite(coin?.symbol)}
-              className="flex cursor-pointer w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
-            >
-              <Star
-                borderColor={
-                  favorite.includes(coin?.symbol) ? "none" : "currentColor"
-                }
-                backgroundColor={
-                  favorite.includes(coin?.symbol) ? "#FFC107" : "none"
-                }
-              />
-            </span>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col lg:flex-row justify-between gap-10">
-        {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
-        <ChartContainer coinChart={coinChart} theme={theme} />
+        <div className="flex flex-col lg:flex-row justify-between gap-10">
+          {/* charts ----------------------------------------------------------------------------------------------------------------------- */}
+          <ChartContainer coinChart={coinChart} theme={theme} />
 
-        <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
-          <TransAction
-            coin={filterData?.find((item) => item?.symbol === coinName)}
-            infoLoading={false}
-            homeLoading={false}
-            homeData={homeData}
-            infoData={infoData}
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col lg:flex-row justify-between gap-10">
-        <div className="order-2  w-full lg:w-[60%] rounded-xl">
-          <CurrentPrice
-            currentPrice={formatNumber(coinData?.lastPrice)}
-            currentPriceChange={coinData?.priceChangePercent}
-          />
-          <div className="mt-10">
-            <div className="hidden lg:flex mb-5 gap-4">
-              <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
-                <Earth />
-                <span className="text-xs">Binance Coin</span>
-              </div>
-              <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
-                <DocumentCode />
-                <span className="text-xs"> منابع کدها</span>
-              </div>
-              <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
-                <SocialIcons />
-                <span className="text-xs">ایکس BNB</span>
-              </div>
-            </div>
-            <DetailDescription coinDescription={coinDescription} />
-          </div>
-
-          <div className="flex flex-col gap-5 mt-10 lg:mt-11">
-            <Accordion
-              defaultOpenId={selectItem}
-              onToggle={(id) => setSelectItem(id)}
-              items={AccordionData}
-              titleBgColor="bg-[#FFEAC1] dark:bg-[#242428]"
-              contentBgColor="bg-[#FFF9EE] dark:bg-[#302F34]"
-              highlightEnabled={false}
-              textTitle="text-sm"
-              smTextTitle="sm:text-base"
-              lgTextTitle="lg:text-base"
-              textContent="text-[10px]"
-              smTextContent="sm:text-sm"
-              lgTextContent="lg:text-xs"
+          <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
+            <TransAction
+              coin={filterData?.find((item) => item?.symbol === coinName)}
+              infoLoading={false}
+              homeLoading={false}
+              homeData={homeData}
+              infoData={infoData}
             />
           </div>
+        </div>
 
-          {/* <div className=" flex mt-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-10">
+          <div className="order-2  w-full lg:w-[60%] rounded-xl">
+            <CurrentPrice
+              currentPrice={formatNumber(coinData?.lastPrice)}
+              currentPriceChange={coinData?.priceChangePercent}
+            />
+            <div className="mt-10">
+              <div className="hidden lg:flex mb-5 gap-4">
+                <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
+                  <Earth />
+                  <span className="text-xs">Binance Coin</span>
+                </div>
+                <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
+                  <DocumentCode />
+                  <span className="text-xs"> منابع کدها</span>
+                </div>
+                <div className="flex gap-x-2 px-3 py-2 justify-center items-center rounded-[10px] bg-secondary">
+                  <SocialIcons />
+                  <span className="text-xs">ایکس BNB</span>
+                </div>
+              </div>
+              <DetailDescription coinDescription={coinDescription} />
+            </div>
+
+            <div className="flex flex-col gap-5 mt-10 lg:mt-11">
+              <Accordion
+                defaultOpenId={selectItem}
+                onToggle={(id) => setSelectItem(id)}
+                items={AccordionData}
+                titleBgColor="bg-[#FFEAC1] dark:bg-[#242428]"
+                contentBgColor="bg-[#FFF9EE] dark:bg-[#302F34]"
+                highlightEnabled={false}
+                textTitle="text-sm"
+                smTextTitle="sm:text-base"
+                lgTextTitle="lg:text-base"
+                textContent="text-[10px]"
+                smTextContent="sm:text-sm"
+                lgTextContent="lg:text-xs"
+              />
+            </div>
+
+            {/* <div className=" flex mt-10">
             <FormViews addComment={addComment} />
           </div> */}
 
-          {/* <div className=" mt-10">
+            {/* <div className=" mt-10">
             <Views comments={comments} setReplyingTo={setReplyingTo} />
           </div> */}
-        </div>
+          </div>
 
-        <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">
-          <DescriptionTable
-            persianName={currentCoin?.name.fa}
-            symbol={coinName.toLocaleUpperCase()}
-            lastDollarPrice={formatNumber(coinData?.lastPrice)}
-            lastTomanPrice={formatNumber(coinData?.priceToman.buy)}
-            dailyChangePercent={coinData?.priceChangePercent}
-            dailyTransactionVolume={formatNumber(coinData?.quoteVolume)}
-            isLoading={infoIsLoading || coinIsLoading ? true : false}
-          />
+          <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">
+            <DescriptionTable
+              persianName={currentCoin?.name.fa}
+              symbol={coinName.toLocaleUpperCase()}
+              lastDollarPrice={formatNumber(coinData?.lastPrice)}
+              lastTomanPrice={formatNumber(coinData?.priceToman.buy)}
+              dailyChangePercent={coinData?.priceChangePercent}
+              dailyTransactionVolume={formatNumber(coinData?.quoteVolume)}
+              isLoading={infoIsLoading || coinIsLoading ? true : false}
+            />
 
-          <div className="hidden lg:flex flex-col w-full mt-10">
-            <h3 className="text-xl font-bold mb-5">بیشترین رشد</h3>
-            {/* <Segment data={data} /> */}
-            {mostProfitCryptos?.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="border-b-2 last:border-b-0 border-gray-200 py-[10px] "
-              >
-                <CryptoDetails
-                  icon={item.icon}
-                  persianName={item.name}
-                  symbol={item.symbol}
-                  lastDollarPrice={formatNumber(item.lastPrice)}
-                  priceChangePercent={item.priceChangePercent}
-                  iconColor={item.iconColor}
-                  iconIsFont={item.iconIsfont}
-                  isLoading={infoIsLoading || coinIsLoading ? true : false}
-                />
-              </div>
-            ))}
+            <div className="hidden lg:flex flex-col w-full mt-10">
+              <h3 className="text-xl font-bold mb-5">بیشترین رشد</h3>
+              {/* <Segment data={data} /> */}
+              {mostProfitCryptos?.map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="border-b-2 last:border-b-0 border-gray-200 py-[10px] "
+                >
+                  <CryptoDetails
+                    icon={item.icon}
+                    persianName={item.name}
+                    symbol={item.symbol}
+                    lastDollarPrice={formatNumber(item.lastPrice)}
+                    priceChangePercent={item.priceChangePercent}
+                    iconColor={item.iconColor}
+                    iconIsFont={item.iconIsfont}
+                    isLoading={infoIsLoading || coinIsLoading ? true : false}
+                  />
+                </div>
+              ))}
 
-            <h3 className="text-xl font-bold mb-5 mt-10">
-              جدید ترین ارز های ما
-            </h3>
-            {/* <Segment data={data} /> */}
-            {newCryptos?.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="border-b-2 last:border-b-0 border-gray-200 py-[10px] "
-              >
-                <CryptoDetails
-                  icon={item.icon}
-                  persianName={item.name}
-                  symbol={item.symbol}
-                  lastDollarPrice={formatNumber(item.lastPrice)}
-                  priceChangePercent={item.priceChangePercent}
-                  iconColor={item.iconColor}
-                  iconIsFont={item.iconIsfont}
-                  isLoading={infoIsLoading || coinIsLoading ? true : false}
-                />
-              </div>
-            ))}
+              <h3 className="text-xl font-bold mb-5 mt-10">
+                جدید ترین ارز های ما
+              </h3>
+              {/* <Segment data={data} /> */}
+              {newCryptos?.map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="border-b-2 last:border-b-0 border-gray-200 py-[10px] "
+                >
+                  <CryptoDetails
+                    icon={item.icon}
+                    persianName={item.name}
+                    symbol={item.symbol}
+                    lastDollarPrice={formatNumber(item.lastPrice)}
+                    priceChangePercent={item.priceChangePercent}
+                    iconColor={item.iconColor}
+                    iconIsFont={item.iconIsfont}
+                    isLoading={infoIsLoading || coinIsLoading ? true : false}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
