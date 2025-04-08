@@ -27,7 +27,7 @@ let allTabs: Tab[] = [
     { id: 1, name: "زمانبندی برداشت ریالی" },
 ];
 
-const Fee: React.FC = () => {
+const Wage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<number>(0);
     const [selectItem, setSelectItem] = useState<number | null>(null);
 
@@ -61,7 +61,7 @@ const Fee: React.FC = () => {
             <section  className="flex flex-col gap-10 sm:gap-[60px] xl:gap-[100px] mt-[76px] sm:mt-[122px] lg:mt-32 mb-16 md:mb-36">
 
                 <header className="flex flex-col w-full h-[200px] min-[380px]:h-[174px] sm:h-[296px] gap-[15px] sm:gap-[35px] lg:gap-[29px]  bg-[#242428] rounded-[17.6px] sm:rounded-[30px] justify-center items-center px-[9.5px] py-[15px] sm:px-[19px] lg:px-[157px] ">
-                    <h2 className="w-full text-center text-[20px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h2>
+                    <h1 className="w-full text-center text-[20px] sm:text-[30px]  lg:text-[35px]  text-[#FFFFFF] font-bold">کارمزد و خدمات تسویه در ارز هشت</h1>
                     <p className="w-full text-xs sm:text-sm lg:text-base font-semibold text-[#FFFFFF] text-center leading-[28px] sm:leading-[40px] lg:leading-[40px]" >
                     ارز هشت همواره در تلاش است تا بستری امن برای معاملات ارز دیجیتال کاربران خود فراهم کند. از ابتدای فعالیت، هدف ما ارائه امکانات متناسب با نیازهای کاربران عزیز بوده و همواره در حال به‌روزرسانی و بهبود عملکرد پلتفرم خود هستیم تا بهترین تجربه را برای شما فراهم کنیم.
                     </p>
@@ -70,9 +70,9 @@ const Fee: React.FC = () => {
                 <div className="flex flex-col gap-10 sm:gap-[50px] lg:gap-[80px]">
 
                     <div className="flex flex-col  self-center ">
-                        <h1 className="text-lg sm:text-[35px] font-bold border-b-4 border-primary pb-1 sm:pb-3 w-auto text-center">
+                        <h2 className="text-lg sm:text-[35px] font-bold border-b-4 border-primary pb-1 sm:pb-3 w-auto text-center">
                             کارمزد و خدمات تسویه در ارز هشت
-                        </h1>
+                        </h2>
                     </div>
 
                     <div className="bg-secondary p-2 rounded-[20px] sm:rounded-[30px] w-full  max-w-[388px] sm:max-w-[566px]  sm:w-[566px]  h-[62px] sm:h-[90px] flex self-center justify-center items-center">
@@ -139,4 +139,4 @@ const Fee: React.FC = () => {
     );
 };
 
-export default Fee;
+export default Wage;

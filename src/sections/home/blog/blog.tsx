@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, memo } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
 import BlogSchema from "../../../schemas/blog-schema";
 
+// Fetch blogs
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/api/v1/latest-posts?limit=8");
   if (!res.ok) throw new Error("Failed to fetch blogs");
@@ -20,10 +21,10 @@ export default function Blog() {
   const { baseColor, highlightColor } = useTheme();
   const sliderRef = useRef<Slider>(null);
 
-  const { data: blogs, isLoading } = useQuery({
+  const { data: blogs = [], isLoading } = useQuery<Array<{ title: string; link: string; thumbnail: string }>>({
     queryKey: ["blogs"],
     queryFn: fetchBlogs,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 30,
   });
 
   const settings = {
@@ -44,7 +45,6 @@ export default function Blog() {
   return (
     <>
       <BlogSchema />
-
       <section className="flex flex-col gap-y-[14px] md:gap-y-[60px] sm:mt-16">
         <div className="flex gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
           <h2 className="font-bold text-lg md:text-4xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
@@ -64,13 +64,14 @@ export default function Blog() {
                 </div>
               ))
               : blogs?.map((blog: any, index: number) => (
-                <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
-              ))}
+                  <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
+                ))}
           </Slider>
           <button
             aria-label="مشاهده اسلاید بعدی بلاگ"
             className="absolute top-20 -left-0 md:-left-10 w-[37px] h-[37px] text-foreground cursor-pointer"
-            onClick={() => sliderRef.current?.slickNext()}>
+            onClick={() => sliderRef.current?.slickNext()}
+          >
             <LongArrow />
           </button>
         </div>
@@ -79,8 +80,8 @@ export default function Blog() {
   );
 }
 
-// Blog Card Component
-function BlogCard({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) {
+// Memoized Blog Card Component to avoid unnecessary re-renders
+const BlogCard = memo(({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) => {
   return (
     <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
       <Image
@@ -100,10 +101,10 @@ function BlogCard({ title, link, imageUrl }: { title: string; link: string; imag
         <Link href={link} className="text-primary text-sm md:text-base font-bold">
           ...ادامه مطلب
         </Link>
-        <div className="border-[0.74px] border-foreground
-        px-[10px]  rounded-[15px] text-sm font-semibold leading-6 text-center">مقالات</div>
-
+        <div className="border-[0.74px] border-foreground px-[10px] rounded-[15px] text-sm font-semibold leading-6 text-center">
+          مقالات
+        </div>
       </div>
     </div>
   );
-}
+});

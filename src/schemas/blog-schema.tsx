@@ -16,6 +16,7 @@ export default function BlogSchema() {
           "headline": "بلاگ صرافی ارز هشت",
           "description": "آخرین اخبار و مقالات بلاگ ارز هشت درباره بازار ارز و سایر مطالب مرتبط",
           "url": "https://arz8.com/blog",
+          "inLanguage": "fa-IR",
           "publisher": {
             "@type": "Organization",
             "name": "صرافی ارز هشت",
@@ -23,6 +24,10 @@ export default function BlogSchema() {
               "@type": "ImageObject",
               "url": "https://arz8.com/logo.png"
             }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://arz8.com/blog"
           }
         })
       }} />

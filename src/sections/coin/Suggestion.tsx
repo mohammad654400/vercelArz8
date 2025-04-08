@@ -176,7 +176,7 @@ export default function Suggestion({
           ) : filteredData.length > 0 ? (
             filteredData.map((item, index) => (
               <div key={index} className="cursor-pointer" onClick={() => handleSelect(item.symbol)}>
-                <Link href={`coins/${item.symbol}`} className="flex justify-between mt-3 md:mt-4 px-2 md:px-2 md:pr-0">
+                <Link href={`price-cryptocurrencies/${item.symbol}`} className="flex justify-between mt-3 md:mt-4 px-2 md:px-2 md:pr-0">
                   <div className="flex items-center  pb-2 gap-x-2 w-full">
                     <div className="flex items-center ">
                       <span className="w-[26px] h-[26px] md:w-[46px] md:h-[46px] rounded-full  flex justify-center items-center">

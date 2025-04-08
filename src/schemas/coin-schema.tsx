@@ -19,7 +19,15 @@ const staticCoins = [
   { name: "نئو", symbol: "NEO" },
   { name: "فایل کوین", symbol: "FIL" },
   { name: "تون کوین", symbol: "TON" },
-  { name: "استلار", symbol: "XLM" },
+  { name: "بی بی دوج", symbol: "babydoge" },
+  { name: "سند باکس", symbol: "SAND" },
+  { name: "اتریوم کلاسیک", symbol: "ETC" },
+  { name: "سویی", symbol: "SUI" },
+  { name: "انس طلا", symbol: "XAUT" },
+  { name: "ملانیا", symbol: "MELANIA" },
+  { name: "ترامپ", symbol: "TRUMP" },
+  { name: "بی بی بی ان بی", symbol: "BABYBNB" },
+
 ];
 
 export default function CoinsSchema() {
@@ -44,6 +52,47 @@ export default function CoinsSchema() {
           name: coin.name,
           url: `https://arz8.com/price-cryptocurrencies/${coin.symbol}`,
         })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "صفحه اصلی",
+            "item": "https://arz8.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "بیشترین رشد ارز های دیجیتال",
+            "item": "https://arz8.com/price-cryptocurrencies"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "بیشترین ضرر ارز های دیجیتال",
+            "item": "https://arz8.com/price-cryptocurrencies"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "جدیدترین ارز های دیجیتال",
+            "item": "https://arz8.com/price-cryptocurrencies"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "محبوب ترین ارز های دیجیتال",
+            "item": "https://arz8.com/price-cryptocurrencies"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "قیمت و لیست کامل ارز های دیجیتال",
+            "item": "https://arz8.com/price-cryptocurrencies"
+          },
+        ]
       },
       {
         "@type": "Article",

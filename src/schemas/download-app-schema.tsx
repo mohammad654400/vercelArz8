@@ -21,31 +21,23 @@ export default function DownloadAppSchema() {
       },
       {
         "@type": "MobileApplication",
-        "name": "اپلیکیشن صرافی ارز هشت",
+        "@id": "https://arz8.com/#app",
+        "url": "https://arz8.com/application",
+        "name": "اپلیکیشن ارز هشت",
         "operatingSystem": "ANDROID, IOS",
         "applicationCategory": "FinanceApplication",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "IRR",
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "1234",
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "صرافی ارز هشت",
-        },
         "downloadUrl": [
           "https://cafebazaar.ir/app/com.arz8x.app.arz8x",
           "https://myket.ir/app/com.arz8x.app.arz8x"
         ],
+        "brand": {
+          "@type": "Brand",
+          "name": "ارز هشت"
+        },
         "description":
           "دانلود اپلیکیشن صرافی ارز هشت برای معامله امن و سریع ارزهای دیجیتال با بیش از 1800 رمز ارز، پشتیبانی ۲۴ ساعته و رابط کاربری حرفه‌ای.",
         "image": "https://arz8.com/logo.jpg",
-      }
+      },
     ]
   };
 
