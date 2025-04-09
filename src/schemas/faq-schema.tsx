@@ -1,13 +1,8 @@
-// components/Seo/FaqSchema.tsx
-
-import React from 'react'
-import Head from 'next/head'
-import Script from 'next/script';
-
-export default function FaqSchema() {
-  const faqSchema = {
+export const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": "https://arz8.com/#faq",
+    "inLanguage": "fa-IR",
     "mainEntity": [
       {
         "@type": "Question",
@@ -92,29 +87,3 @@ export default function FaqSchema() {
     ]
   };
 
-  return (
-    <Head>
-      <title>سوالات متداول درباره صرافی ارز هشت - راهنمای استفاده از خدمات ارز دیجیتال</title>
-      <meta
-        name="description"
-        content="سوالات متداول درباره صرافی ارز هشت. در اینجا به سوالات رایج کاربران پاسخ داده شده است. راهنمای کامل خرید، فروش و مدیریت ارز دیجیتال را پیدا کنید."
-      />
-      <meta
-        name="keywords"
-        content="FAQ ارز هشت, سوالات رایج صرافی ارز هشت, راهنمای ارز دیجیتال, خرید و فروش ارز در ارز هشت"
-      />
-      <meta property="og:title" content="سوالات متداول درباره صرافی ارز هشت" />
-      <meta property="og:description" content="سوالات متداول درباره صرافی ارز هشت. در اینجا به سوالات رایج کاربران پاسخ داده شده است." />
-      <meta property="og:image" content="https://arz8.com/path/to/your/image.jpg" />
-      <meta name="robots" content="index, follow" />
-      
-
-
-
-      <Script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </Head>
-  )
-}

@@ -8,8 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
-import BlogSchema from "../../../schemas/blog-schema";
-
+import { schemaData } from "@/schemas/blog-schema";
 // Fetch blogs
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/api/v1/latest-posts?limit=8");
@@ -44,10 +43,13 @@ export default function Blog() {
 
   return (
     <>
-      <BlogSchema />
-      <section className="flex flex-col gap-y-[14px] md:gap-y-[60px] sm:mt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <section className="flex flex-col gap-y-[14px] md:gap-y-[40px] sm:mt-16">
         <div className="flex gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
-          <h2 className="font-bold text-lg md:text-4xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
+          <h2 className="font-bold text-lg md:text-2xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
         </div>
 
         <div className="relative">
@@ -64,8 +66,8 @@ export default function Blog() {
                 </div>
               ))
               : blogs?.map((blog: any, index: number) => (
-                  <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
-                ))}
+                <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
+              ))}
           </Slider>
           <button
             aria-label="مشاهده اسلاید بعدی بلاگ"
@@ -94,9 +96,9 @@ const BlogCard = memo(({ title, link, imageUrl }: { title: string; link: string;
         loading="lazy"
       />
 
-      <p dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
+      <h3 dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
         {title}
-      </p>
+      </h3>
       <div className="flex justify-between items-center w-full">
         <Link href={link} className="text-primary text-sm md:text-base font-bold">
           ...ادامه مطلب

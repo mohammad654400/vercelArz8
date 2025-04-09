@@ -102,7 +102,7 @@ export default function Job() {
             </div>
           ))}
         </div>
-        <div className='flex flex-col gap-4'>
+        {/* <div className='flex flex-col gap-4'>
           <span className='text-lg font-bold'>همراهان ما تا این لحظه</span>
           <div className='grid gap-[10px] grid-cols-2 md:grid-cols-3 justify-between'>
             {OurCompanions.map((item, index) => (
@@ -123,7 +123,7 @@ export default function Job() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

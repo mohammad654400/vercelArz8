@@ -3,61 +3,64 @@ import React from "react";
 export default function FooterSchema() {
   return (
     <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              "@id": "https://arz8.com/#organization",
-              "name": "ارز هشت",
-              "url": "https://arz8.com",
-              "logo": "https://arz8.com/logo.png",
-              "contactPoint": [
-                {
-                  "@type": "ContactPoint",
-                  "telephone": "+9821-284299",
-                  "contactType": "Customer Support",
-                  "areaServed": "IR",
-                  "availableLanguage": ["Persian", "English"]
-                },
-                {
-                  "@type": "ContactPoint",
-                  "telephone": "+9821-91035288",
-                  "contactType": "Sales",
-                  "areaServed": "IR",
-                  "availableLanguage": ["Persian", "English"]
-                }
-              ],
-              "sameAs": [
-                "https://x.com/Arz8official",
-                "https://t.me/arz8com",
-                "https://www.instagram.com/arz8_official/",
-                "https://www.aparat.com/arz8com",
-                "https://www.youtube.com/channel/UCD1InrQ1dXUdUtSORnjp68w"
-              ]
-            },
-            {
-              "@type": "MobileApplication",
-              "@id": "https://arz8.com/#app",
-              "url": "https://arz8.com/application",
-              "name": "اپلیکیشن ارز هشت",
-              "operatingSystem": "ANDROID, IOS",
-              "applicationCategory": "FinanceApplication",
-              "downloadUrl": [
-                "https://cafebazaar.ir/app/com.arz8x.app.arz8x",
-                "https://myket.ir/app/com.arz8x.app.arz8x"
-              ],
-              "brand": {
-                "@type": "Brand",
-                "name": "ارز هشت"
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://arz8.com/#organization",
+            "name": "ارز هشت",
+            "url": "https://arz8.com",
+            "logo": "https://arz8.com/logo.png",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+9821-284299",
+                "contactType": "Customer Support",
+                "areaServed": "IR",
+                "availableLanguage": ["fa", "en"]
               },
-              "description":
-                "دانلود اپلیکیشن صرافی ارز هشت برای معامله امن و سریع ارزهای دیجیتال با بیش از 1800 رمز ارز، پشتیبانی ۲۴ ساعته و رابط کاربری حرفه‌ای.",
-              "image": "https://arz8.com/logo.jpg",
+              {
+                "@type": "ContactPoint",
+                "telephone": "+9821-91035288",
+                "contactType": "Sales",
+                "areaServed": "IR",
+                "availableLanguage": ["fa", "en"]
+              }
+            ],
+            "sameAs": [
+              "https://x.com/Arz8official",
+              "https://t.me/arz8com",
+              "https://www.instagram.com/arz8_official/",
+              "https://www.aparat.com/arz8com",
+              "https://www.youtube.com/channel/UCD1InrQ1dXUdUtSORnjp68w"
+            ]
+          },
+          {
+            "@type": "MobileApplication",
+            "@id": "https://arz8.com/#app",
+            "name": "اپلیکیشن ارز هشت",
+            "operatingSystem": "Android",
+            "applicationCategory": "FinanceApplication",
+            "downloadUrl": [
+              "https://cafebazaar.ir/app/com.arz8x.app.arz8x",
+              "https://myket.ir/app/com.arz8x.app.arz8x"
+            ],
+            "brand": {
+              "@type": "Brand",
+              "name": "ارز هشت"
             },
-            {
+            "description": "دانلود اپلیکیشن صرافی ارز هشت برای معامله امن و سریع ارزهای دیجیتال با بیش از 1800 رمز ارز، پشتیبانی ۲۴ ساعته و رابط کاربری حرفه‌ای.",
+            "image": "https://arz8.com/logo.png"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://arz8.com/#webpage",
+            "url": "https://arz8.com/",
+            "name": "ارز هشت - صرافی ارز دیجیتال",
+            "mainEntity": {
               "@type": "BreadcrumbList",
               "itemListElement": [
                 {
@@ -134,9 +137,11 @@ export default function FooterSchema() {
                 }
               ]
             }
-          ]
-        })
-      }}
-    />
+          }
+        ]
+      })
+    }}
+  />
+  
   );
 }

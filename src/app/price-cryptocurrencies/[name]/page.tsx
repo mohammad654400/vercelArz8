@@ -1,4 +1,3 @@
-// app/coins/[name]/page.tsx
 import DetailCoin from '@/sections/detailcoin/detail-coin';
 
 type Params = {
@@ -37,8 +36,15 @@ export const revalidate = 3600;
 export function generateMetadata({ params }: { params: Params }) {
   const { name } = params;
   return {
-    title: `${name} details`,
-    description: `Get detailed information about ${name} cryptocurrency`,
+    title: `${name} قیمت لحظه ای | ${name} خرید وفروش صرافی ارز هشت | ارز هشت | ارز دیجیتال`,
+    description: `مشاهده قیمت لحظه‌ای ${name}، خرید و فروش آسان، نمودار تغییرات، اطلاعات کامل و تحلیل ${name} در صرافی ارز هشت. بدون کارمزد پنهان و با امنیت بالا.`,
+    alternates: {
+      canonical: `https://arz8.com/price-cryptocurrencies/${name}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

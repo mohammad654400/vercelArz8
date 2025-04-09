@@ -9,7 +9,7 @@ import Modal from "@/components/Modal";
 import ErrorContactUs from "@/assets/icons/modal/errorContactUs";
 import SuccessContactUs from "@/assets/icons/modal/successContactUs";
 import { validationSchema } from "./yup/validationSchema";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Cookies from "js-cookie";
 import { SHA256 } from "crypto-js";
 import Call from "@/assets/icons/contactUs/call";
@@ -322,144 +322,154 @@ export default function ContactUs() {
   );
 
   return (
-    <main className="bg-background base-style">
-      <section className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8 justify-between">
-        <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
-          <section className="grid gap-[10px]">
-            <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl font-bold">
-              تماس با پشتیبانی صرافی ارزهشت
-            </h1>
-            <p className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
-              ما همیشه در کنار شما هستیم تا به سوالات، پیشنهادات و نیازهای شما پاسخ دهیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با تیم پشتیبانی ما در تماس باشید. ما آماده‌ایم تا در سریع‌ترین زمان ممکن به شما کمک کنیم.
-            </p>
-          </section>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+      scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: "head",
+      }}
+    >
+      <main className="bg-background base-style">
+        <section className="flex flex-col lg:flex-row pt-[110px] lg:pt-[194px] w-full gap-8 justify-between">
+          <div className="flex flex-col order-2 lg:order-1 gap-8 justify-center w-full lg:w-[60%] lg:max-w-[1000px] lg:min-w-[509px]">
+            <section className="grid gap-[10px]">
+              <h1 className="text-foreground xl:text-[40px] lg:text-4xl sm:text-2xl text-xl font-bold">
+                تماس با پشتیبانی صرافی ارزهشت
+              </h1>
+              <p className="text-foreground text-justify text-xs sm:text-base font-semibold sm:leading-10 leading-7">
+                ما همیشه در کنار شما هستیم تا به سوالات، پیشنهادات و نیازهای شما پاسخ دهیم. اگر سوالی دارید، به مشاوره نیاز دارید یا پیشنهادی برای بهبود خدمات ما دارید، با تیم پشتیبانی ما در تماس باشید. ما آماده‌ایم تا در سریع‌ترین زمان ممکن به شما کمک کنیم.
+              </p>
+            </section>
 
-          <section className="flex flex-col">
-            <h2 className="text-foreground text-base font-semibold mb-5 leading-7 sm:leading-10">
-              اطلاعات تماس
-            </h2>
+            <section className="flex flex-col">
+              <h2 className="text-foreground text-base font-semibold mb-5 leading-7 sm:leading-10">
+                اطلاعات تماس
+              </h2>
 
-            <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full">
-              <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col">
-                <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between">
-                  <a href="tel:021284299"
-                    className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
-                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                      <Call />
-                    </div>
-                    <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
-                      021-284299
-                    </span>
-                  </a>
-                  <a href="https://app.arz8.com/support" className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
-                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                      <Support />
-                    </div>
-                    <h3 className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
-                      پشتیبانی آنلاین
-                    </h3>
-                  </a>
-                </div>
-                <address className="flex h-[54px] sm:h-[99px] w-full justify-between p-2 sm:p-3 flex-col rounded-xl bg-secondary">
-                  <div className="flex items-center">
-                    <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
-                      <Location />
-                    </div>
-                    <h3 className="xl:text-xl lg:text-base text-xs text-foreground mr-2 sm:mr-3 font-normal">
-                      آدرس
-                    </h3>
-                  </div>
-                  <p className="xl:text-xl lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">
-                    مراغه جام جم ، مجتمع سهند ، طبقه 5
-                  </p>
-                </address>
-              </div>
-
-              <div className="flex w-[35%] sm:w-[28%] h-full">
-                <div className="flex-col gap-4 w-full h-full flex">
-                  <div className="flex h-[30px] sm:h-[53px] gap-4 w-full">
-                    <a
-                      href="https://t.me/arz8com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
-                      <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
-                        تلگرام
-                      </h3>
+              <div className="flex flex-row lg:max-w-[1000px] lg:min-w-[500px] gap-4 w-full">
+                <div className="flex w-[65%] sm:w-[72%] gap-4 justify-between h-full flex-col">
+                  <div className="flex h-[30px] sm:h-[53px] w-full gap-2 sm:gap-4 justify-between">
+                    <a href="tel:021284299"
+                      className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
+                      <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                        <Call />
+                      </div>
+                      <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                        021-284299
+                      </span>
                     </a>
-                    <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
-                      <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
-                        ایمیل
+                    <a href="https://app.arz8.com/support" className="flex h-full w-full items-center justify-start bg-secondary rounded-xl p-3">
+                      <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                        <Support />
+                      </div>
+                      <h3 className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                        پشتیبانی آنلاین
                       </h3>
                     </a>
                   </div>
-                  <div className="flex h-[54px] sm:h-[99px] gap-4 w-full">
-                    <a
-                      href="https://t.me/arz8com"
-                      target="_blank"
-                      rel="noopener noreferrer" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
-                      <div className="w-10 h-10 sm:h-14 sm:w-14">
-                        <Telegram />
+                  <address className="flex h-[54px] sm:h-[99px] w-full justify-between p-2 sm:p-3 flex-col rounded-xl bg-secondary">
+                    <div className="flex items-center">
+                      <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
+                        <Location />
                       </div>
-                    </a>
-                    <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
-                      <div className="w-10 h-10 sm:h-14 sm:w-14">
-                        <Email />
-                      </div>
-                    </a>
+                      <h3 className="xl:text-xl lg:text-base text-xs text-foreground mr-2 sm:mr-3 font-normal">
+                        آدرس
+                      </h3>
+                    </div>
+                    <p className="xl:text-xl lg:text-base text-xs mt-1 sm:mt-0 text-foreground font-normal">
+                      مراغه جام جم ، مجتمع سهند ، طبقه 5
+                    </p>
+                  </address>
+                </div>
+
+                <div className="flex w-[35%] sm:w-[28%] h-full">
+                  <div className="flex-col gap-4 w-full h-full flex">
+                    <div className="flex h-[30px] sm:h-[53px] gap-4 w-full">
+                      <a
+                        href="https://t.me/arz8com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                        <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
+                          تلگرام
+                        </h3>
+                      </a>
+                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                        <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
+                          ایمیل
+                        </h3>
+                      </a>
+                    </div>
+                    <div className="flex h-[54px] sm:h-[99px] gap-4 w-full">
+                      <a
+                        href="https://t.me/arz8com"
+                        target="_blank"
+                        rel="noopener noreferrer" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                        <div className="w-10 h-10 sm:h-14 sm:w-14">
+                          <Telegram />
+                        </div>
+                      </a>
+                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                        <div className="w-10 h-10 sm:h-14 sm:w-14">
+                          <Email />
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
-        <div className="flex w-full lg:w-[40%] order-1 lg:order-2 justify-center lg:justify-end">
-          <Image
-            src={PhotoContactSupport}
-            alt="تصویر صفحه ی تماس با ما"
-            width={392}
-            height={504}
-            priority
+            </section>
+          </div>
+          <div className="flex w-full lg:w-[40%] order-1 lg:order-2 justify-center lg:justify-end">
+            <Image
+              src={PhotoContactSupport}
+              alt="تصویر صفحه ی تماس با ما"
+              width={392}
+              height={504}
+              priority
+            />
+          </div>
+        </section>
+
+        <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
+          <ContactForm
+            onSubmit={handleSubmit}
+            isSubmitting={isSubmitting || isPending}
+            errors={errors}
+            formData={formData}
+            onChange={handleChange}
           />
-        </div>
-      </section>
-
-      <div className="relative w-full h-[1100px] flex items-center justify-between overflow-hidden full-screen">
-        <ContactForm
-          onSubmit={handleSubmit}
-          isSubmitting={isSubmitting || isPending}
-          errors={errors}
-          formData={formData}
-          onChange={handleChange}
-        />
-        <div className="absolute w-[50%] h-full left-0 top-0">
-          <div className="relative w-full h-full flex justify-center items-center">
-            <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2">
-              <OrbitAnimation />
+          <div className="absolute w-[50%] h-full left-0 top-0">
+            <div className="relative w-full h-full flex justify-center items-center">
+              <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2">
+                <OrbitAnimation />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          type={modalType}
-          lines={modalLines}
-          icon={
-            modalType === "success" ? (
-              <div className="lg:w-24 lg:h-44">
-                <SuccessContactUs />
-              </div>
-            ) : (
-              <div className="lg:w-24 lg:h-44">
-                <ErrorContactUs />
-              </div>
-            )
-          }
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
-    </main>
+        {isModalOpen && (
+          <Modal
+            isOpen={isModalOpen}
+            type={modalType}
+            lines={modalLines}
+            icon={
+              modalType === "success" ? (
+                <div className="lg:w-24 lg:h-44">
+                  <SuccessContactUs />
+                </div>
+              ) : (
+                <div className="lg:w-24 lg:h-44">
+                  <ErrorContactUs />
+                </div>
+              )
+            }
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
+      </main>
+    </GoogleReCaptchaProvider>
+
   );
 }

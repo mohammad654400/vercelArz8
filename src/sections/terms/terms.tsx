@@ -61,18 +61,18 @@ export default function Terms() {
     );
 
     return (
-        <div className="base-style bg-background" style={{ gap: "0px" }}>
-            <div className="flex bg-primary w-full rounded-[20px] p-[13px] items-center mt-[76px] sm:mt-[146px] lg:mt-[164px] lg:mb-[43px] mb-[40px]">
+        <main className="base-style bg-background !gap-0">
+            <section className="flex bg-primary w-full rounded-[20px] p-[13px] items-center mt-[76px] sm:mt-[146px] lg:mt-[164px] lg:mb-[43px] mb-[40px]">
 
                 <div className=" lg:min-w-[49px] lg:h-[49px] min-w-[28px] h-[28px]"> <Info /></div>
 
                 <span className="text-xs lg:text-base text-[#242428] font-semibold mr-[10px] leading-[23px] lg:leading-[40px] text-justify">توجه : از تاریخ ۲۵/۱۰/۲۰۲۲ دامنه سایت از "www.arz8x.com" به "www.arz8.com" تغییر پیدا کرده است و برند "Arz8x" به "Arz8" تغییر پیدا کرده است.</span>
-            </div>
+            </section>
 
-            <div className="flex flex-col w-full  justify-center items-center text-center sm:px-[58px] lg:px-0 mb-10">
+            <section className="flex flex-col w-full  justify-center items-center text-center sm:px-[58px] lg:px-0 mb-10">
                 <span className="w-full flex justify-center lg:px-[198px] text-[13px] lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">با تشکر از شما برای انتخاب ارز هشت، شرایط و قوانین زیر برای ارائه بهتر خدمات به کاربران ارزشمند ارز هشت اعمال میشود.</span>
                 <span className="w-full flex justify-center lg:px-[198px] text-[13px] lg:text-base font-semibold  text-justify sm:text-center leading-[35px] lg:leading-[40px]">لطفا قوانین را با دقت مطالعه کرده تا از نحوه ارائه خدمات مطلع شوید</span>
-            </div>
+            </section>
             {isDrawerOpen ? (
                 <div
                     className="fixed bottom-0 left-0 w-full bg-background shadow-[#9C9C9C40] shadow-[0px_0px_20.02px_0px_rgba(156,156,156,0.25)] rounded-t-[40px] h-[426px] z-20 "
@@ -146,7 +146,7 @@ export default function Terms() {
                     onClick={() => setIsDrawerOpen(true)}
                     className="flex w-full h-[41px] justify-between px-[14px] bg-secondary rounded-[17.6px] items-center"
                 >
-                    <span className="text-sm font-semibold">{selectedCategory.title}</span>
+                    <h2 className="text-sm font-semibold">{selectedCategory.title}</h2>
                     <span className="w-4 h-4">   <ArrowBottom /> </span>
                 </button>
             </div>
@@ -164,6 +164,6 @@ export default function Terms() {
                     </li>
                 ))}
             </ul>
-        </div>
+        </main>
     );
 }

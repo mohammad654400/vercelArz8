@@ -30,8 +30,7 @@ const staticCoins = [
 
 ];
 
-export default function CoinsSchema() {
-  const schemaData = {
+export  const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -112,40 +111,4 @@ export default function CoinsSchema() {
     ],
   };
 
-  return (
-    <Head>
-      {/* Meta Tags */}
-      <title>قیمت ارزهای دیجیتال | صرافی ارز هشت</title>
-      <meta
-        name="description"
-        content="لیست قیمت لحظه‌ای ارزهای دیجیتال همراه با امکان فیلتر، مرتب‌سازی و جستجو در صرافی ارز هشت."
-      />
-      <meta name="robots" content="index, follow" />
 
-      {/* Open Graph */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://arz8.com/price-cryptocurrencies" />
-      <meta property="og:title" content="قیمت ارزهای دیجیتال | صرافی ارز هشت" />
-      <meta
-        property="og:description"
-        content="لیست قیمت و مشخصات کامل ارزهای دیجیتال به همراه توضیحاتی درباره صرافی ارز هشت."
-      />
-      <meta property="og:image" content="https://arz8.com/logo.jpg" />
-
-      {/* Twitter Cards */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="قیمت ارزهای دیجیتال | صرافی ارز هشت" />
-      <meta
-        name="twitter:description"
-        content="جدول قیمت‌ها، رمزارزهای سودده و جدیدترین ارزهای قابل معامله در صرافی ارز هشت."
-      />
-      <meta name="twitter:image" content="https://arz8.com/logo.jpg" />
-
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-    </Head>
-  );
-}

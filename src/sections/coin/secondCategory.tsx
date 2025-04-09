@@ -166,7 +166,7 @@ export default function SecondCategory({
             >
               <div>
                 <Link
-                  href={`coins/${item.symbol}`}
+                  href={`price-cryptocurrencies/${item.symbol}`}
                   className="flex justify-between items-center gap-x-3 md:gap-x-5 my-[18px]"
                 >
                   <div
