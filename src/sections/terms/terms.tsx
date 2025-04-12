@@ -66,7 +66,7 @@ export default function Terms() {
 
                 <div className=" lg:min-w-[49px] lg:h-[49px] min-w-[28px] h-[28px]"> <Info /></div>
 
-                <span className="text-xs lg:text-base text-[#242428] font-semibold mr-[10px] leading-[23px] lg:leading-[40px] text-justify">توجه : از تاریخ ۲۵/۱۰/۲۰۲۲ دامنه سایت از "www.arz8x.com" به "www.arz8.com" تغییر پیدا کرده است و برند "Arz8x" به "Arz8" تغییر پیدا کرده است.</span>
+                <span className="text-xs lg:text-base text-[#242428] font-semibold mr-[10px] leading-[23px] lg:leading-[40px] text-justify">توجه:از تاریخ ۲۵ دی ۱۴۰۱، دامنه‌های "arz8x.com" و "arz3.com" با هم ترکیب شده و به دامنه جدید "arz8.com" تغییر پیدا کرده است. همچنین برندهای "Arz8x" و "Arz3" به برند جدید "Arz8" تغییر نام داده‌اند.</span>
             </section>
 
             <section className="flex flex-col w-full  justify-center items-center text-center sm:px-[58px] lg:px-0 mb-10">

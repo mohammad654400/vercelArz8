@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import React, { useRef, useState } from 'react'
 import wheel from "@/assets/images/wheelluck/wheell.png"
- import ImageCarousel from './Image-Carousel'
+import ImageOne from  '@/assets/images/wheelluck/imge.png'
 import Discount from "@/assets/icons/wheel/discount"
 import Arz from "@/assets/icons/wheel/arz"
 import Awards from "@/assets/icons/wheel/awards"
@@ -122,7 +122,7 @@ export default function WheelLuck() {
             <p className='text-sm md:text-[18.94px] font-semibold  text-sixth text-justify mb-[20px] lg:mb-[33px] mt-[11px] lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>هیجان رو به اوج برسون! صرافی ارز هشت با گردونه شانس، یه فرصت ویژه برات فراهم کرده. حالا می‌تونی هر ۲۴ ساعت یک‌بار، کاملاً رایگان گردونه رو بچرخونی و شانس خودت رو برای برنده شدن جوایز ارز دیجیتال امتحان کنی.</p>
 
 
-            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"https://app.arz8.com/tools/wheel"}  aria-label="گردونه شانس صرافی ارزهشت">
+            <Link className='self-end w-full lg:w-56 h-[47px] lg:h-[61px]' href={"https://app.arz8.com/tools/wheel"} aria-label="گردونه شانس صرافی ارزهشت">
               <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15.3px] xl:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>گرداندن گردونه</button>
             </Link>
           </div>
@@ -177,22 +177,20 @@ export default function WheelLuck() {
 
         </section>
 
-        <div className='flex flex-col lg:flex-row'>
-          <div className='w-[360px] sm:w-[388px]  lg:w-[489px] h-[479px] lg:h-[604px] self-center'>
-            <ImageCarousel />
+
+        <div className='flex flex-col lg:flex-row  justify-between lg:gap-14 '>
+        <div className='w-full lg:w-[40%] flex justify-center'>
+            <Image loading='lazy'  className='w-full h-auto max-h-80 sm:max-h-96 lg:max-h-[567px] object-contain' src={ImageOne} alt='Ghar' width={567} height={567} />
           </div>
-          <div className='flex flex-col w-full mt-12 lg:mt-0 lg:mr-[75px] justify-center '>
-            <h2 className='text-lg md-text-xl  lg:text-xl font-bold mb-[16px] lg:mb-[28px]'>با گردونه شانس ارز هشت، هر روز یه قدم به درآمد دلاری نزدیک‌تر شو!</h2>
-            <p className='text-sm md:text-base  xl:text-xl font-semibold text-sixth text-justify leading-9 lg:leading-[63px] xl:leading-[63px] '>کافیه ثبت‌نام کنی، گردونه رو بچرخونی و ارز دیجیتال رایگان برنده بشی. بعد از برد، می‌تونی جایزه‌ات رو به‌راحتی به حساب بانکیت برداشت کنی و از یه صرافی معتبر درآمد دلاری کسب کنی.
-            </p>
-            <div className='flex justify-end w-full  h-[53px] lg:h-16 '>
-              <Link className='mt-2 md:mt-[26px] rounded-[15px] lg:rounded-[21px] w-full  lg:w-[230px] h-full' href={"https://app.arz8.com/auth/register"}>
-                <button className='text-xl lg:text-2xl rounded-[15px] lg:rounded-[21px]  w-full   h-full font-bold text-white bg-primary  text-center  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>ثبت نام سریع</button>
-              </Link>
-            </div>
-          </div>
+          <div className=" w-full lg:w-[60%] flex flex-col justify-center">
+            <h2 className='text-lg md:text-2xl leading-[35px] lg:leading-[39px] font-bold text-Seventh mb-[16px] lg:mb-[28px] text-justify w-[100%]'>با گردونه شانس ارز هشت، هر روز یه قدم به درآمد دلاری نزدیک‌تر شو!</h2>
+            <p className='text-xs md:text-xl font-semibold leading-[37px] md:leading-[63px]  text-sixth text-justify md:mb-[26px]'>کافیه ثبت‌نام کنی، گردونه رو بچرخونی و ارز دیجیتال رایگان برنده بشی. بعد از برد، می‌تونی جایزه‌ات رو به‌راحتی به حساب بانکیت برداشت کنی و از یه صرافی معتبر درآمد دلاری کسب کنی.</p>
 
 
+            <Link className='self-end w-full lg:w-[230px] sm:h-16 h-[53px] mt-5 lg:mt-0 ' href="https://app.arz8.com/tools/wheel">
+              <button className=' bg-primary w-full h-full text-white text-xl lg:text-2xl font-bold rounded-[15px]  lg:rounded-[20px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary'>چرخش گردونه</button>
+            </Link>
+          </div>
         </div>
 
         <div className='flex flex-col'>
@@ -234,7 +232,7 @@ export default function WheelLuck() {
             </Link>
           </div>
           <div className='w-full lg:w-[45%] order-2 flex justify-center'>
-            <Image loading='lazy' className='w-[305px] h-[633px]' src={Ghar} alt='Ghar' width={305} height={633}/>
+            <Image loading='lazy' className='w-[305px] h-[633px]' src={Ghar} alt='Ghar' width={305} height={633} />
           </div>
 
         </div>

@@ -63,7 +63,7 @@ export default function DropdownMenu() {
         toggle={toggleSection}
       >
         <ul className="flex flex-col gap-4 mt-2 pl-4 text-[14px] cursor-pointer">
-          <li className="flex items-center gap-2 hover:text-primary"><TownyFour /> پشتیبانی آنلاین</li>
+          <li><Link className="flex items-center gap-2 hover:text-primary" href={"https://app.arz8.com/support"}>  <TownyFour /> پشتیبانی آنلاین </Link></li>
           <li className="flex items-center gap-2"><Fax /><a href="tel:02191035288">021-91035288</a> </li>
           <li className="flex items-center gap-2"><Phone /> <a href="tel:021284299">021-284299</a> </li>
         </ul>

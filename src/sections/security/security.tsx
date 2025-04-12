@@ -7,9 +7,14 @@ export default function Security() {
     return (
         <div className=' flex flex-col pt-[77px] sm:pt-[187px] gap-10 md:gap-0 bg-background'>
             <div className=" full-screen flex flex-col   lg:flex-row w-full gap-x-[78px] gap-y-10 justify-between">
-                <div className="  w-full flex flex-col justify-center order-2  px-5 md:px-12 lg:pl-0 lg:pr-16 xl:px-0   ">
+                <div className="  w-full flex flex-col justify-center order-2  px-5 md:px-12 lg:pl-0 lg:pr-16 xl:px-0">
                     <h1 className='text-base  md:text-2xl xl:text-4xl font-bold text-Seventh lg:mt-0'>امنیت، مهم‌ترین اولویت در ارزهشت</h1>
-                    <p className='text-sm  md:text-base xl:text-[18.94px] font-semibold  text-sixth text-justify mt-3 lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>در ارزهشت، امنیت شما از هر چیز دیگری مهم‌تر است. ما به‌عنوان یکی از پلتفرم‌های پیشرو در معاملات ارز دیجیتال در ایران، تمام خدمات خود را ( وب‌سایت و اپلیکیشن ) با جدیدترین استانداردهای امنیتی و کمک تیمی حرفه‌ای در امنیت سایبری طراحی کرده‌ایم تا شما بتوانید با خیال راحت معامله کنید.</p>
+                    <p className='text-sm  md:text-base xl:text-[18.94px] font-semibold  text-sixth text-justify mt-3 lg:mt-[25px] leading-[33.65px] lg:leading-[60.36px]'>             
+                    در ارزهشت، امنیت شما از هر چیز دیگری مهم‌تر است. ما به‌عنوان یکی از پلتفرم‌های پیشرو در معاملات ارز دیجیتال در ایران، تمام خدمات خود را
+                        <span className="whitespace-nowrap"> (‌ وب‌سایت&nbsp; و &nbsp;اپلیکیشن‌ ) </span>
+                        با جدیدترین استانداردهای امنیتی و کمک تیمی حرفه‌ای در امنیت سایبری طراحی کرده‌ایم تا شما بتوانید با خیال راحت معامله کنید.
+                   
+                    </p>
                 </div>
                 <div className=" max-w-[366px] md:max-w-[549px]  w-full  order-1 lg:order-3 flex justify-center items-center self-end">
                     <Image
@@ -21,7 +26,7 @@ export default function Security() {
             </div>
 
             <div className='w-full self-center bg-secondary md:mt-[50px] '>
-                <div className='base-style py-[23px] lg:pt-[87px] lg:pb-[56px]' style={{ gap: "0px" }}>
+                <div className='base-style py-[23px] lg:pt-[87px] lg:pb-[56px] !gap-0'>
                     <div className='hidden lg:flex flex-col items-center w-full mb-[95px]'>
                         <h2 className="text-[35px] font-bold border-b-4 border-primary pb-2  w-auto text-center ">
                             امکانات امنیتی صرافی ارزهشت
@@ -56,7 +61,7 @@ export default function Security() {
                             <span className=''>{items.id}</span>
                             <h2>{items.title}</h2>
                         </div>
-                        <p className='mr-4' >{items.description}</p>
+                        <p className='mr-4'>{items.description}</p>
                     </div>
                 ))}
             </div>

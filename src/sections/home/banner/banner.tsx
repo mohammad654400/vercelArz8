@@ -23,14 +23,14 @@ export default function Banner() {
                     دانلود اپلیکیشن صرافی ارزهشت
                   </h2>
                   <p className="text-start text-base font-bold">
-                  با اپلیکیشن ارزهشت، راحت و مطمئن معامله کنید:                  </p>
+                  با اپلیکیشن ارز هشت، ساده، سریع و مطمئن معامله کنید:                 </p>
                 </div>
 
                 <ul className="flex flex-col text-start text-lg font-semibold gap-y-5">
                   {[
-                    "دسترسی به بیش از 1800 ارز دیجیتال",
-                    "احراز هویت سریع و آسان",
-                    "پشتیبانی 24 ساعته، همیشه کنار شما",
+                    "دسترسی به بیش از 1300 ارز دیجیتال",
+                    "احراز هویت سریع و بدون دردسر",
+                    "پشتیبانی ۲۴ ساعته، همیشه در دسترس شما",
                   ].map((item, index) => (
                     <li key={index} className="flex gap-x-[5px] items-center">
                       <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
@@ -40,7 +40,7 @@ export default function Banner() {
                 </ul>
 
                 <nav  className="flex w-full lg:justify-start justify-start py-[30px]" aria-label="دانلود اپلیکیشن">
-                  <Link  className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                  <Link  className="z-20 hover:text-primary" href={"https://app.arz8.com/"}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                   <Link  className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                   <Link  className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
                   <Link  className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
@@ -105,7 +105,7 @@ export default function Banner() {
 
                   <nav className="flex w-full  justify-center mt-[10px] sm:mt-5">
                     {/* <Link className="z-20 flex" href={"https://cdn.arz8.com/application.apk"}><DownloadOption Icon={Android} label="دانلود مستقیم" /></Link> */}
-                    <Link className="z-20 flex" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                    <Link className="z-20 flex" href={"https://app.arz8.com/"}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                     <Link className="z-20 flex" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                     <Link className="z-20 flex" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
                     <Link className="z-20 flex" href={""}><DownloadOption Icon={GooglePlay} label="گوگل پلی" /> </Link>

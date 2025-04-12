@@ -2,8 +2,8 @@ import Home from "@/sections/home/home";
 import { schemaData } from "@/schemas/home-schema";
 
 export const metadata = {
-  title: "ارز هشت - خرید و فروش ارز دیجیتال | صرافی آنلاین ارز دیجیتال",
-  description: "صرافی ارز8، بستری امن برای خرید و فروش بیش از 1800 ارز دیجیتال با قیمت‌های لحظه‌ای و کارمزد کم. پلتفرم معاملاتی پیشرفته برای تریدرهای حرفه‌ای.",
+  title: "ارز هشت | صرافی آنلاین ارز دیجیتال",
+  description: "ارز هشت، صرافی آنلاین برای خرید و فروش بیت‌کوین، اتریوم، تتر و بیش از ۱۳۰۰ ارز دیجیتال با قیمت لحظه‌ای، کارمزد کم، امنیت بالا و پشتیبانی ۲۴ ساعته.",
   robots: {
     index: true,
     follow: true,
@@ -19,27 +19,25 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://arz8.com", 
+    canonical: "https://arz8.com",
   }
 };
 
 export default function HomePage() {
   return (
-    <>
-    
-      <main>
-        <h1 className="sr-only">
-          صرافی ارز دیجیتال ارز هشت | خرید و فروش بیت کوین، اتریوم، تتر و سایر ارزهای دیجیتال با بهترین قیمت لحظه‌ای، امنیت فوق‌العاده و تسویه آنی در سریع‌ترین زمان
-        </h1>
+    <main>
+      <h1 className="sr-only">
+        خرید و فروش فوری بیت‌کوین، اتریوم، تتر و ۱۳۰۰+ ارز دیجیتال با قیمت لحظه‌ای، امنیت پیشرفته و تسویه آنی در ارز هشت
+      </h1>
 
-        
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
 
-        <Home />
-      </main>
-    </>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
+      <Home />
+    </main>
   );
 }

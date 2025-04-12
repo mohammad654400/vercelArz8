@@ -27,7 +27,6 @@ export default function ClientProvider({ children }: { children: React.ReactNode
 
   // Function to clean up Goftino elements
   const cleanupGoftinoElements = () => {
-    console.log("Cleaning up Goftino elements");
 
     try {
       // Try to call destroy if available
@@ -76,7 +75,6 @@ export default function ClientProvider({ children }: { children: React.ReactNode
     document.head.appendChild(script);
     goftinoInitializedRef.current = true;
 
-    console.log("Goftino script added to DOM");
   };
 
   // Handle initial load and client-side navigation
@@ -97,7 +95,6 @@ export default function ClientProvider({ children }: { children: React.ReactNode
     // Listen for Next.js route change complete events
     const handleRouteChangeComplete = () => {
       const url = window.location.pathname;
-      console.log(`Route change completed to: ${url}`);
       if (url === "/") {
         setTimeout(loadGoftino, 100);
       } else if (prevPathRef.current === "/") {

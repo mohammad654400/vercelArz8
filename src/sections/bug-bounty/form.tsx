@@ -158,7 +158,6 @@ export default function FormBugBounty() {
 
 
 	const hashFormData = (data: FormDataType) => {
-		console.log(data);
 		const { files, ...dataWithoutFiles } = data; // Exclude files
 		const dataString = JSON.stringify(dataWithoutFiles);
 		return SHA256(dataString).toString(); // Hash only the textual data

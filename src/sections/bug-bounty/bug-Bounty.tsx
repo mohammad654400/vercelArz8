@@ -113,7 +113,7 @@ export default function BugBounty() {
               ))}
             </div>
           </div>
-
+{/* 
           <div className="flex flex-col items-center w-full">
             <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
               متخصصان برتر
@@ -142,7 +142,7 @@ export default function BugBounty() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="bg-[#1C1D1F] w-full hidden lg:flex flex-col justify-center items-center pt-[62px] pb-[50px] rounded-[20px] ">
             <h4 className="text-white text-[29px] font-bold">

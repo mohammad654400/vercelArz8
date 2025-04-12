@@ -30,10 +30,9 @@ export default function Job() {
     <div className='bg-background base-style'>
       <div className="flex flex-col-reverse xl:flex-row justify-between items-center h-full w-full mt-20">
         <div className="flex flex-col w-full xl:w-[460px] z-10 gap-7">
-          <h1 className="text-xl sm:text-2xl xl:text-3xl font-extrabold ">فرصت های شغلی ارز هشت</h1>
+          <h1 className="text-xl sm:text-2xl xl:text-3xl font-extrabold ">فرصت‌های شغلی در ارز هشت</h1>
           <p className="flex text-sm sm:text-base xl:text-sm font-normal  text-justify !leading-[44px] lg:!leading-[44px] " >
-            صرافی ارز هشت بستری خلاقانه برای ، شکوفایی و پرورش استعدادهای شما ست. اگر خود را متعهد به پیشرفت می‌دانید.
-            ارزهشت کوتاه ‌ترین راه رسیدن به این هدف است.
+          صرافی ارز هشت بستری خلاقانه برای شکوفایی و پرورش استعدادهای شماست. اگر خود را متعهد به پیشرفت می‌دانید، ارز هشت کوتاه‌ترین راه رسیدن به این هدف است.
           </p>
           <button
             onClick={scrollToJobs}
@@ -50,7 +49,7 @@ export default function Job() {
       </div>
       <div className='flex flex-col gap-10'>
         <div className='flex flex-col gap-4'>
-          <span className='text-lg font-bold'>چرا ارز هشت ایکس را انتخاب کنیم ...</span>
+          <span className='text-lg font-bold'>چرا ارز هشت را انتخاب کنیم؟</span>
           <div className='w-full gap-4 grid grid-cols-2 lg:grid-cols-4'>
             {whyUs.map((item, index) => (
               <div

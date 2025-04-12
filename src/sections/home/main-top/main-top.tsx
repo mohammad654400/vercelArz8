@@ -18,17 +18,18 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
   return (
     <div>
       <section className="flex flex-wrap text-sm justify-center pt-28 mt-2 gap-8 lg:justify-between">
-        <div className="flex flex-col md:justify-center w-[489px] gap-3 sm:gap-6">
-          <span className="text-[25px] md:text-[40px] font-bold mx-auto md:mx-0">
-            با خیال راحت معامله کنید،
+        <div className="flex flex-col md:justify-center w-[500px] lg:w-[590px] gap-3 sm:gap-6">
+          <span className="text-xl sm:text-[25px] md:text-3xl lg:text-4xl font-bold mx-auto md:mx-0">
+            با خیال راحت و امنیت کامل معامله کنید.
           </span>
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
-            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۸۰۰ </span>{" "}
-            ارزدیجیتال در صرافی ارزهشت
+            <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}
+            مزارز در پلتفرم معتبر ارز هشت
           </p>
           <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
-            در سریع ترین زمان ممکن ثبت نام کنید.
+            ثبت‌نام سریع و آسان در کمتر از یک دقیقه!
+
           </p>
           <form className="relative flex items-center" aria-label="فرم ثبت‌نام سریع">
             <label htmlFor="phone" className="absolute top-4 right-4 w-[18.9px] h-[24.5px] sm:w-[22.8px] sm:h-[29.7px] ">

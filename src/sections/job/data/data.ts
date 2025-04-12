@@ -10,10 +10,10 @@ export interface whyUs {
 }
 
 export const whyUs: whyUs[] = [
-    { content: "فضای بسیار صمیمی همراه پیرفت دوره ای برای همه کارمندان", title: "محیط پویا ", icon: emoji },
-    { content: "از همان اول استخدام در عنوان شغلی خودتان بیمه میشوید.", title: "بیمه", icon: insurance },
-    { content: "با عضویت در تیم ها میتوانید مهارت های خودتان را ارتقا دهید.", title: " تیم سازی ", icon: share },
-    { content: "با حضور ساعتی در شرکت کار های خود را انجام دهید.", title: "ساعت کاری منعطف", icon: clock },
+    { content: "فضای کاری بسیار دوستانه همراه با پیشرفت دوره‌ای برای تمامی کارکنان.", title: "محیط پویا و صمیمی", icon: emoji },
+    { content: "از همان ابتدا در عنوان شغلی خودتان تحت پوشش بیمه قرار می‌گیرید.", title: "بیمه", icon: insurance },
+    { content: "با عضویت در تیم‌ها، می‌توانید مهارت‌های خود را ارتقا دهید.", title: "تیم‌سازی", icon: share },
+    { content: "با حضور ساعتی در شرکت، می‌توانید کارهای خود را به راحتی انجام دهید.", title: "ساعت کاری منعطف", icon: clock },
 ];
 
 export interface JobListing {
@@ -39,7 +39,7 @@ export const jobListings: JobListing[] = [
         id: 1,
         title:"senior-technical-support",
         titleFn: "استخدام پشتیبان تلفنی",
-        city: "تهران",
+        city: "مراغه",
         jobCategory: "پشتیبانی",
         employmentType: "تمام وقت",
         workMode: "حضوری",

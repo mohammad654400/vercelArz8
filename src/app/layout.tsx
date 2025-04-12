@@ -4,7 +4,7 @@ import ClientProvider from "@/components/client-provider";
 
 export const metadata: Metadata = {
   title: "ارز هشت - خرید و فروش ارز دیجیتال | صرافی آنلاین ارز دیجیتال",
-  description: "صرافی ارز8، بستری امن برای خرید و فروش بیش از 1800 ارز دیجیتال با قیمت‌های لحظه‌ای، کارمزد کم و پشتیبانی 24 ساعته.",
+  description: "صرافی ارز8، بستری امن برای خرید و فروش بیش از 1300 ارز دیجیتال با قیمت‌های لحظه‌ای، کارمزد کم و پشتیبانی 24 ساعته.",
   robots: {
     index: true,
     follow: true,

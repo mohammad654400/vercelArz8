@@ -29,12 +29,12 @@ export default function BannerDownload({ showWaveDivider }: { showWaveDivider: b
               </div>
 
               <ul className="gap-[19px] lg:gap-[30px] mt-[32px] mb-[43px] lg:mt-[76px] lg:mb-[74px] self-center lg:self-start text-start list-disc list-inside text-[13px]  lg:text-[21px] font-semibold">
-                <h2><li>دسترسی به بیش از 1800 ارز دیجیتال</li></h2>
+                <h2><li>دسترسی به بیش از 1300 ارز دیجیتال</li></h2>
                 <h2><li className="my-4">پشتیبانی سریع و 24 ساعته</li></h2>
                 <h2><li>احراز هویت سریع</li></h2>
               </ul>
               <div className="flex w-full lg:justify-start justify-around ">
-                <Link className="z-20 hover:text-primary" href={""}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
+                <Link className="z-20 hover:text-primary" href={"https://app.arz8.com/"}><DownloadOption Icon={Web} label="وب اپلیکیشن" /> </Link>
                 <Link className="z-20 hover:text-[#27b681]" href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={CafeBazar} label="کافه بازار" /> </Link>
                 <Link className="z-20 hover:text-[#0091EA]" href={"https://myket.ir/app/com.arz8x.app.arz8x"}><DownloadOption Icon={Myket} label="مایکت" /> </Link>
                 <Link className="z-20  hover:text-primary" href={""}  ><DownloadOption Icon={GooglePlay} label="گوگل پلی" /></Link>
