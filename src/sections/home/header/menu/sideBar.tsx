@@ -54,10 +54,10 @@ export default function SideBar({ close }: { close: () => void }) {
               <Link onClick={handleClose} href="/price-cryptocurrencies/BTC"><p className="pb-3">خرید و فروش انی </p></Link>
               <Link onClick={handleClose} href="/faq"><p>سوالات متداول</p></Link>
               <Accordion title="سایر خدمات">
-                <div className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
-                  <Link onClick={handleClose} href="/wheel-luck">گردونه شانس</Link>
+                <Link onClick={handleClose} href="/wheel-luck" className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
+                  <span>گردونه شانس</span>
                   <div className="w-7 -rotate-90 flex justify-center items-center text-[10px] h-auto bg-[#F00500] rounded-3xl">جدید</div>
-                </div>
+                </Link>
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کسب درامد</div>
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کارت هدیه</div>
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">تخفیفات</div>
