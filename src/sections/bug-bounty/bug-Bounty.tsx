@@ -2,9 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import { damage, expertData } from "./data";
-import AllBugBountyIcon from "@/assets/icons/bugbounty/allBugBounty";
-import user from "@/assets/images/user.png";
+import { damage, damageSm } from "./data";
 import Rules from "./rules";
 import Form from "./form";
 import bgBugLight from "@/assets/images/bugbounty/bgBugLight.png";
@@ -28,7 +26,7 @@ export default function BugBounty() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <div className="base-style" style={{ gap: 0 }}>
+    <div className="base-style !gap-0">
       {open ? (
         <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
           <div className="flex w-full justify-center">
@@ -61,13 +59,17 @@ export default function BugBounty() {
           <Rules />
         </div>
       ) : (
-        <div className="py-[76px] lg:py-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
-          <Image
-            src={backgroundImage}
-            alt="Background Image"
-            className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
-            priority
-          />
+        <div className="pt-[76px] lg:pt-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
+          <div className="absolute top-32 w-screen h-[410px] lg:h-[730px] z-[-1]">
+            <Image
+              src={backgroundImage}
+              alt="Background Image"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+
 
           <div className="flex flex-col items-center">
             <h1 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">
@@ -99,57 +101,45 @@ export default function BugBounty() {
               آسیب های مورد تایید
             </h3>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 lg:gap-x-48  gap-x-24 gap-y-8 place-content-between  w-full grid-flow-row-dense">
+            {/* فقط برای sm و پایین‌تر */}
+            <div className="grid grid-cols-2 gap-x-24 gap-y-8 place-content-between w-full grid-flow-row-dense sm:hidden">
+              {damageSm.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col w-full items-center justify-start gap-8"
+                >
+                  <item.icon />
+                  <span className="text-center text-[10px]">
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* برای sm و بالاتر */}
+            <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 lg:gap-x-48 gap-x-24 gap-y-8 place-content-between w-full grid-flow-row-dense">
               {damage.map((item, index) => (
                 <div
                   key={index}
                   className="flex flex-col w-full items-center justify-start gap-8"
                 >
                   <item.icon />
-                  <span className="text-center text-[10px] lg:text-base">
+                  <span className="text-center text-base">
                     {item.text}
                   </span>
                 </div>
               ))}
             </div>
-          </div>
-{/* 
-          <div className="flex flex-col items-center w-full">
-            <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
-              متخصصان برتر
-            </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full grid-flow-row-dense">
-              {expertData.map((data) => (
-                <div
-                  key={data.id}
-                  className="flex flex-col w-full py-2  bg-secondary rounded-[10px] lg:rounded-[15px]"
-                >
-                  <div className="flex  gap-7 p-[15px] pb-5 items-center border-b border-[#ADADAD80] ">
-                    <Image
-                      alt="user"
-                      src={user}
-                      className="rounded-full w-[60px] h-[60px]"
-                    />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-base font-normal">{data.name}</p>
-                      <p className="text-base font-semibold">{data.amount}</p>
-                    </div>
-                  </div>
-                  <div className="pr-5 flex pt-2">
-                    <AllBugBountyIcon />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
+          </div>
+
 
           <div className="bg-[#1C1D1F] w-full hidden lg:flex flex-col justify-center items-center pt-[62px] pb-[50px] rounded-[20px] ">
             <h4 className="text-white text-[29px] font-bold">
-            با گزارش باگ، هم کمک کنید، هم پاداش بگیرید!
+              با گزارش باگ، هم کمک کنید، هم پاداش بگیرید!
             </h4>
             <p className="text-white text-xl font-semibold w-[85%] text-center mt-6 mb-9 leading-[38px]">
-            با شناسایی و گزارش آسیب‌پذیری‌های امنیتی به تیم امنیت ارزهشت، نه تنها به ارتقای کیفیت خدمات و امنیت پلتفرم کمک می‌کنید، بلکه پاداش نقدی نیز دریافت خواهید کرد. این یک فرصت استثنایی برای متخصصان تست نفوذ است تا توانایی‌های خود را به چالش بکشند و در بهبود امنیت سیستم‌ها سهیم شوند. فرصت را از دست ندهید و مهارت‌های خود را به نمایش بگذارید!
+              با شناسایی و گزارش آسیب‌پذیری‌های امنیتی به تیم امنیت ارزهشت، نه تنها به ارتقای کیفیت خدمات و امنیت پلتفرم کمک می‌کنید، بلکه پاداش نقدی نیز دریافت خواهید کرد. این یک فرصت استثنایی برای متخصصان تست نفوذ است تا توانایی‌های خود را به چالش بکشند و در بهبود امنیت سیستم‌ها سهیم شوند. فرصت را از دست ندهید و مهارت‌های خود را به نمایش بگذارید!
             </p>
             <button
               onClick={toggleTransaction}

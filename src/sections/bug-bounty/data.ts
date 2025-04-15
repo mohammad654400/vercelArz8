@@ -80,11 +80,41 @@ export const damage=[
 
 ]
 
-export const expertData = [
-    { id: 1, name: "محمد جواد کنویسی", amount: "500,000,000 تومان" },
-    { id: 2, name: "علیرضا بهلول", amount: "100,000,000 تومان" },
-    { id: 3, name: "علی اکبر ذبیح نژاد", amount: "100,000,000 تومان" },
-    { id: 4, name: "محمد جواد کنویسی", amount: "400,000,000 تومان" },
-    { id: 5, name: "علیرضا بهلول", amount: "100,000,000 تومان" },
-    { id: 6, name: "علی اکبر ذبیح نژاد", amount: "100,000,000 تومان" }
-];
+import AuthSmIcon from "@/assets/icons/bugbounty/authiconSm";
+import CrossSiteSmIcon from "@/assets/icons/bugbounty/crossSiteSm";
+import ImportAccessSmIcon from "@/assets/icons/bugbounty/importAccessSm";
+import InformationSmIcon from "@/assets/icons/bugbounty/informationSm";
+import ServerSideSmIcon from "@/assets/icons/bugbounty/serverSideSm";
+import SqIinjectionSmIcon from "@/assets/icons/bugbounty/sqIinjectionIconSm";
+
+export const damageSm=[
+    {
+        text:"Improper Authentication",
+        icon: AuthSmIcon,
+    },
+    {
+        text:"Cross-site Scripting (XSS)",
+        icon: CrossSiteSmIcon,
+    },
+    {
+        text:"Improper Access Control",
+        icon: ImportAccessSmIcon,
+    },
+
+    {
+        text:"SQL Injection",
+        icon: SqIinjectionSmIcon,
+    },
+ 
+    {
+        text:"Server-Side Request Forgery (SSRF)",
+        icon: ServerSideSmIcon,
+    },
+   
+    {
+        text:"Information Disclosure",
+        icon: InformationSmIcon,
+    },
+
+
+]
