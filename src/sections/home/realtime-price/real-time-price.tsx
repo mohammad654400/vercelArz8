@@ -102,8 +102,8 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                 key={option.key}
                 onClick={() => setActiveFilter(option.key)}
                 className={`px-2 sm:px-3 py-1 rounded-lg text-[13px] md:text-sm ${activeFilter === option.key
-                    ? "bg-yellow-400 text-white"
-                    : "text-[#3C3B4180] dark:text-[#FFFFFF80] hover:text-primary dark:hover:text-primary"
+                  ? "bg-yellow-400 text-white"
+                  : "text-[#3C3B4180] dark:text-[#FFFFFF80] hover:text-primary dark:hover:text-primary"
                   } ${option.mobile ? "block" : "hidden md:block"}`}
                 aria-pressed={activeFilter === option.key}
                 aria-label={`فیلتر ${option.label}`}
@@ -141,7 +141,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
             aria-label="لیست قیمت‌های ارزهای دیجیتال"
           >
             {isLoading ? (
-             <SkeletonLoader />
+              <SkeletonLoader />
             ) : (
               displayedCurrencies.map((currency, index) => (
                 <div
@@ -222,7 +222,6 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                         width={120}
                         height={44}
                         loading="lazy"
-                        className="w-auto h-auto"
                       />
                     </div>
 

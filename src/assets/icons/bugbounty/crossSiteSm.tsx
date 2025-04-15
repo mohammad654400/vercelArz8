@@ -1,0 +1,13 @@
+import React from "react";
+
+export default function CrossSiteSmIcon() {
+  return (
+    <svg width="84" height="98" viewBox="0 0 84 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M35.1553 3.90537L12.0352 12.616C6.70686 14.6083 2.35156 20.9096 2.35156 26.5622V60.9876C2.35156 66.4549 5.96553 73.6365 10.3672 76.9261L30.2903 91.799C36.8233 96.7103 47.5726 96.7103 54.1055 91.799L74.0287 76.9261C78.4303 73.6365 82.0443 66.4549 82.0443 60.9876V26.5622C82.0443 20.8632 77.689 14.562 72.3607 12.5696L49.2405 3.90537C45.3022 2.46904 39.0009 2.46904 35.1553 3.90537Z" fill="#FFC107" stroke="#FFC107" strokeWidth="3.80819" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M37.4224 50.7637C36.3608 51.2945 35.4761 52.0827 34.8165 53.0639C34.4466 53.6269 34.4466 54.3347 34.8165 54.8977C35.4761 55.879 36.3608 56.6672 37.4224 57.198" stroke="white" strokeWidth="2.41287" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M47.4141 50.7637C48.4757 51.2945 49.3604 52.0827 50.02 53.0639C50.3899 53.6269 50.3899 54.3347 50.02 54.8977C49.3604 55.879 48.4757 56.6672 47.4141 57.198" stroke="white" strokeWidth="2.41287" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M37.4241 65.24H47.0756C55.1186 65.24 58.3357 62.0228 58.3357 53.9799V44.3284C58.3357 36.2855 55.1186 33.0684 47.0756 33.0684H37.4241C29.3812 33.0684 26.1641 36.2855 26.1641 44.3284V53.9799C26.1641 62.0228 29.3812 65.24 37.4241 65.24Z" stroke="white" strokeWidth="2.41287" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M26.5312 42.7368L57.4482 42.7207" stroke="white" strokeWidth="2.41287" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
