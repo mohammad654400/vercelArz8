@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef, memo } from "react";
 
 type TradingViewAdvancedChartProps = {
@@ -9,38 +11,41 @@ function TradingViewAdvancedChart({ coinChart, theme }: TradingViewAdvancedChart
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Clear previous content to avoid duplicates
+    let timeoutId: NodeJS.Timeout;
+
     if (container.current) {
       container.current.innerHTML = "";
+      // Delay slightly to avoid dev-mode hydration issues
+      timeoutId = setTimeout(() => {
+        const script = document.createElement("script");
+        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+        script.type = "text/javascript";
+        script.async = true;
+        script.innerHTML = `
+          {
+            "autosize": true,
+            "symbol": "${coinChart}",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "${theme}",
+            "style": "1",
+            "locale": "en",
+            "allow_symbol_change": false,
+            "calendar": false,
+            "support_host": "https://www.tradingview.com"
+          }`;
+        container.current?.appendChild(script);
+      }, 50); // 50ms delay is usually enough
     }
 
-    // Create and append script
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = `
-      {
-        "autosize": true,
-        "symbol": "${coinChart}",
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "${theme}",
-        "style": "1",
-        "locale": "en",
-        "allow_symbol_change": false,
-        "calendar": false,
-        "support_host": "https://www.tradingview.com"
-      }`;
-    container.current?.appendChild(script);
-
-    // Cleanup to avoid duplicate scripts
     return () => {
+      clearTimeout(timeoutId);
       if (container.current) {
         container.current.innerHTML = "";
       }
     };
   }, [coinChart, theme]);
+
 
   return (
     <div className="relative w-full h-full">
