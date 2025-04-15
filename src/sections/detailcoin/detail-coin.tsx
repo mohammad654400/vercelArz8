@@ -364,7 +364,7 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
                       className="!w-12 !h-3 md:w-[60px] md:h-[18px] !p-0 !mt-0"
                     />
                   ) : (
-                    <span dir="ltr" className="text-[10px] sm:text-lg font-semibold opacity-50 !leading-3 truncate block max-w-full text-right">
+                    <span dir="ltr" className="text-[10px] sm:text-lg sm:-mt-3 font-semibold opacity-50 truncate block max-w-full text-right">
                       {coin?.name?.en}
                     </span>
                   )}
