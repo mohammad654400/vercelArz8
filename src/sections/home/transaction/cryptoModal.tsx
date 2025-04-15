@@ -6,6 +6,7 @@ import { useTheme } from "@/contexts/theme-provider";
 import Link from "next/link";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import IconClose from "@/assets/icons/icon-close";
+import { usePathname, useRouter } from "next/navigation";
 
 
 export default function CryptoModal({ toggle, setCurrency, currencies, hasLink = false, isBuy, isLoading, setCurrentCoin }: any) {
@@ -13,6 +14,8 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
   const [search, setSearch] = useState("");
   const { baseColor, highlightColor } = useTheme();
   const { formatNumber } = useFormattedNumber();
+  const pathname = usePathname()
+  const router = useRouter()
 
 
   // const filteredCurrencies = currencies.filter(
@@ -37,6 +40,9 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
     setCurrency(currency);
     setCurrentCoin(currency);
     toggle();
+    if (pathname.startsWith('/price-cryptocurrencies')) {
+      router.replace(`/price-cryptocurrencies/${currency?.symbol}`);
+    }
   };
 
   return (
@@ -96,7 +102,7 @@ export default function CryptoModal({ toggle, setCurrency, currencies, hasLink =
           ) : filteredCurrencies.length > 0 ? (
             filteredCurrencies.map((currency: any, index: any) => (
               hasLink ? (
-                <Link  href={`/price-cryptocurrencies/${currency.symbol}`} key={index}>
+                <Link href={`/price-cryptocurrencies/${currency.symbol}`} key={index}>
                   <div
                     key={index}
                     onClick={() => handleCurrencySelect(currency)}
