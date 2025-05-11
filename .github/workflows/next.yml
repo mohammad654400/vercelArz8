@@ -1,4 +1,4 @@
-name: Dockerized Next.js CI/CD
+name: Docker Deployment
 
 on:
   push:
@@ -7,50 +7,49 @@ on:
       - dev
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.0
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: |
-            your-docker-username/next-app:${{ github.sha }}
-            your-docker-username/next-app:latest
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to server
         run: |
           if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
-            PM2_APP_NAME="next-main"
-            APP_PORT=3000
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/public_html"
+            CONTAINER_NAME="next-main"
+            PORT=3000
           elif [ "${GITHUB_REF}" == "refs/heads/dev" ]; then
-            PM2_APP_NAME="next-dev"
-            APP_PORT=3100
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/dev-land"
+            CONTAINER_NAME="next-dev"
+            PORT=3100
           fi
 
           ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 "
-            # Pull the Docker image
-            docker pull your-docker-username/next-app:latest
+            cd ${TARGET_DIR}
+            
+            # Pull latest changes
+            git reset --hard HEAD
+            git clean -fd
+            git pull origin ${GITHUB_REF##*/}
+            
+            # Build new Docker image
+            docker build -t ${CONTAINER_NAME} .
             
             # Stop and remove old container if exists
-            docker stop ${PM2_APP_NAME} || true
-            docker rm ${PM2_APP_NAME} || true
+            docker stop ${CONTAINER_NAME} || true
+            docker rm ${CONTAINER_NAME} || true
             
             # Run new container
             docker run -d \
-              --name ${PM2_APP_NAME} \
+              --name ${CONTAINER_NAME} \
               --restart unless-stopped \
-              -p ${APP_PORT}:${APP_PORT} \
-              -e NODE_ENV=production \
-              your-docker-username/next-app:latest
+              -p ${PORT}:${PORT} \
+              -v ${TARGET_DIR}/.next:/app/.next \
+              ${CONTAINER_NAME}
           "
