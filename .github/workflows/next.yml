@@ -1,0 +1,58 @@
+name: Next.js CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
+        run: |
+          if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/public_html"
+            PM2_APP_NAME="next-main"
+            APP_PORT=3000
+          elif [ "${GITHUB_REF}" == "refs/heads/dev" ]; then
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/dev-land"
+            PM2_APP_NAME="next-dev"
+            APP_PORT=3100
+          fi
+
+         ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 '
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 18
+
+          cd '"${TARGET_DIR}"' &&
+          git reset --hard HEAD &&
+          git clean -fd &&
+          git pull origin '"${GITHUB_REF##*/}"' --no-rebase &&
+          npm install &&
+          npm run build &&
+
+          if ! command -v pm2 &> /dev/null; then
+            npm install -g pm2
+          fi
+
+          if pm2 list | grep -q '"${PM2_APP_NAME}"'; then
+            pm2 restart '"${PM2_APP_NAME}"'
+          else
+            pm2 start "npm run start" --name '"${PM2_APP_NAME}"' --env PORT='"${APP_PORT}"'
+          fi
+
+          pm2 save &&
+          sudo chown -R cp38729:cp38729 '"${TARGET_DIR}"'
+        '
+
