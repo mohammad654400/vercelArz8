@@ -38,18 +38,21 @@ jobs:
             git clean -fd
             git pull origin ${GITHUB_REF##*/}
             
-            # Build new Docker image
+            # Build Docker image
             docker build -t ${CONTAINER_NAME} .
             
-            # Stop and remove old container if exists
+            # Stop and remove old container
             docker stop ${CONTAINER_NAME} || true
             docker rm ${CONTAINER_NAME} || true
             
-            # Run new container
+            # Run new container with appropriate port
             docker run -d \
               --name ${CONTAINER_NAME} \
-              --restart unless-stopped \
               -p ${PORT}:${PORT} \
-              -v ${TARGET_DIR}/.next:/app/.next \
+              -e PORT=${PORT} \
+              --restart unless-stopped \
               ${CONTAINER_NAME}
+            
+            # Cleanup unused images
+            docker image prune -f
           "
