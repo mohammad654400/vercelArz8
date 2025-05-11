@@ -31,29 +31,29 @@ jobs:
           fi
 
           ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 "
-            export NVM_DIR=\"\$HOME/.nvm\" && \
-            [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\" && \
-            nvm install 18 && \
-            nvm use 18 && \
+            export NVM_DIR=\$HOME/.nvm
+            source \$NVM_DIR/nvm.sh
+            nvm use 18
 
-            cd ${TARGET_DIR} && \
-            git reset --hard HEAD && \
-            git clean -fd && \
-            git pull origin ${GITHUB_REF##*/} --no-rebase && \
+            export PATH=\$NVM_DIR/versions/node/v18.20.8/bin:\$PATH
 
-            npm install && \
-            npm run build && \
+            cd ${TARGET_DIR} &&
+            git reset --hard HEAD &&
+            git clean -fd &&
+            git pull origin ${GITHUB_REF##*/} --no-rebase &&
+            npm install &&
+            npm run build
 
             if ! command -v pm2 &> /dev/null; then
               npm install -g pm2
-            fi && \
+            fi
 
             if pm2 list | grep -q ${PM2_APP_NAME}; then
               pm2 restart ${PM2_APP_NAME}
             else
               PORT=${APP_PORT} pm2 start 'npm run start' --name ${PM2_APP_NAME}
-            fi && \
+            fi
 
-            pm2 save && \
+            pm2 save
             chown -R cp38729:cp38729 ${TARGET_DIR}
           "
