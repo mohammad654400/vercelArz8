@@ -1,23 +1,24 @@
-# استفاده از Node.js 20 به عنوان base image
-FROM node:20
+FROM node:18-alpine
 
-# ست کردن working directory
+# تنظیم registry و حذف کش برای اطمینان از نصب صحیح
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm cache clean --force
+
 WORKDIR /app
 
-# کپی کردن package.json و package-lock.json (یا yarn.lock) به کانتینر
-COPY package*.json ./
+# ابتدا فقط فایل‌های package را کپی کنید
+COPY package.json package-lock.json ./
 
-# نصب پکیج‌ها
-RUN npm install
+# نصب وابستگی‌ها با بررسی دقیق
+RUN npm install --legacy-peer-deps --verbose && \
+    npm list next
 
-# کپی کردن بقیه سورس کد به کانتینر
+# کپی بقیه فایل‌ها
 COPY . .
 
-# بیلد کردن پروژه Next.js (اختیاری: برای production build)
+# ساخت پروژه
 RUN npm run build
 
-# اکسپوز کردن پورت پیش‌فرض Next.js
 EXPOSE 3000
 
-# اجرای پروژه
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
