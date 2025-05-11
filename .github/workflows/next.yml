@@ -30,29 +30,31 @@ jobs:
             APP_PORT=3100
           fi
 
-          ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 '
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 'bash -s' <<EOF
+            export NVM_DIR="\$HOME/.nvm"
+            [ -s "\$NVM_DIR/nvm.sh" ] && . "\$NVM_DIR/nvm.sh"
 
-            nvm use 18 || nvm install 18
+            nvm install 18
+            nvm use 18
 
-            cd '"${TARGET_DIR}"' &&
-            git reset --hard HEAD &&
-            git clean -fd &&
-            git pull origin '"${GITHUB_REF##*/}"' --no-rebase &&
-            npm install &&
-            npm run build &&
+            cd ${TARGET_DIR}
+            git reset --hard HEAD
+            git clean -fd
+            git pull origin ${GITHUB_REF##*/} --no-rebase
+
+            npm install
+            npm run build
 
             if ! command -v pm2 &> /dev/null; then
               npm install -g pm2
             fi
 
-            if pm2 list | grep -q '"${PM2_APP_NAME}"'; then
-              pm2 restart '"${PM2_APP_NAME}"'
+            if pm2 list | grep -q ${PM2_APP_NAME}; then
+              pm2 restart ${PM2_APP_NAME}
             else
-              pm2 start "npm run start" --name '"${PM2_APP_NAME}"' --env PORT='"${APP_PORT}"'
+              pm2 start "npm run start" --name ${PM2_APP_NAME} --env PORT=${APP_PORT}
             fi
 
-            pm2 save &&
-            sudo chown -R cp38729:cp38729 '"${TARGET_DIR}"'
-          '
+            pm2 save
+            chown -R cp38729:cp38729 ${TARGET_DIR}
+EOF
