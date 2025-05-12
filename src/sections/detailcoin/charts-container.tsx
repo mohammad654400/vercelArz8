@@ -11,12 +11,18 @@ const ChartContainer = ({ coinChart, theme }: any) => {
   const [isAdvancedChart, setIsAdvancedChart] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const toggleFullscreen = () => {
     const elem = chartContainerRef.current;
-
     if (!elem) return;
 
-    if (!document.fullscreenElement && !getWebkitFullscreenElement()) {
+    const webkitElement = getWebkitFullscreenElement();
+
+    const isCurrentlyFullscreen = document.fullscreenElement || webkitElement;
+
+    if (!isCurrentlyFullscreen) {
       // Enter fullscreen
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
@@ -28,48 +34,47 @@ const ChartContainer = ({ coinChart, theme }: any) => {
       // Exit fullscreen
       if (document.exitFullscreen) {
         document.exitFullscreen().catch(() => handleFullscreenExitFallback());
-      } else if (isWebkitDocument(document)) {
-        document.webkitExitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
       } else {
         handleFullscreenExitFallback();
       }
+
+      // iOS might not fire fullscreenchange reliably
+      if (isIOS) {
+        setTimeout(() => setIsFullscreen(false), 500); // Force update
+      }
+    }
+  };
+
+  const handleFullscreenExitFallback = () => {
+    if (isIOS) {
+      document.body.style.overflow = "auto";
+      // You can choose not to reload and instead fake exit fullscreen by updating state/UI
       setIsFullscreen(false);
     }
   };
 
-  // Fallback method for iOS to exit fullscreen by reloading the page (last resort)
-  const handleFullscreenExitFallback = () => {
-    if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-      document.body.style.overflow = "auto"; // Ensure scrolling is enabled
-      window.location.reload(); // Hard reset (last resort if nothing else works)
-    }
-  };
-
-  // Helper functions
   const getWebkitFullscreenElement = (): Element | null => {
-    return "webkitFullscreenElement" in document
-      ? (document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement || null
-      : null;
+    return (document as any).webkitFullscreenElement || null;
   };
 
   const isWebkitElement = (elem: Element): elem is Element & { webkitRequestFullscreen: () => void } => {
     return "webkitRequestFullscreen" in elem;
   };
 
-  const isWebkitDocument = (doc: Document): doc is Document & { webkitExitFullscreen: () => void } => {
-    return "webkitExitFullscreen" in doc;
-  };
-
-
-  // Listen for fullscreen change (handles exit via ESC key)
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const isFs = !!(document.fullscreenElement || getWebkitFullscreenElement());
+      setIsFullscreen(isFs);
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // ✅ iOS Support
+
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
     };
   }, []);
 
