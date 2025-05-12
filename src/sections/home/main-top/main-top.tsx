@@ -25,7 +25,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           <p className="text-[13.23px] sm:text-base font-semibold text-center md:text-start">
             خرید و فروش بیش از{" "}
             <span className="text-primary text-xl sm:text-3xl font-semibold"> ۱۳۰۰ </span>{" "}
-            مزارز در پلتفرم معتبر ارز هشت
+            رمزارز در پلتفرم معتبر ارز هشت
           </p>
           <p className="mx-auto text-sm md:text-lg md:mx-0 text-sixth opacity-50">
             ثبت‌نام سریع و آسان در کمتر از یک دقیقه!
@@ -71,7 +71,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
           <BannerSlider />
         </aside>
       </section>
-      <section
+      {/* <section
         className="flex flex-wrap justify-between items-center  mt-8 rounded-[5.9px] sm:rounded-xl py-2 w-full bg-[#F6F6F6] dark:bg-[#242428] "
         aria-label="آخرین اطلاعیه‌ها"
       >
@@ -91,7 +91,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
             <ArrowLeft />
           </div>
         </div>
-      </section>
+      </section> */}
       <div className="w-full h-[2px] bg-[#ADADAD80]
       dark:bg-[#242428] mt-5"></div>
       <div className="w-full mt-4 z-30 " >

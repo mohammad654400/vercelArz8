@@ -1,0 +1,58 @@
+name: Docker Deployment
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
+        run: |
+          if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/public_html"
+            CONTAINER_NAME="next-main"
+            PORT=3000
+          elif [ "${GITHUB_REF}" == "refs/heads/dev" ]; then
+            TARGET_DIR="/home/cp38729/domains/arz8x.com/dev-land"
+            CONTAINER_NAME="next-dev"
+            PORT=3100
+          fi
+
+          ssh -o StrictHostKeyChecking=no -p 3031 root@65.21.239.21 "
+            cd ${TARGET_DIR}
+            
+            # Pull latest changes
+            git reset --hard HEAD
+            git clean -fd
+            git pull origin ${GITHUB_REF##*/}
+            
+            # Build Docker image
+            docker build -t ${CONTAINER_NAME} .
+            
+            # Stop and remove old container
+            docker stop ${CONTAINER_NAME} || true
+            docker rm ${CONTAINER_NAME} || true
+            
+            # Run new container with appropriate port
+            docker run -d \
+              --name ${CONTAINER_NAME} \
+              -p ${PORT}:${PORT} \
+              -e PORT=${PORT} \
+              --restart unless-stopped \
+              ${CONTAINER_NAME}
+            
+            # Cleanup unused images
+            docker image prune -f
+          "
