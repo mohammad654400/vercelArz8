@@ -19,6 +19,7 @@ import CryptoDetails from "./crypto-details";
 import Skeleton from "react-loading-skeleton";
 import ChartContainer from "./charts-container";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
+import { AccordionData } from "./accordion-data";
 
 interface HomeCurrency {
   symbol: string;
@@ -57,51 +58,11 @@ interface Comment {
 }
 
 type DetailCoinProps = {
-  coinName: string;
+  coinNameComingFromPage: string;
   coinDescription: string;
 }
 
-const AccordionData = [
-  {
-    id: 1,
-    title: "بول ران (Bull Run) چیست؟",
-    content:
-      "در دنیای پر از پدیده‌ و اصطلاحات ارز دیجیتال یکی از واژه‌هایی که هیاهو به همراه داشته است، عبارت “بول ران” (Bull Run) است. این اصطلاح همیشه به زمانی اشاره دارد که بازار در وضعیت گاوی و یا صعودی قرار دارد.",
-  },
-
-  {
-    id: 2,
-    title: "در هر ۲۴ ساعت چندبار میتونیم گردونه شانش را بچرخونیم؟",
-    content:
-      "در هر ۲۴ ساعت فقط یک بار می‌تونید اقدام به چرخش گردونه کنید. در صورتی که همین الان گردونه رو بچرخونید، فردا همین موقع دوباره می‌تونید شانس خودتون رو مجدد امتحان کنید.",
-  },
-  {
-    id: 3,
-    title: "آیا سطح حساب کاربری در برنده شدن جایزه گردونه شانس تأثیرگذار است؟",
-    content:
-      "بله، در گردونه شانس جدید «ارز هشت»، جوایزی که برای هر سطح در نظر گرفته شده متفاوت است و این موضوع وابسته به حجم معاملات و گردش 30 روزه شما در سایت است. سطوح کاربری برای چرخش گردونه به شرح زیر است: <br/>1.  سطح برنزی:  برای کاربرانی که احراز هویت اولیه (اطلاعات هویتی) را کامل کرده و حجم معاملات آن‌ها در طی 1 ماه بین 0 تا 100 میلیون تومان بوده است. <br/>2.  سطح نقره‌ای:  گردونه شانس برای کاربرانی قابل چرخش است که حجم معاملاتی یک ماه اخیرشان از 100 میلیون تا 400 میلیون تومان باشد. <br/>3.  سطح طلایی:  در این سطح، مبلغ گردش معاملاتی شما باید در یک ماه از 400 میلیون تا 1 میلیارد تومان باشد تا بتوانید گردونه طلایی را بچرخانید. <br/>4.  سطح کریستالی:  آخرین سطح، سطح کریستالی است که جوایز ویژه‌ای برای آن در نظر گرفته شده. برای چرخاندن گردونه در این سطح، حجم معاملات شما در یک ماه باید بیشتر از 1 میلیارد تومان باشد. <br/> نکته:  در سطح‌های طلایی و کریستالی گزینه پوچ وجود ندارد و شما در هر صورت به صورت روزانه برنده جایزه خواهید شد.",
-  },
-  {
-    id: 4,
-    title: "کد تخفیف ترید به چه صورت اعمال میشود؟",
-    content:
-      "تخفیف کارمزد و سایر جوایز نقدی بصورت خودکار در حساب کاربری اعمال میشود.",
-  },
-  {
-    id: 5,
-    title: "گردونه شانس در کدام قسمت است؟",
-    content:
-      "برای چرخش گردونه شانس وارد پنل شده و به قسمت گردونه شانس مراجعه کنید. دسترسی به این صفحه از طریق لینک زیر هم امکان پذیر است:  https://app.arz8.com/tools/wheel ",
-  },
-  {
-    id: 6,
-    title: "تایمر گردونه برای من کار نمیکند؟",
-    content:
-      "برای رفع این مشکل از آخرین نسخه مرورگر گوگل کروم و فایرفاکس استفاده کنید و چک کنید که حتما آخرین نسخه مرورگر روی گوشی یا کامپیوتر شما نصب باشد.",
-  },
-];
-
-export default function DetailCoin({ coinName, coinDescription }: DetailCoinProps) {
+export default function DetailCoin({ coinNameComingFromPage, coinDescription }: DetailCoinProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -112,14 +73,14 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
   const [selectItem, setSelectItem] = useState<number | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
+  const pathname = usePathname()
   const route = usePathname().split("/")[2].toUpperCase();
   const { data: infoData, isLoading: infoIsLoading } = useGetData("info");
-  const { data: coinData, isLoading: coinIsLoading } = useGetData(`cryptocurrencies/${coinName}`, 60000);
+  const { data: coinData, isLoading: coinIsLoading } = useGetData(`cryptocurrencies/${coinNameComingFromPage}`, 60000);
   const { data: homeData, isLoading: homeLoading } = useGetData("home", 60000);
   const coin = infoData?.cryptocurrency?.find(
-    (item: any) => item.symbol === coinName
+    (item: any) => item.symbol === coinNameComingFromPage
   );
-
 
   const coinChart = coinData?.chart;
 
@@ -127,22 +88,22 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
   useEffect(() => {
     if (infoData) {
       const foundCoin = infoData.cryptocurrency?.find(
-        (item: any) => item.symbol === coinName
+        (item: any) => item.symbol === coinNameComingFromPage
       );
       setCurrentCoin(foundCoin || null); // Set currentCoin when data is available
     }
-  }, [infoData, coinName]);
+  }, [infoData, coinNameComingFromPage]);
 
   // handle 404 error
   const router = useRouter();
   useEffect(() => {
     if (
       infoData &&
-      !infoData?.cryptocurrency?.some((item: any) => item.symbol === coinName)
+      !infoData?.cryptocurrency?.some((item: any) => item.symbol === coinNameComingFromPage)
     ) {
       router.push("/not-found");
     }
-  }, [infoData, coinName, router]);
+  }, [infoData, coinNameComingFromPage, router]);
 
   // array for
   const newCryptos = coinData?.new.map((crypto: any) => {
@@ -185,7 +146,8 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
     storedFavorites
       ? setFavorites(JSON.parse(storedFavorites))
       : setFavorites([]);
-  }, [currency]);
+
+  }, [coinNameComingFromPage]);
 
   const handleFavorite = (symbol: string) => {
     let updatedFavorites;
@@ -271,7 +233,6 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
   };
 
   return (
-
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
       <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
         {infoIsLoading || coinIsLoading ? (
@@ -472,7 +433,7 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
 
         <div className="flex flex-col h-full w-full lg:w-[38.6%] rounded-lg">
           <TransAction
-            coin={filterData?.find((item) => item?.symbol === coinName)}
+            coin={filterData?.find((item) => item?.symbol === coinNameComingFromPage)}
             infoLoading={false}
             homeLoading={false}
             homeData={homeData}
@@ -534,7 +495,7 @@ export default function DetailCoin({ coinName, coinDescription }: DetailCoinProp
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">
           <DescriptionTable
             persianName={currentCoin?.name.fa}
-            symbol={coinName.toLocaleUpperCase()}
+            symbol={coinNameComingFromPage.toLocaleUpperCase()}
             lastDollarPrice={formatNumber(coinData?.lastPrice)}
             lastTomanPrice={formatNumber(coinData?.priceToman.buy)}
             dailyChangePercent={coinData?.priceChangePercent}
