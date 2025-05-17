@@ -12,7 +12,8 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'arz8.com'
+        hostname: 'arz8.com',
+        pathname: '/blog/wp-content/uploads/**'
       }
     ]
   },
