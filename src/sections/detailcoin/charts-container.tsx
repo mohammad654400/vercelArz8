@@ -5,87 +5,31 @@ import TradingViewSimpleChart from "@/components/charts/trading-view-simple-char
 import { useTheme } from "@/contexts/theme-provider";
 import React, { useState, useRef, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
+
 const ChartContainer = ({ coinChart, theme }: any) => {
   const { baseColor, highlightColor } = useTheme();
   const [isAdvancedChart, setIsAdvancedChart] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const toggleFullscreen = () => {
-    const elem = chartContainerRef.current;
-    if (!elem) return;
-    const webkitElement = getWebkitFullscreenElement();
-    const isCurrentlyFullscreen = document.fullscreenElement || webkitElement;
-    if (!isCurrentlyFullscreen) {
-      // Enter fullscreen
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().then(() => {
-          setIsFullscreen(true);
-        }).catch(() => {
-          // fallback if request fails
-          setIsFullscreen(true);
-        });
-      } else if (isWebkitElement(elem)) {
-        elem.webkitRequestFullscreen();
-        setIsFullscreen(true);
-      }
-    } else {
-      // Exit fullscreen
-      const exit = async () => {
-        try {
-          if (document.exitFullscreen) {
-            await document.exitFullscreen();
-          } else if ((document as any).webkitExitFullscreen) {
-            (document as any).webkitExitFullscreen();
-          }
-        } catch (e) {
-          // If exiting fullscreen fails, fallback
-          handleFullscreenExitFallback();
-        } finally {
-          if (isIOS) {
-            // iOS doesn't reliably trigger fullscreenchange
-            setTimeout(() => {
-              setIsFullscreen(false);
-            }, 500);
-          }
-        }
-      };
-      exit();
-    }
+    setIsFullscreen((prev) => !prev);
   };
-  const handleFullscreenExitFallback = () => {
-    if (isIOS) {
-      document.body.style.overflow = "auto";
-      // You can choose not to reload and instead fake exit fullscreen by updating state/UI
-      setIsFullscreen(false);
-    }
-  };
-  const getWebkitFullscreenElement = (): Element | null => {
-    return (document as any).webkitFullscreenElement || null;
-  };
-  const isWebkitElement = (elem: Element): elem is Element & { webkitRequestFullscreen: () => void } => {
-    return "webkitRequestFullscreen" in elem;
-  };
+
+  // Lock body scroll when fullscreen active
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      const isFs = !!(document.fullscreenElement || getWebkitFullscreenElement());
-      if (!isIOS) {
-        setIsFullscreen(isFs);
-      }
-    };
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-    };
-  }, []);
+    if (isFullscreen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isFullscreen]);
 
   return (
     <div
       ref={chartContainerRef}
       className={`flex flex-col gap-4 w-full lg:w-[60%] transition-all duration-300 
-        ${isFullscreen ? "m-3 p-4 fixed inset-0 z-50 bg-background h-screen min-h-screen" : ""}`}
+        ${isFullscreen ? "fixed inset-0 z-[9999] lg:w-full p-4 bg-background h-screen min-h-screen" : ""}`}
     >
       {/* Chart Toggle and Fullscreen Button */}
       <div className="flex gap-4 items-center">
@@ -118,8 +62,9 @@ const ChartContainer = ({ coinChart, theme }: any) => {
           }
         </button>
       </div>
+
       {/* Chart Container - Takes Full Height in Fullscreen */}
-      {coinChart ?
+      {coinChart ? (
         <>
           <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} ${isAdvancedChart ? "" : "hidden"} `}>
             <TradingViewAdvancedChart coinChart={coinChart} theme={theme} />
@@ -128,12 +73,13 @@ const ChartContainer = ({ coinChart, theme }: any) => {
             <TradingViewSimpleChart coinChart={coinChart} theme={theme} />
           </div>
         </>
-        :
+      ) : (
         <div className={`w-full ${isFullscreen ? "h-full" : "lg:h-full h-96"} rounded-xl `}>
           <Skeleton baseColor={baseColor} highlightColor={highlightColor} className="!w-full !h-full !-mt-10 " />
         </div>
-      }
+      )}
     </div>
   );
 };
+
 export default ChartContainer;
