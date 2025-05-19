@@ -19,10 +19,10 @@ interface CryptocurrencyInfo {
 
 
 export default function SubMenu() {
-    const { baseColor, highlightColor } = useTheme();
+  const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
-  const { data: infoData , isLoading:infoLoading } = useGetData('info');
-  const { data: cryptocurrenciesData , isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", undefined, {
+  const { data: infoData, isLoading: infoLoading } = useGetData('info');
+  const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", undefined, {
     limit: 7,
     page: 1,
     sort: "new",
@@ -56,7 +56,7 @@ export default function SubMenu() {
 
 
   return (
-    <div className="z-50 relative flex w-auto h-[450px] bg-fifth dark:bg-secondary  rounded-2xl shadow-lg">
+    <div className="z-50 relative flex w-auto h-[450px] bg-fifth dark:bg-secondary rounded-2xl shadow-lg cursor-default">
       <div className="text-fifth dark:text-secondary  absolute right-16 rounded-xl -top-3 ">
         <HalfCircle />
       </div>
@@ -72,9 +72,9 @@ export default function SubMenu() {
               className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#F6F6F6] dark:hover:bg-gray-600 items-center"
             >
               <div className="w-5 h-5 flex">
-                <Skeleton circle={true} width={20} height={20}  baseColor={baseColor} highlightColor={highlightColor}/>
+                <Skeleton circle={true} width={20} height={20} baseColor={baseColor} highlightColor={highlightColor} />
               </div>
-              <Skeleton width={100} height={14} baseColor={baseColor} highlightColor={highlightColor}/>
+              <Skeleton width={100} height={14} baseColor={baseColor} highlightColor={highlightColor} />
             </div>
           ))
         ) : (
@@ -86,15 +86,15 @@ export default function SubMenu() {
                 <div className="w-5 h-5 flex">
                   {item.isFont ? (
                     <i
-                    className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-fill`}
-                    style={{ color: item.color }}
-                  ></i>
+                      className={`cf cf-${item.symbol.toLowerCase()} text-[20px] w-full h-full flex items-center justify-center object-fill`}
+                      style={{ color: item.color }}
+                    ></i>
                   ) : (
                     <img
-                    src={`https://app.arz8.com/api/images/currency/${item.icon}`}
-                    alt={`نماد ${item.name}`}
-                    className="w-full h-full object-fill"
-                  />
+                      src={`https://app.arz8.com/api/images/currency/${item.icon}`}
+                      alt={`نماد ${item.name}`}
+                      className="w-full h-full object-fill"
+                    />
                   )}
                 </div>
                 <h3 className="text-sm font-semibold">خرید {item.name}</h3>
@@ -104,13 +104,13 @@ export default function SubMenu() {
         )}
 
         <Link href='/price-cryptocurrencies'>
-          <button className="flex justify-center w-full px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-bold py-2">
+          <button className="flex justify-center w-full px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-bold py-2 hover:bg-gray-300">
             همه ارز ها
           </button>
         </Link>
-        <button className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2">
+        <Link href='price-cryptocurrencies/btc' className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2 hover:bg-[#ffc13cdc]">
           خرید و فروش سریع
-        </button>
+        </Link>
       </div>
       <div className="relative px-4 py-5 w-[400px]">
         <div className="flex justify-center items-center bg-primary absolute left-5 top-[26px] rounded-lg w-7 h-7 ">
@@ -118,7 +118,7 @@ export default function SubMenu() {
             <Search />
           </div>
         </div>
-        <CryptoTable infoMap={infoMap}  />
+        <CryptoTable infoMap={infoMap} />
       </div>
     </div>
   );

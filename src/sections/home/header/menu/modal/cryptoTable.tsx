@@ -27,7 +27,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
   const { baseColor, highlightColor } = useTheme();
   const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
   const [delayedSearchQuery, setDelayedSearchQuery] = useState("");
-  
+
 
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
     return () => clearTimeout(searchTimeout);
   }, [searchQuery]);
 
-  const { data: cryptocurrencies } = useGetData(
+  const { data: cryptocurrencies, isLoading } = useGetData(
     "cryptocurrencies",
     60000,
     { limit: 7, page, sort, search: delayedSearchQuery }
@@ -176,7 +176,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
           <div className="w-2/5 flex items-center justify-center">قیمت به تومان</div>
         </div>
         <div className="overflow-y-auto mt-2 max-h-[250px]">
-          { displayedCurrencies?.length === 0 ? (
+          {isLoading ? (
             Array(4).fill(0).map((_, index) => (
               <div
                 key={index}
@@ -201,7 +201,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                 </div>
               </div>
             ))
-          ) : (
+          ) : displayedCurrencies?.length !== 0 ? (
             displayedCurrencies.map((crypto, index) => (
               <Link href={`/price-cryptocurrencies/${crypto.symbol}`} key={index}>
                 <div
@@ -243,7 +243,9 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                 </div>
               </Link>
             ))
-          )}
+          ) :
+            <p className="text-center mt-3">موردی یافت نشد.</p>
+          }
 
         </div>
       </div>
