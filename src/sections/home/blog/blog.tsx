@@ -71,7 +71,7 @@ export default function Blog() {
           </Slider>
           <button
             aria-label="مشاهده اسلاید بعدی بلاگ"
-            className="absolute top-20 -left-0 md:-left-10 w-[37px] h-[37px] text-foreground cursor-pointer"
+            className="absolute top-20 -left-0 md:-left-8 w-[37px] h-[37px] text-foreground cursor-pointer"
             onClick={() => sliderRef.current?.slickNext()}
           >
             <LongArrow />
