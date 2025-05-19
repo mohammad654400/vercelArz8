@@ -29,7 +29,7 @@ const ChartContainer = ({ coinChart, theme }: any) => {
     <div
       ref={chartContainerRef}
       className={`flex flex-col gap-4 w-full lg:w-[60%] transition-all duration-300 
-        ${isFullscreen ? "fixed inset-0 z-[9999] lg:w-full p-4 bg-background h-screen min-h-screen" : ""}`}
+        ${isFullscreen ? "fixed inset-0 z-[9999] lg:w-full p-4 pb-10 bg-background h-screen min-h-screen" : ""}`}
     >
       {/* Chart Toggle and Fullscreen Button */}
       <div className="flex gap-4 items-center">
