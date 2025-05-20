@@ -18,7 +18,7 @@ interface ContactFormProps {
 // Memoized Components
 const ContactForm = memo(
   ({ onSubmit, isSubmitting, errors, formData, onChange, }: ContactFormProps) => (
-    <form onSubmit={onSubmit} className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] bg-secondary p-5 rounded-xl z-10">
+    <form onSubmit={onSubmit} className="flex flex-col w-full mx-4 md:mx-12 lg:mx-16 xl:mx-0 sm:w-[70%] lg:w-[800px] md:w-[660px] md bg-secondary p-5 rounded-xl z-10">
       <span className="text-Seventh text-xl font-bold mb-7">ارسال پیام</span>
       <div className="flex w-full space-x-4 sm:gap-4 mb-5 flex-col sm:flex-row sm:justify-between">
         <div className="flex flex-col w-full sm:w-1/2 mb-4 sm:mb-0">

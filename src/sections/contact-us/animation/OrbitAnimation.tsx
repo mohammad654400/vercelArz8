@@ -8,89 +8,79 @@ import ImageFive from "@/assets/images/contactUs/image-3-2.png"
 import ImageSix from "@/assets/images/contactUs/image-4-1.png"
 import ImageSeven from "@/assets/images/contactUs/image-4-2.png"
 
-
 interface OrbitImage {
   src: string;
-  size: number; 
+  size: number;
 }
-
 interface Orbit {
   radius: number;
   speed: number;
-  opacity: number; 
+  opacity: number;
   images: OrbitImage[];
 }
 
-
 const orbits: Orbit[] = [
   {
-      radius: 100,
-      speed: 0.2,
-      opacity: 0.9,
-      images: [
-          { src: ImageOne.src, size: 55 },
-          { src: ImageTwo.src, size: 45 },
-      ],
+    radius: 100,
+    speed: 0.2,
+    opacity: 0.9,
+    images: [
+      { src: ImageOne.src, size: 55 },
+      { src: ImageTwo.src, size: 45 },
+    ],
   },
   {
-      radius: 226,
-      speed: 0.13,
-      opacity: 0.8,
-      images: [
-          { src: ImageThree.src, size: 55 },
-          { src:ImageSeven.src , size: 75 }
-      ],
+    radius: 226,
+    speed: 0.13,
+    opacity: 0.8,
+    images: [
+      { src: ImageThree.src, size: 55 },
+      { src: ImageSeven.src, size: 75 }
+    ],
   },
   {
-      radius: 352,
-      speed: 0.16,
-      opacity: 0.7,
-      images: [
-          { src: ImageFour.src, size: 85 },
-          { src: ImageFive.src, size: 81 },
-      ],
+    radius: 352,
+    speed: 0.16,
+    opacity: 0.7,
+    images: [
+      { src: ImageFour.src, size: 85 },
+      { src: ImageFive.src, size: 81 },
+    ],
   },
   {
-      radius: 478,
-      speed: 0.1,
-      opacity: 0.6,
-      images: [
-          { src: ImageSix.src, size: 99 },
-          { src: ImageSeven.src, size: 105 },
-      ],
+    radius: 478,
+    speed: 0.1,
+    opacity: 0.6,
+    images: [
+      { src: ImageSix.src, size: 99 },
+      { src: ImageSeven.src, size: 105 },
+    ],
   },
 ];
 
 
 const OrbitAnimation = () => {
   const orbitItemsRef = useRef<HTMLDivElement[]>([]);
-
   const addToRefs = (el: HTMLDivElement | null) => {
     if (el && !orbitItemsRef.current.includes(el)) {
       orbitItemsRef.current.push(el);
     }
   };
-
   useEffect(() => {
     function animateOrbit() {
       orbitItemsRef.current.forEach((item) => {
         const orbitIndex = parseInt(item.getAttribute("data-orbit") || "0");
         const angle = parseFloat(item.getAttribute("data-angle") || "0");
         const { radius, speed } = orbits[orbitIndex];
-
         const newAngle = (angle + speed) % 360;
         const radians = (newAngle * Math.PI) / 180;
-
         const x = radius * Math.cos(radians) - item.offsetWidth / 2;
         const y = radius * Math.sin(radians) - item.offsetHeight / 2;
-
         item.style.transform = `translate(${x}px, ${y}px)`;
         item.setAttribute("data-angle", newAngle.toString());
       });
-
       requestAnimationFrame(animateOrbit);
     }
-
     animateOrbit();
   }, [orbits]);
 
@@ -129,11 +119,7 @@ const OrbitAnimation = () => {
                 height: `${image.size}px`,
               }}
             >
-              <img
-                src={image.src}
-                alt={`Avatar ${orbitIndex}-${imageIndex}`}
-                className="w-full h-full rounded-full border-2 border-white"
-              />
+              <img src={image.src} alt={`Avatar ${orbitIndex}-${imageIndex}`} className="w-full h-full rounded-full border-2 border-white" />
             </div>
           );
         })
