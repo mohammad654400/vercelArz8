@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactUs from "@/sections/contact-us/contact-us";
 import { schemaData } from "@/schemas/contact-us-schema";
+import ReCaptchaWrapper from '@/components/RecaptchaWrapper';
 
 export const metadata = {
   title: "تماس با صرافی ارز هشت | پشتیبانی ارز دیجیتال | خرید و فروش ارز دیجیتال | ارز هشت",
@@ -17,13 +18,10 @@ export const metadata = {
 export default function ContactUsPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-
-
-      <ContactUs />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <ReCaptchaWrapper>
+        <ContactUs />
+      </ReCaptchaWrapper>
     </>
   );
 }
