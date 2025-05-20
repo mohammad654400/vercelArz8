@@ -223,7 +223,7 @@ export default function FormBugBounty() {
 
 			setModalType("loading");
 			setModalLines([
-				{ text: "رزومه ی شما در حال آپلود است", highlightedWords: [{ word: "آپلود", color: "green" }] },
+				{ text: "پیام شما در حال آپلود است", highlightedWords: [{ word: "آپلود", color: "green" }] },
 				{ text: "...لطفا منتظر بمانید" },
 			]);
 			setIsModalOpen(true);
