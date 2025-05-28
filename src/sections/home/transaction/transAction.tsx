@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Buy from "./buy/buy";
 import Sell from "./sell/sell";
 import Skeleton from "react-loading-skeleton";
@@ -20,11 +14,9 @@ interface HomeCurrency {
   fee: string;
   priceChangePercent: string;
 }
-
 interface HomeData {
   [key: string]: HomeCurrency[];
 }
-
 interface CryptocurrencyInfo {
   id: number;
   symbol: string;
@@ -34,37 +26,17 @@ interface CryptocurrencyInfo {
   isFont: boolean;
   percent: number;
 }
-
 interface InfoData {
   cryptocurrency: CryptocurrencyInfo[];
 }
 
-export default function Transaction({
-  coin,
-  header = true,
-  showPrice,
-  homeData,
-  infoData,
-  infoLoading,
-  homeLoading,
-}: {
-  showPrice?: boolean;
-  header?: boolean;
-  coin?: any;
-  homeData?: HomeData;
-  infoData?: InfoData;
-  infoLoading: boolean;
-  homeLoading: boolean;
-}) {
+export default function Transaction({ coin, header = true, showPrice, homeData, infoData, infoLoading, homeLoading }: { showPrice?: boolean; header?: boolean; coin?: any; homeData?: HomeData; infoData?: InfoData; infoLoading: boolean; homeLoading: boolean; }) {
   const [isBuy, setIsBuy] = useState(true);
   const [width, setWidth] = useState<number | undefined>();
-  const [currentCoin, setCurrentCoin] = useState<any>(null);
-
+  const [currentCoinForTransactionComponent, setCurrentCoinForTransactionComponent] = useState<any>(null);
   const [dataLoaded, setDataLoaded] = useState(false);
-
   const parentRef = useRef<HTMLDivElement | null>(null);
   const { baseColor, highlightColor } = useTheme();
-
   // Resize handler
   useEffect(() => {
     const resizeHandler = () => {
@@ -72,50 +44,41 @@ export default function Transaction({
         setWidth(parentRef.current.offsetWidth);
       }
     };
-
     const resizeObserver = new ResizeObserver(resizeHandler);
     if (parentRef.current) {
       resizeObserver.observe(parentRef.current);
     }
-
     window.addEventListener("resize", resizeHandler);
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener("resize", resizeHandler);
     };
   }, []);
-
   // Toggle Buy/Sell transaction view
   const toggleTransaction = useCallback(() => setIsBuy((prev) => !prev), []);
-
   // Determine if data is fully loaded
   useEffect(() => {
     if (!homeLoading && !infoLoading && homeData && infoData) {
       setDataLoaded(true);
     }
   }, [homeLoading, infoLoading, homeData, infoData]);
-
   // Memoize the data mapping
   const cryptoMap = useMemo(() => {
     return new Map(
       infoData?.cryptocurrency.map((crypto) => [crypto.symbol, crypto])
     );
   }, [infoData]);
-
   // Memoize filtered data
   const filterData = useMemo(() => {
     if (!homeData || !cryptoMap.size) return []; // Ensure data exists
-
     return Object.values(homeData)
       .flat()
       .map((item: any) => {
         const matchedInfo = cryptoMap.get(item.symbol) as Partial<CryptocurrencyInfo> | undefined;
-
         // Skip if matchedInfo is undefined or an empty object
         if (!matchedInfo || Object.keys(matchedInfo).length === 0) {
           return null; // Return null for items we want to exclude
         }
-
         return {
           id: matchedInfo.id || 0,
           symbol: item.symbol || "Unknown",
@@ -134,10 +97,10 @@ export default function Transaction({
 
   // Set current coin if not set
   useEffect(() => {
-    if (!currentCoin && filterData.length > 0) {
-      setCurrentCoin(filterData[0]);
+    if (!currentCoinForTransactionComponent && filterData.length > 0) {
+      setCurrentCoinForTransactionComponent(filterData[0]);
     }
-  }, [filterData, currentCoin]);
+  }, [filterData, currentCoinForTransactionComponent]);
 
   return (
     <div
@@ -183,24 +146,24 @@ export default function Transaction({
               width={width}
               currencies={filterData}
               toggle={toggleTransaction}
-              coin={coin || currentCoin}
+              currentCoinForTransactionComponent={coin || currentCoinForTransactionComponent}
               showPrice={showPrice}
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              setCurrentCoin={setCurrentCoin}
+              setCurrentCoinForTransactionComponent={setCurrentCoinForTransactionComponent}
             />
           ) : (
             <Sell
               width={width}
               currencies={filterData}
               toggle={toggleTransaction}
-              coin={coin || currentCoin}
+              currentCoinForTransactionComponent={coin || currentCoinForTransactionComponent}
               showPrice={showPrice}
               isBuy={isBuy}
               infoLoading={infoLoading}
               homeLoading={homeLoading}
-              setCurrentCoin={setCurrentCoin}
+              setCurrentCoinForTransactionComponent={setCurrentCoinForTransactionComponent}
             />
           )}
         </div>

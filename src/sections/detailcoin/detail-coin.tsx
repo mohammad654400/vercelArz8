@@ -20,6 +20,7 @@ import Skeleton from "react-loading-skeleton";
 import ChartContainer from "./charts-container";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import { AccordionData } from "./accordion-data";
+import { useCryptoModal } from "@/contexts/modalContext";
 
 interface HomeCurrency {
   symbol: string;
@@ -49,33 +50,28 @@ interface InfoData {
   cryptocurrency: CryptocurrencyInfo[];
 }
 
-interface Comment {
-  id: string;
-  name: string;
-  text: string;
-  date: string;
-  replies: Comment[];
-}
-
 type DetailCoinProps = {
   coinNameComingFromPage: string;
   coinDescription: string;
 }
 
 export default function DetailCoin({ coinNameComingFromPage, coinDescription }: DetailCoinProps) {
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [replyingTo, setReplyingTo] = useState<string | null>(null);
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [currency, setCurrency] = useState<any>([]);
   const [favorite, setFavorites] = useState<string[]>([]);
   const { theme, baseColor, highlightColor } = useTheme();
   const { formatNumber } = useFormattedNumber();
+  const { isCryptoModalOpen, openCryptoModal, config } = useCryptoModal()
   const [selectItem, setSelectItem] = useState<number | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const pathname = usePathname()
   const route = usePathname().split("/")[2].toUpperCase();
-  const { data: infoData, isLoading: infoIsLoading } = useGetData("info");
+  const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
+    gcTime: 1000 * 60 * 60,
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
   const { data: coinData, isLoading: coinIsLoading } = useGetData(`cryptocurrencies/${coinNameComingFromPage}`, 60000);
   const { data: homeData, isLoading: homeLoading } = useGetData("home", 60000);
   const coin = infoData?.cryptocurrency?.find(
@@ -135,13 +131,7 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
       priceChangePercent: crypto.priceChangePercent,
     };
   });
-
-  const handlerChenge = () => {
-    setOpenModal(!openModal);
-  };
-
   useEffect(() => {
-    setCurrency(coin);
     const storedFavorites = localStorage.getItem("favorites");
     storedFavorites
       ? setFavorites(JSON.parse(storedFavorites))
@@ -160,31 +150,6 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
-
-  const addComment = (name: string, text: string) => {
-    const newComment: Comment = {
-      id: new Date().getTime().toString(),
-      name,
-      text,
-      date: new Date().toLocaleDateString("fa-IR"),
-      replies: [],
-    };
-
-    if (replyingTo) {
-      setComments((prevComments) =>
-        prevComments.map((comment) =>
-          comment.id === replyingTo
-            ? { ...comment, replies: [...comment.replies, newComment] }
-            : comment
-        )
-      );
-    } else {
-      setComments((prevComments) => [...prevComments, newComment]);
-    }
-
-    setReplyingTo(null);
-  };
-
   // -------------------------------
 
   const cryptoMap = useMemo(() => {
@@ -195,19 +160,16 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
 
   const filterData = useMemo(() => {
     if (!homeData || !cryptoMap.size) return []; // Ensure data exists
-
     return Object.values(homeData)
       .flat()
       .map((item: any) => {
         const matchedInfo = cryptoMap.get(item.symbol) as
           | Partial<CryptocurrencyInfo>
           | undefined;
-
         // Skip if matchedInfo is undefined or an empty object
         if (!matchedInfo || Object.keys(matchedInfo).length === 0) {
           return null; // Return null for items we want to exclude
         }
-
         return {
           id: matchedInfo.id || 0,
           symbol: item.symbol || "Unknown",
@@ -232,6 +194,10 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
     }, 2500);
   };
 
+  const openConfiguredCryptoModal = () => {
+    openCryptoModal({ hasLink: true, onSelectCurrency: undefined })
+  }
+
   return (
     <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
       <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
@@ -246,7 +212,7 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
         ) : (
           <>
             <div
-              onClick={handlerChenge}
+              onClick={openConfiguredCryptoModal}
               className="flex justify-between items-center w-[70%] md:max-w-[500px] lg:max-w-[590px] h-full bg-secondary py-1 px-1 sm:py-3 sm:pr-4 sm:pl-2 rounded-[9px] sm:rounded-2xl cursor-pointer gap-2 sm:gap-4"
             >
               <div className="flex h-full justify-center gap-x-2 sm:gap-x-4 items-center min-w-0">
@@ -299,20 +265,11 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
 
                     {/* Arrow Icon */}
                     <div
-                      className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!openModal ? "rotate-180" : ""
+                      className={`w-3 h-3 lg:w-5 text-foreground lg:h-5 transition-all duration-300 ${!isCryptoModalOpen ? "rotate-180" : ""
                         } ${infoIsLoading || coinIsLoading ? "hidden" : ""}`}
                     >
                       <ArrowBotton />
                     </div>
-                    {openModal && (
-                      <CryptoModal
-                        currencies={filterData}
-                        toggle={() => setOpenModal(!openModal)}
-                        setCurrency={setCurrency}
-                        hasLink={true}
-                        setCurrentCoin={setCurrentCoin}
-                      />
-                    )}
                   </div>
 
                   {/* English Name */}
@@ -482,14 +439,6 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
               lgTextContent="lg:text-xs"
             />
           </div>
-
-          {/* <div className=" flex mt-10">
-            <FormViews addComment={addComment} />
-          </div> */}
-
-          {/* <div className=" mt-10">
-            <Views comments={comments} setReplyingTo={setReplyingTo} />
-          </div> */}
         </div>
 
         <div className="order-1 lg:order-3 w-full lg:w-[40%] flex flex-col">

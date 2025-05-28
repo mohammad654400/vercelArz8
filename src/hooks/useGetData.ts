@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 const baseUrl = "/api/proxy/landing";
 
@@ -14,13 +14,14 @@ const fetchData = async (endpoint: string, params: Record<string, any> = {}) => 
   }
 };
 
-const useGetData = (endpoint: string, refreshInterval?: number, params?: Record<string, any>) => {
-  return useQuery({
+const useGetData = <TData = any>(endpoint: string, refreshInterval?: number, params?: Record<string, any>, queryOptions?: Partial<UseQueryOptions<TData>>) => {
+  return useQuery<TData>({
     queryKey: [endpoint, params],
     queryFn: () => fetchData(endpoint, params),
-    staleTime: refreshInterval || 0,
+    staleTime: refreshInterval ?? 0,
     refetchInterval: refreshInterval,
     retry: 3,
+    ...queryOptions,
   });
 };
 

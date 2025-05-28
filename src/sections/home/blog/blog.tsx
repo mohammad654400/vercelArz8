@@ -1,5 +1,4 @@
 import React, { useRef, memo } from "react";
-import Image from "next/image";
 import Slider from "react-slick";
 import { useQuery } from "@tanstack/react-query";
 import LongArrow from "@/assets/icons/arrrow/long-arrow";
@@ -7,8 +6,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
-import Link from "next/link";
 import { schemaData } from "@/schemas/blog-schema";
+import BlogCard from "./components/BlogCard";
 // Fetch blogs
 const fetchBlogs = async () => {
   const res = await fetch("https://arz8.com/blog/wp-json/api/v1/latest-posts?limit=8");
@@ -19,25 +18,25 @@ const fetchBlogs = async () => {
 export default function Blog() {
   const { baseColor, highlightColor } = useTheme();
   const sliderRef = useRef<Slider>(null);
-
   const { data: blogs = [], isLoading } = useQuery<Array<{ title: string; link: string; thumbnail: string }>>({
     queryKey: ["blogs"],
     queryFn: fetchBlogs,
     staleTime: 1000 * 60 * 30,
   });
-
   const settings = {
     dots: false,
     arrows: false,
     infinite: true,
+
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
     draggable: true,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 1285, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
-      { breakpoint: 449, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      { breakpoint: 650, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
@@ -51,7 +50,6 @@ export default function Blog() {
         <div className="flex gap-y-5 w-full justify-between items-center flex-col xl:flex-row">
           <h2 className="font-bold text-lg md:text-2xl w-full flex justify-center xl:justify-start">بلاگ ارز هشت</h2>
         </div>
-
         <div className="relative">
           <Slider ref={sliderRef} {...settings} className="ml-14">
             {isLoading
@@ -66,14 +64,12 @@ export default function Blog() {
                 </div>
               ))
               : blogs?.map((blog: any, index: number) => (
-                <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
+                <div key={index} className="w-full h-full px-2 flex items-stretch justify-center">
+                  <BlogCard key={index} title={blog.title} link={blog.link} imageUrl={blog.thumbnail} />
+                </div>
               ))}
           </Slider>
-          <button
-            aria-label="مشاهده اسلاید بعدی بلاگ"
-            className="absolute top-20 -left-0 md:-left-8 w-[37px] h-[37px] text-foreground cursor-pointer"
-            onClick={() => sliderRef.current?.slickNext()}
-          >
+          <button aria-label="مشاهده اسلاید بعدی بلاگ" className="absolute top-20 -left-0 md:-left-8 w-[37px] h-[37px] text-foreground cursor-pointer" onClick={() => sliderRef.current?.slickNext()}>
             <LongArrow />
           </button>
         </div>
@@ -81,33 +77,3 @@ export default function Blog() {
     </>
   );
 }
-
-// Memoized Blog Card Component to avoid unnecessary re-renders
-const BlogCard = memo(({ title, link, imageUrl }: { title: string; link: string; imageUrl: string | null }) => {
-  return (
-    <div className="text-xs bg-background rounded-lg max-w-[277px] max-h-[286px] transition-all duration-300 px-2">
-      <Image
-        unoptimized
-        className="rounded-3xl max-w-[261px] max-h-[124px]"
-        alt={`تصویر مقاله: ${title}`}
-        src={imageUrl || "/fallback-image.jpg"}
-        width={261}
-        height={124}
-        quality={100}
-        loading="lazy"
-      />
-
-      <h3 dir="rtl" className="text-xs flex justify-center md:text-sm text-wrap text-justify font-bold leading-[38px] md:leading-[30px] py-2 px-1 md:py-[11px]">
-        {title}
-      </h3>
-      <div className="flex justify-between items-center w-full">
-        <Link href={link} className="text-primary text-sm md:text-base font-bold">
-          ...ادامه مطلب
-        </Link>
-        <div className="border-[0.74px] border-foreground px-[10px] rounded-[15px] text-sm font-semibold leading-6 text-center">
-          مقالات
-        </div>
-      </div>
-    </div>
-  );
-});

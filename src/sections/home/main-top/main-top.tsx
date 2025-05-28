@@ -57,10 +57,10 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
                   : "https://app.arz8.com/auth/register"
               }
             >
-              <button className="absolute left-[10px] top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
-  rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
-  transition-transform duration-200 ease-in-out 
-  hover:scale-105 active:scale-95">
+              <button className="absolute left-2 top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
+                                  rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
+                                  transition-all duration-200 ease-in-out 
+                                  hover:scale-[103%] hover:bg-[#ffd240] active:scale-[98%]">
                 شروع کنید
               </button>
 

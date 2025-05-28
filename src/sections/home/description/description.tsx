@@ -114,15 +114,15 @@ const Description = () => {
             بدون معطلی ثبت نام و احراز هویت کن!
           </div>
           <div className="flex flex-col  md:flex-row items-center gap-4 text-primary">
-            <p className=" text-sm md:text-2xl">ثبت نام</p>
+            <p className="text-sm md:text-xl lg:text-2xl">ثبت نام</p>
             <span className=" -rotate-90 py-8 sm:py-0 sm:rotate-0">
               <BigArrow />
             </span>
-            <p className="text-sm md:text-2xl"> احراز هویت</p>
+            <p className="text-sm md:text-xl lg:text-2xl"> احراز هویت</p>
             <span className="-rotate-90 py-8 sm:py-0 sm:rotate-0">
               <BigArrow />
             </span>
-            <p className="text-sm md:text-2xl">ارز دلخواه خودتون رو بخرید</p>
+            <p className="text-sm md:text-xl lg:text-2xl">ارز دلخواه خودتون رو بخرید</p>
           </div>
           <div className="w-full flex justify-center">
             <div className="relative w-[300px] md:w-[400px]">

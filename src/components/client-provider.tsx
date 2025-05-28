@@ -55,9 +55,7 @@ export default function ClientProvider({ children }: { children: React.ReactNode
 
   // This function will load Goftino
   const loadGoftino = () => {
-    console.log("Loading Goftino");
     if (goftinoInitializedRef.current) {
-      console.log("Goftino already initialized, skipping");
       return;
     }
 

@@ -27,12 +27,12 @@ export default function Menu() {
       <div className="flex justify-center items-center w-[80]  h-full hover:text-primary cursor-pointer pr-" role="menuitem">
         <Link href="/job" aria-label="فرصت های شغلی">فرصت های شغلی</Link>
       </div>
-      <div className="relative flex justify-center items-center h-full  group cursor-pointer" role="menuitem">
-        <p className="hover:text-primary"> سایر خدمات</p>
+      <div className="relative flex justify-center items-center h-full group cursor-pointer hover:text-primary duration-300" role="menuitem">
+        <p className=""> سایر خدمات</p>
         <div className="mr-3 group-hover:text-primary group-hover:rotate-180 duration-300 cursor-pointer">
           <Arrow />
         </div>
-        <div className="hidden group-hover:block">
+        <div className="hidden group-hover:block text-foreground">
           <OtherServices />
         </div>
       </div>

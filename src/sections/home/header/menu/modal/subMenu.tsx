@@ -21,8 +21,13 @@ interface CryptocurrencyInfo {
 export default function SubMenu() {
   const { baseColor, highlightColor } = useTheme();
   const [displayedCurrencies, setDisplayedCurrencies] = useState<any>([]);
-  const { data: infoData, isLoading: infoLoading } = useGetData('info');
-  const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", undefined, {
+  const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
+    gcTime: 1000 * 60 * 60,
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  }); const { data: cryptocurrenciesData, isLoading: cryptocurrenciesLoading } = useGetData("cryptocurrencies", undefined, {
     limit: 7,
     page: 1,
     sort: "new",
@@ -65,7 +70,7 @@ export default function SubMenu() {
           جدید ترین ارزها
         </div>
 
-        {cryptocurrenciesLoading || infoLoading ? (
+        {cryptocurrenciesLoading || infoIsLoading ? (
           Array(7).fill(0).map((_, index) => (
             <div
               key={`skeleton-${index}`}
@@ -108,7 +113,7 @@ export default function SubMenu() {
             همه ارز ها
           </button>
         </Link>
-        <Link href='price-cryptocurrencies/btc' className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2 hover:bg-[#ffc13cdc]">
+        <Link href='/price-cryptocurrencies/btc' className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2 hover:bg-[#ffc13cdc]">
           خرید و فروش سریع
         </Link>
       </div>

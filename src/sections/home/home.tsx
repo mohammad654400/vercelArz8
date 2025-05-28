@@ -24,8 +24,13 @@ interface InfoData {
 }
 
 export default function Home() {
-  const { data: infoData, isLoading: infoLoading } = useGetData('info');
-  const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
+  const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
+    gcTime: 1000 * 60 * 60,
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  }); const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
 
 
   const infoMap = useMemo(() => {
@@ -39,9 +44,9 @@ export default function Home() {
   return (
     <>
       <div className="base-style duration-1000">
-        <MainTop homeData={homeData?.topChanges} infoMap={infoMap} isLoading={infoLoading || homeLoading} />
-        <TransAction homeData={homeData?.calculator} infoData={infoData} infoLoading={infoLoading} homeLoading={homeLoading} />
-        <RealTimePrice homeData={homeData?.table} infoMap={infoMap} isLoading={infoLoading || homeLoading} />
+        <MainTop homeData={homeData?.topChanges} infoMap={infoMap} isLoading={infoIsLoading || homeLoading} />
+        <TransAction homeData={homeData?.calculator} infoData={infoData} infoLoading={infoIsLoading} homeLoading={homeLoading} />
+        <RealTimePrice homeData={homeData?.table} infoMap={infoMap} isLoading={infoIsLoading || homeLoading} />
       </div>
       <div className="px-5 md:px-12 lg:px-16 xl:px-0 mt-[72px] mb-10 lg:my-[100px]">
         <Banner />

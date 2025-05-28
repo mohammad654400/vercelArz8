@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "@/style/globals.css";
 import ClientProvider from "@/components/client-provider";
+import { CryptoModalProvider } from "@/contexts/modalContext";
+import CryptoModal from "@/sections/home/transaction/cryptoModal";
+import ClientOnlyCryptoModalWrapper from "@/components/layout/ClientOnlyCryptoModalWrapper";
 
 export const metadata: Metadata = {
   title: "ارز هشت - خرید و فروش ارز دیجیتال | صرافی آنلاین ارز دیجیتال",
@@ -21,15 +24,16 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="fa">
       <body>
-        <ClientProvider>{children}</ClientProvider>
+        <ClientProvider>
+          <CryptoModalProvider>
+            {children}
+            <ClientOnlyCryptoModalWrapper />
+          </CryptoModalProvider>
+        </ClientProvider>
       </body>
     </html>
   );

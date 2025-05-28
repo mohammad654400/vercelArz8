@@ -1,78 +1,58 @@
 import HalfCircle from "@/assets/icons/halfCircle";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import flag from "@/assets/images/Flag of Iran.png";
 import Image from "next/image";
-import CryptoModal from "../cryptoModal";
 import ArrowChange from "@/assets/icons/arrrow/arrowcChange";
 import { usePathname } from "next/navigation";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import Link from "next/link";
+import { useCryptoModal } from "@/contexts/modalContext";
 type TransAction = {
   toggle: any;
   currencies: any;
   width: any;
-  coin: any;
+  currentCoinForTransactionComponent: any;
   showPrice?: boolean;
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
-  setCurrentCoin: any;
+  setCurrentCoinForTransactionComponent: any;
 };
-export default function Buy({
-  toggle,
-  currencies,
-  width,
-  coin,
-  showPrice,
-  isBuy,
-  infoLoading,
-  homeLoading,
-  setCurrentCoin,
-}: TransAction) {
-  const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any>(coin);
+export default function Buy({ toggle, width, currentCoinForTransactionComponent, setCurrentCoinForTransactionComponent }: TransAction) {
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const { openCryptoModal } = useCryptoModal()
   const route = usePathname().split("/")[1];
   const { formatNumber, unformatNumber } = useFormattedNumber();
-
-  const toggleOpen = () => {
-    setOpen((prevState) => !prevState);
+  const openConfiguredCryptoModal = () => {
     setAmount("");
     setMoney("");
+    openCryptoModal({
+      hasLink: route.startsWith('price-cryptocurrencies') ? true : false,
+      isBuy: true,
+      onSelectCurrency: setCurrentCoinForTransactionComponent,
+    })
   };
-
   const handleMoneyChange = (value: string) => {
     let rawValue = value.replace(/[^0-9]/g, "");
-
     setMoney(rawValue);
-
-    if (currency) {
-      const calculatedAmount = parseFloat(rawValue) / currency.price?.buy;
+    if (currentCoinForTransactionComponent) {
+      const calculatedAmount = parseFloat(rawValue) / currentCoinForTransactionComponent.price?.buy;
       setAmount(calculatedAmount ? calculatedAmount.toFixed(8) : "");
     }
   };
-
   const handleAmountChange = (value: string) => {
     let rawValue = value.replace(/[^0-9.]/g, "");
-
     if ((rawValue.match(/\./g) || []).length > 1) {
       return;
     }
-
     setAmount(rawValue);
-
-    if (currency) {
-      const calculatedMoney = parseFloat(rawValue) * currency.price?.buy;
+    if (currentCoinForTransactionComponent) {
+      const calculatedMoney = parseFloat(rawValue) * currentCoinForTransactionComponent.price?.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
-
-  // useEffect(()=>{
-  //   setCurrency(currencies[1])
-  // },[currencies])
-
   return (
     <div className="w-full">
       <div
@@ -82,13 +62,12 @@ export default function Buy({
         <HalfCircle />
       </div>
       <div
-        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${
-          width < 1196 && route !== "calculate"
-            ? "flex-col "
-            : route === "calculate"
+        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${width < 1196 && route !== "calculate"
+          ? "flex-col "
+          : route === "calculate"
             ? "flex-col"
             : "flex-row"
-        }`}
+          }`}
       >
         <div className="relative w-full">
           <span className="mt-1 inline-block">مبلغ (پرداخت می‌کنید)</span>
@@ -123,11 +102,11 @@ export default function Buy({
             `}
           >
             <p className="text-xs">
-              قیمت خرید: {formatNumber(currency?.price?.buy?.toLocaleString())}{" "}
+              قیمت خرید: {formatNumber(currentCoinForTransactionComponent?.price?.buy?.toLocaleString())}{" "}
               تومان
             </p>
             <p className="text-xs">
-              قیمت فروش: {formatNumber(currency?.price?.sell?.toLocaleString())}{" "}
+              قیمت فروش: {formatNumber(currentCoinForTransactionComponent?.price?.sell?.toLocaleString())}{" "}
               تومان
             </p>
           </div>
@@ -136,8 +115,7 @@ export default function Buy({
         <div
           onClick={toggle}
           className={`
-            ${
-              route == "calculate" ? "self-center rotate-90 h-22 lg:mt-12  ml-7  " : ""
+            ${route == "calculate" ? "self-center rotate-90 h-22 lg:mt-12  ml-7  " : ""
             }
             ${route === "" ? "mt-0 pt-8" : "mt-2 pt-8 md:pt-10"}
             ${width < 700 ? "" : "pt-5 px-5 md:mb-10"} 
@@ -145,7 +123,6 @@ export default function Buy({
         >
           <ArrowChange />
         </div>
-
         <div className={`relative  w-full`}>
           <p>مقدار (دریافت می‌کنید)</p>
           <input
@@ -163,25 +140,25 @@ export default function Buy({
             placeholder="مثال: 0.005"
           />
           <div
-            onClick={toggleOpen}
+            onClick={openConfiguredCryptoModal}
             className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
             <div className="min-w-6 h-7 flex justify-center items-center ">
-              {!currency?.isFont ? (
+              {!currentCoinForTransactionComponent?.isFont ? (
                 <img
-                  src={`https://app.arz8.com/api/images/currency/${currency?.icon}`}
-                  alt={currency?.symbol}
+                  src={`https://app.arz8.com/api/images/currency/${currentCoinForTransactionComponent?.icon}`}
+                  alt={currentCoinForTransactionComponent?.symbol}
                   className="w-full h-full object-cover"
                 />
               ) : (
                 <i
-                  className={`cf cf-${currency.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
-                  style={{ color: currency.color }}
+                  className={`cf cf-${currentCoinForTransactionComponent.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
+                  style={{ color: currentCoinForTransactionComponent.color }}
                 ></i>
               )}
             </div>
-            <p className="">{currency?.symbol}</p>
+            <p className="">{currentCoinForTransactionComponent?.symbol}</p>
             <span className="w-5 h-5">
               <ArrowDown />
             </span>
@@ -189,28 +166,16 @@ export default function Buy({
         </div>
 
         <div className="w-full flex justify-center pb-2">
-          {open && (
-            <CryptoModal
-              currencies={currencies}
-              setCurrency={setCurrency}
-              toggle={toggleOpen}
-              hasLink={route === "coins" ? true : false}
-              isBuy={isBuy}
-              infoLoading={infoLoading}
-              homeLoading={homeLoading}
-              setCurrentCoin={setCurrentCoin}
-            />
-          )}
           <Link
             className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`}
-            href={`https://app.arz8.com/order/buy?c=${currency.symbol}&amount=${amount}`}
+            href={`https://app.arz8.com/order/buy?c=${currentCoinForTransactionComponent.symbol}&amount=${amount}`}
           >
             <button
               className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
               ${width < 700 ? "w-full " : "lg:w-auto px-10"} 
                  text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2
-                 duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(47,161,37)]  active:translate-y-0 active:bg-[#33B028]
+                 duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#55c54b] active:translate-y-0 active:bg-[#33B028]
                  `}
             >
               شروع خرید

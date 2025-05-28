@@ -8,38 +8,33 @@ import { usePathname } from "next/navigation";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import Link from "next/link";
+import { useCryptoModal } from "@/contexts/modalContext";
 type TransAction = {
   toggle: any;
   currencies: any;
   width: any;
-  coin: any;
+  currentCoinForTransactionComponent: any;
   showPrice?: boolean;
   isBuy: boolean;
   infoLoading: boolean;
   homeLoading: boolean;
-  setCurrentCoin: any;
+  setCurrentCoinForTransactionComponent: any;
 };
-export default function Sell({
-  toggle,
-  currencies,
-  width,
-  coin,
-  isBuy,
-  infoLoading,
-  homeLoading,
-  setCurrentCoin,
-}: TransAction) {
-  const [open, setOpen] = useState(false);
-  const [currency, setCurrency] = useState<any | null>(coin);
+export default function Sell({ toggle, width, currentCoinForTransactionComponent, setCurrentCoinForTransactionComponent }: TransAction) {
+  const { openCryptoModal } = useCryptoModal()
   const [money, setMoney] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const route = usePathname().split("/")[1];
-  const { formatNumber, unformatNumber } = useFormattedNumber();
+  const { formatNumber } = useFormattedNumber();
 
-  const toggleOpen = () => {
-    setOpen((prevState) => !prevState);
+  const openConfiguredCryptoModal = () => {
     setAmount("");
     setMoney("");
+    openCryptoModal({
+      hasLink: route.startsWith('price-cryptocurrencies') ? true : false,
+      isBuy: false,
+      onSelectCurrency: setCurrentCoinForTransactionComponent,
+    })
   };
 
   const handleMoneyChange = (value: string) => {
@@ -47,8 +42,8 @@ export default function Sell({
 
     setMoney(rawValue);
 
-    if (currency) {
-      const calculatedAmount = parseFloat(rawValue) / currency.price?.buy;
+    if (currentCoinForTransactionComponent) {
+      const calculatedAmount = parseFloat(rawValue) / currentCoinForTransactionComponent.price?.buy;
       setAmount(calculatedAmount ? calculatedAmount.toFixed(8) : "");
     }
   };
@@ -62,8 +57,8 @@ export default function Sell({
 
     setAmount(rawValue);
 
-    if (currency) {
-      const calculatedMoney = parseFloat(rawValue) * currency.price?.buy;
+    if (currentCoinForTransactionComponent) {
+      const calculatedMoney = parseFloat(rawValue) * currentCoinForTransactionComponent.price?.buy;
       setMoney(calculatedMoney ? calculatedMoney.toLocaleString("en-US") : "");
     }
   };
@@ -71,18 +66,16 @@ export default function Sell({
   return (
     <div className="w-full ">
       <div
-        className={`absolute -top-[8px] md:-top-[12px] left-12 md:left-8 lg:right-44 text-background dark:text-background ${
-          route === "calculate" ? "hidden" : ""
-        }`}
+        className={`absolute -top-[8px] md:-top-[12px] left-12 md:left-8 lg:right-44 text-background dark:text-background ${route === "calculate" ? "hidden" : ""
+          }`}
       >
         <HalfCircle />
       </div>
       <div
         className={`flex justify-between items-center rounded-xl   py-6 md:py-8 px-4 
-          ${
-            width < 1196 && route !== "calculate"
-              ? "flex-col "
-              : route === "calculate"
+          ${width < 1196 && route !== "calculate"
+            ? "flex-col "
+            : route === "calculate"
               ? "flex-col"
               : ""
           }
@@ -105,43 +98,40 @@ export default function Sell({
           />
           {/* cryptoModal---------------------------------------------- */}
           <div
-            onClick={toggleOpen}
+            onClick={openConfiguredCryptoModal}
             className={`absolute group cursor-pointer flex gap-2 items-center left-1
              top-[36px] md:top-[40px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
-             ${route == "calculate" ? "md:top-[48px]" : "md:top-[32px]"}
+             ${route === "calculate" ? "md:top-[44px]" : "md:top-[32px]"}
              `}
           >
             <div className="min-w-6 h-7 flex justify-center items-center">
-              {!currency.isFont ? (
+              {!currentCoinForTransactionComponent.isFont ? (
                 <img
-                  src={`https://app.arz8.com/api/images/currency/${currency.icon}`}
-                  alt={currency.symbol}
+                  src={`https://app.arz8.com/api/images/currency/${currentCoinForTransactionComponent.icon}`}
+                  alt={currentCoinForTransactionComponent.symbol}
                   className="w-full h-full object-cover"
                 />
               ) : (
                 <i
-                  className={`cf cf-${currency.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
-                  style={{ color: currency.color }}
+                  className={`cf cf-${currentCoinForTransactionComponent.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
+                  style={{ color: currentCoinForTransactionComponent.color }}
                 ></i>
               )}
             </div>
-            <p>{currency?.symbol}</p>
-            <span className="w-5 h-5">
-              <ArrowDown />
-            </span>
+            <p>{currentCoinForTransactionComponent?.symbol}</p>
+            <span className="w-5 h-5"><ArrowDown /></span>
           </div>
           {/* sell price and buy price -------------------------------- */}
           <div
-            className={`gap-5  text-xs md:text-sm ${
-              width < 800 ? "hidden" : "md:flex "
-            }`}
+            className={`gap-5  text-xs md:text-sm ${width < 800 ? "hidden" : "md:flex "
+              }`}
           >
             <p className="text-xs">
-              قیمت خرید: {formatNumber(currency?.price?.buy?.toLocaleString())}{" "}
+              قیمت خرید: {formatNumber(currentCoinForTransactionComponent?.price?.buy?.toLocaleString())}{" "}
               تومان
             </p>
             <p className="text-xs">
-              قیمت فروش: {formatNumber(currency?.price?.sell?.toLocaleString())}{" "}
+              قیمت فروش: {formatNumber(currentCoinForTransactionComponent?.price?.sell?.toLocaleString())}{" "}
               تومان
             </p>
           </div>
@@ -159,9 +149,8 @@ export default function Sell({
         </div>
 
         <div
-          className={`relative w-full  ${
-            route === "calculate" ? "md:mt-8 mt-4 " : ""
-          }`}
+          className={`relative w-full  ${route === "calculate" ? "md:mt-8 mt-4 " : ""
+            }`}
         >
           <p>مبلغ (دریافت می کنید)</p>
           <input
@@ -195,28 +184,16 @@ export default function Sell({
            ${route == "" ? "pt-8 md:pb-8" : "mt-0 md:mt-10"}
           ${route == "calculate" ? "mt-8" : ""}`}
         >
-          {open && (
-            <CryptoModal
-              currencies={currencies}
-              setCurrency={setCurrency}
-              toggle={toggleOpen}
-              hasLink={route === "coins" ? true : false}
-              isBuy={isBuy}
-              infoLoading={infoLoading}
-              homeLoading={homeLoading}
-              setCurrentCoin={setCurrentCoin}
-            />
-          )}
-             <Link
+          <Link
             className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`}
-            href={`https://app.arz8.com/order/sell?c=${currency.symbol}&amount=${amount}`}
+            href={`https://app.arz8.com/order/sell?c=${currentCoinForTransactionComponent.symbol}&amount=${amount}`}
           >
             <button
               className={`
               ${route == "calculate" ? "w-full xl:w-full" : ""}
               ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
               px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white
-              duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[#e90500] active:translate-y-0 active:bg-[#F00500]`}
+              transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ff4340] active:translate-y-0 active:bg-[#F00500]`}
             >
               شروع فروش
             </button>

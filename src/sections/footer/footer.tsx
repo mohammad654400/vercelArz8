@@ -31,7 +31,7 @@ export default function Footer() {
           </section>
 
           <section className="flex flex-col gap-8 lg:w-[68%]">
-            <nav className="flex flex-wrap gap-2 justify-center w-auto lg:justify-between  md:justify-center 1 ">
+            <nav className="flex flex-wrap gap-2 md:gap-12 lg:gap-2 justify-center w-auto lg:justify-between md:justify-center 1">
               <Link href={"https://cafebazaar.ir/app/com.arz8x.app.arz8x"} className="flex justify-between px-3 items-center bg-transparent border border-[#3C3B41] rounded-lg w-[151px] h-[41px] dark:border-white hover:text-[#27b681] hover:border-[#27b681] dark:hover:border-[#27b681]">
                 <p className="text-base"> بـــــــــــــازار</p>
                 <div className="w-6 h-6 ">
@@ -58,7 +58,7 @@ export default function Footer() {
               </Link> */}
             </nav>
             <div className="hidden md:block">
-              <div className="flex justify-between ">
+              <div className="flex justify-between gap-12 ">
 
                 <section>
                   <h3 className="mb-6 text-[22px] font-bold border-r-4 pr-4 border-primary">

@@ -35,8 +35,13 @@ export default function Coin() {
     setIsExpanded(!isExpanded);
   };
 
-  const { data: infoData } = useGetData('info');
-  const { data: maxData } = useGetData("cryptocurrencies", 60000, {
+  const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
+    gcTime: 1000 * 60 * 60,
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  }); const { data: maxData } = useGetData("cryptocurrencies", 60000, {
     limit: 3,
     page: 1,
     sort: "profit",
