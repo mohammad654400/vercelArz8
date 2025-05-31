@@ -86,7 +86,7 @@ export default function CryptoModal({ }: CryptoModalProps) {
     }
   };
   return (
-    <div onClick={handleOverlayClick} className={`fixed inset-0 bg-black bg-opacity-30 justify-center items-center z-50 cursor-default ${isCryptoModalOpen ? 'flex' : 'hidden'}`}>
+    <div onClick={handleOverlayClick} className={`fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center cursor-default ${isCryptoModalOpen ? 'opacity-100 z-50' : 'opacity-0 -z-50'}`}>
       <div onClick={e => e.stopPropagation()} ref={modalRef} className="w-[388px] max-w-[85%] bg-background rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
