@@ -22,16 +22,12 @@ interface FormDataType {
 	pathOfError?: string;
 	files: File[];
 }
-
-
 interface ModalLine {
 	text: string;
 	highlightedWords?: { word: string; color: "green" | "red" }[];
 }
 
-
 export default function FormBugBounty() {
-
 	const { executeRecaptcha } = useGoogleReCaptcha();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -40,11 +36,9 @@ export default function FormBugBounty() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalType, setModalType] = useState<"success" | "error" | "loading">("loading");
 	const [modalLines, setModalLines] = useState<ModalLine[]>([]);
-
 	const handleCheckboxChange = () => {
 		setIsChecked(!isChecked);
 	};
-
 	const formDataRef = useRef<{
 		fullName: string;
 		email: string;
@@ -65,9 +59,7 @@ export default function FormBugBounty() {
 		pathOfError: "",
 		Offer: "",
 	});
-
 	const { mutate, isError, isSuccess } = usePostData("bug-bounty");
-
 	useEffect(() => {
 		if (isSuccess) {
 			setModalType("success");
@@ -79,18 +71,14 @@ export default function FormBugBounty() {
 			setIsModalOpen(true);
 		}
 	}, [isError, isSuccess]);
-
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
 		formDataRef.current = { ...formDataRef.current, [name]: value };
 	}, []);
-
 	const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = Array.from(e.target.files || []);
-
 		const newUploadedFiles: File[] = [];
 		let newTotalFileSize = totalFileSize;
-
 		for (const file of files) {
 			if (newTotalFileSize + file.size > 100 * 1024 * 1024) {
 				setErrors((prev) => ({ ...prev, files: "حجم کل فایل‌ها نباید بیشتر از 100 مگابایت باشد." }));
@@ -99,33 +87,26 @@ export default function FormBugBounty() {
 			newUploadedFiles.push(file);
 			newTotalFileSize += file.size;
 		}
-
 		setUploadedFiles((prevFiles) => {
 			const combinedFiles = [...prevFiles, ...newUploadedFiles];
-
 			const imageFiles = combinedFiles.filter((file) => ["image/jpeg", "image/png"].includes(file.type));
 			const videoOrZipFiles = combinedFiles.filter((file) =>
 				["video/mp4", "application/zip", "application/octet-stream"].includes(file.type) || file.name.endsWith(".zip")
 			);
-
 			if (imageFiles.length > 5) {
 				setErrors((prev) => ({ ...prev, files: "حداکثر 5 تصویر مجاز است." }));
 				return prevFiles;
 			}
-
 			if (videoOrZipFiles.length > 1) {
 				setErrors((prev) => ({ ...prev, files: "فقط یک ویدیو یا فایل ZIP مجاز است." }));
 				return prevFiles;
 			}
-
 			return combinedFiles;
 		});
-
 		setTotalFileSize(newTotalFileSize);
 		formDataRef.current.files = [...uploadedFiles, ...newUploadedFiles];
 		setErrors((prev) => ({ ...prev, files: "" }));
 	}, [totalFileSize, uploadedFiles]);
-
 	const handleFileRemove = useCallback((index: number) => {
 		const updatedFiles = uploadedFiles.filter((_, i) => i !== index);
 		const removedFileSize = uploadedFiles[index].size;
@@ -133,7 +114,6 @@ export default function FormBugBounty() {
 		setTotalFileSize((prev) => prev - removedFileSize);
 		formDataRef.current.files = updatedFiles;
 	}, [uploadedFiles]);
-
 	const validateForm = useCallback(async () => {
 		try {
 			await validationSchema.validate(formDataRef.current, { abortEarly: false });
@@ -141,7 +121,6 @@ export default function FormBugBounty() {
 			return true;
 		} catch (err: unknown) {
 			const newErrors: Record<string, string> = {};
-
 			// Ensure err is a Yup.ValidationError before accessing its properties
 			if (err instanceof Yup.ValidationError) {
 				err.inner.forEach((error) => {
@@ -150,41 +129,30 @@ export default function FormBugBounty() {
 					}
 				});
 			}
-
 			setErrors(newErrors);
 			return false;
 		}
 	}, []);
-
-
 	const hashFormData = (data: FormDataType) => {
 		const { files, ...dataWithoutFiles } = data; // Exclude files
 		const dataString = JSON.stringify(dataWithoutFiles);
 		return SHA256(dataString).toString(); // Hash only the textual data
 	};
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-
 		if (!isChecked) {
 			setErrors((prev) => ({ ...prev, acceptCheckbox: "پذیرش قوانین الزامی است." }));
 			return;
 		}
-
 		const isValid = await validateForm();
 		if (!isValid) return;
-
 		if (!executeRecaptcha) {
 			return;
 		}
-
 		// Generate hash for form fields excluding files
 		const currentHash = hashFormData(formDataRef.current);
 		const previousHash = Cookies.get("formHash");
-
 		if (currentHash === previousHash) {
-
 			// Show the modal with the duplicate message
 			setModalType("error");
 			setModalLines([
@@ -196,14 +164,11 @@ export default function FormBugBounty() {
 			setIsModalOpen(true);
 			return;
 		}
-
 		// Store new hash in cookies (expires in 1 day)
 		Cookies.set("formHash", currentHash, { expires: 1 });
-
 		try {
 			const reCaptchaToken = await executeRecaptcha("bug_bounty");
 			const formData = new FormData();
-
 			formData.append("name", formDataRef.current.fullName);
 			formData.append("email", formDataRef.current.email);
 			formData.append("title", formDataRef.current.title);
@@ -214,13 +179,10 @@ export default function FormBugBounty() {
 				formData.append("proposal", formDataRef.current.Offer);
 			}
 			formData.append("recaptcha", reCaptchaToken);
-
 			formDataRef.current.files.forEach((file) => {
 				formData.append("file", file);
 			});
-
 			mutate(formData);
-
 			setModalType("loading");
 			setModalLines([
 				{ text: "پیام شما در حال آپلود است", highlightedWords: [{ word: "آپلود", color: "green" }] },
@@ -234,11 +196,8 @@ export default function FormBugBounty() {
 		}
 	};
 
-
-
 	return (
 		<div className=" rounded-[30px] w-full py-10 px-5 bg-[#FFFFFF] dark:bg-[#242428]">
-
 			<form onSubmit={handleSubmit} className='flex flex-col gap-5 '>
 				<div className="grid sm:grid-cols-2 gap-5 text-xs lg:text-sm">
 					<FormField
@@ -247,7 +206,6 @@ export default function FormBugBounty() {
 						type="text"
 						onChange={handleChange}
 						error={errors.fullName}
-
 					/>
 					<FormField
 						name="email"
@@ -271,7 +229,6 @@ export default function FormBugBounty() {
 						error={errors.vulnerableSector}
 					/>
 				</div>
-
 				<FormField
 					name="description"
 					label="توضیحات خطا"
@@ -293,7 +250,6 @@ export default function FormBugBounty() {
 					onChange={handleChange}
 					error={errors.Offer}
 				/>
-
 				<div>
 					<label className="block text-sm font-medium mb-3">بارگذاری مستندات</label>
 					<div className="relative z-10 h-[160px] lg:h-[227px] border border-dashed lg:border-solid border-gray-300 rounded-xl mb-4">
@@ -301,7 +257,6 @@ export default function FormBugBounty() {
 							<div className='w-[51px] h-[51px] lg:w-[69px] lg:h-[69px]'>
 								<DocumentUpload />
 							</div>
-
 							<button className='mt-[8px] mb-[13px] lg:mt-[11px] lg:mb-[30px] w-[78px] h-[26px] lg:w-[105px] lg:h-[35px] rounded-[7.43px] lg:rounded-[10px] bg-primary text-xs lg:text-base font-bold text-white text-center'>آپلود فایل</button>
 							<span className="text-[9px] md:text-sm font-normal opacity-50 text-center text-sixth">حداکثر ۵ تصویر jpeg یا PNG ،یک ویدیو MP4 یا یک فایل Zip ،حداکثر حجم کل فایل ها 100 مگابایت باشد
 							</span>
@@ -335,9 +290,7 @@ export default function FormBugBounty() {
 						</div>
 					)}
 				</div>
-
 				<div className="flex items-start mb-[19px]">
-
 					<input
 						id="accept-checkbox"
 						type="checkbox"
@@ -345,7 +298,6 @@ export default function FormBugBounty() {
 						onChange={handleCheckboxChange}
 						className="peer hidden "
 					/>
-
 					<label
 						htmlFor="accept-checkbox"
 						className={`min-w-5 w-5 h-5 lg:w-9 lg:h-9 flex items-start justify-center rounded lg:rounded-lg border border-[#ADADAD80] cursor-pointer ${isChecked ? "bg-[#FFF6DD]" : "bg-white"
@@ -367,7 +319,6 @@ export default function FormBugBounty() {
 							</svg>
 						)}
 					</label>
-
 					<div className='flex flex-col '>
 						<label
 							htmlFor="accept-checkbox"
@@ -376,12 +327,9 @@ export default function FormBugBounty() {
 							ارسال این گزارش به معنی پذیرش قوانین و مقررات باگ بانتی ارزهشت است.
 						</label>
 						{errors.acceptCheckbox && <p className="text-red-500 text-xs mt-2 lg:mt-5 mr-2 lg:mr-4">{errors.acceptCheckbox}</p>}
-
 					</div>
-
 				</div>
-
-				<button type="submit" className="w-[124px] h-[40px] lg:w-[232px] lg:h-[75px] bg-primary text-white px-4 py-2 rounded-xl self-end text-[13.44px] lg:text-[25px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary">
+				<button type="submit" className="w-[124px] h-[40px] lg:w-[232px] lg:h-[75px] bg-primary text-white px-4 py-2 rounded-xl self-end text-[13.44px] lg:text-[25px]  transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ffd240] hover:shadow-primary active:translate-y-0 active:bg-primary">
 					ارسال درخواست
 				</button>
 			</form>

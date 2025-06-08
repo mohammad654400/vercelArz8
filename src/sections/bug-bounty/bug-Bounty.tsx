@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { damage, damageSm } from "./data";
 import Rules from "./rules";
@@ -8,30 +8,43 @@ import Form from "./form";
 import bgBugLight from "@/assets/images/bugbounty/bgBugLight.png";
 import bgBugDark from "@/assets/images/bugbounty/bgBugDark.png";
 import Back from "@/assets/icons/bugbounty/back";
-
 import { useTheme } from "@/contexts/theme-provider";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function BugBounty() {
   const { theme } = useTheme();
-
   const backgroundImage = useMemo(
     () => (theme == "dark" ? bgBugDark : bgBugLight),
     [theme]
   );
-
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const handlePopState = () => {
+      setOpen(false) // go back to the initial view
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
   const toggleTransaction = () => {
-    setOpen((prevState) => !prevState);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // only push state if not already open (to avoid stacking)
+    if (!open) {
+      window.history.pushState({ bugFormOpen: true }, '')
+      setOpen(true)
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
+  const closeForm = () => {
+    setOpen(false)
+    window.history.back()
+  }
   return (
     <div className="base-style !gap-0">
-      {open ? (
-        <div className="pt-[76px] lg:pt-60  flex flex-col justify-center items-center gap-10 lg:gap-24  z-10">
+      {open ?
+        <div className="pt-[76px] lg:pt-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
           <div className="flex w-full justify-center">
-            <div onClick={() => setOpen(false)} className="flex h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 cursor-pointer">
-
+            <div onClick={closeForm} className="flex h-7 w-7 lg:h-[51px] lg:w-[154px] items-center justify-center bg-[#FFFFFF] dark:bg-[#242428] rounded-[10px] lg:rounded-2xl gap-3 cursor-pointer">
               <span className="w-5 h-5 lg:w-6 lg:h-6"><Back /></span>
               <span className="hidden lg:flex text-2xl font-normal">بازگشت</span>
             </div>
@@ -40,12 +53,7 @@ export default function BugBounty() {
             </h3>
             <div className="w-7 xl:w-[154px]"></div>
           </div>
-
-          <Image
-            src={backgroundImage}
-            alt=""
-            className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]"
-          />
+          <Image src={backgroundImage} alt="background-image" className="absolute w-screen top-32 z-[-1]  object-cover h-[410px] lg:h-[730px]" />
           <GoogleReCaptchaProvider
             reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
             scriptProps={{
@@ -55,27 +63,17 @@ export default function BugBounty() {
             }}>
             <Form />
           </GoogleReCaptchaProvider>
-
           <Rules />
         </div>
-      ) : (
+        :
         <div className="pt-[76px] lg:pt-60 flex flex-col justify-center items-center gap-10 lg:gap-24 z-10">
-          <div className="absolute top-32 w-screen h-[410px] lg:h-[730px] z-[-1]">
-            <Image
-              src={backgroundImage}
-              alt="Background Image"
-              fill
-              className="object-cover"
-              priority
-            />
+          <div className="absolute top-32 w-full h-[410px] lg:h-[730px] z-[-1]">
+            <Image src={backgroundImage} alt="Background Image" fill className="object-cover" priority />
           </div>
-
-
           <div className="flex flex-col items-center">
             <h1 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">
               رویداد باگ بانتی ارزهشت | چالش امنیتی با جوایز نقدی
             </h1>
-
             <p className="text-xs lg:text-[25px] text-justify mt-[13px] mb-5 lg:mt-10 lg:mb-[25px] leading-[35px] lg:leading-[70px]">
               تیم امنیت ارزهشت یک فرصت ویژه برای متخصصان امنیتی فراهم کرده است!
               در رویداد باگ بانتی ارزهشت، مهارت خود را در کشف آسیب‌پذیری‌های امنیتی سامانه و اپلیکیشن این صرافی به چالش بکشید.
@@ -84,56 +82,37 @@ export default function BugBounty() {
               مهارت خود را به نمایش بگذارید و برنده جوایز ارزشمند شوید!<br />
               برای اطلاعات بیشتر و ارسال گزارش‌ها، به انتهای این صفحه مراجعه کنید.
             </p>
-
-
             <button
               onClick={toggleTransaction}
-              className="text-white bg-primary py-3 px-6 rounded-xl lg:rounded-[20px] text-[15px] lg:text-[25px] font-semibold w-full h-11 lg:h-[75px] lg:w-[232px]  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary"
+              className="text-white bg-primary py-3 px-6 rounded-xl lg:rounded-[20px] text-[15px] lg:text-[25px] font-semibold w-full h-11 lg:h-[75px] lg:w-[232px]  transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ffd240] active:translate-y-0 active:bg-primary"
             >
               ارسال باگ
             </button>
           </div>
-
           <Rules />
-
           <div className="flex flex-col items-center w-full">
             <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5  w-auto text-center mb-[40px]">
               آسیب های مورد تایید
             </h3>
-
             {/* فقط برای sm و پایین‌تر */}
             <div className="grid grid-cols-2 gap-x-24 gap-y-8 place-content-between w-full grid-flow-row-dense sm:hidden">
               {damageSm.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col w-full items-center justify-start gap-8"
-                >
+                <div key={index} className="flex flex-col w-full items-center justify-start gap-8">
                   <item.icon />
-                  <span className="text-center text-[10px]">
-                    {item.text}
-                  </span>
+                  <span className="text-center text-[10px]">{item.text}</span>
                 </div>
               ))}
             </div>
-
             {/* برای sm و بالاتر */}
             <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 lg:gap-x-48 gap-x-24 gap-y-8 place-content-between w-full grid-flow-row-dense">
               {damage.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col w-full items-center justify-start gap-8"
-                >
+                <div key={index} className="flex flex-col w-full items-center justify-start gap-8">
                   <item.icon />
-                  <span className="text-center text-base">
-                    {item.text}
-                  </span>
+                  <span className="text-center text-base">{item.text}</span>
                 </div>
               ))}
             </div>
-
           </div>
-
-
           <div className="bg-[#1C1D1F] w-full hidden lg:flex flex-col justify-center items-center pt-[62px] pb-[50px] rounded-[20px] ">
             <h4 className="text-white text-[29px] font-bold">
               با گزارش باگ، هم کمک کنید، هم پاداش بگیرید!
@@ -143,13 +122,13 @@ export default function BugBounty() {
             </p>
             <button
               onClick={toggleTransaction}
-              className="bg-primary h-[75px] w-[340px] text-[28px] font-bold rounded-[20px] text-white  transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_0_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_12px_0_rgba(255,255,255,0.2)] hover:-translate-y-[3px] hover:bg-[rgb(255,185,9)]  active:translate-y-0 active:bg-primary"
+              className="bg-primary h-[75px] w-[340px] text-[28px] font-bold rounded-[20px] text-white transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ffd240] active:translate-y-0 active:bg-primary"
             >
               ارسال باگ
             </button>
           </div>
         </div>
-      )}
+      }
     </div>
   );
 }

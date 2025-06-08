@@ -4,72 +4,69 @@ import Bot from "@/assets/images/about/bot.png"
 import { aboutData } from './data/about-data';
 
 export default function About() {
-    return (
-        <main className="bg-background base-style !gap-0">
-            <section className="flex flex-col pt-20  xl:flex-row w-full justify-between ">
-                <div className=" w-full flex flex-col justify-center order-2  mt-10 md:mt-[113px] xl:mt-0">
-                    <h1 className='text-xl sm:text-[40px] font-bold text-Seventh'>درباره صرافی ارزهشت</h1>
-                    <p className='text-sm sm:text-[19px] font-semibold  text-sixth  leading-[35px] sm:leading-[60px] text-justify mt-[10px] md:mt-[39px]'>صرافی ارزهشت با هدف فراهم کردن پلتفرمی امن و پیشرفته برای معامله‌گران و سرمایه‌گذاران ارزهای دیجیتال راه‌اندازی شده است. تیم ما متشکل از متخصصان با تجربه در بلاکچین، امنیت اطلاعات و بازارهای مالی است و تلاش می‌کند بهترین خدمات را به شما ارائه دهد.</p>
-                </div>
-                <div className="h-full  w-full  order-1 xl:order-3 flex justify-center xl:justify-end items-center self-center">
-                    <Image
-                        src={Bot}
-                        alt="درباره ی ما"
-                        className='sm:max-h-[407px] sm:max-w-[407px] lg:min-w-[507px] lg:min-h-[507px]'
-                        loading="lazy"
-                    />
-                </div>
-            </section>
+	return (
+		<main className="bg-background base-style !gap-0">
+			<section className="flex flex-col pt-20  xl:flex-row w-full justify-between ">
+				<div className=" w-full flex flex-col justify-center order-2  mt-10 md:mt-[113px] xl:mt-0">
+					<h1 className='text-xl sm:text-[40px] font-bold text-Seventh'>درباره صرافی ارزهشت</h1>
+					<p className='text-sm sm:text-[19px] font-semibold  text-sixth  leading-[35px] sm:leading-[60px] text-justify mt-[10px] md:mt-[39px]'>صرافی ارزهشت با هدف فراهم کردن پلتفرمی امن و پیشرفته برای معامله‌گران و سرمایه‌گذاران ارزهای دیجیتال راه‌اندازی شده است. تیم ما متشکل از متخصصان با تجربه در بلاکچین، امنیت اطلاعات و بازارهای مالی است و تلاش می‌کند بهترین خدمات را به شما ارائه دهد.</p>
+				</div>
+				<div className="h-full  w-full  order-1 xl:order-3 flex justify-center xl:justify-end items-center self-center">
+					<Image
+						src={Bot}
+						alt="درباره ی ما"
+						className='sm:max-h-[407px] sm:max-w-[407px] lg:min-w-[507px] lg:min-h-[507px]'
+						loading="lazy"
+					/>
+				</div>
+			</section>
 
-            <section>'
-                <h2 className='text-[18px] sm:text-[30px] font-semibold text-Seventh mt-[10px] sm:mt-[90px] xl:"mt-[100px] mb-[20px] sm:mb-[50px]'>چرا صرافی ارز هشت</h2>
+			<section>
+				<h2 className='text-[18px] sm:text-[30px] font-semibold text-Seventh mt-[10px] sm:mt-[90px] xl:"mt-[100px] mb-[20px] sm:mb-[50px]'>چرا صرافی ارز هشت</h2>
 
-                <div className='flex flex-wrap justify-center gap-2'>
-                    {aboutData.map((item, index) => {
-                        return (
-                            <div
-                                key={index}
-                                className='mb-2 mx-auto w-[155px] min-[415px]:w-[183px] h-[183px] sm:w-[203px] sm:h-[203px] bg-secondary flex flex-col items-center justify-center rounded-[18px] sm:rounded-[20px] shadow-lg'
-                            >
-                                <div className='w-[95px] sm:w-[105px] h-[95px] sm:h-[105px] flex items-center justify-center '>
-                                    <item.src />
-                                </div>
+				<div className='flex flex-wrap justify-center gap-2'>
+					{aboutData.map((item, index) => {
+						return (
+							<div
+								key={index}
+								className='mb-2 mx-auto w-[155px] min-[415px]:w-[183px] h-[183px] sm:w-[203px] sm:h-[203px] bg-secondary flex flex-col items-center justify-center rounded-[18px] sm:rounded-[20px] shadow-lg'
+							>
+								<div className='w-[95px] sm:w-[105px] h-[95px] sm:h-[105px] flex items-center justify-center '>
+									<item.src />
+								</div>
 
-                                <h3 className='py-2 text-[17px] sm:text-[19px] font-semibold text-Seventh'>{item.text}</h3>
-                            </div>
-                        );
-                    })}
-                </div>
-            </section>
+								<h3 className='py-2 text-[17px] sm:text-[19px] font-semibold text-Seventh'>{item.text}</h3>
+							</div>
+						);
+					})}
+				</div>
+			</section>
 
+			<section className='flex flex-col lg:flex-row justify-between gap-8 mt-[39px] sm:mt-[60px]  lg:mt-[100px] '>
+				<article className='w-full lg:w-1/2 flex flex-col  '>
+					<h2 className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ماموریت صرافی ارز هشت</h2>
+					<div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+						<p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</p>
+					</div>
 
+				</article>
+				<article className='w-full lg:w-1/2 flex flex-col  '>
+					<h2 className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ارزش های صرافی ارز هشت</h2>
+					<div className='flex flex-col gap-4'>
+						<div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+							<p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>شفافیت در تمامی مراحل و فرآیندها</p>
+						</div>
+						<div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+							<p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'> ارائه راهکارهای جدید و پیشرفته برای آسان‌تر کردن معاملات</p>
+						</div>
+						<div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
+							<p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>همیشه گوش به نیازها و بازخوردهای شما هستیم</p>
+						</div>
+					</div>
 
-            <section className='flex flex-col lg:flex-row justify-between gap-8 mt-[39px] sm:mt-[60px]  lg:mt-[100px] '>
-                <article  className='w-full lg:w-1/2 flex flex-col  '>
-                    <h2 className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ماموریت صرافی ارز هشت</h2>
-                    <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
-                        <p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>ایجاد فضایی امن، شفاف و کاربرپسند برای همه افرادی که به آینده ارزهای دیجیتال اعتقاد دارند.</p>
-                    </div>
+				</article>
+			</section>
 
-                </article>
-                <article  className='w-full lg:w-1/2 flex flex-col  '>
-                    <h2 className='text-Seventh sm:text-[30px] text-lg font-semibold mb-[10px] sm:mb-[20px] lg:mb-[30px]'>ارزش های صرافی ارز هشت</h2>
-                    <div className='flex flex-col gap-4'>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
-                            <p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>شفافیت در تمامی مراحل و فرآیندها</p>
-                        </div>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
-                            <p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'> ارائه راهکارهای جدید و پیشرفته برای آسان‌تر کردن معاملات</p>
-                        </div>
-                        <div className='w-full  rounded-[13px] sm:rounded-[22px] lg:rounded-[20px] px-[13px] py-[15px] sm:px-[20px] sm:py-[24px]  bg-third'>
-                            <p className='text-Seventh lg:text-xl sm:text-[22px] text-sm font-normal !leading-10'>همیشه گوش به نیازها و بازخوردهای شما هستیم</p>
-                        </div>
-                    </div>
-
-
-                </article>
-            </section>
-
-        </main>
-    );
+		</main>
+	);
 }

@@ -5,7 +5,7 @@ export default function rules() {
     return (
         <div className='flex flex-col  justify-center items-center gap-[31px] lg:gap-[50px]'>
             <h3 className="text-sm lg:text-[35px] font-bold border-b-4 border-primary pb-[10px] lg:pb-5 w-auto text-center">
-            قوانین و مقرارات رویداد باگ بانتی ارزهشت
+            قوانین و مقررات رویداد باگ بانتی ارزهشت
             </h3>
 
             <div className="bg-third w-full rounded-[10px] lg:rounded-[30px] flex flex-col px-[10.64px]  py-5  xl:px-[27px]  xl:py-16 gap-[10px]">

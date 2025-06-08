@@ -1,9 +1,9 @@
 import { useTheme } from "@/contexts/theme-provider";
-import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import useGetData from "@/hooks/useGetData";
-import Link from "next/link";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { FixedSizeList as List } from "react-window";
+import CryptoRow from "./CryptoRow";
 const filterButtons = [
   { key: "default", label: "پیش فرض" },
   { key: "volume", label: "حجم معاملات" },
@@ -17,33 +17,50 @@ interface CryptoTableProps {
 }
 
 const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
-  const { formatNumber } = useFormattedNumber();
-  const [displayedCurrencies, setDisplayedCurrencies] = useState<any[]>([]);
   const [sort, setSort] = useState<string>("default");
-  const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { baseColor, highlightColor } = useTheme();
-  const [cryptocurrenciesData, setCryptocurrenciesData] = useState<any>(null);
-  const [delayedSearchQuery, setDelayedSearchQuery] = useState("");
-  useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      setDelayedSearchQuery(searchQuery);
-    }, 800);
-    return () => clearTimeout(searchTimeout);
-  }, [searchQuery]);
-  const { data: cryptocurrencies, isLoading } = useGetData("cryptocurrencies", 60000, { limit: 7, page, sort, search: delayedSearchQuery });
-  const filteredData = useMemo(() => {
-    if (!cryptocurrenciesData?.lists) return [];
-    return cryptocurrenciesData.lists.map((item: any) => {
+  const { data: cryptocurrencies, isLoading } = useGetData("cryptocurrencies", 60000, { limit: 2000 });
+  const displayedCurrencies = useMemo(() => {
+    if (!cryptocurrencies?.lists) return [];
+    // Enrich with infoMap
+    let fullList = cryptocurrencies.lists.map((item: any) => {
       const info = infoMap[item.symbol] || {};
-      return { ...item, ...info, name: info?.name?.fa || item.symbol };
+      return { ...item, ...info, name: info?.name?.fa || item.symbol, };
     });
-  }, [cryptocurrenciesData?.lists, infoMap]);
-  useEffect(() => {
-    if (filteredData.length > 0) {
-      setDisplayedCurrencies((prev) => (page === 1 ? filteredData : [...prev, ...filteredData]));
+    // Search filtering (name.fa, name.en, or symbol)
+    const query = searchQuery.toLowerCase();
+    fullList = fullList.filter((crypto: any) => {
+      const fa = crypto.name || "";
+      const en = crypto.nameEn?.toLowerCase() || "";
+      const sym = crypto.symbol?.toLowerCase() || "";
+      return fa.includes(query) || en.includes(query) || sym.includes(query);
+    });
+    // Sorting
+    switch (sort) {
+      case "default":
+        fullList.reverse()
+        break;
+      case "volume":
+        fullList.sort((a: any, b: any) => Number(b.quoteVolume) - Number(a.quoteVolume));
+        break;
+      case "min":
+        fullList.sort((a: any, b: any) => Number(a.lastPrice) - Number(b.lastPrice));
+        break;
+      case "max":
+        fullList.sort((a: any, b: any) => Number(b.lastPrice) - Number(a.lastPrice));
+        break;
+      case "profit":
+        fullList.sort((a: any, b: any) => Number(b.priceChangePercent) - Number(a.priceChangePercent));
+        break;
+      case "loss":
+        fullList.sort((a: any, b: any) => Number(a.priceChangePercent) - Number(b.priceChangePercent));
+        break;
+      default:
+        break;
     }
-  }, [filteredData, page]);
+    return fullList;
+  }, [cryptocurrencies, infoMap, searchQuery, sort]);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -65,30 +82,10 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
   const handleMouseUpOrLeave = () => {
     isDragging.current = false;
   };
-  useEffect(() => {
-    setCryptocurrenciesData(cryptocurrencies);
-  }, [cryptocurrencies]);
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastElementRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    observer.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && cryptocurrenciesData?.lists.length > 0) {
-          setPage((prev) => prev + 1);
-        }
-      },
-      { threshold: 1.0 }
-    );
-    if (lastElementRef.current) {
-      observer.current.observe(lastElementRef.current);
-    }
-    return () => observer.current?.disconnect();
-  });
   const handelOnChanged = (value: string) => {
     setSearchQuery(value);
-    setPage(1);
-    setDisplayedCurrencies([]);
   };
+
   return (
     <div className="w-full z-50">
       <div className="mb-4">
@@ -122,8 +119,6 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
             onClick={(e) => {
               e.stopPropagation();
               setSort(item.key);
-              setPage(1);
-              setDisplayedCurrencies([]);
             }}
           >
             {item.label}
@@ -157,35 +152,11 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
                 </div>
               </div>
             ))
-          ) : displayedCurrencies?.length !== 0 ? (
-            displayedCurrencies.map((crypto, index) => (
-              <Link href={`/price-cryptocurrencies/${crypto.symbol}`} key={index}>
-                <div
-                  ref={index === displayedCurrencies.length - 3 ? lastElementRef : null}
-                  className="ml-2 flex w-full items-center border-b border-[#ADADAD80] py-2 text-sm"
-                >
-                  <div className="w-2/5 flex items-center gap-2">
-                    <div className="w-[25px] h-[25px] flex">
-                      {crypto.isFont ?
-                        <i className={`cf cf-${crypto.symbol.toLowerCase()} text-[25px] w-full h-full flex items-center justify-center object-fill`} style={{ color: crypto.color }}></i>
-                        : <img src={`https://app.arz8.com/api/images/currency/${crypto.icon}`} alt={crypto.symbol} className="w-full h-full object-fill" />
-                      }
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-semibold">{crypto.name}</span>
-                      <span className="text-xs font-semibold text-sixth opacity-50">{crypto.symbol}</span>
-                    </div>
-                  </div>
-                  <p dir="ltr" className={`${parseFloat(crypto.priceChangePercent) < 0 ? "text-red-500" : "text-green-500"} text-[10px] font-semibold text-center w-1/5`}>
-                    {crypto.priceChangePercent} %
-                  </p>
-                  <div className="w-2/5 pr-9 text-[8px] font-semibold">
-                    <span className="text-xs">{formatNumber(crypto.priceToman)}</span> تومان
-                  </div>
-                </div>
-              </Link>
-            ))
-          ) : <p className="text-center mt-3">موردی یافت نشد!</p>
+          ) : displayedCurrencies?.length !== 0 ?
+            <List height={250} itemCount={displayedCurrencies.length} itemSize={56} width='100%' itemData={displayedCurrencies}>
+              {CryptoRow}
+            </List>
+            : <p className="text-center mt-3">موردی یافت نشد!</p>
           }
         </div>
       </div>

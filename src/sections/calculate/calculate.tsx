@@ -11,10 +11,10 @@ export default function Calculate() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
-  }); const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
+  });
+  const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
 
   return (
-
     <>
       <header className="base-style pt-[77px] lg:pt-[187px] mb-4 lg:mb-[68px]">
         <div className="w-full flex justify-center">
@@ -23,32 +23,24 @@ export default function Calculate() {
           </h1>
         </div>
       </header>
-
-
       <main>
         <section className="max-w-[750px] mx-auto ">
           <Transaction homeData={homeData?.calculator} infoData={infoData} header={false} showPrice={false} infoLoading={infoIsLoading} homeLoading={homeLoading} />
         </section>
-
         <div className="mt-4 mb-10 lg:mt-[68px] lg:mb-[100px]">
           <Banner />
         </div>
-
         <section className="base-style">
           <div className="flex flex-col gap-1">
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
-              <h2 className="text-sm lg:text-xl font-bold mb-1">
-                ماشین حساب تبدیل قیمت ارزهای دیجیتال صرافی ارز هشت
-              </h2>
-              <p >
+              <h2 className="text-sm lg:text-xl font-bold mb-1">ماشین حساب تبدیل قیمت ارزهای دیجیتال صرافی ارز هشت</h2>
+              <p>
                 ماشین حساب تبدیل قیمت ارزهای دیجیتال صرافی ارز هشت ابزاری قدرتمند است که به شما امکان می‌دهد قیمت رمز ارزها را به دقت محاسبه کنید و از آن برای انجام معاملات هوشمند استفاده کنید. با این ابزار، می‌توانید مقدار یک ارز دیجیتال را به ارز دیگری تبدیل کنید یا ارزش آن را به ریال و دلار محاسبه کنید. این ماشین حساب به‌ویژه برای کاربران ایرانی طراحی شده و به شما کمک می‌کند پیش از انجام هرگونه معامله، میزان سود و زیان خود را دقیقاً ارزیابی کنید.
               </p>
             </article>
-
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">
                 مزایای استفاده از ماشین حساب ارز دیجیتال ارز هشت
-
               </h2>
               <ul className="flex flex-col list-decimal list-inside ">
                 <li >تبدیل دقیق ارزها</li>
@@ -63,7 +55,6 @@ export default function Calculate() {
                 <p className="mr-2 lg:mr-4">قبل از انجام هرگونه معامله، می‌توانید با استفاده از این ابزار، میزان سود یا زیان خود را بررسی کرده و تصمیم‌گیری بهتری داشته باشید. برای مثال، می‌توانید محاسبه کنید که چه مقدار ارز نیاز دارید یا با چه مقدار ارز دریافت خواهید کرد و آیا این معامله به‌صرفه است یا خیر.</p>
               </ul>
             </article>
-
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">
                 ویژگی‌های منحصربه‌فرد ماشین حساب ارز دیجیتال ارز هشت
@@ -81,7 +72,6 @@ export default function Calculate() {
                 <p className="mr-2 lg:mr-4">ماشین حساب ارز هشت از ارزهای دیجیتال محبوب مانند بیت کوین، اتریوم، تتر، ترون، کاردانو و بسیاری دیگر پشتیبانی می‌کند، که این ویژگی آن را برای طیف وسیعی از کاربران مناسب می‌سازد.</p>
               </ul>
             </article>
-
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">
                 نحوه استفاده از ماشین حساب ارز دیجیتال ارز هشت
@@ -100,15 +90,12 @@ export default function Calculate() {
                 چرا از ماشین حساب ارز هشت استفاده کنیم؟
               </h2>
               <p>ماشین حساب تبدیل ارز دیجیتال در صرافی ارز هشت ابزاری است که برای ارائه محاسبات دقیق و به‌روز طراحی شده است. این ماشین حساب از اطلاعات واقعی بازار برای انجام محاسبات استفاده می‌کند، بنابراین می‌توانید با اطمینان کامل از صحت اطلاعات و ارقام ارائه‌شده بهره‌برداری کنید.</p>
-
             </article>
-
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">شروع معامله در صرافی ارز هشت</h2>
               <p className="">
                 پس از انجام محاسبات اولیه با ماشین حساب ارز دیجیتال، شما می‌توانید در صرافی ارز هشت ثبت‌نام کرده و مراحل احراز هویت خود را طی کنید. این فرآیند کمتر از 15 دقیقه زمان می‌برد.
               </p>
-
             </article>
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">
@@ -116,7 +103,6 @@ export default function Calculate() {
               </h2>
               <p>در این پلتفرم، خرید و فروش ارزهای دیجیتال با نرخ‌های مشخص و سرعت بالا انجام می‌شود. این روش برای ارزهای کمتر شناخته‌شده با نقدینگی پایین بسیار مناسب است.</p>
             </article>
-
             <article className="flex flex-col text-xs lg:text-base font-normal leading-8 lg:leading-9 ">
               <h2 className="text-sm lg:text-xl font-bold mb-1">
                 پلتفرم P2P (معاملات کاربر به کاربر):

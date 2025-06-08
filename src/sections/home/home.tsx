@@ -1,12 +1,11 @@
 "use client"
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import MainTop from "./main-top/main-top";
 import TransAction from "@/sections/home/transaction/transAction";
 import RealTimePrice from "./realtime-price/real-time-price";
 import Banner from "./banner/banner";
 import Description from "./description/description";
 import QuickGuide from "./quick-guide/quick-guide";
-import Blog from "./blog/blog";
 import useGetData from "@/hooks/useGetData";
 
 interface CryptocurrencyInfo {
@@ -19,11 +18,7 @@ interface CryptocurrencyInfo {
   percent: number;
 }
 
-interface InfoData {
-  cryptocurrency: CryptocurrencyInfo[];
-}
-
-export default function Home() {
+export default function Home({ blogSection }: { blogSection: ReactNode }) {
   const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
     gcTime: 1000 * 60 * 60,
     staleTime: Infinity,
@@ -31,7 +26,6 @@ export default function Home() {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   }); const { data: homeData, isLoading: homeLoading } = useGetData('home', 60000);
-
 
   const infoMap = useMemo(() => {
     if (!infoData?.cryptocurrency) return {};
@@ -53,7 +47,7 @@ export default function Home() {
       </div>
       <div className="base-style">
         <QuickGuide />
-        <Blog />
+        {blogSection}
         <Description />
       </div>
     </>

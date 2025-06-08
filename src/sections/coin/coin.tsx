@@ -1,6 +1,6 @@
 "use client";
 import Search from "@/assets/icons/search";
-import React, { useState, useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import Category from "./category";
 import LivePriceTable from "@/components/live-price-table";
 import Suggestion from "./Suggestion";
@@ -8,7 +8,6 @@ import SecondCategory from "./secondCategory";
 import useGetData from "@/hooks/useGetData";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowUp from "@/assets/icons/arrrow/arrow-top";
-
 
 interface CryptocurrencyInfo {
   id: number;
@@ -21,51 +20,28 @@ interface CryptocurrencyInfo {
 }
 
 export default function Coin() {
-
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [symbolsQuery, setSymbolsQuery] = useState<string[]>([]);
-  const [sugesstions, setSugesstions] = useState(false);
+  const [suggestions, setSuggestions] = useState(false);
   const [value, setValue] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
-
   const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
     gcTime: 1000 * 60 * 60,
     staleTime: Infinity,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
-  }); const { data: maxData } = useGetData("cryptocurrencies", 60000, {
-    limit: 3,
-    page: 1,
-    sort: "profit",
   });
-
-  const { data: minData } = useGetData("cryptocurrencies", 60000, {
-    limit: 3,
-    page: 1,
-    sort: "loss",
-  });
-
-  const { data: newData } = useGetData("cryptocurrencies", 60000, {
-    limit: 3,
-    page: 1,
-    sort: "new",
-  });
-  const { data: searchData } = useGetData("cryptocurrencies", 60000, {
-    limit: 5,
-    page: 1,
-    sort: "default",
-    search: searchQuery,
-    symbols: symbolsQuery
-  });
-
+  const { data: maxData } = useGetData("cryptocurrencies", 60000, { limit: 3, page: 1, sort: "profit", });
+  const { data: minData } = useGetData("cryptocurrencies", 60000, { limit: 3, page: 1, sort: "loss", });
+  const { data: newData } = useGetData("cryptocurrencies", 60000, { limit: 3, page: 1, sort: "new", });
+  const { data: searchData } = useGetData("cryptocurrencies", 60000, { limit: 5, page: 1, sort: "default", search: searchQuery, symbols: symbolsQuery });
   const infoMap = useMemo(() => {
     const map: Record<string, CryptocurrencyInfo> = {};
     infoData?.cryptocurrency.forEach((info: CryptocurrencyInfo) => {
@@ -73,26 +49,24 @@ export default function Coin() {
     })
     return map;
   }, [infoData]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setValue(inputValue);
     if (inputValue.trim() !== "") {
-      setSugesstions(true);
+      setSuggestions(true);
     }
   };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (searchRef?.current) {
       if (e.key === "Escape") {
-        setSugesstions(false);
+        setSuggestions(false);
         searchRef?.current.blur();
       }
     }
   };
 
   return (
-    <div className="bg-background dark:bg-[#3C3B41] pt-20 ">
+    <div className="bg-background dark:bg-[#3C3B41] pt-20">
       <div className="flex flex-col justify-center bg-[#242428] dark:bg-[#242428] items-center w-full h-[296]">
         <div className="w-full flex flex-col items-center text-white pt-8">
           <h1 className="text-[20px] md:text-3xl ">
@@ -108,14 +82,14 @@ export default function Coin() {
               className="w-[308px] h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border sm:border-2 text-lg md:text-xl outline-none placeholder:text-[13px] sm:placeholder:text-[15px]"
               type="text"
               placeholder="نام، نماد،...ارز"
-              onFocus={() => setSugesstions(true)}
+              onFocus={() => setSuggestions(true)}
               onKeyUp={(e) => handleKeyDown(e)}
               ref={searchRef}
             />
             <div className="w-full h-full">
-              {sugesstions && (
+              {suggestions &&
                 <Suggestion
-                  setSuggestions={setSugesstions}
+                  setSuggestions={setSuggestions}
                   value={value}
                   setSearchQuery={setSearchQuery}
                   setSymbolsQuery={setSymbolsQuery}
@@ -123,7 +97,7 @@ export default function Coin() {
                   infoMap={infoMap}
                   symbolsQuery={symbolsQuery}
                 />
-              )}
+              }
             </div>
             <span className="w-6 h-6 md:w-[54px] md:h-[54px] absolute left-7 sm:left-[25px] top-[26px] sm:top-[25px] bg-primary rounded-[9.4px] md:rounded-2xl flex justify-center items-center">
               <div className="w-4 h-4 md:w-8 md:h-8">
@@ -143,33 +117,23 @@ export default function Coin() {
               <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
             </div>
             <div className="hidden xl:block">
-
               <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
             <div className="block xl:hidden">
               <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
             </div>
           </div>
-          <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl">
-            <LivePriceTable infoMap={infoMap} />
-          </div>
+          <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl"><LivePriceTable infoMap={infoMap} /></div>
         </div>
         <section className="w-full mx-auto">
           <h2 className="mt-8 mb-4 text-[17px] sm:text-[33px] font-bold">
-            <span className="text-primary">{"قیمت و لیست کامل ارزهای دیجیتال"}</span>
-            {" "}
-            {"خرید و فروش در صرافی ارز هشت"}
+            قیمت و لیست کامل ارزهای دیجیتال
           </h2>
-
-          <div
-            ref={contentRef}
-            className="relative overflow-hidden transition-all duration-700 ease-in-out !leading-10 text-justify text-sm sm:text-base"
-            style={{
-              maxHeight: isExpanded ? `${contentRef.current?.scrollHeight}px` : "160px",
-            }}
-          >
+          <h2 className="mt-8 mb-4 text-[17px] sm:text-[33px] font-bold text-primary">
+            خرید و فروش در صرافی ارز هشت
+          </h2>
+          <div ref={contentRef} className="relative overflow-hidden transition-all duration-700 ease-in-out !leading-10 text-justify text-sm sm:text-base" style={{ maxHeight: isExpanded ? `${contentRef.current?.scrollHeight}px` : "160px", }}>
             <p>به صرافی ارز هشت خوش آمدید! ما در اینجا تجربه‌ای سریع، امن و حرفه‌ای از خرید و فروش ارزهای دیجیتال را برای شما فراهم کرده‌ایم. اگر به دنبال یک پلتفرم مطمئن برای انجام معاملات رمزارزها هستید، جای درستی آمده‌اید! با ما همراه باشید تا با ویژگی‌های منحصربه‌فرد و خدمات پیشرفته‌ی ما بیشتر آشنا شوید.</p>
-
             <h3 className="mt-2 sm:mt-4  mb-1 sm:mb-2  font-semibold text-base sm:text-lg">چرا صرافی ارز هشت؟</h3>
             <ul className="space-y-1">
               <li>امنیت بالا: ما از پیشرفته‌ترین فناوری‌های امنیتی و پروتکل‌های رمزنگاری برای محافظت از اطلاعات و دارایی‌های شما استفاده می‌کنیم. تمامی تراکنش‌ها با استفاده از پروتکل‌های SSL و احراز هویت دو مرحله‌ای (2FA) انجام می‌شوند تا سطح حداکثری امنیت را برای شما فراهم کنیم. امنیت اطلاعات کاربران برای ما در اولویت قرار دارد و به‌طور مداوم سیستم‌های امنیتی ما به‌روزرسانی می‌شوند</li>
@@ -194,38 +158,25 @@ export default function Coin() {
               <li>احراز هویت سریع و امن: برای افزایش امنیت و جلوگیری از سوءاستفاده، فرآیند احراز هویت ما سریع و مطابق با استانداردهای جهانی است.</li>
               <li>دسترسی فوری به بازارهای جهانی: پس از تکمیل ثبت‌نام و احراز هویت، می‌توانید بلافاصله خرید و فروش ارزهای دیجیتال را آغاز کنید.</li>
             </ul>
-
-
             <h3 className="mt-2 sm:mt-4 mb-1 sm:mb-2 font-semibold text-base sm:text-lg">چرا همین امروز به ما بپیوندید؟</h3>
             <p>بازار ارزهای دیجیتال پر از فرصت‌های هیجان‌انگیز است و ما در صرافی ارز هشت، در کنار شما هستیم تا از این فرصت‌ها به بهترین شکل استفاده کنید. با زیرساخت‌های مدرن، خدمات بی‌نظیر و پشتیبانی مستمر، ما همراه شما هستیم تا تجربه‌ای متفاوت از معاملات رمزارزها را داشته باشید.</p>
             <p>با صرافی ارز هشت، خرید و فروش ارزهای دیجیتال نه‌تنها ساده‌تر، بلکه ایمن‌تر و مقرون‌به‌صرفه‌تر از همیشه است. همین امروز شروع کنید و از فرصت‌های بی‌نظیر بازار ارزهای دیجیتال بهره‌مند شوید!</p>
-
             {/* Gradient Overlay */}
-            {!isExpanded && (
-              <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#ffffff] to-[#3C3B4100] dark:from-[#3C3B41] dark:to-[#3C3B4100] pointer-events-none transition-opacity duration-700 opacity-100"></div>
-            )}
+            {!isExpanded && <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#ffffff] to-[#3C3B4100] dark:from-[#3C3B41] dark:to-[#3C3B4100] pointer-events-none transition-opacity duration-700 opacity-100"></div>}
           </div>
-
           <div>
-            <button
-              onClick={toggleExpand}
-              className="w-full hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2"
-            >
-              {isExpanded ? (
+            <button onClick={toggleExpand} className="w-full hover:text-primary duration-300 focus:outline-none flex items-center justify-center gap-2">
+              {isExpanded ?
                 <>
-                  <span className="w-5 h-5">
-                    <ArrowUp />
-                  </span>
+                  <span className="w-5 h-5"><ArrowUp /></span>
                   <span className="text-sm sm:text-lg">نمایش کمتر</span>
                 </>
-              ) : (
+                :
                 <>
-                  <span className="w-5 h-5">
-                    <ArrowDown />
-                  </span>
+                  <span className="w-5 h-5"><ArrowDown /></span>
                   <span className="text-sm sm:text-lg">نمایش بیشتر</span>
                 </>
-              )}
+              }
             </button>
           </div>
         </section>

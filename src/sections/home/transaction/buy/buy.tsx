@@ -145,31 +145,18 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
             <div className="min-w-6 h-7 flex justify-center items-center ">
-              {!currentCoinForTransactionComponent?.isFont ? (
-                <img
-                  src={`https://app.arz8.com/api/images/currency/${currentCoinForTransactionComponent?.icon}`}
-                  alt={currentCoinForTransactionComponent?.symbol}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <i
-                  className={`cf cf-${currentCoinForTransactionComponent.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`}
-                  style={{ color: currentCoinForTransactionComponent.color }}
-                ></i>
-              )}
+              {!currentCoinForTransactionComponent?.isFont ?
+                <img src={`https://app.arz8.com/api/images/currency/${currentCoinForTransactionComponent?.icon}`} alt={currentCoinForTransactionComponent?.symbol} className="w-full h-full object-cover" />
+                :
+                <i className={`cf cf-${currentCoinForTransactionComponent.symbol.toLowerCase()} text-[20px] object-cover flex items-center justify-center`} style={{ color: currentCoinForTransactionComponent.color }}></i>
+              }
             </div>
             <p className="">{currentCoinForTransactionComponent?.symbol}</p>
-            <span className="w-5 h-5">
-              <ArrowDown />
-            </span>
+            <span className="w-5 h-5"><ArrowDown /></span>
           </div>
         </div>
-
         <div className="w-full flex justify-center pb-2">
-          <Link
-            className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`}
-            href={`https://app.arz8.com/order/buy?c=${currentCoinForTransactionComponent.symbol}&amount=${amount}`}
-          >
+          <Link className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`} href={`https://app.arz8.com/order/buy?c=${currentCoinForTransactionComponent.symbol}&amount=${amount}`}>
             <button
               className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}

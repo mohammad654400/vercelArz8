@@ -40,7 +40,6 @@ export default function OtherServices() {
     },
   ];
 
-
   return (
     <div className="absolute z-50 top-[80px] -right-10 md:-right-36 t flex flex-wrap item gap-4 w-[620px] h-[491] bg-fifth dark:bg-secondary rounded-2xl py-4 px-3 shadow-lg ">
       <div className="text-fifth dark:text-secondary absolute right-32 rounded-xl -top-3 ">
@@ -59,7 +58,7 @@ export default function OtherServices() {
                   <h3 className="text-base font-semibold">{feature.title}</h3>
                 </div>
                 {feature.badge && (
-                  <div className="bg-[#F00500] rounded-full w-10 h-5 mr-10 flex justify-center text-background text-xs items-center">
+                  <div className="bg-[#F00500] text-white rounded-full w-10 h-5 mr-10 flex justify-center text-background text-xs items-center">
                     {feature.badge}
                   </div>
                 )}

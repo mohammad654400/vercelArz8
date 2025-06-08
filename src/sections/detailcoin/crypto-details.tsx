@@ -16,34 +16,25 @@ type CryptoDetailsProps = {
 };
 
 const CryptoDetails = ({ icon, persianName, symbol, lastDollarPrice, priceChangePercent, iconColor, iconIsFont, isLoading }: CryptoDetailsProps) => {
-
   const { baseColor, highlightColor } = useTheme();
-
 
   return (
     <Link href={`/price-cryptocurrencies/${symbol}`}>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center group">
         <div className="flex items-center gap-2">
           <div className="w-[52px] h-[52px]">
             <div className="min-w-[41px] w-[41px] h-[41px] rounded-full flex items-center">
-              {isLoading ? (
+              {isLoading ?
                 <Skeleton baseColor={baseColor} highlightColor={highlightColor} circle width={41} height={41} />
-              ) : iconIsFont ? (
-                <i
-                  className={`cf cf-${symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`}
-                  style={{ color: iconColor }}
-                ></i>
-              ) : (
-                <img
-                  src={`https://app.arz8.com/api/images/currency/${icon}`}
-                  alt={symbol}
-                  className="w-full h-full object-cover"
-                />
-              )}
+                : iconIsFont ?
+                  <i className={`cf cf-${symbol.toLowerCase()} text-[41px] w-full h-full flex items-center justify-center object-cover`} style={{ color: iconColor }}></i>
+                  :
+                  <img src={`https://app.arz8.com/api/images/currency/${icon}`} alt={symbol} className="w-full h-full object-cover" />
+              }
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={80} height={20} /> : <p className="text-lg font-semibold">{persianName}</p>}
+            {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={80} height={20} /> : <p className="text-lg font-semibold group-hover:text-xl group-hover:text-primary">{persianName}</p>}
             {isLoading ? <Skeleton baseColor={baseColor} highlightColor={highlightColor} width={50} height={18} /> : <p className="text-lg font-semibold opacity-50">{symbol}</p>}
           </div>
         </div>

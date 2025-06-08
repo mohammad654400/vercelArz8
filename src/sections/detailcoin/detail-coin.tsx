@@ -359,13 +359,13 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
               onClick={handleCopyLink}
               className="flex w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]"
             >
-              {isCopied ? (
+              {isCopied ?
                 <span className="text-[8px] sm:text-xs text-[#33B028]">
                   کپی شد!
                 </span>
-              ) : (
+                :
                 <SendIcon />
-              )}
+              }
             </button>
             <span
               onClick={() => handleFavorite(coin?.symbol)}

@@ -1,5 +1,6 @@
 import Home from "@/sections/home/home";
 import { schemaData } from "@/schemas/home-schema";
+import Blog from "@/sections/home/blog/blog";
 
 export const metadata = {
   title: "ارز هشت | صرافی آنلاین ارز دیجیتال",
@@ -29,15 +30,11 @@ export default function HomePage() {
       <h1 className="sr-only">
         خرید و فروش فوری بیت‌کوین، اتریوم، تتر و ۱۳۰۰+ ارز دیجیتال با قیمت لحظه‌ای، امنیت پیشرفته و تسویه آنی در ارز هشت
       </h1>
-
-
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-
-      <Home />
+      <Home blogSection={<Blog />} />
     </main>
   );
 }
