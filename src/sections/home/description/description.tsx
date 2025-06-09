@@ -16,8 +16,13 @@ const Description = () => {
     setPhoneNumber(e.target.value);
   };
   const toggleExpand = () => {
+    if (isExpanded && contentRef.current) {
+      const top = contentRef.current.getBoundingClientRect().top + window.scrollY - 150;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
     setIsExpanded(!isExpanded);
   };
+  
   return (
     <div className="w-full mx-auto">
       <section className="w-full mx-auto">

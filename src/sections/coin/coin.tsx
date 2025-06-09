@@ -29,8 +29,13 @@ export default function Coin() {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const toggleExpand = () => {
+    if (isExpanded && contentRef.current) {
+      const top = contentRef.current.getBoundingClientRect().top + window.scrollY - 150;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
     setIsExpanded(!isExpanded);
   };
+  
   const { data: infoData, isLoading: infoIsLoading } = useGetData("info", undefined, undefined, {
     gcTime: 1000 * 60 * 60,
     staleTime: Infinity,
