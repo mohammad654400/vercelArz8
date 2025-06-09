@@ -121,7 +121,7 @@ export default function Category({ open, setOpen, title, data, infoMap, }: Categ
                   </div>
                   <div className={`${open ? "flex justify-between w-full" : "hidden"}`}>
                     <div className="h-full flex flex-col gap-y-3 items-start">
-                      <p className="!leading-3 text-sm font-semibold group-hover:text-lg">{item.name}</p>
+                      <p className="!leading-3 text-sm font-semibold group-hover:text-lg group-hover:text-primary">{item.name}</p>
                       <p className="leading-3 text-sm font-semibold opacity-50">{item.symbol}</p>
                     </div>
                     <div className="flex flex-col gap-y-3 items-center">

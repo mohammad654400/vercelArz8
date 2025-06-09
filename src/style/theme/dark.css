@@ -1,6 +1,6 @@
-.dark{
-    --primary:#FFC107;
-    --secondary:#242428;
+.dark {
+    --primary: #FFC107;
+    --secondary: #242428;
     --background: #3C3B41;
     --foreground: #ededed;
     --third:#302F34;
@@ -11,4 +11,9 @@
     --eighth:#FFFFFF;
     --nine:#242428;
     --x:#646464;
+
+    --gradient1: #423C302B;
+    --gradient2: #3C3B41;
+    --gradient3: #3C3B41;
 }
+

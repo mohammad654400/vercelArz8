@@ -1,7 +1,7 @@
 :root {
     --primary: #FFC107;
-    --secondary:#F6F6F6;
-    --background:#FFFFFF;
+    --secondary: #F6F6F6;
+    --background: #FFFFFF;
     --foreground: #171717;
     --third:#F6F6F6;
     --fourth:#EBEBEB;
@@ -10,4 +10,9 @@
     --seventh:#000000;
     --eighth:#242428;
     --nine:#FFFFFF;
+
+
+    --gradient1: #FFAB082B;
+    --gradient2: #FFD5831C;
+    --gradient3: #FFFFFF00;
 }

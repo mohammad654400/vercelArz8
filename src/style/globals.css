@@ -13,11 +13,13 @@ body {
   font-family: "YekanBakh";
   font-weight: 600;
 }
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 4px;
   border-radius: 20%;
 }
+
 ::-webkit-scrollbar-track {
   background: #f6f6f6;
   border-radius: 50px;
@@ -26,22 +28,25 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #ffc107;
   border-radius: 4px;
-} 
+}
+
 .overflow-y-auto {
   scrollbar-width: thin;
   scrollbar-color: #ffc107 transparent;
 }
+
 body {
-  scrollbar-color: #ffc107 #f6f6f6; 
+  scrollbar-color: #ffc107 #f6f6f6;
   scrollbar-width: thin;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.scrollbar-hidden{
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 
@@ -50,42 +55,40 @@ body {
 }
 
 .scrollbar-hidden:hover::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 @layer utilities {
   .bg-custom-gradient {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 171, 8, 0.17) 0%,
-      rgba(255, 213, 131, 0.11) 77.65%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to bottom, var(--gradient1), var(--gradient2), var(--gradient3));
   }
+
   .bg-custom-gradient2 {
-    background: linear-gradient(
-      to top,
-      rgba(255, 171, 8, 0.17) 0%,
-      rgba(255, 213, 131, 0.11) 77.65%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to top, var(--gradient1), var(--gradient2), var(--gradient3));
   }
+
   .bg-dark-no-gradient {
     background: 242428;
   }
+
   .dir_ltr {
     direction: ltr;
   }
+
   .base-style {
     @apply flex flex-col gap-8 mx-auto px-5 md:px-12 lg:px-16 xl:px-0 max-w-[1200px];
   }
+
   .full-screen {
     @apply w-screen self-center max-w-[1200px];
   }
+
   .scrollbar-hidden::-webkit-scrollbar {
-    display: none ;
+    display: none;
   }
+
   .scrollbar-hidden {
-    scrollbar-width: none !important; /* Firefox */
-  } 
+    scrollbar-width: none !important;
+    /* Firefox */
+  }
 }

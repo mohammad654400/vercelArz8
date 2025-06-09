@@ -110,20 +110,18 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
     >
       {/* Header Section */}
       {header && (
-        <div className="flex w-full gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-xl">
+        <div className="flex w-full justify-between lg:justify-start gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-xl">
           <button
             aria-label="  خرید از ارز هشت"
             onClick={() => setIsBuy(true)}
-            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${isBuy ? "text-green-500 font-bold" : "text-gray-500"
-              }`}
+            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${isBuy ? "text-green-500 font-bold" : "text-gray-500"}`}
           >
             خرید از ارز هشت
           </button>
           <button
             aria-label="  فروش به ارز هشت"
             onClick={() => setIsBuy(false)}
-            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${!isBuy ? "text-red-500 font-bold" : "text-gray-500"
-              }`}
+            className={`text-center w-full sm:w-auto text-sm md:text-lg cursor-pointer ${!isBuy ? "text-red-500 font-bold" : "text-gray-500"}`}
           >
             فروش به ارز هشت
           </button>
