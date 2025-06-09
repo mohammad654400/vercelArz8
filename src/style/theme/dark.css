@@ -1,13 +1,17 @@
-.dark{
-    --primary:#FFC107;
-    --secondary:#242428;
+.dark {
+    --primary: #FFC107;
+    --secondary: #242428;
     --background: #3C3B41;
     --foreground: #ededed;
-    --third:#302F34;
-    --fourth:#3C3B41;
-    --fifth:#302F34;
-    --sixth:#FFFFFF;
-    --seventh:#FFFFFF;
-    --eighth:#FFFFFF;
-    --x:#646464;
+    --third: #302F34;
+    --fourth: #3C3B41;
+    --fifth: #302F34;
+    --sixth: #FFFFFF;
+    --seventh: #FFFFFF;
+    --eighth: #FFFFFF;
+    --x: #646464;
+
+    --gradient1: #423C302B;
+    --gradient2: #3C3B41;
+    --gradient3: #3C3B41;
 }

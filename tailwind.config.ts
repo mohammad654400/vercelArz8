@@ -21,6 +21,10 @@ const config: Config = {
         sixth:"var(--sixth)",
         seventh:"var(--seventh)",
         eighth:"var(--eighth)",
+
+        gradient1: "var(--gradient1)",
+        gradient2: "var(--gradient2)",
+        gradient3: "var(--gradient3)",
       },
     },
   },

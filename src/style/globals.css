@@ -60,11 +60,11 @@ body {
 
 @layer utilities {
   .bg-custom-gradient {
-    background: linear-gradient(to bottom, #423C302B, #3C3B41);
+    background: linear-gradient(to bottom, var(--gradient1), var(--gradient2), var(--gradient3));
   }
 
   .bg-custom-gradient2 {
-    background: linear-gradient(to top, #423C302B, #3C3B41);
+    background: linear-gradient(to top, var(--gradient1), var(--gradient2), var(--gradient3));
   }
 
   .bg-dark-no-gradient {
