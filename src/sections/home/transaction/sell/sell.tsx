@@ -58,8 +58,8 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
     <div className="w-full ">
       <div className={`absolute -top-[8px] md:-top-[12px] left-12 md:left-8 lg:right-44 text-background dark:text-background ${route === "calculate" ? "hidden" : ""}`}><HalfCircle /></div>
       <div
-        className={`flex justify-between items-center rounded-xl   py-6 md:py-8 px-4 ${width < 1196 && route !== "calculate" ? "flex-col" : route === "calculate" ? "flex-col" : ""}`}>
-        <div className="relative w-full ">
+        className={`flex justify-between items-center rounded-xl py-6 md:py-8 px-4 ${width < 1196 && route !== "calculate" ? "flex-col" : route === "calculate" ? "flex-col" : ""}`}>
+        <div className="relative w-full">
           <p className="inline-block">مقدار (پرداخت می کنید)</p>
           <input
             pattern="[0-9]*"
@@ -78,8 +78,8 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
           <div
             onClick={openConfiguredCryptoModal}
             className={`absolute group cursor-pointer flex gap-2 items-center left-1.5
-             top-[37px] md:top-[41.5px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
-             ${route === "calculate" ? "lg:top-[44px]" : "md:top-[32px]"}
+             px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+             ${route === "calculate" ? "top-[38px] md:top-[42px] lg:top-[46px]" : "top-[38px] md:top-[41.5px]"}
              `}
           >
             <div className="min-w-6 h-7 flex justify-center items-center">
@@ -110,26 +110,26 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
             ${route === "" ? "mt-0 pt-0 rotate-180" : "mt-0 pt-0"}
             ${width < 700 ? "" : "pt-5 px-5 "}
           ${route == "calculate" ? "self-center -rotate-90 lg:mt-14 mt-6 " : ""}
-           cursor-pointer  md:my-5  lg:mt-0 self-end mb:10 `}
+           cursor-pointer md:my-5 lg:mt-0 self-end mb:10 `}
         >
           <ArrowChange />
         </div>
-        <div className={`relative w-full  ${route === "calculate" ? "md:mt-8 mt-4 " : ""}`}>
+        <div className={`relative w-full ${route === "calculate" ? "md:mt-8 mt-4 " : ""}`}>
           <p>مبلغ (دریافت می کنید)</p>
           <input
             className={`
-             ${width < 800 ? "lg:w-full" : "lg:w-[414px]"}
-             ${route == "calculate" ? "lg:w-full mb-0  " : ""} 
+             ${width < 1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
+             ${route === "calculate" ? "lg:w-full mb-0  " : ""} 
              ${route === "" ? "mb-2 " : "mb-10 md:mb-1"} 
              outline-none bg-background placeholder:text-lg text-[21px] font-normal
-             h-[62px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
+             h-[62px] w-full border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
               `}
             type="text"
             value={formatNumber(money)}
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex justify-center items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
+          <div className="absolute flex justify-center items-center gap-3 left-1.5 top-[37px] md:top-[45.5px] px-5 py-[11px]  rounded-xl bg-third">
             <Image alt="iran" src={flag} width={25} height={28} quality={100} className="w-[25px] h-[28px]" />
             <p>IRT</p>
           </div>
@@ -140,7 +140,7 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
               className={`
               ${route == "calculate" ? "w-full xl:w-full" : ""}
               ${width < 700 ? "w-full mt-0" : "w-full xl:w-auto"}
-              px-8  text-xl py-[13px] rounded-xl bg-[#F00500] text-white
+              px-8 text-xl py-[13px] rounded-xl bg-[#F00500] text-white
               transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ff4340] active:translate-y-0 active:bg-[#F00500]`}
             >
               شروع فروش

@@ -77,8 +77,8 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
             inputMode="decimal"
             className={`outline-none bg-background placeholder:text-lg text-[21px] font-normal h-[62px]
               ${width < 1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
-              ${route === "calculate" && "w-full "}
-                 border rounded-xl mt-3  pr-4`}
+              ${route === "calculate" && "w-full"}
+                 border rounded-xl mt-3 pr-4`}
             type="text"
             value={formatNumber(money)}
             onChange={(e) => handleMoneyChange(e.target.value)}
@@ -159,8 +159,8 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
             <button
               className={`
               ${route == "calculate" ? "w-full  xl:w-full" : ""}
-              ${width < 700 ? "w-full " : "lg:w-auto px-10"} 
-                 text-xl text-white  py-[12px]  rounded-xl bg-[#33B028] w-full  md:mt-2
+              ${width < 700 ? "w-full " : "lg:w-full px-10"} 
+                 text-xl text-white py-[12px] rounded-xl bg-[#33B028] w-full  md:mt-2
                  duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#55c54b] active:translate-y-0 active:bg-[#33B028]
                  `}
             >
