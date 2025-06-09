@@ -96,7 +96,7 @@ export default function Job() {
                 </div>
               </div>
               <Link className='flex justify-center items-center' href={`job/${item.title}`}>
-                <button className='text-white w-full  bg-primary md:text-base sm:text-xs text-[8px] font-bold rounded-[9px] md:rounded-[15px] whitespace-nowrap px-2 py-2 md:px-7 md:py-3  hover:px-3 active:px-2 md:hover:px-8 md:active:px-7 '>مشاهده جزئیات</button>
+                <button className='text-white w-full  bg-primary md:text-base sm:text-xs text-[8px] font-normal rounded-[9px] md:rounded-[15px] whitespace-nowrap px-2 py-2 md:px-7 md:py-3  hover:px-3 active:px-2 md:hover:px-8 md:active:px-7 '>مشاهده جزئیات</button>
               </Link>
             </div>
           ))}

@@ -94,7 +94,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ infoMap }) => {
           placeholder="جستجوی نماد،..."
           value={searchQuery}
           onChange={(e) => handelOnChanged(e.target.value)}
-          className="w-full p-2 border border-[#ADADAD80] rounded-[10px] bg-secondary outline-none placeholder:text-xs"
+          className="w-full p-2 border border-[#ADADAD80] rounded-[10px] bg-transparent outline-none placeholder:text-xs font-normal"
         />
       </div>
       <div className="absolute top-[99px] -z-10 w-[90%] bg-secondary dark:bg-fifth h-[2px]"></div>

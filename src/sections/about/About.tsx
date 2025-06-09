@@ -29,7 +29,7 @@ export default function About() {
 						return (
 							<div
 								key={index}
-								className='mb-2 mx-auto w-[155px] min-[415px]:w-[183px] h-[183px] sm:w-[203px] sm:h-[203px] bg-secondary flex flex-col items-center justify-center rounded-[18px] sm:rounded-[20px] shadow-lg'
+								className='mb-2 mx-auto w-[155px] min-[415px]:w-[183px] h-[183px] sm:w-[203px] sm:h-[203px] bg-fifth flex flex-col items-center justify-center rounded-[18px] sm:rounded-[20px] shadow-[4px_0px_20px_0px_rgba(182,182,182,0.2)] dark:shadow-[4px_0px_20px_0px_rgba(36,36,40,0.5)] '
 							>
 								<div className='w-[95px] sm:w-[105px] h-[95px] sm:h-[105px] flex items-center justify-center '>
 									<item.src />

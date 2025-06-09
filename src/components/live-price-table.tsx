@@ -359,7 +359,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
               : (
                 displayedCurrencies.lists.map((currency, index) => (
                   <div key={index} className={`grid grid-cols-6 md:grid-cols-5 lg:grid-cols-6 items-center text-center py-4`}>
-                    <div className="flex items-center justify-start gap-2 col-span-2 md:col-span-1">
+                    <div className="flex items-center justify-start gap-4 col-span-2 md:col-span-1">
                       <button onClick={() => toggleFavorite(currency.symbol)} className="text-2xl">
                         <div className="sm:w-6 sm:h-6 w-[10px] h-[10px]">
                           <Star borderColor={favorites.includes(currency.symbol) ? "none" : "currentColor"} backgroundColor={favorites.includes(currency.symbol) ? "#FFC107" : "none"} />
@@ -412,7 +412,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                     </div>
                     <div className="col-span-1">
                       <Link href={`/price-cryptocurrencies/${currency.symbol}`}>
-                        <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
+                        <button className="border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] font-normal min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
                           جزئیات بیشتر
                         </button>
                       </Link>

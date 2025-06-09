@@ -18,7 +18,7 @@ export default function Banner() {
             <div className=" w-full h-full justify-center items-center hidden lg:flex flex-row">
 
               <div className="w-full   h-full flex flex-col justify-center text-center">
-                <div className="flex flex-col pb-11">
+                <div className="flex flex-col pb-11 gap-2">
                   <h2 className="text-start text-[35px] font-extrabold">
                     دانلود اپلیکیشن صرافی ارزهشت
                   </h2>
@@ -32,7 +32,7 @@ export default function Banner() {
                     "احراز هویت سریع و بدون دردسر",
                     "پشتیبانی ۲۴ ساعته، همیشه در دسترس شما",
                   ].map((item, index) => (
-                    <li key={index} className="flex gap-x-[5px] items-center">
+                    <li key={index} className="flex gap-x-[5px] items-center font-normal">
                       <div className="w-[10px] h-[10px] rotate-45 rounded-[3px] bg-white"></div>
                       {item}
                     </li>
@@ -52,7 +52,7 @@ export default function Banner() {
                     <Image loading="lazy" src={QrCode}   alt="دانلود اپلیکیشن از طریق QR Code" quality={100} className="w-[102px] h-[102px]" ></Image>
                   </Link>
 
-                  <div className="flex flex-col gap-y-3">
+                  <div className="flex flex-col gap-y-3 text-start">
                     <span className="text-white text-xl font-bold">برای دانلود اپلیکیشن</span>
                     <span className="text-white text-xl font-bold"> اسکن کنید</span>
                   </div>

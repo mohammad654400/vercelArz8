@@ -79,7 +79,7 @@ export const AccordionItem = ({
       >
         <button
           onClick={() => onToggle(id)}
-          className={`w-full text-left font-medium flex justify-between  px-4 py-2 sm:py-4 md:py-6 rounded-xl sm:rounded-[20px] ${titleBgColor} `}
+          className={`w-full text-left font-medium flex justify-between  px-4 py-2 sm:py-4  rounded-xl sm:rounded-[20px] ${titleBgColor} `}
         >
           <span
             className={`w-full text-start self-center font-semibold ml-[5px] !leading-[33.8px] sm:leading-[38.8px] ${dynamicTitleClasses}`}

@@ -77,7 +77,7 @@ export default function SubMenu() {
           displayedCurrencies?.map((item: any, index: any) => (
             <Link href={`/price-cryptocurrencies/${item.symbol}`} key={`coin-${index}`} aria-label={`خرید ${item.name}`}>
               <div
-                className="flex justify-start gap-x-3 mb-4 h-6 px-4 rounded-[5px] hover:bg-[#D2D2D240] dark:hover:bg-[#3C3B4180] items-center"
+                className="flex justify-start gap-x-3 mb-1 py-2 px-4 rounded-[5px]  hover:bg-[#D2D2D240] dark:hover:bg-[#3C3B4180] items-center"
               >
                 <div className="w-5 h-5 flex">
                   {item.isFont ? (
@@ -99,11 +99,11 @@ export default function SubMenu() {
           ))
         )}
         <Link href='/price-cryptocurrencies'>
-          <button className="flex justify-center w-full px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-bold py-2 hover:bg-gray-300">
+          <button className="flex justify-center w-full px-4 rounded-[10px] bg-[#D2D2D240] dark:bg-[#3C3B4180] text-sm font-semibold py-2 hover:bg-gray-300">
             همه ارز ها
           </button>
         </Link>
-        <Link href='/price-cryptocurrencies/btc' className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-bold py-2 hover:bg-[#ffc13cdc]">
+        <Link href='/price-cryptocurrencies/btc' className="mt-[10px] flex justify-center w-full  px-4 rounded-[10px] text text-foreground bg-primary text-sm font-semibold py-2 hover:bg-[#ffc13cdc]">
           خرید و فروش سریع
         </Link>
       </div>

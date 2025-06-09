@@ -71,9 +71,9 @@ export default function Header() {
                   src={logo}
                   layout=""
                   property="false"
-                  className="md:w-[64px] md:h-[64px] md:object-cover w-[31px] h-[31px] "
+                  className="md:w-[64px] md:h-[64px] md:object-cover w-[31px] h-[31px]"
                 />
-                <span className="text-[17px] md:text-[34px] font-extrabold">
+                <span className="text-[17px] md:text-[34px] font-extrabold h-[31px] md:h-full text-center flex items-center  ">
                   ارزهشت
                 </span>
               </div>
@@ -84,7 +84,7 @@ export default function Header() {
           </div>
           {/* left section --------------------------------- */}
           <div className="flex justify-center items-center md:gap-[24px] gap-[9px] h-full md:gap-">
-            <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-lg cursor-pointer justify-center items-center transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ffd240]  active:translate-y-0 active:bg-primary">
+            <div className="hidden xl:flex text-white text-[19px] w-[190px] h-[50px] mx-auto bg-primary rounded-xl cursor-pointer justify-center items-center transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#ffd240]  active:translate-y-0 active:bg-primary">
               <Link href="https://app.arz8.com/auth/login" aria-label="ورود یا عضویت">
                 <p>ورود یا عضویت</p>
               </Link>
@@ -93,7 +93,7 @@ export default function Header() {
               <span className="md:w-[42px] md:h-[42px] w-[30px] h-[30px] mt-1 md:mt-0">
                 <Downlaod />
               </span>
-              <div className="hidden absolute left-10 top-[80px] group-hover:block z-50 ">
+              <div className="hidden absolute left-2 md:left-24 xl:left-10 top-[80px] group-hover:block z-50 ">
                 <DownloadSection />
               </div>
             </div>
