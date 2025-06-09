@@ -62,7 +62,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
         <HalfCircle />
       </div>
       <div
-        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full   ${width < 1196 && route !== "calculate"
+        className={`flex justify-between items-center rounded-xl  py-6 md:py-8 px-4 w-full ${width < 1196 && route !== "calculate"
           ? "flex-col "
           : route === "calculate"
             ? "flex-col"
@@ -75,7 +75,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
             autoComplete="off"
             pattern="[0-9]*"
             inputMode="decimal"
-            className={`outline-none bg-background placeholder:text-lg text-[21px]  font-normal   h-[58px] 
+            className={`outline-none bg-background placeholder:text-lg text-[21px] font-normal h-[62px]
               ${width < 1196 ? "w-full lg:w-full" : "lg:w-[414px]"}
               ${route === "calculate" && "w-full "}
                  border rounded-xl mt-3  pr-4`}
@@ -84,7 +84,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
             onChange={(e) => handleMoneyChange(e.target.value)}
             placeholder="مثال: 500,000"
           />
-          <div className="absolute flex items-center  gap-3 left-1 top-[40px] md:top-10 px-5 py-[12px]  rounded-xl bg-third">
+          <div className="absolute flex items-center gap-3 left-1.5 top-[43px] md:top-[45.5] px-5 py-[12px]  rounded-xl bg-third">
             <Image
               alt="iran"
               src={flag}
@@ -132,8 +132,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
               ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
               ${route === "calculate" && "w-full "}
               ${route == "calculate" ? "lg:w-full mb-8 pt-0 mt-0 " : ""} 
- 
-              mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[58px]  border rounded-xl lg:w-[414px] mt-3 md:mt-5  pr-4`}
+              mb-10 text-[21px] w-full font-normal placeholder:text-lg bg-background outline-none h-[62px] border rounded-xl lg:w-[414px] mt-3 md:mt-5 pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -141,7 +140,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
           />
           <div
             onClick={openConfiguredCryptoModal}
-            className="absolute group cursor-pointer flex gap-2 items-center left-1 top-[36px] md:top-[44px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
+            className="absolute group cursor-pointer flex gap-2 items-center left-1.5 top-[37px] md:top-[45.5px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third"
           >
             {/* <div className="w-5 h-5">{currency.icon}</div> */}
             <div className="min-w-6 h-7 flex justify-center items-center ">

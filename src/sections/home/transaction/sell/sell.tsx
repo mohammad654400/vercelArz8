@@ -58,25 +58,17 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
     <div className="w-full ">
       <div className={`absolute -top-[8px] md:-top-[12px] left-12 md:left-8 lg:right-44 text-background dark:text-background ${route === "calculate" ? "hidden" : ""}`}><HalfCircle /></div>
       <div
-        className={`flex justify-between items-center rounded-xl   py-6 md:py-8 px-4 
-          ${width < 1196 && route !== "calculate"
-            ? "flex-col "
-            : route === "calculate"
-              ? "flex-col"
-              : ""
-          }
-        `}
-      >
+        className={`flex justify-between items-center rounded-xl   py-6 md:py-8 px-4 ${width < 1196 && route !== "calculate" ? "flex-col" : route === "calculate" ? "flex-col" : ""}`}>
         <div className="relative w-full ">
           <p className="inline-block">مقدار (پرداخت می کنید)</p>
           <input
             pattern="[0-9]*"
             inputMode="decimal"
             className={`
-              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"} 
+              ${width < 1196 ? "lg:w-full" : "lg:w-[414px]"}
               ${route == "calculate" ? "lg:w-full lg:mt-5" : "mb-10"}
               ${route === "" ? "md:mb-5 mb-8" : ""}
-                text-[21px]  font-normal placeholder:text-lg bg-background outline-none h-[58px] w-full border rounded-xl mt-3 md:mt-4 pr-4`}
+                text-[21px] font-normal placeholder:text-lg bg-background outline-none h-[62px] w-full border rounded-xl mt-3 md:mt-4 pr-4`}
             type="text"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
@@ -85,8 +77,8 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
           {/* cryptoModal---------------------------------------------- */}
           <div
             onClick={openConfiguredCryptoModal}
-            className={`absolute group cursor-pointer flex gap-2 items-center left-1
-             top-[36px] md:top-[40px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
+            className={`absolute group cursor-pointer flex gap-2 items-center left-1.5
+             top-[37px] md:top-[41.5px] px-4 py-[11px] rounded-xl bg-secondary dark:bg-third
              ${route === "calculate" ? "lg:top-[44px]" : "md:top-[32px]"}
              `}
           >
@@ -130,7 +122,7 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
              ${route == "calculate" ? "lg:w-full mb-0  " : ""} 
              ${route === "" ? "mb-2 " : "mb-10 md:mb-1"} 
              outline-none bg-background placeholder:text-lg text-[21px] font-normal
-             h-[58px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
+             h-[62px] w-full  border rounded-xl mt-3 md:mt-5 md:mb-10 pr-4
               `}
             type="text"
             value={formatNumber(money)}
@@ -138,22 +130,11 @@ export default function Sell({ toggle, width, currentCoinForTransactionComponent
             placeholder="مثال: 500,000"
           />
           <div className="absolute flex justify-center items-center gap-3 left-1 top-9 md:top-11 px-5 py-[11px]  rounded-xl bg-third">
-            <Image
-              alt="iran"
-              src={flag}
-              width={25}
-              height={28}
-              quality={100}
-              className="w-[25px] h-[28px]"
-            />
+            <Image alt="iran" src={flag} width={25} height={28} quality={100} className="w-[25px] h-[28px]" />
             <p>IRT</p>
           </div>
         </div>
-        <div
-          className={`w-full flex justify-center pb-2
-           ${route == "" ? "pt-8 md:pb-8" : "mt-0 md:mt-10"}
-          ${route == "calculate" ? "mt-8" : ""}`}
-        >
+        <div className={`w-full flex justify-center pb-2 ${route === "" ? "pt-8 md:pb-8" : "mt-0 md:mt-10"} ${(route === "calculate" || route === 'price-cryptocurrencies') && "!mt-0"}`}>
           <Link className={`w-full px-0 ${route === "" ? "md:px-8" : "px-0"}`} href={`https://app.arz8.com/order/sell?c=${currentCoinForTransactionComponent.symbol}&amount=${amount}`}>
             <button
               className={`
