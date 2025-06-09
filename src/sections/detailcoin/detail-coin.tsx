@@ -199,7 +199,7 @@ export default function DetailCoin({ coinNameComingFromPage, coinDescription }: 
   }
 
   return (
-    <div className="flex flex-col w-full bg-background base-style pt-32 sm:pt-24">
+    <div className="flex flex-col w-full bg-background base-style pt-20 sm:pt-24">
       <div className="w-full justify-between flex items-center gap-x-4  sm:mb-6 h-11 sm:h-[75px] ">
         {infoIsLoading || coinIsLoading ? (
           <div className="h-[44px] w-[267px] sm:w-[434px] sm:h-[75px] md:w-[590px] rounded-lg overflow-hidden ">

@@ -154,8 +154,8 @@ export default function Terms() {
             <ul className="w-full space-y-2 sm:space-y-4 mt-10 mb-20">
                 {filteredQuestions.map((item) => (
                     <li key={item.categoryId + item.text} className="flex items-start gap-2">
-                        <div className="w-5">
-                            <span className="mt-[6px] lg:mt-[14px] w-[15px] h-[15px] rounded bg-primary flex justify-start items-start rotate-45" />
+                        <div className="w-3 sm:w-5">
+                            <span className="mt-[7px] sm:mt-[14px] mg:mt-[14px] w-2.5 h-2.5 sm:w-[15px] sm:h-[15px] rounded-[2px] sm:rounded bg-primary flex justify-start items-start rotate-45" />
                         </div>
                         <p
                             className="text-xs sm:text-base lg:text-[19px] font-normal text-foreground text-justify leading-[28px] sm:leading-[47px]"

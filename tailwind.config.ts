@@ -21,6 +21,7 @@ const config: Config = {
         sixth:"var(--sixth)",
         seventh:"var(--seventh)",
         eighth:"var(--eighth)",
+        nine:"var(--nine)"
       },
     },
   },

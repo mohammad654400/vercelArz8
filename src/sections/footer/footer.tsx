@@ -103,7 +103,7 @@ export default function Footer() {
             </div>
           </section>
         </div>
-        <div className=" w-full bg-secondary py-4 flex flex-col  sm:flex-row  justify-between gap-3  sm:justify-between px-2 sm:px-5 rounded-lg mt-16 mb-10 md:my-24 ">
+        <div className=" w-full bg-nine py-4 flex flex-col  sm:flex-row  justify-between gap-3  sm:justify-between px-2 sm:px-5 rounded-lg mt-16 mb-10 md:my-24 ">
           <div className="flex flex-wrap justify-center items-center text-xs md:text-[18px] gap-1 ">
             تمامی حقوق این وبسایت متعلق به{" "}
             <span className="text-primary ">ارزهشت</span> است.

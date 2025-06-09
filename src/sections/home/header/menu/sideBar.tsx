@@ -38,7 +38,7 @@ export default function SideBar({ close }: { close: () => void }) {
               </div>
             </div>
             <div className="mt-4 z-50 flex flex-col gap-4">
-              <h3>منوی اصلی</h3>
+              <h3>صفحه اصلی</h3>
               <Accordion title="قیمت ارزهای دیجیتال">
                 <div className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] hover:border-[#FFC107] transition-all">
                   <Link onClick={handleClose} href="/price-cryptocurrencies/BTC">خرید و فروش سریع</Link>
@@ -55,7 +55,7 @@ export default function SideBar({ close }: { close: () => void }) {
               <Accordion title="سایر خدمات">
                 <Link onClick={handleClose} href="/wheel-luck" className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
                   <span>گردونه شانس</span>
-                  <div className="w-7 -rotate-90 flex justify-center items-center text-[10px] h-auto bg-[#F00500] rounded-3xl">جدید</div>
+                  <div className="w-7 -rotate-90 flex justify-center items-center text-[10px] h-auto bg-[#F00500] text-white rounded-3xl">جدید</div>
                 </Link>
                 <Link href='https://app.arz8.com/referrals' className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کسب درامد</Link>
                 <Link href='https://app.arz8.com/tools/gift-card' className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کارت هدیه</Link>
@@ -63,7 +63,7 @@ export default function SideBar({ close }: { close: () => void }) {
               </Accordion>
               <Link href="/job" onClick={handleClose}><p>فرصت های شغلی</p></Link>
               <Link className="pt-2" onClick={handleClose} href="https://arz8.com/blog"><p>بلاگ</p></Link>
-              <Link onClick={handleClose} href="https://app.arz8.com/auth/login" className="mt-5 sm:mt-10 w-full bg-primary text-sm sm:text-xl font-semibold py-1 leading-7 sm:leading-10 text-white rounded-[9.85px] sm:rounded-2xl text-center transition-all">
+              <Link onClick={handleClose} href="https://app.arz8.com/auth/login" className="mt-5 sm:mt-10 w-full bg-primary text-sm sm:text-xl font-normal py-1 leading-7 sm:leading-10 text-white rounded-[9.85px] sm:rounded-2xl text-center transition-all">
                 ورود / عضویت
               </Link>
             </div>

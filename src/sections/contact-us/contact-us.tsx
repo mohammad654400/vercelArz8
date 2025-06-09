@@ -171,7 +171,7 @@ export default function ContactUs() {
                       <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
                         <Call />
                       </div>
-                      <span className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                      <span className="xl:text-2xl md:text-lg sm:text-base text-xs text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                         021-284299
                       </span>
                     </a>
@@ -179,7 +179,7 @@ export default function ContactUs() {
                       <div className="w-[14px] h-[14px] sm:w-[25px] sm:h-[25px]">
                         <Support />
                       </div>
-                      <h3 className="xl:text-2xl md:text-lg sm:text-base text-sm text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
+                      <h3 className="xl:text-2xl md:text-lg sm:text-base text-xs text-foreground mr-1 sm:mr-3 font-semibold whitespace-nowrap text-ellipsis overflow-hidden">
                         پشتیبانی آنلاین
                       </h3>
                     </a>
@@ -205,12 +205,12 @@ export default function ContactUs() {
                         href="https://t.me/arz8com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                        className="bg-secondary h-full w-full lg:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
                         <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
                           تلگرام
                         </h3>
                       </a>
-                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
+                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-full lg:w-[90px] rounded-lg sm:rounded-xl text-center flex items-center justify-center">
                         <h3 className="xl:text-2xl md:text-xl sm:text-base text-sm text-foreground font-semibold text-center">
                           ایمیل
                         </h3>
@@ -220,12 +220,12 @@ export default function ContactUs() {
                       <a
                         href="https://t.me/arz8com"
                         target="_blank"
-                        rel="noopener noreferrer" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                        rel="noopener noreferrer" className="bg-secondary h-full w-full lg:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
                         <div className="w-10 h-10 sm:h-14 sm:w-14">
                           <Telegram />
                         </div>
                       </a>
-                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-[54px] sm:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
+                      <a href="mailto:info@arz8.com" className="bg-secondary h-full w-full lg:w-[90px] rounded-lg sm:rounded-xl flex self-center items-center justify-center">
                         <div className="w-10 h-10 sm:h-14 sm:w-14">
                           <Email />
                         </div>

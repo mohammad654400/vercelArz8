@@ -42,7 +42,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
               value={phoneNumber}
               onChange={handlePhoneChange}
               placeholder="شماره موبایل خود را وارد کنید"
-              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-third dark:border-secondary border-2 rounded-[14px] sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px] placeholder:text-xs"
+              className="px-4 pr-12 w-full h-[53px] sm:h-16 bg-nine dark:border-secondary border-2 rounded-[14px] md:rounded-2xl sm:rounded-[17px] outline-none text-[20px] placeholder:text-[13px] sm:placeholder:text-[15px] placeholder:text-xs"
               pattern="[0-9]*"
               inputMode="numeric"
               onInput={(e) => {
@@ -58,7 +58,7 @@ export default function MainTop({ homeData, infoMap, isLoading }: any) {
               }
             >
               <button className="absolute left-2 top-1/2 transform -translate-y-1/2 text-base sm:text-lg md:text-xl 
-                                  rounded-xl text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
+                                  rounded-lg md:rounded-[10.59] text-white bg-primary py-2 md:py-3 px-3 sm:px-2 md:px-6 
                                   transition-all duration-200 ease-in-out 
                                   hover:scale-[103%] hover:bg-[#ffd240] active:scale-[98%]">
                 شروع کنید

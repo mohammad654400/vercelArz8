@@ -79,7 +79,7 @@ export default function Coin() {
             <input
               onChange={handleChange}
               value={value}
-              className="w-[308px] h-9 md:w-[546px] pr-5 md:h-16 rounded-2xl bg-[#3C3B41] border-primary border sm:border-2 text-lg md:text-xl outline-none placeholder:text-[13px] sm:placeholder:text-[15px]"
+              className="w-[308px] h-9 md:w-[546px] pr-5 md:h-16 rounded-[13.9px] md:rounded-[22px] lg:rounded-[25px] bg-transparent border-primary border sm:border-2 text-lg md:text-xl outline-none placeholder:text-[13px] sm:placeholder:text-[15px]"
               type="text"
               placeholder="نام، نماد،...ارز"
               onFocus={() => setSuggestions(true)}
@@ -99,7 +99,7 @@ export default function Coin() {
                 />
               }
             </div>
-            <span className="w-6 h-6 md:w-[54px] md:h-[54px] absolute left-7 sm:left-[25px] top-[26px] sm:top-[25px] bg-primary rounded-[9.4px] md:rounded-2xl flex justify-center items-center">
+            <span className="w-6 h-6 md:w-[50px] md:h-[50px] absolute left-7 sm:left-[30px] top-[26px] sm:top-[27px] bg-primary rounded-[9.4px] md:rounded-[15.5px] lg:rounded-[17px] flex justify-center items-center">
               <div className="w-4 h-4 md:w-8 md:h-8">
                 <Search />
               </div>

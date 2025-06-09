@@ -226,7 +226,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                     </div>
 
                     <Link href={`/price-cryptocurrencies/${currency.symbol}`} className="flex justify-center pl-0 pr-0">
-                      <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
+                      <button className="hidden md:block border border-primary text-primary px-1 md:px-4 md:text-sm py-2 text-[7px] font-normal min-[461px]:text-[10px] rounded-[5.22px] md:rounded-lg  hover:bg-primary hover:text-white hover:shadow-md transition-all duration-300 ">
                         جزئیات بیشتر
                       </button>
                     </Link>
@@ -279,10 +279,12 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
                       <span className="text-[8px] font-semibold">تومان</span>
                     </div>
 
+                    <div></div>
+
                     <p
                       dir="ltr"
                       className={`${parseFloat(currency.priceChangePercent) < 0 ? "text-[#e54c50] " : "text-[#2bad87]"
-                        } text-xs font-semibold text-center col-span-3`}
+                        } text-xs font-semibold text-center col-span-2`}
                     >
                       {currency.priceChangePercent} %
                     </p>
