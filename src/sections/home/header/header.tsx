@@ -40,30 +40,16 @@ export default function Header() {
         {open && <SaidBar close={toggleOpen} />}
       </div>
       <header
-        className={`
-        fixed
-        top-49 
-        left-0 
-        right-0 
-        z-30 
-        transition-all
-        bg-background
-        ${isScrolled
-            ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm  shadow-sm top-0 "
-            : "md:bg-transparent  bg-secondary"
-          }
-      `}
+        className={` fixed top-49  left-0  right-0  z-30  transition-all bg-background ${isScrolled
+          ? "bg-white/30 dark:bg-black/30 backdrop-blur-sm  shadow-sm top-0 "
+          : "md:bg-transparent  bg-secondary"
+          }`}
       >
         <div className="flex items-center self-center justify-between px-[14px]  md:px-6 h-14  md:h-[78px] ">
           {/* right section --------------------------------- */}
-          <div
-            onClick={toggleOpen}
-            className="cursor-pointer flex justify-center items-center xl:hidden"
-          >
-            <BarIcon />
-          </div>
+          <div onClick={toggleOpen} className="cursor-pointer flex justify-center items-center xl:hidden"><BarIcon /></div>
           {/*central section --------------------------------- */}
-          <div className="flex justify-center mr-6 md:mr-0  items-center h-full ">
+          <div className="flex justify-center mr-6 md:mr-4  items-center h-full ">
             <Link href="/">
               <div className="flex justify-center gap-1 items-center">
                 <Image
@@ -73,9 +59,7 @@ export default function Header() {
                   property="false"
                   className="md:w-[64px] md:h-[64px] md:object-cover w-[31px] h-[31px]"
                 />
-                <span className="text-[17px] md:text-[34px] font-extrabold h-[31px] md:h-full text-center flex items-center  ">
-                  ارزهشت
-                </span>
+                <span className="text-[17px] md:text-[34px] font-extrabold h-[31px] md:h-full text-center flex items-center">ارزهشت</span>
               </div>
             </Link>
             <div className="hidden xl:flex w-full h-full">

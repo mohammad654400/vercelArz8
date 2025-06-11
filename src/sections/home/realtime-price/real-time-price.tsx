@@ -129,7 +129,7 @@ export default function RealTimePrice({ homeData: initialHomeData, infoMap, isLo
           >
             <div role="columnheader">نماد</div>
             <div role="columnheader" className="w-full hidden md:block pl-0 pr-0">قیمت به USDT</div>
-            <div role="columnheader" className="pl-0 pr-0 col-span-1 text-end md:text-center">قیمت به تومان</div>
+            <div role="columnheader" className="pl-0 pr-10 md:pr-0 col-span-1 text-center md:text-center">قیمت به تومان</div>
             <div role="columnheader" className="pl-0 pr-0 text-end ml-3 md:ml-0 md:text-center">تغییرات 24h</div>
             <div role="columnheader" className="hidden md:block pl-0 pr-0">نمودار 24h</div>
             <div role="columnheader" className="hidden md:flex justify-center ml-5">عملیات</div>

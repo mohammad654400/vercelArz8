@@ -1,13 +1,11 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import ChartUP from "@/assets/images/chartup.png";
 import Star from "@/assets/icons/star";
 import Link from "next/link";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import useGetData from "@/hooks/useGetData";
 import Pagination from "./pagination";
-import HalfCircle from "@/assets/icons/halfCircle";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
@@ -162,7 +160,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
   }, [])
 
   return (
-    <div className=" bg-background dark:bg-[#3C3B41]  rounded-xl overflow-hidden">
+    <div className=" bg-background dark:bg-[#3C3B41] rounded-xl overflow-hidden">
       {/* search */}
       <div className="flex justify-between items-center bg-[#F6F6F6] dark:bg-[#242428] px-2 py-3 text-[#FFFFFF80]">
         <div className="relative block lg:hidden">
@@ -177,8 +175,10 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                 <button
                   key={option.key}
                   onClick={() => {
-                    setFilterKey(option.key);
-                    setTextFilter(option.label);
+                    if (option.key !== filterKey) { // prevent fetching again same data
+                      setFilterKey(option.key);
+                      setTextFilter(option.label);
+                    }
                   }}
                   className={`flex w-[250px] justify-end flex-col mr-5 gap-4 px-3 py-1 rounded-lg text-xs font-semibold mt-3 text-foreground focus:bg-[#FFF6DD] focus:text-black`}
                 >
@@ -206,11 +206,13 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
                 : "text-[#3C3B41] dark:text-[#FFFFFF80] hover:text-primary dark:hover:text-primary "
                 }`}
               onClick={(e) => {
-                e.stopPropagation();
-                setSort(item.key);
-                setNumberPage(1);
-                setIsLoading(true);
-                setDisplayedCurrencies({ lists: [], total: 0 });
+                if (item.key !== sort) {
+                  e.stopPropagation();
+                  setSort(item.key);
+                  setNumberPage(1);
+                  setIsLoading(true);
+                  setDisplayedCurrencies({ lists: [], total: 0 });
+                }
               }}
             >
               {item.label}
@@ -248,7 +250,7 @@ export default function LivePriceTable({ infoMap }: LivePriceTableProps) {
           <div className="grid grid-cols-6 md:grid-cols-5 lg:grid-cols-6 text-[10px] rounded-2xl bg-[#F6F6F6] dark:bg-[#242428] text-center justify-center py-3 font-semibold border-gray-300 items-center">
             <span className="text-[7.3px] font-semibold md:text-xs col-span-2 md:col-span-1">نماد</span>
             <span className="hidden md:block">قیمت به USDT</span>
-            <div className="flex text-center items-center justify-center text-[7.3px] font-semibold md:text-xs whitespace-nowrap col-span-2 md:col-span-1">
+            <div className="flex text-center items-center justify-end md:justify-center text-[7.3px] font-semibold md:text-xs whitespace-nowrap col-span-2 md:col-span-1">
               قیمت به تومان
               <span className="block md:hidden text-[7.3px] font-semibold md:text-xs">/USDT</span>
             </div>

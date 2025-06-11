@@ -1,19 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import ArrowBottom from "@/assets/icons/arrrow/arrow-bottom";
 import ArrowTop from "@/assets/icons/arrrow/arrow-top";
 
 export default function DetailDescription({ coinDescription }: { coinDescription: string }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const descriptionRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleExpand = () => setIsExpanded(!isExpanded);
+  const toggleExpand = () => {
+    if (isExpanded && descriptionRef.current) {
+      const topOffset = descriptionRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
+    }
 
+    setIsExpanded(!isExpanded);
+  };
 
 
   return (
-    <div>
+    <div >
       <div
-        className={`relative overflow-hidden transition-all duration-100 ${isExpanded ? "max-h-full" : "max-h-[900px]"
-          }`}
+        ref={descriptionRef}
+        className="relative overflow-hidden transition-all duration-700 ease-in-out !leading-10 text-justify text-sm sm:text-base"
+        style={{
+          maxHeight: isExpanded ? `${descriptionRef.current?.scrollHeight}px` : "670px",
+        }}
       >
         <div className="text-[13px] leading-10 text-justify" dangerouslySetInnerHTML={{ __html: coinDescription }}></div>
 

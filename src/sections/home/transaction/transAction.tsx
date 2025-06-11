@@ -103,11 +103,7 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
   }, [filterData, currentCoinForTransactionComponent]);
 
   return (
-    <div
-      ref={parentRef}
-      className={`${!header ? "border-none" : ""
-        } border-2 border-[#cccbcb80] rounded-xl text-[13px] md:text`}
-    >
+    <div ref={parentRef} className={`${!header ? "border-none" : ""} border-2 border-[#cccbcb80] rounded-xl overflow-hidden text-[13px] md:text`}>
       {/* Header Section */}
       {header && (
         <div className="flex w-full justify-between lg:justify-start gap-4 bg-secondary py-3 px-4 sm:py-5 sm:pr-6 rounded-t-xl">
@@ -131,11 +127,7 @@ export default function Transaction({ coin, header = true, showPrice, homeData, 
       {/* Main Content Section */}
       {!dataLoaded ? (
         <div className="relative w-full h-full duration-500">
-          <Skeleton
-            className="!w-full !h-48 !pt-2"
-            baseColor={baseColor}
-            highlightColor={highlightColor}
-          />
+          <Skeleton className="!w-full !h-48 !pt-2" baseColor={baseColor} highlightColor={highlightColor} />
         </div>
       ) : (
         <div className="relative w-full duration-500">

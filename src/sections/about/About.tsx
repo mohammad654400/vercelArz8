@@ -1,6 +1,7 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import Bot from "@/assets/images/about/bot.png"
+import imageLight from "@/assets/images/about/imageLight.png"
+import imageDark from "@/assets/images/about/imageDark.png"
 import { aboutData } from './data/about-data';
 
 export default function About() {
@@ -13,9 +14,15 @@ export default function About() {
 				</div>
 				<div className="h-full  w-full  order-1 xl:order-3 flex justify-center xl:justify-end items-center self-center">
 					<Image
-						src={Bot}
+						src={imageDark}
 						alt="درباره ی ما"
-						className='sm:max-h-[407px] sm:max-w-[407px] lg:min-w-[507px] lg:min-h-[507px]'
+						className='hidden dark:flex  sm:max-h-[407px] sm:max-w-[407px] lg:min-w-[507px] lg:min-h-[507px]'
+						loading="lazy"
+					/>
+					<Image
+						src={imageLight}
+						alt="درباره ی ما"
+						className='flex dark:hidden  sm:max-h-[407px] sm:max-w-[407px] lg:min-w-[507px] lg:min-h-[507px]'
 						loading="lazy"
 					/>
 				</div>

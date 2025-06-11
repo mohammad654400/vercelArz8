@@ -14,6 +14,7 @@ const config: Config = {
         secondary: "var(--secondary)",
         background: "var(--background)",
         foreground: "var(--foreground)",
+
         primary: "var(--primary)",
         third: "var(--third)",
         fourth: "var(--fourth)",
@@ -22,6 +23,7 @@ const config: Config = {
         seventh: "var(--seventh)",
         eighth: "var(--eighth)",
         nine: "var(--nine)",
+
         gradient1: "var(--gradient1)",
         gradient2: "var(--gradient2)",
         gradient3: "var(--gradient3)",

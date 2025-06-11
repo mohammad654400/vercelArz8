@@ -25,7 +25,9 @@ export default function SideBar({ close }: { close: () => void }) {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-60 bg-background rounded-tl-3xl rounded-bl-3xl shadow-xl overflow-hidden transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0 scale-x-100" : "translate-x-full scale-x-95"
+        className={
+          `fixed top-0 right-0 z-50 h-full w-60 bg-background rounded-tl-3xl rounded-bl-3xl shadow-xl overflow-hidden transform transition-transform duration-500 ease-in-out
+          ${isOpen ? "translate-x-0 scale-x-100" : "translate-x-full scale-x-95"
           }`}
         style={{ willChange: "transform" }}
       >
@@ -38,28 +40,28 @@ export default function SideBar({ close }: { close: () => void }) {
               </div>
             </div>
             <div className="mt-4 z-50 flex flex-col gap-4">
-              <h3>صفحه اصلی</h3>
+              <Link onClick={handleClose} href='/'>صفحه اصلی</Link>
               <Accordion title="قیمت ارزهای دیجیتال">
-                <div className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] hover:border-[#FFC107] transition-all">
-                  <Link onClick={handleClose} href="/price-cryptocurrencies/BTC">خرید و فروش سریع</Link>
-                </div>
-                <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
-                  <Link onClick={handleClose} href="/price-cryptocurrencies">ارز های جدید</Link>
-                </div>
-                <div className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
-                  <Link onClick={handleClose} href="/price-cryptocurrencies">لیست همه ارز ها</Link>
-                </div>
+                <Link href="/price-cryptocurrencies/BTC" className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">
+                  <h4 onClick={handleClose}>خرید و فروش سریع</h4>
+                </Link>
+                <Link href="/price-cryptocurrencies" className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">
+                  <h4 onClick={handleClose}>ارز های جدید</h4>
+                </Link>
+                <Link href="/price-cryptocurrencies" className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">
+                  <h4 onClick={handleClose} >لیست همه ارز ها</h4>
+                </Link>
               </Accordion>
               <Link onClick={handleClose} href="/price-cryptocurrencies/BTC"><p className="pb-3">خرید و فروش انی </p></Link>
               <Link onClick={handleClose} href="/faq"><p>سوالات متداول</p></Link>
               <Accordion title="سایر خدمات">
-                <Link onClick={handleClose} href="/wheel-luck" className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 transition-all">
+                <Link onClick={handleClose} href="/wheel-luck" className="flex justify-between w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">
                   <span>گردونه شانس</span>
                   <div className="w-7 -rotate-90 flex justify-center items-center text-[10px] h-auto bg-[#F00500] text-white rounded-3xl">جدید</div>
                 </Link>
-                <Link href='https://app.arz8.com/referrals' className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کسب درامد</Link>
-                <Link href='https://app.arz8.com/tools/gift-card' className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">کارت هدیه</Link>
-                <Link href='/' className="w-full rounded-xl bg-secondary py-3 pr-4 transition-all">تخفیفات</Link>
+                <Link href='https://app.arz8.com/referrals' className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">کسب درامد</Link>
+                <Link href='https://app.arz8.com/tools/gift-card' className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">کارت هدیه</Link>
+                <Link href='/' className="w-full rounded-xl bg-secondary py-3 pr-4 hover:bg-[#FFF6DD] transition-all">تخفیفات</Link>
               </Accordion>
               <Link href="/job" onClick={handleClose}><p>فرصت های شغلی</p></Link>
               <Link className="pt-2" onClick={handleClose} href="https://arz8.com/blog"><p>بلاگ</p></Link>

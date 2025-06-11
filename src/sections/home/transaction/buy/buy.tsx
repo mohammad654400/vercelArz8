@@ -54,7 +54,7 @@ export default function Buy({ toggle, width, currentCoinForTransactionComponent,
     }
   };
   return (
-    <div className="w-full">
+    <div className="w-full bg-background">
       <div
         className={`-top-[8px] md:-top-[12px] right-12 md:right-8 lg:right-8 text-background dark:text-background
          ${route === "calculate" ? "hidden" : "absolute"}`}
