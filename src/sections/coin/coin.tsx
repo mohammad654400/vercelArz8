@@ -8,6 +8,7 @@ import SecondCategory from "./secondCategory";
 import useGetData from "@/hooks/useGetData";
 import ArrowDown from "@/assets/icons/arrrow/arrowDown";
 import ArrowUp from "@/assets/icons/arrrow/arrow-top";
+import CategoryCardsContainer from "./CategoryCardsContainer";
 
 interface CryptocurrencyInfo {
   id: number;
@@ -64,6 +65,25 @@ export default function Coin() {
       }
     }
   };
+  const completedProfitCurrencies = useMemo(() => {
+    return maxData?.lists.map((item: any) => {
+      const info = infoMap[item.symbol] || [{}];
+      return { ...item, ...info, name: info?.name?.fa, };
+    });
+  }, [maxData, infoMap]);
+  const completedLossCurrencies = useMemo(() => {
+    return minData?.lists.map((item: any) => {
+      const info = infoMap[item.symbol] || [{}];
+      return { ...item, ...info, name: info?.name?.fa, };
+    });
+  }, [minData, infoMap]);
+  const completedNewCurrencies = useMemo(() => {
+    return newData?.lists.map((item: any) => {
+      const info = infoMap[item.symbol] || [{}];
+      return { ...item, ...info, name: info?.name?.fa, };
+    });
+  }, [newData, infoMap]);
+
 
   return (
     <div className="bg-background dark:bg-[#3C3B41] pt-20">
@@ -75,7 +95,7 @@ export default function Coin() {
           <p className="text-xs sm:text-sm pt-5 font-normal text-center w-[330px] sm:w-[477px] md:w-[575px] !leading-6 sm:!leading-10 ">
             برای یافتن ارز مورد نظرتان نام، نماد،... ارز دیجیتال را جستجو کنید.
           </p>
-          <div className="relative p-5 ">
+          <div className="relative p-5">
             <input
               onChange={handleChange}
               value={value}
@@ -109,19 +129,8 @@ export default function Coin() {
       </div>
       <div className="base-style">
         <div className="flex flex-col">
-          <div className="flex justify-between">
-            <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"بیشترین رشد"} data={maxData?.lists} infoMap={infoMap} />
-            </div>
-            <div >
-              <Category open={open} setOpen={setOpen} title={"بیشترین ضرر"} data={minData?.lists} infoMap={infoMap} />
-            </div>
-            <div className="hidden xl:block">
-              <Category open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
-            </div>
-            <div className="block xl:hidden">
-              <SecondCategory open={open} setOpen={setOpen} title={"جدیدترین ارز های ما"} data={newData?.lists} infoMap={infoMap} />
-            </div>
+          <div className="">
+            <CategoryCardsContainer completedProfitCurrencies={completedProfitCurrencies} completedLossCurrencies={completedLossCurrencies} completedNewCurrencies={completedNewCurrencies} />
           </div>
           <div className="mt-12 border border-[#ADADAD80] dark:border-[#ADADAD80] rounded-xl"><LivePriceTable infoMap={infoMap} /></div>
         </div>

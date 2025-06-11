@@ -1,4 +1,4 @@
-import ArrowWithBorder from "@/assets/icons/arrrow/arrow-whisborder";
+import BorderedArrowIcon from "@/assets/icons/arrrow/BorderedArrowIcon";
 import { useTheme } from "@/contexts/theme-provider";
 import { useFormattedNumber } from "@/hooks/useFormatted-number";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-interface CategoryItem {
+export interface CategoryItem {
   priceToman: string;
   lastPrice: number;
   name: string;
@@ -32,24 +32,23 @@ export default function Category({ open, setOpen, title, data, infoMap, }: Categ
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 842 || window.innerWidth > 842) {
+      if (window.innerWidth < 842) {
+        setOpen(false);
+      } else {
         setOpen(true);
       }
     };
-    handleResize();
+    handleResize(); // Initial check on mount
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   const filteredData = useMemo(() => {
     return data?.map((item: any) => {
       const info = infoMap[item.symbol] || [{}];
-      return {
-        ...item,
-        ...info,
-        name: info?.name?.fa,
-      };
+      return { ...item, ...info, name: info?.name?.fa, };
     });
   }, [data, infoMap]);
   useEffect(() => {
@@ -66,7 +65,7 @@ export default function Category({ open, setOpen, title, data, infoMap, }: Categ
       <div
         className={`
           ${open
-            ? "w-[250px] md:w-[364px] pt-4 md:pt-5 rounded-2xl mx-2 px-3 md:px-6 "
+            ? "w-full pt-4 md:pt-5 rounded-2xl mx-2 px-3 md:px-6"
             : "w-[72px] h-[283px] rounded-3xl overflow-hidden px-4 flex flex-col justify-between"
           } h-[283px] bg-[#F6F6F6] dark:bg-[#242428] pb-4`}
         onTouchStart={() => {
@@ -85,7 +84,7 @@ export default function Category({ open, setOpen, title, data, infoMap, }: Categ
         >
           <h1 className={`mb-2 ${open ? "block" : "hidden"}`}>{title}</h1>
           <div className="hidden sm:block absolute left-0 w-6 bg-amber-400 opacity-0 z-10">d</div>
-          <span><ArrowWithBorder /></span>
+          <span><BorderedArrowIcon /></span>
         </div>
         {isLoading ?
           [...Array(3)].map((_, index) =>
